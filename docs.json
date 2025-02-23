@@ -85,7 +85,8 @@
   },
   "logo": {
     "light": "/logo-dark.svg",
-    "dark": "/logo-light.svg"
+    "dark": "/logo-light.svg",
+    "href": "https://www.usertour.io/"
   },
   "navbar": {
     "links": [
