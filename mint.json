@@ -73,11 +73,6 @@
         "open-source/self-hosting",
         "open-source/usertourjs"
       ]
-    },
-    {
-      "pages": [
-        "faq"
-      ]
     }
   ],
   "footerSocials": {
