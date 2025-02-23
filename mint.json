@@ -73,6 +73,17 @@
         "open-source/self-hosting",
         "open-source/usertourjs"
       ]
+    },
+    {
+      "group": "Get Started",
+      "pages": [
+        "why-usertour",
+        "quickstart"
+      ]
+    },
+    {
+      "group": "Faq",
+      "pages": "faq"
     }
   ],
   "footerSocials": {
