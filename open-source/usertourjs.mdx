@@ -1,0 +1,28 @@
+---
+title: Usertourjs
+description: Usertourjs.
+---
+
+### Install Usertour.js on Your Site
+
+[Installation Overview](/docs/developers/usertourjs-reference/installation/)
+
+Installing Usertour enables you to display content (e.g., modals, tooltips, checklists, launchers) live to your users. It also helps send targeting information (User Properties and Events) to Usertour so you can reach the right audience at the right time.
+
+After installing Usertour.js, you need to add the following configuration when using Usertour.js in self host mode
+
+Copy-paste the following snippet into the \<**head**\> section of your HTML document.
+
+**If you change the port or host, please update the following code**
+
+```html
+<script>
+      window.USERTOURJS_ENV_VARS = {
+         WS_URI: "http://localhost:8011/",
+         ASSETS_URI: "http://localhost:8011/sdk/",
+         USERTOURJS_ES2020_URL: 'http://localhost:8011/sdk/es2020/usertour.js',
+         USERTOURJS_LEGACY_URL:
+           "http://localhost:8011/sdk/legacy/usertour.iife.js",
+      };
+</script>
+```

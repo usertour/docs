@@ -1,0 +1,32 @@
+---
+title: How to start flows
+description: Learn how Usertour allows you to start flows in various ways
+---
+
+You can start a flow automatically by using auto-start conditions. You do this by enabling them in the far left of your detail page.
+
+![](/images/conditions.png)
+
+One can start and segment flows based on
+
+* User attribute - You can send user/company attributes via the [Usertour.js](/docs/developers/usertourjs-reference/installation/)
+
+* Current page - The page the user is currently on. This Usertour tracks automatically if Usertour.js is installed
+
+* Flow - Start the flow if another flow is completed/seen.
+
+* Element - Start the flow if a certain UI element in your app is present/clicked.
+
+* Text input value - Start the flow if the user fills in a specific value in a field.
+
+* User fills in input - Start the flow if the user fills in any input in a field.
+
+* Current time - Used for scheduling - Set a date and time that the flow should start before or after.
+
+**Things to note**
+
+* One can combine the conditions and make and/or combinations by e.g. using logic groups.
+
+* A flow will by default only start once per user, but you can change it to start unlimited times. If you do this make sure that it does not restart on being dismissed by adding an event condition `Flow started exactly 0 times in the last 1 hr where flow id is <flow id>`
+
+* If you want a few seconds of delay in starting the flow, you can use the Wait condition on top of your other conditions.

@@ -1,0 +1,355 @@
+---
+title: URL pattern matching
+description: Usertour supports an easy-to-use, yet powerful URL pattern for matching pages in your app. URL pattern matching is useful when auto-starting onboarding flows or product tours, progressing to the next step, or marking a checklist task as completed.
+---
+
+One of the powerful condition types in Usertour is the **Current page** conditions where you can target and control content based on URLs.
+
+Usertour supports an easy-to-use, yet powerful URL pattern for matching pages in your app. URL pattern matching is useful when auto-starting flows, progressing to the next step, or marking a checklist task as completed.
+
+Note that the following URL pattern matching rules only apply to **Current page** conditions and not to **Navigate to page** actions. For **Navigate to page** actions you will have to put the full url and insert user attributes (sent via usertour.js) for dynamic values.
+
+## Quickstart
+
+* Only supply parts of the URL you care about. Parts left out will match anything. E.g. if you don’t care about the domain, then leave it out.
+
+* `-` is a wildcard, matching anything.
+
+* `:segment` (a colon followed by any word) matches a single dynamic segment.
+
+* You can supply multiple patterns to include or exclude. The current page URL must match at least one of the included patterns, and must not match any of the excluded patterns.
+
+## Exact path (no subpaths) on any domain
+
+```html
+/app/dashboard
+```
+
+Matches any domain, with exactly the given path.
+
+* Matches:
+
+  * [`https://example.com/app/dashboard`](https://example.com/app/dashboard)
+
+  * [`http://example.com/app/dashboard`](http://example.com/app/dashboard)
+
+  * [`https://other-example.com/app/dashboard`](https://other-example.com/app/dashboard)
+
+* Does not match:
+
+  * [`https://example.com/app`](https://example.com/app)
+
+  * [`https://example.com/app/dashboard/sub`](https://example.com/app/dashboard/sub)
+
+  * [`https://example.com/app/dashboard/sub/page`](https://example.com/app/dashboard/sub/page)
+
+## Including subpaths
+
+```html
+/app*
+```
+
+`*` matches everything (including nothing).
+
+* Matches:
+
+  * [`https://example.com/app`](https://example.com/app)
+
+  * [`https://example.com/app/projects`](https://example.com/app/projects)
+
+  * [`https://example.com/app/projects/1`](https://example.com/app/projects/1)
+
+  * [`https://other-example.com/app`](https://other-example.com/app)
+
+  * [`https://example.com/applications`](https://example.com/applications)
+
+* Does not match:
+
+  * [`https://example.com/settings`](https://example.com/settings)
+
+## Only subpaths
+
+```html
+/app/*
+```
+
+Note the `/` before the `*`.
+
+* Matches:
+
+  * [`https://example.com/app/projects`](https://example.com/app/projects)
+
+  * [`https://example.com/app/projects/1`](https://example.com/app/projects/1)
+
+  * [`https://other-example.com/app/projects`](https://other-example.com/app/projects)
+
+* Does not match:
+
+  * [`https://example.com/app`](https://example.com/app)
+
+  * [`https://example.com/applications`](https://example.com/applications)
+
+## Dynamic path segment
+
+```html
+/projects/:project/details
+```
+
+`:project` matches a single path segment (anything but `/`). You can use any word (consisting of letters a-z, numbers and underscores) in place of `project` - it’s not used for anything.
+
+* Matches:
+
+  * [`https://example.com/projects/1/details`](https://example.com/projects/1/details)
+
+  * [`https://example.com/projects/2/details`](https://example.com/projects/2/details)
+
+* Does not match:
+
+  * [`https://example.com/projects/1/details/edit`](https://example.com/projects/1/details/edit)
+
+  * [`https://example.com/projects/1/history`](https://example.com/projects/1/history)
+
+## Mix dynamic path segment and subpaths
+
+```html
+/app/:company/projects/*
+```
+
+* Matches:
+
+  * [`https://example.com/app/apple/projects/1`](https://example.com/app/apple/projects/1)
+
+  * [`https://example.com/app/banana/projects/1`](https://example.com/app/banana/projects/1)
+
+  * [`https://example.com/app/banana/projects/1/details`](https://example.com/app/banana/projects/1/details)
+
+* Does not match:
+
+  * [`https://example.com/app/apple/projects`](https://example.com/app/apple/projects)
+
+## Specific domain on any path
+
+```html
+app.com
+```
+
+* Matches:
+
+  * [`https://app.com/`](https://app.com/)
+
+  * [`https://app.com/any/path`](https://app.com/any/path)
+
+* Does not match:
+
+  * [`https://www.app.com/`](https://www.app.com/)
+
+  * [`https://not-app.com/`](https://not-app.com/)
+
+## Dynamic subdomain
+
+```html
+:subdomain.app.com
+```
+
+* Matches:
+
+  * [`https://www.app.com/`](https://www.app.com/)
+
+  * [`https://www.app.com/any/path`](https://www.app.com/any/path)
+
+  * [`https://dashboard.app.com/`](https://dashboard.app.com/)
+
+* Does not match:
+
+  * [`https://app.com/`](https://app.com/)
+
+  * [`https://multiple.levels.app.com/`](https://multiple.levels.app.com/)
+
+  * [`https://www.not-app.com/`](https://www.not-app.com/)
+
+## Mix domain and path
+
+```html
+:subdomain.example.com/app/:company/projects\*
+```
+
+* Matches:
+
+  * [`https://dashboard.example.com/app/apple/projects`](https://dashboard.example.com/app/apple/projects)
+
+  * [`https://dashboard.example.com/app/apple/projects/1`](https://dashboard.example.com/app/apple/projects/1)
+
+## URL parts
+
+URLs consist of the following parts:
+
+```html
+https://my.app.com/acme-inc/dashboard?tab=analytics#charts
+\___/   \________/\_________________/ \___________/ \____/
+  |         |              |                |          |
+scheme    domain          path            query     fragment
+```
+
+When writing URL patterns in Usertour, all parts are optional. If a part is left out, it’ll match anything.
+Each part has slightly different rules.
+
+### Scheme
+
+The scheme is what comes before `://` in a URL.
+
+```html
+https://my.app.com/acme-inc/dashboard?tab=analytics#charts
+\___/
+  |
+scheme
+```
+
+The scheme is almost always either `http` or `https`. You only need to specify scheme in your URL patterns if you care about whether the user is on `http` or `https`. Usually your server takes care of redirecting users to one or the other, meaning in most cases you can leave it out of your pattern.
+
+* [`https://example.com`](https://example.com) matches any URL on [`https://example.com`](https://example.com) but not on [`http://example.com`.](http://example.com.)
+
+* `example.com` matches any URL on both [`https://example.com`](https://example.com) and [`http://example.com`.](http://example.com.)
+
+### Domain
+
+The domain part is what comes after `://` and before the path’s first `/`.
+
+```html
+https://my.app.com/acme-inc/dashboard?tab=analytics#charts
+        \________/
+            |
+          domain
+```
+
+#### Dynamic subdomain
+
+To match dynamic subdomains (e.g. `apple.app.com` and `banana.app.com`), use a colon and an arbitrary name such as `:company.app.com`. `:company` will match a non-empty subdomain, meaning it will not include `.`. The name after `:` does not matter and is currently not used for anything.
+`:company.app.com` and `:subdomain.app.com` are equivalent and will match:
+
+* apple.app.com
+
+* banana.app.com
+  They will not match:
+
+* `app.com` (missing subdomain)
+
+* `more.apple.app.com` (more subdomains)
+
+#### Wildcard domains
+
+You can also use `*` as a wildcard character to match any number of subdomains.
+
+`*.app.com` will match both `one.app.com` and `one.two.app.com`, but not `app.com`.
+
+`*app.com` will match `app.com`, but will also match `myapp.com`.
+
+### Path
+
+The path part is what comes after the domain and before the query (starting with `?`), or the fragment (starting with `#`) if there’s no query.
+
+```html
+https://my.app.com/acme-inc/dashboard?tab=analytics#charts
+                  \_________________/
+                           |
+                          path
+```
+
+**Important**: Paths **MUST** start with a slash (`/`). The URL pattern `app/projects` will consider `app` as the domain, and will match full URLs such as `https://app/projects` (which doesn’t really make sense). The right pattern here would be `/app/projects`.
+
+#### Dynamic path segments
+
+To match dynamic path segments (e.g. `/app/apple/projects` and `/app/banana/projects`), use a colon and an arbitrary name such as `/app/:company/projects`. `:company` will match a non-empty path segment, meaning it will not include `/`. The name after `:` does not matter and is currently not used for anything.
+
+`/app/:company/projects` and `/app/:slug/projects` are equivalent and will match:
+
+* `/app/apple/projects`
+
+* `/app/banana/projects`
+
+They will not match:
+
+* `/app/projects` (missing path segment)
+
+* `/app/apple/projects/1` (deeper path)
+
+#### Wildcard paths
+
+You can also use `*` as a wildcard character to match nested paths.
+`/app/*` will match both `/app/one` and `/app/one/two`, but not `/app`.
+`/app*` will match `/app`, but will also match `/applications`.
+
+`/*/projects` will match `/app/projects` and `/app/one/two/three/projects`.
+
+You can mix wildcards and dynamic path segments at will. Example: `/*/customers/:customer/invoices/:invoice/*`
+
+### Query
+
+The query is what comes after `?` and before the fragment (starting with `#`), if any.
+
+```html
+https://my.app.com/acme-inc/dashboard?tab=analytics#charts
+                                      \___________/
+                                            |
+                                          query
+```
+
+A URL can contain multiple query parameters separated by ampersands (`&`), as in `?fruit=apple&tab=analytics`. Query parameters are matched one by one. Order of query parameters does not matter. Extra, non-matched query parameters, are not considered.
+
+`?fruit=apple&tab=analytics` will match:
+
+* `?fruit=apple&tab=analytics`
+
+* `?tab=analytics&fruit=apple` (different order is OK)
+
+* `?other=test&fruit=apple&another=test&tab=analytics` (extra parameters are ignored)
+
+But will not match:
+
+* `?fruit=apple` (tab parameter is missing)
+
+* `?fruit=banana&tab=analytics` (wrong value for fruit parameter)
+
+#### Wildcard query parameter values
+
+You can use `*` to match any value in individual query parameters. It’s required that the query parameter is present though.
+
+`?param=a*` will match:
+
+* `?param=apple`
+
+* `?param=alphabet`
+
+It will not match:
+
+* `?param=banana` (does not start with a)
+
+* `?param` (no value)
+
+* `?param2=apple` (wrong parameter name)
+
+`?param=*` will match:
+
+* `?param=apple`
+
+* `?param` (no value, but present)
+
+It will not match:
+
+* `?param2=apple` (wrong parameter name)
+
+### Fragment
+
+The fragment is what comes after `#`.
+
+```html
+https://my.app.com/acme-inc/dashboard?tab=analytics#charts
+                                                    \____/
+                                                       |
+                                                    fragment
+```
+
+Since the fragment is often used like a path in single-page applications, fragment obeys the same rules as [Paths](#path).
+
+To match a dynamic fragment segment: `#/projects/:project/dashboard`.
+
+Using wildcard: `#/projects/:project/dashboard/*`.

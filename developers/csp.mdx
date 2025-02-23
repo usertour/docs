@@ -1,0 +1,30 @@
+---
+title: Content Security Policy
+description: Content Security Policy about Usertour.
+---
+
+If your web app uses Content Security Policy (CSP), you’ll need to ensure that your policy allows Usertour.js requests.
+
+Your policy must allow the following:
+
+
+```raw
+connect-src:
+  https://api.usertour.io
+  https://js.usertour.io
+  wss://api.usertour.io
+
+script-src:
+  https://js.usertour.io
+
+style-src:
+  https://js.usertour.io
+
+img-src:
+  https://js.usertour.io
+  https://assets.usertour.io
+
+media-src:
+  https://assets.usertour.io
+  https://js.usertour.io
+```

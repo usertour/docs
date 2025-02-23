@@ -1,0 +1,126 @@
+---
+title: Self Hosting
+description: Self Hosting.
+---
+
+## Deploy with Docker
+
+### Requirements
+
+Before you begin, ensure you have the following:
+
+* Basic knowledge of Docker and containerization principles.
+
+* Docker and Docker Compose are installed on your machine.
+
+### Configuration
+
+Using [this sample file](https://github.com/usertour/usertour/blob/main/.env.example) as a reference create a **docker.env** file or **environment** in **docker-compose.yml** to contain the [environment variables](/docs/open-source/env) for your installation.
+
+### Install Docker and Docker Compose:
+
+For macOS users, you can install them by [Homebrew](https://brew.sh/):
+
+```bash
+brew install docker docker-compose
+```
+
+For Windows users, you can install them by [Chocolatey](https://chocolatey.org/):
+
+```bash
+choco install docker-desktop docker-compose -y
+```
+
+### Create a **docker-compose.yml**
+
+an example configuration with all dependencies dockerized and environment variables is as follows:
+
+#### Run on your own computer
+
+```yaml
+version: "3.8"
+
+services:
+  app:
+    image: usertour/usertour:latest
+    ports:
+      - "8011:80"
+    env_file:
+      - .env
+    environment:
+      - PRISMA_BINARY_PLATFORM=linux-musl-openssl-3.0.x
+    depends_on:
+      - postgres
+      - redis
+    restart: always
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=usertour
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis_data:/data
+    restart: always
+
+volumes:
+  postgres_data:
+  redis_data:
+```
+
+#### Deploy to a public server
+
+In this way, you need to provide independent installation of postgres and redis and update the configuration information in the **.env** file
+
+```yaml
+version: "3.8"
+
+services:
+  app:
+    image: usertour/usertour:latest
+    ports:
+      - "8011:80"
+    env_file:
+      - .env
+    environment:
+      - PRISMA_BINARY_PLATFORM=linux-musl-openssl-3.0.x
+    restart: always
+```
+
+### Run it
+
+Make sure you are in the same directory as **docker-compose.yml** and start Usertour:
+
+```bash
+docker-compose up -d
+```
+
+When you run this command, by default, it does the following:
+
+* Create a database
+
+* Run the migrations
+
+* Start the Usertour app on port 8011
+
+You can now navigate to http://\<**server ip**>:8011 or [http://usertour.yourcompany.com](http://usertour.yourcompany.com) and see the login screen. Usertour itself does not perform SSL termination. It only runs on unencrypted HTTP. If you want to run on HTTPS you also need to set up a reverse proxy in front of the server.
+
+### Login
+
+After successful installation, a test account will be automatically generated:
+username: [lisa@simpson.com](mailto:lisa@simpson.com) &#x20;
+password: secret42&#x20;
+**After successful login, it is strongly recommended that you change your password**
+
+### Install Usertourjs
+
+Installing Usertour enables you to display content (e.g., modals, tooltips, checklists, launchers) live to your users. It also helps send targeting information (User Properties and Events) to Usertour so you can reach the right audience at the right time.
+
+[Installation Usertour.js](/docs/open-source/usertourjs)

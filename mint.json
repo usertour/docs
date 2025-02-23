@@ -53,20 +53,19 @@
       "group": "Get Started",
       "pages": [
         "why-usertour",
-        "introduction",
-        "quickstart",
-        "development"
+        "quickstart"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "How-to Guides",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "building-experiences/understanding-the-basics-of-in-app-flows",
+        "building-experiences/creating-your-first-flow",
+        "how-to-guides/starting-flows",
+        "how-to-guides/checklists",
+        "how-to-guides/launchers",
+        "how-to-guides/environments",
+        "how-to-guides/urls"
       ]
     },
     {

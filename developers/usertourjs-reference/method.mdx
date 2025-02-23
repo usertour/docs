@@ -1,0 +1,141 @@
+---
+title: Usertour.js Method 
+description: method of Usertour.js.
+---
+
+## Setup
+
+### init()
+
+Initializes Usertour.js to target your company. Must be called once (per page load) before you make any other call.
+
+#### Parameters
+| Parameter | Description |
+| ------- | ------------------------------------------------------------------------ |
+| **token** | String, required - Your Usertour.js Token, which you can find under [Settings -> Environments](https://app.usertour.io). Note that if you have multiple environments (e.g. Production and Staging) that each environment has a unique token. |
+
+## Users
+Users are the people using your application. Usertour keeps track of your users, so we can determine which flows to show them, and remember which flows they've already seen.
+
+### identify()
+
+Identifies the current user with Usertour. You should call this once on any page load where a user is signed in.
+
+If `attributes` is set, they will be merged into the user's existing attributes in Usertour. Any attributes you leave out will be left as-is in Usertour.
+
+It's up to you which attributes you want to send to Usertour. The only required argument is `userId`. Make sure not to send any sensitive data such as passwords. We recommend sending the `name` and `email` attributes so you can easily tell users apart in Usertour without relying on IDs only, and `signed_up_at`, which is often used in flow start conditions.
+
+If the user has any active flows, they will be displayed. If the user matches any flows' start conditions, they may be started.
+
+#### Parameters
+| Parameter | Description |
+| ------- | ------------------------------------------------------------------------ |
+| **userId** | String, required - The user's ID in your database.|
+| **attributes** | Object, optional - Attributes to update for the user. See [Attributes](/docs/developers/usertourjs-reference/overview#attributes). These attributes can be used in flow content and conditions to personalize the user experience.|
+
+#### Returns 
+A `Promise` that resolves once the identify call succeeds
+
+#### Examples 
+Example of sending the recommended attributes:
+```javascript
+usertour.identify('123456', {
+  name: 'Jane Smith',
+  email: 'jane@example.com',
+  signed_up_at: '2021-06-14T16:25:49Z'
+})
+
+```
+Minimal example of sending only userId:
+```javascript
+usertour.identify('123456')
+```
+
+### identifyAnonymous()
+
+Same as [usertour.identify()](#identify), except Usertour.js will automatically assign the current user a unique ID. This ID will be stored in the user's localStorage, and will be reused on reloads.
+
+You should only use this for anonymous users, who are not signed into your app (unauthenticated users). If they are signed in, please use [usertour.identify()](#identify) with their real user ID.
+
+#### Parameters
+| Parameter | Description |
+| ------- | ------------------------------------------------------------------------ |
+| **attributes** | Object, optional - Attributes to update for the user. See [Attributes](/docs/developers/usertourjs-reference/overview#attributes). These attributes can be used in flow content and conditions to personalize the user experience.|
+
+#### Returns 
+A `Promise` that resolves once the identify call succeeds
+
+### isIdentified()
+Check if a user has been identified.
+
+#### Returns 
+`true` if `usertour.identify` or `usertour.identifyAnonymous` has been called. `false` otherwise.
+
+### updateUser()
+Updates attributes for a user that has already been identified with `usertour.identify` since the last page load.
+
+#### Parameters
+| Parameter | Description |
+| ------- | ------------------------------------------------------------------------ |
+| **attributes** | Object, optional - Attributes to update for the user. See [Attributes](/docs/developers/usertourjs-reference/overview#attributes).|
+
+#### Returns 
+A `Promise` that resolves once the update call succeeds.
+
+### reset()
+Makes Usertour forget about the current user and immediately hides any active flows.
+
+Call this when users sign out of your app.
+
+## Groups/companies
+Groups are used to group multiple users together. In your business, groups may correspond to e.g. companies, teams or departments.
+
+Like users, groups can have attributes. Events can also be associated with groups.
+
+With groups, you can orchestrate the flows a user sees:
+
+- ...based on behavior of other users in a group. Example: Show a flow if no one in a group has created a "widget" yet.
+- ...based on multiple groups that the user is a member of. Example: Show a flow if the group the user is currently working on matches some condition.
+
+### group()
+
+Associates the currently identified user with a group/company, and optionally updates the group's attributes. You should call this once on any page where the user is working on a specific group. If the user navigates to a different group, simply call usertour.group(newGroupId) again, and Usertour will switch to using that group instead.
+
+If attributes is set, they will be merged into the group's existing attributes in Usertour. Any attributes you leave out will be left as-is in Usertour.
+
+#### Parameters
+| Parameter | Description |
+| ------- | ------------------------------------------------------------------------ |
+| **groupId** | String, required - The group/company's ID in your database.|
+| **attributes** | Object, optional - [Attributes](/docs/developers/usertourjs-reference/overview#attributes) to update for the group. These attributes can be used in flow content and conditions to personalize the user experience.|
+| **options** | Object, optional|
+| **options.membership** | Object, optional - [Attributes](/docs/developers/usertourjs-reference/overview#attributes) to update for the user's membership of the group. Some attributes neither belong on users, nor on groups. One example is a user's "role". A user can have different roles in different groups. A group's members can have different roles. Attributes like "role" are membership attributes. They can be used in the Usertour UI just like group attributes.|
+
+#### Returns 
+A `Promise` that resolves once the group call succeeds.
+
+### updateGroup()
+Updates attributes for a group that has already been registered with `usertour.group` since the last page load.
+
+#### Parameters
+| Parameter | Description |
+| ------- | ------------------------------------------------------------------------ |
+| **attributes** | Object, optional - Attributes to update for the group. See [Attributes](/docs/developers/usertourjs-reference/overview#attributes).|
+
+#### Returns 
+A `Promise` that resolves once the update call succeeds.
+
+
+## Advanced usage
+
+### setBaseZIndex()
+Usertour by default places all its floating elements at a z-index at (or slightly above) 1000000. Note that due to stacking of multiple Usertour layers, some actual z-index values may be several thousands higher.
+
+If your own app has elements that placed at higher z-index values than this, then Usertour's elements may be shown below your own app's content. In this case, you may want to raise Usertour's base z-index value.
+
+Note that you do not always need to change the base z-index. E.g. for the launchers, checklists and the resource center you can change their individual z-index. For launchers you can do it via the advanced settings and for the checklists and resource center you can do it via the theme settings.
+
+#### Parameters
+| Parameter | Description |
+| ------- | ------------------------------------------------------------------------ |
+| **baseZIndex** | Number, required - The minimum z-index that Usertour will place floating elements at.|

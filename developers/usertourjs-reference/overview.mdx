@@ -1,0 +1,102 @@
+---
+title: Usertour.js Reference
+description: Usertour.js Reference.
+---
+
+Usertour.js should be installed in your web app or website. It's responsible for identifying your users with Usertour and showing flows when appropriate.
+
+[Follow us on Twitter](https://x.com/usertourio) for Usertour.js announcements.
+
+## Quick links
+
+Quick access to methods that you'll probably need:
+
+| Method                         | Purpose                                     |
+| ------------------------------ | ------------------------------------------- |
+| [usertour.init() ](/docs/developers/usertourjs-reference/method#init)     | Initialize Usertour.js with your Token️     |
+| [usertour.identify() ](/docs/developers/usertourjs-reference/method#identify) | Identify a user️                            |
+| [usertour.group() ](/docs/developers/usertourjs-reference/method#group)    | Associate current user with a group/company |
+
+## Installation
+
+We recommend using the [usertour.js npm package](/docs/developers/usertourjs-reference/installation#npm-installation) as it offers the best developer experience:
+
+Install Usertour.js via npm
+
+```shell
+npm install usertour.js
+```
+
+Or, install via Yarn
+
+```shell
+yarn add usertour.js
+```
+
+See also [Usertour.js installation](/docs/developers/usertourjs-reference/installation) for an alternative installation method via a plain `<script>` tag.
+
+## Quick start
+
+Put this code in your app where it has access to the current user's information.
+
+Replace all placeholders (e.g. `<USERTOUR_TOKEN>` and `<USER_ID>`) with real values.
+
+Grab your Usertour.js Token under Settings -> Environments. Note that if you have multiple environments (e.g. Production and Staging) that each environment has a unique token.
+
+```javascript
+import usertour from 'usertour.js';
+
+usertour.init('<USERTOUR_TOKEN>');
+usertour.identify('<USER_ID>', {
+  name: '<NAME>',
+  email: '<EMAIL>',
+  signed_up_at: '2023-06-14T16:25:49Z',
+});
+```
+
+## The usertour object
+
+The usertour.js npm package is a thin wrapper around the real Usertour.js, which is loaded from our CDN. This way, you can interact with the imported usertour object immediately. On the first method call, the real Usertour.js will automatically be loaded (asynchronously) and injected into the current page. Method calls are automatically queued by the usertour object.
+
+The real Usertour.js script is a small script (currently \<16 KB gzipped) that contains the bare minimum to identify users and check if they have any active flows. Additional UI code and styles will only load if the user has any active flows. This is to have as small an impact on your page's load time as possible. For legacy browsers (that don't support ES2020 features), a legacy script is loaded instead.
+
+If you've installed Usertour.js via a `<script>` tag, you can access the object via window.usertour. Just be careful that it may not be loaded yet (which is why the usertour.js npm package is recommended!).
+
+## Attributes
+
+Several methods accept an attributes dictionary, which represents arbitrary information about objects such as users and events. You can use this to, for example, store a user's name or their date of sign-up, or to decorate events with e.g. which billing plan was selected. These attributes can then be used within Usertour to segment users or personalize their flows.
+
+When updating objects with attributes, the values in the attributes dictionary can be literal values (string, boolean, number, or list of strings), which just sets the attributes to the given values.
+
+If an attribute value is null, the attribute will be removed from the object.
+
+Example of using all the possible data types (these will all be inferred as expected):
+
+```javascript
+usertour.identify('123456', {
+  string: 'Just a string',
+  always_true: true,
+  always_false: false,
+  integer_number: 42,
+  decimal_number: 1234.56,
+  used_datetime_at: '2019-12-03T12:34:56.123Z',
+});
+```
+
+Remove an attribute:
+
+```javascript
+usertour.updateUser({
+  phone_number: null,
+});
+```
+
+## Attribute data types
+We support the following attribute data types:
+| Name | Description |
+| ------- | ------------------------------------------------------------------------ |
+| **string** | Represents a string. |
+| **number** | Represents a number (supports both integers and floating point numbers). |
+| **boolean** | Represents either `true` or `false`. |
+| **datetime**| Represents a point in time, always stored as ISO 8601 in UTC. |
+| **list** | Represents a list of strings. |
