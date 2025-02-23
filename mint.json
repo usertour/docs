@@ -26,6 +26,11 @@
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.gg/WPVJPX8fJh"
+    },
+    {
+      "name": "Github",
+      "icon": "github",
+      "url": "https://github.com/usertour/usertour"
     }
   ],
   "navigation": [
@@ -80,10 +85,6 @@
         "why-usertour",
         "quickstart"
       ]
-    },
-    {
-      "group": "Faq",
-      "pages": "faq"
     }
   ],
   "footerSocials": {
