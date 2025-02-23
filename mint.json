@@ -80,6 +80,14 @@
       ]
     },
     {
+      "group": "Open Source",
+      "pages": [
+        "open-source/env",
+        "open-source/self-hosting",
+        "open-source/usertourjs"
+      ]
+    },
+    {
       "group": "API Documentation",
       "pages": [
         "api-reference/introduction"
