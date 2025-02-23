@@ -32,7 +32,7 @@ If the user has any active flows, they will be displayed. If the user matches an
 | Parameter | Description |
 | ------- | ------------------------------------------------------------------------ |
 | **userId** | String, required - The user's ID in your database.|
-| **attributes** | Object, optional - Attributes to update for the user. See [Attributes](/docs/developers/usertourjs-reference/overview#attributes). These attributes can be used in flow content and conditions to personalize the user experience.|
+| **attributes** | Object, optional - Attributes to update for the user. See [Attributes](/developers/usertourjs-reference/overview#attributes). These attributes can be used in flow content and conditions to personalize the user experience.|
 
 #### Returns 
 A `Promise` that resolves once the identify call succeeds
@@ -61,7 +61,7 @@ You should only use this for anonymous users, who are not signed into your app (
 #### Parameters
 | Parameter | Description |
 | ------- | ------------------------------------------------------------------------ |
-| **attributes** | Object, optional - Attributes to update for the user. See [Attributes](/docs/developers/usertourjs-reference/overview#attributes). These attributes can be used in flow content and conditions to personalize the user experience.|
+| **attributes** | Object, optional - Attributes to update for the user. See [Attributes](/developers/usertourjs-reference/overview#attributes). These attributes can be used in flow content and conditions to personalize the user experience.|
 
 #### Returns 
 A `Promise` that resolves once the identify call succeeds
@@ -78,7 +78,7 @@ Updates attributes for a user that has already been identified with `usertour.id
 #### Parameters
 | Parameter | Description |
 | ------- | ------------------------------------------------------------------------ |
-| **attributes** | Object, optional - Attributes to update for the user. See [Attributes](/docs/developers/usertourjs-reference/overview#attributes).|
+| **attributes** | Object, optional - Attributes to update for the user. See [Attributes](/developers/usertourjs-reference/overview#attributes).|
 
 #### Returns 
 A `Promise` that resolves once the update call succeeds.
@@ -108,9 +108,9 @@ If attributes is set, they will be merged into the group's existing attributes i
 | Parameter | Description |
 | ------- | ------------------------------------------------------------------------ |
 | **groupId** | String, required - The group/company's ID in your database.|
-| **attributes** | Object, optional - [Attributes](/docs/developers/usertourjs-reference/overview#attributes) to update for the group. These attributes can be used in flow content and conditions to personalize the user experience.|
+| **attributes** | Object, optional - [Attributes](/developers/usertourjs-reference/overview#attributes) to update for the group. These attributes can be used in flow content and conditions to personalize the user experience.|
 | **options** | Object, optional|
-| **options.membership** | Object, optional - [Attributes](/docs/developers/usertourjs-reference/overview#attributes) to update for the user's membership of the group. Some attributes neither belong on users, nor on groups. One example is a user's "role". A user can have different roles in different groups. A group's members can have different roles. Attributes like "role" are membership attributes. They can be used in the Usertour UI just like group attributes.|
+| **options.membership** | Object, optional - [Attributes](/developers/usertourjs-reference/overview#attributes) to update for the user's membership of the group. Some attributes neither belong on users, nor on groups. One example is a user's "role". A user can have different roles in different groups. A group's members can have different roles. Attributes like "role" are membership attributes. They can be used in the Usertour UI just like group attributes.|
 
 #### Returns 
 A `Promise` that resolves once the group call succeeds.
@@ -121,7 +121,7 @@ Updates attributes for a group that has already been registered with `usertour.g
 #### Parameters
 | Parameter | Description |
 | ------- | ------------------------------------------------------------------------ |
-| **attributes** | Object, optional - Attributes to update for the group. See [Attributes](/docs/developers/usertourjs-reference/overview#attributes).|
+| **attributes** | Object, optional - Attributes to update for the group. See [Attributes](/developers/usertourjs-reference/overview#attributes).|
 
 #### Returns 
 A `Promise` that resolves once the update call succeeds.
