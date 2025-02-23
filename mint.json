@@ -21,12 +21,6 @@
       "url": "mailto:support@usertour.io"
     }
   ],
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
   "anchors": [
     {
       "name": "Documentation",
