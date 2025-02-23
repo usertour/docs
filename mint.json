@@ -59,7 +59,6 @@
     {
       "group": "Developers",
       "pages": [
-        "developers/usertourjs-installation",
         "developers/csp",
         {
             "group": "Usertourjs Reference",
