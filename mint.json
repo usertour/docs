@@ -23,11 +23,6 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://docs.usertour.io/"
-    },
-    {
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.gg/WPVJPX8fJh"
