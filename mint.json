@@ -38,7 +38,8 @@
       "group": "Get Started",
       "pages": [
         "why-usertour",
-        "quickstart"
+        "quickstart",
+        "faq"
       ]
     },
     {
@@ -77,13 +78,6 @@
         "open-source/env",
         "open-source/self-hosting",
         "open-source/usertourjs"
-      ]
-    },
-    {
-      "group": "Get Started",
-      "pages": [
-        "why-usertour",
-        "quickstart"
       ]
     }
   ],
