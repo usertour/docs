@@ -6,17 +6,21 @@ icon: "tag"
 
 Before your users can see the content you build, you need to install Usertour.js in your web app.
 
-Usertour.js is a tiny piece of JavaScript code (~20 kB), which is loaded asynchronously in your web app, so it won’t affect your page load speed.
+Usertour.js is a tiny piece of JavaScript code (\~20 kB), which is loaded asynchronously in your web app, so it won’t affect your page load speed.
 
 The installation is simple and only requires 2 quick steps:
 
 ## Step 1: Install Usertour.js
+
 Usertour.js can be installed in one of 2 ways:
 
-- Browser apps using module bundlers (such as Webpack or Rollup)
-  - [Npm installation](#npm-installation)
-- Other browser apps and Google Tag Manager
-  - [HTML snippet installation](#html-snippet-installation)
+* Browser apps using module bundlers (such as Webpack or Rollup)
+
+  * [Npm installation](#npm-installation)
+
+* Other browser apps and Google Tag Manager
+
+  * [HTML snippet installation](#html-snippet-installation)
 
 ### Npm installation
 
@@ -65,9 +69,9 @@ Copy-paste the folloidfsafawing snippet into your HTML document before the endin
 
 ## Step 2: Replace placeholders
 
-In the code you copy-pasted above, replace **USERTOUR_TOKEN** with the Usertour.js Token you find under Settings -> Environments. Note that if you have multiple environments (e.g. Production and Staging) that each environment has a unique token.
+In the code you copy-pasted above, replace **USERTOUR\_TOKEN** with the Usertour.js Token you find under Settings -> Environments. Note that if you have multiple environments (e.g. Production and Staging) that each environment has a unique token.
 
-Next, replace **USER_ID** with the currently signed in user’s ID in your database. Also replace **USER_NAME**, **USER_EMAIL** and **USER_SIGNED_UP_AT** with the user’s real, dynamic values. signed_up_at should be specified in ISO 8601 format. Example: 2019-12-11T12:34:56Z.
+Next, replace **USER\_ID** with the currently signed in user’s ID in your database. Also replace **USER\_NAME**, **USER\_EMAIL** and **USER\_SIGNED\_UP\_AT** with the user’s real, dynamic values. signed\_up\_at should be specified in ISO 8601 format. Example: 2019-12-11T12:34:56Z.
 
 The properties in usertour.identify()‘s second argument are all optional. They’re useful for looking up users in Usertour to e.g. see their flow progress, or to use in the flow content or conditions. If you don’t want to share this with Usertour, feel free to leave out the argument completely.
 
@@ -81,4 +85,4 @@ Usertour.js supports sending custom attributes: Key-value pairs of data such as 
 
 Running usertour.identify() is a mandatory part of the script. But if you want to show Usertour content on public pages to users who are not yet signed into your application, you can install the script on those pages and replace usertour.identify() with usertour.identifyAnonymous(). With this function Usertour.js will automatically assign the current user a unique ID. But note that they will count as users in the MAU balance.
 
-[See usertour.identifyAnonymous() docs]()
+[See usertour.identifyAnonymous() docs](/developers/usertourjs-reference/method#identify)
