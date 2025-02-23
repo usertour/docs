@@ -68,6 +68,18 @@
       ]
     },
     {
+      "group": "Developers",
+      "pages": [
+        "developers/usertourjs-installation",
+        "developers/csp",
+        {
+            "group": "Usertourjs Reference",
+            "icon": "connectdevelop",
+            "pages": ["overview", "installation", "method"]
+          }
+      ]
+    },
+    {
       "group": "API Documentation",
       "pages": [
         "api-reference/introduction"
