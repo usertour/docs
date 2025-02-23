@@ -26,13 +26,6 @@
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.gg/WPVJPX8fJh"
-    },
-    {
-      "name": "Faq",
-      "icon": "question",
-      "pages": [
-        "faq"
-      ]
     }
   ],
   "navigation": [
@@ -79,6 +72,11 @@
         "open-source/env",
         "open-source/self-hosting",
         "open-source/usertourjs"
+      ]
+    },
+    {
+      "pages": [
+        "faq"
       ]
     }
   ],
