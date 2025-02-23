@@ -28,9 +28,11 @@
       "url": "https://discord.gg/WPVJPX8fJh"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://www.usertour.io/"
+      "name": "Faq",
+      "icon": "question",
+      "pages": [
+        "faq"
+      ]
     }
   ],
   "navigation": [
