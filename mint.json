@@ -52,6 +52,7 @@
     {
       "group": "Get Started",
       "pages": [
+        "why-usertour",
         "introduction",
         "quickstart",
         "development"
