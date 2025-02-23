@@ -70,9 +70,9 @@
             "group": "Usertourjs Reference",
             "icon": "connectdevelop",
             "pages": [
-              "developers/overview", 
-              "developers/installation", 
-              "developers/method"
+              "developers/usertourjs-reference/overview", 
+              "developers/usertourjs-reference/installation", 
+              "developers/usertourjs-reference/method"
             ]
           }
       ]
