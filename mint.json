@@ -76,9 +76,9 @@
             "group": "Usertourjs Reference",
             "icon": "connectdevelop",
             "pages": [
-              "open-source/overview", 
-              "open-source/installation", 
-              "open-source/method"
+              "developers/overview", 
+              "developers/installation", 
+              "developers/method"
             ]
           }
       ]
