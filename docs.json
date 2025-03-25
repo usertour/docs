@@ -57,7 +57,9 @@
             "pages": [
               "open-source/env",
               "open-source/self-hosting",
-              "open-source/usertourjs"
+              "open-source/usertourjs",
+              "open-source/local-development"
+
             ]
           }
         ]
