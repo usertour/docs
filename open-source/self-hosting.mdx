@@ -75,6 +75,18 @@ volumes:
   postgres_data:
   redis_data:
 ```
+In this mode, we need to pay attention to the Redis and Postgres configuration of the .env file. 
+
+``` env
+#Redis
+Redis_HOST=redis
+Redis_PORT=6379
+Redis_PASS=
+
+# Postgres
+DATABASE_URL=postgresql://postgres:postgres@postgres:5432/usertour?schema=usertour&sslmode=prefer
+```
+
 
 #### Deploy to a public server
 
