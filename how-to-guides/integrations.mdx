@@ -1,0 +1,25 @@
+---
+title: Integrations
+slug: /integrations
+description: Learn how to integrate UserTour.js with popular analytics platforms.
+icon: "puzzle-piece"
+---
+
+## Summary  
+
+UserTour.js supports forwarding events to popular analytics platforms via their JavaScript SDKs. To use these integrations, your client must include each provider’s SDK snippet and initialize it correctly in the `<head>` (or before the closing `</body>`) of your application. Once loaded, UserTour.js will detect the global objects (e.g. `gtag`, `amplitude`, `mixpanel`) and dispatch events automatically.
+
+## Available Integrations  
+
+Currently supported integrations rely on client-side SDKs:  
+- **Google Analytics (gtag.js)**  
+- **Amplitude Browser SDK**  
+- **HubSpot JavaScript API**  
+- **Intercom JavaScript API**  
+- **Klaviyo JavaScript SDK**  
+- **LogRocket Web SDK**  
+- **Mixpanel JavaScript SDK**  
+- **PostHog JavaScript SDK**  
+- **Segment Analytics.js**  
+
+> _Note:_ These integrations depend on the provider’s global objects being available on `window`.  
