@@ -40,20 +40,6 @@
 				]
 			},
 			{
-				"anchor": "API References",
-				"icon": "terminal",
-				"groups": [
-					{
-						"group": "API References",
-						"pages": [
-							"api-reference/endpoint/get",
-							"api-reference/endpoint/create",
-							"api-reference/endpoint/delete"
-						]
-					}
-				]
-			},
-			{
 				"anchor": "Usertour.js Reference",
 				"icon": "connectdevelop",
 				"groups": [
@@ -89,6 +75,20 @@
 						"group": "Advanced usage",
 						"pages": [
 							"developers/usertourjs-reference/advanced/set-base-zIndex"
+						]
+					}
+				]
+			},
+			{
+				"anchor": "API References",
+				"icon": "terminal",
+				"groups": [
+					{
+						"group": "API References",
+						"pages": [
+							"api-reference/endpoint/get",
+							"api-reference/endpoint/create",
+							"api-reference/endpoint/delete"
 						]
 					}
 				]
