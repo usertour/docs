@@ -1,0 +1,39 @@
+---
+title: "identify()"
+---
+
+Identifies the current user with Usertour. You should call this once on any page load where a user is signed in.
+
+If `attributes` is set, they will be merged into the user's existing attributes in Usertour. Any attributes you leave out will be left as-is in Usertour.
+
+It's up to you which attributes you want to send to Usertour. The only required argument is `userId`. Make sure not to send any sensitive data such as passwords. We recommend sending the `name` and `email` attributes so you can easily tell users apart in Usertour without relying on IDs only, and `signed_up_at`, which is often used in flow start conditions.
+
+If the user has any active flows, they will be displayed. If the user matches any flows' start conditions, they may be started.
+
+### Parameters
+
+<ParamField path="userId" type="string" required>
+The user's ID in your database.
+</ParamField>
+
+<ParamField path="attributes" type="object" >
+Attributes to update for the user. See [Attributes](/developers/usertourjs-reference/overview#attributes). These attributes can be used in flow content and conditions to personalize the user experience.
+</ParamField>
+
+### Returns 
+A `Promise` that resolves once the identify call succeeds
+
+### Examples 
+Example of sending the recommended attributes:
+```javascript
+usertour.identify('123456', {
+  name: 'Jane Smith',
+  email: 'jane@example.com',
+  signed_up_at: '2021-06-14T16:25:49Z'
+})
+
+```
+Minimal example of sending only userId:
+```javascript
+usertour.identify('123456')
+```

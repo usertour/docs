@@ -1,0 +1,21 @@
+---
+title: "group()"
+---
+
+Associates the currently identified user with a group/company, and optionally updates the group's attributes. You should call this once on any page where the user is working on a specific group. If the user navigates to a different group, simply call usertour.group(newGroupId) again, and Usertour will switch to using that group instead.
+
+If attributes is set, they will be merged into the group's existing attributes in Usertour. Any attributes you leave out will be left as-is in Usertour.
+
+#### Parameters
+<ParamField path="groupId" type="string" required>
+The group/company's ID in your database.
+</ParamField>
+<ParamField path="attributes" type="object" >
+[Attributes](/developers/usertourjs-reference/overview#attributes) to update for the group. These attributes can be used in flow content and conditions to personalize the user experience.
+</ParamField>
+<ParamField path="options.membership" type="object" >
+[Attributes](/developers/usertourjs-reference/overview#attributes) to update for the user's membership of the group. Some attributes neither belong on users, nor on groups. One example is a user's "role". A user can have different roles in different groups. A group's members can have different roles. Attributes like "role" are membership attributes. They can be used in the Usertour UI just like group attributes.
+</ParamField>
+
+#### Returns 
+A `Promise` that resolves once the group call succeeds.

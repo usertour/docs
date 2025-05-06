@@ -1,0 +1,14 @@
+---
+title: "setBaseZIndex()"
+---
+
+Usertour by default places all its floating elements at a z-index at (or slightly above) 1000000. Note that due to stacking of multiple Usertour layers, some actual z-index values may be several thousands higher.
+
+If your own app has elements that placed at higher z-index values than this, then Usertour's elements may be shown below your own app's content. In this case, you may want to raise Usertour's base z-index value.
+
+Note that you do not always need to change the base z-index. E.g. for the launchers, checklists and the resource center you can change their individual z-index. For launchers you can do it via the advanced settings and for the checklists and resource center you can do it via the theme settings.
+
+#### Parameters
+<ParamField path="groupIdbaseZIndex" type="number" required>
+The minimum z-index that Usertour will place floating elements at.
+</ParamField>

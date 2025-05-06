@@ -1,0 +1,16 @@
+---
+title: "identifyAnonymous()"
+---
+
+Same as [usertour.identify()](/developers/usertourjs-reference/users/identify), except Usertour.js will automatically assign the current user a unique ID. This ID will be stored in the user's localStorage, and will be reused on reloads.
+
+You should only use this for anonymous users, who are not signed into your app (unauthenticated users). If they are signed in, please use [usertour.identify()](/developers/usertourjs-reference/users/identify) with their real user ID.
+
+### Parameters
+
+<ParamField path="attributes" type="object" >
+Attributes to update for the user. See [Attributes](/developers/usertourjs-reference/overview#attributes). These attributes can be used in flow content and conditions to personalize the user experience.
+</ParamField>
+
+### Returns 
+A `Promise` that resolves once the identify call succeeds
