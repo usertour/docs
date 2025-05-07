@@ -1,0 +1,31 @@
+---
+title: 'Ordering'
+description: 'Some top-level API resources that support listing can be ordered by one or more fields using the orderBy query parameter. Each resource will list which fields it can be ordered by.'
+---
+
+## Query parameters
+
+<ParamField query="orderBy" type="string | string[]">
+  Specifies the field(s) to sort the results by. You can provide either a single field or an array of fields. When multiple fields are specified, the results are sorted by the first field first, then by the second field, and so on. By default, fields are sorted in ascending order. To sort in descending order, prefix the field name with a hyphen (-).
+</ParamField>
+
+## Examples
+
+### Order by a single field
+```bash
+GET /users?orderBy=name
+```
+This will sort the results by the name field in ascending order.
+
+### Order by multiple fields
+```bash
+GET /users?orderBy[]=attributes.name&orderBy[]=createdAt
+```
+This will first sort by the name attribute, and then by the creation date, both in ascending order.
+
+### Use descending order
+```bash
+GET /users?orderBy=-createdAt
+```
+This will sort the results by the creation date in descending order (newest first).
+

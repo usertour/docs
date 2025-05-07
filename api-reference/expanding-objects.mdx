@@ -1,0 +1,77 @@
+---
+title: 'Expanding objects'
+description: 'Learn how to expand related objects in API responses using the ```expand``` query parameter.'
+---
+
+## Overview
+
+The API supports expanding related objects in responses using the ```expand``` query parameter. This allows you to retrieve complete objects instead of just their IDs. For example, when fetching an event, you can expand the associated user object to get the full user details instead of just the ```userId```.
+
+## Basic Usage
+
+### Single Object Expansion
+For one-to-one relationships, use the ```expand``` parameter to include the full object. For example, adding ```?expand=user``` to a request will include the complete user object in the response.
+
+### List Expansion
+For one-to-many relationships, the API will return an array of expanded objects. By default, these fields are ```null``` (not expanded). For example, adding ```?expand=memberships``` will include an array of all the user's memberships.
+
+## Advanced Usage
+
+### Nested Expansion
+You can expand nested relationships by using dot notation (```.```). For example, ```?expand=memberships.company``` will expand both the memberships and their associated companies.
+
+### Multiple Expansions
+To expand multiple objects simultaneously, use the array syntax with multiple paths:
+```bash
+?expand[]=user&expand[]=company
+```
+
+## Supported Endpoints
+The ```expand``` parameter can be used on any endpoint that returns expandable fields, including:
+- List endpoints
+- Create endpoints
+- Update endpoints
+
+## Example
+
+### Request
+```bash
+curl https://api.usertour.io/v1/users/1744521292871a?expand[]=memberships&expand[]=companies&expand[]=memberships.company \
+  -H 'Authorization: Bearer <api-key>'
+```
+
+### Response
+```json
+{
+  "id": "1744521292871a",
+  "object": "user",
+  "attributes": {},
+  "createdAt": "2025-04-27T13:39:47.024Z",
+  "companies": [
+    {
+      "id": "1744521292871a",
+      "object": "company",
+      "attributes": {},
+      "createdAt": "2025-04-27T13:39:47.024Z"
+    }
+  ],
+  "memberships": [
+    {
+      "id": "cma9nhdis0002108kpmr9vfrl",
+      "object": "companyMembership",
+      "attributes": {
+        "role": "admin"
+      },
+      "createdAt": "2025-05-04T12:51:10.881Z",
+      "companyId": "cm9zp4wyh00116pt4o5v5vg5t",
+      "userId": "cm9zp4wyb000z6pt484wnbzs7",
+      "company": {
+        "id": "1744521292871a",
+        "object": "company",
+        "attributes": {},
+        "createdAt": "2025-04-27T13:39:47.024Z"
+      }
+    }
+  ]
+}
+```

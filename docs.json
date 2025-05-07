@@ -86,14 +86,22 @@
 				"groups": [
 					{
 						"group": "API References",
-						"pages": ["api-reference/introduction", "api-reference/errors"]
+						"pages": [
+							"api-reference/introduction",
+							"api-reference/errors",
+							"api-reference/pagination",
+							"api-reference/ordering",
+							"api-reference/expanding-objects",
+							"api-reference/attributes"
+						]
 					},
 					{
 						"group": "Users",
 						"pages": [
 							"api-reference/users/create",
 							"api-reference/users/get",
-							"api-reference/users/delete"
+							"api-reference/users/delete",
+							"api-reference/users/list"
 						]
 					}
 				]

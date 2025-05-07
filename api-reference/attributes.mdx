@@ -1,0 +1,49 @@
+---
+title: 'Attributes'
+description: 'Objects in the API, such as users, companies, and events, can store custom attributes in the ```attributes``` object. This allows you to extend the default data model with your own fields.'
+---
+
+## Attribute naming
+
+Attribute names must follow these rules:
+- Only use alphanumeric characters (a-z, A-Z, 0-9)
+- Can include underscores, dashes, and spaces
+- Are case-sensitive
+- Must be unique within the ```attributes``` object
+
+We recommend using ```snake_case``` for all attribute names to maintain consistency across your application. For example:
+- ```user_id```
+- ```created_at```
+- ```last_login_time```
+
+You can configure human-friendly display names for attributes in the Usertour UI. For instance, ```signed_up_at``` can be displayed as "Signed Up" in the interface.
+
+## Attribute data types
+
+We support the following attribute data types:
+
+| Type | Description |
+|------|-------------|
+| ```string``` | Represents a string. |
+| ```number``` | Represents a number (supports both integers and floating point numbers). |
+| ```boolean``` | Represents either ```true``` or ```false```. |
+| ```datetime``` | Represents a point in time, always stored as ISO 8601 in UTC. |
+| ```list``` | Represents a list of strings. |
+
+## Best practices
+
+1. **Naming conventions**
+   - Use ```snake_case``` for all attribute names
+   - Choose descriptive names that clearly indicate the data's purpose
+   - Avoid using reserved words or system field names
+
+2. **Data types**
+   - Use the most appropriate data type for your data
+   - Store dates as ```datetime``` type, not as strings
+   - Use ```boolean``` for true/false values instead of strings
+
+3. **Performance considerations**
+   - Keep attribute names concise but descriptive
+   - Avoid storing large amounts of data in attributes
+   - Use appropriate data types to optimize storage and query performance
+

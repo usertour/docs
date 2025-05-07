@@ -1,0 +1,50 @@
+---
+title: 'Pagination'
+description: 'All top-level API resources that support listing use the same format for pagination and the same response object.'
+---
+
+## Query parameters
+
+<ParamField query="limit" type="number" default="20">
+  Specifies the maximum number of items to return in a single response. The value must be between 1 and 100. If not specified, defaults to 20 items per page.
+</ParamField>
+
+<ParamField query="cursor" type="string">
+  Specifies the starting point for the next page of results. The response will include items that come after (but not including) the object with this ID. To get the next page, use the ID of the last item from your previous request. The easiest way is to use the [list object's](#the-list-object) cursor field. If not provided, the API will return items from the beginning of the list.
+</ParamField>
+
+## The list object
+
+All list endpoints return a standardized response object with the following structure:
+
+<ResponseField name="results" type="array">
+  An array containing the requested resource objects (e.g., users, companies). The number of items will not exceed the specified limit.
+</ResponseField>
+
+<ResponseField name="next" type="string | null">
+  The URL to fetch the next page of results. This field is always present, as it allows clients to know how to fetch the next page if new items become available later.
+</ResponseField>
+
+<ResponseField name="previous" type="string | null">
+  The URL to fetch the previous page of results. This field is null when you're on the first page or when there is no previous page available.
+</ResponseField>
+
+```json
+{
+  "results": [
+    {
+      "id": "1744521292871",
+      "object": "user",
+      ...
+    },
+    {
+      "id": "1744521298100",
+      "object": "user",
+      ...
+    }
+    ...
+  ],
+  "next": "/v1/users?limit=2&cursor=cm9f6xsjr0014iejcuc80dy3q",
+  "previous": null
+}
+```

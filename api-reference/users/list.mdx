@@ -1,0 +1,42 @@
+---
+title: 'List users'
+api: 'Get /v1/users'
+---
+
+## Query parameters
+
+<ParamField query="email" type="string" >
+  Only include users whose email attribute equals this value.
+</ParamField>
+<ParamField query="segmentId" type="string" >
+  Only include users in this segment. Find a segment's ID in the Usertour UI via the three-dot menu at the top right of the segment page.
+</ParamField>
+<ParamField query="companyId" type="string" >
+ Only include users who are members of this company.
+</ParamField>
+
+## Response
+
+<RequestExample>
+  ```bash Request
+  curl https://api.usertour.io/v1/users/usr_123456789 \
+  -H 'Authorization: Bearer ak_123456789'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "usr_123456789",
+    "object": "user",
+    "attributes": {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "signed_up_at": "2024-03-20T08:30:00.000Z"
+    },
+    "createdAt": "2024-03-20T08:30:00.000Z",
+    "companies": null,
+    "memberships": null
+  }
+  ```
+</ResponseExample>
