@@ -16,11 +16,38 @@ This endpoint allows you to create a new user or update an existing one. The ope
 </ParamField>
 
 <ParamField body="companies" type="array">
-  A list of companies to associate with the user. This is the simplest way to add a user to companies when you don't need to specify membership attributes.
+  An array of company objects to associate with the user. Each company object must contain an ID and can include additional attributes. This is the recommended approach when you only need to establish company associations without additional relationship attributes.
+  <Expandable title="companies">
+    <ResponseField name="companies.id" type="string" required>
+      Unique identifier for the company. Must match the company's ID in your system.
+    </ResponseField>
+
+    <ResponseField name="companies.attributes" type="object">
+      A map of company-specific attributes. You can include any custom attributes to describe the company.
+    </ResponseField>
+  </Expandable>
 </ParamField>
 
 <ParamField body="memberships" type="array">
-  A list of company memberships to create or update. Use this when you need to specify attributes for the user's role in each company (e.g., access level, department). Each membership object must include a company object with at least the company's ID.
+  An array of membership objects that define the relationship between a user and a company. Use this when you need to specify attributes that describe the user's relationship with each company. Each membership object must include a company object with at least its ID.
+  <Expandable title="memberships">
+    <ResponseField name="memberships.attributes" type="object" required>
+      A map of attributes that describe the user's relationship with the company. You can include any custom attributes to define the nature of this relationship.
+    </ResponseField>
+
+    <ResponseField name="memberships.company" type="object" required>
+      The company object associated with this membership.
+      <Expandable title="memberships.company">
+        <ResponseField name="memberships.company.id" type="string" required>
+          Unique identifier for the company. Must match the company's ID in your system.
+        </ResponseField>
+
+        <ResponseField name="memberships.company.attributes" type="object">
+          A map of company-specific attributes. You can include any custom attributes to describe the company.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
 </ParamField>
 
 <RequestExample>
