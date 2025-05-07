@@ -1,0 +1,70 @@
+---
+title: 'Upsert a company'
+api: 'Post /v1/companies'
+description: "Create a new company or update an existing one. This endpoint uses an upsert operation, creating a new company if the ID doesn't exist, or updating the existing company if it does."
+---
+
+## Overview
+
+The create/update endpoint provides a unified way to manage companies in your system. When you send a request:
+- If the company ID doesn't exist, a new company will be created
+- If the company ID exists, the provided attributes will be merged with existing ones
+- Existing attributes not included in the request will remain unchanged
+
+Companies can also be created or updated indirectly through:
+- User creation/update operations with embedded company data
+- Membership creation/update operations
+
+## Request body
+
+<ParamField body="id" type="string">
+  Unique identifier for the company. We recommend using a consistent prefix (e.g., `comp_`) and matching the ID from your system for easier tracking and management.
+</ParamField>
+
+<ParamField body="attributes" type="object">
+  A map of company attributes to create or update. You can include any custom attributes to describe the company. See [Attributes](/api-reference/attributes) for detailed information about attribute types and best practices.
+</ParamField>
+
+## Response
+
+Returns the created or updated [company object](/api-reference/companies/model) with all its fields and relationships.
+
+<RequestExample>
+  ```bash Request
+  curl https://api.usertour.io/v1/companies \
+  -X POST \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "comp_123456789",
+    "attributes": {
+      "name": "Acme Corporation",
+      "industry": "Technology",
+      "employee_count": 500,
+      "subscription_tier": "enterprise",
+      "billing_country": "US",
+      "founded_at": "2020-01-01T00:00:00.000Z"
+    }
+  }'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "comp_123456789",
+    "object": "company",
+    "attributes": {
+      "name": "Acme Corporation",
+      "industry": "Technology",
+      "employee_count": 500,
+      "subscription_tier": "enterprise",
+      "billing_country": "US",
+      "founded_at": "2020-01-01T00:00:00.000Z"
+    },
+    "createdAt": "2024-03-20T08:30:00.000Z",
+    "memberships": null,
+    "users": null
+  }
+  ```
+</ResponseExample>

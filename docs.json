@@ -107,7 +107,13 @@
 					},
 					{
 						"group": "Companies",
-						"pages": ["api-reference/companies/model"]
+						"pages": [
+							"api-reference/companies/model",
+							"api-reference/companies/create",
+							"api-reference/companies/get",
+							"api-reference/companies/delete",
+							"api-reference/companies/list"
+						]
 					},
 					{
 						"group": "Company Memberships",
