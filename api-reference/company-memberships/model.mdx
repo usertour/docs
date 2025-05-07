@@ -1,0 +1,78 @@
+---
+title: 'The company membership object'
+description: 'Company memberships represent the relationship between users and companies. They allow you to store custom attributes that describe how a user interacts with a specific company.'
+---
+
+## Overview
+
+Company memberships establish a flexible many-to-many relationship model between users and companies. This design allows:
+- A single user to belong to multiple companies
+- A company to have multiple user members
+- Different roles and permissions for the same user across different companies
+
+The membership object serves as the ideal place to store relationship-specific data, particularly user roles and permissions. For instance, a user might be an Owner in one company while serving as an Admin in another. This role information belongs in the membership attributes rather than the user or company objects, as it represents the specific relationship between a user and a company.
+
+Company memberships serve as the connection between users and companies, enabling you to:
+- Track user-company relationships
+- Store relationship-specific attributes
+- Manage user access and permissions
+- Track membership history and changes
+
+## Object structure
+
+<ResponseField name="id" type="string">
+  Unique identifier for the membership. The system automatically generates this ID when a new membership is created.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  String representing the object's type. Always set to ```"companyMembership"```.
+</ResponseField>
+
+<ResponseField name="attributes" type="object">
+  A map of custom attributes that describe the user's relationship with the company. You can store any data relevant to this specific membership, such as:
+  - Membership status and type
+  - Access levels and permissions
+  - Department and role information
+  - Custom preferences and settings
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  ISO 8601 timestamp in UTC indicating when the membership was created in the system. For tracking when the user joined your application, use a custom attribute like ```joined_at``` in the user's attributes object.
+</ResponseField>
+
+<ResponseField name="company" type="object | null" default="null">
+  The associated company object. This field defaults to ```null``` but can be expanded using ```?expand=company``` to include the full company details.
+</ResponseField>
+
+<ResponseField name="companyId" type="string">
+  The unique identifier of the associated company. This ID can be used to reference the company in other API calls.
+</ResponseField>
+
+<ResponseField name="user" type="object | null" default="null">
+  The associated user object. This field defaults to ```null``` but can be expanded using ```?expand=user``` to include the full user details.
+</ResponseField>
+
+<ResponseField name="userId" type="string">
+  The unique identifier of the associated user. This ID can be used to reference the user in other API calls.
+</ResponseField>
+
+<ResponseExample>
+  ```json Example company membership object
+  {
+    "id": "mem_123456789",
+    "object": "companyMembership",
+    "attributes": {
+      "role": "admin",
+      "department": "engineering",
+      "join_date": "2024-01-15T00:00:00.000Z",
+      "access_level": "full",
+      "status": "active"
+    },
+    "createdAt": "2024-03-20T08:30:00.000Z",
+    "company": null,
+    "companyId": "comp_987654321",
+    "user": null,
+    "userId": "usr_123456789"
+  }
+  ```
+</ResponseExample>

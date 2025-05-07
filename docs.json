@@ -104,6 +104,14 @@
 							"api-reference/users/delete",
 							"api-reference/users/list"
 						]
+					},
+					{
+						"group": "Companies",
+						"pages": ["api-reference/companies/model"]
+					},
+					{
+						"group": "Company Memberships",
+						"pages": ["api-reference/company-memberships/model"]
 					}
 				]
 			},

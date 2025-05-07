@@ -1,0 +1,81 @@
+---
+title: 'The company object'
+description: 'Companies represent organizational units in your system. They can be used to group users, manage permissions, and orchestrate user flows based on company-specific conditions.'
+---
+
+## Overview
+
+Companies serve as organizational containers that group users together. In a business context, companies can represent:
+- Organizations
+- Teams
+- Departments
+- Business units
+
+Companies support custom attributes and can be associated with events, enabling sophisticated flow orchestration based on:
+- Company-wide metrics and conditions
+- User behavior patterns within the company
+- Cross-company relationships and hierarchies
+
+## Object structure
+
+<ResponseField name="id" type="string">
+  Unique identifier for the company. Must match the company's ID in your system. We recommend using a consistent prefix (e.g., `comp_`) for better identification.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  String representing the object's type. Always set to ```"company"```.
+</ResponseField>
+
+<ResponseField name="attributes" type="object">
+  A map of company-specific attributes. You can store any custom data to describe the company, such as:
+  - Company metadata (name, industry, size)
+  - Business metrics (revenue, employee count)
+  - Custom flags and settings
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  ISO 8601 timestamp in UTC indicating when the company was created in the system. For tracking when the company was created in your application, use a custom attribute like ```company_created_at``` in the attributes object.
+</ResponseField>
+
+<ResponseField name="memberships" type="array | null" default="null">
+  An array of [membership objects](/api-reference/company-memberships/model) representing user-company relationships. Each membership can store custom attributes that describe the relationship between the user and company (e.g., join date, status, preferences). The field defaults to ```null``` but can be [expanded](/api-reference/expanding-objects) using:
+  - ```?expand=memberships``` to include basic membership data
+  - ```?expand=memberships.user``` to include both membership and user details
+</ResponseField>
+
+<ResponseField name="users" type="array | null" default="null">
+  An array of [user objects](/api-reference/users/model) representing all members of this company. Use this field when you only need user data without membership attributes. The field defaults to ```null``` but can be [expanded](/api-reference/expanding-objects) using ```?expand=users```.
+</ResponseField>
+
+<ResponseExample>
+  ```json Example company object
+  {
+    "id": "comp_123456789",
+    "object": "company",
+    "attributes": {
+      "name": "Acme Corporation",
+      "industry": "Technology",
+      "employee_count": 500,
+      "founded_at": "2020-01-01T00:00:00.000Z",
+      "subscription_tier": "enterprise",
+      "billing_country": "US"
+    },
+    "createdAt": "2024-03-20T08:30:00.000Z",
+    "users": [
+      {
+        "id": "usr_987654321",
+        "object": "user",
+        "attributes": {
+          "name": "John Doe",
+          "email": "john.doe@acme.com",
+          "role": "admin",
+          "department": "engineering",
+          "last_login_at": "2024-03-20T08:30:00.000Z"
+        },
+        "createdAt": "2024-03-19T15:45:00.000Z"
+      }
+    ],
+    "memberships": null
+  }
+  ```
+</ResponseExample>
