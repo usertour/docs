@@ -8,6 +8,7 @@
 		"dark": "#0D9373"
 	},
 	"favicon": "/images/favicon.png",
+	"api": { "playground": { "display": "simple" } },
 	"navigation": {
 		"anchors": [
 			{
@@ -85,6 +86,10 @@
 				"groups": [
 					{
 						"group": "API References",
+						"pages": ["api-reference/introduction", "api-reference/errors"]
+					},
+					{
+						"group": "Users",
 						"pages": [
 							"api-reference/endpoint/get",
 							"api-reference/endpoint/create",

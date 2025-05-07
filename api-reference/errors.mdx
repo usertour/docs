@@ -1,0 +1,110 @@
+---
+title: 'Errors'
+description: 'Troubleshoot problems with this comprehensive breakdown of all error codes.'
+---
+
+## Error schema
+We use standard HTTP response codes for success and failure notifications, and our errors are further classified by type.
+## Error responses
+Error responses contains an ```error``` object with the following properties:
+<ResponseField name="code" type="string" >
+  Machine-readable error code. This is the same as the error code shown in the error documentation.
+</ResponseField>
+<ResponseField name="message" type="string" >
+  Human-readable explanation of what went wrong. This message is designed to be helpful for developers.
+</ResponseField>
+<ResponseField name="doc_url" type="string" >
+  URL to the Usertour API docs. This link will take you to the relevant documentation for the error.
+</ResponseField>
+
+**Example error response:**
+``` json
+{
+  "error": {
+    "code": "E1017",
+    "message": "each value in orderBy must be one of the following values: createdAt, -createdAt, codeName, -codeName, displayName, -displayName",
+    "doc_url": "https://docs.usertour.com"
+  }
+}
+```
+
+## Error codes
+### ```E1000```
+- **Status:** 403
+- **Message:** Invalid API key provided
+- **Suggested action:** Check your API key and make sure it's correct.
+
+### ```E1010```
+- **Status:** 401
+- **Message:** Missing API key
+- **Suggested action:** Add your API key to the request headers.
+
+### ```E1001```
+- **Status:** 404
+- **Message:** User not found
+- **Suggested action:** Check the user ID and make sure it exists.
+
+### ```E1002```
+- **Status:** 404
+- **Message:** Company not found
+- **Suggested action:** Check the company ID and make sure it exists.
+
+### ```E1003```
+- **Status:** 404
+- **Message:** Company membership not found
+- **Suggested action:** Check the company membership ID and make sure it exists.
+
+### ```E1004```
+- **Status:** 404
+- **Message:** Content not found
+- **Suggested action:** Check the content ID and make sure it exists.
+
+### ```E1005```
+- **Status:** 404
+- **Message:** Content session not found
+- **Suggested action:** Check the content session ID and make sure it exists.
+
+### ```E1006```
+- **Status:** 400
+- **Message:** Invalid limit parameter
+- **Suggested action:** Check the limit value and make sure it's valid.
+
+### ```E1007```
+- **Status:** 400
+- **Message:** Invalid cursor parameter
+- **Suggested action:** Check the cursor value and make sure it's valid.
+
+### ```E1008```
+- **Status:** 400
+- **Message:** Invalid previous cursor parameter
+- **Suggested action:** Check the previous cursor value and make sure it's valid.
+
+### ```E1009```
+- **Status:** 400
+- **Message:** Invalid request
+- **Suggested action:** Check your request parameters and make sure they're valid.
+
+### ```E1013```
+- **Status:** 429
+- **Message:** Too many requests
+- **Suggested action:** Reduce your request rate or upgrade your plan.
+
+### ```E1014```
+- **Status:** 503
+- **Message:** Service unavailable
+- **Suggested action:** Try again later or contact support if the problem persists.
+
+### ```E1015```
+- **Status:** 400
+- **Message:** Invalid scope parameter
+- **Suggested action:** Check the scope value and make sure it's valid.
+
+### ```E1016```
+- **Status:** 400
+- **Message:** Invalid orderBy parameter
+- **Suggested action:** Check the orderBy value and make sure it's valid.
+
+### ```E1017```
+- **Status:** 400
+- **Message:** Validation error
+- **Suggested action:** Check the value and make sure it's valid.
