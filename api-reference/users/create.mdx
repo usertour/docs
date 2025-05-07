@@ -1,0 +1,127 @@
+---
+title: 'Create or update a user'
+api: 'Post /users'
+---
+
+Creating and updating a user is the same operation. If a user with the same ID doesn't already exist in Usertour, it will be created. If it already exists, the given attributes will be merged into the existing user's attributes.
+
+## Body Parameters
+
+<ParamField body="id" type="string" required>
+  Unique identifier for the user. Should match the ID the user has in your database.
+</ParamField>
+
+<ParamField body="attributes" type="object">
+  A map with attributes to update for the user. You can add any attributes you want here. Existing attributes not included in the request will not be touched. Attribute values can either be supplied as literal values (string, boolean, number) or as operations (set, set_once, add, subtract). See [Attributes](/api-reference/attributes).
+</ParamField>
+
+<ParamField body="companies" type="array">
+  A list of companies to update and ensure the user is a member of. This field is simpler to use than memberships, if you don't use membership attributes.
+</ParamField>
+
+<ParamField body="memberships" type="array">
+  A list of company memberships to create/update for the user. Memberships can hold attributes that describe the user's role for just this company (e.g. their access level). Each membership object must include an embedded company object with the company's id as a minimum.
+</ParamField>
+
+ <RequestExample>
+
+  ```bash Request
+  curl https://api.usertour.io/users \
+  -XPOST \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "id": "usr_123456789",
+        "attributes": {
+          "name": "John Doe",
+          "email": "john.doe@example.com",
+          "signed_up_at": "2024-03-20T08:30:00.000Z"
+        }
+      }'
+  ```
+
+ </RequestExample>
+
+<ResponseExample>
+
+  ```json Response
+  {
+    "id": "usr_123456789",
+    "object": "user",
+    "attributes": {
+      "email": "john.doe@example.com",
+      "name": "John Doe",
+      "signed_up_at": "2024-03-20T08:30:00.000Z"
+    },
+    "created_at": "2024-03-20T08:30:00.000Z"
+  }
+  ```
+
+</ResponseExample>
+
+## Create or update a user with companies
+
+You can create/update a user and associate it with one or more companies in one go by embedding a list of companies.
+
+If you want to assign attributes to the user's membership of the company (e.g. their access level), use the memberships key instead (see next section).
+
+```bash 
+curl https://api.usertour.io/users \
+  -XPOST \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "id": "usr_123456789",
+        "attributes": {
+          "name": "John Doe",
+          "email": "john.doe@example.com"
+        },
+        "companies": [
+          {
+            "id": "comp_987654321",
+            "attributes": {
+              "name": "Acme Corporation",
+              "plan": "enterprise",
+              "industry": "technology"
+            }
+          }
+        ]
+      }'
+```
+
+## Create or update a user with memberships
+You can create/update a user, associate it with one or more companies and assign attributes to the user's membership of each company in one go by embedding a list of memberships.
+
+Memberships can hold attributes that describe the user's role for just this company (e.g. their access level).
+
+```bash
+curl https://api.usertour.io/users \
+  -XPOST \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "id": "usr_123456789",
+        "attributes": {
+          "name": "John Doe",
+          "email": "john.doe@example.com"
+        },
+        "memberships": [
+          {
+            "attributes": {
+              "role": "admin",
+              "department": "engineering",
+              "join_date": "2024-01-01T00:00:00.000Z"
+            },
+            "company": {
+              "id": "comp_987654321",
+              "attributes": {
+                "name": "Acme Corporation",
+                "plan": "enterprise",
+                "industry": "technology"
+              }
+            }
+          }
+        ]
+      }'
+```
+

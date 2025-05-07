@@ -91,9 +91,9 @@
 					{
 						"group": "Users",
 						"pages": [
-							"api-reference/endpoint/get",
-							"api-reference/endpoint/create",
-							"api-reference/endpoint/delete"
+							"api-reference/users/create",
+							"api-reference/users/get",
+							"api-reference/users/delete"
 						]
 					}
 				]
