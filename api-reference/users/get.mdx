@@ -1,39 +1,128 @@
 ---
-title: 'Get Plants'
-api: 'Get /plants'
+title: 'Get a user'
+api: 'Get /v1/users/:id'
 ---
 
-## Request Example
+## Path Parameters
 
-The `<RequestExample>` component works similar to [CodeGroup](/components/code-groups), but displays the request content on the right sidebar. Thus, you can put multiple code blocks inside `<RequestExample>`.
+<ParamField path="id" type="string" required>
+  Unique identifier for the user. This should match the user's ID in your system.
+</ParamField>
 
-Please set a name on every code block you put inside RequestExample.
+## Response
+
+<ResponseField name="id" type="string" required>
+  Unique identifier for the user. Should match the ID the user has in your database.
+</ResponseField>
+
+<ResponseField name="object" type="string" required>
+  Represents the object's type. Always "user".
+</ResponseField>
+
+<ResponseField name="attributes" type="object">
+  A map of user attributes. You can include any custom attributes to describe the user. See [Attributes](/api-reference/attributes) for details.
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" required>
+  ISO 8601 date time representing when the user was created in the system. Note that this is not the time the user signed up in your app - use an attribute such as signed_up_at in the attributes object for that.
+</ResponseField>
+
+<ResponseField name="companies" type="array | null" default="null">
+  An array containing all company objects that the user is a member of. This field is only useful if you're not interested in membership attributes, in which case you should use the memberships field. Defaults to null, but can be expanded using the ?expand=companies query parameter.
+  <Expandable title="companies">
+    <ResponseField name="companies.id" type="string" required>
+      Unique identifier for the company. Must match the company's ID in your system.
+    </ResponseField>
+
+    <ResponseField name="companies.object" type="string" required>
+      Represents the object's type. Always "company".
+    </ResponseField>
+
+    <ResponseField name="companies.attributes" type="object">
+      A map of company-specific attributes. You can include any custom attributes to describe the company.
+    </ResponseField>
+
+    <ResponseField name="companies.createdAt" type="string" required>
+      ISO 8601 date time representing when the company was created in the system. Note that this is not the time the company was created in your app - use an attribute such as created_at in the attributes object for that.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="memberships" type="array | null" default="null">
+  An array of membership objects that definies. Use this when you need to specifycompanies. Use this when you need to specify aelationship with eachbe the user's relationship with each company. Each membersiip objeludincludes a company objec with at least its IDD. Defaults to null, but can be expanded using ?expand=memberships, or ?expand=memberships.company if you want to expand both the user's memberships and each company.
+  <Expandable title="memberships">
+    <ResponseField name="memberships.id" type="string" required>
+      Unique identifier for the membership set by the system.
+    </ResponseField>
+
+    <ResponseField name="memberships.object" type="string" required>
+      Represents the object's type. Always "companyMembership".
+    </ResponseField>
+
+    <ResponseField name="memberships.attributes" type="object">
+      A map of attributes that describe the user's relationship with the company. You can include any custom attributes to define the nature of this relationship.
+    </ResponseField>
+
+    <ResponseField name="memberships.createdAt" type="string" required>
+      ISO 8601 date time representing when the membership was created in the system. Note that this is not the time the member user signed up in your app - use an attribute such as signed_up_at in the user's attributes object for that.
+    </ResponseField>
+
+    <ResponseField name="memberships.company" type="object | null" default="null">
+      The company object associated with this membership. Defaults to null, but can be expanded using ?expand=memberships.company.
+      <Expandable title="memberships.company">
+        <ResponseField name="memberships.company.id" type="string" required>
+          Unique identifier for the company. Must match the company's ID in your system.
+        </ResponseField>
+
+        <ResponseField name="memberships.company.object" type="string" required>
+          Represents the object's type. Always "company".
+        </ResponseField>
+
+        <ResponseField name="memberships.company.attributes" type="object">
+          A map of company-specific attributes. You can include any custom attributes to describe the company.
+        </ResponseField>
+
+        <ResponseField name="memberships.company.createdAt" type="string" required>
+          ISO 8601 date time representing when the company was created in the system. Note that this is not the time the company was created in your app - use an attribute such as created_at in the attributes object for that.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+    <ResponseField name="memberships.companyId" type="string" required>
+      The ID of the company associated with this membership.
+    </ResponseField>
+
+    <ResponseField name="memberships.user" type="null" default="null">
+      The user object associated with this membership. This field always returns null as it cannot be expanded.
+    </ResponseField>
+
+    <ResponseField name="memberships.userId" type="string" required>
+      The ID of the user associated with this membership.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
 
 <RequestExample>
-  ````md RequestExample Example
-  <RequestExample>
-
   ```bash Request
-    curl --request POST \
-      --url https://dog-api.kinduff.com/api/facts
+  curl https://api.usertour.io/v1/users/usr_123456789 \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
   ```
-
-  </RequestExample>
-  ````
 </RequestExample>
 
-## Response Example
-
-The `<ResponseExample>` component is the same as `<RequestExample>` but will show up underneath it.
-
 <ResponseExample>
-  ````md ResponseExample Example
-  <ResponseExample>
-
   ```json Response
-  { "status": "success" }
+  {
+    "id": "usr_123456789",
+    "object": "user",
+    "attributes": {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "signed_up_at": "2024-03-20T08:30:00.000Z"
+    },
+    "createdAt": "2024-03-20T08:30:00.000Z",
+    "companies": null,
+    "memberships": null
+  }
   ```
-
-  </ResponseExample>
-  ````
 </ResponseExample>

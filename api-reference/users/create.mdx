@@ -1,6 +1,6 @@
 ---
 title: 'Create or update a user'
-api: 'Post /users'
+api: 'Post /v1/users'
 ---
 
 This endpoint allows you to create a new user or update an existing one. The operation is idempotent - if a user with the specified ID already exists, the request will update the user's attributes. If the user doesn't exist, a new user will be created.
@@ -55,7 +55,7 @@ This endpoint allows you to create a new user or update an existing one. The ope
 
 <RequestExample>
   ```bash Basic Request
-  curl https://api.usertour.io/users \
+  curl https://api.usertour.io/v1/users \
   -XPOST \
   -H 'Authorization: Bearer ak_123456789' \
   -H 'Content-Type: application/json' \
@@ -70,7 +70,7 @@ This endpoint allows you to create a new user or update an existing one. The ope
   ```
 
   ```bash With Companies
-  curl https://api.usertour.io/users \
+  curl https://api.usertour.io/v1/users \
   -XPOST \
   -H 'Authorization: Bearer ak_123456789' \
   -H 'Content-Type: application/json' \
@@ -94,7 +94,7 @@ This endpoint allows you to create a new user or update an existing one. The ope
   ```
 
   ```bash With Memberships
-  curl https://api.usertour.io/users \
+  curl https://api.usertour.io/v1/users \
   -XPOST \
   -H 'Authorization: Bearer ak_123456789' \
   -H 'Content-Type: application/json' \
