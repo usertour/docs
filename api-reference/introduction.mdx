@@ -42,10 +42,21 @@ In general, ```2xx``` HTTP codes correspond to success, ```4xx``` codes are for 
 
 ## Rate limit
 
-The API employs 2 safeguards against bursts of incoming traffic to help maximize its stability:
+The API implements two protection mechanisms to ensure service stability:
 
-- A rate limiter that limits the number of requests per Usertour account per minute. Your account's limit depends on your plan. See [Pricing](https://www.usertour.io/pricing). If you exceed this limit, you may receive error responses with HTTP status code ```429 Too Many Requests```.
-- A concurrency limiter that limits the number of requests that are active at any given time. If the API is at high capacity, it may delay responding to some requests. If requests are queued for more than 15 seconds, you may receive error responses with HTTP status code ```503 Service Unavailable```. Problems with concurrency limiting should be very rare. We strive to have enough capacity at all times to avoid (or at least minimize) queuing and never timing out.
+1. **Request Rate Limiter**
+   - Enforces per-account request limits per minute
+   - Rate limits vary based on your subscription plan (see [Pricing](https://www.usertour.io/pricing))
+   - Exceeding the limit returns HTTP 429 (Too Many Requests)
+
+2. **Concurrency Limiter**
+   - Controls simultaneous active requests
+   - Implements request queuing when at high capacity
+   - Queue timeout: 15 seconds
+   - Returns HTTP 503 (Service Unavailable) if queued too long
+   - Note: This is a rare occurrence as we maintain sufficient capacity to minimize queuing
+
+<Note>For optimal integration, implement proper error handling for both 429 and 503 responses. Consider implementing retry logic with exponential backoff when receiving these status codes.</Note>
 
 
 
