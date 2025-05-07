@@ -117,7 +117,12 @@
 					},
 					{
 						"group": "Company Memberships",
-						"pages": ["api-reference/company-memberships/model"]
+						"pages": [
+							"api-reference/company-memberships/model",
+							"api-reference/company-memberships/create",
+							"api-reference/company-memberships/delete",
+							"api-reference/company-memberships/list"
+						]
 					}
 				]
 			},

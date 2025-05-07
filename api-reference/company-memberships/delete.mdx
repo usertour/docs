@@ -1,0 +1,50 @@
+---
+title: 'Remove a membership'
+api: 'Delete /v1/company-memberships'
+description: 'Removes a single user from a single company. Leaves the user and the company themselves intact.'
+---
+
+## Query parameters
+
+<ParamField query="userId" type="string" required>
+  Unique identifier for the user. Should match the ID the user has in your database.
+</ParamField>
+
+<ParamField query="companyId" type="string" required>
+Unique identifier for the group. Should match the ID the group has in your database.
+</ParamField>
+
+## Response
+
+Returns an object with a deleted key on success (or if the user already wasn't a member of the group - this call is idempotent).
+
+<ResponseField name="id" type="string">
+  The unique identifier of the membership.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  String representing the object's type. Always set to ```"companyMembership"```.
+</ResponseField>
+
+<ResponseField name="deleted" type="boolean">
+  Indicates the success of the deletion operation. Always ```true``` when the request succeeds.
+</ResponseField>
+
+<RequestExample>
+  ```bash Request
+  curl https://api.usertour.io/v1/company-memberships?userId=user-1746490725519&companyId=group-555555 \
+  -X DELETE \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": membership_123456789",
+    "object": "companyMembership",
+    "deleted": true
+  }
+  ```
+</ResponseExample>
