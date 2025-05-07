@@ -123,6 +123,32 @@
 							"api-reference/company-memberships/delete",
 							"api-reference/company-memberships/list"
 						]
+					},
+					{
+						"group": "Content",
+						"pages": ["api-reference/content/model"]
+					},
+					{
+						"group": "Content Versions",
+						"pages": [
+							"api-reference/content-versions/model",
+							"api-reference/content-versions/the-question-model"
+						]
+					},
+					{
+						"group": "Content Sessions",
+						"pages": [
+							"api-reference/content-sessions/model",
+							"api-reference/content-sessions/the-answer-model"
+						]
+					},
+					{
+						"group": "Event Definitions",
+						"pages": ["api-reference/event-definitions/model"]
+					},
+					{
+						"group": "Attribute Definitions",
+						"pages": ["api-reference/attribute-definitions/model"]
 					}
 				]
 			},

@@ -1,0 +1,44 @@
+---
+title: 'The event definition object'
+---
+
+Event definitions are metadata objects that describe the structure and purpose of events in your application. They are automatically created when you track new events through the Usertour API or SDK.
+
+These definitions serve as a schema registry for your events, ensuring consistency in event tracking across your application. While you can't directly manage event definitions through the API, they are automatically maintained as you track events.
+
+<ResponseField name="id" type="string">
+  A unique identifier for the event definition.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  The object type identifier. Always set to "eventDefinition" to distinguish it from other API objects.
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  The timestamp when the event definition was first created, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  A technical description of the event's purpose and context. This field is editable in the Usertour Dashboard and helps maintain documentation of your event tracking implementation.
+</ResponseField>
+
+<ResponseField name="displayName" type="string">
+  The human-readable identifier for the event, used in the Usertour Dashboard and analytics interfaces. This can be modified to better reflect your event naming conventions.
+</ResponseField>
+
+<ResponseField name="codeName" type="string">
+  The immutable identifier used in your code when tracking events. This value is used in the `name` field of event objects and cannot be changed after creation to maintain data consistency.
+</ResponseField>
+
+<ResponseExample>
+  ```json Example event definition object
+  {
+    "id": "cm9e922p3001pmjao5vba8054",
+    "object": "eventDefinition",
+    "createdAt": "2025-04-12T13:26:30.952Z",
+    "description": "Triggered when a user starts a flow",
+    "displayName": "Flow Started",
+    "codeName": "flow_started"
+  }
+  ```
+</ResponseExample>

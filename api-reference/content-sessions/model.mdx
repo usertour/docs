@@ -1,0 +1,112 @@
+---
+title: 'The content session object'
+---
+
+A content session represents a user's interaction with a specific content object (flow, checklist, or launcher). It tracks the user's progress, records their survey responses, and maintains the state of their journey through the content.
+
+<ResponseField name="id" type="string">
+  A unique identifier for the content session.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  The object type identifier. Always set to "contentSession" to distinguish it from other API objects.
+</ResponseField>
+
+<ResponseField name="answers" type="array | null" default="null">
+  A collection of [content session answer objects](/api-reference/content-sessions/the-answer-model) containing the user's responses to survey questions. This field is only populated for flow sessions and can be expanded using the `?expand=answers` query parameter.
+</ResponseField>
+
+<ResponseField name="completedAt" type="string">
+  The timestamp when the content was completed, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ). Returns null if the content is not yet completed.
+</ResponseField>
+
+<ResponseField name="completed" type="boolean">
+  Indicates whether the content has been completed. For flows, completion occurs when the user reaches a goal step. For checklists, completion means all tasks have been finished.
+</ResponseField>
+
+<ResponseField name="contentId" type="string">
+  The identifier of the content object (flow, checklist, or launcher) associated with this session.
+</ResponseField>
+
+<ResponseField name="content" type="object | null" default="null">
+  The associated [content object](/api-reference/content/model). Can be expanded using the `?expand=content` query parameter.
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  The timestamp when the session was first created, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseField name="companyId" type="string | null" default="null">
+  The identifier of the company associated with this session, if applicable.
+</ResponseField>
+
+<ResponseField name="company" type="object | null" default="null">
+  The associated [company object](/api-reference/companies/model). Can be expanded using the `?expand=company` query parameter.
+</ResponseField>
+
+<ResponseField name="isPreview" type="boolean">
+  Indicates whether this session was initiated by a team member previewing a draft version of the content.
+</ResponseField>
+
+<ResponseField name="lastActivityAt" type="string">
+  The timestamp of the user's last interaction with the content (e.g., advancing to the next step, expanding a checklist), in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseField name="progress" type="number">
+  A decimal value representing the user's progress through the content, where 1.0 indicates 100% completion. For example, 0.4 represents 40% progress.
+</ResponseField>
+
+<ResponseField name="userId" type="string">
+  The identifier of the user who is viewing the content.
+</ResponseField>
+
+<ResponseField name="user" type="object | null" default="null">
+  The associated [user object](/api-reference/users/model). Can be expanded using the `?expand=user` query parameter.
+</ResponseField>
+
+<ResponseField name="versionId" type="string">
+  The identifier of the content version being used in this session.
+</ResponseField>
+
+<ResponseField name="version" type="object | null" default="null">
+  The associated [content version object](/api-reference/content-versions/model). Can be expanded using the `?expand=version` query parameter.
+</ResponseField>
+
+<ResponseExample>
+  ```json Example content session object
+  {
+    "id": "cm9l86wtk000zvy5q38v42053",
+    "object": "contentSession",
+    "answers": null,
+    "completedAt": "2025-04-17T10:36:45.933Z",
+    "completed": true,
+    "contentId": "cm9f6vwed0002iejc4vg2zu3t",
+    "content": {
+      "id": "cm9f6vwed0002iejc4vg2zu3t",
+      "object": "content",
+      "name": "fff",
+      "type": "flow",
+      "editedVersionId": "cm9mkru2c000mlhmajx3l0146",
+      "publishedVersionId": "cm9mjsv7d001bvfe8qe8tgzv9",
+      "updatedAt": "2025-04-18T09:16:37.989Z",
+      "createdAt": "2025-04-13T05:13:29.797Z"
+    },
+    "createdAt": "2025-04-17T10:36:40.232Z",
+    "companyId": null,
+    "company": null,
+    "isPreview": false,
+    "lastActivityAt": "2025-04-17T10:36:45.933Z",
+    "progress": 0,
+    "userId": "1744886199938",
+    "user": null,
+    "versionId": "cm9l5txup007lv0gkyphk5l2j",
+    "version": {
+      "id": "cm9l5txup007lv0gkyphk5l2j",
+      "object": "contentVersion",
+      "number": 4,
+      "updatedAt": "2025-04-17T09:30:35.794Z",
+      "createdAt": "2025-04-17T09:30:35.794Z"
+    }
+  }
+  ```
+</ResponseExample>

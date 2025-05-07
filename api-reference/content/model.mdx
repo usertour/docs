@@ -1,0 +1,79 @@
+---
+title: 'The content object'
+---
+
+The content object represents a container for different types of interactive content (flows, checklists, and launchers). It manages the versioning of your content, tracking both the draft version being edited and the published version currently in use.
+
+<ResponseField name="id" type="string">
+  A unique identifier for the content object.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  The object type identifier. Always set to "content" to distinguish it from other API objects.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  The name of the content as defined in the Builder interface.
+</ResponseField>
+
+<ResponseField name="type" type="string">
+  The type of content. Supported values:
+  - "flow" - Interactive step-by-step guides
+  - "checklist" - Task-based checklists
+  - "launcher" - Trigger-based content launchers
+</ResponseField>
+
+<ResponseField name="editedVersionId" type="string">
+  The identifier of the current draft version being edited in the Builder.
+</ResponseField>
+
+<ResponseField name="editedVersion" type="object | null" default="null">
+  The associated [content version object](/api-reference/content-versions/model) for the draft version. Can be expanded using the `?expand=draft_version` query parameter.
+</ResponseField>
+
+<ResponseField name="publishedVersionId" type="string">
+  The identifier of the currently published version in the environment.
+</ResponseField>
+
+<ResponseField name="publishedVersion" type="object | null" default="null">
+  The associated [content version object](/api-reference/content-versions/model) for the published version. Can be expanded using the `?expand=published_version` query parameter.
+</ResponseField>
+
+<ResponseField name="updatedAt" type="string">
+  The timestamp when the content was last updated, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  The timestamp when the content was created, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseExample>
+  ```json Example content object
+  {
+    "id": "cm9f6vwed0002iejc4vg2zu3t",
+    "object": "content",
+    "name": "Product Onboarding Flow",
+    "type": "flow",
+    "editedVersionId": "cm9mkru2c000mlhmajx3l0146",
+    "editedVersion": {
+      "id": "cm9mkru2c000mlhmajx3l0146",
+      "object": "contentVersion",
+      "number": 14,
+      "questions": [],
+      "updatedAt": "2025-04-18T09:16:37.989Z",
+      "createdAt": "2025-04-18T09:16:37.989Z"
+    },
+    "publishedVersionId": "cm9mjsv7d001bvfe8qe8tgzv9",
+    "publishedVersion": {
+      "id": "cm9mjsv7d001bvfe8qe8tgzv9",
+      "object": "contentVersion",
+      "number": 13,
+      "questions": [],
+      "updatedAt": "2025-04-18T08:49:26.501Z",
+      "createdAt": "2025-04-18T08:49:26.501Z"
+    },
+    "updatedAt": "2025-04-18T09:16:37.989Z",
+    "createdAt": "2025-04-13T05:13:29.797Z"
+  }
+  ```
+</ResponseExample>

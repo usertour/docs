@@ -1,0 +1,55 @@
+---
+title: 'The content version object'
+---
+
+Content versions represent different iterations of your content (flows, checklists, and launchers). A new version is automatically created when you make edits or publish content, allowing you to track changes and maintain a history of your content's evolution.
+
+<ResponseField name="id" type="string">
+  A unique identifier for the content version.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  The object type identifier. Always set to "contentVersion" to distinguish it from other API objects.
+</ResponseField>
+
+<ResponseField name="number" type="integer">
+  The version number of the content. Version numbers are incremental for each content object, starting from 1.
+</ResponseField>
+
+<ResponseField name="questions" type="array | null" default="null">
+  A collection of [question objects](/api-reference/content-versions/the-question-model) associated with this version. This field is only populated for flow content types and can be expanded using the `?expand=questions` query parameter.
+</ResponseField>
+
+<ResponseField name="updatedAt" type="string">
+  The timestamp when the version was last updated, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  The timestamp when the version was created, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseExample>
+  ```json Example content version object
+  {
+    "id": "cm9ja53e9005lrjlxm3zo13g8",
+    "object": "contentVersion",
+    "number": 1,
+    "questions": [
+      {
+        "object": "question",
+        "cvid": "llwjbkwqb7xufu2okq8gk7ud",
+        "name": "How likely are you to recommend our service?",
+        "type": "nps"
+      },
+      {
+        "object": "question",
+        "cvid": "e79iosim51pbvy4ikq9igh5a",
+        "name": "Rate your experience",
+        "type": "star-rating"
+      }
+    ],
+    "updatedAt": "2025-04-16T01:55:42.307Z",
+    "createdAt": "2025-04-16T01:55:42.307Z"
+  }
+  ```
+</ResponseExample>

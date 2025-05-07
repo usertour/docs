@@ -1,0 +1,53 @@
+---
+title: 'The question object'
+---
+
+The question object represents a survey question within a content version. It defines the structure and type of the question, along with its metadata.
+
+<ResponseField name="id" type="string">
+  A unique identifier for the question. Important: The ID of questions changes between versions. When a new version is created, all components are copied with new ID values. Use `cvid` for stable cross-version identification.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  The object type identifier. Always set to "question" to distinguish it from other API objects.
+</ResponseField>
+
+<ResponseField name="cvid" type="string">
+  Cross-Version ID (CVID). A stable identifier that remains constant for the same logical question across different versions. Use this instead of `id` when referencing questions, as it persists across version changes.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  The name of the question as defined in the Builder interface.
+</ResponseField>
+
+<ResponseField name="type" type="string">
+  The type of question. Supported values:
+  - "nps" - Net Promoter Score (0-10)
+  - "star-rating" - Star rating (1-5)
+  - "multi-line-text" - Multi-line text input
+  - "multiple-choice" - Multiple choice selection
+  - "single-line-text" - Single line text input
+  - "scale" - Scale rating (1-10)
+</ResponseField>
+
+<ResponseField name="updatedAt" type="string">
+  The timestamp when the question was last updated, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  The timestamp when the question was created, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseExample>
+  ```json Example question object
+  {
+    "id": "cm9f6vwed0002iejc4vg2zu3t",
+    "object": "question",
+    "cvid": "llwjbkwqb7xufu2okq8gk7ud",
+    "name": "How likely are you to recommend our service?",
+    "type": "nps",
+    "updatedAt": "2025-04-18T09:16:37.989Z",
+    "createdAt": "2025-04-13T05:13:29.797Z"
+  }
+  ```
+</ResponseExample>
