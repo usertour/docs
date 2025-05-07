@@ -3,29 +3,28 @@ title: 'Create or update a user'
 api: 'Post /users'
 ---
 
-Creating and updating a user is the same operation. If a user with the same ID doesn't already exist in Usertour, it will be created. If it already exists, the given attributes will be merged into the existing user's attributes.
+This endpoint allows you to create a new user or update an existing one. The operation is idempotent - if a user with the specified ID already exists, the request will update the user's attributes. If the user doesn't exist, a new user will be created.
 
 ## Body Parameters
 
 <ParamField body="id" type="string" required>
-  Unique identifier for the user. Should match the ID the user has in your database.
+  Unique identifier for the user. This should match the user's ID in your system.
 </ParamField>
 
 <ParamField body="attributes" type="object">
-  A map with attributes to update for the user. You can add any attributes you want here. Existing attributes not included in the request will not be touched. Attribute values can either be supplied as literal values (string, boolean, number) or as operations (set, set_once, add, subtract). See [Attributes](/api-reference/attributes).
+  A map of user attributes to update. You can include any custom attributes. Existing attributes not included in the request will remain unchanged. See [Attributes](/api-reference/attributes) for details.
 </ParamField>
 
 <ParamField body="companies" type="array">
-  A list of companies to update and ensure the user is a member of. This field is simpler to use than memberships, if you don't use membership attributes.
+  A list of companies to associate with the user. This is the simplest way to add a user to companies when you don't need to specify membership attributes.
 </ParamField>
 
 <ParamField body="memberships" type="array">
-  A list of company memberships to create/update for the user. Memberships can hold attributes that describe the user's role for just this company (e.g. their access level). Each membership object must include an embedded company object with the company's id as a minimum.
+  A list of company memberships to create or update. Use this when you need to specify attributes for the user's role in each company (e.g., access level, department). Each membership object must include a company object with at least the company's ID.
 </ParamField>
 
- <RequestExample>
-
-  ```bash Request
+<RequestExample>
+  ```bash Basic Request
   curl https://api.usertour.io/users \
   -XPOST \
   -H 'Authorization: Bearer ak_123456789' \
@@ -40,33 +39,8 @@ Creating and updating a user is the same operation. If a user with the same ID d
       }'
   ```
 
- </RequestExample>
-
-<ResponseExample>
-
-  ```json Response
-  {
-    "id": "usr_123456789",
-    "object": "user",
-    "attributes": {
-      "email": "john.doe@example.com",
-      "name": "John Doe",
-      "signed_up_at": "2024-03-20T08:30:00.000Z"
-    },
-    "created_at": "2024-03-20T08:30:00.000Z"
-  }
-  ```
-
-</ResponseExample>
-
-## Create or update a user with companies
-
-You can create/update a user and associate it with one or more companies in one go by embedding a list of companies.
-
-If you want to assign attributes to the user's membership of the company (e.g. their access level), use the memberships key instead (see next section).
-
-```bash 
-curl https://api.usertour.io/users \
+  ```bash With Companies
+  curl https://api.usertour.io/users \
   -XPOST \
   -H 'Authorization: Bearer ak_123456789' \
   -H 'Content-Type: application/json' \
@@ -87,15 +61,10 @@ curl https://api.usertour.io/users \
           }
         ]
       }'
-```
+  ```
 
-## Create or update a user with memberships
-You can create/update a user, associate it with one or more companies and assign attributes to the user's membership of each company in one go by embedding a list of memberships.
-
-Memberships can hold attributes that describe the user's role for just this company (e.g. their access level).
-
-```bash
-curl https://api.usertour.io/users \
+  ```bash With Memberships
+  curl https://api.usertour.io/users \
   -XPOST \
   -H 'Authorization: Bearer ak_123456789' \
   -H 'Content-Type: application/json' \
@@ -123,5 +92,19 @@ curl https://api.usertour.io/users \
           }
         ]
       }'
-```
+  ```
+</RequestExample>
 
+<ResponseExample>
+  ```json Response
+  {
+    "id": "usr_123456789",
+    "object": "user",
+    "attributes": {
+      "name": "John Doe",
+      "email": "john.doe@example.com"
+    },
+    "created_at": "2024-03-20T08:30:00.000Z"
+  }
+  ```
+</ResponseExample>
