@@ -1,21 +1,50 @@
 ---
 title: "group()"
+description: "Associate the current user with a company and update company attributes"
 ---
 
-Associates the currently identified user with a group/company, and optionally updates the group's attributes. You should call this once on any page where the user is working on a specific group. If the user navigates to a different group, simply call usertour.group(newGroupId) again, and Usertour will switch to using that group instead.
+The `group()` method associates the currently identified user with a company and optionally updates the company's attributes. Call this method once on any page where the user is working with a specific company. When the user switches to a different company, call `usertour.group(newGroupId)` again to update the association.
 
-If attributes is set, they will be merged into the group's existing attributes in Usertour. Any attributes you leave out will be left as-is in Usertour.
+When you provide `attributes`, they will be merged with the company's existing attributes in Usertour. Attributes not included in the call will retain their current values.
 
-#### Parameters
+## Parameters
+
 <ParamField path="groupId" type="string" required>
-The group/company's ID in your database.
-</ParamField>
-<ParamField path="attributes" type="object" >
-[Attributes](/developers/usertourjs-reference/overview#attributes) to update for the group. These attributes can be used in flow content and conditions to personalize the user experience.
-</ParamField>
-<ParamField path="options.membership" type="object" >
-[Attributes](/developers/usertourjs-reference/overview#attributes) to update for the user's membership of the group. Some attributes neither belong on users, nor on groups. One example is a user's "role". A user can have different roles in different groups. A group's members can have different roles. Attributes like "role" are membership attributes. They can be used in the Usertour UI just like group attributes.
+  The unique identifier for the company in your system.
 </ParamField>
 
-#### Returns 
-A `Promise` that resolves once the group call succeeds.
+<ParamField path="attributes" type="object">
+  Company attributes to update. See [Attributes](/developers/usertourjs-reference/overview#attributes) for details. These attributes can be used in flow content and conditions to personalize the user experience.
+</ParamField>
+
+<ParamField path="options.membership" type="object">
+  Membership attributes to update for the user's relationship with the company. These attributes describe the user's role or position within the company (e.g., "role", "department", "join_date"). They can be used in the Usertour UI just like company attributes.
+</ParamField>
+
+## Returns
+A `Promise` that resolves when the group association is complete.
+
+## Example
+
+```javascript
+// Associate user with a company and update attributes
+usertour.group('comp_123456', {
+  name: 'Acme Corp',
+  industry: 'Technology',
+  employee_count: 500
+}, {
+  membership: {
+    role: 'admin',
+    department: 'engineering',
+    join_date: '2023-01-01T00:00:00.000Z'
+  }
+});
+```
+
+## Notes
+
+- Call this method when a user starts working with a specific company
+- Call again when the user switches to a different company
+- Company attributes are merged with existing values
+- Membership attributes describe the user's relationship with the company
+- All attributes can be used in flow conditions and content
