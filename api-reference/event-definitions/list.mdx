@@ -1,30 +1,35 @@
 ---
 title: 'List event definitions'
-api: 'Get /v1/companies'
-description: 'Retrieve a paginated list of companies in your account. The response includes company details and pagination information.'
+api: 'Get /v1/event-definitions'
+description: 'Retrieves a paginated list of event definitions in your account. Each definition includes its name, code, and metadata.'
 ---
+
 import PaginationParameters from '/snippets/pagination-parameters.mdx';
 
-This endpoint returns a paginated list of companies associated with your account. Each company object includes its attributes, relationships, and metadata.
+This endpoint returns a paginated list of event definitions. Each definition contains its display name, code name, and creation timestamp.
 
 ## Query parameters
+<ParamField path="orderBy" type="string | string[]">
+  Sort the results by one or more fields. Available fields:
+  - `createdAt`: Creation timestamp
+  - `codeName`: Technical name
+  - `displayName`: Display name
+
+  Examples:
+  - Single field: `orderBy=createdAt` or `orderBy=-createdAt` (descending)
+  - Multiple fields: `orderBy[]=-createdAt&orderBy[]=displayName`
+</ParamField>
 
 <PaginationParameters />
-<ParamField path="expand" type="string | string[]">
-  See [Expanding objects](/api-reference/expanding-objects). Available options:
-  - `memberships`: Include basic membership data for each company
-  - `memberships.user`: Include both membership and associated user details
-  - `users`: Include all users associated with the company
-  - You can request multiple expansions: `expand[]=memberships&expand[]=users`
-</ParamField>
 
 ## Response
 
-Returns a [list object](/api-reference/pagination#the-list-object) containing an array of [company objects](/api-reference/companies/model) in the `results` property. The response includes pagination information in the `next` and `previous` fields.
+Returns a [list object](/api-reference/pagination#the-list-object) containing an array of [event definition objects](/api-reference/event-definitions/model) in the `results` property. The response includes pagination information in the `next` and `previous` fields.
 
 <RequestExample>
   ```bash Request
-  curl https://api.usertour.io/v1/companies \
+  # List event definitions with pagination
+  curl https://api.usertour.io/v1/event-definitions?limit=4&orderBy=createdAt \
   -H 'Authorization: Bearer ak_123456789' \
   -H 'Content-Type: application/json'
   ```
@@ -35,33 +40,39 @@ Returns a [list object](/api-reference/pagination#the-list-object) containing an
   {
     "results": [
       {
-        "id": "comp_123456789",
-        "object": "company",
-        "attributes": {
-          "name": "Acme Corp",
-          "domain": "acme.com",
-          "industry": "Technology",
-          "size": "100-500",
-          "created_at": "2024-03-20T08:30:00.000Z"
-        },
-        "createdAt": "2024-03-20T08:30:00.000Z",
-        "updatedAt": "2024-03-20T08:30:00.000Z"
+        "id": "cm9e922p3001pmjao5vba8054",
+        "object": "eventDefinition",
+        "createdAt": "2025-04-12T13:26:30.952Z",
+        "description": "",
+        "displayName": "Flow Started",
+        "codeName": "flow_started"
       },
       {
-        "id": "comp_987654321",
-        "object": "company",
-        "attributes": {
-          "name": "TechStart Inc",
-          "domain": "techstart.io",
-          "industry": "Software",
-          "size": "50-100",
-          "created_at": "2024-03-19T15:45:00.000Z"
-        },
-        "createdAt": "2024-03-19T15:45:00.000Z",
-        "updatedAt": "2024-03-19T15:45:00.000Z"
+        "id": "cm9e922p3001qmjaozg69mzk9",
+        "object": "eventDefinition",
+        "createdAt": "2025-04-12T13:26:30.952Z",
+        "description": "",
+        "displayName": "Flow Dismissed/Ended",
+        "codeName": "flow_ended"
+      },
+      {
+        "id": "cm9e922p3001rmjaom1h20luk",
+        "object": "eventDefinition",
+        "createdAt": "2025-04-12T13:26:30.952Z",
+        "description": "",
+        "displayName": "Flow Step Seen",
+        "codeName": "flow_step_seen"
+      },
+      {
+        "id": "cm9e922p4001smjaov92o3zq8",
+        "object": "eventDefinition",
+        "createdAt": "2025-04-12T13:26:30.952Z",
+        "description": "",
+        "displayName": "Flow Step Completed",
+        "codeName": "flow_step_completed"
       }
     ],
-    "next": "/v1/companies?limit=2&cursor=comp_987654321",
+    "next": "/v1/event-definitions?limit=4&orderBy=createdAt&cursor=cm9e922p4001smjaov92o3zq8",
     "previous": null
   }
   ```
