@@ -1,0 +1,71 @@
+---
+title: 'List content'
+api: 'Get /v1/content'
+description: 'Retrieves a paginated list of all content objects in your account.'
+---
+
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
+
+## Query parameters
+
+<PaginationParameters />
+
+<ParamField path="orderBy" type="string | string[]">
+  See [Ordering](/api-reference/ordering). Available fields:
+  - `createdAt`: Sort by creation date (default)
+  - You can use multiple fields and specify sort direction: `orderBy[]=-createdAt` for descending order
+</ParamField>
+
+<ParamField path="expand" type="string | string[]">
+  See [Expanding objects](/api-reference/expanding-objects). Available options:
+  - `editedVersion`: Include the current draft version being edited
+  - `publishedVersion`: Include the currently published version
+  - You can request multiple expansions: `expand[]=publishedVersion&expand[]=editedVersion`
+</ParamField>
+
+## Response
+
+Returns a [list object](/api-reference/pagination#the-list-object) containing:
+- `results`: Array of [content objects](/api-reference/content/model)
+- `next`: URL for the next page of results (null if no more pages)
+- `previous`: URL for the previous page of results (null if on first page)
+
+<RequestExample>
+  ```bash Request
+  # Get the first page of content objects
+  curl https://api.usertour.io/v1/content \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "results": [
+      {
+        "id": "cm9f6vwed0002iejc4vg2zu3t",
+        "object": "content",
+        "name": "Product Onboarding Flow",
+        "type": "flow",
+        "editedVersionId": "cm9mkru2c000mlhmajx3l0146",
+        "publishedVersionId": "cm9mjsv7d001bvfe8qe8tgzv9",
+        "updatedAt": "2025-04-18T09:16:37.989Z",
+        "createdAt": "2025-04-13T05:13:29.797Z"
+      },
+      {
+        "id": "cm9jaftye007yrjlx3ghggigi",
+        "object": "content",
+        "name": "User Setup Checklist",
+        "type": "checklist",
+        "editedVersionId": "cm9jaftyh0080rjlx8j2p50qn",
+        "publishedVersionId": "cm9jaftyh0080rjlx8j2p50qn",
+        "updatedAt": "2025-04-16T02:04:16.476Z",
+        "createdAt": "2025-04-16T02:04:03.300Z"
+      }
+    ],
+    "next": "/v1/content?limit=2&cursor=cm9jaftye007yrjlx3ghggigi",
+    "previous": null
+  }
+  ```
+</ResponseExample>

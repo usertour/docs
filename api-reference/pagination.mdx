@@ -3,15 +3,11 @@ title: 'Pagination'
 description: 'All top-level API resources that support listing use the same format for pagination and the same response object.'
 ---
 
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
+
 ## Query parameters
 
-<ParamField query="limit" type="number" default="20">
-  Specifies the maximum number of items to return in a single response. The value must be between 1 and 100. If not specified, defaults to 20 items per page.
-</ParamField>
-
-<ParamField query="cursor" type="string">
-  Specifies the starting point for the next page of results. The response will include items that come after (but not including) the object with this ID. To get the next page, use the ID of the last item from your previous request. The easiest way is to use the [list object's](#the-list-object) cursor field. If not provided, the API will return items from the beginning of the list.
-</ParamField>
+<PaginationParameters />
 
 ## The list object
 

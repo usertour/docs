@@ -126,7 +126,11 @@
 					},
 					{
 						"group": "Content",
-						"pages": ["api-reference/content/model"]
+						"pages": [
+							"api-reference/content/model",
+							"api-reference/content/get",
+							"api-reference/content/list"
+						]
 					},
 					{
 						"group": "Content Versions",
