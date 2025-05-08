@@ -1,0 +1,47 @@
+---
+title: 'Delete a content session'
+api: 'Delete /v1/content-sessions/:id'
+description: 'Permanently deletes a content session and all its associated data (progress, survey answers, etc.). This operation cannot be undone. The API is idempotent - attempting to delete a non-existent session will return a success response.'
+---
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique identifier of the content session to delete.
+</ParamField>
+
+## Response
+
+Returns a deletion confirmation object with the following fields:
+
+<ResponseField name="id" type="string">
+  The unique identifier of the deleted content session.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  String representing the object's type. Always set to ```contentSession```.
+</ResponseField>
+
+<ResponseField name="deleted" type="boolean">
+  Indicates the success of the deletion operation. Always ```true``` when the request succeeds.
+</ResponseField>
+
+<RequestExample>
+  ```bash Request
+  # Delete a content session
+  curl https://api.usertour.io/v1/content-sessions/cmaavyi16003twg0bgimbcdnr \
+  -X DELETE \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "cmaavyi16003twg0bgimbcdnr",
+    "object": "contentSession",
+    "deleted": true
+  }
+  ```
+</ResponseExample>

@@ -4,8 +4,6 @@ api: 'Post /v1/companies'
 description: "Create a new company or update an existing one. This endpoint uses an upsert operation, creating a new company if the ID doesn't exist, or updating the existing company if it does."
 ---
 
-## Overview
-
 The create/update endpoint provides a unified way to manage companies in your system. When you send a request:
 - If the company ID doesn't exist, a new company will be created
 - If the company ID exists, the provided attributes will be merged with existing ones

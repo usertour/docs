@@ -145,16 +145,26 @@
 						"group": "Content Sessions",
 						"pages": [
 							"api-reference/content-sessions/model",
-							"api-reference/content-sessions/the-answer-model"
+							"api-reference/content-sessions/the-answer-model",
+							"api-reference/content-sessions/get",
+							"api-reference/content-sessions/delete",
+							"api-reference/content-sessions/end",
+							"api-reference/content-sessions/list"
 						]
 					},
 					{
 						"group": "Event Definitions",
-						"pages": ["api-reference/event-definitions/model"]
+						"pages": [
+							"api-reference/event-definitions/model",
+							"api-reference/event-definitions/list"
+						]
 					},
 					{
 						"group": "Attribute Definitions",
-						"pages": ["api-reference/attribute-definitions/model"]
+						"pages": [
+							"api-reference/attribute-definitions/model",
+							"api-reference/attribute-definitions/list"
+						]
 					}
 				]
 			},
