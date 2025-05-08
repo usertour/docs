@@ -1,188 +1,143 @@
 ---
 title: URL pattern matching
-description: Usertour supports an easy-to-use, yet powerful URL pattern for matching pages in your app. URL pattern matching is useful when auto-starting onboarding flows or product tours, progressing to the next step, or marking a checklist task as completed.
+description: Learn how to use URL patterns to control when and where your content appears in your application
 icon: "link"
 ---
 
-One of the powerful condition types in Usertour is the **Current page** conditions where you can target and control content based on URLs.
+## Overview
 
-Usertour supports an easy-to-use, yet powerful URL pattern for matching pages in your app. URL pattern matching is useful when auto-starting flows, progressing to the next step, or marking a checklist task as completed.
+URL pattern matching is a powerful feature in Usertour that helps you control exactly where your content appears. You can use it to:
+- Auto-start onboarding flows or product tours
+- Progress to the next step based on URL changes
+- Mark checklist tasks as completed when users reach certain pages
+- Control where specific content appears in your application
 
-Note that the following URL pattern matching rules only apply to **Current page** conditions and not to **Navigate to page** actions. For **Navigate to page** actions you will have to put the full url and insert user attributes (sent via usertour.js) for dynamic values.
+> **Note**: These URL pattern rules apply to **Current page** conditions only. For **Navigate to page** actions, you'll need to use the full URL and can insert user attributes for dynamic values.
 
-## Quickstart
+## Quick Reference
 
-* Only supply parts of the URL you care about. Parts left out will match anything. E.g. if you don’t care about the domain, then leave it out.
+Here are the key rules to remember:
+- Only specify the URL parts you care about - omit the rest
+- Use `-` as a wildcard to match anything
+- Use `:segment` to match a single dynamic segment
+- You can specify multiple patterns to include or exclude
 
-* `-` is a wildcard, matching anything.
+## Common Patterns
 
-* `:segment` (a colon followed by any word) matches a single dynamic segment.
-
-* You can supply multiple patterns to include or exclude. The current page URL must match at least one of the included patterns, and must not match any of the excluded patterns.
-
-## Exact path (no subpaths) on any domain
-
+### 1. Exact Path Matching
 ```html
 /app/dashboard
 ```
+This matches any domain with exactly this path.
 
-Matches any domain, with exactly the given path.
+✅ Matches:
+- `https://example.com/app/dashboard`
+- `http://example.com/app/dashboard`
+- `https://other-example.com/app/dashboard`
 
-* Matches:
+❌ Does not match:
+- `https://example.com/app`
+- `https://example.com/app/dashboard/sub`
+- `https://example.com/app/dashboard/sub/page`
 
-  * [`https://example.com/app/dashboard`](https://example.com/app/dashboard)
-
-  * [`http://example.com/app/dashboard`](http://example.com/app/dashboard)
-
-  * [`https://other-example.com/app/dashboard`](https://other-example.com/app/dashboard)
-
-* Does not match:
-
-  * [`https://example.com/app`](https://example.com/app)
-
-  * [`https://example.com/app/dashboard/sub`](https://example.com/app/dashboard/sub)
-
-  * [`https://example.com/app/dashboard/sub/page`](https://example.com/app/dashboard/sub/page)
-
-## Including subpaths
-
+### 2. Including Subpaths
 ```html
 /app*
 ```
+The `*` matches everything (including nothing).
 
-`*` matches everything (including nothing).
+✅ Matches:
+- `https://example.com/app`
+- `https://example.com/app/projects`
+- `https://example.com/app/projects/1`
+- `https://other-example.com/app`
+- `https://example.com/applications`
 
-* Matches:
+❌ Does not match:
+- `https://example.com/settings`
 
-  * [`https://example.com/app`](https://example.com/app)
-
-  * [`https://example.com/app/projects`](https://example.com/app/projects)
-
-  * [`https://example.com/app/projects/1`](https://example.com/app/projects/1)
-
-  * [`https://other-example.com/app`](https://other-example.com/app)
-
-  * [`https://example.com/applications`](https://example.com/applications)
-
-* Does not match:
-
-  * [`https://example.com/settings`](https://example.com/settings)
-
-## Only subpaths
-
+### 3. Only Subpaths
 ```html
 /app/*
 ```
-
 Note the `/` before the `*`.
 
-* Matches:
+✅ Matches:
+- `https://example.com/app/projects`
+- `https://example.com/app/projects/1`
+- `https://other-example.com/app/projects`
 
-  * [`https://example.com/app/projects`](https://example.com/app/projects)
+❌ Does not match:
+- `https://example.com/app`
+- `https://example.com/applications`
 
-  * [`https://example.com/app/projects/1`](https://example.com/app/projects/1)
-
-  * [`https://other-example.com/app/projects`](https://other-example.com/app/projects)
-
-* Does not match:
-
-  * [`https://example.com/app`](https://example.com/app)
-
-  * [`https://example.com/applications`](https://example.com/applications)
-
-## Dynamic path segment
-
+### 4. Dynamic Path Segments
 ```html
 /projects/:project/details
 ```
+`:project` matches any single path segment (anything except `/`).
 
-`:project` matches a single path segment (anything but `/`). You can use any word (consisting of letters a-z, numbers and underscores) in place of `project` - it’s not used for anything.
+✅ Matches:
+- `https://example.com/projects/1/details`
+- `https://example.com/projects/2/details`
 
-* Matches:
+❌ Does not match:
+- `https://example.com/projects/1/details/edit`
+- `https://example.com/projects/1/history`
 
-  * [`https://example.com/projects/1/details`](https://example.com/projects/1/details)
-
-  * [`https://example.com/projects/2/details`](https://example.com/projects/2/details)
-
-* Does not match:
-
-  * [`https://example.com/projects/1/details/edit`](https://example.com/projects/1/details/edit)
-
-  * [`https://example.com/projects/1/history`](https://example.com/projects/1/history)
-
-## Mix dynamic path segment and subpaths
-
+### 5. Mixing Dynamic Segments and Subpaths
 ```html
 /app/:company/projects/*
 ```
 
-* Matches:
+✅ Matches:
+- `https://example.com/app/apple/projects/1`
+- `https://example.com/app/banana/projects/1`
+- `https://example.com/app/banana/projects/1/details`
 
-  * [`https://example.com/app/apple/projects/1`](https://example.com/app/apple/projects/1)
+❌ Does not match:
+- `https://example.com/app/apple/projects`
 
-  * [`https://example.com/app/banana/projects/1`](https://example.com/app/banana/projects/1)
-
-  * [`https://example.com/app/banana/projects/1/details`](https://example.com/app/banana/projects/1/details)
-
-* Does not match:
-
-  * [`https://example.com/app/apple/projects`](https://example.com/app/apple/projects)
-
-## Specific domain on any path
-
+### 6. Specific Domain
 ```html
 app.com
 ```
 
-* Matches:
+✅ Matches:
+- `https://app.com/`
+- `https://app.com/any/path`
 
-  * [`https://app.com/`](https://app.com/)
+❌ Does not match:
+- `https://www.app.com/`
+- `https://not-app.com/`
 
-  * [`https://app.com/any/path`](https://app.com/any/path)
-
-* Does not match:
-
-  * [`https://www.app.com/`](https://www.app.com/)
-
-  * [`https://not-app.com/`](https://not-app.com/)
-
-## Dynamic subdomain
-
+### 7. Dynamic Subdomain
 ```html
 :subdomain.app.com
 ```
 
-* Matches:
+✅ Matches:
+- `https://www.app.com/`
+- `https://www.app.com/any/path`
+- `https://dashboard.app.com/`
 
-  * [`https://www.app.com/`](https://www.app.com/)
+❌ Does not match:
+- `https://app.com/`
+- `https://multiple.levels.app.com/`
+- `https://www.not-app.com/`
 
-  * [`https://www.app.com/any/path`](https://www.app.com/any/path)
-
-  * [`https://dashboard.app.com/`](https://dashboard.app.com/)
-
-* Does not match:
-
-  * [`https://app.com/`](https://app.com/)
-
-  * [`https://multiple.levels.app.com/`](https://multiple.levels.app.com/)
-
-  * [`https://www.not-app.com/`](https://www.not-app.com/)
-
-## Mix domain and path
-
+### 8. Mix Domain and Path
 ```html
 :subdomain.example.com/app/:company/projects\*
 ```
 
-* Matches:
+✅ Matches:
+- `https://dashboard.example.com/app/apple/projects`
+- `https://dashboard.example.com/app/apple/projects/1`
 
-  * [`https://dashboard.example.com/app/apple/projects`](https://dashboard.example.com/app/apple/projects)
+## URL Structure
 
-  * [`https://dashboard.example.com/app/apple/projects/1`](https://dashboard.example.com/app/apple/projects/1)
-
-## URL parts
-
-URLs consist of the following parts:
+Let's break down a URL into its components:
 
 ```html
 https://my.app.com/acme-inc/dashboard?tab=analytics#charts
@@ -191,12 +146,10 @@ https://my.app.com/acme-inc/dashboard?tab=analytics#charts
 scheme    domain          path            query     fragment
 ```
 
-When writing URL patterns in Usertour, all parts are optional. If a part is left out, it’ll match anything.
-Each part has slightly different rules.
-
 ### Scheme
-
-The scheme is what comes before `://` in a URL.
+The part before `://` (usually `http` or `https`).
+- Usually optional in patterns
+- Only specify if you need to match a specific scheme
 
 ```html
 https://my.app.com/acme-inc/dashboard?tab=analytics#charts
@@ -205,15 +158,8 @@ https://my.app.com/acme-inc/dashboard?tab=analytics#charts
 scheme
 ```
 
-The scheme is almost always either `http` or `https`. You only need to specify scheme in your URL patterns if you care about whether the user is on `http` or `https`. Usually your server takes care of redirecting users to one or the other, meaning in most cases you can leave it out of your pattern.
-
-* [`https://example.com`](https://example.com) matches any URL on [`https://example.com`](https://example.com) but not on [`http://example.com`.](http://example.com.)
-
-* `example.com` matches any URL on both [`https://example.com`](https://example.com) and [`http://example.com`.](http://example.com.)
-
 ### Domain
-
-The domain part is what comes after `://` and before the path’s first `/`.
+The part between `://` and the first `/`.
 
 ```html
 https://my.app.com/acme-inc/dashboard?tab=analytics#charts
@@ -222,22 +168,18 @@ https://my.app.com/acme-inc/dashboard?tab=analytics#charts
           domain
 ```
 
-#### Dynamic subdomain
-
+#### Dynamic Subdomains
 To match dynamic subdomains (e.g. `apple.app.com` and `banana.app.com`), use a colon and an arbitrary name such as `:company.app.com`. `:company` will match a non-empty subdomain, meaning it will not include `.`. The name after `:` does not matter and is currently not used for anything.
+
 `:company.app.com` and `:subdomain.app.com` are equivalent and will match:
+- `apple.app.com`
+- `banana.app.com`
 
-* apple.app.com
+They will not match:
+- `app.com` (missing subdomain)
+- `more.apple.app.com` (more subdomains)
 
-* banana.app.com
-  They will not match:
-
-* `app.com` (missing subdomain)
-
-* `more.apple.app.com` (more subdomains)
-
-#### Wildcard domains
-
+#### Wildcard Domains
 You can also use `*` as a wildcard character to match any number of subdomains.
 
 `*.app.com` will match both `one.app.com` and `one.two.app.com`, but not `app.com`.
@@ -245,8 +187,7 @@ You can also use `*` as a wildcard character to match any number of subdomains.
 `*app.com` will match `app.com`, but will also match `myapp.com`.
 
 ### Path
-
-The path part is what comes after the domain and before the query (starting with `?`), or the fragment (starting with `#`) if there’s no query.
+In a URL, the path is the part that comes after the domain and before either the query parameters (starting with `?`) or the fragment (starting with `#`).
 
 ```html
 https://my.app.com/acme-inc/dashboard?tab=analytics#charts
@@ -255,37 +196,57 @@ https://my.app.com/acme-inc/dashboard?tab=analytics#charts
                           path
 ```
 
-**Important**: Paths **MUST** start with a slash (`/`). The URL pattern `app/projects` will consider `app` as the domain, and will match full URLs such as `https://app/projects` (which doesn’t really make sense). The right pattern here would be `/app/projects`.
+#### Basic Rules
+1. Paths **MUST** start with a forward slash `/`
+2. If you omit the leading `/` (e.g. `app/projects`), the system will treat `app` as a domain
+3. The correct pattern should be `/app/projects`
 
-#### Dynamic path segments
+#### Dynamic Path Segments
+Use `:paramName` to match dynamic path segments:
+```js
+// Example: /app/:company/projects
+// :company matches any non-empty string without /
+```
 
-To match dynamic path segments (e.g. `/app/apple/projects` and `/app/banana/projects`), use a colon and an arbitrary name such as `/app/:company/projects`. `:company` will match a non-empty path segment, meaning it will not include `/`. The name after `:` does not matter and is currently not used for anything.
+✅ Will match:
+- `/app/apple/projects`
+- `/app/banana/projects`
 
-`/app/:company/projects` and `/app/:slug/projects` are equivalent and will match:
+❌ Won't match:
+- `/app/projects` (missing company segment)
+- `/app/apple/projects/1` (path too deep)
 
-* `/app/apple/projects`
+> **Tip**: Parameter names like `:company` or `:slug` are just identifiers - you can name them anything, they don't affect the matching logic
 
-* `/app/banana/projects`
+#### Wildcard Matching
+Use `*` to match any path:
 
-They will not match:
+1. `/app/*`
+   - ✅ Matches `/app/one`, `/app/one/two`
+   - ❌ Does not match `/app`
+   - Note: Requires at least one segment after `/app/`
 
-* `/app/projects` (missing path segment)
+2. `/app*`
+   - ✅ Matches `/app`, `/applications`
+   - Note: Matches anything that starts with `app`
 
-* `/app/apple/projects/1` (deeper path)
+3. `/*/projects`
+   - ✅ Matches `/app/projects`, `/app/one/two/three/projects`
+   - Note: Matches projects at any depth
 
-#### Wildcard paths
-
-You can also use `*` as a wildcard character to match nested paths.
-`/app/*` will match both `/app/one` and `/app/one/two`, but not `/app`.
-`/app*` will match `/app`, but will also match `/applications`.
-
-`/*/projects` will match `/app/projects` and `/app/one/two/three/projects`.
-
-You can mix wildcards and dynamic path segments at will. Example: `/*/customers/:customer/invoices/:invoice/*`
+#### Combining Patterns
+You can mix dynamic segments and wildcards in the same pattern:
+```js
+/*/customers/:customer/invoices/:invoice/*
+```
+This pattern will:
+- Match any path at the start
+- Capture a specific customer
+- Capture a specific invoice
+- Match any remaining path
 
 ### Query
-
-The query is what comes after `?` and before the fragment (starting with `#`), if any.
+The part that comes after `?` and before `#` in a URL.
 
 ```html
 https://my.app.com/acme-inc/dashboard?tab=analytics#charts
@@ -294,53 +255,42 @@ https://my.app.com/acme-inc/dashboard?tab=analytics#charts
                                           query
 ```
 
-A URL can contain multiple query parameters separated by ampersands (`&`), as in `?fruit=apple&tab=analytics`. Query parameters are matched one by one. Order of query parameters does not matter. Extra, non-matched query parameters, are not considered.
+#### Basic Rules
+- Query parameters are key-value pairs (e.g. `key=value`)
+- Multiple parameters are separated by `&`
+- Order doesn't matter
+- Extra parameters are ignored
+- Parameter values are optional
 
+#### Examples
 `?fruit=apple&tab=analytics` will match:
+- `?fruit=apple&tab=analytics`
+- `?tab=analytics&fruit=apple` (different order, same result)
+- `?other=test&fruit=apple&tab=analytics` (extra params ignored)
 
-* `?fruit=apple&tab=analytics`
+#### Wildcard Matching
+1. Match values starting with specific text:
+```js
+// ?param=a* matches:
+- ?param=apple
+- ?param=admin
+// But won't match:
+- ?param=banana (doesn't start with 'a')
+- ?param (no value)
+- ?param2=apple (wrong parameter name)
+```
 
-* `?tab=analytics&fruit=apple` (different order is OK)
-
-* `?other=test&fruit=apple&another=test&tab=analytics` (extra parameters are ignored)
-
-But will not match:
-
-* `?fruit=apple` (tab parameter is missing)
-
-* `?fruit=banana&tab=analytics` (wrong value for fruit parameter)
-
-#### Wildcard query parameter values
-
-You can use `*` to match any value in individual query parameters. It’s required that the query parameter is present though.
-
-`?param=a*` will match:
-
-* `?param=apple`
-
-* `?param=alphabet`
-
-It will not match:
-
-* `?param=banana` (does not start with a)
-
-* `?param` (no value)
-
-* `?param2=apple` (wrong parameter name)
-
-`?param=*` will match:
-
-* `?param=apple`
-
-* `?param` (no value, but present)
-
-It will not match:
-
-* `?param2=apple` (wrong parameter name)
+2. Match any value:
+```js
+// ?param=* matches:
+- ?param=anything
+- ?param (empty value is OK)
+// But won't match:
+- ?param2=value (wrong parameter)
+```
 
 ### Fragment
-
-The fragment is what comes after `#`.
+The part that comes after `#` in a URL.
 
 ```html
 https://my.app.com/acme-inc/dashboard?tab=analytics#charts
@@ -349,8 +299,17 @@ https://my.app.com/acme-inc/dashboard?tab=analytics#charts
                                                     fragment
 ```
 
-Since the fragment is often used like a path in single-page applications, fragment obeys the same rules as [Paths](#path).
+#### Fragment Patterns
+Fragments follow the same rules as paths:
 
-To match a dynamic fragment segment: `#/projects/:project/dashboard`.
+1. Dynamic segments:
+```js
+#/projects/:project/dashboard
+```
 
-Using wildcard: `#/projects/:project/dashboard/*`.
+2. Wildcards:
+```js
+#/projects/:project/dashboard/*
+```
+
+> **Tip**: In single-page applications (SPAs), fragments often act like paths and can be matched using the same patterns
