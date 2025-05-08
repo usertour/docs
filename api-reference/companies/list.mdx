@@ -3,10 +3,20 @@ title: 'List companies'
 api: 'Get /v1/companies'
 description: 'Retrieve a paginated list of companies in your account. The response includes company details and pagination information.'
 ---
-
-## Overview
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
 
 This endpoint returns a paginated list of companies associated with your account. Each company object includes its attributes, relationships, and metadata.
+
+## Query parameters
+
+<PaginationParameters />
+<ParamField path="expand" type="string | string[]">
+  See [Expanding objects](/api-reference/expanding-objects). Available options:
+  - `memberships`: Include basic membership data for each company
+  - `memberships.user`: Include both membership and associated user details
+  - `users`: Include all users associated with the company
+  - You can request multiple expansions: `expand[]=memberships&expand[]=users`
+</ParamField>
 
 ## Response
 

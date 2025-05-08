@@ -3,6 +3,7 @@ title: 'List users'
 api: 'Get /v1/users'
 description: 'Retrieve a paginated list of users. You can filter the results using various query parameters.'
 ---
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
 
 ## Query parameters
 
@@ -18,9 +19,19 @@ description: 'Retrieve a paginated list of users. You can filter the results usi
   Filter users by company membership. Only returns users who are members of the specified company.
 </ParamField>
 
+<PaginationParameters />
+
+<ParamField path="expand" type="string | string[]">
+  See [Expanding objects](/api-reference/expanding-objects). Available options:
+  - `memberships`: Include basic membership data for each user
+  - `memberships.company`: Include both membership and associated company details
+  - `companies`: Include all companies associated with the user
+  - You can request multiple expansions: `expand[]=memberships&expand[]=companies`
+</ParamField>
+
 ## Response
 
-Returns a [list object](/api-reference/pagination#the-list-object) containing an array of [user objects](/api-reference/users/model) in the ```results``` property. The response includes pagination information in the ```next``` and ```previous``` fields.
+Returns a [list object](/api-reference/pagination#the-list-object) containing an array of [user objects](/api-reference/users/model) in the `results` property. The response includes pagination information in the `next` and `previous` fields.
 
 <RequestExample>
   ```bash Request
