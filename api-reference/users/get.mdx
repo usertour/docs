@@ -1,0 +1,84 @@
+---
+title: 'Get a user'
+api: 'Get /v1/users/:id'
+description: 'Retrieves a specific user by their ID, including all their attributes and relationships.'
+---
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique identifier of the user to retrieve. This ID should match the user's identifier in your system.
+</ParamField>
+
+## Query Parameters
+
+<ParamField path="expand" type="string | string[]">
+  See [Expanding objects](/api-reference/expanding-objects). Available options:
+  - `memberships`: Include basic membership data for each user
+  - `memberships.company`: Include both membership and associated company details
+  - `companies`: Include all companies associated with the user
+  - You can request multiple expansions: `expand[]=memberships&expand[]=companies`
+</ParamField>
+
+## Response
+
+Returns a [user object](/api-reference/users/model) if found. Returns a 404 Not Found error if the user doesn't exist.
+
+<RequestExample>
+  ```bash Request
+  # Get a user with their memberships, company details, and membership-company relationships
+  curl https://api.usertour.io/v1/users/usr_123456789?expand[]=memberships&expand[]=memberships.company&expand[]=companies \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "usr_123456789",
+    "object": "user",
+    "attributes": {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "admin",
+      "department": "engineering",
+      "signed_up_at": "2024-03-20T08:30:00.000Z"
+    },
+    "createdAt": "2024-03-20T08:30:00.000Z",
+    "companies": [
+      {
+        "id": "comp_123456789",
+        "object": "company",
+        "attributes": {
+          "name": "Acme Corp",
+          "domain": "acme.com"
+        },
+        "createdAt": "2024-03-20T08:30:00.000Z"
+      }
+    ],
+    "memberships": [
+      {
+        "id": "cma9nhdis0002108kpmr9vfrl",
+        "object": "companyMembership",
+        "attributes": {
+          "role": "admin",
+          "department": "engineering"
+        },
+        "createdAt": "2024-03-20T08:30:00.000Z",
+        "companyId": "comp_123456789",
+        "userId": "usr_123456789",
+        "company": {
+          "id": "comp_123456789",
+          "object": "company",
+          "attributes": {
+            "name": "Acme Corp",
+            "domain": "acme.com"
+          },
+          "createdAt": "2024-03-20T08:30:00.000Z"
+        }
+      }
+    ]
+  }
+  ```
+</ResponseExample>

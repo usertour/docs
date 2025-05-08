@@ -1,0 +1,51 @@
+---
+title: 'Delete a company'
+api: 'Delete /v1/companies/:id'
+description: 'Permanently remove a company from the system. This operation cannot be undone, and all associated memberships will be deleted.'
+---
+
+This endpoint permanently deletes a company and its associated data. When a company is deleted:
+- All company memberships are automatically removed
+- The company's attributes and relationships are permanently deleted
+- The operation cannot be reversed
+
+## Path parameters
+
+<ParamField path="id" type="string">
+  The unique identifier of the company to delete. This should match the ID format used in your system (e.g., `comp_123456789`).
+</ParamField>
+
+## Response
+
+Returns a confirmation object indicating the successful deletion of the company.
+
+<ResponseField name="id" type="string">
+  The unique identifier of the deleted company.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  String representing the object's type. Always set to ```"company"```.
+</ResponseField>
+
+<ResponseField name="deleted" type="boolean">
+  Indicates the success of the deletion operation. Always ```true``` when the request succeeds.
+</ResponseField>
+
+<RequestExample>
+  ```bash Request
+  curl https://api.usertour.io/v1/companies/comp_123456789 \
+  -X DELETE \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "comp_123456789",
+    "object": "company",
+    "deleted": true
+  }
+  ```
+</ResponseExample>

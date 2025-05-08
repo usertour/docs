@@ -1,0 +1,64 @@
+---
+title: 'Get a content'
+api: 'Get /v1/content/:id'
+description: 'Retrieves a single content object by its ID.'
+---
+
+## Path parameters
+
+<ParamField path="id" type="string">
+  The unique identifier of the content object you want to retrieve.
+</ParamField>
+
+## Query parameters
+
+<ParamField path="expand" type="string | string[]">
+  Specify which related objects to include in the response. Available options:
+  - `editedVersion`: Include the current draft version being edited
+  - `publishedVersion`: Include the currently published version
+  - You can request multiple expansions using array syntax: `expand[]=publishedVersion&expand[]=editedVersion`
+</ParamField>
+
+## Response
+
+Returns a [content object](/api-reference/content/model) if found. Returns a 404 Not Found error if the content doesn't exist.
+
+<RequestExample>
+  ```bash Request
+  # Get a content with both draft and published versions
+  curl https://api.usertour.io/v1/content/cm9f6vwed0002iejc4vg2zu3t?expand[]=publishedVersion&expand[]=editedVersion \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "cm9f6vwed0002iejc4vg2zu3t",
+    "object": "content",
+    "name": "Product Onboarding Flow",
+    "type": "flow",
+    "editedVersionId": "cm9mkru2c000mlhmajx3l0146",
+    "editedVersion": {
+      "id": "cm9mkru2c000mlhmajx3l0146",
+      "object": "contentVersion",
+      "number": 14,
+      "questions": [],
+      "updatedAt": "2025-04-18T09:16:37.989Z",
+      "createdAt": "2025-04-18T09:16:37.989Z"
+    },
+    "publishedVersionId": "cm9mjsv7d001bvfe8qe8tgzv9",
+    "publishedVersion": {
+      "id": "cm9mjsv7d001bvfe8qe8tgzv9",
+      "object": "contentVersion",
+      "number": 13,
+      "questions": [],
+      "updatedAt": "2025-04-18T08:49:26.501Z",
+      "createdAt": "2025-04-18T08:49:26.501Z"
+    },
+    "updatedAt": "2025-04-18T09:16:37.989Z",
+    "createdAt": "2025-04-13T05:13:29.797Z"
+  }
+  ```
+</ResponseExample>

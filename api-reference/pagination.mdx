@@ -1,0 +1,46 @@
+---
+title: 'Pagination'
+description: 'All top-level API resources that support listing use the same format for pagination and the same response object.'
+---
+
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
+
+## Query parameters
+
+<PaginationParameters />
+
+## The list object
+
+All list endpoints return a standardized response object with the following structure:
+
+<ResponseField name="results" type="array">
+  An array containing the requested resource objects (e.g., users, companies). The number of items will not exceed the specified limit.
+</ResponseField>
+
+<ResponseField name="next" type="string | null">
+  The URL to fetch the next page of results. This field is always present, as it allows clients to know how to fetch the next page if new items become available later.
+</ResponseField>
+
+<ResponseField name="previous" type="string | null">
+  The URL to fetch the previous page of results. This field is null when you're on the first page or when there is no previous page available.
+</ResponseField>
+
+```json
+{
+  "results": [
+    {
+      "id": "1744521292871",
+      "object": "user",
+      ...
+    },
+    {
+      "id": "1744521298100",
+      "object": "user",
+      ...
+    }
+    ...
+  ],
+  "next": "/v1/users?limit=2&cursor=cm9f6xsjr0014iejcuc80dy3q",
+  "previous": null
+}
+```

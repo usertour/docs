@@ -1,0 +1,48 @@
+---
+title: 'Get a company'
+api: 'Get /v1/companies/:id'
+description: 'Retrieve detailed information about a specific company. The endpoint returns a 404 Not Found response if the company does not exist.'
+---
+
+This endpoint retrieves a single company's information from the system. You can use the `expand` query parameter to include related objects such as memberships and users in the response.
+
+## Path parameters
+
+<ParamField path="id" type="string">
+  The unique identifier of the company to retrieve. This should match the ID format used in your system (e.g., `comp_123456789`).
+</ParamField>
+
+## Response
+
+Returns the [company object](/api-reference/companies/model) with its current state, including:
+- Company metadata and attributes
+- Creation timestamp
+- Related memberships and users (if expanded)
+
+<RequestExample>
+  ```bash Request
+  curl https://api.usertour.io/v1/companies/comp_123456789 \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "comp_123456789",
+    "object": "company",
+    "attributes": {
+      "name": "Acme Corporation",
+      "industry": "Technology",
+      "employee_count": 500,
+      "subscription_tier": "enterprise",
+      "billing_country": "US",
+      "founded_at": "2020-01-01T00:00:00.000Z"
+    },
+    "createdAt": "2024-03-20T08:30:00.000Z",
+    "users": null,
+    "memberships": null
+  }
+  ```
+</ResponseExample>

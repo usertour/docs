@@ -1,0 +1,140 @@
+---
+title: 'Upsert a user'
+api: 'Post /v1/users'
+---
+
+This endpoint allows you to create a new user or update an existing one. The operation is idempotent - if a user with the specified ID already exists, the request will update the user's attributes. If the user doesn't exist, a new user will be created.
+
+## Body Parameters
+
+<ParamField body="id" type="string" required>
+  Unique identifier for the user. This should match the user's ID in your system.
+</ParamField>
+
+<ParamField body="attributes" type="object">
+  A map of user attributes to update. You can include any custom attributes. Existing attributes not included in the request will remain unchanged. See [Attributes](/api-reference/attributes) for details.
+</ParamField>
+
+<ParamField body="companies" type="array">
+  An array of company objects to associate with the user. Each company object must contain an ID and can include additional attributes. This is the recommended approach when you only need to establish company associations without additional relationship attributes.
+  <Expandable title="companies">
+    <ResponseField name="companies.id" type="string" required>
+      Unique identifier for the company. Must match the company's ID in your system.
+    </ResponseField>
+
+    <ResponseField name="companies.attributes" type="object">
+      A map of company-specific attributes. You can include any custom attributes to describe the company.
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="memberships" type="array">
+  An array of membership objects that define the relationship between a user and a company. Use this when you need to specify attributes that describe the user's relationship with each company. Each membership object must include a company object with at least its ID.
+  <Expandable title="memberships">
+    <ResponseField name="memberships.attributes" type="object" required>
+      A map of attributes that describe the user's relationship with the company. You can include any custom attributes to define the nature of this relationship.
+    </ResponseField>
+
+    <ResponseField name="memberships.company" type="object" required>
+      The company object associated with this membership.
+      <Expandable title="memberships.company">
+        <ResponseField name="memberships.company.id" type="string" required>
+          Unique identifier for the company. Must match the company's ID in your system.
+        </ResponseField>
+
+        <ResponseField name="memberships.company.attributes" type="object">
+          A map of company-specific attributes. You can include any custom attributes to describe the company.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ParamField>
+
+<Note>Only one of companies and memberships can be set.</Note>
+
+
+<RequestExample>
+  ```bash Basic Request
+  curl https://api.usertour.io/v1/users \
+  -XPOST \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "id": "usr_123456789",
+        "attributes": {
+          "name": "John Doe",
+          "email": "john.doe@example.com",
+          "signed_up_at": "2024-03-20T08:30:00.000Z"
+        }
+      }'
+  ```
+
+  ```bash With Companies
+  curl https://api.usertour.io/v1/users \
+  -XPOST \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "id": "usr_123456789",
+        "attributes": {
+          "name": "John Doe",
+          "email": "john.doe@example.com"
+        },
+        "companies": [
+          {
+            "id": "comp_987654321",
+            "attributes": {
+              "name": "Acme Corporation",
+              "plan": "enterprise",
+              "industry": "technology"
+            }
+          }
+        ]
+      }'
+  ```
+
+  ```bash With Memberships
+  curl https://api.usertour.io/v1/users \
+  -XPOST \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "id": "usr_123456789",
+        "attributes": {
+          "name": "John Doe",
+          "email": "john.doe@example.com"
+        },
+        "memberships": [
+          {
+            "attributes": {
+              "role": "admin",
+              "department": "engineering",
+              "join_date": "2024-01-01T00:00:00.000Z"
+            },
+            "company": {
+              "id": "comp_987654321",
+              "attributes": {
+                "name": "Acme Corporation",
+                "plan": "enterprise",
+                "industry": "technology"
+              }
+            }
+          }
+        ]
+      }'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "usr_123456789",
+    "object": "user",
+    "attributes": {
+      "name": "John Doe",
+      "email": "john.doe@example.com"
+    },
+    "created_at": "2024-03-20T08:30:00.000Z"
+  }
+  ```
+</ResponseExample>

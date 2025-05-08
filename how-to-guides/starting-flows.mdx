@@ -1,33 +1,73 @@
 ---
-title: How to start flows
-description: Learn how Usertour allows you to start flows in various ways
+title: Starting Flows
+description: Learn how to trigger flows automatically or manually in your application
 icon: "play"
 ---
 
-You can start a flow automatically by using auto-start conditions. You do this by enabling them in the far left of your detail page.
+## Automatic Flow Triggers
+
+You can set up flows to start automatically based on various conditions. These conditions are configured in the flow settings panel.
 
 ![](/images/conditions.png)
 
-One can start and segment flows based on
+## Available Trigger Conditions
 
-* User attribute - You can send user/company attributes via the [Usertour.js](/developers/usertourjs-reference/installation/)
+### User-Based Triggers
+- **User Attributes**: Start flows based on user or company data
+  - Configure via [Usertour.js](/developers/usertourjs-reference/installation)
+  - Perfect for personalized experiences
+  - Example: Show different flows for free vs. paid users
 
-* Current page - The page the user is currently on. This Usertour tracks automatically if Usertour.js is installed
+### Page-Based Triggers
+- **Current Page**: Trigger flows on specific pages
+  - Automatically tracked by Usertour.js
+  - Great for page-specific guidance
+  - Example: Show onboarding on the dashboard
 
-* Flow - Start the flow if another flow is completed/seen.
+### Flow-Based Triggers
+- **Flow Completion**: Start flows after other flows
+  - Chain multiple flows together
+  - Create sequential experiences
+  - Example: Show advanced features after basic onboarding
 
-* Element - Start the flow if a certain UI element in your app is present/clicked.
+### Element-Based Triggers
+- **UI Element Presence**: Start when elements appear
+- **Element Interaction**: Start on element click
+  - Perfect for feature discovery
+  - Example: Show tooltip when user hovers over a new feature
 
-* Text input value - Start the flow if the user fills in a specific value in a field.
+### Input-Based Triggers
+- **Specific Input Value**: Start on exact input match
+- **Any Input**: Start when user enters any value
+  - Great for form guidance
+  - Example: Show help when user starts typing
 
-* User fills in input - Start the flow if the user fills in any input in a field.
+### Time-Based Triggers
+- **Scheduled Start**: Set specific dates and times
+  - Before or after a target time
+  - Perfect for time-sensitive content
+  - Example: Show holiday promotion at specific times
 
-* Current time - Used for scheduling - Set a date and time that the flow should start before or after.
+## Advanced Configuration
 
-**Things to note**
+### Combining Conditions
+You can create complex trigger logic by:
+- Combining multiple conditions
+- Using AND/OR logic groups
+- Creating sophisticated user journeys
 
-* One can combine the conditions and make and/or combinations by e.g. using logic groups.
+### Flow Frequency
+Control how often flows appear:
+- **Default**: Once per user
+- **Unlimited**: Multiple times
+  - Add condition: `Flow started exactly 0 times in the last 1 hr where flow id is <flow id>`
+  - Prevents restart on dismissal
 
-* A flow will by default only start once per user, but you can change it to start unlimited times. If you do this make sure that it does not restart on being dismissed by adding an event condition `Flow started exactly 0 times in the last 1 hr where flow id is <flow id>`
+### Timing Control
+Add delays to your flows:
+- Use the Wait condition
+- Set specific delay times
+- Ensure proper page loading
+- Create smoother user experiences
 
-* If you want a few seconds of delay in starting the flow, you can use the Wait condition on top of your other conditions.
+> **Tip**: Always test your flow triggers in different scenarios to ensure they work as expected.

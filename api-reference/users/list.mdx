@@ -1,0 +1,81 @@
+---
+title: 'List users'
+api: 'Get /v1/users'
+description: 'Retrieve a paginated list of users. You can filter the results using various query parameters.'
+---
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
+
+## Query parameters
+
+<ParamField query="email" type="string">
+  Filter users by their email address. The search is case-insensitive and must match the exact email value stored in the user's attributes.
+</ParamField>
+
+<ParamField query="segmentId" type="string">
+  Filter users by segment membership. You can find the segment ID in the Usertour UI by clicking the three-dot menu in the top right corner of the segment page.
+</ParamField>
+
+<ParamField query="companyId" type="string">
+  Filter users by company membership. Only returns users who are members of the specified company.
+</ParamField>
+
+<PaginationParameters />
+
+<ParamField path="expand" type="string | string[]">
+  See [Expanding objects](/api-reference/expanding-objects). Available options:
+  - `memberships`: Include basic membership data for each user
+  - `memberships.company`: Include both membership and associated company details
+  - `companies`: Include all companies associated with the user
+  - You can request multiple expansions: `expand[]=memberships&expand[]=companies`
+</ParamField>
+
+## Response
+
+Returns a [list object](/api-reference/pagination#the-list-object) containing an array of [user objects](/api-reference/users/model) in the `results` property. The response includes pagination information in the `next` and `previous` fields.
+
+<RequestExample>
+  ```bash Request
+  curl https://api.usertour.io/v1/users \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "results": [
+      {
+        "id": "usr_123456789",
+        "object": "user",
+        "attributes": {
+          "name": "John Doe",
+          "email": "john.doe@example.com",
+          "role": "admin",
+          "department": "engineering",
+          "last_login_at": "2024-03-20T08:30:00.000Z"
+        },
+        "createdAt": "2024-03-20T08:30:00.000Z",
+        "companies": null,
+        "memberships": null
+      },
+      {
+        "id": "usr_987654321",
+        "object": "user",
+        "attributes": {
+          "name": "Jane Smith",
+          "email": "jane.smith@example.com",
+          "role": "user",
+          "department": "marketing",
+          "last_login_at": "2024-03-19T15:45:00.000Z"
+        },
+        "createdAt": "2024-03-19T15:45:00.000Z",
+        "companies": null,
+        "memberships": null
+      }
+    ],
+    "next": "/v1/users?limit=2&cursor=usr_987654321",
+    "previous": null
+  }
+  ```
+</ResponseExample>

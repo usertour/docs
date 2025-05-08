@@ -1,0 +1,32 @@
+---
+title: "identifyAnonymous()"
+description: "Identify anonymous users with automatically generated IDs"
+---
+
+The `identifyAnonymous()` method works similarly to [usertour.identify()](/developers/usertourjs-reference/users/identify), but automatically generates and manages a unique ID for anonymous users. This ID is stored in the user's localStorage and persists across page reloads.
+
+> **Important**: Only use this method for unauthenticated users. For signed-in users, use [usertour.identify()](/developers/usertourjs-reference/users/identify) with their actual user ID.
+
+## Parameters
+
+<ParamField path="attributes" type="object">
+  User attributes to update. See [Attributes](/developers/usertourjs-reference/overview#attributes) for details. These attributes can be used in flow content and conditions to personalize the user experience.
+</ParamField>
+
+## Returns
+A `Promise` that resolves when the identification is complete.
+
+## Example
+
+```javascript
+// Identify an anonymous user with custom attributes
+usertour.identifyAnonymous({
+  last_visited: '2024-03-20T08:30:00.000Z',
+  referrer: 'google.com'
+});
+```
+
+## Notes
+
+- The generated ID persists in localStorage until cleared
+- Use this method only for public pages where users aren't logged in

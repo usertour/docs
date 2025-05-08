@@ -1,0 +1,117 @@
+---
+title: 'List content sessions'
+api: 'Get /v1/content-sessions'
+description: 'Retrieves a paginated list of content sessions with optional filtering and expansion options.'
+---
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
+
+## Query Parameters
+
+<ParamField path="contentId" type="string" required>
+  Filter sessions by a specific content ID. Only sessions associated with this content will be returned.
+</ParamField>
+
+<ParamField path="userId" type="string">
+  Filter sessions by a specific user ID. Only sessions created by this user will be returned.
+</ParamField>
+
+<PaginationParameters />
+
+<ParamField path="orderBy" type="string | string[]">
+  Sort the results by specified fields. Available options:
+  - `createdAt`: Sort by session creation time (default)
+  - Use `-` prefix for descending order: `orderBy[]=-createdAt`
+  - You can combine multiple fields: `orderBy[]=-createdAt&orderBy[]=id`
+</ParamField>
+
+<ParamField path="expand" type="string | string[]">
+  Include additional related objects in the response. Available options:
+  - `content`: Include the associated [content object](/api-reference/content/model)
+  - `version`: Include the [content version](/api-reference/content-versions/model) details
+  - `answers`: Include [survey answers](/api-reference/content-sessions/the-answer-model) if any
+  - `company`: Include the associated [company](/api-reference/companies/model) information
+  - `user`: Include the [user](/api-reference/users/model) who created the session
+  - You can request multiple expansions: `expand[]=content&expand[]=user`
+</ParamField>
+
+## Response
+
+Returns a [list object](/api-reference/pagination#the-list-object) containing:
+- `results`: Array of [content session objects](/api-reference/content-sessions/model)
+- `next`: URL for the next page (null if no more pages)
+- `previous`: URL for the previous page (null if on first page)
+
+<RequestExample>
+  ```bash Request
+  # Get the most recent content session with all related data
+  curl https://api.usertour.io/v1/content-sessions?contentId=cm9f6vwed0002iejc4vg2zu3t&limit=1&expand[]=content&orderBy=-createdAt&expand[]=version&expand[]=answers&expand[]=company&expand[]=user \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "results": [
+      {
+        "id": "cmaavyi16003twg0bgimbcdnr",
+        "object": "contentSession",
+        "answers": [],
+        "completedAt": null,
+        "completed": false,
+        "contentId": "cm9f6vwed0002iejc4vg2zu3t",
+        "content": {
+          "id": "cm9f6vwed0002iejc4vg2zu3t",
+          "object": "content",
+          "name": "fff",
+          "type": "flow",
+          "editedVersionId": "cm9mkru2c000mlhmajx3l0146",
+          "publishedVersionId": "cm9mjsv7d001bvfe8qe8tgzv9",
+          "updatedAt": "2025-04-18T09:16:37.989Z",
+          "createdAt": "2025-04-13T05:13:29.797Z"
+        },
+        "createdAt": "2025-05-05T09:36:13.002Z",
+        "companyId": "group-1746437717425",
+        "company": {
+          "id": "group-1746437717425",
+          "object": "company",
+          "attributes": {
+            "name": "Iric L"
+          },
+          "createdAt": "2025-05-05T09:35:17.434Z"
+        },
+        "isPreview": false,
+        "lastActivityAt": "2025-05-05T09:36:13.016Z",
+        "progress": 11,
+        "userId": "user-1746437717384",
+        "user": {
+          "id": "user-1746437717384",
+          "object": "user",
+          "attributes": {
+            "like": ["123", "456"],
+            "male": true,
+            "name": "Iric L",
+            "email": "iric-1746437717384@usertour.com",
+            "sdsdd": 13,
+            "loginName": "222222222222",
+            "registerAt": "2024-03-29T16:05:45.000Z",
+            "website_lead": true
+          },
+          "createdAt": "2025-05-05T09:35:17.406Z"
+        },
+        "versionId": "cm9mjsv7d001bvfe8qe8tgzv9",
+        "version": {
+          "id": "cm9mjsv7d001bvfe8qe8tgzv9",
+          "object": "contentVersion",
+          "number": 13,
+          "updatedAt": "2025-04-18T08:49:26.501Z",
+          "createdAt": "2025-04-18T08:49:26.501Z"
+        }
+      }
+    ],
+    "next": "/v1/content-sessions?contentId=cm9f6vwed0002iejc4vg2zu3t&limit=1&orderBy=-createdAt&cursor=cmaavyi16003twg0bgimbcdnr&expand%5B%5D=content&expand%5B%5D=version&expand%5B%5D=answers&expand%5B%5D=company&expand%5B%5D=user",
+    "previous": null
+  }
+  ```
+</ResponseExample>

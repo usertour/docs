@@ -1,139 +1,139 @@
 ---
 title: Self Hosting
-description: Self Hosting.
+description: Deploy Usertour on your own infrastructure using Docker
 icon: "fan"
 ---
 
-## Deploy with Docker
+## Docker Deployment Guide
 
-### Requirements
+### Prerequisites
 
-Before you begin, ensure you have the following:
+Before starting the deployment, make sure you have:
 
-* Basic knowledge of Docker and containerization principles.
+* Docker and Docker Compose installed
+* Basic understanding of Docker concepts
+* Access to a server or local machine where you want to deploy Usertour
 
-* Docker and Docker Compose are installed on your machine.
+### Installation Steps
 
-### Configuration
+1. **Install Docker and Docker Compose**
 
-Using [this sample file](https://github.com/usertour/usertour/blob/main/.env.example) as a reference create a **docker.env** file or **environment** in **docker-compose.yml** to contain the [environment variables](/open-source/env) for your installation.
+   For macOS users:
+   ```bash
+   brew install docker docker-compose
+   ```
 
-### Install Docker and Docker Compose:
+   For Windows users:
+   ```bash
+   choco install docker-desktop docker-compose -y
+   ```
 
-For macOS users, you can install them by [Homebrew](https://brew.sh/):
+2. **Configure Environment Variables**
 
-```bash
-brew install docker docker-compose
-```
+   Create a `docker.env` file or add environment variables to your `docker-compose.yml`. You can use [this example file](https://github.com/usertour/usertour/blob/main/.env.example) as a reference. For detailed environment variable documentation, see [Environment Variables](/open-source/env).
 
-For Windows users, you can install them by [Chocolatey](https://chocolatey.org/):
+3. **Create Docker Compose Configuration**
 
-```bash
-choco install docker-desktop docker-compose -y
-```
+   Choose one of the following deployment options:
 
-### Create a **docker-compose.yml**
+   #### Option 1: Local Development Setup
+   This configuration includes all dependencies (PostgreSQL and Redis) in Docker containers:
 
-an example configuration with all dependencies dockerized and environment variables is as follows:
+   ```yaml
+   version: "3.8"
 
-#### Run on your own computer
+   services:
+     app:
+       image: usertour/usertour:latest
+       ports:
+         - "8011:80"
+       env_file:
+         - .env
+       environment:
+         - PRISMA_BINARY_PLATFORM=linux-musl-openssl-3.0.x
+       depends_on:
+         - postgres
+         - redis
+       restart: always
 
-```yaml
-version: "3.8"
+     postgres:
+       image: postgres:15-alpine
+       environment:
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=postgres
+         - POSTGRES_DB=usertour
+       volumes:
+         - postgres_data:/var/lib/postgresql/data
+       restart: always
 
-services:
-  app:
-    image: usertour/usertour:latest
-    ports:
-      - "8011:80"
-    env_file:
-      - .env
-    environment:
-      - PRISMA_BINARY_PLATFORM=linux-musl-openssl-3.0.x
-    depends_on:
-      - postgres
-      - redis
-    restart: always
+     redis:
+       image: redis:alpine
+       volumes:
+         - redis_data:/data
+       restart: always
 
-  postgres:
-    image: postgres:15-alpine
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=usertour
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    restart: always
+   volumes:
+     postgres_data:
+     redis_data:
+   ```
 
-  redis:
-    image: redis:alpine
-    volumes:
-      - redis_data:/data
-    restart: always
+   For local development, make sure to set these environment variables in your `.env` file:
 
-volumes:
-  postgres_data:
-  redis_data:
-```
-In this mode, we need to pay attention to the Redis and Postgres configuration of the .env file. 
+   ```env
+   # Redis Configuration
+   REDIS_HOST=redis
+   REDIS_PORT=6379
+   REDIS_PASS=
 
-``` env
-#Redis
-Redis_HOST=redis
-Redis_PORT=6379
-Redis_PASS=
+   # PostgreSQL Configuration
+   DATABASE_URL=postgresql://postgres:postgres@postgres:5432/usertour?schema=usertour&sslmode=prefer
+   ```
 
-# Postgres
-DATABASE_URL=postgresql://postgres:postgres@postgres:5432/usertour?schema=usertour&sslmode=prefer
-```
+   #### Option 2: Production Setup
+   For production environments, you'll need to:
+   1. Install PostgreSQL and Redis separately
+   2. Update the `.env` file with your database credentials
+   3. Use this simplified configuration:
 
+   ```yaml
+   version: "3.8"
 
-#### Deploy to a public server
+   services:
+     app:
+       image: usertour/usertour:latest
+       ports:
+         - "8011:80"
+       env_file:
+         - .env
+       environment:
+         - PRISMA_BINARY_PLATFORM=linux-musl-openssl-3.0.x
+       restart: always
+   ```
 
-In this way, you need to provide independent installation of postgres and redis and update the configuration information in the **.env** file
+4. **Start Usertour**
 
-```yaml
-version: "3.8"
+   Run the following command in the directory containing your `docker-compose.yml`:
 
-services:
-  app:
-    image: usertour/usertour:latest
-    ports:
-      - "8011:80"
-    env_file:
-      - .env
-    environment:
-      - PRISMA_BINARY_PLATFORM=linux-musl-openssl-3.0.x
-    restart: always
-```
+   ```bash
+   docker-compose up -d
+   ```
 
-### Run it
+   This command will:
+   * Create the database
+   * Run database migrations
+   * Start the Usertour application on port 8011
 
-Make sure you are in the same directory as **docker-compose.yml** and start Usertour:
+### Accessing Usertour
 
-```bash
-docker-compose up -d
-```
+1. **Initial Access**
+   * Navigate to `http://<your-server-ip>:8011` or your configured domain
+   * Note: Usertour runs on HTTP by default. For HTTPS, you'll need to set up a reverse proxy
 
-When you run this command, by default, it does the following:
+2. **Default Login Credentials**
+   * Email: lisa@simpson.com
+   * Password: secret42
+   * **Important**: Change the password immediately after your first login
 
-* Create a database
+### Next Steps
 
-* Run the migrations
-
-* Start the Usertour app on port 8011
-
-You can now navigate to http://\<**server ip**>:8011 or [http://usertour.yourcompany.com](http://usertour.yourcompany.com) and see the login screen. Usertour itself does not perform SSL termination. It only runs on unencrypted HTTP. If you want to run on HTTPS you also need to set up a reverse proxy in front of the server.
-
-### Login
-
-After successful installation, a test account will be automatically generated:
-username: [lisa@simpson.com](mailto:lisa@simpson.com) &#x20;
-password: secret42&#x20;
-**After successful login, it is strongly recommended that you change your password**
-
-### Install Usertourjs
-
-Installing Usertour enables you to display content (e.g., modals, tooltips, checklists, launchers) live to your users. It also helps send targeting information (User Properties and Events) to Usertour so you can reach the right audience at the right time.
-
-[Installation Usertour.js](/open-source/usertourjs)
+To enable content delivery and user tracking, install Usertour.js in your application. See the [Usertour.js installation guide](/open-source/usertourjs) for detailed instructions.

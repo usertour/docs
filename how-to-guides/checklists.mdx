@@ -1,47 +1,104 @@
 ---
 title: Checklists
-description: This page introduce the checklists of Usertour .
+description: Learn how to create and manage interactive checklists to guide users through your product
 icon: "list-check"
 ---
 
-Checklists serve as a reliable anchor for new users during onboarding. If they exit the onboarding guide, they can always return or explore other tours through the checklist. Providing a sense of progress not only keeps users engaged but also fosters a sense of achievement, encouraging deeper interaction with your product.
+## Overview
 
-## How to build checklists
+Checklists are powerful tools for user onboarding and task completion. They provide:
+- A reliable anchor for new users
+- Clear progress tracking
+- Easy access to related tours
+- A sense of achievement
+- Persistent guidance throughout the user journey
 
-You can create checklists from the Checklists page in the sidebar. They function similarly to regular flows, supporting auto-start conditions and publication. Once set up, they seamlessly appear in your app via Usertour.js without requiring additional installation.
+## Creating Checklists
+
+### Basic Setup
+1. Navigate to the **Checklists** page in the sidebar
+2. Create a new checklist
+3. Configure auto-start conditions
+4. Publish your checklist
+
+The checklist will automatically appear in your application via [Usertour.js](/developers/usertourjs-reference/overview) - no additional installation required.
 
 ![](/images/checklist-04.png)
 
-You can add unlimited tasks to your checklist. Each task includes a name, an optional subtitle, a completion condition, and one or more actions. For example, a completion condition might be when users create their first project, and the action could be triggering a tour to guide them through the process.
+### Task Configuration
+Each checklist task includes:
+- Task name
+- Optional subtitle
+- Completion condition
+- One or more actions
 
-## What users see
+For example, you can create a task that:
+- Triggers when users create their first project
+- Launches a guided tour
+- Updates the checklist progress
 
-When a checklist is triggered for a user, it will appear in the lower-right corner of the screen by default.
+## User Experience
+
+### Default Display
+Checklists appear in the lower-right corner of the screen:
 
 ![](/images/checklist-02.png)
 
-When a task is clicked, its associated actions—such as starting a flow or navigating to a page—are triggered. If the user minimizes the checklist, a launcher button labeled “Get started” appears in the same corner, displaying a number that indicates the remaining tasks.
+### Interaction Features
+- Click tasks to trigger associated actions
+- Minimize to show the "Get started" launcher
+- View remaining task count
+- See real-time progress updates
+- Watch checkmark animations on completion
 
-As users complete tasks, the checklist is automatically displayed with a checkmark animation, and the progress bar at the top updates in real-time to reflect their progress.
-
-## Completing a checklist task based on flow completion
-
-To mark checklist tasks as completed when users have viewed or finished a flow, you can set the following condition:
+### Flow Completion Integration
+To mark tasks as complete when users finish a flow:
 
 ![](/images/checklist-03.png)
 
-## Customizing the look and feel of your checklist
+## Customization
 
-Similar to other UserTour content, you can customize the appearance and position of your Checklist and Checklist Launchers using the theme editor (Settings -> Themes).
+### Appearance
+Customize your checklist through the theme editor:
+- Access via [Settings -> Themes](https://app.usertour.io/project/1/settings/themes)
+- Modify colors and styling
+- Adjust positioning
+- Customize launcher appearance
 
-## Dismissing a checklist
+### Visibility Control
 
-Users can dismiss a checklist by clicking the "Dismiss checklist" button at the bottom. To prevent users from dismissing the checklist, simply toggle the "Prevent users from dismissing checklist" option found in the advanced settings (below the auto-start conditions).
+#### Dismissal Options
+- Users can dismiss via the "Dismiss checklist" button
+- Prevent dismissal in advanced settings
+- Toggle "Prevent users from dismissing checklist"
 
-## Conditionally hiding the checklist and launcher.
+#### Conditional Hiding
+Control checklist visibility with temporary hide conditions:
+- Hide on specific pages
+- Hide in certain scenarios
+- Hide when embedded in resource centers
+- Hide launcher independently
 
-Once a checklist, including the checklist launcher, is started, it remains visible until the user dismisses it or it’s hidden with temporary hide conditions. To hide an active checklist on a specific page or in certain scenarios, you need to add a temporary hide condition.
+> **Note**: For complete control over checklist visibility, configure auto-start conditions rather than using temporary hide conditions.
 
-If the checklist is embedded in a resource center and you are conditionally hiding the resource center and its launcher, you can also hide the embedded checklist with temporary hide conditions. Despite being embedded, the checklist and resource center are separate content types.
+## Best Practices
 
-If you don’t want to start a checklist for a user at all, avoid using temporary hide conditions. Instead, simply exclude them from the auto-start conditions.
+1. **Keep it Focused**
+   - Limit tasks to essential steps
+   - Use clear, actionable language
+   - Provide context in subtitles
+
+2. **Progress Tracking**
+   - Show clear progress indicators
+   - Celebrate task completion
+   - Maintain engagement
+
+3. **Integration**
+   - Connect with relevant flows
+   - Link to important features
+   - Guide users naturally
+
+4. **User Control**
+   - Allow task skipping when appropriate
+   - Provide clear navigation
+   - Enable easy access to help

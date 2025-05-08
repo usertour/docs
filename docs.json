@@ -1,108 +1,209 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Usertour documention",
-  "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373"
-  },
-  "favicon": "/images/favicon.png",
-  "navigation": {
-    "anchors": [
-      {
-        "anchor": "Documentation",
-        "icon": "book-open",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "why-usertour",
-              "quickstart",
-              "faq"
-            ]
-          },
-          {
-            "group": "How-to Guides",
-            "pages": [
-              "building-experiences/understanding-the-basics-of-in-app-flows",
-              "building-experiences/creating-your-first-flow",
-              "how-to-guides/starting-flows",
-              "how-to-guides/checklists",
-              "how-to-guides/launchers",
-              "how-to-guides/environments",
-              "how-to-guides/users-and-segments",
-              "how-to-guides/companies",
-              "how-to-guides/urls",
-              "how-to-guides/flow-analytics"
-            ]
-          },
-          {
-            "group": "Developers",
-            "pages": [
-              "developers/csp",
-              {
-                "group": "Usertourjs Reference",
-                "icon": "connectdevelop",
-                "pages": [
-                  "developers/usertourjs-reference/overview",
-                  "developers/usertourjs-reference/installation",
-                  "developers/usertourjs-reference/method"
-                ]
-              }
-            ]
-          },
-          {
-            "group": "Open Source",
-            "pages": [
-              "open-source/env",
-              "open-source/self-hosting",
-              "open-source/usertourjs",
-              "open-source/local-development"
-
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Community",
-          "href": "https://discord.gg/WPVJPX8fJh",
-          "icon": "discord"
-        },
-        {
-          "anchor": "Github",
-          "href": "https://github.com/usertour/usertour",
-          "icon": "github"
-        },
-        {
-          "anchor": "Usertour",
-          "href": "https://www.usertour.io/",
-          "icon": "arrow-up-right-from-square"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo-dark.svg",
-    "dark": "/logo-light.svg",
-    "href": "https://www.usertour.io/"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:support@usertour.io"
-      }
-    ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/usertourio",
-      "github": "https://github.com/usertour/usertour",
-      "linkedin": "https://www.linkedin.com/company/usertour/"
-    }
-  }
+	"$schema": "https://mintlify.com/docs.json",
+	"theme": "mint",
+	"name": "Usertour documention",
+	"colors": {
+		"primary": "#0D9373",
+		"light": "#07C983",
+		"dark": "#0D9373"
+	},
+	"favicon": "/images/favicon.png",
+	"api": { "playground": { "display": "simple" } },
+	"navigation": {
+		"anchors": [
+			{
+				"anchor": "Documentation",
+				"icon": "book-open",
+				"groups": [
+					{
+						"group": "Get Started",
+						"pages": ["why-usertour", "quickstart", "faq"]
+					},
+					{
+						"group": "How-to Guides",
+						"pages": [
+							"building-experiences/understanding-the-basics-of-in-app-flows",
+							"building-experiences/creating-your-first-flow",
+							"how-to-guides/starting-flows",
+							"how-to-guides/checklists",
+							"how-to-guides/launchers",
+							"how-to-guides/surveys",
+							"how-to-guides/environments",
+							"how-to-guides/users-and-segments",
+							"how-to-guides/companies",
+							"how-to-guides/urls",
+							"how-to-guides/flow-analytics"
+						]
+					},
+					{
+						"group": "Developers",
+						"pages": ["developers/csp"]
+					}
+				]
+			},
+			{
+				"anchor": "Usertour.js Reference",
+				"icon": "connectdevelop",
+				"groups": [
+					{
+						"group": "Usertour.js Reference",
+						"pages": [
+							"developers/usertourjs-reference/overview",
+							"developers/usertourjs-reference/installation"
+						]
+					},
+					{
+						"group": "Setup",
+						"pages": ["developers/usertourjs-reference/setup/init"]
+					},
+					{
+						"group": "Users",
+						"pages": [
+							"developers/usertourjs-reference/users/identify",
+							"developers/usertourjs-reference/users/identify-anonymous",
+							"developers/usertourjs-reference/users/is-identified",
+							"developers/usertourjs-reference/users/update-user",
+							"developers/usertourjs-reference/users/reset"
+						]
+					},
+					{
+						"group": "Companies",
+						"pages": [
+							"developers/usertourjs-reference/companies/company",
+							"developers/usertourjs-reference/companies/update-company"
+						]
+					},
+					{
+						"group": "Advanced usage",
+						"pages": [
+							"developers/usertourjs-reference/advanced/set-base-zIndex"
+						]
+					}
+				]
+			},
+			{
+				"anchor": "API References",
+				"icon": "terminal",
+				"groups": [
+					{
+						"group": "API References",
+						"pages": [
+							"api-reference/introduction",
+							"api-reference/errors",
+							"api-reference/pagination",
+							"api-reference/ordering",
+							"api-reference/expanding-objects",
+							"api-reference/attributes"
+						]
+					},
+					{
+						"group": "Users",
+						"pages": [
+							"api-reference/users/model",
+							"api-reference/users/create",
+							"api-reference/users/get",
+							"api-reference/users/delete",
+							"api-reference/users/list"
+						]
+					},
+					{
+						"group": "Companies",
+						"pages": [
+							"api-reference/companies/model",
+							"api-reference/companies/create",
+							"api-reference/companies/get",
+							"api-reference/companies/delete",
+							"api-reference/companies/list"
+						]
+					},
+					{
+						"group": "Company Memberships",
+						"pages": [
+							"api-reference/company-memberships/model",
+							"api-reference/company-memberships/create",
+							"api-reference/company-memberships/delete",
+							"api-reference/company-memberships/list"
+						]
+					},
+					{
+						"group": "Content",
+						"pages": [
+							"api-reference/content/model",
+							"api-reference/content/get",
+							"api-reference/content/list"
+						]
+					},
+					{
+						"group": "Content Versions",
+						"pages": [
+							"api-reference/content-versions/model",
+							"api-reference/content-versions/the-question-model",
+							"api-reference/content-versions/get",
+							"api-reference/content-versions/list"
+						]
+					},
+					{
+						"group": "Content Sessions",
+						"pages": [
+							"api-reference/content-sessions/model",
+							"api-reference/content-sessions/the-answer-model",
+							"api-reference/content-sessions/get",
+							"api-reference/content-sessions/delete",
+							"api-reference/content-sessions/end",
+							"api-reference/content-sessions/list"
+						]
+					},
+					{
+						"group": "Event Definitions",
+						"pages": [
+							"api-reference/event-definitions/model",
+							"api-reference/event-definitions/list"
+						]
+					},
+					{
+						"group": "Attribute Definitions",
+						"pages": [
+							"api-reference/attribute-definitions/model",
+							"api-reference/attribute-definitions/list"
+						]
+					}
+				]
+			},
+			{
+				"anchor": "Open Source",
+				"icon": "github",
+				"groups": [
+					{
+						"group": "Open Source",
+						"pages": [
+							"open-source/env",
+							"open-source/self-hosting",
+							"open-source/usertourjs",
+							"open-source/local-development"
+						]
+					}
+				]
+			}
+		]
+	},
+	"logo": {
+		"light": "/logo-dark.svg",
+		"dark": "/logo-light.svg",
+		"href": "https://www.usertour.io/"
+	},
+	"navbar": {
+		"links": [
+			{
+				"label": "Support",
+				"href": "mailto:support@usertour.io"
+			}
+		]
+	},
+	"footer": {
+		"socials": {
+			"x": "https://x.com/usertourio",
+			"github": "https://github.com/usertour/usertour",
+			"discord": "https://discord.gg/WPVJPX8fJh"
+		}
+	}
 }

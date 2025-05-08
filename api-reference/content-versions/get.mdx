@@ -1,0 +1,63 @@
+---
+title: 'Get a content version'
+api: 'Get /v1/content-versions/:id'
+description: 'Retrieves a specific version of a content object by its version ID.'
+---
+
+## Path parameters
+
+<ParamField path="id" type="string">
+  The unique identifier of the content version to retrieve.
+</ParamField>
+
+## Query parameters
+
+<ParamField path="expand" type="string | string[]">
+  See [Expanding objects](/api-reference/expanding-objects). Available options:
+  - `questions`: Include all questions associated with this version (only applicable for flow content types)
+</ParamField>
+
+## Response
+
+Returns a [content version object](/api-reference/content-versions/model) if found. Returns a 404 Not Found error if the version doesn't exist.
+
+<RequestExample>
+  ```bash Request
+  # Get a content version with its questions
+  curl https://api.usertour.io/v1/content-versions/cm9l2ws8o004yv0gk0r01r1ti?expand=questions \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "cm9l2ws8o004yv0gk0r01r1ti",
+    "object": "contentVersion",
+    "number": 3,
+    "questions": [
+      {
+        "object": "question",
+        "cvid": "llwjbkwqb7xufu2okq8gk7ud",
+        "name": "How likely are you to recommend our service?",
+        "type": "nps"
+      },
+      {
+        "object": "question",
+        "cvid": "eforyzobzloaxa439fg6w1vw",
+        "name": "What aspects could we improve?",
+        "type": "nps"
+      },
+      {
+        "object": "question",
+        "cvid": "k65k0h7clxsd32x1t9ocnrbt",
+        "name": "Additional feedback",
+        "type": "multi-line-text"
+      }
+    ],
+    "updatedAt": "2025-04-17T09:28:33.999Z",
+    "createdAt": "2025-04-17T08:08:49.637Z"
+  }
+  ```
+</ResponseExample>

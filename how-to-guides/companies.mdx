@@ -1,35 +1,65 @@
 ---
 title: Companies
-description: This page introduce the companies of Usertour .
+description: Learn how to manage and target users across different organizations in your application
 icon: "people-roof"
 ---
 
-Companies is a powerful feature that enables you to model multiple users belonging to the same company/organization/account/team in your app. This allows for efficient targeting, personalization and tracking.
+## Overview
 
-Your app may refer to it as organizations, companies, teams, accounts etc. In Usertour we just use the common word, companies, to refer to a group of users who belong to the same entity.
+Companies in Usertour helps you manage users who belong to the same organization, whether you call them companies, teams, or accounts in your app. It's perfect for:
+- Targeting content to entire organizations
+- Tracking company-wide behavior
+- Managing multi-company users
+- Personalizing experiences
+- Understanding team dynamics
 
-## Key benefits of Companies
+## Why Use Companies?
 
-With Companies, you can easily manage content based on company attributes, or events performed by any user in a company.
+### Multi-Company Support
+Users often belong to multiple organizations. Maybe they're an admin in one company and a regular user in another. Usertour understands these relationships and helps you:
+- Track different roles
+- Manage permissions
+- Customize experiences
+- Handle complex scenarios
 
-* **Elegantly manage users that belongs to multiple companies** in your app. Usertour can understand if a user has different permission roles in two different companies.
+### Company-Wide Insights
+Instead of looking at individual users, you can:
+- Track company-level activity
+- Measure team engagement
+- Monitor group behavior
+- Make data-driven decisions
 
-* **Control content targeting and completion** based on the entire company’s behavior, instead of just a single user.
+### User Management
+Get a clear view of:
+- Who's in each company
+- What they're doing
+- How they're engaging
+- Where they need help
 
-* **Gain overview of users** within a company. You get an aggregated overview of their activities.
+## Getting Started
 
-## Setting up Companies
+### Setup
+It's simple to get started with Companies. Just add this to your [Usertour.js installation](/developers/usertourjs-reference/installation):
 
-Setting up Companies is easily done by calling usertour.group(companyId) in your Usertour.js installation. Just like with users, you can also pass company and company membership attributes via Usertour.js
+```javascript
+usertour.group(companyId, {
+  // Optional company attributes
+  name: "Acme Corp",
+  plan: "enterprise",
+  // Optional membership attributes
+  role: "admin"
+});
+```
 
-## Using Companies
+### Using Companies
 
-There are many ways to utilize Companies.
-
-Once you have configured Companies, they’ll show up on the **Companies** page in the sidebar below **Users**.
+Once you've set up Companies, you'll find them in the sidebar under **Companies**. Here's what you can do:
 
 ![](/images/company.png)
 
-Control your auto-start conditions based on company attributes.
+### Targeting Content
+Create flows and experiences based on company attributes:
 
 ![](/images/companies-conditions.png)
+
+> **Pro tip**: Use company attributes to create targeted experiences for different types of organizations, like showing enterprise features to premium companies or onboarding flows to new teams.

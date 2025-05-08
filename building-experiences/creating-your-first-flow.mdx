@@ -1,51 +1,77 @@
 ---
 title: Creating Your First Flow
-description: how to creating your first flow
+description: Learn how to create and customize your first interactive flow with Usertour
 icon: "firstdraft"
 ---
 
-Creating flows with Usertour is a piece of cake. Before your users can see the content you build, you need to install [Usertour.js](/developers/usertourjs-reference/installation) in your web app.
+## Getting Started
 
-## Create new flow
+Before you can start creating flows, you'll need to install [Usertour.js](/developers/usertourjs-reference/installation) in your web application. Once that's done, you're ready to create your first flow!
 
-You can navigate to the Usertour web app > Content and create a flow do the following.
+## Creating a New Flow
 
-1. Go to **Flows** in the sidebar.
+Let's create your first flow in the Usertour web app:
 
-2. Click **Create New Flow**.
-
-3. Give the flow a name.
+1. Open the Usertour web app and navigate to the **Content** section
+2. Click on **Flows** in the sidebar
+3. Click the **Create New Flow** button
+4. Give your flow a descriptive name
 
 ![](https://r3.usertour.io/docs/building-experiences/create-flow-2.gif)
 
-## Edit flow in Builder
+## Building Your Flow
 
-### Edit flow
+Here's how to create an engaging user experience:
+
+### Basic Flow Editing
 
 ![](https://r3.usertour.io/docs/building-experiences/edit-flow-2.gif)
 
-Options :
+### Customization Options
 
-* ThemeYou can use themes to customize the appearance and styling of the step and make flows match your app.
+#### Theme
+Customize the look and feel of your flows to match your application's design. Themes let you control colors, typography, and overall styling.
 
-* Element placement (Tooltips only)
+#### Element Placement (Tooltips only)
+You have multiple ways to target elements for your tooltips:
 
-  * Element text. If the element text is not empty, Usertour will select an element containing the text you enter here.
+- **Element Text**: If you enter text here, Usertour will find and select elements containing that text
+- **CSS Selector**: For precise targeting, you can use any valid CSS selector
+  - Supports all standard CSS selectors (see [MDN's CSS Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors))
+  - Uses `querySelectorAll()` for element selection
+  - When multiple elements match, Usertour selects the first one by default
+  - You can specify which element to select by providing its index
 
-  * CSS selector. You can specify any element on your webpage using a CSS selector. For more information, refer to [MDN's CSS Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors). Usertour will use the [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) method to find the element.
+#### Backdrop
+The backdrop feature helps focus user attention:
 
-  * If multiple matches are found, Usertour will by default select the first one. You can also specify the index of the element to select.
+- Creates a semi-transparent overlay
+- Highlights important elements
+- Blocks interactions with background content
+- Available for all step types:
+  - Modal steps: Enabled by default
+  - Tooltip steps: Optional per step
+  - Customizable in theme settings
 
-* Adding backdrop to a flow Adding backdrop is a powerful way to focus the user fully on the actions you want them to take. Adding backdrop adds a semi-transparent layer on top of your app covering everything else than the usertour content and tooltip target elements. This backdrop blocks clicks on elements behind it, thereby gently forcing the users to do as the Usertour flow says.Modal steps have backdrop by default, and for tooltip and speech bubble steps you can toggle it on per step. One can furthermore adjust the backdrop behavior and look in the theme settings e.g. one can change the default behavior and allow backdrop clicks via the theme.
+#### Actions
+Control how your flow behaves:
 
-* ActionsYou can choose the behavior of each step in your flow. You can choose when to trigger your step when it advances, and what happens if your user clicks on the “X” button of the step.
+- Set step triggers
+- Define navigation behavior
+- Configure close button actions
+- Customize user interactions
 
-* Tooltip positioningIf you want a tooltip to show in a certain position (left, right, above, below the target element), you can change the tooltip position by clicking on the selected element on the flow step in the builder and selecting Specify tooltip position. Note that there needs to be enough space in the UI to show the tooltip at that position, otherwise it will be shown in another position with space.
+#### Tooltip Positioning
+Position tooltips precisely:
 
-### Rearranging steps
+- Choose from multiple positions (left, right, above, below)
+- Automatic fallback if space is limited
+- Visual positioning in the builder
 
-It's possible that you might forget adding a certain step while creating the flow or maybe would like to rearrange the steps in a particular order.
+### Managing Flow Steps
 
-To rearrange steps, just simply drag the step you'd like to relocate and drop it wherever you'd like.
+Need to change the order of your steps? No problem! Simply drag and drop steps to rearrange them in your flow.
 
 ![](https://r3.usertour.io/docs/building-experiences/rererangeing-02.gif)
+
+> **Tip**: You can always add new steps or rearrange existing ones to create the perfect user journey.

@@ -1,28 +1,23 @@
 ---
-title: Usertour.js Installation
-description: installation of Usertour.js.
+title: Installation
 icon: "tag"
 ---
 
-Before your users can see the content you build, you need to install Usertour.js in your web app.
+# Installing Usertour.js
 
-Usertour.js is a tiny piece of JavaScript code (\~20 kB), which is loaded asynchronously in your web app, so it won’t affect your page load speed.
+Usertour.js is a lightweight JavaScript library (~20 kB) that loads asynchronously, ensuring it won't impact your page load performance. Follow these simple steps to integrate it into your web application.
 
-The installation is simple and only requires 2 quick steps:
+## Installation Methods
 
-## Step 1: Install Usertour.js
+You can install Usertour.js in two ways:
 
-Usertour.js can be installed in one of 2 ways:
+1. **For modern web applications** using module bundlers (Webpack, Rollup, etc.)
+   - [NPM Installation](#npm-installation)
 
-* Browser apps using module bundlers (such as Webpack or Rollup)
+2. **For traditional web applications** or Google Tag Manager
+   - [HTML Snippet Installation](#html-snippet-installation)
 
-  * [Npm installation](#npm-installation)
-
-* Other browser apps and Google Tag Manager
-
-  * [HTML snippet installation](#html-snippet-installation)
-
-### Npm installation
+### NPM Installation
 
 We recommend installing Usertour.js using the [usertour.js npm package](https://www.npmjs.com/package/usertour.js).
 
@@ -32,12 +27,15 @@ First, run this in your Terminal:
 npm install usertour.js
 ```
 
-Import and use the `usertour` object from the `usertour.js` module:
+Then import and initialize it in your code:
 
 ```javascript
 import usertour from 'usertour.js';
 
+// Initialize the Usertour SDK with your environment token
 usertour.init('USERTOUR_TOKEN');
+
+// Identify the current user with their attributes
 usertour.identify('USER_ID', {
   name: 'USER_NAME',
   email: 'USER_EMAIL',
@@ -45,44 +43,46 @@ usertour.identify('USER_ID', {
 });
 ```
 
-**Important:** Make sure to replace the placeholders with real, dynamic values from your app! See [Step 2](#step-2-replace-placeholders).
+### HTML Snippet Installation
 
-### HTML snippet installation
-
-Copy-paste the folloidfsafawing snippet into your HTML document before the ending tag:
+Add this script to your HTML file just before the closing `</body>` tag:
 
 ```html
 <script>
 !function(){var e,r="undefined"==typeof window?{}:window,n=r.usertour;if(console.log("enter npm backage, usertour:",n),!n){var o="https://js.usertour.io/";console.log("enter npm backage: ",o);var t=null;n=r.usertour={_stubbed:!0,load:function(){return t||(t=new Promise((function(e,n){var u=document.createElement("script");u.async=!0;var a=r.USERTOURJS_ENV_VARS||{};"es2020"===(a.USERTOURJS_BROWSER_TARGET||function(e){for(var r=[[/Edg\//,/Edg\/(\d+)/,80],[/OPR\//,/OPR\/(\d+)/,67],[/Chrome\//,/Chrome\/(\d+)/,80],[/CriOS\//,/CriOS\/(\d+)/,100],[/Safari\//,/Version\/(\d+)/,14],[/Firefox\//,/Firefox\/(\d+)/,74]],n=0;n<r.length;n++){var o=r[n],t=o[0],u=o[1],a=o[2];if(e.match(t)){var i=e.match(new RegExp(u));if(i&&parseInt(i[1],10)>=a)return"es2020";break}}return"legacy"}(navigator.userAgent))?(u.type="module",u.src=a.USERTOURJS_ES2020_URL||o+"es2020/usertour.js"):u.src=a.USERTOURJS_LEGACY_URL||o+"legacy/usertour.iife.js",u.onload=function(){e()},u.onerror=function(){document.head.removeChild(u),t=null;var e=new Error("Could not load Usertour.js");console.warn(e.message),n(e)},document.head.appendChild(u)}))),t}};var u=r.USERTOURJS_QUEUE=r.USERTOURJS_QUEUE||[],a=function(e){n[e]=function(){var r=Array.prototype.slice.call(arguments);n.load(),u.push([e,null,r])}},i=function(e){n[e]=function(){var r,o=Array.prototype.slice.call(arguments);n.load();var t=new Promise((function(e,n){r={resolve:e,reject:n}}));return u.push([e,r,o]),t}};a("init"),a("off"),a("on"),a("reset"),i("endAll"),i("group"),i("identify"),i("identifyAnonymous"),i("start"),i("track"),i("updateGroup"),i("updateUser"),e=!1,n["isIdentified"]=function(){return e}}}();
 
-  
-  usertour.init('USERTOUR_TOKEN');
-  usertour.identify('USER_ID', {
-    name: 'USER_NAME',
-    email: 'USER_EMAIL',
-    signed_up_at: 'USER_SIGNED_UP_AT',
-  });
+// Initialize the Usertour SDK with your environment token
+usertour.init('USERTOUR_TOKEN');
+
+// Identify the current user with their attributes
+usertour.identify('USER_ID', {
+  name: 'USER_NAME',
+  email: 'USER_EMAIL',
+  signed_up_at: 'USER_SIGNED_UP_AT',
+});
 </script>
 ```
 
-**Important:** Make sure to replace the placeholders with real, dynamic values from your app! See [Step 2](#step-2-replace-placeholders).
+## Configuration
 
-## Step 2: Replace placeholders
+In the code you copy-pasted above, replace **USERTOUR_TOKEN** with the Usertour.js Token you find under [Settings -> Environments](https://app.usertour.io/project/1/settings/environments). Note that if you have multiple environments (e.g. Production and Staging) that each environment has a unique token.
 
-In the code you copy-pasted above, replace **USERTOUR\_TOKEN** with the Usertour.js Token you find under Settings -> Environments. Note that if you have multiple environments (e.g. Production and Staging) that each environment has a unique token.
+Next, replace **USER_ID** with the currently signed in user's ID in your database. Also replace **USER_NAME**, **USER_EMAIL** and **USER_SIGNED_UP_AT** with the user's real, dynamic values. signed_up_at should be specified in ISO 8601 format. Example: 2019-12-11T12:34:56Z.
 
-Next, replace **USER\_ID** with the currently signed in user’s ID in your database. Also replace **USER\_NAME**, **USER\_EMAIL** and **USER\_SIGNED\_UP\_AT** with the user’s real, dynamic values. signed\_up\_at should be specified in ISO 8601 format. Example: 2019-12-11T12:34:56Z.
+The properties in usertour.identify()'s second argument are all optional. They're useful for looking up users in Usertour to e.g. see their flow progress, or to use in the flow content or conditions. If you don't want to share this with Usertour, feel free to leave out the argument completely.
 
-The properties in usertour.identify()‘s second argument are all optional. They’re useful for looking up users in Usertour to e.g. see their flow progress, or to use in the flow content or conditions. If you don’t want to share this with Usertour, feel free to leave out the argument completely.
+## Additional Features
 
-That’s it! Your Usertour installation is ready.
+### Custom Attributes
 
-## Optional: Add custom attributes
+You can send custom user attributes to Usertour.js for more personalized experiences. These can include:
+- User roles
+- Preferences
+- Custom metrics
+- Any other relevant user data
 
-Usertour.js supports sending custom attributes: Key-value pairs of data such as user role or other preferences. See Usertour.js Reference for how to use attributes.
+### Anonymous Users
 
-## Optional: Install Usertour for uauthenticated users
+For public pages where users aren't logged in, use `usertour.identifyAnonymous()` instead of `usertour.identify()`. This automatically generates a unique ID for anonymous users.
 
-Running usertour.identify() is a mandatory part of the script. But if you want to show Usertour content on public pages to users who are not yet signed into your application, you can install the script on those pages and replace usertour.identify() with usertour.identifyAnonymous(). With this function Usertour.js will automatically assign the current user a unique ID. But note that they will count as users in the MAU balance.
-
-[See usertour.identifyAnonymous() docs](/developers/usertourjs-reference/method#identify)
+[Learn more about anonymous user identification →](/developers/usertourjs-reference/users/identify-anonymous)

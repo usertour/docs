@@ -1,29 +1,58 @@
 ---
-title: Usertourjs
-description: Usertourjs.
+title: 'Usertour.js Installation'
+description: 'Install and configure Usertour.js in your self-hosted environment'
 icon: "js"
 ---
 
-### Install Usertour.js on Your Site
+## Overview
 
-[Installation Overview](/developers/usertourjs-reference/installation/)
+Usertour.js is the client-side SDK that enables you to:
+- Display interactive content (modals, tooltips, checklists, launchers) to your users
+- Track user behavior and send targeting information
+- Manage user properties and events for audience targeting
 
-Installing Usertour enables you to display content (e.g., modals, tooltips, checklists, launchers) live to your users. It also helps send targeting information (User Properties and Events) to Usertour so you can reach the right audience at the right time.
+## Installation Steps
 
-After installing Usertour.js, you need to add the following configuration when using Usertour.js in self host mode
+### 1. Basic Installation
 
-Copy-paste the following snippet into the \<**head**\> section of your HTML document.
+First, follow the [standard installation guide](/developers/usertourjs-reference/installation/) to add Usertour.js to your website. This is a required step before proceeding with self-hosted configuration.
 
-**If you change the port or host, please update the following code**
+### 2. Self-Hosted Configuration
+
+After completing the basic installation, you need to add the following configuration to connect Usertour.js to your self-hosted instance. Add this script to the `<head>` section of your HTML document:
 
 ```html
 <script>
-      window.USERTOURJS_ENV_VARS = {
-         WS_URI: "http://localhost:8011/",
-         ASSETS_URI: "http://localhost:8011/sdk/",
-         USERTOURJS_ES2020_URL: 'http://localhost:8011/sdk/es2020/usertour.js',
-         USERTOURJS_LEGACY_URL:
-           "http://localhost:8011/sdk/legacy/usertour.iife.js",
-      };
+  window.USERTOURJS_ENV_VARS = {
+    // WebSocket connection URL
+    WS_URI: "http://localhost:8011/",
+    
+    // Base URL for SDK assets
+    ASSETS_URI: "http://localhost:8011/sdk/",
+    
+    // Modern JavaScript bundle (ES2020)
+    USERTOURJS_ES2020_URL: 'http://localhost:8011/sdk/es2020/usertour.js',
+    
+    // Legacy JavaScript bundle (IIFE)
+    USERTOURJS_LEGACY_URL: "http://localhost:8011/sdk/legacy/usertour.iife.js"
+  };
 </script>
 ```
+
+### 3. Configure URLs
+
+If you're not using the default port (8011) or host (localhost), update the URLs in the configuration:
+
+- `WS_URI`: WebSocket connection URL
+- `ASSETS_URI`: Base URL for SDK assets
+- `USERTOURJS_ES2020_URL`: URL for the modern JavaScript bundle
+- `USERTOURJS_LEGACY_URL`: URL for the legacy JavaScript bundle
+
+### 4. Next Steps
+
+After completing both the basic installation and self-hosted configuration, you can:
+1. Initialize Usertour.js in your application
+2. Configure user properties and events
+3. Create and deploy content to your users
+
+For detailed implementation guides, see our [developer documentation](/quickstart).

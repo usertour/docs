@@ -1,0 +1,56 @@
+---
+title: 'The answer object'
+---
+
+The content session answer object represents a user's response to a survey question within a content session. It contains both the answer value and metadata about the question being answered.
+
+<ResponseField name="id" type="string">
+  A unique identifier for the answer.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  The object type identifier. Always set to "contentSessionAnswer" to distinguish it from other API objects.
+</ResponseField>
+
+<ResponseField name="answerType" type="string">
+  The type of answer. Possible values include:
+  - "nps" - Net Promoter Score (0-10)
+  - "star-rating" - Star rating (1-5)
+  - "multi-line-text" - Multi-line text input
+  - "multiple-choice" - Multiple choice selection
+  - "single-line-text" - Single line text input
+  - "scale" - Scale rating (1-10)
+</ResponseField>
+
+<ResponseField name="answerValue" type="string">
+  The value of the answer. The format depends on the answerType:
+  - For "nps", "star-rating", "scale": A number as a string (e.g., "2", "8")
+  - For "multiple-choice": The selected choice option value
+  - For "single-line-text", "multi-line-text": The text input value
+</ResponseField>
+
+<ResponseField name="createdAt" type="string">
+  The timestamp when the answer was provided, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ).
+</ResponseField>
+
+<ResponseField name="questionCvid" type="string">
+  The Cross-Version ID (CVID) of the question object that this answer corresponds to.
+</ResponseField>
+
+<ResponseField name="questionName" type="string">
+  The name of the question object that this answer corresponds to.
+</ResponseField>
+
+<ResponseExample>
+  ```json Example content session answer object
+  {
+    "id": "cm9md7s3s00enurz50zx8ovad",
+    "object": "contentSessionAnswer",
+    "answerType": "nps",
+    "answerValue": "8",
+    "createdAt": "2025-04-18T05:45:05.028Z",
+    "questionCvid": "llwjbkwqb7xufu2okq8gk7ud",
+    "questionName": "How likely are you to recommend our service?"
+  }
+  ```
+</ResponseExample>

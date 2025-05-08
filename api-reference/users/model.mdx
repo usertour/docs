@@ -1,0 +1,81 @@
+---
+title: 'The user object'
+---
+
+<ResponseField name="id" type="string" >
+  A unique identifier for the user. This ID should match the user's identifier in your system.
+</ResponseField>
+
+<ResponseField name="object" type="string" >
+  The object type identifier. Always set to "user" to distinguish it from other API objects.
+</ResponseField>
+
+<ResponseField name="attributes" type="object">
+  A collection of user attributes. You can include any custom attributes to describe the user. See [Attributes](/api-reference/attributes) for details.
+</ResponseField>
+
+<ResponseField name="createdAt" type="string" >
+  The timestamp when the user was created in the system, in ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ). Note: This is not the user's signup time in your application - use a custom attribute like `signed_up_at` for that.
+</ResponseField>
+
+<ResponseField name="companies" type="array | null" default="null">
+  A list of [company objects](/api-reference/companies/model) that the user belongs to. This field is useful when you only need company information without membership details. If you need membership attributes (like roles or permissions), use the `memberships` field instead. Can be expanded using `?expand=companies`.
+</ResponseField>
+
+<ResponseField name="memberships" type="array | null" default="null">
+  A list of [company membership objects](/api-reference/company-memberships/model) representing the user's company memberships. Each membership includes:
+  - Company-specific attributes (e.g., role, access level)
+  - Reference to the associated [company object](/api-reference/companies/model)
+  
+  Available expansion options:
+  - `?expand=memberships`: Include basic membership data
+  - `?expand=memberships.company`: Include both membership and company details
+</ResponseField>
+
+<ResponseExample>
+  ```json Example user object 
+  {
+    "id": "1744521292871a",
+    "object": "user",
+    "attributes": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "role": "admin"
+    },
+    "createdAt": "2025-04-27T13:39:47.024Z",
+    "companies": [
+      {
+        "id": "1744521292871a",
+        "object": "company",
+        "attributes": {
+          "name": "Acme Corp",
+          "domain": "acme.com"
+        },
+        "createdAt": "2025-04-27T13:39:47.024Z"
+      }
+    ],
+    "memberships": [
+      {
+        "id": "cma9nhdis0002108kpmr9vfrl",
+        "object": "companyMembership",
+        "attributes": {
+          "role": "admin",
+          "department": "engineering"
+        },
+        "createdAt": "2025-05-04T12:51:10.881Z",
+        "companyId": "cm9zp4wyh00116pt4o5v5vg5t",
+        "userId": "cm9zp4wyb000z6pt484wnbzs7",
+        "company": {
+          "id": "1744521292871a",
+          "object": "company",
+          "attributes": {
+            "name": "Acme Corp",
+            "domain": "acme.com"
+          },
+          "createdAt": "2025-04-27T13:39:47.024Z"
+        }
+      }
+    ]
+  }
+  ```
+</ResponseExample>

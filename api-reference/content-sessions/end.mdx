@@ -1,0 +1,52 @@
+---
+title: 'End a content session'
+api: 'Post /v1/content-sessions/:id/end'
+description: 'Marks a content session as completed and records its completion time. This operation is idempotent - calling it multiple times on the same session will not cause any issues.'
+---
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique identifier of the content session to end.
+</ParamField>
+
+## Response
+
+Returns the updated [content session object](/api-reference/content-sessions/model) with the following changes:
+- `completed` set to `true`
+- `completedAt` set to the current timestamp
+- `lastActivityAt` updated to the current timestamp
+
+<RequestExample>
+  ```bash Request
+  # End a content session
+  curl https://api.usertour.io/v1/content-sessions/cmaavyi16003twg0bgimbcdnr/end \
+  -X POST \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "cmaavyi16003twg0bgimbcdnr",
+    "object": "contentSession",
+    "answers": null,
+    "completedAt": "2025-05-05T09:36:13.016Z",
+    "completed": true,
+    "contentId": "cm9f6vwed0002iejc4vg2zu3t",
+    "content": null,
+    "createdAt": "2025-05-05T09:36:13.002Z",
+    "companyId": "group-1746437717425",
+    "company": null,
+    "isPreview": false,
+    "lastActivityAt": "2025-05-05T09:36:13.016Z",
+    "progress": 11,
+    "userId": "user-1746437717384",
+    "user": null,
+    "versionId": "cm9mjsv7d001bvfe8qe8tgzv9",
+    "version": null
+  }
+  ```
+</ResponseExample>

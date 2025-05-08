@@ -1,0 +1,28 @@
+---
+title: 'Upsert a membership'
+api: 'Post /v1/company-memberships'
+description: 'Create or update a company membership. Note that memberships are managed through user operations rather than direct API calls.'
+---
+
+Company memberships are managed indirectly through user operations. To create or update a membership:
+
+1. Use the [create or update a user ](/api-reference/users/create) endpoints
+2. Include the membership details in the `memberships` field of the user object
+3. The system will automatically handle the membership creation/update
+
+This approach ensures data consistency and maintains proper relationships between users and companies.
+
+<RequestExample>
+  ```json Request
+  {
+    "name": "John Doe",
+    "email": "john@example.com",
+    "memberships": [
+      {
+        "company_id": "comp_123456789",
+        "role": "admin"
+      }
+    ]
+  }
+  ```
+</RequestExample>

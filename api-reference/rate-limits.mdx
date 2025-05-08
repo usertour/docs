@@ -1,0 +1,13 @@
+---
+title: 'Rate limit'
+description: 'Understand rate limits and how to increase them.'
+---
+
+The API employs 2 safeguards against bursts of incoming traffic to help maximize its stability:
+
+- A rate limiter that limits the number of requests per Usertour account per minute. Your account's limit depends on your plan. See [Pricing](https://www.usertour.io/pricing). If you exceed this limit, you may receive error responses with HTTP status code ```429 Too Many Requests```.
+- A concurrency limiter that limits the number of requests that are active at any given time. If the API is at high capacity, it may delay responding to some requests. If requests are queued for more than 15 seconds, you may receive error responses with HTTP status code ```503 Service Unavailable```. Problems with concurrency limiting should be very rare. We strive to have enough capacity at all times to avoid (or at least minimize) queuing and never timing out.
+
+
+
+

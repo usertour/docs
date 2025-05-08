@@ -1,0 +1,67 @@
+---
+title: 'List memberships'
+api: 'Get /v1/company-memberships'
+description: 'Retrieve company memberships by expanding the memberships field of a user or company object. Direct listing of memberships is not supported.'
+---
+
+Company memberships are accessed through their parent objects (users or companies) using the [expansion](/api-reference/expanding-objects) feature. This design ensures proper data relationships and access control.
+
+## Retrieving Memberships
+
+### Through Users
+
+To get a user's memberships:
+
+1. Fetch the user using the [user list endpoint](/api-reference/users/list)
+2. Include `?expand=memberships` in the request URL
+3. The response will include the expanded memberships array
+
+<RequestExample>
+  ```bash Request
+  curl https://api.usertour.io/v1/users/usr_123456789?expand=memberships \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+### Through Companies
+
+To get a company's memberships:
+
+1. Fetch the company using the [company list endpoint](/api-reference/companies/list)
+2. Include `?expand=memberships` in the request URL
+3. The response will include the expanded memberships array
+
+<RequestExample>
+  ```bash Request
+  curl https://api.usertour.io/v1/companies/comp_123456789?expand=memberships \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+## Response
+
+The expanded memberships will be included in the response as an array of [membership objects](/api-reference/company-memberships/model).
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "usr_123456789",
+    "object": "user",
+    "attributes": {
+      "name": "John Doe",
+      "email": "john@example.com"
+    },
+    "memberships": [
+      {
+        "id": "mem_123456789",
+        "object": "membership",
+        "company_id": "comp_123456789",
+        "role": "admin",
+        "created_at": "2024-03-20T08:30:00.000Z"
+      }
+    ]
+  }
+  ```
+</ResponseExample>

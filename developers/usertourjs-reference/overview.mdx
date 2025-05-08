@@ -1,53 +1,55 @@
 ---
-title: Usertour.js Reference
-description: Usertour.js Reference.
+title: 'Introduction'
+description: 'Introduction to Usertour.js SDK and its core features'
 icon: "lemon"
 ---
 
-Usertour.js should be installed in your web app or website. It's responsible for identifying your users with Usertour and showing flows when appropriate.
+## Introduction
 
-[Follow us on Twitter](https://x.com/usertourio) for Usertour.js announcements.
+Usertour.js is a lightweight client-side SDK that enables you to:
+- Identify and track users in your web application
+- Display interactive content (flows) to your users
+- Collect user behavior data for targeting
 
-## Quick links
+[Follow us on Twitter](https://x.com/usertourio) for the latest updates and announcements.
 
-Quick access to methods that you'll probably need:
+## Core Methods
 
-| Method                         | Purpose                                     |
+Here are the most commonly used methods:
+
+| Method | Description |
 | ------------------------------ | ------------------------------------------- |
-| [usertour.init() ](/developers/usertourjs-reference/method#init)     | Initialize Usertour.js with your Token️     |
-| [usertour.identify() ](/developers/usertourjs-reference/method#identify) | Identify a user️                            |
-| [usertour.group() ](/developers/usertourjs-reference/method#group)    | Associate current user with a group/company |
+| [usertour.init()](/developers/usertourjs-reference/setup/init) | Initialize the SDK with your Usertour.js Token |
+| [usertour.identify()](/developers/usertourjs-reference/users/identify) | Identify and track a user |
+| [usertour.group()](/developers/usertourjs-reference/companies/company) | Associate a user with a company/group |
 
 ## Installation
 
-We recommend using the [usertour.js npm package](/developers/usertourjs-reference/installation#npm-installation) as it offers the best developer experience:
+### Recommended: NPM Installation
 
-Install Usertour.js via npm
+We recommend using the npm package for the best development experience:
 
-```shell
+```bash
+# Using npm
 npm install usertour.js
-```
 
-Or, install via Yarn
-
-```shell
+# Or using Yarn
 yarn add usertour.js
 ```
 
-See also [Usertour.js installation](/developers/usertourjs-reference/installation) for an alternative installation method via a plain `<script>` tag.
+For alternative installation methods, see [Usertour.js Installation Guide](/developers/usertourjs-reference/installation).
 
-## Quick start
+## Quick Start
 
-Put this code in your app where it has access to the current user's information.
-
-Replace all placeholders (e.g. `<USERTOUR_TOKEN>` and `<USER_ID>`) with real values.
-
-Grab your Usertour.js Token under Settings -> Environments. Note that if you have multiple environments (e.g. Production and Staging) that each environment has a unique token.
+Add this code to your application where you have access to user information:
 
 ```javascript
 import usertour from 'usertour.js';
 
+// Initialize with your Usertour.js Token
 usertour.init('<USERTOUR_TOKEN>');
+
+// Identify the current user
 usertour.identify('<USER_ID>', {
   name: '<NAME>',
   email: '<EMAIL>',
@@ -55,49 +57,69 @@ usertour.identify('<USER_ID>', {
 });
 ```
 
-## The usertour object
+### Important Notes
 
-The usertour.js npm package is a thin wrapper around the real Usertour.js, which is loaded from our CDN. This way, you can interact with the imported usertour object immediately. On the first method call, the real Usertour.js will automatically be loaded (asynchronously) and injected into the current page. Method calls are automatically queued by the usertour object.
+#### Replace Placeholders
+- Replace all placeholders (e.g., `<USERTOUR_TOKEN>`, `<USER_ID>`, `<NAME>`, `<EMAIL>`) with your actual values
+- The `signed_up_at` timestamp should be in ISO 8601 format
 
-The real Usertour.js script is a small script (currently \<16 KB gzipped) that contains the bare minimum to identify users and check if they have any active flows. Additional UI code and styles will only load if the user has any active flows. This is to have as small an impact on your page's load time as possible. For legacy browsers (that don't support ES2020 features), a legacy script is loaded instead.
+#### Getting Your Token
+- Find your Usertour.js Token in Settings -> Environments
+- Each environment (Production, Staging, etc.) has its own unique token
+- Make sure to use the correct token for your environment
 
-If you've installed Usertour.js via a `<script>` tag, you can access the object via window.usertour. Just be careful that it may not be loaded yet (which is why the usertour.js npm package is recommended!).
+## How It Works
+
+The npm package (`usertour.js`) is a thin wrapper around the real Usertour.js, which is loaded from our CDN. This design allows you to interact with the imported usertour object immediately. When you make your first method call, the real Usertour.js will be automatically loaded (asynchronously) and injected into the current page. All method calls are automatically queued by the usertour object until the SDK is ready.
+
+The core SDK is optimized for performance:
+- Small footprint (less than 16 KB gzipped)
+- Loads UI components only when needed
+- Supports both modern and legacy browsers
+
+If you've installed Usertour.js via a `<script>` tag, you can access the object via `window.usertour`. However, be aware that it may not be immediately available, which is why we recommend using the npm package.
 
 ## Attributes
 
-Several methods accept an attributes dictionary, which represents arbitrary information about objects such as users and events. You can use this to, for example, store a user's name or their date of sign-up, or to decorate events with e.g. which billing plan was selected. These attributes can then be used within Usertour to segment users or personalize their flows.
+The SDK provides a flexible attribute system for storing data about various entities like users, companies, and events. You can use this to store a user's name, a company's plan type, or decorate events with information like which billing plan was selected. These attributes can then be used within Usertour to segment users, personalize flows, or track behavior.
 
-When updating objects with attributes, the values in the attributes dictionary can be literal values (string, boolean, number, or list of strings), which just sets the attributes to the given values.
+When updating objects with attributes, you can use various data types:
 
-If an attribute value is null, the attribute will be removed from the object.
+| Type | Description | Example | Common Use |
+|:---|:---|:---|:---|
+| **string** | Text values | `"John Doe"` | Names, emails |
+| **number** | Numeric values | `42` or `1234.56` | Scores, metrics |
+| **boolean** | True/false values | `true` or `false` | Feature flags |
+| **datetime** | ISO 8601 timestamps | `"2023-06-14T16:25:49Z"` | Event times |
+| **list** | Arrays of strings | `["tag1", "tag2"]` | Tags, categories |
 
-Example of using all the possible data types (these will all be inferred as expected):
+Here's how to use attributes in your code:
 
 ```javascript
+// Set user attributes
 usertour.identify('123456', {
-  string: 'Just a string',
-  always_true: true,
-  always_false: false,
-  integer_number: 42,
-  decimal_number: 1234.56,
-  used_datetime_at: '2019-12-03T12:34:56.123Z',
+  name: 'John Doe',
+  is_premium: true,
+  subscription_tier: 'pro',
+  last_login: '2023-06-14T16:25:49Z',
+  tags: ['beta', 'early-adopter']
 });
-```
 
-Remove an attribute:
+// Set company attributes
+usertour.group('company_123', {
+  name: 'Acme Corp',
+  plan: 'enterprise',
+  employee_count: 500,
+  industry: 'technology'
+});
 
-```javascript
+// Remove an attribute by setting it to null
 usertour.updateUser({
-  phone_number: null,
+  phone_number: null
 });
 ```
 
-## Attribute data types
-We support the following attribute data types:
-| Name | Description |
-| ------- | ------------------------------------------------------------------------ |
-| **string** | Represents a string. |
-| **number** | Represents a number (supports both integers and floating point numbers). |
-| **boolean** | Represents either `true` or `false`. |
-| **datetime**| Represents a point in time, always stored as ISO 8601 in UTC. |
-| **list** | Represents a list of strings. |
+For best results, we recommend:
+- Using consistent naming conventions (lowercase with underscores)
+- Choosing appropriate data types for each attribute
+- Avoiding storage of sensitive information

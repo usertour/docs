@@ -1,0 +1,33 @@
+---
+title: "updateGroup()"
+description: "Update attributes for the currently associated company"
+---
+
+The `updateGroup()` method updates attributes for a company that has already been associated with the current user using `usertour.group()` since the last page load.
+
+## Parameters
+
+<ParamField path="attributes" type="object">
+  Company attributes to update. See [Attributes](/developers/usertourjs-reference/overview#attributes) for details. These attributes can be used in flow content and conditions to personalize the user experience.
+</ParamField>
+
+## Returns
+A `Promise` that resolves when the update is complete.
+
+## Example
+
+```javascript
+// Update company attributes
+usertour.updateGroup({
+  employee_count: 600,
+  last_updated: '2024-03-20T08:30:00.000Z',
+  subscription_tier: 'enterprise'
+});
+```
+
+## Notes
+
+- This method only works for companies associated with `usertour.group()`
+- Attributes are merged with existing values
+- Does not affect the company association
+- Can be called multiple times to update different attributes

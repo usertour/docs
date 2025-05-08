@@ -1,0 +1,51 @@
+---
+title: "identify()"
+description: "Identify authenticated users with their unique ID and attributes"
+---
+
+The `identify()` method registers the current user with Usertour. Call this method once on each page load where a user is signed in.
+
+When you provide `attributes`, they will be merged with the user's existing attributes in Usertour. Attributes not included in the call will retain their current values.
+
+> **Note**: Only the `userId` parameter is required. We recommend including `name`, `email`, and `signed_up_at` attributes to help identify users in Usertour and support flow conditions. Do not send sensitive data such as passwords.
+
+If the user has any active flows, they will be displayed. New flows may start if the user matches their start conditions.
+
+## Parameters
+
+<ParamField path="userId" type="string" required>
+  The unique identifier for the user in your system.
+</ParamField>
+
+<ParamField path="attributes" type="object">
+  User attributes to update. See [Attributes](/developers/usertourjs-reference/overview#attributes) for details. These attributes can be used in flow content and conditions to personalize the user experience.
+</ParamField>
+
+## Returns
+A `Promise` that resolves when the identification is complete.
+
+## Examples
+
+### Basic Usage
+```javascript
+// Identify a user with only their ID
+usertour.identify('123456');
+```
+
+### With Recommended Attributes
+```javascript
+// Identify a user with recommended attributes
+usertour.identify('123456', {
+  name: 'Jane Smith',
+  email: 'jane@example.com',
+  signed_up_at: '2021-06-14T16:25:49Z'
+});
+```
+
+## Notes
+
+- Call this method once per page load for authenticated users
+- The `userId` must be unique within your system
+- Attributes are merged with existing values
+- Active flows will be displayed immediately
+- New flows may start based on conditions

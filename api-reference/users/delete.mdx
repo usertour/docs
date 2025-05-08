@@ -1,0 +1,42 @@
+---
+title: 'Delete a user'
+api: 'Delete /v1/users/:id'
+---
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  Unique identifier for the user. This should match the user's ID in your system.
+</ParamField>
+
+## Response
+
+<ResponseField name="id" type="string">
+  Unique identifier for the user. This should match the user's ID in your system.
+</ResponseField>
+
+<ResponseField name="object" type="string">
+  Represents the object's type. Always "user".
+</ResponseField>
+
+<ResponseField name="deleted" type="boolean">
+  Indicates whether the user was successfully deleted. Always true when the request succeeds.
+</ResponseField>
+
+<RequestExample>
+  ```bash Request
+  curl https://api.usertour.io/v1/users/usr_123456789 \
+  -XDELETE \
+  -H 'Authorization: Bearer ak_123456789'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "usr_123456789",
+    "object": "user",
+    "deleted": true
+  }
+  ```
+</ResponseExample>

@@ -1,0 +1,88 @@
+---
+title: 'List content versions'
+api: 'Get /v1/content-versions'
+description: 'Retrieves a paginated list of versions for a specific content object.'
+---
+
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
+
+## Query parameters
+
+<ParamField path="contentId" type="string" required>
+  The ID of the content object whose versions you want to list. This parameter is required as versions can only be listed for a specific content object.
+</ParamField>
+
+<PaginationParameters />
+
+<ParamField path="orderBy" type="string | string[]">
+  See [Ordering](/api-reference/ordering). Available fields:
+  - `createdAt`: Sort by creation date (default)
+  - You can use multiple fields and specify sort direction: `orderBy[]=-createdAt` for descending order
+</ParamField>
+
+<ParamField path="expand" type="string | string[]">
+  See [Expanding objects](/api-reference/expanding-objects). Available options:
+  - `questions`: Include all questions associated with each version (only applicable for flow content types)
+</ParamField>
+
+## Response
+
+Returns a [list object](/api-reference/pagination#the-list-object) containing:
+- `results`: Array of [content version objects](/api-reference/content-versions/model)
+- `next`: URL for the next page of results (null if no more pages)
+- `previous`: URL for the previous page of results (null if on first page)
+
+<RequestExample>
+  ```bash Request
+  # Get the first page of versions for a specific content
+  curl https://api.usertour.io/v1/content-versions?contentId=cm9f6vwed0002iejc4vg2zu3t&limit=2&expand=questions \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "results": [
+      {
+        "id": "cm9f6vwei0004iejcb9uznra3",
+        "object": "contentVersion",
+        "number": 0,
+        "questions": [],
+        "updatedAt": "2025-04-13T05:13:47.373Z",
+        "createdAt": "2025-04-13T05:13:29.797Z"
+      },
+      {
+        "id": "cm9l2ws8o004yv0gk0r01r1ti",
+        "object": "contentVersion",
+        "number": 3,
+        "questions": [
+          {
+            "object": "question",
+            "cvid": "llwjbkwqb7xufu2okq8gk7ud",
+            "name": "How likely are you to recommend our service?",
+            "type": "nps"
+          },
+          {
+            "object": "question",
+            "cvid": "eforyzobzloaxa439fg6w1vw",
+            "name": "What aspects could we improve?",
+            "type": "nps"
+          },
+          {
+            "object": "question",
+            "cvid": "k65k0h7clxsd32x1t9ocnrbt",
+            "name": "Additional feedback",
+            "type": "multi-line-text"
+          }
+        ],
+        "updatedAt": "2025-04-17T09:28:33.999Z",
+        "createdAt": "2025-04-17T08:08:49.637Z"
+      }
+    ],
+    "next": "/v1/content-versions?contentId=cm9f6vwed0002iejc4vg2zu3t&limit=2&expand=questions&cursor=cm9l2ws8o004yv0gk0r01r1ti",
+    "previous": null
+  }
+  ```
+</ResponseExample>

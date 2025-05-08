@@ -1,0 +1,96 @@
+---
+title: 'Get a content session'
+api: 'Get /v1/content-sessions/:id'
+description: 'Retrieves a specific content session by its ID, including all its attributes and relationships.'
+---
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique identifier of the content session to retrieve.
+</ParamField>
+
+## Query Parameters
+
+<ParamField path="expand" type="string | string[]">
+  Include additional related objects in the response. Available options:
+  - `content`: Include the associated [content object](/api-reference/content/model)
+  - `version`: Include the [content version](/api-reference/content-versions/model) details
+  - `answers`: Include [survey answers](/api-reference/content-sessions/the-answer-model) if any
+  - `company`: Include the associated [company](/api-reference/companies/model) information
+  - `user`: Include the [user](/api-reference/users/model) who created the session
+  - You can request multiple expansions: `expand[]=content&expand[]=user`
+</ParamField>
+
+## Response
+
+Returns a [content session object](/api-reference/content-sessions/model) if found. Returns a 404 Not Found error if the session doesn't exist.
+
+<RequestExample>
+  ```bash Request
+  # Get a content session with all related data
+  curl https://api.usertour.io/v1/content-sessions/cmaavyi16003twg0bgimbcdnr?expand[]=content&expand[]=version&expand[]=answers&expand[]=company&expand[]=user \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "id": "cmaavyi16003twg0bgimbcdnr",
+    "object": "contentSession",
+    "answers": [],
+    "completedAt": null,
+    "completed": false,
+    "contentId": "cm9f6vwed0002iejc4vg2zu3t",
+    "content": {
+      "id": "cm9f6vwed0002iejc4vg2zu3t",
+      "object": "content",
+      "name": "fff",
+      "type": "flow",
+      "editedVersionId": "cm9mkru2c000mlhmajx3l0146",
+      "publishedVersionId": "cm9mjsv7d001bvfe8qe8tgzv9",
+      "updatedAt": "2025-04-18T09:16:37.989Z",
+      "createdAt": "2025-04-13T05:13:29.797Z"
+    },
+    "createdAt": "2025-05-05T09:36:13.002Z",
+    "companyId": "group-1746437717425",
+    "company": {
+      "id": "group-1746437717425",
+      "object": "company",
+      "attributes": {
+        "name": "Iric L"
+      },
+      "createdAt": "2025-05-05T09:35:17.434Z"
+    },
+    "isPreview": false,
+    "lastActivityAt": "2025-05-05T09:36:13.016Z",
+    "progress": 11,
+    "userId": "user-1746437717384",
+    "user": {
+      "id": "user-1746437717384",
+      "object": "user",
+      "attributes": {
+        "like": ["123", "456"],
+        "male": true,
+        "name": "Iric L",
+        "email": "iric-1746437717384@usertour.com",
+        "sdsdd": 13,
+        "loginName": "222222222222",
+        "registerAt": "2024-03-29T16:05:45.000Z",
+        "website_lead": true
+      },
+      "createdAt": "2025-05-05T09:35:17.406Z"
+    },
+    "versionId": "cm9mjsv7d001bvfe8qe8tgzv9",
+    "version": {
+      "id": "cm9mjsv7d001bvfe8qe8tgzv9",
+      "object": "contentVersion",
+      "number": 13,
+      "updatedAt": "2025-04-18T08:49:26.501Z",
+      "createdAt": "2025-04-18T08:49:26.501Z"
+    }
+  }
+  ```
+</ResponseExample>

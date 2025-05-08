@@ -1,0 +1,91 @@
+---
+title: 'List attribute definitions'
+api: 'Get /v1/attribute-definitions'
+description: 'Retrieves a paginated list of attribute definitions in your account. Each definition includes its data type, scope, and metadata.'
+---
+
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
+
+This endpoint returns a paginated list of attribute definitions. Each definition object contains its data type, scope, and metadata.
+
+## Query parameters
+<ParamField path="scope" type="string">
+  Filter definitions by their scope. Available scopes:
+  - `eventDefinition`: Event-related attributes
+  - `company`: Company-related attributes
+  - `companyMembership`: Company membership attributes
+  - `user`: User-related attributes
+</ParamField>
+
+<ParamField path="eventName" type="string | string[]">
+  Filter definitions by event name(s). You can provide:
+  - Single value: `eventName=page_viewed`
+  - Multiple values: `eventName[]=page_viewed&eventName[]=clicked`
+</ParamField>
+
+<ParamField path="orderBy" type="string | string[]">
+  Sort the results by one or more fields. Available fields:
+  - `createdAt`: Creation timestamp
+  - `codeName`: Technical name
+  - `displayName`: Display name
+
+  Examples:
+  - Single field: `orderBy=createdAt` or `orderBy=-createdAt` (descending)
+  - Multiple fields: `orderBy[]=-createdAt&orderBy[]=name`
+</ParamField>
+
+<PaginationParameters />
+
+## Response
+
+Returns a [list object](/api-reference/pagination#the-list-object) containing an array of [attribute definition objects](/api-reference/attribute-definitions/model) in the `results` property. The response includes pagination information in the `next` and `previous` fields.
+
+<RequestExample>
+  ```bash Request
+  # List attribute definitions for specific events
+  curl https://api.usertour.io/v1/attribute-definitions?scope=eventDefinition&eventName%5B%5D=page_viewed&eventName%5B%5D=flow_started&limit=3 \
+  -H 'Authorization: Bearer ak_123456789' \
+  -H 'Content-Type: application/json'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Response
+  {
+    "results": [
+      {
+        "id": "cm9e922or000jmjaox6ynbld2",
+        "object": "attributeDefinition",
+        "createdAt": "2025-04-12T13:26:30.939Z",
+        "dataType": "string",
+        "description": "Usertour flow id",
+        "displayName": "Flow ID",
+        "codeName": "flow_id",
+        "scope": "eventDefinition"
+      },
+      {
+        "id": "cm9e922or000kmjao3nhw7w74",
+        "object": "attributeDefinition",
+        "createdAt": "2025-04-12T13:26:30.939Z",
+        "dataType": "string",
+        "description": "Usertour flow name",
+        "displayName": "Flow Name",
+        "codeName": "flow_name",
+        "scope": "eventDefinition"
+      },
+      {
+        "id": "cm9e922or000lmjao49o5mwwf",
+        "object": "attributeDefinition",
+        "createdAt": "2025-04-12T13:26:30.939Z",
+        "dataType": "string",
+        "description": "A session of a specific user viewing a specific flow",
+        "displayName": "Flow Session ID",
+        "codeName": "flow_session_id",
+        "scope": "eventDefinition"
+      }
+    ],
+    "next": "/v1/attribute-definitions?scope=eventDefinition&eventName%5B%5D=page_viewed&eventName%5B%5D=flow_started&limit=3&cursor=cm9e922or000lmjao49o5mwwf",
+    "previous": null
+  }
+  ```
+</ResponseExample>

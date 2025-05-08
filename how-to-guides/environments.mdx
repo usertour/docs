@@ -1,19 +1,66 @@
 ---
 title: Environments
-description: Environments.
+description: Learn how to manage different environments for development, staging, and production
 icon: "envira"
 ---
 
-Each environment has a separate `Usertour.js` token, which completely isolates your staging users from your production users. It also means that you can change and try out flows in your staging environment without impacting the flow currently published in production.
+## Overview
 
-## Adding a new environment
+Environments in Usertour help you:
+- Isolate development from production
+- Test changes safely
+- Manage different user groups
+- Control content deployment
+- Maintain separate configurations
 
-To set up a new environment:
+Each environment has its own unique `Usertour.js` token, ensuring complete isolation between your staging and production users.
 
-1. Go to Settings → Environments.
+## Managing Environments
 
-2. Click Create new environment and give it a name, such as “Staging”.
+### Creating a New Environment
 
-3. A new Usertour.js token will be generated. Use this token in your Usertour.js snippet in your staging environment. [Read more in the Usertour.js installation guide](/developers/usertourjs-reference/installation/).
+1. Navigate to [Settings → Environments](https://app.usertour.io/project/1/settings/environments)
+2. Click **Create new environment**
+3. Enter a descriptive name (e.g., "Staging", "Development")
+4. Save your changes
+
+A new `Usertour.js` token will be generated automatically.
 
 ![](/images/env-133511@2x.png)
+
+### Using Environment Tokens
+
+1. Copy the generated token
+2. Update your `Usertour.js` snippet with the new token
+3. Deploy to your target environment
+4. Verify the connection
+
+> **Note**: Each environment's token is unique and should only be used in its designated environment.
+
+## Best Practices
+
+1. **Environment Naming**
+   - Use clear, descriptive names
+   - Follow your team's conventions
+   - Include environment type
+   - Add version numbers if needed
+
+2. **Token Management**
+   - Keep tokens secure
+   - Don't share between environments
+   - Document token usage
+   - Rotate tokens regularly
+
+3. **Content Management**
+   - Test changes in staging first
+   - Use version control
+   - Document environment differences
+   - Maintain consistent configurations
+
+4. **Deployment Strategy**
+   - Plan your deployments
+   - Test thoroughly
+   - Monitor performance
+   - Have a rollback plan
+
+> **Tip**: Always test your flows in a staging environment before deploying to production to ensure a smooth user experience.
