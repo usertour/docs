@@ -1,11 +1,25 @@
 ---
-title: "Init()"
+title: "init()"
+description: "Initialize the Usertour SDK with your environment token"
 ---
 
-Initializes Usertour.js to target your company. Must be called once (per page load) before you make any other call.
+The `init()` method initializes the Usertour SDK for your environment. This method must be called once per page load before making any other Usertour.js calls.
 
 ## Parameters
 
 <ParamField path="token" type="string" required>
-Your Usertour.js Token, which you can find under [Settings -> Environments](https://app.usertour.io). Note that if you have multiple environments (e.g. Production and Staging) that each environment has a unique token. 
+  Your Usertour environment token. You can find this token under [Settings → Environments](https://app.usertour.io/project/1/settings/environments). Each environment (e.g., Production, Staging) has its own unique token.
 </ParamField>
+
+## Example
+
+```javascript
+// Initialize the Usertour SDK with your environment token
+usertour.init('USERTOUR_TOKEN');
+```
+
+## Notes
+
+- The `init()` method must be called before any other Usertour.js methods
+- Each environment (Production, Staging, etc.) requires its own unique token
+- The token is used to identify your environment and load the correct configuration
