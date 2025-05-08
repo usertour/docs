@@ -1,14 +1,34 @@
 ---
 title: "setBaseZIndex()"
+description: "Set the base z-index for Usertour floating elements"
 ---
 
-Usertour by default places all its floating elements at a z-index at (or slightly above) 1000000. Note that due to stacking of multiple Usertour layers, some actual z-index values may be several thousands higher.
+The `setBaseZIndex()` method sets the minimum z-index value for all Usertour floating elements. By default, Usertour places its elements at or slightly above z-index 1000000. Due to layer stacking, some elements may have z-index values several thousand units higher.
 
-If your own app has elements that placed at higher z-index values than this, then Usertour's elements may be shown below your own app's content. In this case, you may want to raise Usertour's base z-index value.
+> **Note**: You don't always need to change the base z-index. For specific components like launchers, checklists, and the resource center, you can adjust their individual z-index values through:
+> - Launchers: Advanced settings
+> - Checklists and Resource Center: Theme settings
 
-Note that you do not always need to change the base z-index. E.g. for the launchers, checklists and the resource center you can change their individual z-index. For launchers you can do it via the advanced settings and for the checklists and resource center you can do it via the theme settings.
+## Parameters
 
-#### Parameters
-<ParamField path="groupIdbaseZIndex" type="number" required>
-The minimum z-index that Usertour will place floating elements at.
+<ParamField path="baseZIndex" type="number" required>
+  The minimum z-index value for Usertour floating elements. Must be higher than your app's highest z-index to ensure Usertour elements appear above your content.
 </ParamField>
+
+## Returns
+A `Promise` that resolves when the z-index is updated.
+
+## Example
+
+```javascript
+// Set a higher base z-index for Usertour elements
+usertour.setBaseZIndex(2000000);
+```
+
+## Notes
+
+- Default z-index is 1000000
+- Some elements may have higher z-index values due to layer stacking
+- Use this method if Usertour elements appear below your app's content
+- Consider adjusting individual component z-index values first
+- Higher z-index values may affect performance
