@@ -136,7 +136,9 @@
 						"group": "Content Versions",
 						"pages": [
 							"api-reference/content-versions/model",
-							"api-reference/content-versions/the-question-model"
+							"api-reference/content-versions/the-question-model",
+							"api-reference/content-versions/get",
+							"api-reference/content-versions/list"
 						]
 					},
 					{
