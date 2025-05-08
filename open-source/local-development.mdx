@@ -1,106 +1,113 @@
 ---
-title: 'Local development'
-description: 'Local development'
+title: 'Local Development'
+description: 'Set up and run Usertour in your local development environment'
 icon: "code"
 ---
 
-## Installing
+## Getting Started
 
-Here are the steps to set up Usertour for development:
+This guide will help you set up Usertour for local development. Follow these steps to get your development environment running:
 
-### 1. Fork this repository
+### 1. Fork and Clone
 
-### 2. Clone the repo
-
-Clone the forked repository from your terminal:
+1. Fork the [Usertour repository](https://github.com/usertour/usertour)
+2. Clone your fork to your local machine:
 
 ```shell
-git clone git@github.com:<github_username>/usertour.git
+git clone git@github.com:<your-github-username>/usertour.git
+cd usertour
 ```
 
-### 3. Verify dependencies
+### 2. System Requirements
 
-Usertour requires the following dependencies to build:
+Before proceeding, ensure you have the following installed:
 
-- [Redis](https://redis.io/)
-- [Postgres](https://www.postgresql.org/)
+- [Redis](https://redis.io/) - For caching and session management
+- [PostgreSQL](https://www.postgresql.org/) - For data storage
+- [pnpm](https://pnpm.io/) - For package management
 
-### 4. Installation
+### 3. Project Structure
 
-Usertour consists of multiple packages managed in a monorepo structure. The main components are:
+Usertour is a monorepo containing multiple packages:
 
-1. Web Application (`apps/web/`): The main web interface
-2. API Server (`apps/server/`): The backend server
-3. SDK (`apps/sdk/`): The SDK for the web application
+```text
+apps/
+├── server/        # Backend API server
+├── web/           # Frontend web application
+├── sdk/           # Usertour.js SDK
+│
+packages/          # Shared packages
+├── components/    # Reusable UI components
+├── radix/         # Radix UI components
+└── shared/        # Shared utilities and types
+```
 
-Follow these steps to install:
+### 4. Setup Steps
 
-1. Install dependencies:
+1. **Install Dependencies**
 
 ```bash
 pnpm install
 ```
 
-3. Set up environment variables for both API and web:
+2. **Configure Environment**
+
+Set up environment variables for each component:
 
 ```bash
+# Web application
 cp apps/web/.env.example apps/web/.env
-# Replace redis and postgres config in apps/server/.env
+
+# API server
 cp apps/server/.env.example apps/server/.env
+# Update Redis and PostgreSQL configuration in apps/server/.env
+
+# SDK
 cp apps/sdk/.env.example apps/sdk/.env
 ```
 
-4. Start developing:
+3. **Start Development Servers**
+
+You can run each component separately:
 
 ```bash
-# Start the server
+# Start the backend API server
 pnpm dev:server
 
 # Start the web application
 pnpm dev:web
 
-# Start the SDK
+# Start the SDK development server
 pnpm dev:sdk
-
 ```
 
-You can visit [http://localhost:5174](http://localhost:5174/) to start developing Usertour.
+Once running, you can access the web application at [http://localhost:5174](http://localhost:5174/).
 
-## Developing
+## Contributing
 
-To help you quickly navigate where your contribution fits, here's a brief outline of Usertour's structure:
+### Development Workflow
 
-## Project Structure
-```text
-apps/
-├── server/        // Backend server
-├── web/           // Main web application
-├── sdk/           // Usertour.js SDK
-│
-packages/          // Shared packages
-├── components/    // UI components
-├── radix/         // Radix UI components
-└── shared/        // Shared components and utils
-```
+1. Create a new branch for your feature or bug fix
+2. Make your changes following our style guidelines
+3. Add tests for new features
+4. Update documentation as needed
+5. Submit a pull request
 
-## Submitting your PR
+### Branch Strategy
 
-When you're ready to submit your contribution:
+- `main` - Production-ready code
+- `develop` - Integration branch for new features
+- Feature branches - Created from `develop` for new features
 
-1. Make sure your code follows our style guidelines
-2. Add tests if applicable
-3. Update documentation if needed
-4. Create a pull request to the `main` branch
+### Getting Help
 
-For major features, we first merge them into the `develop` branch for testing before they go into the `main` branch.
+If you need assistance:
 
-And that's it! Once your PR is merged, you will be featured as a contributor in our [README](https://github.com/usertour/usertour/blob/main/README.md).
-
-## Getting Help
-
-If you ever get stuck or have questions while contributing, you can:
-
-- Join our [Discord](https://discord.gg/WPVJPX8fJh)
-- Check [Documentation](https://docs.usertour.io)
+- Join our [Discord community](https://discord.gg/WPVJPX8fJh)
+- Check our [Documentation](https://docs.usertour.io)
 - Ask in [GitHub Discussions](https://github.com/usertour/usertour/discussions)
 - Follow us on [Twitter](https://x.com/usertourio)
+
+### Recognition
+
+Contributors are featured in our [README](https://github.com/usertour/usertour/blob/main/README.md). We appreciate your help in making Usertour better!
