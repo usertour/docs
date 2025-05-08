@@ -177,7 +177,8 @@
 						"pages": [
 							"open-source/env",
 							"open-source/self-hosting",
-							"open-source/usertourjs"
+							"open-source/usertourjs",
+							"open-source/local-development"
 						]
 					}
 				]
@@ -186,7 +187,8 @@
 	},
 	"logo": {
 		"light": "/logo-dark.svg",
-		"dark": "/logo-light.svg"
+		"dark": "/logo-light.svg",
+		"href": "https://www.usertour.io/"
 	},
 	"navbar": {
 		"links": [
