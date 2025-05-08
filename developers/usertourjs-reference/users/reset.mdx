@@ -1,7 +1,23 @@
 ---
 title: "reset()"
+description: "Clear the current user's identification and hide active flows"
 ---
 
-Makes Usertour forget about the current user and immediately hides any active flows.
+The `reset()` method clears the current user's identification and immediately hides any active flows. Call this method when users sign out of your application.
 
-Call this when users sign out of your app.
+## Example
+
+```javascript
+// Clear user identification on sign out
+function handleSignOut() {
+  usertour.reset();
+  // ... other sign out logic
+}
+```
+
+## Notes
+
+- This method should be called when users sign out
+- All active flows will be hidden immediately
+- User identification will be cleared
+- Any pending flow conditions will be reset

@@ -1,8 +1,28 @@
 ---
 title: "isIdentified()"
+description: "Check if the current user has been identified"
 ---
 
-Check if a user has been identified.
+The `isIdentified()` method checks whether the current user has been identified with either `usertour.identify()` or `usertour.identifyAnonymous()`.
 
-### Returns 
-`true` if `usertour.identify` or `usertour.identifyAnonymous` has been called. `false` otherwise.
+## Returns
+`boolean` - Returns `true` if the user has been identified, `false` otherwise.
+
+## Example
+
+```javascript
+// Check if the current user is identified
+if (usertour.isIdentified()) {
+  // User has been identified
+  console.log('User is identified');
+} else {
+  // User has not been identified
+  console.log('User is not identified');
+}
+```
+
+## Notes
+
+- This method is useful for checking the identification state before making other Usertour.js calls
+- Returns `true` for both authenticated and anonymous users
+- Returns `false` if neither `identify()` nor `identifyAnonymous()` has been called
