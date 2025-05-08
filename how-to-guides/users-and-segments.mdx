@@ -1,35 +1,46 @@
 ---
 title: Users and Segments
-description: This page lists the basics of Usertour flow builder.
+description: Learn how to manage users and create targeted segments for personalized experiences
 icon: "user"
 ---
 
-To make it easy for you to keep track of your users, we have made a page that lists all of your Usertour users that have been identified by Usertour.
+## Overview
+
+Want to know who's using your product and how they're using it? The Users page is your window into user behavior. It shows you everyone who's been identified by Usertour in your application, making it easy to:
+- See who's active
+- Understand user patterns
+- Create targeted experiences
+- Track engagement
+- Personalize your approach
 
 ![](/user-segment.png)
 
-## Creating a segment
+## Understanding User Segments
 
-On the left side of the Users page, you’ll see a few default segments.
+Think of segments as different groups of users you want to target. We offer three ways to create these groups:
 
-There are 3 types of User segments. Below is a description of them as well as how they are created.
+### Default Segments
+These are your ready-to-use segments, like "All users". They're created automatically and can't be changed - perfect for broad targeting.
 
-### Default segments
+### Attribute-Based Segments
+Need to target users based on specific characteristics? This is where you'll create segments based on user or company attributes:
 
-These are segments that are precreated by Usertour e.g. All users. These cannot be edited.
-
-### Segment based on an user or company attribute filter
-
-You can easily create your own segments by changing the filter, the attribute to sort by, and which columns to display. A Save segment button will appear, which lets you update an existing segment or save as a new one.
+1. Head to the Users page
+2. Look for the filter panel on the left
+3. Pick the attributes you want to filter by
+4. Choose which columns to show
+5. Hit **Save segment** to either update an existing one or create a new one
 
 ![](/images/filter-users.png)
 
-**Note** the User ID and Company IDs used in the `usertour.js` `identify()` call is not created as an Usertour attribute by default. Instead of creating filter based segments to target a specific list of users/companies we recommend to use the manual segment approach explained in the next section.
+> **Heads up**: If you're using `identify()` in `usertour.js`, remember that User ID and Company ID aren't automatically created as attributes. To use them in filters, you'll need to send them as attributes in the second argument.
 
-If you still want to retrieve the User ID or Company ID and use them in a filter, you need to send it as an attribute via the `usertour.js` second argument.
+### Manual Segments
+Got a list of specific users you want to target? Maybe from a spreadsheet or your CRM? Manual segments are perfect for this:
 
-### Manual segment based on UI selection
-
-By clicking the + New button above the segment list you can create a manual segment. Users can be added to Manual segments either by selecting them in the list of all users. You can match users based on the email or the user id. This is great when you want to target a list of users you have in a spreadsheet.
+1. Click the **+ New** button above the segment list
+2. Pick your users from the list
+3. Match them by email or user ID
+4. Save and you're done!
 
 ![](/images/manual-users.png)
