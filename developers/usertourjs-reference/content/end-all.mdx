@@ -1,0 +1,18 @@
+---
+title: "endAll()"
+description: "Close all active Usertour content displays for the current user"
+---
+
+The `endAll()` method allows you to programmatically close all currently active Usertour content (including flows, checklists, and other interactive guides) for the authenticated user. When called, all visible content will be immediately dismissed from the interface.
+
+This method is particularly useful when you need to ensure a clean slate for your users, such as when they navigate away from a specific feature or when you want to reset their interactive experience. If no content is currently active, the method will execute silently without any effect.
+
+## Example
+
+```javascript
+usertour.endAll();
+```
+
+<Note>
+This method is safe to call at any time, even if no content is currently being displayed
+</Note>

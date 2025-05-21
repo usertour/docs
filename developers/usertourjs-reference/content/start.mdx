@@ -1,0 +1,27 @@
+---
+title: "start()"
+description: "Programmatically trigger and display Usertour content for authenticated users"
+---
+
+The `start()` method allows you to programmatically trigger and display Usertour content (such as flows, checklists, or other interactive guides) for your authenticated users. When called, the specified content will be rendered immediately in your application.
+
+This method is particularly useful for implementing custom triggers for your user onboarding or feature discovery flows. For instance, you could add a "Replay Tutorial" button in your app's settings, allowing users to revisit your onboarding experience at any time.
+
+## Parameters
+
+<ParamField path="contentId" type="string" required>
+String, required - The unique identifier of the content you want to display. You can find this ID in the content detail page URL: `/env/{envId}/{contentType}/{contentId}/detail`
+</ParamField>
+
+## Return
+Returns a `Promise` that resolves when the content has been successfully initialized and displayed.
+
+## Example
+
+```javascript
+usertour.start('cmaw8v1ch013s147h0uw8aha5');
+```
+
+<Note>
+ Make sure to call `init()` before using any other Usertour.js methods
+</Note>

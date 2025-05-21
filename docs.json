@@ -74,6 +74,13 @@
 						]
 					},
 					{
+						"group": "Content",
+						"pages": [
+							"developers/usertourjs-reference/content/start",
+							"developers/usertourjs-reference/content/end-all"
+						 ]
+					},
+					{
 						"group": "Advanced usage",
 						"pages": [
 							"developers/usertourjs-reference/advanced/set-base-zIndex"
