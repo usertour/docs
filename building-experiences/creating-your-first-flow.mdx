@@ -1,6 +1,6 @@
 ---
 title: Flows
-description: Learn how to create and customize your first interactive flow with Usertour
+description: Learn how to create and customize interactive flows with Usertour
 icon: "firstdraft"
 ---
 
@@ -10,12 +10,12 @@ Before you can start creating flows, you'll need to install [Usertour.js](/devel
 
 ## Creating a New Flow
 
-To create a new flow in Usertour, follow these steps:
+Here's how to create a new flow in Usertour:
 
-1. Navigate to **Flows** in the sidebar
+1. Go to **Flows** in the sidebar
 2. Click **Create flow**
-3. Enter a name for your flow
-4. Click the **Submit** button
+3. Give your flow a name
+4. Click **Submit**
 
 <video
   autoPlay
@@ -46,7 +46,7 @@ Follow these steps to add a step:
 ></video>
 
 ## Theme
-Customize the look and feel of your flows to match your application's design. Themes let you control colors, typography, and overall styling.
+Make your flows look and feel just right for your application. With themes, you can customize colors, typography, and overall styling to match your brand.
 
 <video
   autoPlay
@@ -58,14 +58,15 @@ Customize the look and feel of your flows to match your application's design. Th
 ></video>
 
 ## Tooltip Placement (Tooltips only)
-You can precisely target elements using either Element Text or CSS Selector:
+You can target elements using CSS Selector, with optional Element Text for more precise selection:
 
-- **Element Text**: If you enter text here, Usertour will find and select elements containing that text
-- **CSS Selector**: For precise targeting, you can use any valid CSS selector
-  - Supports all standard CSS selectors (see [MDN's CSS Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors))
-  - Uses `querySelectorAll()` for element selection
-  - When multiple elements match, Usertour selects the first one by default
+- **CSS Selector**: Required for targeting elements. Use any valid CSS selector to specify which element to target
+  - Works with all standard CSS selectors (see [MDN's CSS Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors))
+  - Uses `querySelectorAll()` to find elements
+  - When multiple elements match, Usertour picks the first one
   - You can specify which element to select by providing its index
+
+- **Element Text**: Optional. Use this when you need to distinguish between elements that share the same CSS selector but have different text content
 
 <video
   autoPlay
@@ -77,11 +78,11 @@ You can precisely target elements using either Element Text or CSS Selector:
 ></video>
 
 ## Tooltip Positioning (Tooltips only)
-Position tooltips precisely:
+Place your tooltips exactly where you want them:
 
 - Choose from multiple positions (left, right, above, below)
-- Automatic fallback if space is limited
-- Visual positioning in the builder
+- If space is limited, it'll automatically find the best position
+- See the positioning in real-time in the builder
 
 <video
   autoPlay
@@ -93,15 +94,15 @@ Position tooltips precisely:
 ></video>
 
 ## Backdrop
-The backdrop feature helps focus user attention:
+The backdrop helps keep users focused:
 
 - Creates a semi-transparent overlay
 - Highlights important elements
-- Blocks interactions with background content
-- Available for all step types:
-  - Modal steps: Enabled by default
-  - Tooltip steps: Optional per step
-  - Customizable in theme settings
+- Prevents interaction with background content
+- Works with all step types:
+  - Modal steps: Always on
+  - Tooltip steps: Optional
+  - Customize in theme settings
 
 <video
   autoPlay
@@ -113,17 +114,17 @@ The backdrop feature helps focus user attention:
 ></video>
 
 ## Actions
-For each flow step, you can configure actions triggered by:
-- Button clicks
-- Tooltip target interactions
-- Step trigger conditions
+For each step, you can set up actions that happen when:
+- Users click buttons
+- Users interact with tooltip targets
+- Step trigger conditions are met
 
-Available actions:
-- **Go to step** - Navigate to a specific step within the current flow. This action enables non-linear flow progression and conditional branching.
-- **Dismiss** - Terminate the current flow session. This action can be triggered programmatically or through user interaction.
-- **Start new flow** - Initialize a different flow while automatically terminating the current one. This enables seamless transitions between different user experiences.
-- **Navigate to page** - Redirect users to a specified URL. Supports both same-tab and new-tab navigation modes for optimal user experience.
-- **Evaluate javascript** - Execute custom JavaScript code within the context of your application. This enables deep integration with your application's functionality and custom event handling.
+Here's what you can do:
+- **Go to step** - Jump to any step in your flow. Perfect for creating non-linear flows and conditional paths.
+- **Dismiss** - End the current flow. You can trigger this through code or user interaction.
+- **Start new flow** - Switch to a different flow while ending the current one. Great for smooth transitions between experiences.
+- **Navigate to page** - Open a specific URL in the browser. Choose between same-tab or new-tab navigation.
+- **Evaluate javascript** - Run custom JavaScript code in your application. This lets you integrate deeply with your app's features.
 
 <video
   autoPlay
@@ -137,20 +138,20 @@ Available actions:
 
 ## Step Triggers
 
-Triggers enable you to create conditional flows with **"if this, then that"** rules. Before each step is displayed, if a trigger is activated, its logic will be executed first. You can:
+Triggers let you create smart flows with **"if this, then that"** rules. Before showing each step, if a trigger is active, it'll run its logic first. You can:
 
-- Add multiple triggers to a single step
+- Add multiple triggers to a step
 - Create branching flows
 - Skip steps based on conditions
 
 A trigger can have the following conditions:
 
-- **User attribute** - Trigger the next step when a user possesses specific attributes, enabling personalized flow progression.
-- **Current page is** - Trigger the next step when users navigate to a designated page, ensuring context-aware flow delivery.
-- **Element is present/clicked/disabled** - Trigger the next step based on UI element states. Particularly useful for handling asynchronous content loading scenarios.
-- **Text input value is** - Trigger the next step when users enter specific values in designated input fields, enabling precise form-based flow control.
-- **User fills in input** - Trigger the next step upon any user input in specified fields, facilitating real-time flow progression.
-- **Current time** - Trigger the next step at designated times, allowing for time-sensitive content delivery within specific time periods.
+- **User attribute** - Execute the trigger's action when a user possesses specific attributes, enabling personalized flow progression.
+- **Current page is** - Execute the trigger's action when users navigate to a designated page, ensuring context-aware flow delivery.
+- **Element is present/clicked/disabled** - Execute the trigger's action based on UI element states. Particularly useful for handling asynchronous content loading scenarios.
+- **Text input value is** - Execute the trigger's action when users enter specific values in designated input fields, enabling precise form-based flow control.
+- **User fills in input** - Execute the trigger's action upon any user input in specified fields, facilitating real-time flow progression.
+- **Current time** - Execute the trigger's action at designated times, allowing for time-sensitive content delivery within specific time periods.
 
 <Tip>
 Best Practice: Add triggers to visible steps to prevent users from getting stuck.
@@ -167,10 +168,10 @@ Best Practice: Add triggers to visible steps to prevent users from getting stuck
 
 ## Reordering Steps
 
-Need to change the order of your steps? No problem! Simply drag and drop steps to rearrange them in your flow.
+Want to change the order of your steps? Just drag and drop them to rearrange your flow.
 
 <Tip>
-You can always add new steps or rearrange existing ones to create the perfect user journey.
+Feel free to add new steps or rearrange existing ones to create the perfect user journey.
 </Tip>
 
 <video
@@ -185,20 +186,20 @@ You can always add new steps or rearrange existing ones to create the perfect us
 
 ## Starting a Flow
 
-After configuring your flow, you'll need to understand how to start it for end users. For detailed information about starting flows, refer to the [Starting Flow/Checklist Guide](/how-to-guides/starting-flows).
+Once you've set up your flow, you'll need to know how to start it for your users. For the full details on starting flows, check out the [Starting Flow/Checklist Guide](/how-to-guides/starting-flows).
 
 <Note>
-To start flows for end-users, you'll need to install [Usertour.js](/developers/usertourjs-reference/installation) in your application.
+Remember to install [Usertour.js](/developers/usertourjs-reference/installation) in your application to start flows for your users.
 </Note>
 
 ## Temporarily Hiding Flows
 
 To show flows only on specific pages:
-1. Enable **Temporarily hide flow**
+1. Turn on **Temporarily hide flow**
 2. Set your visibility conditions
 
 <Tip>
-Best Practice: Use auto-start conditions for flow targeting rather than temporary hiding.
+Pro tip: Use auto-start conditions for targeting flows instead of temporary hiding.
 </Tip>
 
 <video
@@ -212,14 +213,14 @@ Best Practice: Use auto-start conditions for flow targeting rather than temporar
 
 ## Dismissing Flows
 
-Users can dismiss a flow at any time using the X-button in the top-right corner of modals and tooltips. While this button can be disabled in advanced settings, it's generally not recommended. **Dismiss** actions can be added to buttons, tooltip target clicks, survey questions, and step triggers. When starting a new flow, the current flow will be automatically dismissed. For other actions like page navigation, you'll need to add a dismiss action explicitly.
+Users can end a flow anytime by clicking the X-button in the top-right corner of modals and tooltips. While you can disable this button in advanced settings, we recommend keeping it enabled. You can add **Dismiss** actions to buttons, tooltip target clicks, survey questions, and step triggers. When starting a new flow, the current one will automatically end. For other actions like page navigation, you'll need to add a **Dismiss** action yourself.
 
-On the last step of a flow, we recommend always adding a dismiss action to provide a clear call-to-action for ending the flow. If you use a **Start a flow** action to start another flow, the current flow will be automatically dismissed. This automatic dismissal does not apply to other actions such as **Navigate to page**, where you'll need to add a **Dismiss** action yourself.
+On the last step of a flow, we recommend adding a **Dismiss** action to give users a clear way to end the flow. If you use **Start a flow** to begin another flow, the current one will automatically end. This automatic ending doesn't happen with other actions like **Navigate to page** - you'll need to add a **Dismiss** action yourself.
 
-Always ensure that the flow is properly dismissed (or hidden using temporarily hide), as an undismissed flow will block other flows from starting. 
+Make sure your flow is properly dismissed (or hidden using temporarily hide), as an undismissed flow will prevent other flows from starting.
 
 <Warning>
-Currently, the session lifecycle is set to 24 hours. This limitation is designed to prevent scenarios where a flow remains undismissed due to unexpected circumstances, which could otherwise permanently block other flows from starting. In the future, this lifecycle duration will be configurable through the Usertour.js API.
+Currently, flows have a 24-hour session lifecycle. This prevents flows from getting stuck undismissed and blocking other flows permanently. In the future, you'll be able to configure this duration through the Usertour.js API.
 </Warning>
 
 <video
@@ -233,6 +234,6 @@ Currently, the session lifecycle is set to 24 hours. This limitation is designed
 
 ## Flow Completion
 
-Flow completion is different from dismissal. A flow is considered complete when the user reaches a completion step, which is automatically set as the last step by default. If you want the flow to complete only after a specific button click on the last step, add a hidden step after the button step with an unconditional trigger and **Dismiss** action.
+Flow completion is different from dismissal. A flow is complete when users reach the completion step, which is automatically set as the last step. If you want the flow to complete only after a specific button click on the last step, add a hidden step after the button step with an unconditional trigger and **Dismiss** action.
 
 
