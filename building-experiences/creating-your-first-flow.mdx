@@ -77,12 +77,18 @@ You can target elements using CSS Selector, with optional Element Text for more 
   src="https://r3.usertour.io/docs/how-to-guides/usertour-element.mp4"
 ></video>
 
-## Tooltip Positioning (Tooltips only)
-Place your tooltips exactly where you want them:
-
-- Choose from multiple positions (left, right, above, below)
-- If space is limited, it'll automatically find the best position
-- See the positioning in real-time in the builder
+## Tooltip Alignment (Tooltips only)
+Fine-tune how your tooltips align with their target elements:
+- Choose your alignment mode:
+  - **Auto**: Tooltip will automatically adjust to the best available position if the preferred alignment doesn't fit
+  - **Fixed**: Tooltip will maintain the exact alignment you specify, regardless of available space
+- When using Fixed mode, choose from multiple alignment options:
+  - Left: left-start, left-center, left-end
+  - Right: right-start, right-center, right-end
+  - Top: top-start, top-center, top-end
+  - Bottom: bottom-start, bottom-center, bottom-end
+- Each alignment option determines how the tooltip connects to its target element
+- Preview the alignment in real-time in the builder
 
 <video
   autoPlay
@@ -95,7 +101,6 @@ Place your tooltips exactly where you want them:
 
 ## Backdrop
 The backdrop helps keep users focused:
-
 - Creates a semi-transparent overlay
 - Highlights important elements
 - Prevents interaction with background content
