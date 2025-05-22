@@ -1,73 +1,61 @@
 ---
-title: Starting Flows
-description: Learn how to trigger flows automatically or manually in your application
+title: Starting Content
+description: Learn how to trigger flows or checklists automatically or manually in your application
 icon: "play"
 ---
 
-## Automatic Flow Triggers
+## Start Automatically
+To start a flow or checklist automatically, enable auto-start conditions in the detail page's left panel.
+![Auto-start](/images/surveys-10.png)
 
-You can set up flows to start automatically based on various conditions. These conditions are configured in the flow settings panel.
+You can start and segment flows and checklists using these conditions:
+- **User attribute** - Execute the trigger's action when a user possesses specific attributes, enabling personalized flow progression.
+- **Current page is** - Execute the trigger's action when users navigate to a designated page, ensuring context-aware flow delivery.
+- Flow/Checklist - Start the flow/checklist if another flow/checklist is completed/seen.
+- **Element is present/clicked/disabled** - Execute the trigger's action based on UI element states. Particularly useful for handling asynchronous content loading scenarios.
+- **Text input value is** - Execute the trigger's action when users enter specific values in designated input fields, enabling precise form-based flow control.
+- **User fills in input** - Execute the trigger's action upon any user input in specified fields, facilitating real-time flow progression.
+- **Current time** - Execute the trigger's action at designated times, allowing for time-sensitive content delivery within specific time periods.
 
-![](/images/conditions.png)
+<Note>
+- You can combine multiple conditions using AND/OR logic groups to create complex conditions
+- Checklists will stay on screen until manually dismissed
+- Flows start once per user by default, but you can change it to multiple times or unlimited starts
+- Use the Wait condition to add a delay before starting the flow
+</Note>
 
-## Available Trigger Conditions
+## Start from Actions
+You can start a flow or checklist by adding an action to another checklist, launcher, or flow. Here are examples for each type:
 
-### User-Based Triggers
-- **User Attributes**: Start flows based on user or company data
-  - Configure via [Usertour.js](/developers/usertourjs-reference/installation)
-  - Perfect for personalized experiences
-  - Example: Show different flows for free vs. paid users
+Checklist task action
+![](/images/checklist-start-flow.png)
+Flow button/trigger action
+![](/images/flow-start-flow.png)
+Launcher action
+![](/images/launcher-start-flow.png)
 
-### Page-Based Triggers
-- **Current Page**: Trigger flows on specific pages
-  - Automatically tracked by Usertour.js
-  - Great for page-specific guidance
-  - Example: Show onboarding on the dashboard
+## Start from a Link
+You can start a flow or checklist by adding a link or button to your app.
 
-### Flow-Based Triggers
-- **Flow Completion**: Start flows after other flows
-  - Chain multiple flows together
-  - Create sequential experiences
-  - Example: Show advanced features after basic onboarding
+To start a flow or checklist via URL, add the flow ID to your link like this:
 
-### Element-Based Triggers
-- **UI Element Presence**: Start when elements appear
-- **Element Interaction**: Start on element click
-  - Perfect for feature discovery
-  - Example: Show tooltip when user hovers over a new feature
+```
+https://www.usertour.io/flows/?usertour=your_flow_id
+```
 
-### Input-Based Triggers
-- **Specific Input Value**: Start on exact input match
-- **Any Input**: Start when user enters any value
-  - Great for form guidance
-  - Example: Show help when user starts typing
+For example, if your flow ID is "cmaw8v1ch013s147h0uw8aha5", the URL would be:
+```
+https://www.usertour.io/flows/?usertour=cmaw8v1ch013s147h0uw8aha5
+```
 
-### Time-Based Triggers
-- **Scheduled Start**: Set specific dates and times
-  - Before or after a target time
-  - Perfect for time-sensitive content
-  - Example: Show holiday promotion at specific times
+## Start from Code
+You can start a flow by adding a button to your app or using the `usertour.start()`. For detailed implementation, check out our [Usertour.js Reference](/developers/usertourjs-reference/content/start).
 
-## Advanced Configuration
+## How to find the ID
+To use `usertour.start()`, you'll need the content ID (flow ID or checklist ID). You can find this ID in the URL of the detail page: `/env/{envId}/{contentType}/{contentId}/detail`
 
-### Combining Conditions
-You can create complex trigger logic by:
-- Combining multiple conditions
-- Using AND/OR logic groups
-- Creating sophisticated user journeys
-
-### Flow Frequency
-Control how often flows appear:
-- **Default**: Once per user
-- **Unlimited**: Multiple times
-  - Add condition: `Flow started exactly 0 times in the last 1 hr where flow id is <flow id>`
-  - Prevents restart on dismissal
-
-### Timing Control
-Add delays to your flows:
-- Use the Wait condition
-- Set specific delay times
-- Ensure proper page loading
-- Create smoother user experiences
-
-> **Tip**: Always test your flow triggers in different scenarios to ensure they work as expected.
+For example, in this URL:
+```
+https://app.usertour.io/env/1/flows/cmaw8v1ch013s147h0uw8aha5/detail
+```
+The content ID is `cmaw8v1ch013s147h0uw8aha5`

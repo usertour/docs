@@ -24,10 +24,15 @@
 						"pages": [
 							"building-experiences/understanding-the-basics-of-in-app-flows",
 							"building-experiences/creating-your-first-flow",
-							"how-to-guides/starting-flows",
 							"how-to-guides/checklists",
 							"how-to-guides/launchers",
 							"how-to-guides/surveys",
+							"how-to-guides/starting-flows",
+							"how-to-guides/go-to-page-when-starts",
+							"how-to-guides/hidden-steps",
+							"how-to-guides/deleting-user-data",
+							"how-to-guides/delete-and-duplicate-content",
+							"how-to-guides/team",
 							"how-to-guides/environments",
 							"how-to-guides/users-and-segments",
 							"how-to-guides/companies",
@@ -71,6 +76,13 @@
 						"pages": [
 							"developers/usertourjs-reference/companies/company",
 							"developers/usertourjs-reference/companies/update-company"
+						]
+					},
+					{
+						"group": "Content",
+						"pages": [
+							"developers/usertourjs-reference/content/start",
+							"developers/usertourjs-reference/content/end-all"
 						]
 					},
 					{

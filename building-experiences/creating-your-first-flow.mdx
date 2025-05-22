@@ -1,6 +1,6 @@
 ---
-title: Creating Your First Flow
-description: Learn how to create and customize your first interactive flow with Usertour
+title: Flows
+description: Learn how to create and customize interactive flows with Usertour
 icon: "firstdraft"
 ---
 
@@ -8,70 +8,278 @@ icon: "firstdraft"
 
 Before you can start creating flows, you'll need to install [Usertour.js](/developers/usertourjs-reference/installation) in your web application. Once that's done, you're ready to create your first flow!
 
+## Examples
+### Page navigation in flow
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-1.mp4"
+></video>
+
+### Automatic navigation with hidden steps
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-2.mp4"
+></video>
+
+### User page guidance
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-3.mp4"
+></video>
+
+### Collect user feedback with surveys
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-5.mp4"
+></video>
+
 ## Creating a New Flow
 
-Let's create your first flow in the Usertour web app:
+Here's how to create a new flow in Usertour:
 
-1. Open the Usertour web app and navigate to the **Content** section
-2. Click on **Flows** in the sidebar
-3. Click the **Create New Flow** button
-4. Give your flow a descriptive name
+1. Go to **Flows** in the sidebar
+2. Click **Create flow**
+3. Give your flow a name
+4. Click **Submit**
 
-![](https://r3.usertour.io/docs/building-experiences/create-flow-2.gif)
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-create-new-flow.mp4"
+></video>
 
-## Building Your Flow
+## Add Step 
 
-Here's how to create an engaging user experience:
+Follow these steps to add a step:
 
-### Basic Flow Editing
+1. Navigate to the flow detail page
+2. Click **Edit in builder** at the top
+3. Click the **Create** button on the left side of the builder
+4. Select a **Step Type** (Tooltip, Modal, Hidden)
+5. Edit the Step content
 
-![](https://r3.usertour.io/docs/building-experiences/edit-flow-2.gif)
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-create-step.mp4"
+></video>
 
-### Customization Options
+## Theme
+Make your flows look and feel just right for your application. With themes, you can customize colors, typography, and overall styling to match your brand.
 
-#### Theme
-Customize the look and feel of your flows to match your application's design. Themes let you control colors, typography, and overall styling.
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-theme-2.mp4"
+></video>
 
-#### Element Placement (Tooltips only)
-You have multiple ways to target elements for your tooltips:
+## Tooltip Placement (Tooltips only)
+You can target elements using CSS Selector, with optional Element Text for more precise selection:
 
-- **Element Text**: If you enter text here, Usertour will find and select elements containing that text
-- **CSS Selector**: For precise targeting, you can use any valid CSS selector
-  - Supports all standard CSS selectors (see [MDN's CSS Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors))
-  - Uses `querySelectorAll()` for element selection
-  - When multiple elements match, Usertour selects the first one by default
+- **CSS Selector**: Required for targeting elements. Use any valid CSS selector to specify which element to target
+  - Works with all standard CSS selectors (see [MDN's CSS Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors))
+  - Uses `querySelectorAll()` to find elements
+  - When multiple elements match, Usertour picks the first one
   - You can specify which element to select by providing its index
 
-#### Backdrop
-The backdrop feature helps focus user attention:
+- **Element Text**: Optional. Use this when you need to distinguish between elements that share the same CSS selector but have different text content
 
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-element.mp4"
+></video>
+
+## Tooltip Alignment (Tooltips only)
+Fine-tune how your tooltips align with their target elements:
+- Choose your alignment mode:
+  - **Auto**: Tooltip will automatically adjust to the best available position if the preferred alignment doesn't fit
+  - **Fixed**: Tooltip will maintain the exact alignment you specify, regardless of available space
+- When using Fixed mode, choose from multiple alignment options:
+  - Left: left-start, left-center, left-end
+  - Right: right-start, right-center, right-end
+  - Top: top-start, top-center, top-end
+  - Bottom: bottom-start, bottom-center, bottom-end
+- Each alignment option determines how the tooltip connects to its target element
+- Preview the alignment in real-time in the builder
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-element-position-2.mp4"
+></video>
+
+## Backdrop
+The backdrop helps keep users focused:
 - Creates a semi-transparent overlay
 - Highlights important elements
-- Blocks interactions with background content
-- Available for all step types:
-  - Modal steps: Enabled by default
-  - Tooltip steps: Optional per step
-  - Customizable in theme settings
+- Prevents interaction with background content
+- Works with all step types:
+  - Modal steps: Always on
+  - Tooltip steps: Optional
+  - Customize in theme settings
 
-#### Actions
-Control how your flow behaves:
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-backdrop.mp4"
+></video>
 
-- Set step triggers
-- Define navigation behavior
-- Configure close button actions
-- Customize user interactions
+## Actions
+For each step, you can set up actions that happen when:
+- Users click buttons
+- Users interact with tooltip targets
+- Step trigger conditions are met
 
-#### Tooltip Positioning
-Position tooltips precisely:
+Here's what you can do:
+- **Go to step** - Jump to any step in your flow. Perfect for creating non-linear flows and conditional paths.
+- **Dismiss** - End the current flow. You can trigger this through code or user interaction.
+- **Start new flow** - Switch to a different flow while ending the current one. Great for smooth transitions between experiences.
+- **Navigate to page** - Open a specific URL in the browser. Choose between same-tab or new-tab navigation.
+- **Evaluate javascript** - Run custom JavaScript code in your application. This lets you integrate deeply with your app's features.
 
-- Choose from multiple positions (left, right, above, below)
-- Automatic fallback if space is limited
-- Visual positioning in the builder
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-actions.mp4"
+></video>
 
-### Managing Flow Steps
 
-Need to change the order of your steps? No problem! Simply drag and drop steps to rearrange them in your flow.
+## Step Triggers
 
-![](https://r3.usertour.io/docs/building-experiences/rererangeing-02.gif)
+Triggers let you create smart flows with **"if this, then that"** rules. Before showing each step, if a trigger is active, it'll run its logic first. You can:
 
-> **Tip**: You can always add new steps or rearrange existing ones to create the perfect user journey.
+- Add multiple triggers to a step
+- Create branching flows
+- Skip steps based on conditions
+
+A trigger can have the following conditions:
+
+- **User attribute** - Execute the trigger's action when a user possesses specific attributes, enabling personalized flow progression.
+- **Current page is** - Execute the trigger's action when users navigate to a designated page, ensuring context-aware flow delivery.
+- **Element is present/clicked/disabled** - Execute the trigger's action based on UI element states. Particularly useful for handling asynchronous content loading scenarios.
+- **Text input value is** - Execute the trigger's action when users enter specific values in designated input fields, enabling precise form-based flow control.
+- **User fills in input** - Execute the trigger's action upon any user input in specified fields, facilitating real-time flow progression.
+- **Current time** - Execute the trigger's action at designated times, allowing for time-sensitive content delivery within specific time periods.
+
+<Tip>
+Best Practice: Add triggers to visible steps to prevent users from getting stuck.
+</Tip>
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-triggers-2.mp4"
+></video>
+
+## Reordering Steps
+
+Want to change the order of your steps? Just drag and drop them to rearrange your flow.
+
+<Tip>
+Feel free to add new steps or rearrange existing ones to create the perfect user journey.
+</Tip>
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-reranges.mp4"
+></video>
+
+
+## Starting a Flow
+
+Once you've set up your flow, you'll need to know how to start it for your users. For the full details on starting flows, check out the [Starting Flow/Checklist Guide](/how-to-guides/starting-flows).
+
+<Note>
+Remember to install [Usertour.js](/developers/usertourjs-reference/installation) in your application to start flows for your users.
+</Note>
+
+## Temporarily Hiding Flows
+
+To show flows only on specific pages:
+1. Turn on **Temporarily hide flow**
+2. Set your visibility conditions
+
+<Tip>
+Pro tip: Use auto-start conditions for targeting flows instead of temporary hiding.
+</Tip>
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-temphidden.mp4"
+></video>
+
+## Dismissing Flows
+
+Users can end a flow anytime by clicking the X-button in the top-right corner of modals and tooltips. While you can disable this button in advanced settings, we recommend keeping it enabled. You can add **Dismiss** actions to buttons, tooltip target clicks, survey questions, and step triggers. When starting a new flow, the current one will automatically end. For other actions like page navigation, you'll need to add a **Dismiss** action yourself.
+
+On the last step of a flow, we recommend adding a **Dismiss** action to give users a clear way to end the flow. If you use **Start a flow** to begin another flow, the current one will automatically end. This automatic ending doesn't happen with other actions like **Navigate to page** - you'll need to add a **Dismiss** action yourself.
+
+Make sure your flow is properly dismissed (or hidden using temporarily hide), as an undismissed flow will prevent other flows from starting.
+
+<Warning>
+Currently, flows have a 24-hour session lifecycle. This prevents flows from getting stuck undismissed and blocking other flows permanently. In the future, you'll be able to configure this duration through the Usertour.js API.
+</Warning>
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-dismiss-2.mp4"
+></video>
+
+## Flow Completion
+
+Flow completion is different from dismissal. A flow is complete when users reach the completion step, which is automatically set as the last step. If you want the flow to complete only after a specific button click on the last step, add a hidden step after the button step with an unconditional trigger and **Dismiss** action.
+
+
