@@ -1,0 +1,45 @@
+---
+title: Deleting user data
+description: Learn how to delete user data in Usertour, including complete user deletion, resetting individual flow sessions, and dismissing flows for all users.
+icon: "envira"
+---
+
+
+## Delete a User Completely
+
+This will remove all information Usertour has about a user.
+
+Here's how to do it:
+1. Go to the [Users page](https://app.usertour.io/env/1/users) and find the user 
+2. Select the row with the user's information
+3. Click "Delete user"
+
+<Tip>
+If the user signs into your app again (and ```usertour.identify()``` is called), they'll be recreated in Usertour - but without any history of completed flows.
+</Tip>
+
+![](/images/user-delete-3.png)
+
+## Delete a Single Flow/Checklist/Launcher Session
+
+This only deletes the record for a single session. This is useful when you want to:
+- Make a flow/checklist eligible for auto-start again (if it has auto-start conditions)
+- Show a launcher again if it was previously dismissed
+
+Here's how to do it:
+1. Go to the content's detail page
+2. Select one of the user's flow sessions
+3. Click the three-dot menu on the right
+4. Select "Delete session"
+
+![](/images/user-delete-2.png)
+
+## Dismiss a Flow for All Users
+
+You can dismiss a flow for everyone by unpublishing it. This is especially helpful when:
+- You accidentally published the wrong flow
+- You have an old version running with an error that's causing users to get stuck (preventing other flows from starting)
+
+Important note: In these cases, publishing a new version won't help because users who already started the flow will stay on the old version.
+
+However, for checklists and launchers, publishing a new version will automatically update users to the latest version, even if they're currently using it.
