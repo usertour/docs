@@ -1,0 +1,59 @@
+---
+title: Go to page when flow starts
+description: Learn how to automatically navigate users to the right page when they start a flow or checklist, with three different approaches to handle page navigation
+icon: "arrows-repeat"
+---
+
+When a user starts a flow from the checklist, they might not be on the right page for that flow. Here are 3 ways to handle this situation.
+
+## Navigate to page within Flow
+You can add a step in your flow that shows a modal or speech bubble with a button to navigate to the correct page. If the user is already on the right page, you can use the "If current page is" trigger to skip this step.
+
+This approach is flexible and works regardless of where you start the flow. However, keep in mind that it adds an extra step to your flow.
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-1.mp4"
+></video>
+
+There's also a special trick: you can use a hidden step, so the user doesn't need to click anything to navigate. See below.
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-2.mp4"
+></video>
+
+## Guide user to page within Flow
+You can guide users to navigate to the page by showing them the exact steps they need to take. Just like the previous method, you can use the "If current page is" trigger to skip this step if they're already on the right page.
+
+This method helps users learn how to find the page themselves in the future. The trade-off is that it adds extra steps to your flow.
+
+There's also a special trick: you can use a hidden step, so the user doesn't need to click anything to navigate. See below.
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-3.mp4"
+></video>
+
+## Navigate to page from Checklist
+You can jump directly to the right page from the checklist task by combining the "navigate to" action with "start flow".
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-4.mp4"
+></video>
+
+
