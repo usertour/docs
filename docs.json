@@ -29,6 +29,7 @@
 							"how-to-guides/surveys",
 							"how-to-guides/starting-flows",
 							"how-to-guides/go-to-page-when-starts",
+							"how-to-guides/hidden-steps",
 							"how-to-guides/environments",
 							"how-to-guides/users-and-segments",
 							"how-to-guides/companies",
@@ -79,7 +80,7 @@
 						"pages": [
 							"developers/usertourjs-reference/content/start",
 							"developers/usertourjs-reference/content/end-all"
-						 ]
+						]
 					},
 					{
 						"group": "Advanced usage",

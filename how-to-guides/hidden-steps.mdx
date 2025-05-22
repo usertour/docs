@@ -1,0 +1,68 @@
+---
+title: Hidden Steps
+description: Learn how to effectively use hidden steps in Usertour to create more complex and dynamic user flows while maintaining a clean and organized flow structure.
+icon: "envira"
+---
+
+Hidden steps are one of Usertour's most powerful features, but like any powerful tool, they need to be used with care. Think of it like driving a sports car - it's great when used properly, but requires responsibility. Let's explore how to use hidden steps effectively and safely.
+
+<Warning>
+ Here's the most important rule you need to follow when using hidden steps:
+
+Every hidden step **MUST** have at least one trigger that will eventually match a condition, leading to either:
+- Moving to a visible step
+- Starting another flow
+- Dismissing the current flow
+
+By "eventually," we mean within a reasonable timeframe during the user's current session.
+</Warning>
+
+### Why is this rule so important?
+Imagine being stuck in an invisible elevator - that's what happens when a hidden step doesn't have a proper exit strategy. The user won't see any Usertour interface, which might seem harmless, but the flow session remains active in the background. This can prevent other important content (like flows, checklists, or launchers) from appearing. That's why it's crucial to ensure users can always move forward from a hidden step.
+
+## When to Use Hidden Steps
+
+Hidden steps are perfect for scenarios where you want Usertour to take a backseat while users interact with your application. For example, when you've asked users to perform a specific action in your app, and you want to temporarily hide the Usertour interface until they complete that action.
+
+### A Real-World Example
+Let's look at a common scenario: using hidden steps for automatic navigation and conditional content display.
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-2.mp4"
+></video>
+
+### Try to avoid hidden steps
+Here's a simple rule of thumb: only use hidden steps when you really need them. They're like a powerful tool - great when you need them, but sometimes there are simpler ways to get the job done.
+
+For example, if you're waiting for users to do something, it's often clearer to just show them a tooltip with instructions. It's more straightforward and users can see exactly what they need to do.
+
+Another common use case is using hidden steps as a "decision maker" - deciding whether to go to another step or navigate to a different page. But in many cases, you can make your flow simpler by moving these decisions to the previous or next step. Let's look at an example:
+
+Let's say you want to make sure users are on the right page before starting your flow. You could do this with a hidden step:
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-2.mp4"
+></video>
+
+Here's what's happening: if the user is already on the right page, we go straight to Step 2 to start the flow (that's the first trigger). If they're not on the right page, we send them there first using the "Navigate to page" action (that's the second trigger).
+
+But we can make this simpler! Instead of using a hidden step, we can move the second trigger to Step 2 and remove Step 1 completely:
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video"
+  src="https://r3.usertour.io/docs/how-to-guides/usertour-flow-start-6.mp4"
+></video>
