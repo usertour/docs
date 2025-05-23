@@ -17,12 +17,15 @@
 				"groups": [
 					{
 						"group": "Get Started",
-						"pages": ["quickstart", "faq"]
+						"pages": [
+                          "quickstart",
+                          "building-experiences/understanding-the-basics-of-in-app-flows",
+                          "faq"
+                        ]
 					},
 					{
 						"group": "How-to Guides",
 						"pages": [
-							"building-experiences/understanding-the-basics-of-in-app-flows",
 							"building-experiences/creating-your-first-flow",
 							"how-to-guides/checklists",
 							"how-to-guides/launchers",
