@@ -17,7 +17,7 @@
 				"groups": [
 					{
 						"group": "Get Started",
-						"pages": ["why-usertour", "quickstart", "faq"]
+						"pages": ["quickstart", "faq"]
 					},
 					{
 						"group": "How-to Guides",
