@@ -18,8 +18,8 @@
 					{
 						"group": "Get Started",
 						"pages": [
+                          "building-experiences/understanding-in-app-flows",
                           "quickstart",
-                          "building-experiences/understanding-the-basics-of-in-app-flows",
                           "faq"
                         ]
 					},
