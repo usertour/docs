@@ -12,14 +12,46 @@ This method is particularly useful for implementing custom triggers for your use
 String, required - The unique identifier of the content you want to display. You can find this ID in the content detail page URL: `/env/{envId}/{contentType}/{contentId}/detail`
 </ParamField>
 
+<ParamField path="options" type="object" >
+Optional configuration object to customize the content display behavior.
+</ParamField>
+
+<ParamField path="options.once" type="boolean" >
+When set to true, the content will only be shown to users who haven't seen it before. If the user has already viewed the content, nothing will happen. Defaults to false.
+</ParamField>
+
+<ParamField path="options.continue" type="boolean" >
+When set to true, the content will resume from where the user left off in their previous session. If false, the content will start from the beginning. Defaults to false.
+</ParamField>
+
+<Note>
+When `once: true` is set, the `continue` option will not take effect since the content will only be shown once to the user.
+</Note>
+
 ## Return
 Returns a `Promise` that resolves when the content has been successfully initialized and displayed.
 
 ## Example
 
+### Basic Usage
 ```javascript
 usertour.start('cmaw8v1ch013s147h0uw8aha5');
 ```
+
+### Show Content Only Once
+```javascript
+usertour.start('cmaw8v1ch013s147h0uw8aha5', {
+  once: true
+});
+```
+
+### Resume Previous Session
+```javascript
+usertour.start('cmaw8v1ch013s147h0uw8aha5', {
+  continue: true
+});
+```
+
 
 <Note>
  Make sure to call `init()` before using any other Usertour.js methods

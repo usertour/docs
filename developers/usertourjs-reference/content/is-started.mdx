@@ -1,0 +1,30 @@
+---
+title: "isStarted()"
+description: "Check if a specific Usertour content has been started"
+---
+The `isStarted()` method allows you to check whether a specific Usertour content has been started. Currently, this method supports checking the status of flows and checklists. This method returns a boolean value indicating the content's start status.
+
+## Parameters
+
+<ParamField path="contentId" type="string" required>
+String, required - The unique identifier of the content. You can find this ID in the content detail page URL: `/env/{envId}/{contentType}/{contentId}/detail`
+</ParamField>
+
+## Return
+`boolean` - Returns `true` if the content has been started, `false` if it hasn't been started yet.
+
+## Example
+
+### Basic Usage
+```javascript
+const isContentStarted = usertour.isStarted('cmaw8v1ch013s147h0uw8aha5');
+if (isContentStarted) {
+  console.log('Content has been started');
+} else {
+  console.log('Content has not been started yet');
+}
+```
+
+<Note>
+Make sure to call `init()` before using any other Usertour.js methods
+</Note>
