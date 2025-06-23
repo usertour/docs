@@ -1,0 +1,160 @@
+---
+title: "setCustomNavigate()"
+description: "Configure custom navigation behavior for single-page applications"
+---
+
+By default, Usertour performs full page reloads when executing "Navigate to page" actions using `window.top.open(url, '_self')`.
+
+Use this function to override the default navigation behavior and integrate with your application's routing system.
+
+This is particularly useful for **Single Page Applications (SPAs)** that use client-side routing libraries like React Router, Vue Router, or Angular Router.
+
+## Parameters
+
+<ParamField path="customNavigate" type="Function | null" >
+ A navigation function that accepts a URL string parameter. Pass `null` to restore default behavior.
+</ParamField>
+
+## Usage Examples
+
+### Basic Implementation
+```javascript
+// Override with your router's navigation method
+usertour.setCustomNavigate(url => myRouter.push(url))
+```
+
+### React Router Integration
+
+#### React Router v6+ (Recommended)
+```javascript
+// App.js
+import { BrowserRouter } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+function App() {
+  const navigate = useNavigate()
+  
+  // Configure Usertour to use React Router navigation
+  usertour.setCustomNavigate(url => navigate(url))
+  
+  return (
+    // Your app components
+  )
+}
+
+// Wrap your app
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.body
+)
+```
+
+#### React Router v5 (Legacy)
+```javascript
+// history.js
+import { createBrowserHistory } from 'history'
+
+export default createBrowserHistory()
+```
+
+```javascript
+// App.js
+import { Router } from 'react-router-dom'
+import history from './history'
+import App from './App'
+
+ReactDOM.render(
+  <Router history={history}>
+    <App />
+  </Router>,
+  document.body
+)
+```
+
+```javascript
+// usertour-config.js
+import history from './history'
+
+// Configure Usertour to use React Router navigation
+usertour.setCustomNavigate(url => history.push(url))
+```
+
+### Vue Router Integration
+```javascript
+// For Vue Router v4
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+usertour.setCustomNavigate(url => router.push(url))
+
+// For Vue Router v3
+usertour.setCustomNavigate(url => this.$router.push(url))
+```
+
+### Angular Router Integration
+```javascript
+// For Angular Router
+import { Router } from '@angular/router'
+
+constructor(private router: Router) {
+  usertour.setCustomNavigate(url => this.router.navigateByUrl(url))
+}
+```
+
+### Next.js Integration
+```javascript
+// For Next.js
+import { useRouter } from 'next/router'
+
+const router = useRouter()
+usertour.setCustomNavigate(url => router.push(url))
+```
+
+### TanStack Router Integration
+```javascript
+// For @tanstack/react-router
+import { createRouter, RouterProvider } from '@tanstack/react-router'
+import { useNavigate } from '@tanstack/react-router'
+
+// Define your routes
+const router = createRouter({
+  routes: [
+    {
+      path: '/',
+      component: HomePage,
+    },
+    {
+      path: '/dashboard',
+      component: DashboardPage,
+    },
+  ],
+})
+
+// In your main App component
+function App() {
+  const navigate = useNavigate()
+  
+  // Configure Usertour to use TanStack Router navigation
+  usertour.setCustomNavigate(url => navigate({ to: url }))
+  
+  return (
+    // Your app components
+  )
+}
+
+// Wrap your app with RouterProvider
+ReactDOM.render(
+  <RouterProvider router={router}>
+    <App />
+  </RouterProvider>,
+  document.body
+)
+```
+
+## Notes
+
+- The custom navigation function receives the target URL as a string parameter
+- Ensure your navigation function handles both relative and absolute URLs appropriately
+- Call `setCustomNavigate(null)` to revert to default page reload behavior

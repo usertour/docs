@@ -92,7 +92,8 @@
 					{
 						"group": "Advanced usage",
 						"pages": [
-							"developers/usertourjs-reference/advanced/set-base-zIndex"
+							"developers/usertourjs-reference/advanced/set-base-zIndex",
+							"developers/usertourjs-reference/advanced/set-custom-navigate"
 						]
 					}
 				]
