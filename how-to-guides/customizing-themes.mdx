@@ -1,0 +1,71 @@
+---
+title: Customizing Themes
+description: With themes, you can design flows and other UserTour content to seamlessly integrate with your app. We provide a powerful yet user-friendly visual editor that requires no CSS or programming knowledge to modify every element of your theme.
+icon: "palette"
+---
+
+## Creating a theme
+
+To modify or create a new theme, follow these steps:
+
+1. Select **Settings** > **Themes** from the sidebar
+2. Click **New Theme** or select an existing standard theme
+![Theme Settings Page](/images/themes-01.png)
+3. To edit an existing standard theme, click the three dots in the top-right corner of each theme card, then click **Duplicate theme** to customize
+![Theme Settings Page](/images/themes-09.png)
+
+## Designing your first theme
+
+We recommend starting by adjusting these options:
+
+### Base colors
+Choose your **Brand Background Color** and **Main Text Color**. All other elements and hover/active states will automatically match.
+
+### Font
+Select your app's font. We support all standard fonts and Google fonts out of the box. For other fonts, please contact us.
+
+In the preview area, you can see a live example of what your theme looks like.
+
+![Theme Preview Options](/images/themes-03.png)
+
+## Other elements you can modify
+
+- **Font sizes**
+- **Button size, position, and colors**
+- **Tooltip size, position, and colors**
+- **Checklist size, position, and colors**
+
+You can change the preview content using the dropdown menu to see what your theme looks like for tooltips, modals, etc.
+
+![Theme Preview Options](/images/themes-04.png)
+
+## Conditional variations
+
+You can create conditional overrides of your theme based on user (and company) attributes and URLs (via current page conditions). Use cases include:
+
+![Theme Preview Options](/images/themes-05.png)
+
+### Supporting dark and light modes
+Support both dark and light modes in a single theme. This requires your UserTour.js snippet to pass a user attribute indicating whether the user is in dark or light mode.
+
+### Mobile responsiveness
+Adjust sizing for mobile devices.
+
+### Conditional color changes
+Change the color of content based on company or user attributes, or the URL the user is currently on. For example, to handle white-labeled versions of your software with different color schemes.
+
+![Theme with Variations](/images/themes-06.png)
+
+All overrides from all variations with true conditions will be applied to the main theme in the order they're listed.
+
+## Setting a default theme
+
+You can set a new theme as your default theme, which means it will be used by default for all new content. You can change the theme on specific flows, checklists, and launchers. Click the three dots menu in the top-right corner of the theme card to promote a theme to be the default theme.
+
+![Default Theme Settings](/images/themes-07.png)
+
+## Applying themes to content
+
+You can change the theme for flows, checklists, and launchers via the **Theme** button in the builder.
+
+![Change Theme on Flow](/images/themes-08.png)
