@@ -41,7 +41,7 @@ Before deploying Usertour with Coolify, ensure you have a Coolify instance runni
    
    Enter the following repository URL (this is an example, we recommend using your own configuration):
    ```
-   https://github.com/usertour/examples/blob/main/docker/docker-compose.coolify.yml
+   https://github.com/usertour/examples
    ```
    
    Then click **Check repository** to validate the connection.
@@ -50,13 +50,17 @@ Before deploying Usertour with Coolify, ensure you have a Coolify instance runni
    **Recommendation**: We suggest cloning the code to your own repository and maintaining the configuration yourself for better control and customization.
    </Note>
    
-   ![](/images/coolify-03.png)
+   ![](/images/coolify-08.png)
 
 4. **Select Build Pack**
    
    Choose **Docker Compose** as your build pack and click the **Continue** button.
    
-   ![](/images/coolify-04.png)
+   <Note>
+   You can also choose **Dockerfile** to deploy only Usertour (without Redis and PostgreSQL).
+   </Note>
+   
+   ![](/images/coolify-09.png)
 
 5. **Configure Docker Compose Location**
    
@@ -69,13 +73,13 @@ Before deploying Usertour with Coolify, ensure you have a Coolify instance runni
    If you're using your own repository, please configure this path according to your repository's directory structure.
    </Note>
    
-   ![](/images/coolify-05.png)
+   ![](/images/coolify-10.png)
 
 6. **Initiate Deployment**
    
    Click the **Deploy** button to start the deployment process.
    
-   ![](/images/coolify-06.png)
+   ![](/images/coolify-11.png)
 
 7. **Verify Deployment Status**
    
@@ -83,7 +87,7 @@ Before deploying Usertour with Coolify, ensure you have a Coolify instance runni
    * Green **Running** status
    * **Deployments** showing **success**
    
-   ![](/images/coolify-07.png)
+   ![](/images/coolify-12.png)
 
 <DeploymentNextSteps />
 
