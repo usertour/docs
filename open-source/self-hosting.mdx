@@ -85,8 +85,8 @@ Before starting the deployment, make sure you have:
 
    #### Option 2: Production Setup
    For production environments, you'll need to:
-   1. Install PostgreSQL and Redis separately
-   2. Update the `.env` file with your database credentials
+   1. Deploy Redis and PostgreSQL using cloud services (AWS, Google Cloud, etc.) or build your own infrastructure with high availability
+   2. Update the `.env` file with your Redis and PostgreSQL configuration
    3. Use this simplified configuration:
 
    ```yaml
@@ -113,7 +113,7 @@ Before starting the deployment, make sure you have:
    ```
 
    This command will:
-   * Create the database
+   * Initialize the database
    * Run database migrations
    * Start the Usertour application on port 8011
 
