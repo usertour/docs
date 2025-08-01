@@ -8,7 +8,11 @@
 		"dark": "#0D9373"
 	},
 	"favicon": "/images/favicon.png",
-	"api": { "playground": { "display": "simple" } },
+	"api": {
+		"playground": {
+			"display": "simple"
+		}
+	},
 	"navigation": {
 		"anchors": [
 			{
@@ -18,10 +22,10 @@
 					{
 						"group": "Get Started",
 						"pages": [
-                          "building-experiences/understanding-in-app-flows",
-                          "quickstart",
-                          "faq"
-                        ]
+							"building-experiences/understanding-in-app-flows",
+							"quickstart",
+							"faq"
+						]
 					},
 					{
 						"group": "How-to Guides",
@@ -190,14 +194,21 @@
 				]
 			},
 			{
-				"anchor": "Open Source",
+				"anchor": "Installation",
 				"icon": "github",
 				"groups": [
 					{
-						"group": "Open Source",
+						"group": "Installation",
 						"pages": [
+							{
+								"group": "Self Hosting",
+								"icon": "server",
+								"pages": [
+									"open-source/self-hosting",
+									"open-source/coolify-deployment"
+								]
+							},
 							"open-source/env",
-							"open-source/self-hosting",
 							"open-source/usertourjs",
 							"open-source/local-development"
 						]

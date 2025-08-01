@@ -1,0 +1,89 @@
+---
+title: Deploy with Coolify
+description: Deploy Usertour using Coolify - a simple and fast way to get started
+icon: "rocket"
+---
+
+import DeploymentRecommendations from '/snippets/deployment-recommendations.mdx';
+import DeploymentNextSteps from '/snippets/deployment-next-steps.mdx';
+
+<DeploymentRecommendations />
+## Coolify Deployment Guide
+
+### What is Coolify?
+
+Coolify is an open-source, self-hostable platform-as-a-service (PaaS) that simplifies the deployment of applications. It provides a user-friendly interface for managing Docker containers, databases, and other services.
+
+
+### Prerequisites
+
+Before deploying Usertour with Coolify, ensure you have a Coolify instance running (see [Coolify installation guide](https://coolify.io/docs/installation)).
+
+### Deployment Steps
+
+1. **Create a New Resource in Coolify**
+   
+   Navigate to your Coolify dashboard, open your project, and click the **Add New Resource** button.
+   
+   ![](/images/coolify-01.png)
+
+2. **Select Deployment Method**
+   
+   Choose **Public Repository** as your deployment option.
+   
+   <Note>
+   If you're using your own repository, please select **Public Repository** or **Private Repository** based on your repository's visibility settings.
+   </Note>
+   
+   ![](/images/coolify-02.png)
+
+3. **Configure Repository URL**
+   
+   Enter the following repository URL (this is an example, we recommend using your own configuration):
+   ```
+   https://github.com/usertour/examples/blob/main/docker/docker-compose.coolify.yml
+   ```
+   
+   Then click **Check repository** to validate the connection.
+   
+   <Note>
+   **Recommendation**: We suggest cloning the code to your own repository and maintaining the configuration yourself for better control and customization.
+   </Note>
+   
+   ![](/images/coolify-03.png)
+
+4. **Select Build Pack**
+   
+   Choose **Docker Compose** as your build pack and click the **Continue** button.
+   
+   ![](/images/coolify-04.png)
+
+5. **Configure Docker Compose Location**
+   
+   Update the **Docker Compose location** to:
+   ```
+   /docker/docker-compose.coolify.yml
+   ```
+   
+   <Note>
+   If you're using your own repository, please configure this path according to your repository's directory structure.
+   </Note>
+   
+   ![](/images/coolify-05.png)
+
+6. **Initiate Deployment**
+   
+   Click the **Deploy** button to start the deployment process.
+   
+   ![](/images/coolify-06.png)
+
+7. **Verify Deployment Status**
+   
+   Once deployment completes successfully, you should see:
+   * Green **Running** status
+   * **Deployments** showing **success**
+   
+   ![](/images/coolify-07.png)
+
+<DeploymentNextSteps />
+

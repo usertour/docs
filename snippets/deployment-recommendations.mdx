@@ -1,0 +1,9 @@
+<Warning>
+**Development/Testing Environment**: 
+We strongly recommend using Docker Compose for development and testing environments. This provides a quick and easy setup with all dependencies included.
+
+**Production Environment**: 
+For production deployments, we do **not** recommend using Docker Compose. Instead:
+- Deploy Redis and PostgreSQL using cloud services (AWS, Google Cloud, etc.) or build your own infrastructure with high availability
+- Deploy only the Usertour application using the published [Docker Hub](https://hub.docker.com/r/usertour/usertour/) image
+</Warning> 

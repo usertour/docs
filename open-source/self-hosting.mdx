@@ -1,9 +1,13 @@
 ---
-title: Self Hosting
+title: Deploy with Docker
 description: Deploy Usertour on your own infrastructure using Docker
 icon: "fan"
 ---
 
+import DeploymentRecommendations from '/snippets/deployment-recommendations.mdx';
+import DeploymentNextSteps from '/snippets/deployment-next-steps.mdx';
+
+<DeploymentRecommendations />
 ## Docker Deployment Guide
 
 ### Prerequisites
@@ -16,21 +20,11 @@ Before starting the deployment, make sure you have:
 
 ### Installation Steps
 
-1. **Install Docker and Docker Compose**
-
-   For macOS users:
-   ```bash
-   brew install docker docker-compose
-   ```
-
-   For Windows users:
-   ```bash
-   choco install docker-desktop docker-compose -y
-   ```
+1. **Install Docker and [Docker Compose](https://docs.docker.com/compose/install/)**
 
 2. **Configure Environment Variables**
 
-   Create a `docker.env` file or add environment variables to your `docker-compose.yml`. You can use [this example file](https://github.com/usertour/usertour/blob/main/.env.example) as a reference. For detailed environment variable documentation, see [Environment Variables](/open-source/env).
+   Create a `.env` file or add environment variables to your `docker-compose.yml`. You can use [this example file](https://github.com/usertour/usertour/blob/main/.env.example) as a reference. For detailed environment variable documentation, see [Environment Variables](/open-source/env).
 
 3. **Create Docker Compose Configuration**
 
@@ -123,17 +117,4 @@ Before starting the deployment, make sure you have:
    * Run database migrations
    * Start the Usertour application on port 8011
 
-### Accessing Usertour
-
-1. **Initial Access**
-   * Navigate to `http://<your-server-ip>:8011` or your configured domain
-   * Note: Usertour runs on HTTP by default. For HTTPS, you'll need to set up a reverse proxy
-
-2. **Default Login Credentials**
-   * Email: lisa@simpson.com
-   * Password: secret42
-   * **Important**: Change the password immediately after your first login
-
-### Next Steps
-
-To enable content delivery and user tracking, install Usertour.js in your application. See the [Usertour.js installation guide](/open-source/usertourjs) for detailed instructions.
+<DeploymentNextSteps />
