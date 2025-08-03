@@ -1,0 +1,57 @@
+---
+title: Mobile
+description: Learn how to optimize Usertour for mobile web applications and handle device-specific content
+icon: "mobile"
+---
+
+While Usertour does not support native mobile apps (e.g., native iOS or Android), it does support mobile web apps.
+
+All Usertour content is fully responsive, but in certain scenarios you may still need to handle mobile content more actively, such as:
+
+- If you want a checklist launcher to be smaller on mobile, or    
+- If you have different UI/CSS for your desktop version versus your mobile version.  
+
+## Recognizing if a user is on mobile
+
+To be able to cater content specifically for mobile, you first need to have Usertour.js pass an attribute called `device_type`, which can be configured like below:
+
+```javascript
+usertour.identify(userId, {
+  //...
+  device_type: window.innerWidth > 800 ? 'desktop' : 'mobile'
+})
+```
+
+This user attribute will show as "mobile" if the user is on mobile, and "desktop" if not. You can use this attribute in different conditions, as explained in the examples below.
+
+## Smaller checklist launchers for mobile
+
+Even though Usertour content is responsive, the checklist launchers might still appear too large. If you want to make them smaller for mobile, you don't have to create new checklists on a separate theme. Instead, you can use Usertour's powerful conditional theme variations.
+
+- **Step 1:** Go to themes and select your main theme.    
+- **Step 2:** Add a conditional variation using the device type user attribute.    
+![](/images/mobile-01.png)
+- **Step 3:** Change the size of the checklist in the variation and save the theme. Now Usertour will automatically apply this variation when the user attribute device type is mobile.  
+
+## Separate flows based on device type
+
+If your UI is significantly different between desktop and mobile, you can create two separate flows/checklists for desktop versus mobile and adjust the steps in each flow/checklist to match the given UI. See the steps below.
+
+- **Step 1:** Create two separate flows/checklists, one for mobile and one for desktop  
+![](/images/mobile-02.png)
+
+- **Step 2:** Set each flow/checklist to only start when on the given device type using the user attribute and to be hidden when not on this device type.  
+![](/images/mobile-03.png)
+
+- **Step 3:** To avoid the duplicate flow starting twice (once for mobile and once for desktop), you can furthermore add a condition to only start the duplicate flow in case the other flow has not been seen.  
+![](/images/mobile-04.png)
+
+## Disabling Usertour completely on mobile
+
+If you want to completely disable Usertour on mobile, you would need to remove the Usertour.js snippet from the mobile view. Then the users won't be registered and no content will be served.
+
+
+
+
+
+
