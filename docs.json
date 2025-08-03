@@ -208,9 +208,12 @@
 									"open-source/coolify-deployment"
 								]
 							},
+							"open-source/local-development",
 							"open-source/env",
 							"open-source/usertourjs",
-							"open-source/local-development"
+							"open-source/business-enterprise",
+							"open-source/backups",
+							"open-source/troubleshooting"
 						]
 					}
 				]

@@ -1,0 +1,44 @@
+---
+title: Backups
+description: Database and environment backup strategies for self-hosted UserTour instances
+icon: "database"
+---
+
+## Database Backups
+
+It is **strongly recommended** to implement automated daily backups of your PostgreSQL database with a minimum retention period of 30 days for optimal data protection. Always perform a full database backup or server snapshot before upgrading between releases, as each release includes automatic database migrations that may introduce breaking changes.
+
+### Backup Strategies
+
+- **Automated daily backups** with point-in-time recovery capabilities
+- **Pre-upgrade snapshots** before any version migration
+- **Cross-region replication** for disaster recovery scenarios
+- **Encrypted backup storage** to ensure data security
+
+The specific implementation details for PostgreSQL backups depend on your hosting infrastructure and deployment architecture. Refer to the [official PostgreSQL backup documentation](https://www.postgresql.org/docs/current/backup.html) for comprehensive backup strategies.
+
+### Basic Backup and Restore Commands
+
+**Create a database backup:**
+```bash
+pg_dump -h <host> -p <port> -U <username> -W <database_name> > backup.sql
+```
+
+**Restore from backup:**
+```bash
+psql -h <host> -p <port> -U <username> -W <database_name> < backup.sql
+```
+
+Replace `<host>`, `<port>`, `<username>`, and `<database_name>` with your actual database connection details.
+
+## Environment Configuration
+
+If your deployment environment lacks secure secret management capabilities and relies on `.env` files for configuration, ensure these files are backed up after every modification. Store backups in encrypted repositories or password managers with proper access controls.
+
+### Critical Environment Variables
+
+Backup the following configuration files:
+- Database connection strings
+- API keys and authentication tokens
+- SMTP configuration for email notifications
+- Redis connection parameters (if applicable)

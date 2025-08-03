@@ -1,0 +1,34 @@
+---
+title: Troubleshooting
+description: 
+icon: "wrench"
+---
+
+## Cannot access Postgres / Redis
+If using Docker and you setup your Redis or Postgres on the host machine you could use additional flag `--net="host"` for docker. In this case you will be able to use `localhost` as host in your `.env` file for redis and Postgres.
+
+## Usertour.js version not updated
+
+This is likely due to browser caching or third-party CDN caching (Cloudflare, Amazon CloudFront, etc.). You need to clear the cache for the following Usertour.js files, or modify the caching policies in your CDN settings:
+
+- `/sdk/es2020/usertour.js`
+- `/sdk/legacy/usertour.iife.js`
+
+The default UserTour nginx configuration already includes cache-busting headers for these files:
+
+```nginx
+# Specific SDK files with no-cache headers
+location = /sdk/es2020/usertour.js {
+    alias /usr/share/nginx/html/sdk/es2020/usertour.js;
+    add_header Access-Control-Allow-Origin "*";
+    add_header Cache-Control "public, max-age=0, must-revalidate";
+    expires -1;
+}
+
+location = /sdk/legacy/usertour.iife.js {
+    alias /usr/share/nginx/html/sdk/legacy/usertour.iife.js;
+    add_header Access-Control-Allow-Origin "*";
+    add_header Cache-Control "public, max-age=0, must-revalidate";
+    expires -1;
+}
+```
