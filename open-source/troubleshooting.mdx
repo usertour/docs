@@ -29,6 +29,10 @@ location = /sdk/legacy/usertour.iife.js {
     alias /usr/share/nginx/html/sdk/legacy/usertour.iife.js;
     add_header Access-Control-Allow-Origin "*";
     add_header Cache-Control "public, max-age=0, must-revalidate";
-    expires -1;
-}
-```
+       expires -1;
+   }
+   ```
+
+## Does UserTour app support multi-instance deployment?
+
+Yes, for production environments, we recommend installing Redis and PostgreSQL independently, and connecting the UserTour app to them via configuration files, rather than deploying Redis and PostgreSQL together with the UserTour app. This allows the UserTour app to scale horizontally based on load.
