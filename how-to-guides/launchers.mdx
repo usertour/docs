@@ -4,75 +4,62 @@ description: Learn how to create and customize launchers to highlight features a
 icon: "circle"
 ---
 
-## Overview
+## What are Launchers?
 
-Launchers are powerful UI elements that help you:
-- Highlight important features
-- Provide quick access to help
-- Guide users to key areas
-- Create interactive tooltips
-- Add visual cues to your interface
-
-All without writing a single line of code.
+Think of Launchers as little helpers you can place anywhere in your app. They're like small beacons or icons that can grab your users' attention or provide helpful hints. Unlike guided tours, these work independently - you can use them to highlight important features or add quick explanations wherever you need them.
 
 ## Creating Launchers
 
-### Basic Setup
-1. Sign in to [Usertour](https://app.usertour.io)
-2. Navigate to **Launchers** in the sidebar
-3. Click **Create launcher**
-4. Name your launcher
-5. Click **Create launcher** to proceed
+### Getting Started
+Creating a launcher is pretty straightforward:
 
-Launchers are published automatically, just like flows and checklists.
+1. Head over to [Usertour](https://app.usertour.io) and sign in
+2. Look for **Launchers** in the sidebar and click it
+3. Hit the **Create launcher** button
+4. Give your launcher a name that makes sense
+5. Click **Create launcher** and you're ready to go!
 
-Here's what the Launcher builder looks like:
+Just like flows and checklists, you'll need to publish your launcher for it to work.
+
+Here's what you'll see when building your launcher:
 
 ![](/images/launchers-01.png)
 
-## Customization
+### What You Can Customize
+When setting up your launcher, you have three main areas to configure:
 
-### Appearance
-Customize your launchers through the theme editor:
-- Access via [Settings -> Themes](https://app.usertour.io/project/1/settings/themes)
-- Modify beacon styles
-- Customize icon designs
-- Adjust button appearances
-- Match your app's design
+**Appearance** - What should it look like? You can choose between a beacon, button, icon, or keep it hidden. You'll also pick which part of your app it should stick to.
 
-### Layer Control
-Control how launchers appear in your interface:
+**Behavior** - How should it work? You can make it activate when someone clicks or hovers over it, and decide whether to show a helpful tooltip or trigger an action (like starting a tour or going to a specific page).
 
-#### Z-Index Management
-- Adjust launcher visibility
-- Control layering with other elements
-- Set display priority
-- Configure in the Launcher Builder
+**Tooltip Settings** - If you're showing a tooltip, you can customize where it appears and whether the launcher disappears after someone uses it for the first time.
 
-## Best Practices
+### Making Your Launcher Visible
+Want your launcher to actually show up for users? You'll need to set up some conditions in the left panel of your launcher's detail page. This lets you control when and where it appears.
 
-1. **Strategic Placement**
-   - Place near important features
-   - Ensure good visibility
-   - Avoid cluttering the interface
-   - Consider user workflow
+For the complete guide on setting up conditions, check out our [Starting Guide](/how-to-guides/starting-flows).
 
-2. **Visual Design**
-   - Use consistent styling
-   - Match your app's theme
-   - Make them noticeable but not distracting
-   - Ensure good contrast
+<Note>
+Don't forget to install [Usertour.js](/developers/usertourjs-reference/installation) in your app - without it, your launchers won't work for your users.
+</Note>
 
-3. **User Experience**
-   - Keep tooltips concise
-   - Provide clear actions
-   - Make interactions intuitive
-   - Test on different screen sizes
 
-4. **Performance**
-   - Use appropriate z-index values
-   - Optimize for different devices
-   - Consider loading times
-   - Test in various scenarios
+## Great Ways to Use Launchers
 
-> **Tip**: Use launchers strategically to guide users to new or important features without overwhelming them.
+### Create Attention-Grabbing Hotspots
+Perfect for highlighting cool features in your app! When users hover over these hotspots, they'll see helpful tooltips with more info and maybe even a button to start a guided tour.
+
+![](/images/launchers-02.png)
+![](/images/launchers-03.png)
+
+### Add Helpful Explanation Icons
+Sometimes your app has features that need a bit more explanation than what's obvious. Place small icon launchers next to these elements to give users that extra context they need.
+
+![](/images/launchers-04.png)
+![](/images/launchers-05.png)
+
+### Make Your Launchers Look Great
+Want to match your launchers to your app's style? Head over to [Settings -> Themes](https://app.usertour.io/project/1/settings/themes) to customize how they look. We've got a whole guide on [customizing themes](/how-to-guides/customizing-themes) to help you out.
+
+### Fixing Display Issues
+Sometimes your launcher might appear on top of something when you want it behind. If that happens, you can adjust the "z-index" setting. Just go to your launcher, click on Advanced settings, and you'll find the z-index option there.
