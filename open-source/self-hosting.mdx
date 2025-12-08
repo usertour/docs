@@ -45,8 +45,6 @@ Before starting the deployment, make sure you have:
          - "8011:80"
        env_file:
          - .env
-       environment:
-         - PRISMA_BINARY_PLATFORM=linux-musl-openssl-3.0.x
        depends_on:
          postgres:
            condition: service_healthy
@@ -113,8 +111,6 @@ Before starting the deployment, make sure you have:
          - "8011:80"
        env_file:
          - .env
-       environment:
-         - PRISMA_BINARY_PLATFORM=linux-musl-openssl-3.0.x
        restart: always
    ```
 
