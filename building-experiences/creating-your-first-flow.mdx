@@ -80,8 +80,15 @@ Follow these steps to add a step:
 1. Navigate to the flow detail page
 2. Click **Edit in builder** at the top
 3. Click the **Create** button on the left side of the builder
-4. Select a **Step Type** (Tooltip, Modal, Hidden)
+4. Select a **Step Type** (Tooltip, Modal, Speech bubble, Hidden)
 5. Edit the Step content
+
+### Step types
+
+- **Speech bubble** — Renders at a fixed position (set in themes) and is not tied to any on-page element. Best for opening a flow with a conversational, action-focused message.
+- **Tooltip** — Attaches hints and prompts to specific elements in your app. Best for walking users through a particular task or workflow.
+- **Modal** — Overlays your app and blocks interaction with the page until the user dismisses it or moves to the next step. Best for single-step announcements, flow start prompts, or flow-end messages (e.g. with confetti).
+- **Hidden** — Runs a user interaction that advances the flow without showing any UI. Best for pausing until the user does something, or sending them to a given page automatically.
 
 <iframe
   height="418"
