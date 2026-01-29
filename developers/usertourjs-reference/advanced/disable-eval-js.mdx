@@ -1,0 +1,45 @@
+---
+title: "disableEvalJs()"
+description: "Disable Evaluate JavaScript actions for security"
+---
+
+In the flow builder, Usertour supports **Evaluate JavaScript** actions on buttons, triggers, and other elements. When a user interacts with these elements (e.g. clicks a button), the configured JavaScript runs in your app’s context. This lets you run custom code from flows without changing your app code.
+
+If your security or compliance requirements forbid executing arbitrary JS from the flow builder, you can turn this feature off with `disableEvalJs()`.
+
+## When to use
+
+- You need to prevent any JavaScript defined in the flow builder from running in your app.
+- Your security policy or CSP restricts dynamic script execution.
+- You want to reduce the attack surface of flows (e.g. in high‑security or locked‑down environments).
+
+## Requirements
+
+- Call `disableEvalJs()` **before** `usertour.identify()` (or any other call that starts showing flows).
+- Note that it has to be called on every page load to have an effect.
+
+## Parameters
+
+None.
+
+## Example
+
+```javascript
+import usertour from 'usertour.js';
+
+usertour.init('<USERTOUR_TOKEN>');
+
+// Disable Evaluate JavaScript actions (must be before identify)
+usertour.disableEvalJs();
+
+usertour.identify('<USER_ID>', {
+  name: '<NAME>',
+  email: '<EMAIL>',
+});
+```
+
+## Notes
+
+- Once disabled, any **Evaluate JavaScript** actions in your flows will not run. Buttons and triggers will still work; only the custom JS execution is disabled.
+- This does not affect other flow behavior (navigation, dismiss, etc.).
+- If you need this restriction on all pages, add the call in a shared bootstrap/entry script that runs before flow-related code on every load.
