@@ -1,0 +1,88 @@
+---
+title: "setCustomScrollIntoView()"
+description: "Customize how Usertour scrolls elements into view"
+---
+
+When Usertour shows a tooltip that points to an element outside the current viewport, it needs to scroll that element into view. This method lets you take control of exactly how that scrolling happens.
+
+By default, Usertour uses smooth scrolling and only scrolls when the target element is actually outside the viewport. But maybe you want different behavior—like always centering elements, or using a custom scroll animation library. That's what `setCustomScrollIntoView()` is for.
+
+## When to use
+
+- You want to customize the scroll behavior when Usertour shows tooltips or highlights elements
+- You need to integrate with a custom scroll library or animation framework
+- You want different positioning (e.g., always center elements vertically instead of just bringing them into view)
+- Your app has custom scroll containers or non-standard scrolling behavior
+
+## Parameters
+
+<ParamField path="customScrollIntoView" type="function | null" required>
+  A function that receives a DOM element and handles scrolling it into view. The
+  function should perform whatever scroll logic you want. Pass `null` to reset
+  to Usertour's default scroll behavior.
+</ParamField>
+
+## Examples
+
+### Always center elements vertically
+
+Maybe you want tooltip targets to always appear in the vertical center of the viewport for a consistent experience:
+
+```javascript
+usertour.setCustomScrollIntoView((element) => {
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
+});
+```
+
+This ensures every highlighted element appears right in the middle of the screen, rather than just barely in view.
+
+### Using a custom scroll library
+
+If you're using a scroll animation library, you can integrate it here:
+
+```javascript
+usertour.setCustomScrollIntoView((element) => {
+  // Using a hypothetical smooth-scroll library
+  smoothScroll(element, {
+    duration: 800,
+    easing: "easeInOutCubic",
+    offset: -100, // Add some top padding
+  });
+});
+```
+
+### Reset to default behavior
+
+If you want to go back to Usertour's built-in scrolling:
+
+```javascript
+usertour.setCustomScrollIntoView(null);
+```
+
+### Compare with default behavior
+
+For reference, here's how the default behavior works internally:
+
+```javascript
+// This is what Usertour does by default
+usertour.setCustomScrollIntoView((element) => {
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest",
+  });
+});
+```
+
+The `block: 'nearest'` option means it only scrolls enough to bring the element into view, without unnecessary movement.
+
+## Notes
+
+- Call this method early in your initialization, ideally right after `usertour.init()`
+- Your custom function should handle the actual scrolling—Usertour won't do any additional scrolling after calling your function
+- The element passed to your function is always the DOM element that Usertour wants to highlight or point to
+- If your scroll function is async or takes time, Usertour will continue immediately—make sure your timing works well with tooltip animations
+- Consider viewport padding and navigation bars when implementing custom scroll logic
+- Test with elements at different viewport positions to ensure consistent behavior

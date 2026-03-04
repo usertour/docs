@@ -1,0 +1,129 @@
+---
+title: "setUrlFilter()"
+description: "Filter sensitive data from URLs before sending to Usertour"
+---
+
+Usertour automatically tracks the current page URL and uses it for flow conditions and analytics. By default, it sends the complete URL—including domain, path, query parameters (`?...`), and fragment (`#...`)—to Usertour's servers.
+
+If your URLs contain sensitive information like session tokens, user IDs, or secret keys, you can filter them out before they leave the browser. This method lets you sanitize URLs while still keeping the tracking and conditional logic working properly.
+
+## When to use
+
+- Your URLs contain sensitive data (tokens, secrets, PII) that shouldn't be sent to external servers
+- You want to normalize URLs by removing tracking parameters or temporary identifiers
+- You need to comply with privacy requirements that restrict what URL data can be transmitted
+- You want cleaner analytics by stripping unnecessary query parameters
+
+## Parameters
+
+<ParamField path="urlFilter" type="function | null" required>
+  A function that receives the current URL string and returns a
+  filtered/sanitized version. The function should return a string representing
+  the cleaned URL. Pass `null` to reset to Usertour's default behavior (sending
+  the full URL unmodified).
+</ParamField>
+
+## Examples
+
+### Remove all query parameters
+
+The simplest approach—strip everything after the `?` to remove all query parameters:
+
+```javascript
+usertour.setUrlFilter((url) => {
+  const parsed = new URL(url);
+  parsed.search = "";
+  return parsed.toString();
+});
+
+// Full URL:
+// https://example.com/dashboard?q=secret&sort_by=name
+// Filtered URL:
+// https://example.com/dashboard
+```
+
+This is great if you don't need any query parameters for flow conditions and want maximum privacy.
+
+### Remove specific sensitive parameters
+
+Maybe you need some query parameters but want to strip out specific ones like tokens or session IDs:
+
+```javascript
+usertour.setUrlFilter((url) => {
+  const parsed = new URL(url);
+  parsed.searchParams.delete("token");
+  parsed.searchParams.delete("session_id");
+  parsed.searchParams.delete("api_key");
+  return parsed.toString();
+});
+
+// Full URL:
+// https://example.com/app?token=abc123&view=grid&session_id=xyz
+// Filtered URL:
+// https://example.com/app?view=grid
+```
+
+This keeps useful parameters like `view` while removing sensitive authentication data.
+
+### Remove only a specific parameter
+
+If you just need to filter out one problematic parameter:
+
+```javascript
+usertour.setUrlFilter((url) => {
+  const parsed = new URL(url);
+  parsed.searchParams.delete("debug");
+  return parsed.toString();
+});
+
+// Full URL:
+// https://app.example.com/projects?debug=true&filter=active
+// Filtered URL:
+// https://app.example.com/projects?filter=active
+```
+
+### Hash sensitive parameters instead of removing them
+
+Sometimes you want to keep the structure but anonymize the values:
+
+```javascript
+usertour.setUrlFilter((url) => {
+  const parsed = new URL(url);
+
+  // Replace user ID with a hash, keeping flow logic working
+  if (parsed.searchParams.has("user_id")) {
+    const userId = parsed.searchParams.get("user_id");
+    parsed.searchParams.set("user_id", `hashed_${btoa(userId).slice(0, 8)}`);
+  }
+
+  return parsed.toString();
+});
+```
+
+### Reset to default behavior
+
+To go back to sending the full URL:
+
+```javascript
+usertour.setUrlFilter(null);
+```
+
+## Verifying your filter works
+
+After setting up your URL filter, here's how to verify it's working:
+
+1. Visit a page in your app with a filtered URL (e.g., one with sensitive query parameters)
+2. Go to Usertour's dashboard → **Users** section
+3. Find your own user and click to view details
+4. In the **Activity feed**, find a recent event (like **Flow Started**)
+5. Expand the event and check the **Page URL** attribute—it should show your filtered URL, not the original
+
+## Notes
+
+- Call this method early in your initialization, right after `usertour.init()` and before any flows appear
+- Your filter function runs every time Usertour needs to report the current URL
+- The filtered URL is used both for flow conditions and analytics tracking
+- Make sure your filter doesn't break URL-based flow conditions you've already set up
+- The function should always return a valid URL string
+- Consider performance—this function may be called frequently, so keep it lightweight
+- The original URL in the browser address bar remains unchanged; only the URL sent to Usertour is filtered

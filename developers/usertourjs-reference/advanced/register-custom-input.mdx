@@ -1,0 +1,97 @@
+---
+title: "registerCustomInput()"
+description: "Teach Usertour to recognize custom HTML elements as input fields"
+---
+
+Sometimes you need to use fancy UI components like combo boxes, custom dropdowns, or other non-standard input elements in your app. By default, Usertour only knows how to read values from standard `<input>` elements. That's where `registerCustomInput()` comes in handy.
+
+This method tells Usertour how to treat any HTML element as a text input. You can register multiple custom input types by calling this function multiple times—just point each one at a different CSS selector.
+
+## When to use
+
+- You're using custom UI components (combo boxes, rich selects, etc.) that aren't built with standard `<input>` tags
+- You want to create flow conditions based on the values in these custom components
+- You need Usertour to capture data from non-standard input elements
+
+## Parameters
+
+<ParamField path="cssSelector" type="string" required>
+  A valid CSS selector that matches your custom input element(s). Make it
+  specific enough to target exactly the elements you want.
+</ParamField>
+
+<ParamField path="getValue" type="function" optional>
+  An optional function that extracts the current value from your custom input
+  element. It receives the matched element as an argument and should return a
+  string. If you don't provide this function, Usertour will just use the
+  element's text content as the value.
+</ParamField>
+
+## Examples
+
+### Basic usage with text content
+
+Let's say you have a combo box built with divs. Here's the HTML structure:
+
+```html
+<label>Favorite Fruit</label>
+<div class="combo-box">
+  <div class="combo-box-value">Apple</div>
+  <div class="combo-box-trigger">▼</div>
+</div>
+```
+
+Tell Usertour to treat it like an input:
+
+```javascript
+usertour.registerCustomInput(".combo-box-value");
+```
+
+Now you can create flow conditions checking if the fruit equals "Apple" or whatever value is displayed.
+
+### Advanced usage with custom getValue
+
+For more complex components where the value isn't directly in the text content, you can provide your own value extractor:
+
+```html
+<label>Select City</label>
+<div class="location-picker" data-city-id="123">
+  <input type="text" value="San Francisco" readonly />
+  <div class="location-picker-icon">📍</div>
+</div>
+```
+
+Extract the value however you need:
+
+```javascript
+usertour.registerCustomInput(".location-picker", (element) => {
+  // Grab the nested input's value
+  const input = element.querySelector("input");
+  return (input && input.value) || "";
+});
+```
+
+### Using data attributes
+
+You might store the actual value in a data attribute while displaying something different:
+
+```html
+<div class="tag-selector" data-selected-tags="engineering,design">
+  <span class="tag">Engineering</span>
+  <span class="tag">Design</span>
+</div>
+```
+
+```javascript
+usertour.registerCustomInput(".tag-selector", (el) => {
+  return el.dataset.selectedTags || "";
+});
+```
+
+## Notes
+
+- Call `registerCustomInput()` early in your initialization code, ideally right after `usertour.init()` but before flows start appearing
+- You can register as many custom input types as you need—one selector per call
+- The `getValue` function should always return a string, even if it's an empty string
+- If your custom inputs update dynamically, make sure the value extraction logic stays accurate
+- This works great with conditional flow logic in the Flow Builder—you can now branch based on these custom input values

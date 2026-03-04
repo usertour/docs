@@ -1,0 +1,134 @@
+---
+title: "setLinkUrlDecorator()"
+description: "Automatically modify external link URLs in Usertour flows"
+---
+
+Sometimes your flows need to link to external pages—like help articles, documentation, or knowledge base content. But what if those links need authentication tokens, tracking parameters, or other dynamic data added to them? That's where `setLinkUrlDecorator()` comes in.
+
+This method lets you intercept and modify every external URL before Usertour renders it as a link. Every time a user clicks a link in a flow, your decorator function runs first to add whatever parameters or modifications you need.
+
+## When to use
+
+- Your knowledge base or help docs require authentication tokens in the URL
+- You need to add tracking parameters to outbound links (e.g., `utm_source`, `ref`)
+- External links need user-specific data (like user IDs or session tokens)
+- You want to redirect links through a proxy or wrapper URL
+- Links need to be localized or modified based on user context
+
+## Parameters
+
+<ParamField path="linkUrlDecorator" type="function | null" required>
+  A function that receives a URL string and returns the modified/decorated URL.
+  The function is called for every external link Usertour needs to render. Pass
+  `null` to stop decorating URLs and use them as-is.
+</ParamField>
+
+## Examples
+
+### Add authentication token to knowledge base links
+
+Let's say your knowledge base requires users to pass an auth token for automatic login:
+
+```javascript
+// TODO: Get this token from your auth system
+const authToken = getKnowledgeBaseToken();
+
+usertour.setLinkUrlDecorator((url) => {
+  // Only add the token to your knowledge base domain
+  if (url.startsWith("https://docs.myapp.com/")) {
+    const parsed = new URL(url);
+    parsed.searchParams.set("auth", authToken);
+    return parsed.toString();
+  }
+  return url;
+});
+
+// Original URL:
+// https://docs.myapp.com/articles/getting-started
+// Decorated URL:
+// https://docs.myapp.com/articles/getting-started?auth=abc123xyz
+```
+
+### Add tracking parameters to all external links
+
+Track which users click external links from your flows:
+
+```javascript
+usertour.setLinkUrlDecorator((url) => {
+  const parsed = new URL(url);
+  parsed.searchParams.set("utm_source", "usertour");
+  parsed.searchParams.set("utm_medium", "in-app-flow");
+  parsed.searchParams.set("user_id", currentUserId);
+  return parsed.toString();
+});
+
+// Original URL:
+// https://blog.example.com/feature-announcement
+// Decorated URL:
+// https://blog.example.com/feature-announcement?utm_source=usertour&utm_medium=in-app-flow&user_id=12345
+```
+
+### Redirect links through a proxy
+
+Route all external links through your own proxy server:
+
+```javascript
+usertour.setLinkUrlDecorator((url) => {
+  // Only proxy external links, not internal ones
+  if (!url.startsWith(window.location.origin)) {
+    return `https://proxy.myapp.com/redirect?url=${encodeURIComponent(url)}`;
+  }
+  return url;
+});
+
+// Original URL:
+// https://external-site.com/page
+// Decorated URL:
+// https://proxy.myapp.com/redirect?url=https%3A%2F%2Fexternal-site.com%2Fpage
+```
+
+### Add user-specific parameters conditionally
+
+Different logic for different domains:
+
+```javascript
+usertour.setLinkUrlDecorator((url) => {
+  const parsed = new URL(url);
+
+  // Add auth token to docs
+  if (url.includes("docs.myapp.com")) {
+    parsed.searchParams.set("token", getUserToken());
+  }
+
+  // Add locale to support site
+  if (url.includes("support.myapp.com")) {
+    parsed.searchParams.set("locale", getUserLocale());
+  }
+
+  // Add plan info to upgrade links
+  if (url.includes("myapp.com/upgrade")) {
+    parsed.searchParams.set("current_plan", getUserPlan());
+  }
+
+  return parsed.toString();
+});
+```
+
+### Remove the decorator
+
+To stop modifying URLs and use them as originally configured:
+
+```javascript
+usertour.setLinkUrlDecorator(null);
+```
+
+## Notes
+
+- Call this method early in your initialization, ideally right after `usertour.init()`
+- Your decorator function is called for **every** external link Usertour renders, so keep it fast
+- Always check the URL domain/path before modifying—you usually don't want to modify every single link
+- The function should always return a valid URL string
+- Remember to handle both HTTP and HTTPS URLs if needed
+- If your auth tokens expire, you may need to re-call this method with a fresh token
+- Internal navigation within your app (via `setCustomNavigate`) is not affected by this decorator
+- Be careful with sensitive data—these URLs may be visible in the browser's address bar or network logs

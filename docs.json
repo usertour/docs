@@ -104,7 +104,11 @@
             "pages": [
               "developers/usertourjs-reference/advanced/set-base-zIndex",
               "developers/usertourjs-reference/advanced/set-custom-navigate",
-              "developers/usertourjs-reference/advanced/disable-eval-js"
+              "developers/usertourjs-reference/advanced/disable-eval-js",
+              "developers/usertourjs-reference/advanced/register-custom-input",
+              "developers/usertourjs-reference/advanced/set-custom-scroll-into-view",
+              "developers/usertourjs-reference/advanced/set-url-filter",
+              "developers/usertourjs-reference/advanced/set-link-url-decorator"
             ]
           }
         ]
