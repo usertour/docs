@@ -1,0 +1,172 @@
+---
+title: How Start Rules Work
+description: Understand how auto-start rules and temporary hide rules work together so your onboarding appears at the right time.
+icon: "filter"
+---
+
+## Overview
+
+When people ask why a Flow or Checklist did or did not appear, the answer is usually a little more nuanced than "the start rule matched" or "the start rule did not match."
+
+In Usertour, there are two layers involved:
+
+- **Auto-start rules** decide whether the content is eligible to start
+- **Temporary hide rules** decide whether the content must stay hidden for now
+
+That matters because a Flow or Checklist can match its auto-start conditions and still not show up. It may be blocked by temporary hide rules, repeat settings, a Wait condition, or another item with higher priority.
+
+## What auto-start rules do
+
+Auto-start rules answer a simple question:
+
+> Should this content become eligible to start?
+
+You can use them to start content based on conditions such as:
+
+- **User attribute**
+- **Current page is**
+- **Flow/Checklist** completion or seen state
+- **Element is present/clicked/disabled**
+- **Text input value is**
+- **User fills in input**
+- **Current time**
+- **Wait**
+
+In practice, auto-start rules should do most of the targeting work. They define when a Flow or Checklist is relevant enough to appear.
+
+<Note>
+- You can combine multiple conditions using AND/OR groups
+- Flows start once per user by default, but you can change this to multiple times or unlimited
+- Checklists stay on screen until manually dismissed unless you prevent dismissal
+- The Wait condition is useful when your UI loads asynchronously
+</Note>
+
+## What temporary hide rules do
+
+Temporary hide rules answer a different question:
+
+> Even if this content is eligible, should it stay hidden right now?
+
+Use them when content would be distracting, badly timed, or simply not relevant in the current context. For example:
+
+- Hide a checklist on login or settings pages
+- Hide a Flow during billing or checkout
+- Hide a launcher inside a resource center
+
+The easiest way to think about temporary hide rules is as a safety layer, not your main targeting system.
+
+<Warning>
+If you want precise control over when content starts, start with auto-start rules. Temporary hide rules are usually best for preventing interruptions, not replacing targeting.
+</Warning>
+
+## How the rules work together
+
+Before content starts, Usertour checks a few things.
+
+In practice, the decision looks like this:
+
+1. Are the auto-start rules active?
+2. Do the repeat settings allow the content to start again?
+3. Are temporary hide rules blocking it?
+4. Has the wait condition finished, if one is configured?
+5. If multiple items are eligible, which one has higher priority?
+
+So if a Flow or Checklist does not appear, it does not necessarily mean the start rule was wrong.
+
+## A simple mental model
+
+One helpful way to think about it is as two gates:
+
+- **Eligibility gate**: auto-start rules
+- **Safety gate**: temporary hide rules
+
+If content passes the eligibility gate but fails the safety gate, it will not appear.
+
+That is what makes onboarding feel contextual without getting in the user's way.
+
+## Recommended patterns
+
+### First-time onboarding
+
+Use a **User attribute** auto-start rule such as `is_new_user=true`.
+
+That is usually better than trying to infer who is new based only on page behavior.
+
+### Feature discovery on a specific page
+
+Use **Current page is** for page targeting. In single-page apps, it often works better when you combine it with:
+
+- **Element is present**
+- **Wait**
+
+This helps prevent a Flow from starting before the UI is actually ready.
+
+### Progressive onboarding
+
+If Flow B should only start after Flow A is completed, use a **Flow/Checklist** condition such as:
+
+- `Flow A completed`
+- `Flow A seen`
+
+This is usually the cleanest way to build a multi-step onboarding sequence.
+
+### Preventing interruptions
+
+If users enter sensitive workflows such as billing, checkout, or payment, use **temporary hide rules** to keep onboarding out of the way during those moments.
+
+This is especially helpful for persistent content like checklists.
+
+### Showing checklists at the right time
+
+Because checklists stay visible until they are dismissed, it is usually better to start them only when the user is ready for them.
+
+A common pattern is:
+
+- Start the checklist after setup is complete
+- Hide it on pages where it would create noise
+
+## Common mistakes
+
+### Using temporary hide as the main targeting system
+
+This usually makes behavior harder to understand, explain, and debug.
+
+A better approach is:
+
+- Use auto-start to define when content should start
+- Use temporary hide to define when content must not interrupt
+
+### Relying only on page rules in single-page apps
+
+If the route changes before the UI is fully rendered, your Flow can start too early.
+
+When a specific element matters, combine page conditions with:
+
+- **Element is present**
+- **Wait**
+
+### Starting checklists too early
+
+Checklists are persistent. If they show up before the user is ready, they can feel like permanent clutter.
+
+Usually it is better to gate them behind setup completion, user readiness, or another onboarding milestone.
+
+## Troubleshooting: why a Flow or Checklist did not start
+
+If a Flow or Checklist did not appear when you expected it to, these are the first things to check:
+
+1. The auto-start rules are enabled and the conditions actually matched
+2. The repeat settings still allow the content to start again
+3. A temporary hide rule is not active
+4. A Wait condition is not still counting down
+5. Another eligible item did not win because of priority
+6. In a single-page app, the target element is actually present when the rule is evaluated
+
+## Summary
+
+Use this rule of thumb:
+
+- **Auto-start rules** define eligibility
+- **Temporary hide rules** prevent interruptions
+
+When you keep those two jobs separate, Flows and Checklists become much easier to reason about and troubleshoot.
