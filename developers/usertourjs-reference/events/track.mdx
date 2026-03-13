@@ -1,0 +1,73 @@
+---
+title: "track()"
+description: "Record custom product events for the current user and optionally attach event attributes"
+---
+
+The `track()` method sends a custom event to Usertour for the currently identified user.
+
+Use it when you want to record meaningful product actions from your app, such as a project being created, a subscription being upgraded, or a teammate being invited.
+
+Before calling `track()`, the user must already be identified with [`identify()`](/developers/usertourjs-reference/users/identify) or [`identifyAnonymous()`](/developers/usertourjs-reference/users/identify-anonymous).
+
+If the event name or event attributes do not exist yet in Usertour, their definitions are created automatically the first time they are received.
+
+## Parameters
+
+<ParamField path="name" type="string" required>
+  The event name to track. This maps to the event's `codeName` in Usertour. We recommend using stable, descriptive names such as `project_created`, `subscription_upgraded`, or `teammate_invited`.
+</ParamField>
+
+<ParamField path="attributes" type="object">
+  Optional event attributes to store alongside the event. These can be used later in analytics and event-based conditions.
+</ParamField>
+
+<ParamField path="options" type="object">
+  Optional settings that control how the event is associated in Usertour.
+</ParamField>
+
+<ParamField path="options.userOnly" type="boolean">
+  By default, if the current user has also been associated with a company through [`group()`](/developers/usertourjs-reference/companies/company), the tracked event is linked to both the user and the current company. Set `userOnly: true` to record the event only for the user.
+</ParamField>
+
+## Returns
+
+A `Promise` that resolves when the event has been accepted by Usertour.
+
+## Examples
+
+### Track a simple product event
+
+```javascript
+usertour.track('workspace_created');
+```
+
+### Track an event with attributes
+
+```javascript
+usertour.track('subscription_upgraded', {
+  plan_name: 'growth',
+  billing_cycle: 'annual',
+  amount: 299
+});
+```
+
+### Track a user-level event even when a company is set
+
+```javascript
+usertour.track(
+  'profile_email_updated',
+  {
+    source: 'settings'
+  },
+  {
+    userOnly: true
+  }
+);
+```
+
+## Notes
+
+- Call `identify()` or `identifyAnonymous()` before using `track()`
+- Event names should stay stable over time so analytics and conditions remain reliable
+- If `group()` has been called, events are associated with the current company unless `userOnly: true` is set
+- Event and event-attribute definitions are created automatically when first received

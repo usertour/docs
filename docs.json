@@ -35,6 +35,7 @@
               "how-to-guides/launchers",
               "how-to-guides/surveys",
               "how-to-guides/banners",
+              "how-to-guides/event-trackers",
               "how-to-guides/starting-flows",
               "how-to-guides/how-start-rules-work",
               "how-to-guides/go-to-page-when-starts",
@@ -90,6 +91,13 @@
             "pages": [
               "developers/usertourjs-reference/companies/company",
               "developers/usertourjs-reference/companies/update-company"
+            ]
+          },
+          {
+            "group": "Events",
+            "pages": [
+              "developers/usertourjs-reference/events/overview",
+              "developers/usertourjs-reference/events/track"
             ]
           },
           {

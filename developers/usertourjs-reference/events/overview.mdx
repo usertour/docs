@@ -1,0 +1,19 @@
+---
+title: "Events"
+description: "Track custom product events for users and companies in Usertour"
+---
+
+Events let you record meaningful product actions from your application and use them in analytics, segmentation, and conditions.
+
+A tracked event is always associated with the current user. If the user has also been associated with a company through [`group()`](/developers/usertourjs-reference/companies/company), the event can also be associated with that company.
+
+Typical use cases include:
+
+- Measuring product adoption
+- Triggering flows or checklists based on behavior
+- Building segments from user actions
+- Recording milestone actions like `project_created` or `subscription_upgraded`
+
+## Available methods
+
+- [`track()`](/developers/usertourjs-reference/events/track) records a custom event for the current user, with optional event attributes and tracking options.
