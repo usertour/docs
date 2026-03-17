@@ -51,8 +51,7 @@
               "how-to-guides/urls",
               "how-to-guides/flow-analytics",
               "how-to-guides/embed",
-              "how-to-guides/mobile",
-              "how-to-guides/setup-license-key"
+              "how-to-guides/mobile"
             ]
           },
           {
@@ -228,6 +227,8 @@
               "open-source/local-development",
               "open-source/env",
               "open-source/usertourjs",
+              "open-source/system-admin",
+              "open-source/license-management",
               "open-source/business-enterprise",
               "open-source/backups",
               "open-source/troubleshooting"

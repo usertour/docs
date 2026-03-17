@@ -1,0 +1,160 @@
+---
+title: System Admin
+description: Manage self-hosted instance settings, licensing, users, and projects
+icon: "shield"
+---
+
+## Overview
+
+Starting from version `0.5.1`, self-hosted deployments include a dedicated **System Admin** area.
+
+Think of it as the place where you manage things that belong to the whole instance, not just a single project. That includes:
+
+- Instance metadata and policies
+- Authentication behavior
+- Instance-level subscription and licensing
+- Global user management
+- Global project management
+
+Open **System Admin** from the account menu in the bottom-left corner of the app.
+
+![](/images/admin-11.png)
+
+## Default admin account
+
+If you're using the standard self-hosted Docker deployment, Usertour seeds a bootstrap admin account when the database is still empty.
+
+- Email: `lisa@simpson.com`
+- Password: `secret42`
+
+This seeded user is the default `System Admin` for the instance.
+
+After your first login, open **System Admin** from the account menu to manage:
+
+- instance settings
+- authentication policy
+- instance subscription
+- users
+- projects
+
+## Navigation
+
+The current System Admin navigation includes:
+
+- **General**
+- **Authentication**
+- **Subscription**
+- **Users**
+- **Projects**
+
+The idea is simple:
+
+- **General** and **Authentication** are instance-level settings
+- **Subscription** is where instance licensing lives
+- **Users** and **Projects** are global management pages
+
+## General
+
+The **General** page is where you manage basic instance information and a few global behaviors.
+
+- **Instance ID**
+  Read-only identifier used for instance-scoped licensing
+- **Instance Name**
+  Friendly name for identifying the deployment
+- **System Admin Contact Email**
+  Contact email for the instance
+- **Allow project-level subscription management**
+  Controls whether self-hosted projects show a project-level **Subscription** entry in project settings
+
+When **Allow project-level subscription management** is disabled:
+
+- the project settings sidebar no longer shows **Subscription**
+- instance-level subscription becomes the preferred management entry point
+- existing project licenses continue to work
+
+![](/images/admin-01.png)
+
+## Authentication
+
+The **Authentication** page is intentionally small right now. It currently exposes one instance-wide policy:
+
+- **Allow new user registration**
+
+When enabled:
+
+- users can create new accounts from the public signup flow
+
+When disabled:
+
+- public signup is blocked
+- system admins can still create users from **System Admin > Users**
+- invite-based join flows continue to work
+- existing users can still sign in with enabled auth providers
+
+![](/images/admin-02.png)
+
+## Subscription
+
+The **Subscription** page is the main place to manage instance-level licensing in self-hosted mode.
+
+From here you can:
+
+- review the current instance plan
+- copy the **Instance ID**
+- upload an instance license file
+- review project usage against the current instance license
+
+For most self-hosted setups, this is the licensing page you'll use most often.
+
+![](/images/admin-03.png)
+
+For a full explanation of instance-level vs. project-level licensing, see [License Management](/open-source/license-management).
+
+## Users
+
+The **Users** page gives you instance-wide user management.
+
+This is where you can:
+
+- search users by name or email
+- add users directly with a password
+- disable or re-enable users
+- grant or remove **System Admin** access
+
+When public registration is disabled, this page becomes the main entry point for creating users.
+
+![](/images/admin-04.png)
+
+## Projects
+
+The **Projects** page gives you a top-level view of every project in the instance.
+
+From here you can:
+
+- search projects by name
+- create a new project
+- inspect project owners and member counts
+- open project member management
+- add or remove members
+- control whether a project uses the instance license when applicable
+
+If your instance license has a limited project allowance, this page is also where you decide which projects should use it. If the instance license is unlimited, projects can inherit it automatically.
+
+![](/images/admin-08.png)
+
+## Project-level vs. instance-level subscription
+
+Self-hosted Usertour supports both:
+
+- **project-level subscription**
+- **instance-level subscription**
+
+In practice, most teams will want to use instance-level subscription as the default and only use project-level subscription when a specific project needs separate handling. The **Allow project-level subscription management** setting helps reduce duplicate entry points in the UI without taking away support for project licenses.
+
+## Next steps
+
+After configuring System Admin, you may also want to review:
+
+- [Deploy with Docker](/open-source/self-hosting)
+- [Environment Variables](/open-source/env)
+- [Business + Enterprise](/open-source/business-enterprise)
