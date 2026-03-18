@@ -20,22 +20,36 @@ Open **System Admin** from the account menu in the bottom-left corner of the app
 
 ![](/images/admin-11.png)
 
-## Default admin account
+## First-time setup
 
-If you're using the standard self-hosted Docker deployment, Usertour seeds a bootstrap admin account when the database is still empty.
+On a fresh self-hosted deployment, the first person who opens the site will be asked to **set up the first admin account**.
 
-- Email: `lisa@simpson.com`
-- Password: `secret42`
+![](/images/admin-12.png)
 
-This seeded user is the default `System Admin` for the instance.
-
-After your first login, open **System Admin** from the account menu to manage:
+This account becomes the instance's first **System Admin**. After setup, you can open **System Admin** from the account menu to manage:
 
 - instance settings
 - authentication policy
 - instance subscription
 - users
 - projects
+
+If you're upgrading an older self-hosted deployment and you don't yet have any `System Admin`, assign that permission manually first. A simple PostgreSQL example looks like this:
+
+```sql
+UPDATE "User"
+SET "isSystemAdmin" = true
+WHERE email = 'your-admin@example.com';
+```
+
+After that user signs in again, the **System Admin** entry will appear in the account menu.
+
+<Note>
+For version `0.5.0` and earlier, self-hosted deployments still seed a default bootstrap admin account:
+
+- Email: `lisa@simpson.com`
+- Password: `secret42`
+</Note>
 
 ## Navigation
 

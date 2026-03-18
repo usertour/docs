@@ -4,11 +4,15 @@
    * Navigate to `http://<your-server-ip>:8011` or your configured domain and port
    * Note: Usertour runs on HTTP by default. For HTTPS, you'll need to set up a reverse proxy
 
-2. **Default Login Credentials**
-   * Email: lisa@simpson.com
-   * Password: secret42
-   * This user is the default **System Admin** account for self-hosted deployments
-   * **Important**: Change the default email and password immediately after your first login
+2. **Set up the first admin account**
+   * Open the site in your browser
+   * On a fresh self-hosted deployment, Usertour will guide you to create the first **System Admin** account
+   * After setup, sign in with that account and open **System Admin** from the account menu
+
+3. **Upgrading older deployments**
+   * If you are upgrading from an older self-hosted version and do not yet have a **System Admin**, assign one manually before signing in
+   * A PostgreSQL example is available in the [System Admin guide](/open-source/system-admin)
+   * If you are running version `0.5.0` or earlier, the seeded bootstrap admin is still `lisa@simpson.com` with password `secret42`
 
 ### Next Steps
 
