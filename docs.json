@@ -210,14 +210,14 @@
         ]
       },
       {
-        "anchor": "Installation",
+        "anchor": "Self-Hosting",
         "icon": "github",
         "groups": [
           {
-            "group": "Installation",
+            "group": "Self-Hosting",
             "pages": [
               {
-                "group": "Self Hosting",
+                "group": "Deployments",
                 "icon": "server",
                 "pages": [
                   "open-source/self-hosting",
