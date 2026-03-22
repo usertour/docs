@@ -13,23 +13,6 @@ In most cases, you'll want to start with an **instance license**. It gives you o
 
 That said, **project licenses** are still useful when one project needs to be handled differently from the rest of the instance.
 
-## Recommended entry point
-
-Starting from version `0.5.1`, self-hosted deployments include **System Admin**.
-
-If you want to manage licensing at the instance level, go to:
-
-- **System Admin > Subscription**
-
-This page is where you can:
-
-- upload an instance license
-- review the current instance plan
-- copy the **Instance ID**
-- monitor project usage against the current instance license
-
-![](/images/admin-03.png)
-
 ## Instance license
 
 An instance license applies to the deployment as a whole. This is usually the cleanest setup for self-hosted teams, especially when you want one admin entry point instead of managing licensing project by project.
@@ -39,6 +22,24 @@ An instance license is usually the right choice when:
 - you want one primary subscription entry point
 - you want to manage licensing centrally as a system admin
 - multiple projects should inherit licensing from the same deployment
+
+### Entering an instance license
+
+Starting from version `0.5.1`, self-hosted deployments include [**System Admin**](/open-source/system-admin). If you want to manage licensing at the instance level, go to:
+
+- **System Admin > Subscription**
+
+Paste the instance license into the write-only license field, then click **Upload License**.
+
+> Saved license content is not shown again after it has been verified and stored.
+
+Before activation, the subscription page shows the unlicensed state and the write-only license field:
+
+![](/images/admin-16.png)
+
+After a successful activation, the current plan, expiration date, and instance license usage details are shown on the page:
+
+![](/images/admin-13.png)
 
 ### Assigning projects to use the instance license
 
@@ -96,23 +97,33 @@ If a project has both an instance license available and its own project license:
 
 That gives you a nice balance: you can manage most licensing centrally at the instance level, while still handling exceptions on a single project when needed.
 
-## Uploading a project license
+## Entering a project license
 
 If project-level subscription management is enabled, go to:
 
 - **Project Settings > Subscription**
 
-Then click **Upload License** and upload the project license file.
+Then paste the project license into the **Subscription** page and submit it.
 
-<Note>
-If you're using a version earlier than `0.3.0`, you won't see this configuration option. Version `0.3.0` shows `Update License`, while later versions show `Upload License`.
-</Note>
+> Saved license content is not shown again after it has been verified and stored.
 
-![](/images/license-05.png)
+![](/images/admin-14.png)
 
 After a successful upload, the current plan changes to the licensed plan and the expiration date is shown on the page.
 
-![](/images/license-06.png)
+![](/images/admin-15.png)
+
+## Legacy project license UI
+
+If you're using an older self-hosted project settings UI, project-level licensing may still appear as a file upload flow instead of the newer paste-and-submit form.
+
+In those older versions:
+
+- go to **Project Settings > Subscription**
+- click **Upload License**
+- upload the project license file you received from Usertour
+
+> If you're using a version earlier than `0.3.0`, you won't see this configuration option. Version `0.3.0` shows `Update License`, while later versions show `Upload License`.
 
 ## Related pages
 

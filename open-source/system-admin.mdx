@@ -44,12 +44,10 @@ WHERE email = 'your-admin@example.com';
 
 After that user signs in again, the **System Admin** entry will appear in the account menu.
 
-<Note>
-For version `0.5.0` and earlier, self-hosted deployments still seed a default bootstrap admin account:
-
-- Email: `lisa@simpson.com`
-- Password: `secret42`
-</Note>
+> For version `0.5.0` and earlier, self-hosted deployments still seed a default bootstrap admin account:
+>
+> Email: `lisa@simpson.com`
+> Password: `secret42`
 
 ## Navigation
 
@@ -115,12 +113,15 @@ From here you can:
 
 - review the current instance plan
 - copy the **Instance ID**
-- upload an instance license file
+- paste an instance license
 - review project usage against the current instance license
 
 For most self-hosted setups, this is the licensing page you'll use most often.
 
-![](/images/admin-03.png)
+The current System Admin subscription flow uses a write-only license field. Paste the instance
+license, submit it, and the stored license text will not be shown again afterward.
+
+![](/images/admin-13.png)
 
 For a full explanation of instance-level vs. project-level licensing, see [License Management](/open-source/license-management).
 
