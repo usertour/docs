@@ -1,0 +1,147 @@
+---
+title: Resource Center
+description: Learn how to build an in-app help hub with tabs, content lists, sub-pages, and live chat
+icon: "circle-question"
+---
+
+## What is the Resource Center?
+
+The Resource Center is a persistent, in‑app help hub that lives behind a launcher button in the corner of your app. Users open it to find onboarding flows, documentation, or reach out for support — all without leaving your product. It is built from **tabs** at the top level, with each tab containing one or more **blocks** that drive the actual interaction.
+
+Use the Resource Center when you want a single, always‑available entry point for help, instead of (or alongside) one‑off launchers and checklists.
+
+{/* screenshot: Resource Center launcher in app, panel expanded showing tabs and blocks */}
+![](/images/resource-center-01.png)
+
+## Creating a Resource Center
+
+### Basic Setup
+
+1. Head over to [Usertour](https://app.usertour.io) and sign in
+2. Click **Resource Center** in the sidebar
+3. Click **Create resource center**, give it a name, and confirm
+4. Configure tabs and blocks (see below)
+5. Set its auto‑start conditions on the resource center detail page
+6. Publish the resource center
+
+Once published, the launcher will appear automatically in your app via [Usertour.js](/developers/usertourjs-reference/overview) — no extra installation required.
+
+{/* screenshot: Resource Center builder, blank state right after creation */}
+![](/images/resource-center-02.png)
+
+<Note>
+Make sure [Usertour.js](/developers/usertourjs-reference/installation) is installed in your app. Without it the launcher will not show up for your users.
+</Note>
+
+### Tabs
+
+Tabs are the top‑level grouping inside the Resource Center. A typical setup might look like:
+
+- **Get started** — onboarding flows
+- **Help** — documentation links and FAQs
+- **Contact** — live chat or a contact form
+
+Each tab can be configured with its own name, icon, and visibility conditions. Tabs evaluate their visibility independently — a tab with no visible blocks for the current user is automatically hidden.
+
+{/* screenshot: Tab list / tab editor in the Resource Center builder */}
+![](/images/resource-center-03.png)
+
+### Blocks
+
+Inside each tab you place **blocks**. There are six block types, falling into two categories: clickable CTAs and display‑only content.
+
+| Block | Purpose |
+| --- | --- |
+| **Action** | A button‑style row that runs configured actions on click (start a flow, navigate to a URL, run JavaScript, etc.) |
+| **Sub‑page** | Opens a nested sub‑page inside the resource center with its own rich‑text content |
+| **Content List** | A curated list of flows and/or checklists the user can launch with a click |
+| **Live Chat** | Opens a live chat provider (Crisp, Intercom, Zendesk, etc.) or runs custom code |
+| **Rich Text** | Static content — paragraphs, headings, links — for context or instructions |
+| **Divider** | A visual separator between blocks |
+
+Each block has an optional **visibility condition** so different users (e.g. by attribute, role, or completion state) see a different set of blocks.
+
+{/* screenshot: Block configuration panel in the Resource Center builder */}
+![](/images/resource-center-04.png)
+
+#### Click semantics
+
+The four interactive block types behave consistently when clicked:
+
+- **Action**, **Live Chat (custom code)**, and items inside **Content List** all collapse the resource center back to the launcher after firing — the same effect as the user clicking the close button.
+- **Sub‑page** and **Content List** blocks navigate inside the panel without collapsing it, so the user can browse further.
+
+This means a user who clicks "Start onboarding tour" in your resource center sees the tour begin and the panel tuck itself away, instead of having to manually close it.
+
+## User Experience
+
+### Launcher and panel
+
+The Resource Center renders as a small launcher button in the corner of your app. Clicking the launcher expands the panel; clicking the close button collapses it back. The expanded/collapsed state is remembered for the rest of the user's session.
+
+{/* screenshot: Side-by-side, launcher collapsed and panel expanded */}
+![](/images/resource-center-05.png)
+
+### Navigating sub‑pages and lists
+
+When a user clicks a **Sub‑page** or **Content List** block, the panel slides into a detail view with a back arrow in the header. Their navigation state (active tab + current sub‑page) is persisted across page refreshes within the session, so they pick up where they left off.
+
+{/* screenshot: Resource Center showing a sub-page detail view with back button */}
+![](/images/resource-center-06.png)
+
+### Content List
+
+A Content List block surfaces a curated set of flows and checklists. Each item shows its name and icon; clicking an item launches that content immediately and collapses the resource center back to the launcher.
+
+{/* screenshot: Content List inside the Resource Center showing flows/checklists */}
+![](/images/resource-center-07.png)
+
+## Customization
+
+### Appearance
+
+Customize the Resource Center through the theme editor:
+
+- Open [Settings → Themes](https://app.usertour.io/project/1/settings/themes)
+- Pick a theme and scroll to the Resource Center section
+- Adjust panel width, header background, launcher size and color, fonts, and corner radius
+- Save and the changes apply across all resource centers using that theme
+
+See [customizing themes](/how-to-guides/customizing-themes) for the full theme guide.
+
+### Position
+
+The launcher's corner placement and offset are configured per resource center on the detail page. Common choices are bottom‑right (default) or bottom‑left.
+
+### Visibility control
+
+You can hide the launcher temporarily — for example, on a focused checkout page — without disabling the resource center entirely. Use the [`hideResourceCenterLauncher()`](/developers/usertourjs-reference/resource-center/hide-resource-center-launcher) and [`showResourceCenterLauncher()`](/developers/usertourjs-reference/resource-center/show-resource-center-launcher) methods from Usertour.js.
+
+The panel itself can also be opened or closed programmatically — see [Programmatic control](#programmatic-control) below.
+
+## Programmatic control
+
+Usertour.js exposes a small API for the Resource Center so you can integrate it with your own UI:
+
+- [`openResourceCenter()`](/developers/usertourjs-reference/resource-center/open-resource-center) — expand the panel
+- [`closeResourceCenter()`](/developers/usertourjs-reference/resource-center/close-resource-center) — collapse to launcher
+- [`toggleResourceCenter()`](/developers/usertourjs-reference/resource-center/toggle-resource-center) — flip between the two
+- [`isResourceCenterOpen()`](/developers/usertourjs-reference/resource-center/is-resource-center-open) — read the current state
+- [`showResourceCenterLauncher()`](/developers/usertourjs-reference/resource-center/show-resource-center-launcher) / [`hideResourceCenterLauncher()`](/developers/usertourjs-reference/resource-center/hide-resource-center-launcher) — control the launcher button
+
+A typical integration is to wire your own "Help" button in the app header to `toggleResourceCenter()`, so users have two equivalent ways to open the panel.
+
+```javascript
+helpButton.addEventListener('click', () => {
+  usertour.toggleResourceCenter();
+});
+```
+
+## Best Practices
+
+1. **Keep tabs few and meaningful** — three to four tabs covers most use cases. Long tab strips push content off‑screen and make the panel feel cluttered.
+2. **Group by intent, not by feature area** — "Get started", "Learn", "Contact" reflect what users are trying to do. Mirroring your engineering modules rarely does.
+3. **Use Content List for flows and checklists** — keep launchable content in one curated list instead of duplicating each one as a separate Action block.
+4. **Reserve Action blocks for true CTAs** — buttons that fire and dismiss the panel ("Schedule a demo", "Open changelog"). For navigation that should keep the panel open, prefer Sub‑page.
+5. **Hide the launcher in distraction‑free flows** — checkouts, onboarding overlays, focused editors. Re‑show it when the user returns to the main app surface.
+6. **Test visibility conditions per role** — preview the resource center as different user types to verify the right tabs and blocks appear for each.
