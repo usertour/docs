@@ -1,0 +1,28 @@
+---
+title: "isResourceCenterOpen()"
+description: "Check whether the resource center panel is currently expanded"
+---
+
+The `isResourceCenterOpen()` method returns whether the resource center panel is currently expanded. Use this to read the panel's state from your own UI — for example, to keep a help button's "active" indicator in sync with the panel.
+
+## Parameters
+
+None.
+
+## Returns
+
+`boolean` — Returns `true` if the resource center is expanded, `false` if it is collapsed or if no resource center is currently active.
+
+## Example
+
+```javascript
+// Reflect the resource center state in a custom help button
+function refreshHelpButton() {
+  const isOpen = usertour.isResourceCenterOpen();
+  helpButton.classList.toggle('is-active', isOpen);
+}
+```
+
+<Note>
+Make sure to call `init()` before using any other Usertour.js methods.
+</Note>

@@ -1,0 +1,29 @@
+---
+title: "openResourceCenter()"
+description: "Programmatically expand the resource center panel"
+---
+
+The `openResourceCenter()` method expands the resource center panel for the current user. If the resource center is already open, this call is a no‑op. If no resource center is currently active for the user, the call has no effect.
+
+This is useful when you want to surface help content from your own UI — for example, opening the resource center from a "Need help?" link in your app header.
+
+## Parameters
+
+None.
+
+## Returns
+
+`void`
+
+## Example
+
+```javascript
+// Open the resource center when the user clicks a custom help button
+helpButton.addEventListener('click', () => {
+  usertour.openResourceCenter();
+});
+```
+
+<Note>
+Make sure to call `init()` before using any other Usertour.js methods.
+</Note>

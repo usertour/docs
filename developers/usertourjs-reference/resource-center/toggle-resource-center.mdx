@@ -1,0 +1,29 @@
+---
+title: "toggleResourceCenter()"
+description: "Toggle the resource center between open and collapsed"
+---
+
+The `toggleResourceCenter()` method flips the resource center between its open and collapsed states. If the panel is open, it will be collapsed back to the launcher; if it is collapsed, it will be opened. If no resource center is currently active for the user, the call has no effect.
+
+## Parameters
+
+None.
+
+## Returns
+
+`void`
+
+## Example
+
+```javascript
+// Wire a keyboard shortcut to toggle the resource center
+document.addEventListener('keydown', (event) => {
+  if (event.key === '?' && event.shiftKey) {
+    usertour.toggleResourceCenter();
+  }
+});
+```
+
+<Note>
+Make sure to call `init()` before using any other Usertour.js methods.
+</Note>

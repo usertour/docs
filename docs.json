@@ -108,6 +108,17 @@
             ]
           },
           {
+            "group": "Resource Center",
+            "pages": [
+              "developers/usertourjs-reference/resource-center/open-resource-center",
+              "developers/usertourjs-reference/resource-center/close-resource-center",
+              "developers/usertourjs-reference/resource-center/toggle-resource-center",
+              "developers/usertourjs-reference/resource-center/is-resource-center-open",
+              "developers/usertourjs-reference/resource-center/show-resource-center-launcher",
+              "developers/usertourjs-reference/resource-center/hide-resource-center-launcher"
+            ]
+          },
+          {
             "group": "Advanced usage",
             "pages": [
               "developers/usertourjs-reference/advanced/set-base-zIndex",

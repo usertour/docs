@@ -1,0 +1,27 @@
+---
+title: "closeResourceCenter()"
+description: "Programmatically collapse the resource center back to its launcher"
+---
+
+The `closeResourceCenter()` method collapses the resource center panel back to its launcher. If the resource center is already collapsed, this call is a no‑op. If no resource center is currently active for the user, the call has no effect.
+
+## Parameters
+
+None.
+
+## Returns
+
+`void`
+
+## Example
+
+```javascript
+// Collapse the resource center when the user navigates to a focus mode
+enterFocusMode(() => {
+  usertour.closeResourceCenter();
+});
+```
+
+<Note>
+Make sure to call `init()` before using any other Usertour.js methods.
+</Note>

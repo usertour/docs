@@ -1,0 +1,29 @@
+---
+title: "hideResourceCenterLauncher()"
+description: "Hide the resource center launcher button"
+---
+
+The `hideResourceCenterLauncher()` method hides the resource center launcher button. Use this when you want to suppress the launcher in specific parts of your app — for example, on a focused checkout page — without disabling the resource center entirely.
+
+The launcher visibility is a global setting on the Usertour client: the call is remembered even if it is made before the resource center session is active, and it is applied as soon as a resource center activates. Call [`showResourceCenterLauncher()`](/developers/usertourjs-reference/resource-center/show-resource-center-launcher) to bring the launcher back.
+
+## Parameters
+
+None.
+
+## Returns
+
+`void`
+
+## Example
+
+```javascript
+// Hide the launcher on a focused checkout flow
+enterCheckout(() => {
+  usertour.hideResourceCenterLauncher();
+});
+```
+
+<Note>
+The resource center panel can still be opened programmatically via [`openResourceCenter()`](/developers/usertourjs-reference/resource-center/open-resource-center) while the launcher is hidden.
+</Note>
