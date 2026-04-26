@@ -1,0 +1,186 @@
+---
+title: Session lifecycles
+description: Understand when Usertour creates, updates, completes, and ends sessions for flows, checklists, launchers, banners, resource centers, and event trackers.
+icon: "route"
+---
+
+A session is Usertour's record of one user's interaction with one piece of content. It connects the user, company, content, version, events, answers, progress, and current state into a single timeline.
+
+Sessions share a common state machine: every session starts in `state = 0` (active) and transitions to `state = 1` (ended) when a terminal event is recorded. What differs between content types is how many sessions a user can have at once, and whether a new session can ever be created after the previous one ends.
+
+For the decision tree behind _when_ each type starts (start triggers, audience checks, fallback ladders), see [Starting content](/use-cases/starting-content).
+
+![Usertour session lifecycles by content type](/images/use-cases/session-lifecycles.svg)
+
+## The mental model
+
+Every session-creating content type follows the same five-phase lifecycle:
+
+1. Usertour evaluates whether the content should be available for the user (rules, manual trigger, URL match, button action, programmatic call).
+2. Usertour creates or reuses a session for the matching content version. The session starts in `state = 0`.
+3. The SDK receives the session and renders the content. A start event is recorded.
+4. User actions and SDK signals create activity events on the session while it is active.
+5. A terminal event closes the session. Usertour writes the terminal event with an end-reason attribute and flips the session to `state = 1`.
+
+The session object is the durable record. The widget on screen is only the current rendering of that session.
+
+## Session terms
+
+| Term | What it means |
+| --- | --- |
+| Started | Usertour created or reused a session and recorded the content's start event. |
+| Seen | The content was actually displayed to or encountered by the user. For flows, this is tracked at the step level. |
+| Completed | The user reached the content's success condition, such as a flow completion step or all checklist tasks being completed. Completion is a milestone event, not a session terminator. |
+| Ended or dismissed | The session is closed with a terminal event. After this the session is in `state = 1` and cannot accept further events. |
+| Active | The session is in `state = 0` and is still available to render or update. Active does not always mean visible at this exact moment. |
+
+<Note>
+Completed and ended are not the same thing. A checklist can be completed (`CHECKLIST_COMPLETED`) and still remain visible until the user dismisses it (`CHECKLIST_DISMISSED`). A flow can record `FLOW_COMPLETED` and later record `FLOW_ENDED` with a different end reason.
+</Note>
+
+## Concurrency models
+
+Usertour content types fall into one of four concurrency models. This is the most important distinction to understand, because it controls when (and whether) a new session can be created for the same user and content.
+
+| Model | What it means | Content types |
+| --- | --- | --- |
+| `max 1 ever` | A user can only ever have one session for this content. Once that session ends, no new session is created for the same user and content again. | Banner, Resource Center |
+| `max 1 active` | A user can have at most one active session at a time. After the current session ends, the user is eligible for a new session when start conditions match again. | Flow, Checklist |
+| `many concurrent` | A user can have multiple active sessions for the same content type at the same time. Sessions are tracked independently. | Launcher |
+| `no session` | No session object is created. Events are recorded directly against the content. | Event Tracker |
+
+The `max 1 ever` model is enforced server-side by `filterSingleSessionContentVersions`, which excludes Banner and Resource Center content from the available list once the user already has any ended session for it.
+
+## Summary by content type
+
+| Type | Concurrency | Start event | Activity events | End event |
+| --- | --- | --- | --- | --- |
+| Flow | `max 1 active` | `FLOW_STARTED` | `FLOW_STEP_SEEN`<br/>`FLOW_STEP_COMPLETED`<br/>`FLOW_COMPLETED`<br/>question answers | `FLOW_ENDED` |
+| Checklist | `max 1 active` | `CHECKLIST_STARTED` | `CHECKLIST_SEEN`<br/>`CHECKLIST_HIDDEN`<br/>`CHECKLIST_TASK_CLICKED`<br/>`CHECKLIST_TASK_COMPLETED`<br/>`CHECKLIST_COMPLETED` | `CHECKLIST_DISMISSED` |
+| Banner | `max 1 ever` | `BANNER_SEEN` | — | `BANNER_DISMISSED` |
+| Resource Center | `max 1 ever` | `RESOURCE_CENTER_STARTED` | `RESOURCE_CENTER_OPENED`<br/>`RESOURCE_CENTER_CLOSED`<br/>`RESOURCE_CENTER_CLICKED` | `RESOURCE_CENTER_DISMISSED` |
+| Launcher | `many concurrent` | `LAUNCHER_SEEN` | `LAUNCHER_ACTIVATED` | `LAUNCHER_DISMISSED` |
+| Event Tracker | `no session` | — | — | — |
+
+## Flows
+
+A flow session represents the user's progress through a step-by-step experience.
+
+**Concurrency:** `max 1 active`. A user has at most one active flow session at a time. Once it ends, a new flow session can be created when start conditions match again.
+
+When a flow starts, Usertour creates or reuses an active session and records `FLOW_STARTED`. If the flow starts on a known step, Usertour also records `FLOW_STEP_SEEN` for that step. As the user moves through the flow, each viewed step updates the session's `currentStepId` and progress.
+
+The SDK keeps only one active flow on screen. If a new flow session is activated while another flow is active, the previous flow UI is cleaned up and the new session is rendered. If the same session is activated again, the SDK updates the existing UI instead of creating a duplicate.
+
+A flow can record `FLOW_COMPLETED` when the user reaches the configured completion point. This is a milestone, not a session terminator — the session is still in `state = 0` after `FLOW_COMPLETED`.
+
+The session closes when Usertour records `FLOW_ENDED`, with an end reason such as `USER_CLOSED`, `ACTION_DISMISS`, `TOOLTIP_TARGET_MISSING`, `ADMIN_ENDED`, or `END_FROM_PROGRAM`. After `FLOW_ENDED` the session is in `state = 1`.
+
+## Checklists
+
+A checklist session represents the user's progress through a persistent task list.
+
+**Concurrency:** `max 1 active`. A user has at most one active checklist session at a time. Once it ends, a new checklist session can be created when start conditions match again.
+
+When a checklist starts, Usertour records `CHECKLIST_STARTED` and sends the session to the SDK. The checklist can be expanded, collapsed, hidden, or shown without creating a new session — those changes are recorded as `CHECKLIST_SEEN` and `CHECKLIST_HIDDEN` events on the same session. Task clicks and task completions are recorded as `CHECKLIST_TASK_CLICKED` and `CHECKLIST_TASK_COMPLETED`.
+
+When all visible tasks are completed, Usertour can record `CHECKLIST_COMPLETED`. This marks the checklist as completed but does not close the session. The session closes only when the checklist is dismissed, which records `CHECKLIST_DISMISSED` and flips state to `1`.
+
+If a flow opens while a checklist is visible, the SDK may collapse the checklist during the flow and expand it again after the flow is unset. This is a display behavior, not a new checklist session.
+
+## Banners
+
+A banner session represents a message that is shown to the user until it is dismissed.
+
+**Concurrency:** `max 1 ever`. After a user has any ended session for a banner, Usertour will not create another session for the same user and banner content again.
+
+When a banner is shown, Usertour records `BANNER_SEEN`. When the user dismisses it (or an admin ends it via the analytics dashboard), Usertour records `BANNER_DISMISSED` with an end-reason attribute and flips state to `1`.
+
+Banners do not have a separate completion event. Dismissal is also the completion point — the same terminal event both closes the session and marks the banner interaction as complete.
+
+<Note>
+The `max 1 ever` rule is enforced by the `filterSingleSessionContentVersions` guard. After the first session ends, the banner content is excluded from the list of content the SDK can start for that user.
+</Note>
+
+## Resource Centers
+
+A Resource Center session represents the user's access to the Resource Center, not every individual open or close action of the panel.
+
+**Concurrency:** `max 1 ever`. Like banners, after a user has any ended session for a Resource Center, Usertour will not create another session for the same user and Resource Center content again.
+
+When the Resource Center becomes available for the user, Usertour records `RESOURCE_CENTER_STARTED` and sends the session to the SDK. The user can then open and close the panel many times — those interactions are recorded as `RESOURCE_CENTER_OPENED` and `RESOURCE_CENTER_CLOSED` events on the same session.
+
+Clicks inside the Resource Center, such as selecting a block or item, are recorded as `RESOURCE_CENTER_CLICKED`. The session closes only when the Resource Center is dismissed, which records `RESOURCE_CENTER_DISMISSED` and flips state to `1`.
+
+<Note>
+The `max 1 ever` rule for Resource Centers uses the same `filterSingleSessionContentVersions` guard as banners. Opening and closing the panel does not create new sessions.
+</Note>
+
+## Launchers
+
+A launcher session represents a contextual entry point — a hotspot, icon, or button attached to an element.
+
+**Concurrency:** `many concurrent`. Multiple launcher sessions can be active for the same user at the same time. Usertour manages launchers by content ID, so adding the same launcher again updates the existing launcher session instead of rendering a duplicate.
+
+When a launcher is available and shown, Usertour records `LAUNCHER_SEEN`. When the user activates it (typically a click), Usertour records `LAUNCHER_ACTIVATED`. This usually means the launcher did its job: opened a tooltip, started a flow, or ran another configured action.
+
+The launcher session closes when the launcher is dismissed, which records `LAUNCHER_DISMISSED` with an end reason such as `USER_CLOSED` (user closed it directly), `LAUNCHER_DEACTIVATED` (the tooltip closed and the launcher is configured to "dismiss after first activation"), or `ADMIN_ENDED` (admin ended via the dashboard). Removing a launcher from the SDK is keyed on the content ID, not only the session ID, because several launcher entries may coexist.
+
+## Event Trackers
+
+Event trackers are content, but they do not create content sessions.
+
+The server sends tracker definitions to the SDK. The SDK evaluates the tracker conditions locally. When a condition changes from inactive to active, the SDK reports the configured event directly via the `TRACK_TRACKER_EVENT` message. Usertour records a business event with the tracker content ID and version ID, but there is no content session object to start, complete, or end — and no `endSession` API call applies.
+
+This is why event trackers appear in analytics as events, not as content sessions.
+
+## End reasons
+
+All terminal events (`FLOW_ENDED`, `CHECKLIST_DISMISSED`, `BANNER_DISMISSED`, `RESOURCE_CENTER_DISMISSED`, `LAUNCHER_DISMISSED`) carry an end-reason attribute. The values currently emitted by Usertour are:
+
+| Reason | When it fires |
+| --- | --- |
+| `USER_CLOSED` | User dismissed the content |
+| `CLOSE_BUTTON_DISMISS` | User clicked an X / close button |
+| `BACKDROP_DISMISS` | User clicked a modal backdrop |
+| `DISMISS_BUTTON` | User clicked a "Dismiss" text button |
+| `ACTION_DISMISS` | A configured button action triggered dismissal |
+| `TRIGGER_DISMISS` | A `StepTrigger` condition triggered dismissal |
+| `AUTO_DISMISSED` | The content auto-dismissed itself |
+| `TOOLTIP_TARGET_MISSING` | A tooltip's target element disappeared from the page |
+| `ADMIN_ENDED` | An admin ended the session via the analytics dashboard |
+| `END_FROM_PROGRAM` | An SDK programmatic call ended the session |
+| `UNPUBLISHED_CONTENT` | The content version was unpublished |
+| `LAUNCHER_DEACTIVATED` | A launcher's tooltip closed and "dismiss after first activation" is enabled |
+| `STORE_NOT_FOUND` | The session's store was missing |
+
+## Common questions
+
+### Why do I see a completed session that still looks active?
+
+Completion means the success condition happened. It does not always mean the UI was dismissed. This is common for checklists: all tasks can be completed (`CHECKLIST_COMPLETED`) while the checklist remains available until the user closes it (`CHECKLIST_DISMISSED`).
+
+### Why did a flow not start again?
+
+The most common reasons are:
+
+- The user already has an active session for that flow (`max 1 active`).
+- The flow's start rule is configured to start only once and the user already saw it.
+- The published version or targeting rules no longer match the current user.
+- The content was unpublished, ending the session with `UNPUBLISHED_CONTENT`.
+
+### Why won't a banner or Resource Center show again?
+
+Banners and Resource Centers are `max 1 ever` content. Once a user has any ended session for that content, Usertour will not create a new session for the same user and content. To make it show again, the user's existing session would have to be removed, or the content would have to change.
+
+### Why can I have multiple launchers but not multiple flows?
+
+Flows, checklists, banners, and Resource Centers are singleton-style content in the SDK — only one active session of each type renders at a time. Launchers are `many concurrent` content, so several launcher sessions can be active on the same page.
+
+### Does refreshing the page create a new session?
+
+No. If Usertour finds an active session for the same user and content, it reuses that session. A new session is created only when the previous one has ended and the content's concurrency model and start rules allow it.
+
+### What should I use the Content Sessions API for?
+
+Use the [Content Sessions API](/api-reference/content-sessions/model) when you need the durable timeline of a user's interaction with a content item: progress, completion, answers, user, company, content, and version. For event trackers, query the corresponding events instead, because trackers do not create content session objects.

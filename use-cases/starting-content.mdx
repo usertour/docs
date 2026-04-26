@@ -1,0 +1,80 @@
+---
+title: Starting content
+description: How Usertour decides whether and when to show each content type — flows, checklists, banners, resource centers, launchers, and event trackers.
+icon: "play"
+---
+
+Every time the SDK connects, the user changes pages, an attribute updates, or a button action fires, Usertour evaluates whether to show some content. The decision works differently for each content type. This page maps out those decisions in plain English.
+
+For the broader picture — events, completion, and how sessions end — see [Session lifecycles](/use-cases/session-lifecycles).
+
+## How to read these diagrams
+
+Most content types follow a "first match wins" decision tree with three paths tried in priority order:
+
+| Path | When it applies |
+| --- | --- |
+| **A. Explicit start** | Something asked for a specific content id (SDK call, URL parameter, button action). |
+| **B. Resume the active one** | The user already has a session for this content type — reuse it. |
+| **C. Auto-pick** | Neither A nor B applies. Usertour scans eligible content and tries a fallback ladder. |
+
+Each diagram also has a **concurrency badge** at the top that tells you the model:
+
+- `MAX 1 ACTIVE` — only one active session at a time per user; re-creatable after end (Flow, Checklist).
+- `MAX 1 EVER` — only one session ever per user; never re-starts after end (Banner, Resource Center).
+- `MANY CONCURRENT` — multiple sessions active in parallel (Launcher).
+- `NO SESSION` — no session model at all (Event Tracker).
+
+## Flows
+
+Flows follow the standard A → B → C decision tree. After ending, a flow can be re-created when start conditions match again, but only one flow shows on screen at a time per user.
+
+![How a Flow starts](/images/use-cases/flow-lifecycle.svg)
+
+## Checklists
+
+Checklists follow the same A → B → C structure as flows, with one important nuance: completion (`CHECKLIST_COMPLETED`) is not the end. The checklist stays visible until the user dismisses it.
+
+![How a Checklist starts](/images/use-cases/checklist-lifecycle.svg)
+
+## Banners
+
+Banners are stricter: once a user has dismissed a banner, it never shows for that user again. The auto-pick ladder only has two steps — banners don't support "sticky to recent" (no recent session to re-attach to) and the editor hides wait timers for one-shot content.
+
+![How a Banner starts](/images/use-cases/banner-lifecycle.svg)
+
+## Resource Centers
+
+Resource Centers use the same `MAX 1 EVER` rule as banners, with the same auto-pick ladder of two steps (no sticky-to-recent, no wait timer). The user can open and close the panel many times within one session — those are events, not new sessions.
+
+![How a Resource Center starts](/images/use-cases/resource-center-lifecycle.svg)
+
+## Launchers
+
+Launchers break the "first match wins" pattern. Every launcher whose audience matches the user is evaluated independently and can become active in parallel.
+
+![How Launchers start](/images/use-cases/launcher-lifecycle.svg)
+
+## Event Trackers
+
+Event trackers don't create sessions. The server distributes the tracker definitions to the SDK once; the SDK evaluates conditions locally and reports the configured event when they fire.
+
+![How an Event Tracker works](/images/use-cases/tracker-lifecycle.svg)
+
+## Common questions
+
+### Why doesn't my flow start even though the audience matches?
+
+Most likely the user already has an active flow session — only one flow shows at a time. Either end the active session first, or use an explicit `usertour.start(flowId)` to switch.
+
+### Why won't my banner show up again after I close it?
+
+Banners are `MAX 1 EVER`. Once a user has any ended session for the banner, no new session is created. To test repeatedly, use a different user or remove the existing session via the API.
+
+### Can two flows show at the same time?
+
+No. Only one flow renders on screen per user. If a new flow starts while another is active, the previous flow's UI is cleaned up first. Launchers are the only content type where multiple sessions run in parallel.
+
+### When does a wait timer fire?
+
+When the auto-pick ladder finds a flow or checklist whose start condition is true _except_ for a delay (e.g. `5 seconds after page load`). The SDK schedules the timer and re-runs the ladder when it fires. If conditions still hold then, the content starts. Wait timers are only available for flows and checklists — the editor hides this option for banners, Resource Centers, and launchers.

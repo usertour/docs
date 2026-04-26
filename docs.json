@@ -247,6 +247,16 @@
             ]
           }
         ]
+      },
+      {
+        "anchor": "Use Cases",
+        "icon": "route",
+        "groups": [
+          {
+            "group": "Sessions",
+            "pages": ["use-cases/session-lifecycles", "use-cases/starting-content"]
+          }
+        ]
       }
     ]
   },
