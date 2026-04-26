@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Mintlify dev
+.mintlify/
+node_modules/
