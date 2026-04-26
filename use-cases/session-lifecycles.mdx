@@ -44,23 +44,23 @@ Usertour content types fall into one of four concurrency models. This is the mos
 
 | Model | What it means | Content types |
 | --- | --- | --- |
-| `max 1 ever` | A user can only ever have one session for this content. Once that session ends, no new session is created for the same user and content again. | Banner, Resource Center |
-| `max 1 active` | A user can have at most one active session at a time. After the current session ends, the user is eligible for a new session when start conditions match again. | Flow, Checklist |
-| `many concurrent` | A user can have multiple active sessions for the same content type at the same time. Sessions are tracked independently. | Launcher |
-| `no session` | No session object is created. Events are recorded directly against the content. | Event Tracker |
+| <code>max&nbsp;1&nbsp;ever</code> | A user can only ever have one session for this content. Once that session ends, no new session is created for the same user and content again. | Banner, Resource&nbsp;Center |
+| <code>max&nbsp;1&nbsp;active</code> | A user can have at most one active session at a time. After the current session ends, the user is eligible for a new session when start conditions match again. | Flow, Checklist |
+| <code>many&nbsp;concurrent</code> | A user can have multiple active sessions for the same content type at the same time. Sessions are tracked independently. | Launcher |
+| <code>no&nbsp;session</code> | No session object is created. Events are recorded directly against the content. | Event&nbsp;Tracker |
 
-The `max 1 ever` model is enforced server-side by `filterSingleSessionContentVersions`, which excludes Banner and Resource Center content from the available list once the user already has any ended session for it.
+The `max 1 ever` model is enforced server-side: once the user has any ended session for a Banner or Resource Center, that content is excluded from the list of content the SDK can start for them again.
 
 ## Summary by content type
 
 | Type | Concurrency | Start event | Activity events | End event |
 | --- | --- | --- | --- | --- |
-| Flow | `max 1 active` | `FLOW_STARTED` | `FLOW_STEP_SEEN`<br/>`FLOW_STEP_COMPLETED`<br/>`FLOW_COMPLETED`<br/>question answers | `FLOW_ENDED` |
-| Checklist | `max 1 active` | `CHECKLIST_STARTED` | `CHECKLIST_SEEN`<br/>`CHECKLIST_HIDDEN`<br/>`CHECKLIST_TASK_CLICKED`<br/>`CHECKLIST_TASK_COMPLETED`<br/>`CHECKLIST_COMPLETED` | `CHECKLIST_DISMISSED` |
-| Banner | `max 1 ever` | `BANNER_SEEN` | — | `BANNER_DISMISSED` |
-| Resource Center | `max 1 ever` | `RESOURCE_CENTER_STARTED` | `RESOURCE_CENTER_OPENED`<br/>`RESOURCE_CENTER_CLOSED`<br/>`RESOURCE_CENTER_CLICKED` | `RESOURCE_CENTER_DISMISSED` |
-| Launcher | `many concurrent` | `LAUNCHER_SEEN` | `LAUNCHER_ACTIVATED` | `LAUNCHER_DISMISSED` |
-| Event Tracker | `no session` | — | — | — |
+| Flow | <code>max&nbsp;1&nbsp;active</code> | `FLOW_STARTED` | `FLOW_STEP_SEEN`<br/>`FLOW_STEP_COMPLETED`<br/>`FLOW_COMPLETED`<br/>question answers | `FLOW_ENDED` |
+| Checklist | <code>max&nbsp;1&nbsp;active</code> | `CHECKLIST_STARTED` | `CHECKLIST_SEEN`<br/>`CHECKLIST_HIDDEN`<br/>`CHECKLIST_TASK_CLICKED`<br/>`CHECKLIST_TASK_COMPLETED`<br/>`CHECKLIST_COMPLETED` | `CHECKLIST_DISMISSED` |
+| Banner | <code>max&nbsp;1&nbsp;ever</code> | `BANNER_SEEN` | — | `BANNER_DISMISSED` |
+| Resource&nbsp;Center | <code>max&nbsp;1&nbsp;ever</code> | `RESOURCE_CENTER_STARTED` | `RESOURCE_CENTER_OPENED`<br/>`RESOURCE_CENTER_CLOSED`<br/>`RESOURCE_CENTER_CLICKED` | `RESOURCE_CENTER_DISMISSED` |
+| Launcher | <code>many&nbsp;concurrent</code> | `LAUNCHER_SEEN` | `LAUNCHER_ACTIVATED` | `LAUNCHER_DISMISSED` |
+| Event&nbsp;Tracker | <code>no&nbsp;session</code> | — | — | — |
 
 ## Flows
 
@@ -68,7 +68,7 @@ A flow session represents the user's progress through a step-by-step experience.
 
 **Concurrency:** `max 1 active`. A user has at most one active flow session at a time. Once it ends, a new flow session can be created when start conditions match again.
 
-When a flow starts, Usertour creates or reuses an active session and records `FLOW_STARTED`. If the flow starts on a known step, Usertour also records `FLOW_STEP_SEEN` for that step. As the user moves through the flow, each viewed step updates the session's `currentStepId` and progress.
+When a flow starts, Usertour creates or reuses an active session and records `FLOW_STARTED`. If the flow starts on a known step, Usertour also records `FLOW_STEP_SEEN` for that step. As the user moves through the flow, each viewed step updates the session's current step and progress.
 
 The SDK keeps only one active flow on screen. If a new flow session is activated while another flow is active, the previous flow UI is cleaned up and the new session is rendered. If the same session is activated again, the SDK updates the existing UI instead of creating a duplicate.
 
@@ -99,7 +99,7 @@ When a banner is shown, Usertour records `BANNER_SEEN`. When the user dismisses 
 Banners do not have a separate completion event. Dismissal is also the completion point — the same terminal event both closes the session and marks the banner interaction as complete.
 
 <Note>
-The `max 1 ever` rule is enforced by the `filterSingleSessionContentVersions` guard. After the first session ends, the banner content is excluded from the list of content the SDK can start for that user.
+The `max 1 ever` rule is enforced server-side. After the first session ends, the banner is excluded from the list of content the SDK can start for that user.
 </Note>
 
 ## Resource Centers
@@ -113,7 +113,7 @@ When the Resource Center becomes available for the user, Usertour records `RESOU
 Clicks inside the Resource Center, such as selecting a block or item, are recorded as `RESOURCE_CENTER_CLICKED`. The session closes only when the Resource Center is dismissed, which records `RESOURCE_CENTER_DISMISSED` and flips state to `1`.
 
 <Note>
-The `max 1 ever` rule for Resource Centers uses the same `filterSingleSessionContentVersions` guard as banners. Opening and closing the panel does not create new sessions.
+The `max 1 ever` rule for Resource Centers works the same way as for banners. Opening and closing the panel does not create new sessions.
 </Note>
 
 ## Launchers
