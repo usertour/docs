@@ -1,0 +1,130 @@
+---
+title: Element is present
+description: Use an Element is present start rule to wait until the real page is ready before showing a flow.
+icon: "eye"
+---
+
+In many web applications, a route change happens before the screen is fully ready.
+
+A user may already be on the correct page, while the button, table, panel, or empty state that a flow depends on is still loading. If the flow starts during that gap, the first step can appear too early or fail to attach to its target.
+
+The **Element is present** rule is designed for this moment. It lets a flow wait for a specific visible element before starting.
+
+## Scenario
+
+```text
+/settings/team
+```
+
+Suppose a flow explains how to invite teammates. Its first step points to the `Invite teammate` button on the team settings page.
+
+The page route becomes `/settings/team` first. Then the application loads permissions, team data, and feature access. Only after those checks finish does the invite button appear.
+
+If the flow only uses a page rule, it can start as soon as the route matches:
+
+```text
+Current page is /settings/team
+```
+
+That confirms the user is on the right page, but it does not confirm that the target UI is ready.
+
+The safer start rule is:
+
+```text
+Current page is /settings/team
+AND
+Element is present: Invite teammate button
+```
+
+![Auto-start rule with Current page, Element is present, and Wait 3 seconds](/images/use-cases/element-present-start-rule.png)
+
+With this rule, the flow starts only after both conditions are true:
+
+```text
+The user is on /settings/team
+and the Invite teammate button is visible.
+```
+
+The difference is subtle, but important: the flow starts when the page is usable, not merely when the URL has changed.
+
+## Where This Rule Fits
+
+Use **Element is present** when the first step of a flow depends on UI that is rendered conditionally or asynchronously.
+
+Common examples include:
+
+- A button that appears after permissions are loaded.
+- A table that appears after data is fetched.
+- A feature card that appears only for eligible users.
+- An empty state that appears only when the user has no records.
+- A panel that appears after a tab, filter, or SPA route finishes rendering.
+
+The rule should represent the specific UI the flow needs. It is not meant to be a generic page-loading delay.
+
+## The Wait Setting
+
+The wait setting is often misunderstood.
+
+`Wait 3 seconds` does **not** mean:
+
+```text
+Wait up to 3 seconds for the element to appear.
+```
+
+It means:
+
+```text
+After the page rule matches
+and the element is present,
+keep those conditions true for 3 more seconds,
+then start the flow.
+```
+
+For example, if the invite button takes 8 seconds to appear and the rule has `Wait 3 seconds`, the flow starts about 3 seconds after the button becomes visible.
+
+This is useful when the element appears during an animation, layout shift, or slow rendering phase. In most cases, a short wait of 1-3 seconds is enough.
+
+## Why This Works
+
+This rule works because Usertour separates two kinds of knowledge.
+
+The server can decide whether a user is eligible for a flow. It knows the published content, page rules, frequency settings, priority, user attributes, and historical activity.
+
+The browser knows the live screen. It can tell whether the selected element is actually visible to the user.
+
+For element-based rules, the SDK checks the page in the browser and reports the element state back to Usertour. Once the server-side rules and the browser-side element check both match, Usertour starts the flow session.
+
+This is why the rule is reliable in modern applications: it waits for the screen the user can actually interact with.
+
+## If The Flow Does Not Start
+
+When a flow using **Element is present** does not start, the issue is usually one of these:
+
+- Is the user on the matching page?
+- Is the element visible for this user's role or plan?
+- Is the element inside a closed tab, menu, accordion, or modal?
+- Did you select a temporary loader instead of the final UI?
+- Is the flow blocked by frequency, such as "Once per user"?
+
+The most common mistake is selecting an element that appears during loading rather than the final UI the user should interact with.
+
+## Choosing The Element
+
+Choose an element that proves the user can follow the first step of the flow.
+
+Good targets include:
+
+- The button the first tooltip points to
+- A loaded table, form, or settings panel
+- A stable empty state
+- A feature card that only appears for eligible users
+
+Avoid targets such as:
+
+- Loading spinners
+- Skeleton placeholders
+- Toast messages
+- Text that changes per user
+- Elements that appear briefly and then disappear
+
+The best target is usually a stable, ordinary piece of UI. If that element is visible, the flow has a real place to begin.

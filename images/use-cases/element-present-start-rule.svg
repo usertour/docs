@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="412" viewBox="0 0 460 412" role="img" aria-labelledby="title desc">
+  <title id="title">Element is present start rule configuration</title>
+  <desc id="desc">A Usertour auto-start rule configuration with current page, element is present, wait 3 seconds, once per user, and medium priority.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <style>
+    text {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      fill: #111827;
+    }
+    .label { font-size: 14px; font-weight: 500; }
+    .small { font-size: 14px; fill: #475569; }
+    .muted { font-size: 13px; fill: #64748b; }
+    .blue { font-size: 14px; fill: #4f46e5; }
+    .bold { font-size: 15px; font-weight: 700; }
+    .card { fill: #ffffff; stroke: #e5e7eb; stroke-width: 1; rx: 8; filter: url(#shadow); }
+    .rule { fill: #f1f5f9; rx: 4; }
+    .connector { fill: #eef2f7; rx: 6; }
+    .input { fill: #ffffff; stroke: #dbe3ef; stroke-width: 1; rx: 6; }
+    .toggle-track { fill: #6046ff; }
+    .toggle-dot { fill: #ffffff; }
+  </style>
+
+  <rect width="460" height="412" fill="#eef3f8"/>
+  <rect class="card" x="18" y="18" width="422" height="394" rx="8"/>
+
+  <g transform="translate(34 42)">
+    <rect class="toggle-track" x="0" y="0" width="38" height="20" rx="10"/>
+    <circle class="toggle-dot" cx="27" cy="10" r="8"/>
+    <text class="label" x="44" y="15">Auto-start flow if...</text>
+    <circle cx="173" cy="10" r="7" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="170" y="14" font-size="11" fill="#64748b">?</text>
+  </g>
+
+  <g transform="translate(34 74)">
+    <rect class="connector" x="0" y="0" width="80" height="25"/>
+    <text class="label" x="39" y="17" text-anchor="middle">If</text>
+
+    <rect class="rule" x="88" y="0" width="300" height="54"/>
+    <g transform="translate(105 18)">
+      <rect x="-6" y="3" width="12" height="12" rx="1" fill="none" stroke="#334155" stroke-width="1.7"/>
+      <line x1="-3" y1="0" x2="4" y2="0" stroke="#334155" stroke-width="1.7"/>
+      <line x1="-3" y1="7" x2="4" y2="7" stroke="#334155" stroke-width="1.7"/>
+    </g>
+    <text class="label" x="120" y="21">Current page matches</text>
+    <text class="bold" x="265" y="21">/settings/tea</text>
+    <text class="bold" x="120" y="42">m</text>
+    <text x="374" y="20" font-size="22" fill="#334155">×</text>
+  </g>
+
+  <g transform="translate(34 138)">
+    <rect class="connector" x="0" y="0" width="80" height="31"/>
+    <rect x="5" y="3" width="35" height="25" rx="6" fill="#ffffff" stroke="#d8e0ea"/>
+    <text class="label" x="22" y="21" text-anchor="middle">and</text>
+    <text class="muted" x="50" y="21">or</text>
+
+    <rect class="rule" x="88" y="0" width="300" height="81"/>
+    <g transform="translate(105 34)">
+      <rect x="-6" y="-8" width="5" height="5" rx="1" fill="none" stroke="#334155" stroke-width="1.5"/>
+      <rect x="3" y="-8" width="5" height="5" rx="1" fill="none" stroke="#334155" stroke-width="1.5"/>
+      <rect x="-6" y="1" width="5" height="5" rx="1" fill="none" stroke="#334155" stroke-width="1.5"/>
+      <rect x="3" y="1" width="5" height="5" rx="1" fill="none" stroke="#334155" stroke-width="1.5"/>
+    </g>
+    <text class="label" x="120" y="24">If this element</text>
+    <text class="bold" x="120" y="46">#invite-teammate-btn</text>
+    <text class="label" x="120" y="66">is present</text>
+    <text x="374" y="20" font-size="22" fill="#334155">×</text>
+  </g>
+
+  <g transform="translate(34 228)">
+    <rect class="connector" x="0" y="0" width="80" height="31" opacity="0.65"/>
+    <rect x="5" y="3" width="35" height="25" rx="6" fill="#ffffff" stroke="#d8e0ea" opacity="0.65"/>
+    <text class="label" x="22" y="21" text-anchor="middle" opacity="0.45">and</text>
+    <text class="muted" x="50" y="21" opacity="0.65">or</text>
+    <text class="blue" x="106" y="20">+ Add condition</text>
+  </g>
+
+  <g transform="translate(34 280)">
+    <text class="label" x="0" y="14">Wait</text>
+    <rect class="input" x="38" y="-9" width="64" height="24"/>
+    <text class="label" x="70" y="9" text-anchor="middle">3</text>
+    <text class="small" x="111" y="14">second before starting</text>
+    <circle cx="274" cy="9" r="7" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="271" y="13" font-size="11" fill="#64748b">?</text>
+  </g>
+
+  <g transform="translate(34 324)">
+    <text class="blue" x="0" y="0">Once per user</text>
+    <text x="106" y="0" font-size="16" fill="#4f46e5">⌄</text>
+    <circle cx="133" cy="-5" r="7" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="130" y="-1" font-size="11" fill="#64748b">?</text>
+  </g>
+
+  <g transform="translate(34 356)">
+    <text class="label" x="0" y="0">At least</text>
+    <rect class="input" x="56" y="-16" width="64" height="24"/>
+    <text class="label" x="88" y="2" text-anchor="middle">0</text>
+    <text class="blue" x="129" y="0">days</text>
+    <text x="170" y="0" font-size="16" fill="#4f46e5">⌄</text>
+    <text class="label" x="196" y="0">after any flow</text>
+    <circle cx="294" cy="-5" r="7" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="291" y="-1" font-size="11" fill="#64748b">?</text>
+  </g>
+
+  <g transform="translate(34 388)">
+    <text class="blue" x="0" y="0">Medium priority</text>
+    <text x="118" y="0" font-size="16" fill="#4f46e5">⌄</text>
+    <circle cx="145" cy="-5" r="7" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="142" y="-1" font-size="11" fill="#64748b">?</text>
+  </g>
+</svg>

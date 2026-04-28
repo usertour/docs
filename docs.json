@@ -254,7 +254,14 @@
         "groups": [
           {
             "group": "Sessions",
-            "pages": ["use-cases/session-lifecycles", "use-cases/starting-content"]
+            "pages": ["use-cases/session-lifecycles"]
+          },
+          {
+            "group": "Start Rules",
+            "pages": [
+              "use-cases/starting-content",
+              "use-cases/start-flow-when-element-appears"
+            ]
           }
         ]
       }
