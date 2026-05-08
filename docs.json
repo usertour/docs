@@ -263,6 +263,10 @@
               "use-cases/start-flow-when-element-appears",
               "use-cases/close-button-follow-up"
             ]
+          },
+          {
+            "group": "Step Triggers",
+            "pages": ["use-cases/continue-after-text-input"]
           }
         ]
       }
