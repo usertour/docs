@@ -260,7 +260,8 @@
             "group": "Start Rules",
             "pages": [
               "use-cases/starting-content",
-              "use-cases/start-flow-when-element-appears"
+              "use-cases/start-flow-when-element-appears",
+              "use-cases/close-button-follow-up"
             ]
           }
         ]
