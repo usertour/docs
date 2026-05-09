@@ -267,6 +267,13 @@
           {
             "group": "Step Triggers",
             "pages": ["use-cases/continue-after-text-input"]
+          },
+          {
+            "group": "Flow Actions",
+            "pages": [
+              "use-cases/restart-onboarding-from-button",
+              "use-cases/choose-between-two-tours"
+            ]
           }
         ]
       }

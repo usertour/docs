@@ -1,0 +1,124 @@
+---
+title: Restart onboarding from a button
+description: Use usertour.start() to let users replay an onboarding flow from a button in your product.
+icon: "arrows-repeat"
+---
+
+Many onboarding flows are configured to show only once per user.
+
+That is usually the right default. A first-run tour should not keep interrupting someone every time they return to the product. But users still need a way back. They may skip the tour the first time, forget a step, or want to show the onboarding flow to a teammate later.
+
+For this case, keep the automatic start rule as **Once per user**, and add a button in your product that manually starts the flow again.
+
+## Scenario
+
+Suppose your onboarding flow appears automatically the first time a user signs in.
+
+Later, the user opens a help menu or settings page and clicks:
+
+```text
+Restart onboarding
+```
+
+That button should start the same onboarding flow from the beginning, even if the flow has already been shown automatically before.
+
+## Use `usertour.start()`
+
+Add a click handler to your button and call `usertour.start()` with the flow ID:
+
+```js
+document.querySelector("#restart-onboarding").addEventListener("click", () => {
+  usertour.start("your_flow_id");
+});
+```
+
+The flow ID is the content ID from the flow detail page URL:
+
+```text
+/env/{envId}/flows/{flowId}/detail
+```
+
+For example:
+
+```text
+https://app.usertour.io/env/1/flows/cmaw8v1ch013s147h0uw8aha5/detail
+```
+
+The flow ID is:
+
+```text
+cmaw8v1ch013s147h0uw8aha5
+```
+
+For the full API reference, see [`start()`](/developers/usertourjs-reference/content/start).
+
+## Why This Works
+
+The **Once per user** setting controls automatic starts. It prevents the flow from appearing repeatedly on its own.
+
+Manual starts are different. When the user deliberately clicks a restart button, `usertour.start()` tells Usertour to show that flow now.
+
+This gives you both behaviors:
+
+```text
+Auto-start:
+Show onboarding once, when the user first qualifies.
+
+Manual restart:
+Let the user replay onboarding when they ask for it.
+```
+
+That distinction is useful because the user is no longer being interrupted. They are choosing to reopen the tour.
+
+## Restart Or Resume
+
+For a normal replay button, call `usertour.start()` without extra options:
+
+```js
+usertour.start("your_flow_id");
+```
+
+This starts the flow from the beginning.
+
+If you want the user to continue from where they left off, use `continue: true`:
+
+```js
+usertour.start("your_flow_id", {
+  continue: true,
+});
+```
+
+Do not use `once: true` for a restart button. `once: true` means the flow should only show if the user has not seen it before, which is the opposite of a replay experience.
+
+## Where To Put The Button
+
+The best place is somewhere the user naturally looks for help:
+
+- A help menu
+- A resource center
+- An onboarding checklist
+- A settings or profile page
+- An empty state that helps the user restart setup
+
+The label should make the action clear:
+
+```text
+Restart onboarding
+Replay product tour
+Show setup guide again
+```
+
+Avoid labels that sound like the user is starting a new account setup. The action is only replaying guidance.
+
+## Before You Call It
+
+Make sure Usertour is initialized and the user has been identified before the button can start the flow.
+
+In most apps, that means the restart button should be available only after your normal Usertour setup has run:
+
+```js
+usertour.init("your_token");
+usertour.identify("user_id");
+```
+
+Once the user is identified, the restart button can call `usertour.start()` whenever the user asks to see the tour again.
