@@ -1,6 +1,6 @@
 ---
-title: Element is present
-description: Use an Element is present start rule to wait until the real page is ready before showing a flow.
+title: Start when element appears
+description: Use an Element is present start rule to start a flow only after the target UI is visible.
 icon: "eye"
 ---
 
@@ -8,7 +8,7 @@ In many web applications, a route change happens before the screen is fully read
 
 A user may already be on the correct page, while the button, table, panel, or empty state that a flow depends on is still loading. If the flow starts during that gap, the first step can appear too early or fail to attach to its target.
 
-The **Element is present** rule is designed for this moment. It lets a flow wait for a specific visible element before starting.
+Use the **Element is present** start rule when the flow should start only after a specific UI element is visible.
 
 ## Scenario
 
@@ -16,7 +16,7 @@ The **Element is present** rule is designed for this moment. It lets a flow wait
 /settings/team
 ```
 
-Suppose a flow explains how to invite teammates. Its first step points to the `Invite teammate` button on the team settings page.
+Suppose a flow explains how to invite teammates. Its first step points to the **Invite teammate** button on the team settings page.
 
 The page route becomes `/settings/team` first. Then the application loads permissions, team data, and feature access. Only after those checks finish does the invite button appear.
 
@@ -28,7 +28,7 @@ Current page is /settings/team
 
 That confirms the user is on the right page, but it does not confirm that the target UI is ready.
 
-The safer start rule is:
+The safer start rule combines the page and the element:
 
 ```text
 Current page is /settings/team
@@ -92,7 +92,7 @@ The server can decide whether a user is eligible for a flow. It knows the publis
 
 The browser knows the live screen. It can tell whether the selected element is actually visible to the user.
 
-For element-based rules, the SDK checks the page in the browser and reports the element state back to Usertour. Once the server-side rules and the browser-side element check both match, Usertour starts the flow session.
+For element-based rules, the SDK checks the page in the browser and reports the element state back to Usertour. Once the other start rules and the browser-side element check both match, Usertour starts the flow session.
 
 This is why the rule is reliable in modern applications: it waits for the screen the user can actually interact with.
 
