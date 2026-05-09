@@ -1,5 +1,5 @@
 ---
-title: Session lifecycles
+title: Session lifecycle
 description: Understand when Usertour creates, updates, completes, and ends sessions for flows, checklists, launchers, banners, resource centers, and event trackers.
 icon: "route"
 ---
@@ -8,7 +8,7 @@ A session is Usertour's record of one user's interaction with one piece of conte
 
 Sessions share a common state machine: every session starts in `state = 0` (active) and transitions to `state = 1` (ended) when a terminal event is recorded. What differs between content types is how many sessions a user can have at once, and whether a new session can ever be created after the previous one ends.
 
-For the decision tree behind _when_ each type starts (start triggers, audience checks, fallback ladders), see [Starting content](/use-cases/starting-content).
+For the decision tree behind _when_ each type starts (start triggers, audience checks, fallback ladders), see [Content startup](/concepts/content-startup).
 
 ![Usertour session lifecycles by content type](/images/use-cases/session-lifecycles.svg)
 

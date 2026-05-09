@@ -28,6 +28,10 @@
             ]
           },
           {
+            "group": "Core Concepts",
+            "pages": ["concepts/content-startup", "concepts/session-lifecycle"]
+          },
+          {
             "group": "How-to Guides",
             "pages": [
               "building-experiences/creating-your-first-flow",
@@ -253,13 +257,8 @@
         "icon": "route",
         "groups": [
           {
-            "group": "Sessions",
-            "pages": ["use-cases/session-lifecycles"]
-          },
-          {
             "group": "Start Rules",
             "pages": [
-              "use-cases/starting-content",
               "use-cases/start-flow-when-element-appears",
               "use-cases/close-button-follow-up"
             ]
