@@ -21,14 +21,14 @@ This makes it much harder for an attacker to sign in even if your password is co
 Open your authenticator app and scan the QR code shown in the setup dialog. If your app doesn't support scanning, click **Can't scan? Enter this code manually** to copy the secret as text.
 
 {/* TODO screenshot: Setup dialog Step 1 — QR code + "Can't scan?" disclosure */}
-![Setup step 1 — scan the QR code](/images/2fa-02.png)
+![Setup step 1 — scan the QR code](/images/2fa-09.png)
 
 ### Step 2 — Enter the verification code
 
 Type the six-digit code your authenticator app shows for Usertour, then click **Verify and enable**.
 
 {/* TODO screenshot: Setup dialog Step 2 — six-digit input */}
-![Setup step 2 — verify the code](/images/2fa-03.png)
+![Setup step 2 — verify the code](/images/2fa-10.png)
 
 ### Step 3 — Save your recovery codes
 
@@ -38,10 +38,12 @@ Usertour shows ten one-time **recovery codes**. Each can be used once if you los
 - Tick **I have saved my recovery codes** to unlock the **Finish** button.
 
 {/* TODO screenshot: Setup dialog Step 3 — recovery codes list with Download / Copy all */}
-![Setup step 3 — save your recovery codes](/images/2fa-04.png)
+![Setup step 3 — save your recovery codes](/images/2fa-11.png)
 
 <Warning>
-Recovery codes are shown **once**. Store them somewhere safe — a password manager is a good fit. If you lose them **and** lose access to your authenticator app, you will need an administrator to help you back in.
+  Recovery codes are shown **once**. Store them somewhere safe — a password
+  manager is a good fit. If you lose them **and** lose access to your
+  authenticator app, you will need an administrator to help you back in.
 </Warning>
 
 ## Sign in with 2FA
@@ -85,7 +87,10 @@ If you've used most of your codes, or you think the list may have been exposed:
 ![Disable 2FA confirmation](/images/2fa-08.png)
 
 <Note>
-On self-hosted deployments, if your instance administrator has turned on **Require 2FA for all users**, the disable toggle is locked. See [Two-factor authentication in System Admin](/open-source/system-admin#two-factor-authentication) for details.
+  On self-hosted deployments, if your instance administrator has turned on
+  **Require 2FA for all users**, the disable toggle is locked. See [Two-factor
+  authentication in System
+  Admin](/open-source/system-admin#two-factor-authentication) for details.
 </Note>
 
 ## Lost your authenticator app?
