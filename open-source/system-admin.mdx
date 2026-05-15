@@ -105,6 +105,82 @@ When disabled:
 
 ![](/images/admin-02.png)
 
+## Two-Factor Authentication
+
+The **Authentication** page also hosts the instance-wide **Two-factor authentication** policy. This is where a System Admin can require every user on the instance to set up TOTP-based 2FA before they can use the application.
+
+For the per-user setup flow (scanning a QR code, saving recovery codes, signing in), see the user-facing guide: [Two-Factor Authentication](/how-to-guides/two-factor-authentication).
+
+### Require 2FA for all users
+
+Turn on **Require 2FA for all users** to enforce 2FA across the entire instance.
+
+{/* TODO screenshot: System Admin → Authentication, Two-factor authentication card with toggle OFF */}
+![Require 2FA for all users — toggle](/images/admin-2fa-01.png)
+
+When the toggle is on:
+
+- Users who haven't enabled 2FA yet are redirected to a forced setup page on their next request and cannot use the application until setup is complete.
+- Existing refresh tokens for those users are revoked, so any active sessions on other devices are signed out.
+- The **Disable 2FA** option on the user-facing account page is locked. Users see a tooltip explaining that their administrator requires 2FA.
+- System Admins can still toggle the policy off, but only after enabling 2FA on their own account.
+
+### Prerequisites
+
+Before you can turn the policy on:
+
+1. **You must have 2FA enabled on your own account.** Otherwise you'd lock yourself out as soon as the policy applies. The toggle stays disabled and an inline message links to your account settings.
+
+   {/* TODO screenshot: Authentication page — "Enable 2FA on your own account first" inline notice */}
+   ![Admin must enable 2FA on their own account first](/images/admin-2fa-02.png)
+
+2. **Your instance license must cover two-factor authentication.** This is an Enterprise feature on self-hosted plans. If the current license doesn't include it, the toggle stays disabled and the page shows an upgrade message.
+
+   {/* TODO screenshot: Authentication page — "Upgrade your license" inline notice */}
+   ![Instance license must include two_factor_auth](/images/admin-2fa-03.png)
+
+For more on instance licensing and how to upload an instance license, see [License Management](/open-source/license-management).
+
+### Behavior when the license lapses
+
+If the policy is currently on and the instance license expires (or stops covering two-factor authentication), the policy goes **dormant** instead of being silently switched off:
+
+- The toggle stays in its previous position.
+- An inline notice on the Authentication page indicates that enforcement is not currently applied.
+- Users who already enabled 2FA continue to sign in with their second factor as normal.
+- New non-enrolled users are **not** forced through setup until a valid license is in place again.
+
+This avoids accidentally weakening security at a moment when the license simply needs renewing.
+
+### SaaS vs. self-hosted
+
+The instance-wide **Require 2FA for all users** toggle exists only in self-hosted deployments. On Usertour Cloud (SaaS), each user manages 2FA on their own account from [Settings → Account](/how-to-guides/two-factor-authentication); there is no instance-wide enforcement.
+
+### Emergency 2FA reset
+
+There is intentionally no admin UI for resetting another user's 2FA. If a user has lost their authenticator app **and** their recovery codes, a System Admin can reset 2FA directly in the database. A simple PostgreSQL example looks like this:
+
+```sql
+-- Replace 'lost-access@example.com' with the actual user's email.
+WITH target AS (
+  SELECT id FROM "User" WHERE email = 'lost-access@example.com'
+)
+UPDATE "User"
+SET "twoFactorEnabled" = false,
+    "twoFactorSecret" = NULL,
+    "twoFactorEnabledAt" = NULL
+WHERE id IN (SELECT id FROM target);
+
+DELETE FROM "TwoFactorRecoveryCode"
+WHERE "userId" IN (SELECT id FROM target);
+```
+
+After the reset, ask the user to sign in again and re-enable 2FA. If the instance-wide policy is on, they will be redirected to the forced setup page automatically.
+
+<Warning>
+Only use this path when there is no other way back in. Confirm the user's identity through a side channel (a video call, a known internal account, etc.) before resetting their second factor.
+</Warning>
+
 ## Subscription
 
 The **Subscription** page is the main place to manage instance-level licensing in self-hosted mode.
