@@ -1,0 +1,40 @@
+---
+title: 'Expanding objects'
+description: 'Inline related objects and heavy fields with the expand query parameter.'
+---
+
+## Overview
+
+Many v2 responses can inline related objects or heavy fields with the `expand`
+query parameter, so you avoid a second request. By default these fields are
+omitted (or `null`).
+
+## Usage
+
+```bash
+# inline the version objects on a content
+GET /v2/projects/{projectId}/content/{id}?expand=editedVersion
+
+# decompiled steps on a content version (heavy → opt-in)
+GET /v2/projects/{projectId}/content-versions/{id}?expand=steps
+```
+
+Request multiple expansions with array syntax:
+
+```bash
+?expand[]=editedVersion&expand[]=publishedVersion
+```
+
+## What each resource supports
+
+| Resource | `expand` options |
+|---|---|
+| Content | `editedVersion`, `publishedVersion` |
+| Content version | `steps`, `questions`, `data` |
+| User | `companies` |
+
+<Note>
+  For content versions, `steps` (flow body) and `data` (non-flow body) are heavy
+  and only returned when expanded — see
+  [Content representation](/api-reference-v2/content-representation).
+</Note>

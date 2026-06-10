@@ -1,0 +1,59 @@
+---
+title: 'MCP'
+description: 'Drive Usertour from an AI agent over the Model Context Protocol.'
+---
+
+Usertour exposes a [Model Context Protocol](https://modelcontextprotocol.io)
+endpoint so AI agents (Claude, Cursor, …) can read and author content through the
+same v2 services the REST API uses.
+
+## Endpoint
+
+```
+POST https://api.usertour.io/mcp
+Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+It speaks MCP over **Streamable HTTP**. The token must be scoped to **exactly one
+project** (MCP carries no project in the path). Tools are **scope-gated**: a tool
+is only listed/usable if your token has its capability — e.g. write tools require
+`content:create` / `content:update` / `content:delete` / `content:publish`.
+
+## Tools
+
+**Read** — `list_content`, `get_content`, `list_users`, `get_user`,
+`list_attribute_definitions`, `list_event_definitions`, `list_themes`.
+
+**Write** — `create_content`, `update_content`, `delete_content`,
+`create_content_version`, `update_content_version`, `restore_content_version`,
+`publish_content`, `unpublish_content`, `duplicate_content`.
+
+Write tools take the same [representation](/api-reference-v2/content-representation)
+as the REST endpoints (markdown blocks, `{{ attribute }}` placeholders, rules);
+`update_content_version` carries `steps`, `startRules` / `hideRules`, `themeId`,
+and `data`.
+
+## Connecting a client
+
+Most MCP clients accept a stdio command. Use `mcp-remote` to bridge to the HTTP
+endpoint:
+
+```json
+{
+  "mcpServers": {
+    "usertour": {
+      "command": "npx",
+      "args": [
+        "-y", "mcp-remote",
+        "https://api.usertour.io/mcp",
+        "--header", "Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      ]
+    }
+  }
+}
+```
+
+<Note>
+  Use a single-project token with only the scopes the agent needs. To let it
+  author, include the write scopes — otherwise only read tools appear.
+</Note>

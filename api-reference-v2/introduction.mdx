@@ -1,0 +1,70 @@
+---
+title: 'Introduction'
+description: 'The Usertour v2 API — project-scoped, token-authenticated, and contract-first.'
+---
+
+The **v2 API** is the current Usertour REST API. It is project-scoped,
+authenticated with [personal API tokens](/api-reference-v2/authentication), and
+generated from a single source of truth (so this reference always matches the
+server).
+
+<Note>
+  Looking for the older API? See the **[legacy v1 reference](/api-reference/introduction)**
+  (still supported for existing integrations). v2 is recommended for everything new —
+  it adds content **authoring** (read *and* write), publishing, and an
+  [MCP](/api-reference-v2/mcp) endpoint for AI agents.
+</Note>
+
+## Base URL
+
+```
+https://api.usertour.io
+```
+
+All requests use **HTTPS**. Every v2 path is rooted at a project:
+
+```
+/v2/projects/{projectId}/...
+```
+
+Business data (users, companies, sessions) is additionally scoped to an
+environment:
+
+```
+/v2/projects/{projectId}/environments/{environmentId}/...
+```
+
+## Authentication
+
+Send a personal API token as a Bearer header:
+
+```
+Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+Tokens carry **scopes** and are bound to one or more projects. See
+[Authentication](/api-reference-v2/authentication).
+
+## Conventions
+
+- **Pagination** — list endpoints return `{ results, next, previous }` with cursor
+  paging. See [Pagination](/api-reference-v2/pagination).
+- **Ordering** — `orderBy` (e.g. `-createdAt`). See [Ordering](/api-reference-v2/ordering).
+- **Expanding** — `expand` inlines related objects (e.g. `?expand=steps`,
+  `?expand=editedVersion`). See [Expanding objects](/api-reference-v2/expanding-objects).
+- **Attributes** — custom fields on users/companies/events. See
+  [Attributes](/api-reference-v2/attributes).
+- **Errors** — a stable `{ error: { code, message } }` envelope. See
+  [Errors](/api-reference-v2/errors).
+
+## What's different from v1
+
+| | v1 | v2 |
+|---|---|---|
+| Path | `/v1/...` | `/v2/projects/{projectId}/...` |
+| Auth | access token (`ak_`) | personal API token (`utp_`) + scopes |
+| Publish state | single `publishedVersionId` | per-environment `environments[]` |
+| Content versions | read-only | read **and write** (steps, rules, theme, body) |
+| Lifecycle | — | publish / unpublish, duplicate, restore, draft versions |
+| Authoring | — | a stable [content representation](/api-reference-v2/content-representation) |
+| AI | — | [MCP](/api-reference-v2/mcp) endpoint |

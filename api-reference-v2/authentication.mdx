@@ -1,0 +1,52 @@
+---
+title: 'Authentication'
+description: 'Personal API tokens, scopes, and project access.'
+---
+
+The v2 API authenticates with **personal API tokens**. Create one in your
+Usertour dashboard under **Settings → Personal API keys**, then send it as a
+Bearer header on every request:
+
+```
+Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+A token is owned by a user and has two properties that gate every request:
+
+- **Projects** — the token is bound to one or more projects. A request to
+  `/v2/projects/{projectId}/...` is rejected unless the token includes that project.
+- **Scopes** — fine-grained capabilities. A request is rejected unless the token
+  carries the scope its endpoint requires.
+
+## Scopes
+
+| Scope | Grants |
+|---|---|
+| `content:read` | Read content, versions, and themes |
+| `content:create` | Create / duplicate content, create draft versions |
+| `content:update` | Edit drafts (steps, rules, theme, body), restore versions |
+| `content:delete` | Delete content |
+| `content:publish` | Publish / unpublish a version to an environment |
+| `theme:read` | List / get themes |
+| `bizdata:read` | Read end-users, companies, and sessions |
+| `attribute:read` | Read attribute definitions |
+| `event:read` | Read event definitions |
+
+Grant a token only the scopes it needs.
+
+## Errors
+
+| Situation | Status | Code |
+|---|---|---|
+| Missing `Authorization` header | 401 | `E1010` |
+| Unknown / invalid token | 403 | `E1000` |
+| Token not scoped to the project | 403 | `E1011` |
+| Token lacks the required scope | 403 | `E1012` |
+
+See [Errors](/api-reference-v2/errors) for the full list.
+
+## Using a token with MCP
+
+The [MCP endpoint](/api-reference-v2/mcp) carries no project in its path, so a
+token used with MCP must be scoped to **exactly one project**. Multi-project
+tokens work for the REST API but are rejected by MCP tool calls.

@@ -29,7 +29,10 @@
           },
           {
             "group": "Core Concepts",
-            "pages": ["concepts/content-startup", "concepts/session-lifecycle"]
+            "pages": [
+              "concepts/content-startup",
+              "concepts/session-lifecycle"
+            ]
           },
           {
             "group": "How-to Guides",
@@ -62,7 +65,9 @@
           },
           {
             "group": "Developers",
-            "pages": ["developers/csp"]
+            "pages": [
+              "developers/csp"
+            ]
           }
         ]
       },
@@ -79,7 +84,9 @@
           },
           {
             "group": "Setup",
-            "pages": ["developers/usertourjs-reference/setup/init"]
+            "pages": [
+              "developers/usertourjs-reference/setup/init"
+            ]
           },
           {
             "group": "Users",
@@ -139,8 +146,96 @@
         ]
       },
       {
+        "anchor": "API Reference",
+        "icon": "terminal",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "api-reference-v2/introduction",
+              "api-reference-v2/authentication",
+              "api-reference-v2/errors"
+            ]
+          },
+          {
+            "group": "Conventions",
+            "pages": [
+              "api-reference-v2/pagination",
+              "api-reference-v2/ordering",
+              "api-reference-v2/expanding-objects",
+              "api-reference-v2/attributes"
+            ]
+          },
+          {
+            "group": "Concepts",
+            "pages": [
+              "api-reference-v2/content-representation",
+              "api-reference-v2/mcp"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "openapi": "/api-reference-v2/openapi.json"
+          }
+        ]
+      },
+      {
+        "anchor": "Self-Hosting",
+        "icon": "github",
+        "groups": [
+          {
+            "group": "Self-Hosting",
+            "pages": [
+              {
+                "group": "Deployments",
+                "icon": "server",
+                "pages": [
+                  "open-source/self-hosting",
+                  "open-source/coolify-deployment"
+                ]
+              },
+              "open-source/local-development",
+              "open-source/env",
+              "open-source/usertourjs",
+              "open-source/system-admin",
+              "open-source/license-management",
+              "open-source/business-enterprise",
+              "open-source/backups",
+              "open-source/troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "anchor": "Use Cases",
+        "icon": "route",
+        "groups": [
+          {
+            "group": "Start Rules",
+            "pages": [
+              "use-cases/start-flow-when-element-appears",
+              "use-cases/close-button-follow-up"
+            ]
+          },
+          {
+            "group": "Step Triggers",
+            "pages": [
+              "use-cases/continue-after-text-input"
+            ]
+          },
+          {
+            "group": "Flow Actions",
+            "pages": [
+              "use-cases/restart-onboarding-from-button",
+              "use-cases/choose-between-two-tours"
+            ]
+          }
+        ]
+      },
+      {
         "anchor": "API Reference (v1)",
         "icon": "terminal",
+        "tag": "Legacy",
         "groups": [
           {
             "group": "API References",
@@ -222,62 +317,6 @@
             "pages": [
               "api-reference/attribute-definitions/model",
               "api-reference/attribute-definitions/list"
-            ]
-          }
-        ]
-      },
-      {
-        "anchor": "API Reference (v2)",
-        "icon": "terminal",
-        "openapi": "/api-reference-v2/openapi.json"
-      },
-      {
-        "anchor": "Self-Hosting",
-        "icon": "github",
-        "groups": [
-          {
-            "group": "Self-Hosting",
-            "pages": [
-              {
-                "group": "Deployments",
-                "icon": "server",
-                "pages": [
-                  "open-source/self-hosting",
-                  "open-source/coolify-deployment"
-                ]
-              },
-              "open-source/local-development",
-              "open-source/env",
-              "open-source/usertourjs",
-              "open-source/system-admin",
-              "open-source/license-management",
-              "open-source/business-enterprise",
-              "open-source/backups",
-              "open-source/troubleshooting"
-            ]
-          }
-        ]
-      },
-      {
-        "anchor": "Use Cases",
-        "icon": "route",
-        "groups": [
-          {
-            "group": "Start Rules",
-            "pages": [
-              "use-cases/start-flow-when-element-appears",
-              "use-cases/close-button-follow-up"
-            ]
-          },
-          {
-            "group": "Step Triggers",
-            "pages": ["use-cases/continue-after-text-input"]
-          },
-          {
-            "group": "Flow Actions",
-            "pages": [
-              "use-cases/restart-onboarding-from-button",
-              "use-cases/choose-between-two-tours"
             ]
           }
         ]

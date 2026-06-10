@@ -1,0 +1,40 @@
+---
+title: 'Pagination'
+description: 'v2 list endpoints share one cursor-based pagination format and list object.'
+---
+
+import PaginationParameters from '/snippets/pagination-parameters.mdx';
+
+## Query parameters
+
+<PaginationParameters />
+
+## The list object
+
+Every list endpoint returns a standardized object:
+
+<ResponseField name="results" type="array">
+  The requested resource objects. Never more than `limit` items.
+</ResponseField>
+
+<ResponseField name="next" type="string | null">
+  URL of the next page (carries the `cursor`), or `null` if there is no next page.
+</ResponseField>
+
+<ResponseField name="previous" type="string | null">
+  URL of the previous page, or `null` on the first page.
+</ResponseField>
+
+```json
+{
+  "results": [
+    { "id": "cm9f6vwed0002iejc4vg2zu3t", "object": "content", "type": "flow", "..." : "..." },
+    { "id": "cm9jaftye007yrjlx3ghggigi", "object": "content", "type": "checklist", "..." : "..." }
+  ],
+  "next": "/v2/projects/{projectId}/content?limit=2&cursor=cm9jaftye007yrjlx3ghggigi",
+  "previous": null
+}
+```
+
+To page, request the URL in `next` (or pass its `cursor` back as the `cursor`
+query param).

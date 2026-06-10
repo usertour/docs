@@ -1,0 +1,45 @@
+---
+title: 'Errors'
+description: 'The v2 error envelope and codes.'
+---
+
+Every v2 error returns a stable JSON envelope with a machine-readable `code` —
+match on `code`, not on the message (messages may change):
+
+```json
+{
+  "error": {
+    "code": "E1012",
+    "message": "API key lacks the required scope for this operation"
+  }
+}
+```
+
+HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
+`5xx` Usertour.
+
+## Codes
+
+| Code | Status | Meaning |
+|---|---|---|
+| `E1000` | 403 | Invalid / unknown API token |
+| `E1010` | 401 | Missing `Authorization` header |
+| `E1011` | 403 | Token not scoped to the requested project |
+| `E1012` | 403 | Token lacks the required scope |
+| `E1019` | 403 | Environment does not belong to the project |
+| `E1020` | 401 | API token has expired |
+| `E1004` | 404 | Content or content version not found |
+| `E1005` | 404 | Content session not found |
+| `E1001` | 404 | User not found |
+| `E1002` | 404 | Company not found |
+| `E1021` | 404 | Theme not found |
+| `E1017` | 400 | Request validation failed (bad body / params) |
+| `E1006` | 400 | Invalid `limit` |
+| `E1007` | 400 | Invalid pagination cursor |
+| `E1013` | 429 | Rate limit exceeded |
+
+<Note>
+  Write endpoints validate the request body against the schema and return `E1017`
+  with a message pointing at the offending field — for example, a malformed
+  `data` body for a non-flow content type, or a step referencing an unknown value.
+</Note>

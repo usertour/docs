@@ -1,0 +1,99 @@
+---
+title: 'Content representation'
+description: 'How a content version is read and written — steps, blocks, rules, and type-specific data.'
+---
+
+A piece of **content** (flow, checklist, launcher, banner, tracker,
+resource-center) has **versions**. The editable head is the *draft* version
+(`editedVersionId`); publishing makes a version live in an environment.
+
+A version's authorable body is exposed as a stable **representation** — the same
+shape you read and write — rather than Usertour's internal builder model. You
+**read** it with `expand`, and **write** it with `PATCH content-versions/{id}`
+(drafts only).
+
+## A version's body
+
+| Content type | Body | Read with | Write field |
+|---|---|---|---|
+| `flow` (tooltip / modal / …) | **steps** | `?expand=steps` | `steps` |
+| `checklist` / `launcher` / `banner` / `tracker` / `resource-center` | **data** | `?expand=data` | `data` |
+
+Both also carry version-level **start / hide rules** (`startRules`, `hideRules`)
+and a `themeId`.
+
+## Steps (flow)
+
+```json
+{
+  "object": "step",
+  "id": "cm9...",          // server-owned; the write key (see below)
+  "name": "Welcome",
+  "type": "modal",
+  "placement": { "side": "bottom", "align": "center" },
+  "content": [
+    { "object": "block", "type": "text", "markdown": "Welcome **{{ first_name | default: \"there\" }}**" },
+    { "object": "block", "type": "button", "text": "Next", "variant": "primary", "actions": [{ "type": "goto_step", "step": "<cvid>" }] }
+  ],
+  "triggers": [ { "when": [ /* conditions */ ], "do": [ /* actions */ ] } ]
+}
+```
+
+**Blocks** (`content[]`): `text` (markdown), `image`, `button`, `embed`,
+`question` (nps / rating / text / choice), and `columns` (a row of nested blocks).
+
+**Rich text** is markdown. Reference a user attribute with a Liquid-style
+placeholder: `{{ attribute | default: "fallback" }}`.
+
+### `id` vs `cvid`
+
+A step has two server-owned, read-only identifiers — never invent them:
+
+- **`id`** — the **write key**. Echo a step's `id` to update it; **omit** `id` to
+  create a new step. Steps you omit from the list are deleted.
+- **`cvid`** — a version-stable reference key. Actions like `goto_step` target a
+  step **by its `cvid`** (it survives version copies, where `id` would not). You
+  echo a `cvid` to reference a step; you never set one.
+
+## Rules
+
+Conditions and actions are reused everywhere (step triggers, button/question
+actions, version start/hide rules):
+
+- **Conditions** — a recursive tree (`user_attribute`, `current_url`, `segment`,
+  `element`, `event`, `text_input`, time/wait, nested `group` with `and`/`or`).
+- **Actions** — `goto_step`, `start_flow`, `navigate`, `dismiss`. (`run_javascript`
+  is **read-only**: it appears on reads but is rejected on write.)
+- **Start rules** (`startRules`) — when the content auto-starts, plus frequency /
+  priority / wait. **Hide rules** (`hideRules`) — when to hide it.
+
+## Type-specific data (non-flow)
+
+For the non-flow types, the body lives in `data` (read with `?expand=data`):
+checklist items, launcher target/tooltip/behavior, banner placement/content,
+tracker event, or the resource-center block tree. Nested rich content reuses the
+same blocks, and conditions/actions reuse the same rules.
+
+## Writing
+
+`PATCH /v2/projects/{projectId}/content-versions/{id}` — send only the fields you
+want to change:
+
+```json
+{
+  "steps": [ /* full list, merged by id */ ],
+  "startRules": { "when": [ /* conditions */ ] },
+  "hideRules": null,                  // null clears
+  "themeId": "cm7...",                // null clears → project default
+  "data": { /* for non-flow types */ }
+}
+```
+
+- Writes target **draft** versions only.
+- It is a **field-level merge**: styling, layout, and other details the
+  representation doesn't express are preserved from the existing version.
+- Omitted top-level fields are left untouched.
+
+To start a fresh draft, `POST content-versions` (forks the edited version), or
+`POST content-versions/{id}/restore` (forks a historical version forward).
+Publishing is a separate, explicit step — see the **Publish a version** endpoint.

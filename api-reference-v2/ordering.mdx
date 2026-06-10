@@ -1,0 +1,24 @@
+---
+title: 'Ordering'
+description: 'Order list results with the orderBy query parameter.'
+---
+
+## Query parameters
+
+<ParamField query="orderBy" type="string | string[]">
+  The field(s) to sort by. Provide a single field or an array. Multiple fields
+  sort left-to-right. Ascending by default; prefix with `-` for descending. Each
+  endpoint documents the fields it can be ordered by.
+</ParamField>
+
+## Examples
+
+```bash
+# newest content first
+GET /v2/projects/{projectId}/content?orderBy=-createdAt
+```
+
+```bash
+# multiple fields (array syntax)
+GET /v2/projects/{projectId}/attribute-definitions?orderBy[]=displayName&orderBy[]=-createdAt
+```

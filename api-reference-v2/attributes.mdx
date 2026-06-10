@@ -1,0 +1,35 @@
+---
+title: 'Attributes'
+description: 'Custom attributes on users, companies, and events — naming and data types.'
+---
+
+Users, companies, and events carry custom **attributes** that extend the default
+data model. The schema of your attributes is exposed by the
+[attribute definitions](/api-reference-v2/introduction) endpoint
+(`attribute:read`); the values live on each user/company object.
+
+## Naming
+
+- Alphanumeric, plus underscores, dashes, and spaces
+- Case-sensitive and unique within the object
+- Prefer `snake_case` (e.g. `signed_up_at`, `last_login_time`)
+
+Display names (shown in the Usertour UI) are configured separately — e.g.
+`signed_up_at` can display as "Signed Up".
+
+## Data types
+
+| Type | Description |
+|------|-------------|
+| `string` | A string. |
+| `number` | Integer or floating point. |
+| `boolean` | `true` or `false`. |
+| `datetime` | A point in time, ISO 8601 in UTC. |
+| `list` | A list of strings. |
+
+## Best practices
+
+- Use the most specific type — store dates as `datetime`, flags as `boolean`
+  (not strings).
+- Keep names concise but descriptive; avoid system/reserved names.
+- Don't store large blobs in attributes.
