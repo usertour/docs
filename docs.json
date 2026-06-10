@@ -139,7 +139,7 @@
         ]
       },
       {
-        "anchor": "API References",
+        "anchor": "API Reference (v1)",
         "icon": "terminal",
         "groups": [
           {
@@ -225,6 +225,11 @@
             ]
           }
         ]
+      },
+      {
+        "anchor": "API Reference (v2)",
+        "icon": "terminal",
+        "openapi": "/api-reference-v2/openapi.json"
       },
       {
         "anchor": "Self-Hosting",
