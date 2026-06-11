@@ -1287,6 +1287,110 @@
             "bearer": []
           }
         ]
+      },
+      "put": {
+        "operationId": "ApiUsersController_upsert",
+        "summary": "Create or update a user",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "User external ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertUserBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created or updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiUsersController_remove",
+        "summary": "Delete a user",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "User external ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/v2/projects/{projectId}/environments/{environmentId}/companies": {
@@ -1479,6 +1583,237 @@
           },
           "404": {
             "description": "Company not found"
+          }
+        },
+        "tags": [
+          "Companies"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "ApiCompaniesController_upsert",
+        "summary": "Create or update a company",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Company external ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertCompanyBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Company created or updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Companies"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiCompaniesController_remove",
+        "summary": "Delete a company",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Company external ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Company deleted"
+          },
+          "404": {
+            "description": "Company not found"
+          }
+        },
+        "tags": [
+          "Companies"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/companies/{id}/memberships/{userId}": {
+      "put": {
+        "operationId": "ApiCompaniesController_upsertMembership",
+        "summary": "Add or update a company membership",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Company external ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "description": "User external ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertMembershipBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Membership created or updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Company or user not found"
+          }
+        },
+        "tags": [
+          "Companies"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiCompaniesController_removeMembership",
+        "summary": "Remove a company membership",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Company external ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "description": "User external ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Membership removed"
+          },
+          "404": {
+            "description": "Membership not found"
           }
         },
         "tags": [
@@ -1704,6 +2039,108 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Content session not found"
+          }
+        },
+        "tags": [
+          "Content sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiContentSessionsController_remove",
+        "summary": "Delete a content session",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Content session ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Content session deleted"
+          },
+          "404": {
+            "description": "Content session not found"
+          }
+        },
+        "tags": [
+          "Content sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/content-sessions/{id}/end": {
+      "post": {
+        "operationId": "ApiContentSessionsController_end",
+        "summary": "End a content session",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Content session ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Content session ended",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentSessionDto"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": ""
           },
           "404": {
             "description": "Content session not found"
@@ -11585,6 +12022,16 @@
           "memberships"
         ]
       },
+      "UpsertUserBodyDto": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "description": "Custom attributes to set on the user (merged into existing attributes).",
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
       "ListCompaniesResponseDto": {
         "type": "object",
         "properties": {
@@ -11856,6 +12303,61 @@
           "createdAt",
           "users",
           "memberships"
+        ]
+      },
+      "UpsertCompanyBodyDto": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "description": "Custom attributes to set on the company (merged into existing attributes).",
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
+      "UpsertMembershipBodyDto": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "description": "Custom attributes to set on the membership (e.g. the user's role in the company).",
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
+      "MembershipDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "companyMembership"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "attributes",
+          "createdAt",
+          "companyId",
+          "userId"
         ]
       },
       "ListContentSessionsResponseDto": {
