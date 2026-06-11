@@ -19,19 +19,31 @@ GET /v2/projects/{projectId}/content/{id}?expand=editedVersion
 GET /v2/projects/{projectId}/content-versions/{id}?expand=steps
 ```
 
-Request multiple expansions with array syntax:
+Request multiple expansions by repeating the parameter (both forms work):
 
 ```bash
+?expand=editedVersion&expand=publishedVersion
 ?expand[]=editedVersion&expand[]=publishedVersion
 ```
+
+<Warning>
+  Comma-separated values (`?expand=editedVersion,publishedVersion`) are **not**
+  supported — pass each value as its own `expand` parameter.
+</Warning>
 
 ## What each resource supports
 
 | Resource | `expand` options |
 |---|---|
 | Content | `editedVersion`, `publishedVersion` |
-| Content version | `steps`, `questions`, `data` |
-| User | `companies` |
+| Content version | `questions`, `steps`, `data` |
+| Content session | `answers`, `content`, `company`, `user`, `version` |
+| User | `companies`, `memberships`, `memberships.company` |
+| Company | `users`, `memberships`, `memberships.user` |
+
+A **dotted** option expands one level deeper: `memberships.company` inlines each
+membership **and** the company on it (it implies `memberships`). The same goes for
+`memberships.user` on a company.
 
 <Note>
   For content versions, `steps` (flow body) and `data` (non-flow body) are heavy
