@@ -57,6 +57,153 @@
             "bearer": []
           }
         ]
+      },
+      "post": {
+        "operationId": "ApiEventDefinitionsController_create",
+        "summary": "Create an event definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEventDefinitionBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Event definition created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDefinitionDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "An event with this codeName already exists"
+          }
+        },
+        "tags": [
+          "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/event-definitions/{id}": {
+      "patch": {
+        "operationId": "ApiEventDefinitionsController_update",
+        "summary": "Update an event definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Event definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEventDefinitionBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Event definition updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDefinitionDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event definition not found"
+          }
+        },
+        "tags": [
+          "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiEventDefinitionsController_remove",
+        "summary": "Delete an event definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Event definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Event definition deleted"
+          },
+          "404": {
+            "description": "Event definition not found"
+          }
+        },
+        "tags": [
+          "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/v2/projects/{projectId}/attribute-definitions": {
@@ -168,6 +315,153 @@
                 }
               }
             }
+          }
+        },
+        "tags": [
+          "Attribute definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ApiAttributeDefinitionsController_create",
+        "summary": "Create an attribute definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAttributeBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Attribute definition created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "An attribute with this codeName already exists"
+          }
+        },
+        "tags": [
+          "Attribute definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/attribute-definitions/{id}": {
+      "patch": {
+        "operationId": "ApiAttributeDefinitionsController_update",
+        "summary": "Update an attribute definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Attribute definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAttributeBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute definition updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Attribute definition not found"
+          }
+        },
+        "tags": [
+          "Attribute definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiAttributeDefinitionsController_remove",
+        "summary": "Delete an attribute definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Attribute definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Attribute definition deleted"
+          },
+          "404": {
+            "description": "Attribute definition not found"
           }
         },
         "tags": [
@@ -2169,6 +2463,33 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "expand",
+            "required": false,
+            "in": "query",
+            "description": "Inline: settings, variations.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "settings",
+                    "variations"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "settings",
+                      "variations"
+                    ]
+                  }
+                }
+              ]
+            }
           }
         ],
         "responses": {
@@ -2178,6 +2499,51 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ListThemesResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Themes"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ApiThemesController_create",
+        "summary": "Create a theme",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateThemeBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Theme created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
                 }
               }
             }
@@ -2215,6 +2581,33 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "expand",
+            "required": false,
+            "in": "query",
+            "description": "Inline: settings, variations.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "settings",
+                    "variations"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "settings",
+                      "variations"
+                    ]
+                  }
+                }
+              ]
+            }
           }
         ],
         "responses": {
@@ -2227,6 +2620,103 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Theme not found"
+          }
+        },
+        "tags": [
+          "Themes"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ApiThemesController_update",
+        "summary": "Update a theme",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Theme ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateThemeBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Theme updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Theme not found"
+          }
+        },
+        "tags": [
+          "Themes"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiThemesController_remove",
+        "summary": "Delete a theme",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Theme ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Theme deleted"
           },
           "404": {
             "description": "Theme not found"
@@ -2319,6 +2809,77 @@
           "previous"
         ]
       },
+      "CreateEventDefinitionBodyDto": {
+        "type": "object",
+        "properties": {
+          "codeName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Stable identifier, unique per project. Immutable."
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable name."
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "codeName",
+          "displayName"
+        ]
+      },
+      "EventDefinitionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "eventDefinition"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "codeName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "createdAt",
+          "description",
+          "displayName",
+          "codeName"
+        ]
+      },
+      "UpdateEventDefinitionBodyDto": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "description": "Human-readable name.",
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          }
+        }
+      },
       "ListAttributeDefinitionsResponseDto": {
         "type": "object",
         "properties": {
@@ -2405,6 +2966,131 @@
           "next",
           "previous"
         ]
+      },
+      "CreateAttributeBodyDto": {
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "string",
+            "enum": [
+              "user",
+              "company",
+              "companyMembership"
+            ],
+            "description": "Which object the attribute belongs to: user, company, or companyMembership."
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "number",
+              "string",
+              "boolean",
+              "list",
+              "datetime"
+            ],
+            "description": "The attribute value type."
+          },
+          "codeName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Stable identifier, unique per project + scope. Immutable."
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable name."
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "scope",
+          "dataType",
+          "codeName",
+          "displayName"
+        ]
+      },
+      "AttributeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "attributeDefinition"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "number",
+              "string",
+              "boolean",
+              "list",
+              "datetime",
+              "random_ab",
+              "random_number"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "codeName": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "content",
+              "user",
+              "company",
+              "companyMembership",
+              "contentVersion",
+              "contentSession",
+              "attributeDefinition",
+              "eventDefinition",
+              "contentSessionAnswer",
+              "question",
+              "step",
+              "block",
+              "theme"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "createdAt",
+          "dataType",
+          "description",
+          "displayName",
+          "codeName",
+          "scope"
+        ]
+      },
+      "UpdateAttributeBodyDto": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "description": "Human-readable name.",
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          }
+        }
       },
       "ListContentResponseDto__schema0": {
         "anyOf": [
@@ -12849,6 +13535,479 @@
           "version"
         ]
       },
+      "ListThemesResponseDto__schema0": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ListThemesResponseDto__schema0"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "user_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "segment"
+                ]
+              },
+              "segment": {
+                "type": "string"
+              },
+              "in": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type",
+              "segment",
+              "in"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "current_url"
+                ]
+              },
+              "includes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "excludes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "includes"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "element"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "present",
+                  "hidden",
+                  "disabled",
+                  "enabled",
+                  "clicked",
+                  "unclicked"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "flow"
+                ]
+              },
+              "flow": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "seen",
+                  "unseen",
+                  "completed",
+                  "uncompleted",
+                  "active",
+                  "inactive"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "flow",
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event"
+                ]
+              },
+              "event": {
+                "type": "string"
+              },
+              "count": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "at_least",
+                      "at_most",
+                      "exactly",
+                      "between"
+                    ]
+                  },
+                  "n": {
+                    "type": "number"
+                  },
+                  "n2": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "op",
+                  "n"
+                ]
+              },
+              "within": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "in_the_last",
+                      "more_than",
+                      "between",
+                      "any_time"
+                    ]
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "value2": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "seconds",
+                      "minutes",
+                      "hours",
+                      "days"
+                    ]
+                  }
+                },
+                "required": [
+                  "op"
+                ]
+              },
+              "scope": {
+                "type": "string",
+                "enum": [
+                  "current_user",
+                  "current_user_in_company",
+                  "any_user_in_company"
+                ]
+              },
+              "where": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ListThemesResponseDto__schema0"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "event"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text_input"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty"
+                ]
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text_filled"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "time_window"
+                ]
+              },
+              "start": {
+                "type": "string"
+              },
+              "end": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "unsupported"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        ]
+      },
       "ListThemesResponseDto": {
         "type": "object",
         "properties": {
@@ -12877,6 +14036,40 @@
                 },
                 "createdAt": {
                   "type": "string"
+                },
+                "settings": {
+                  "type": "object",
+                  "additionalProperties": {}
+                },
+                "variations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "conditions": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/ListThemesResponseDto__schema0"
+                        }
+                      },
+                      "settings": {
+                        "type": "object",
+                        "additionalProperties": {}
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "conditions",
+                      "settings"
+                    ]
+                  }
                 }
               },
               "required": [
@@ -12904,6 +14097,479 @@
           "previous"
         ]
       },
+      "ThemeDto__schema0": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ThemeDto__schema0"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "user_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "segment"
+                ]
+              },
+              "segment": {
+                "type": "string"
+              },
+              "in": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type",
+              "segment",
+              "in"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "current_url"
+                ]
+              },
+              "includes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "excludes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "includes"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "element"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "present",
+                  "hidden",
+                  "disabled",
+                  "enabled",
+                  "clicked",
+                  "unclicked"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "flow"
+                ]
+              },
+              "flow": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "seen",
+                  "unseen",
+                  "completed",
+                  "uncompleted",
+                  "active",
+                  "inactive"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "flow",
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event"
+                ]
+              },
+              "event": {
+                "type": "string"
+              },
+              "count": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "at_least",
+                      "at_most",
+                      "exactly",
+                      "between"
+                    ]
+                  },
+                  "n": {
+                    "type": "number"
+                  },
+                  "n2": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "op",
+                  "n"
+                ]
+              },
+              "within": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "in_the_last",
+                      "more_than",
+                      "between",
+                      "any_time"
+                    ]
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "value2": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "seconds",
+                      "minutes",
+                      "hours",
+                      "days"
+                    ]
+                  }
+                },
+                "required": [
+                  "op"
+                ]
+              },
+              "scope": {
+                "type": "string",
+                "enum": [
+                  "current_user",
+                  "current_user_in_company",
+                  "any_user_in_company"
+                ]
+              },
+              "where": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ThemeDto__schema0"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "event"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text_input"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty"
+                ]
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text_filled"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "time_window"
+                ]
+              },
+              "start": {
+                "type": "string"
+              },
+              "end": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "unsupported"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        ]
+      },
       "ThemeDto": {
         "type": "object",
         "properties": {
@@ -12927,6 +14593,40 @@
           },
           "createdAt": {
             "type": "string"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "variations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "conditions": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ThemeDto__schema0"
+                  }
+                },
+                "settings": {
+                  "type": "object",
+                  "additionalProperties": {}
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "conditions",
+                "settings"
+              ]
+            }
           }
         },
         "required": [
@@ -12937,6 +14637,1052 @@
           "updatedAt",
           "createdAt"
         ]
+      },
+      "CreateThemeBodyDto__schema0": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreateThemeBodyDto__schema0"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "user_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "segment"
+                ]
+              },
+              "segment": {
+                "type": "string"
+              },
+              "in": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type",
+              "segment",
+              "in"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "current_url"
+                ]
+              },
+              "includes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "excludes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "includes"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "element"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "present",
+                  "hidden",
+                  "disabled",
+                  "enabled",
+                  "clicked",
+                  "unclicked"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "flow"
+                ]
+              },
+              "flow": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "seen",
+                  "unseen",
+                  "completed",
+                  "uncompleted",
+                  "active",
+                  "inactive"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "flow",
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event"
+                ]
+              },
+              "event": {
+                "type": "string"
+              },
+              "count": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "at_least",
+                      "at_most",
+                      "exactly",
+                      "between"
+                    ]
+                  },
+                  "n": {
+                    "type": "number"
+                  },
+                  "n2": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "op",
+                  "n"
+                ]
+              },
+              "within": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "in_the_last",
+                      "more_than",
+                      "between",
+                      "any_time"
+                    ]
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "value2": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "seconds",
+                      "minutes",
+                      "hours",
+                      "days"
+                    ]
+                  }
+                },
+                "required": [
+                  "op"
+                ]
+              },
+              "scope": {
+                "type": "string",
+                "enum": [
+                  "current_user",
+                  "current_user_in_company",
+                  "any_user_in_company"
+                ]
+              },
+              "where": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreateThemeBodyDto__schema0"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "event"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text_input"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty"
+                ]
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text_filled"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "time_window"
+                ]
+              },
+              "start": {
+                "type": "string"
+              },
+              "end": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "unsupported"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        ]
+      },
+      "CreateThemeBodyDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Theme name."
+          },
+          "isDefault": {
+            "description": "Make this the project default theme.",
+            "type": "boolean"
+          },
+          "settings": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Theme settings object."
+          },
+          "variations": {
+            "description": "Conditional variations.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "conditions": {
+                  "default": [],
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreateThemeBodyDto__schema0"
+                  }
+                },
+                "settings": {
+                  "type": "object",
+                  "additionalProperties": {}
+                }
+              },
+              "required": [
+                "name",
+                "settings"
+              ]
+            }
+          }
+        },
+        "required": [
+          "name",
+          "settings"
+        ]
+      },
+      "UpdateThemeBodyDto__schema0": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UpdateThemeBodyDto__schema0"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "user_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "segment"
+                ]
+              },
+              "segment": {
+                "type": "string"
+              },
+              "in": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type",
+              "segment",
+              "in"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "current_url"
+                ]
+              },
+              "includes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "excludes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "includes"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "element"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "present",
+                  "hidden",
+                  "disabled",
+                  "enabled",
+                  "clicked",
+                  "unclicked"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "flow"
+                ]
+              },
+              "flow": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "seen",
+                  "unseen",
+                  "completed",
+                  "uncompleted",
+                  "active",
+                  "inactive"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "flow",
+              "state"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event"
+                ]
+              },
+              "event": {
+                "type": "string"
+              },
+              "count": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "at_least",
+                      "at_most",
+                      "exactly",
+                      "between"
+                    ]
+                  },
+                  "n": {
+                    "type": "number"
+                  },
+                  "n2": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "op",
+                  "n"
+                ]
+              },
+              "within": {
+                "type": "object",
+                "properties": {
+                  "op": {
+                    "type": "string",
+                    "enum": [
+                      "in_the_last",
+                      "more_than",
+                      "between",
+                      "any_time"
+                    ]
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "value2": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "seconds",
+                      "minutes",
+                      "hours",
+                      "days"
+                    ]
+                  }
+                },
+                "required": [
+                  "op"
+                ]
+              },
+              "scope": {
+                "type": "string",
+                "enum": [
+                  "current_user",
+                  "current_user_in_company",
+                  "any_user_in_company"
+                ]
+              },
+              "where": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UpdateThemeBodyDto__schema0"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "event"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text_input"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty"
+                ]
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text_filled"
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "selector"
+                        ]
+                      },
+                      "selector": {
+                        "type": "string"
+                      },
+                      "nth": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "selector"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "by": {
+                        "type": "string",
+                        "enum": [
+                          "text"
+                        ]
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "by",
+                      "text"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "time_window"
+                ]
+              },
+              "start": {
+                "type": "string"
+              },
+              "end": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "unsupported"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        ]
+      },
+      "UpdateThemeBodyDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "settings": {
+            "description": "Replaces the theme settings when provided.",
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "variations": {
+            "description": "Replaces the variations when provided.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "conditions": {
+                  "default": [],
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UpdateThemeBodyDto__schema0"
+                  }
+                },
+                "settings": {
+                  "type": "object",
+                  "additionalProperties": {}
+                }
+              },
+              "required": [
+                "name",
+                "settings"
+              ]
+            }
+          }
+        }
       }
     }
   }
