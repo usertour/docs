@@ -35,6 +35,33 @@
               "default": 20,
               "type": "integer"
             }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "description": "Order by createdAt / -createdAt.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "-createdAt"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "createdAt",
+                      "-createdAt"
+                    ]
+                  }
+                }
+              ]
+            }
           }
         ],
         "responses": {
@@ -1892,6 +1919,15 @@
             }
           },
           {
+            "name": "segmentId",
+            "required": false,
+            "in": "query",
+            "description": "Filter to companies in this segment.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "environmentId",
             "required": true,
             "in": "path",
@@ -2240,7 +2276,7 @@
     "/v2/projects/{projectId}/environments/{environmentId}/sessions": {
       "get": {
         "operationId": "ApiContentSessionsController_list",
-        "summary": "List content sessions",
+        "summary": "List sessions",
         "description": "Sessions in this environment. Filter by contentId / userId.",
         "parameters": [
           {
@@ -2370,7 +2406,7 @@
           }
         },
         "tags": [
-          "Content sessions"
+          "Sessions"
         ],
         "security": [
           {
@@ -2382,7 +2418,7 @@
     "/v2/projects/{projectId}/environments/{environmentId}/sessions/{id}": {
       "get": {
         "operationId": "ApiContentSessionsController_get",
-        "summary": "Get a content session",
+        "summary": "Get a session",
         "parameters": [
           {
             "name": "id",
@@ -2457,7 +2493,7 @@
           }
         },
         "tags": [
-          "Content sessions"
+          "Sessions"
         ],
         "security": [
           {
@@ -2467,7 +2503,7 @@
       },
       "delete": {
         "operationId": "ApiContentSessionsController_remove",
-        "summary": "Delete a content session",
+        "summary": "Delete a session",
         "parameters": [
           {
             "name": "id",
@@ -2502,7 +2538,7 @@
           }
         },
         "tags": [
-          "Content sessions"
+          "Sessions"
         ],
         "security": [
           {
@@ -2514,7 +2550,7 @@
     "/v2/projects/{projectId}/environments/{environmentId}/sessions/{id}/end": {
       "post": {
         "operationId": "ApiContentSessionsController_end",
-        "summary": "End a content session",
+        "summary": "End a session",
         "parameters": [
           {
             "name": "id",
@@ -2556,7 +2592,7 @@
           }
         },
         "tags": [
-          "Content sessions"
+          "Sessions"
         ],
         "security": [
           {
@@ -2577,6 +2613,54 @@
             "description": "Project ID",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Max items per page (1-100, default 20).",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "description": "Pagination cursor from a prior response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "description": "Order by createdAt / -createdAt.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "-createdAt"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "createdAt",
+                      "-createdAt"
+                    ]
+                  }
+                }
+              ]
             }
           },
           {
@@ -2872,6 +2956,54 @@
                 "company"
               ],
               "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Max items per page (1-100, default 20).",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "description": "Pagination cursor from a prior response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "description": "Order by createdAt / -createdAt.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "-createdAt"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "createdAt",
+                      "-createdAt"
+                    ]
+                  }
+                }
+              ]
             }
           }
         ],
