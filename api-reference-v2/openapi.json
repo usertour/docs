@@ -971,7 +971,7 @@
     "/v2/projects/{projectId}/environments/{environmentId}/content/{id}/publish": {
       "post": {
         "operationId": "ApiContentDeploymentController_publish",
-        "summary": "Publish a content version to an environment",
+        "summary": "Publish a version",
         "description": "Publish a version as this environment's live version (idempotent).",
         "parameters": [
           {
@@ -1038,7 +1038,7 @@
     "/v2/projects/{projectId}/environments/{environmentId}/content/{id}/unpublish": {
       "post": {
         "operationId": "ApiContentDeploymentController_unpublish",
-        "summary": "Unpublish a content version from an environment",
+        "summary": "Unpublish a version",
         "description": "Clear this environment's live version for the content.",
         "parameters": [
           {
