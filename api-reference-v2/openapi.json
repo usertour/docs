@@ -1090,7 +1090,7 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/content-versions": {
+    "/v2/projects/{projectId}/content/{contentId}/versions": {
       "get": {
         "operationId": "ApiContentVersionsController_list",
         "summary": "List content versions",
@@ -1107,8 +1107,8 @@
           {
             "name": "contentId",
             "required": true,
-            "in": "query",
-            "description": "The content whose versions to list.",
+            "in": "path",
+            "description": "Content ID",
             "schema": {
               "type": "string"
             }
@@ -1223,18 +1223,17 @@
             "schema": {
               "type": "string"
             }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateVersionBodyDto"
-              }
+          },
+          {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "201": {
             "description": "Created content version",
@@ -1260,7 +1259,7 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/content-versions/{id}": {
+    "/v2/projects/{projectId}/content/{contentId}/versions/{id}": {
       "get": {
         "operationId": "ApiContentVersionsController_get",
         "summary": "Get a content version",
@@ -1270,6 +1269,15 @@
             "required": true,
             "in": "path",
             "description": "Content version ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
             "schema": {
               "type": "string"
             }
@@ -1352,6 +1360,15 @@
             }
           },
           {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "projectId",
             "required": true,
             "in": "path",
@@ -1396,7 +1413,7 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/content-versions/{id}/restore": {
+    "/v2/projects/{projectId}/content/{contentId}/versions/{id}/restore": {
       "post": {
         "operationId": "ApiContentVersionsController_restore",
         "summary": "Restore a content version",
@@ -1407,6 +1424,15 @@
             "required": true,
             "in": "path",
             "description": "Content version ID to restore",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
             "schema": {
               "type": "string"
             }
@@ -2207,7 +2233,7 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/content-sessions": {
+    "/v2/projects/{projectId}/environments/{environmentId}/content/{contentId}/sessions": {
       "get": {
         "operationId": "ApiContentSessionsController_list",
         "summary": "List content sessions",
@@ -2215,8 +2241,8 @@
           {
             "name": "contentId",
             "required": true,
-            "in": "query",
-            "description": "The content whose sessions to list.",
+            "in": "path",
+            "description": "Content ID",
             "schema": {
               "type": "string"
             }
@@ -2348,7 +2374,7 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/content-sessions/{id}": {
+    "/v2/projects/{projectId}/environments/{environmentId}/content/{contentId}/sessions/{id}": {
       "get": {
         "operationId": "ApiContentSessionsController_get",
         "summary": "Get a content session",
@@ -2358,6 +2384,15 @@
             "required": true,
             "in": "path",
             "description": "Content session ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
             "schema": {
               "type": "string"
             }
@@ -2448,6 +2483,15 @@
             }
           },
           {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "environmentId",
             "required": true,
             "in": "path",
@@ -2480,7 +2524,7 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/content-sessions/{id}/end": {
+    "/v2/projects/{projectId}/environments/{environmentId}/content/{contentId}/sessions/{id}/end": {
       "post": {
         "operationId": "ApiContentSessionsController_end",
         "summary": "End a content session",
@@ -2490,6 +2534,15 @@
             "required": true,
             "in": "path",
             "description": "Content session ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
             "schema": {
               "type": "string"
             }
@@ -11296,18 +11349,6 @@
           "questions",
           "updatedAt",
           "createdAt"
-        ]
-      },
-      "CreateVersionBodyDto": {
-        "type": "object",
-        "properties": {
-          "contentId": {
-            "type": "string",
-            "description": "The content to fork a new draft version of."
-          }
-        },
-        "required": [
-          "contentId"
         ]
       },
       "UpdateVersionBodyDto__schema0": {

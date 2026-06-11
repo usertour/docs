@@ -9,8 +9,8 @@ resource-center) has **versions**. The editable head is the *draft* version
 
 A version's authorable body is exposed as a stable **representation** — the same
 shape you read and write — rather than Usertour's internal builder model. You
-**read** it with `expand`, and **write** it with `PATCH content-versions/{id}`
-(drafts only).
+**read** it with `expand`, and **write** it with
+`PATCH content/{contentId}/versions/{id}` (drafts only).
 
 ## A version's body
 
@@ -76,8 +76,8 @@ same blocks, and conditions/actions reuse the same rules.
 
 ## Writing
 
-`PATCH /v2/projects/{projectId}/content-versions/{id}` — send only the fields you
-want to change:
+`PATCH /v2/projects/{projectId}/content/{contentId}/versions/{id}` — send only the
+fields you want to change:
 
 ```json
 {
@@ -94,6 +94,7 @@ want to change:
   representation doesn't express are preserved from the existing version.
 - Omitted top-level fields are left untouched.
 
-To start a fresh draft, `POST content-versions` (forks the edited version), or
-`POST content-versions/{id}/restore` (forks a historical version forward).
+To start a fresh draft, `POST content/{contentId}/versions` (forks the edited
+version), or `POST content/{contentId}/versions/{id}/restore` (forks a historical
+version forward).
 Publishing is a separate, explicit step — see the **Publish a version** endpoint.

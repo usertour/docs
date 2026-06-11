@@ -16,7 +16,7 @@ omitted (or `null`).
 GET /v2/projects/{projectId}/content/{id}?expand=editedVersion
 
 # decompiled steps on a content version (heavy → opt-in)
-GET /v2/projects/{projectId}/content-versions/{id}?expand=steps
+GET /v2/projects/{projectId}/content/{contentId}/versions/{id}?expand=steps
 ```
 
 Request multiple expansions by repeating the parameter (both forms work):
