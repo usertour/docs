@@ -2235,16 +2235,17 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/content/{contentId}/sessions": {
+    "/v2/projects/{projectId}/environments/{environmentId}/sessions": {
       "get": {
         "operationId": "ApiContentSessionsController_list",
         "summary": "List content sessions",
+        "description": "Sessions in this environment. Filter by contentId / userId.",
         "parameters": [
           {
             "name": "contentId",
-            "required": true,
-            "in": "path",
-            "description": "Content ID",
+            "required": false,
+            "in": "query",
+            "description": "Filter to a single content.",
             "schema": {
               "type": "string"
             }
@@ -2376,7 +2377,7 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/content/{contentId}/sessions/{id}": {
+    "/v2/projects/{projectId}/environments/{environmentId}/sessions/{id}": {
       "get": {
         "operationId": "ApiContentSessionsController_get",
         "summary": "Get a content session",
@@ -2386,15 +2387,6 @@
             "required": true,
             "in": "path",
             "description": "Content session ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentId",
-            "required": true,
-            "in": "path",
-            "description": "Content ID",
             "schema": {
               "type": "string"
             }
@@ -2485,15 +2477,6 @@
             }
           },
           {
-            "name": "contentId",
-            "required": true,
-            "in": "path",
-            "description": "Content ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "environmentId",
             "required": true,
             "in": "path",
@@ -2526,7 +2509,7 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/content/{contentId}/sessions/{id}/end": {
+    "/v2/projects/{projectId}/environments/{environmentId}/sessions/{id}/end": {
       "post": {
         "operationId": "ApiContentSessionsController_end",
         "summary": "End a content session",
@@ -2536,15 +2519,6 @@
             "required": true,
             "in": "path",
             "description": "Content session ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "contentId",
-            "required": true,
-            "in": "path",
-            "description": "Content ID",
             "schema": {
               "type": "string"
             }
