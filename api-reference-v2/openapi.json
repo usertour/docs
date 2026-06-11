@@ -968,8 +968,8 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/content/{id}": {
-      "put": {
+    "/v2/projects/{projectId}/environments/{environmentId}/content/{id}/publish": {
+      "post": {
         "operationId": "ApiContentDeploymentController_publish",
         "summary": "Publish a content version to an environment",
         "description": "Publish a version as this environment's live version (idempotent).",
@@ -1033,8 +1033,10 @@
             "bearer": []
           }
         ]
-      },
-      "delete": {
+      }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/content/{id}/unpublish": {
+      "post": {
         "operationId": "ApiContentDeploymentController_unpublish",
         "summary": "Unpublish a content version from an environment",
         "description": "Clear this environment's live version for the content.",
