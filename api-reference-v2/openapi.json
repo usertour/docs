@@ -108,6 +108,53 @@
       }
     },
     "/v2/projects/{projectId}/event-definitions/{id}": {
+      "get": {
+        "operationId": "ApiEventDefinitionsController_get",
+        "summary": "Get an event definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Event definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event definition found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDefinitionDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event definition not found"
+          }
+        },
+        "tags": [
+          "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
       "patch": {
         "operationId": "ApiEventDefinitionsController_update",
         "summary": "Update an event definition",
@@ -376,6 +423,53 @@
       }
     },
     "/v2/projects/{projectId}/attribute-definitions/{id}": {
+      "get": {
+        "operationId": "ApiAttributeDefinitionsController_get",
+        "summary": "Get an attribute definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Attribute definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute definition found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Attribute definition not found"
+          }
+        },
+        "tags": [
+          "Attribute definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
       "patch": {
         "operationId": "ApiAttributeDefinitionsController_update",
         "summary": "Update an attribute definition",
@@ -596,7 +690,7 @@
       },
       "post": {
         "operationId": "ApiContentController_create",
-        "summary": "Create a content",
+        "summary": "Create content",
         "parameters": [
           {
             "name": "projectId",
@@ -643,7 +737,7 @@
     "/v2/projects/{projectId}/content/{id}": {
       "get": {
         "operationId": "ApiContentController_get",
-        "summary": "Get a content",
+        "summary": "Get content",
         "parameters": [
           {
             "name": "id",
@@ -717,7 +811,7 @@
       },
       "patch": {
         "operationId": "ApiContentController_update",
-        "summary": "Update a content",
+        "summary": "Update content",
         "description": "Update content metadata (name, buildUrl).",
         "parameters": [
           {
@@ -775,7 +869,7 @@
       },
       "delete": {
         "operationId": "ApiContentController_remove",
-        "summary": "Delete a content",
+        "summary": "Delete content",
         "parameters": [
           {
             "name": "id",
@@ -817,7 +911,7 @@
     "/v2/projects/{projectId}/content/{id}/duplicate": {
       "post": {
         "operationId": "ApiContentController_duplicate",
-        "summary": "Duplicate a content",
+        "summary": "Duplicate content",
         "description": "Duplicate into a new content (copies the edited version's steps / config / data).",
         "parameters": [
           {
@@ -877,7 +971,7 @@
     "/v2/projects/{projectId}/content/{id}/environments/{environmentId}": {
       "put": {
         "operationId": "ApiContentController_publish",
-        "summary": "Publish a version",
+        "summary": "Publish a content version to an environment",
         "description": "Publish a version as this environment's live version (idempotent).",
         "parameters": [
           {
@@ -942,7 +1036,7 @@
       },
       "delete": {
         "operationId": "ApiContentController_unpublish",
-        "summary": "Unpublish a content",
+        "summary": "Unpublish a content version from an environment",
         "description": "Clear this environment's live version for the content.",
         "parameters": [
           {
@@ -2042,15 +2136,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "Membership created or updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MembershipDto"
-                }
-              }
-            }
+          "204": {
+            "description": "Membership created or updated"
           },
           "404": {
             "description": "Company or user not found"
@@ -2432,9 +2519,6 @@
                 }
               }
             }
-          },
-          "201": {
-            "description": ""
           },
           "404": {
             "description": "Content session not found"
@@ -3164,29 +3248,6 @@
           "previous"
         ]
       },
-      "CreateEventDefinitionBodyDto": {
-        "type": "object",
-        "properties": {
-          "codeName": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Stable identifier, unique per project. Immutable."
-          },
-          "displayName": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Human-readable name."
-          },
-          "description": {
-            "description": "Optional description.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "codeName",
-          "displayName"
-        ]
-      },
       "EventDefinitionDto": {
         "type": "object",
         "properties": {
@@ -3219,6 +3280,29 @@
           "description",
           "displayName",
           "codeName"
+        ]
+      },
+      "CreateEventDefinitionBodyDto": {
+        "type": "object",
+        "properties": {
+          "codeName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Stable identifier, unique per project. Immutable."
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable name."
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "codeName",
+          "displayName"
         ]
       },
       "UpdateEventDefinitionBodyDto": {
@@ -3323,51 +3407,6 @@
           "previous"
         ]
       },
-      "CreateAttributeBodyDto": {
-        "type": "object",
-        "properties": {
-          "scope": {
-            "type": "string",
-            "enum": [
-              "user",
-              "company",
-              "companyMembership"
-            ],
-            "description": "Which object the attribute belongs to: user, company, or companyMembership."
-          },
-          "dataType": {
-            "type": "string",
-            "enum": [
-              "number",
-              "string",
-              "boolean",
-              "list",
-              "datetime"
-            ],
-            "description": "The attribute value type."
-          },
-          "codeName": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Stable identifier, unique per project + scope. Immutable."
-          },
-          "displayName": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Human-readable name."
-          },
-          "description": {
-            "description": "Optional description.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "scope",
-          "dataType",
-          "codeName",
-          "displayName"
-        ]
-      },
       "AttributeDto": {
         "type": "object",
         "properties": {
@@ -3433,6 +3472,51 @@
           "displayName",
           "codeName",
           "scope"
+        ]
+      },
+      "CreateAttributeBodyDto": {
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "string",
+            "enum": [
+              "user",
+              "company",
+              "companyMembership"
+            ],
+            "description": "Which object the attribute belongs to: user, company, or companyMembership."
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "number",
+              "string",
+              "boolean",
+              "list",
+              "datetime"
+            ],
+            "description": "The attribute value type."
+          },
+          "codeName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Stable identifier, unique per project + scope. Immutable."
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable name."
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "scope",
+          "dataType",
+          "codeName",
+          "displayName"
         ]
       },
       "UpdateAttributeBodyDto": {
@@ -13367,41 +13451,6 @@
             "additionalProperties": {}
           }
         }
-      },
-      "MembershipDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string",
-            "enum": [
-              "companyMembership"
-            ]
-          },
-          "attributes": {
-            "type": "object",
-            "additionalProperties": {}
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "companyId": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "object",
-          "attributes",
-          "createdAt",
-          "companyId",
-          "userId"
-        ]
       },
       "ListContentSessionsResponseDto": {
         "type": "object",
