@@ -844,6 +844,65 @@
         ]
       }
     },
+    "/v2/projects/{projectId}/content/{contentId}/versions/{id}/validate": {
+      "get": {
+        "operationId": "ApiContentVersionsController_validate",
+        "summary": "Validate a content version",
+        "description": "Dry-run usability check: the same rules `publish` enforces, without mutating. Returns errors (these block publish) and advisory warnings.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Content version ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usability report",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VersionUsabilityReportDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Content version not found"
+          }
+        },
+        "tags": [
+          "Content versions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/v2/projects/{projectId}/content/{contentId}/versions/{id}/restore": {
       "post": {
         "operationId": "ApiContentVersionsController_restore",
@@ -11418,6 +11477,74 @@
           "questions",
           "updatedAt",
           "createdAt"
+        ]
+      },
+      "VersionUsabilityReportDto": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "True when there are no errors (i.e. the version is publishable)."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning"
+                  ]
+                },
+                "path": {
+                  "type": "string",
+                  "description": "Where the problem is, e.g. `steps[2] \"Sidebar\"`."
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "severity",
+                "path",
+                "message"
+              ]
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning"
+                  ]
+                },
+                "path": {
+                  "type": "string",
+                  "description": "Where the problem is, e.g. `steps[2] \"Sidebar\"`."
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "severity",
+                "path",
+                "message"
+              ]
+            }
+          }
+        },
+        "required": [
+          "ok",
+          "errors",
+          "warnings"
         ]
       },
       "UpdateVersionBodyDto__schema0": {

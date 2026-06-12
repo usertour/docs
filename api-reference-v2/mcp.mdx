@@ -27,7 +27,7 @@ the matching write scope (`content:create`, `user:write`, `segment:create`,
 | Group | Tools |
 |---|---|
 | Content | `list_content`, `get_content` |
-| Versions | `list_content_versions`, `get_content_version` |
+| Versions | `list_content_versions`, `get_content_version`, `validate_content_version` |
 | Users | `list_users`, `get_user` |
 | Companies | `list_companies`, `get_company` |
 | Segments | `list_segments`, `get_segment` |
@@ -59,6 +59,11 @@ Content write tools take the same [representation](/api-reference-v2/content-rep
 as the REST endpoints (markdown blocks, `{{ attribute }}` placeholders, rules);
 `update_content_version` carries `steps`, `startRules` / `hideRules`, `themeId`,
 and `data`. The rest mirror their REST bodies one-to-one.
+
+`publish_content` rejects content that wouldn't render — no theme, a tooltip step
+with no target, an empty checklist, a launcher with no anchor, and so on. Call
+`validate_content_version` after authoring and before publishing to get the list
+of `{ ok, errors, warnings }`; `errors` are exactly what blocks publish.
 
 ## Read-only by default (prompt-injection safety)
 
