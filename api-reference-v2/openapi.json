@@ -995,11 +995,11 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/content/{id}/publish": {
+    "/v2/projects/{projectId}/content/{id}/publish": {
       "post": {
-        "operationId": "ApiContentDeploymentController_publish",
+        "operationId": "ApiContentController_publish",
         "summary": "Publish a version",
-        "description": "Publish a version as this environment's live version (idempotent).",
+        "description": "Set a version as the live version in an environment (idempotent).",
         "parameters": [
           {
             "name": "id",
@@ -1018,13 +1018,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "environmentId",
-            "required": true,
-            "in": "path",
-            "description": "Environment ID",
-            "schema": {}
           }
         ],
         "requestBody": {
@@ -1062,11 +1055,11 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/content/{id}/unpublish": {
+    "/v2/projects/{projectId}/content/{id}/unpublish": {
       "post": {
-        "operationId": "ApiContentDeploymentController_unpublish",
+        "operationId": "ApiContentController_unpublish",
         "summary": "Unpublish a version",
-        "description": "Clear this environment's live version for the content.",
+        "description": "Clear an environment's live version for the content.",
         "parameters": [
           {
             "name": "id",
@@ -1085,15 +1078,18 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "environmentId",
-            "required": true,
-            "in": "path",
-            "description": "Environment ID",
-            "schema": {}
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnpublishContentBodyDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Unpublished; returns the content",
@@ -8149,13 +8145,30 @@
       "PublishContentBodyDto": {
         "type": "object",
         "properties": {
+          "environmentId": {
+            "type": "string",
+            "description": "The environment to publish into (its live version is set)."
+          },
           "versionId": {
             "type": "string",
-            "description": "The version to publish as this environment\u2019s live version."
+            "description": "The version to publish as that environment\u2019s live version."
           }
         },
         "required": [
+          "environmentId",
           "versionId"
+        ]
+      },
+      "UnpublishContentBodyDto": {
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "type": "string",
+            "description": "The environment to clear the live version in."
+          }
+        },
+        "required": [
+          "environmentId"
         ]
       },
       "ListContentVersionsResponseDto__schema0": {
