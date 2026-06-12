@@ -3803,7 +3803,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -4181,7 +4182,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -5107,7 +5109,8 @@
                                             ]
                                           },
                                           "step": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                                           }
                                         },
                                         "required": [
@@ -5606,7 +5609,8 @@
                                                   ]
                                                 },
                                                 "step": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                                                 }
                                               },
                                               "required": [
@@ -6021,7 +6025,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -6399,7 +6404,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -7320,7 +7326,8 @@
                                       ]
                                     },
                                     "step": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                                     }
                                   },
                                   "required": [
@@ -7810,7 +7817,8 @@
                                             ]
                                           },
                                           "step": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                                           }
                                         },
                                         "required": [
@@ -8285,7 +8293,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -8663,7 +8672,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -9564,7 +9574,8 @@
                                         ]
                                       },
                                       "step": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                                       }
                                     },
                                     "required": [
@@ -9951,7 +9962,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -10329,7 +10341,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -11225,7 +11238,8 @@
                                   ]
                                 },
                                 "step": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                                 }
                               },
                               "required": [
@@ -11658,7 +11672,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -12036,7 +12051,8 @@
                           ]
                         },
                         "step": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                         }
                       },
                       "required": [
@@ -12721,6 +12737,10 @@
                 "id": {
                   "type": "string"
                 },
+                "key": {
+                  "description": "Optional author-chosen handle for wiring \"go to step\" actions within this request (unique among the steps you send). A button action can set `step` to this key to target this step even before it exists. Write-only \u2014 not stored, not returned on read.",
+                  "type": "string"
+                },
                 "name": {
                   "type": "string"
                 },
@@ -12877,7 +12897,8 @@
                                   ]
                                 },
                                 "step": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
                                 }
                               },
                               "required": [

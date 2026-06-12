@@ -27,13 +27,14 @@ and a `themeId`.
 ```json
 {
   "object": "step",
-  "id": "cm9...",          // server-owned; the write key (see below)
+  "id": "cm9...",          // server-owned; the write handle (see below)
+  "key": "welcome",        // your handle, write-only — wire goto_step by it
   "name": "Welcome",
   "type": "modal",
   "placement": { "side": "bottom", "align": "center" },
   "content": [
     { "object": "block", "type": "text", "markdown": "Welcome **{{ first_name | default: \"there\" }}**" },
-    { "object": "block", "type": "button", "text": "Next", "variant": "primary", "actions": [{ "type": "goto_step", "step": "<cvid>" }] }
+    { "object": "block", "type": "button", "text": "Next", "variant": "primary", "actions": [{ "type": "goto_step", "step": "pricing" }] }
   ],
   "triggers": [ { "when": [ /* conditions */ ], "do": [ /* actions */ ] } ]
 }
@@ -45,15 +46,20 @@ and a `themeId`.
 **Rich text** is markdown. Reference a user attribute with a Liquid-style
 placeholder: `{{ attribute | default: "fallback" }}`.
 
-### `id` vs `cvid`
+### Step identifiers: `id`, `cvid`, `key`
 
-A step has two server-owned, read-only identifiers — never invent them:
+- **`id`** — server-owned **write handle**. Echo a step's `id` to update it;
+  **omit** `id` to create a new step. Steps you omit from the list are deleted.
+- **`cvid`** — server-owned, version-stable reference. Returned on read; survives
+  version copies. You never set one.
+- **`key`** — **your** handle, **write-only** (not stored, not returned). Give a
+  step a `key` and a `goto_step` action elsewhere in the *same write* can target
+  it with `"step": "<key>"` — so you can author a whole flow, including forward
+  and cyclic links, in one request without knowing cvids yet.
 
-- **`id`** — the **write key**. Echo a step's `id` to update it; **omit** `id` to
-  create a new step. Steps you omit from the list are deleted.
-- **`cvid`** — a version-stable reference key. Actions like `goto_step` target a
-  step **by its `cvid`** (it survives version copies, where `id` would not). You
-  echo a `cvid` to reference a step; you never set one.
+A `goto_step` `step` resolves to a `key` you sent in this request, or an existing
+`cvid` — both map to the same step, so you don't have to choose. The stored value
+is always the cvid (reads return cvids).
 
 ## Rules
 

@@ -58,7 +58,9 @@ them before editing with `update_content_version`.
 Content write tools take the same [representation](/api-reference-v2/content-representation)
 as the REST endpoints (markdown blocks, `{{ attribute }}` placeholders, rules);
 `update_content_version` carries `steps`, `startRules` / `hideRules`, `themeId`,
-and `data`. The rest mirror their REST bodies one-to-one.
+and `data`. The rest mirror their REST bodies one-to-one. Give each step a `key`
+and wire `goto_step` to it to author a multi-step flow (forward or cyclic links)
+in a single call — see [step identifiers](/api-reference-v2/content-representation).
 
 `publish_content` rejects content that wouldn't render — no theme, a tooltip step
 with no target, an empty checklist, a launcher with no anchor, and so on. Call
