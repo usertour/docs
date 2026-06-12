@@ -54,7 +54,7 @@ them before editing with `update_content_version`.
 | Users | `upsert_user`, `delete_user` |
 | Companies | `upsert_company`, `delete_company`, `add_company_member`, `remove_company_member` |
 | Segments | `create_segment`, `update_segment`, `delete_segment`, `add_segment_member`, `remove_segment_member` |
-| Themes | `create_theme`, `update_theme`, `delete_theme` |
+| Themes | `create_theme`, `update_theme`, `delete_theme` (metadata only) |
 | Attribute definitions | `create_attribute_definition`, `update_attribute_definition`, `delete_attribute_definition` |
 | Event definitions | `create_event_definition`, `update_event_definition`, `delete_event_definition` |
 | Sessions | `end_session`, `delete_session` |
@@ -66,6 +66,11 @@ as the REST endpoints (markdown blocks, `{{ attribute }}` placeholders, rules);
 and `data`. The rest mirror their REST bodies one-to-one. Give each step a `key`
 and wire `goto_step` to it to author a multi-step flow (forward or cyclic links)
 in a single call — see [step identifiers](/api-reference-v2/content-representation).
+
+Theme tools are **metadata only** (`name` / `isDefault`): a created theme is seeded
+with the default styling, and theme `settings` / `variations` are not writable
+through the API — they're a cascaded, visually-tuned structure best edited in the
+theme builder. They remain readable via `?expand=settings,variations`.
 
 `publish_content` rejects content that wouldn't render — no theme, a tooltip step
 with no target, an empty checklist, a launcher with no anchor, and so on. Call
