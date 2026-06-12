@@ -18638,6 +18638,10 @@
                 "isPrimary": {
                   "type": "boolean"
                 },
+                "token": {
+                  "type": "string",
+                  "description": "The environment's SDK token \u2014 pass it to usertour.init() to load this environment's published content."
+                },
                 "createdAt": {
                   "type": "string"
                 },
@@ -18650,6 +18654,7 @@
                 "object",
                 "name",
                 "isPrimary",
+                "token",
                 "createdAt",
                 "updatedAt"
               ]
@@ -18689,6 +18694,10 @@
           "isPrimary": {
             "type": "boolean"
           },
+          "token": {
+            "type": "string",
+            "description": "The environment's SDK token \u2014 pass it to usertour.init() to load this environment's published content."
+          },
           "createdAt": {
             "type": "string"
           },
@@ -18701,6 +18710,7 @@
           "object",
           "name",
           "isPrimary",
+          "token",
           "createdAt",
           "updatedAt"
         ]
