@@ -8051,10 +8051,15 @@
           },
           "buildUrl": {
             "type": "string"
+          },
+          "themeId": {
+            "type": "string",
+            "description": "Theme applied to the initial draft version. Required \u2014 content has no usable styling without one (the SDK can\u2019t render a themeless version)."
           }
         },
         "required": [
-          "type"
+          "type",
+          "themeId"
         ]
       },
       "UpdateContentBodyDto": {
@@ -12974,9 +12979,8 @@
             "nullable": true
           },
           "themeId": {
-            "type": "string",
-            "description": "Theme to apply, or null to clear.",
-            "nullable": true
+            "description": "Theme to apply (cannot be cleared).",
+            "type": "string"
           },
           "data": {}
         }
