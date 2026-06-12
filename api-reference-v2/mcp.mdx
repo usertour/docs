@@ -4,8 +4,8 @@ description: 'Drive Usertour from an AI agent over the Model Context Protocol.'
 ---
 
 Usertour exposes a [Model Context Protocol](https://modelcontextprotocol.io)
-endpoint so AI agents (Claude, Cursor, …) can read and author content through the
-same v2 services the REST API uses.
+endpoint so AI agents (Claude, Cursor, …) can read and write your project through
+the same v2 services the REST API uses.
 
 ## Endpoint
 
@@ -17,21 +17,41 @@ Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 It speaks MCP over **Streamable HTTP**. The token must be scoped to **exactly one
 project** (MCP carries no project in the path). Tools are **scope-gated**: a tool
 is only listed/usable if your token has its capability — e.g. write tools require
-`content:create` / `content:update` / `content:delete` / `content:publish`.
+the matching write scope (`content:create`, `user:write`, `segment:create`,
+`theme:update`, `session:manage`, …).
 
 ## Tools
 
 **Read** — `list_content`, `get_content`, `list_users`, `get_user`,
 `list_attribute_definitions`, `list_event_definitions`, `list_themes`.
 
-**Write** — `create_content`, `update_content`, `delete_content`,
-`create_content_version`, `update_content_version`, `restore_content_version`,
-`publish_content`, `unpublish_content`, `duplicate_content`.
+**Write**
 
-Write tools take the same [representation](/api-reference-v2/content-representation)
+| Group | Tools |
+|---|---|
+| Content | `create_content`, `update_content`, `delete_content`, `duplicate_content`, `publish_content`, `unpublish_content` |
+| Versions | `create_content_version`, `update_content_version`, `restore_content_version` |
+| Users | `upsert_user`, `delete_user` |
+| Companies | `upsert_company`, `delete_company`, `add_company_member`, `remove_company_member` |
+| Segments | `create_segment`, `update_segment`, `delete_segment`, `add_segment_member`, `remove_segment_member` |
+| Themes | `create_theme`, `update_theme`, `delete_theme` |
+| Attribute definitions | `create_attribute_definition`, `update_attribute_definition`, `delete_attribute_definition` |
+| Event definitions | `create_event_definition`, `update_event_definition`, `delete_event_definition` |
+| Sessions | `end_session`, `delete_session` |
+
+Content write tools take the same [representation](/api-reference-v2/content-representation)
 as the REST endpoints (markdown blocks, `{{ attribute }}` placeholders, rules);
 `update_content_version` carries `steps`, `startRules` / `hideRules`, `themeId`,
-and `data`.
+and `data`. The rest mirror their REST bodies one-to-one.
+
+## Read-only by default (prompt-injection safety)
+
+Untrusted text reaches an agent through **read** tools — session answers and
+custom user/company attributes can contain anything, including instructions. To
+stop an injected instruction from triggering a write, **give any agent that reads
+untrusted data a read-only token**: with no write scopes, no write tools are
+listed, so there is nothing to exploit. Mint a separate write-scoped token only
+for trusted automation.
 
 ## Connecting a client
 
