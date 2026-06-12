@@ -22,8 +22,22 @@ the matching write scope (`content:create`, `user:write`, `segment:create`,
 
 ## Tools
 
-**Read** — `list_content`, `get_content`, `list_users`, `get_user`,
-`list_attribute_definitions`, `list_event_definitions`, `list_themes`.
+**Read**
+
+| Group | Tools |
+|---|---|
+| Content | `list_content`, `get_content` |
+| Versions | `list_content_versions`, `get_content_version` |
+| Users | `list_users`, `get_user` |
+| Companies | `list_companies`, `get_company` |
+| Segments | `list_segments`, `get_segment` |
+| Sessions | `list_sessions`, `get_session` |
+| Themes | `list_themes` |
+| Attribute definitions | `list_attribute_definitions` |
+| Event definitions | `list_event_definitions` |
+
+`get_content_version` with `expand: ["steps"]` returns the decompiled steps — read
+them before editing with `update_content_version`.
 
 **Write**
 
