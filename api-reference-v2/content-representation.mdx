@@ -43,8 +43,10 @@ and a `themeId`.
 **Blocks** (`content[]`): `text` (markdown), `image`, `button`, `embed`,
 `question` (nps / rating / text / choice), and `columns` (a row of nested blocks).
 
-**Rich text** is markdown. Reference a user attribute with a Liquid-style
-placeholder: `{{ attribute | default: "fallback" }}`.
+**Rich text** is a small markdown subset: paragraphs, `# `/`## ` headings (h1/h2
+only — no h3+), `-`/`*` and `1.` lists, ` ``` ` code fences; inline `**bold**`,
+`*italic*`, `[text](url)`, and a Liquid-style user-attribute placeholder
+`{{ attribute | default: "fallback" }}`.
 
 ### Step identifiers: `id`, `cvid`, `key`
 

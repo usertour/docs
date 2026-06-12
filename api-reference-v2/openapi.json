@@ -3714,7 +3714,8 @@
                 ]
               },
               "markdown": {
-                "type": "string"
+                "type": "string",
+                "description": "A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only \u2014 no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)`, and `{{ attribute_code | default: \"x\" }}` for user attributes."
               }
             },
             "required": [
@@ -5265,9 +5266,11 @@
                                 "once",
                                 "multiple",
                                 "unlimited"
-                              ]
+                              ],
+                              "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
                             },
                             "every": {
+                              "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied.",
                               "type": "object",
                               "properties": {
                                 "times": {
@@ -5765,9 +5768,11 @@
                                       "once",
                                       "multiple",
                                       "unlimited"
-                                    ]
+                                    ],
+                                    "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
                                   },
                                   "every": {
+                                    "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied.",
                                     "type": "object",
                                     "properties": {
                                       "times": {
@@ -5936,7 +5941,8 @@
                 ]
               },
               "markdown": {
-                "type": "string"
+                "type": "string",
+                "description": "A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only \u2014 no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)`, and `{{ attribute_code | default: \"x\" }}` for user attributes."
               }
             },
             "required": [
@@ -7482,9 +7488,11 @@
                           "once",
                           "multiple",
                           "unlimited"
-                        ]
+                        ],
+                        "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
                       },
                       "every": {
+                        "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied.",
                         "type": "object",
                         "properties": {
                           "times": {
@@ -7973,9 +7981,11 @@
                                 "once",
                                 "multiple",
                                 "unlimited"
-                              ]
+                              ],
+                              "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
                             },
                             "every": {
+                              "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied.",
                               "type": "object",
                               "properties": {
                                 "times": {
@@ -8111,7 +8121,15 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Content kind: flow, checklist, launcher, banner, survey."
+            "enum": [
+              "flow",
+              "checklist",
+              "launcher",
+              "banner",
+              "tracker",
+              "resource-center"
+            ],
+            "description": "Content kind."
           },
           "name": {
             "type": "string"
@@ -8121,7 +8139,7 @@
           },
           "themeId": {
             "type": "string",
-            "description": "Theme applied to the initial draft version. Required \u2014 content has no usable styling without one (the SDK can\u2019t render a themeless version)."
+            "description": "Theme applied to the initial draft version. Required \u2014 content has no usable styling without one (the SDK can\u2019t render a themeless version). List options with the themes endpoint; use the one with isDefault if unsure."
           }
         },
         "required": [
@@ -8204,7 +8222,8 @@
                 ]
               },
               "markdown": {
-                "type": "string"
+                "type": "string",
+                "description": "A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only \u2014 no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)`, and `{{ attribute_code | default: \"x\" }}` for user attributes."
               }
             },
             "required": [
@@ -9730,9 +9749,11 @@
                             "once",
                             "multiple",
                             "unlimited"
-                          ]
+                          ],
+                          "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
                         },
                         "every": {
+                          "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied.",
                           "type": "object",
                           "properties": {
                             "times": {
@@ -9873,7 +9894,8 @@
                 ]
               },
               "markdown": {
-                "type": "string"
+                "type": "string",
+                "description": "A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only \u2014 no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)`, and `{{ attribute_code | default: \"x\" }}` for user attributes."
               }
             },
             "required": [
@@ -11394,9 +11416,11 @@
                       "once",
                       "multiple",
                       "unlimited"
-                    ]
+                    ],
+                    "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
                   },
                   "every": {
+                    "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied.",
                     "type": "object",
                     "properties": {
                       "times": {
@@ -11583,7 +11607,8 @@
                 ]
               },
               "markdown": {
-                "type": "string"
+                "type": "string",
+                "description": "A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only \u2014 no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)`, and `{{ attribute_code | default: \"x\" }}` for user attributes."
               }
             },
             "required": [
@@ -12745,7 +12770,14 @@
                   "type": "string"
                 },
                 "type": {
-                  "type": "string"
+                  "type": "string",
+                  "enum": [
+                    "tooltip",
+                    "modal",
+                    "hidden",
+                    "bubble"
+                  ],
+                  "description": "Step kind. Only `tooltip` anchors to a target element; the rest are page-level."
                 },
                 "sequence": {
                   "type": "number"
@@ -13037,9 +13069,11 @@
                       "once",
                       "multiple",
                       "unlimited"
-                    ]
+                    ],
+                    "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
                   },
                   "every": {
+                    "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied.",
                     "type": "object",
                     "properties": {
                       "times": {
