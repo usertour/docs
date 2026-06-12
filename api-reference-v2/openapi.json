@@ -1,600 +1,6 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/v2/projects/{projectId}/event-definitions": {
-      "get": {
-        "operationId": "ApiEventDefinitionsController_list",
-        "summary": "List event definitions",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "cursor",
-            "required": false,
-            "in": "query",
-            "description": "Pagination cursor from a prior response.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Max items per page (1-100, default 20).",
-            "schema": {
-              "minimum": 1,
-              "maximum": 100,
-              "default": 20,
-              "type": "integer"
-            }
-          },
-          {
-            "name": "orderBy",
-            "required": false,
-            "in": "query",
-            "description": "Order by createdAt / -createdAt.",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "createdAt",
-                    "-createdAt"
-                  ]
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "createdAt",
-                      "-createdAt"
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of event definitions",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListEventDefinitionsResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Event definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "ApiEventDefinitionsController_create",
-        "summary": "Create an event definition",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEventDefinitionBodyDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Event definition created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDefinitionDto"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "An event with this codeName already exists"
-          }
-        },
-        "tags": [
-          "Event definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v2/projects/{projectId}/event-definitions/{id}": {
-      "get": {
-        "operationId": "ApiEventDefinitionsController_get",
-        "summary": "Get an event definition",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Event definition ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Event definition found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDefinitionDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Event definition not found"
-          }
-        },
-        "tags": [
-          "Event definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "patch": {
-        "operationId": "ApiEventDefinitionsController_update",
-        "summary": "Update an event definition",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Event definition ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateEventDefinitionBodyDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Event definition updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventDefinitionDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Event definition not found"
-          }
-        },
-        "tags": [
-          "Event definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "ApiEventDefinitionsController_remove",
-        "summary": "Delete an event definition",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Event definition ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Event definition deleted"
-          },
-          "404": {
-            "description": "Event definition not found"
-          }
-        },
-        "tags": [
-          "Event definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v2/projects/{projectId}/attribute-definitions": {
-      "get": {
-        "operationId": "ApiAttributeDefinitionsController_list",
-        "summary": "List attribute definitions",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Max items per page (1-100, default 20).",
-            "schema": {
-              "minimum": 1,
-              "maximum": 100,
-              "default": 20,
-              "type": "integer"
-            }
-          },
-          {
-            "name": "cursor",
-            "required": false,
-            "in": "query",
-            "description": "Pagination cursor from a prior response.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "scope",
-            "required": false,
-            "in": "query",
-            "description": "Filter by scope: user, company, or companyMembership.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orderBy",
-            "required": false,
-            "in": "query",
-            "description": "Order by field(s), e.g. -createdAt.",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "createdAt",
-                    "-createdAt",
-                    "codeName",
-                    "-codeName",
-                    "displayName",
-                    "-displayName"
-                  ]
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "createdAt",
-                      "-createdAt",
-                      "codeName",
-                      "-codeName",
-                      "displayName",
-                      "-displayName"
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "name": "eventName",
-            "required": false,
-            "in": "query",
-            "description": "Filter to attributes on these event(s).",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of attribute definitions",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListAttributeDefinitionsResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Attribute definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "ApiAttributeDefinitionsController_create",
-        "summary": "Create an attribute definition",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateAttributeBodyDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Attribute definition created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AttributeDto"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "An attribute with this codeName already exists"
-          }
-        },
-        "tags": [
-          "Attribute definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v2/projects/{projectId}/attribute-definitions/{id}": {
-      "get": {
-        "operationId": "ApiAttributeDefinitionsController_get",
-        "summary": "Get an attribute definition",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Attribute definition ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Attribute definition found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AttributeDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Attribute definition not found"
-          }
-        },
-        "tags": [
-          "Attribute definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "patch": {
-        "operationId": "ApiAttributeDefinitionsController_update",
-        "summary": "Update an attribute definition",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Attribute definition ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAttributeBodyDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Attribute definition updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AttributeDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Attribute definition not found"
-          }
-        },
-        "tags": [
-          "Attribute definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "ApiAttributeDefinitionsController_remove",
-        "summary": "Delete an attribute definition",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Attribute definition ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Attribute definition deleted"
-          },
-          "404": {
-            "description": "Attribute definition not found"
-          }
-        },
-        "tags": [
-          "Attribute definitions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
     "/v2/projects/{projectId}/content": {
       "get": {
         "operationId": "ApiContentController_list",
@@ -1497,6 +903,336 @@
         ]
       }
     },
+    "/v2/projects/{projectId}/themes": {
+      "get": {
+        "operationId": "ApiThemesController_list",
+        "summary": "List themes",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Max items per page (1-100, default 20).",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "description": "Pagination cursor from a prior response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "description": "Order by createdAt / -createdAt.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "-createdAt"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "createdAt",
+                      "-createdAt"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "expand",
+            "required": false,
+            "in": "query",
+            "description": "Inline: settings, variations.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "settings",
+                    "variations"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "settings",
+                      "variations"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of themes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListThemesResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Themes"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ApiThemesController_create",
+        "summary": "Create a theme",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateThemeBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Theme created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Themes"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/themes/{id}": {
+      "get": {
+        "operationId": "ApiThemesController_get",
+        "summary": "Get a theme",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Theme ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand",
+            "required": false,
+            "in": "query",
+            "description": "Inline: settings, variations.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "settings",
+                    "variations"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "settings",
+                      "variations"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Theme found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Theme not found"
+          }
+        },
+        "tags": [
+          "Themes"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ApiThemesController_update",
+        "summary": "Update a theme",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Theme ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateThemeBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Theme updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Theme not found"
+          }
+        },
+        "tags": [
+          "Themes"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiThemesController_remove",
+        "summary": "Delete a theme",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Theme ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Theme deleted"
+          },
+          "404": {
+            "description": "Theme not found"
+          }
+        },
+        "tags": [
+          "Themes"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/v2/projects/{projectId}/environments/{environmentId}/users": {
       "get": {
         "operationId": "ApiUsersController_list",
@@ -2269,664 +2005,6 @@
         ]
       }
     },
-    "/v2/projects/{projectId}/environments/{environmentId}/sessions": {
-      "get": {
-        "operationId": "ApiContentSessionsController_list",
-        "summary": "List sessions",
-        "description": "Sessions in this environment. Filter by contentId / userId.",
-        "parameters": [
-          {
-            "name": "contentId",
-            "required": false,
-            "in": "query",
-            "description": "Filter to a single content.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "required": false,
-            "in": "query",
-            "description": "Filter to a single end-user.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Max items per page (1-100, default 20).",
-            "schema": {
-              "minimum": 1,
-              "maximum": 100,
-              "default": 20,
-              "type": "integer"
-            }
-          },
-          {
-            "name": "cursor",
-            "required": false,
-            "in": "query",
-            "description": "Pagination cursor from a prior response.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orderBy",
-            "required": false,
-            "in": "query",
-            "description": "Order by createdAt / -createdAt.",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "createdAt",
-                    "-createdAt"
-                  ]
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "createdAt",
-                      "-createdAt"
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "name": "expand",
-            "required": false,
-            "in": "query",
-            "description": "Inline: answers, content, company, user, version.",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "answers",
-                    "content",
-                    "company",
-                    "user",
-                    "version"
-                  ]
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "answers",
-                      "content",
-                      "company",
-                      "user",
-                      "version"
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "name": "environmentId",
-            "required": true,
-            "in": "path",
-            "description": "Environment ID",
-            "schema": {}
-          },
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {}
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of content sessions",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListContentSessionsResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Sessions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v2/projects/{projectId}/environments/{environmentId}/sessions/{id}": {
-      "get": {
-        "operationId": "ApiContentSessionsController_get",
-        "summary": "Get a session",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Content session ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "expand",
-            "required": false,
-            "in": "query",
-            "description": "Inline: answers, content, company, user, version.",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "answers",
-                    "content",
-                    "company",
-                    "user",
-                    "version"
-                  ]
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "answers",
-                      "content",
-                      "company",
-                      "user",
-                      "version"
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "name": "environmentId",
-            "required": true,
-            "in": "path",
-            "description": "Environment ID",
-            "schema": {}
-          },
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {}
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Content session found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContentSessionDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Content session not found"
-          }
-        },
-        "tags": [
-          "Sessions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "ApiContentSessionsController_remove",
-        "summary": "Delete a session",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Content session ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "environmentId",
-            "required": true,
-            "in": "path",
-            "description": "Environment ID",
-            "schema": {}
-          },
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {}
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Content session deleted"
-          },
-          "404": {
-            "description": "Content session not found"
-          }
-        },
-        "tags": [
-          "Sessions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v2/projects/{projectId}/environments/{environmentId}/sessions/{id}/end": {
-      "post": {
-        "operationId": "ApiContentSessionsController_end",
-        "summary": "End a session",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Content session ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "environmentId",
-            "required": true,
-            "in": "path",
-            "description": "Environment ID",
-            "schema": {}
-          },
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {}
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Content session ended",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContentSessionDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Content session not found"
-          }
-        },
-        "tags": [
-          "Sessions"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v2/projects/{projectId}/themes": {
-      "get": {
-        "operationId": "ApiThemesController_list",
-        "summary": "List themes",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Max items per page (1-100, default 20).",
-            "schema": {
-              "minimum": 1,
-              "maximum": 100,
-              "default": 20,
-              "type": "integer"
-            }
-          },
-          {
-            "name": "cursor",
-            "required": false,
-            "in": "query",
-            "description": "Pagination cursor from a prior response.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "orderBy",
-            "required": false,
-            "in": "query",
-            "description": "Order by createdAt / -createdAt.",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "createdAt",
-                    "-createdAt"
-                  ]
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "createdAt",
-                      "-createdAt"
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "name": "expand",
-            "required": false,
-            "in": "query",
-            "description": "Inline: settings, variations.",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "settings",
-                    "variations"
-                  ]
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "settings",
-                      "variations"
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of themes",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListThemesResponseDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Themes"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "ApiThemesController_create",
-        "summary": "Create a theme",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateThemeBodyDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Theme created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThemeDto"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Themes"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/v2/projects/{projectId}/themes/{id}": {
-      "get": {
-        "operationId": "ApiThemesController_get",
-        "summary": "Get a theme",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Theme ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "expand",
-            "required": false,
-            "in": "query",
-            "description": "Inline: settings, variations.",
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "enum": [
-                    "settings",
-                    "variations"
-                  ]
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "settings",
-                      "variations"
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Theme found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThemeDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Theme not found"
-          }
-        },
-        "tags": [
-          "Themes"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "patch": {
-        "operationId": "ApiThemesController_update",
-        "summary": "Update a theme",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Theme ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateThemeBodyDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Theme updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ThemeDto"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Theme not found"
-          }
-        },
-        "tags": [
-          "Themes"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "ApiThemesController_remove",
-        "summary": "Delete a theme",
-        "parameters": [
-          {
-            "name": "projectId",
-            "required": true,
-            "in": "path",
-            "description": "Project ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Theme ID",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Theme deleted"
-          },
-          "404": {
-            "description": "Theme not found"
-          }
-        },
-        "tags": [
-          "Themes"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
     "/v2/projects/{projectId}/segments": {
       "get": {
         "operationId": "ApiSegmentsController_list",
@@ -3331,6 +2409,928 @@
           }
         ]
       }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/sessions": {
+      "get": {
+        "operationId": "ApiContentSessionsController_list",
+        "summary": "List sessions",
+        "description": "Sessions in this environment. Filter by contentId / userId.",
+        "parameters": [
+          {
+            "name": "contentId",
+            "required": false,
+            "in": "query",
+            "description": "Filter to a single content.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": false,
+            "in": "query",
+            "description": "Filter to a single end-user.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Max items per page (1-100, default 20).",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "description": "Pagination cursor from a prior response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "description": "Order by createdAt / -createdAt.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "-createdAt"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "createdAt",
+                      "-createdAt"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "expand",
+            "required": false,
+            "in": "query",
+            "description": "Inline: answers, content, company, user, version.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "answers",
+                    "content",
+                    "company",
+                    "user",
+                    "version"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "answers",
+                      "content",
+                      "company",
+                      "user",
+                      "version"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of content sessions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListContentSessionsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/sessions/{id}": {
+      "get": {
+        "operationId": "ApiContentSessionsController_get",
+        "summary": "Get a session",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Content session ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "expand",
+            "required": false,
+            "in": "query",
+            "description": "Inline: answers, content, company, user, version.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "answers",
+                    "content",
+                    "company",
+                    "user",
+                    "version"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "answers",
+                      "content",
+                      "company",
+                      "user",
+                      "version"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Content session found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentSessionDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Content session not found"
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiContentSessionsController_remove",
+        "summary": "Delete a session",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Content session ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Content session deleted"
+          },
+          "404": {
+            "description": "Content session not found"
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/sessions/{id}/end": {
+      "post": {
+        "operationId": "ApiContentSessionsController_end",
+        "summary": "End a session",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Content session ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Content session ended",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentSessionDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Content session not found"
+          }
+        },
+        "tags": [
+          "Sessions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/attribute-definitions": {
+      "get": {
+        "operationId": "ApiAttributeDefinitionsController_list",
+        "summary": "List attribute definitions",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Max items per page (1-100, default 20).",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "description": "Pagination cursor from a prior response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "scope",
+            "required": false,
+            "in": "query",
+            "description": "Filter by scope: user, company, or companyMembership.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "description": "Order by field(s), e.g. -createdAt.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "-createdAt",
+                    "codeName",
+                    "-codeName",
+                    "displayName",
+                    "-displayName"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "createdAt",
+                      "-createdAt",
+                      "codeName",
+                      "-codeName",
+                      "displayName",
+                      "-displayName"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "eventName",
+            "required": false,
+            "in": "query",
+            "description": "Filter to attributes on these event(s).",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of attribute definitions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAttributeDefinitionsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Attribute definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ApiAttributeDefinitionsController_create",
+        "summary": "Create an attribute definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAttributeBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Attribute definition created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "An attribute with this codeName already exists"
+          }
+        },
+        "tags": [
+          "Attribute definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/attribute-definitions/{id}": {
+      "get": {
+        "operationId": "ApiAttributeDefinitionsController_get",
+        "summary": "Get an attribute definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Attribute definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attribute definition found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Attribute definition not found"
+          }
+        },
+        "tags": [
+          "Attribute definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ApiAttributeDefinitionsController_update",
+        "summary": "Update an attribute definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Attribute definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAttributeBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Attribute definition updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttributeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Attribute definition not found"
+          }
+        },
+        "tags": [
+          "Attribute definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiAttributeDefinitionsController_remove",
+        "summary": "Delete an attribute definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Attribute definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Attribute definition deleted"
+          },
+          "404": {
+            "description": "Attribute definition not found"
+          }
+        },
+        "tags": [
+          "Attribute definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/event-definitions": {
+      "get": {
+        "operationId": "ApiEventDefinitionsController_list",
+        "summary": "List event definitions",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "description": "Pagination cursor from a prior response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Max items per page (1-100, default 20).",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "orderBy",
+            "required": false,
+            "in": "query",
+            "description": "Order by createdAt / -createdAt.",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "createdAt",
+                    "-createdAt"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "createdAt",
+                      "-createdAt"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of event definitions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListEventDefinitionsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ApiEventDefinitionsController_create",
+        "summary": "Create an event definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEventDefinitionBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Event definition created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDefinitionDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "An event with this codeName already exists"
+          }
+        },
+        "tags": [
+          "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/event-definitions/{id}": {
+      "get": {
+        "operationId": "ApiEventDefinitionsController_get",
+        "summary": "Get an event definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Event definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event definition found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDefinitionDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event definition not found"
+          }
+        },
+        "tags": [
+          "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ApiEventDefinitionsController_update",
+        "summary": "Update an event definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Event definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEventDefinitionBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Event definition updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDefinitionDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event definition not found"
+          }
+        },
+        "tags": [
+          "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiEventDefinitionsController_remove",
+        "summary": "Delete an event definition",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Event definition ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Event definition deleted"
+          },
+          "404": {
+            "description": "Event definition not found"
+          }
+        },
+        "tags": [
+          "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -3354,346 +3354,6 @@
       }
     },
     "schemas": {
-      "ListEventDefinitionsResponseDto": {
-        "type": "object",
-        "properties": {
-          "results": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "eventDefinition"
-                  ]
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "displayName": {
-                  "type": "string"
-                },
-                "codeName": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "createdAt",
-                "description",
-                "displayName",
-                "codeName"
-              ]
-            }
-          },
-          "next": {
-            "type": "string",
-            "nullable": true
-          },
-          "previous": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "required": [
-          "results",
-          "next",
-          "previous"
-        ]
-      },
-      "EventDefinitionDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string",
-            "enum": [
-              "eventDefinition"
-            ]
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "codeName": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "object",
-          "createdAt",
-          "description",
-          "displayName",
-          "codeName"
-        ]
-      },
-      "CreateEventDefinitionBodyDto": {
-        "type": "object",
-        "properties": {
-          "codeName": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Stable identifier, unique per project. Immutable."
-          },
-          "displayName": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Human-readable name."
-          },
-          "description": {
-            "description": "Optional description.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "codeName",
-          "displayName"
-        ]
-      },
-      "UpdateEventDefinitionBodyDto": {
-        "type": "object",
-        "properties": {
-          "displayName": {
-            "description": "Human-readable name.",
-            "type": "string",
-            "minLength": 1
-          },
-          "description": {
-            "description": "Optional description.",
-            "type": "string"
-          }
-        }
-      },
-      "ListAttributeDefinitionsResponseDto": {
-        "type": "object",
-        "properties": {
-          "results": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "attributeDefinition"
-                  ]
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "dataType": {
-                  "type": "string",
-                  "enum": [
-                    "number",
-                    "string",
-                    "boolean",
-                    "list",
-                    "datetime",
-                    "random_ab",
-                    "random_number"
-                  ]
-                },
-                "description": {
-                  "type": "string"
-                },
-                "displayName": {
-                  "type": "string"
-                },
-                "codeName": {
-                  "type": "string"
-                },
-                "scope": {
-                  "type": "string",
-                  "enum": [
-                    "content",
-                    "user",
-                    "company",
-                    "companyMembership",
-                    "contentVersion",
-                    "contentSession",
-                    "attributeDefinition",
-                    "eventDefinition",
-                    "contentSessionAnswer",
-                    "question",
-                    "step",
-                    "block",
-                    "theme",
-                    "segment"
-                  ]
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "createdAt",
-                "dataType",
-                "description",
-                "displayName",
-                "codeName",
-                "scope"
-              ]
-            }
-          },
-          "next": {
-            "type": "string",
-            "nullable": true
-          },
-          "previous": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "required": [
-          "results",
-          "next",
-          "previous"
-        ]
-      },
-      "AttributeDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string",
-            "enum": [
-              "attributeDefinition"
-            ]
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "dataType": {
-            "type": "string",
-            "enum": [
-              "number",
-              "string",
-              "boolean",
-              "list",
-              "datetime",
-              "random_ab",
-              "random_number"
-            ]
-          },
-          "description": {
-            "type": "string"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "codeName": {
-            "type": "string"
-          },
-          "scope": {
-            "type": "string",
-            "enum": [
-              "content",
-              "user",
-              "company",
-              "companyMembership",
-              "contentVersion",
-              "contentSession",
-              "attributeDefinition",
-              "eventDefinition",
-              "contentSessionAnswer",
-              "question",
-              "step",
-              "block",
-              "theme",
-              "segment"
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "object",
-          "createdAt",
-          "dataType",
-          "description",
-          "displayName",
-          "codeName",
-          "scope"
-        ]
-      },
-      "CreateAttributeBodyDto": {
-        "type": "object",
-        "properties": {
-          "scope": {
-            "type": "string",
-            "enum": [
-              "user",
-              "company",
-              "companyMembership"
-            ],
-            "description": "Which object the attribute belongs to: user, company, or companyMembership."
-          },
-          "dataType": {
-            "type": "string",
-            "enum": [
-              "number",
-              "string",
-              "boolean",
-              "list",
-              "datetime"
-            ],
-            "description": "The attribute value type."
-          },
-          "codeName": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Stable identifier, unique per project + scope. Immutable."
-          },
-          "displayName": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Human-readable name."
-          },
-          "description": {
-            "description": "Optional description.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "scope",
-          "dataType",
-          "codeName",
-          "displayName"
-        ]
-      },
-      "UpdateAttributeBodyDto": {
-        "type": "object",
-        "properties": {
-          "displayName": {
-            "description": "Human-readable name.",
-            "type": "string",
-            "minLength": 1
-          },
-          "description": {
-            "description": "Optional description.",
-            "type": "string"
-          }
-        }
-      },
       "ListContentResponseDto__schema0": {
         "anyOf": [
           {
@@ -13042,1071 +12702,6 @@
           "data": {}
         }
       },
-      "ListUsersResponseDto": {
-        "type": "object",
-        "properties": {
-          "results": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "user"
-                  ]
-                },
-                "attributes": {
-                  "type": "object",
-                  "additionalProperties": {}
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "companies": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "object": {
-                        "type": "string",
-                        "enum": [
-                          "company"
-                        ]
-                      },
-                      "attributes": {
-                        "type": "object",
-                        "additionalProperties": {}
-                      },
-                      "createdAt": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "object",
-                      "attributes",
-                      "createdAt"
-                    ]
-                  },
-                  "nullable": true
-                },
-                "memberships": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "object": {
-                        "type": "string",
-                        "enum": [
-                          "companyMembership"
-                        ]
-                      },
-                      "attributes": {
-                        "type": "object",
-                        "additionalProperties": {}
-                      },
-                      "createdAt": {
-                        "type": "string"
-                      },
-                      "companyId": {
-                        "type": "string"
-                      },
-                      "userId": {
-                        "type": "string"
-                      },
-                      "company": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "object": {
-                            "type": "string",
-                            "enum": [
-                              "company"
-                            ]
-                          },
-                          "attributes": {
-                            "type": "object",
-                            "additionalProperties": {}
-                          },
-                          "createdAt": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "object",
-                          "attributes",
-                          "createdAt"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "object",
-                      "attributes",
-                      "createdAt",
-                      "companyId",
-                      "userId"
-                    ]
-                  },
-                  "nullable": true
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "attributes",
-                "createdAt",
-                "companies",
-                "memberships"
-              ]
-            }
-          },
-          "next": {
-            "type": "string",
-            "nullable": true
-          },
-          "previous": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "required": [
-          "results",
-          "next",
-          "previous"
-        ]
-      },
-      "UserDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string",
-            "enum": [
-              "user"
-            ]
-          },
-          "attributes": {
-            "type": "object",
-            "additionalProperties": {}
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "companies": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "company"
-                  ]
-                },
-                "attributes": {
-                  "type": "object",
-                  "additionalProperties": {}
-                },
-                "createdAt": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "attributes",
-                "createdAt"
-              ]
-            },
-            "nullable": true
-          },
-          "memberships": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "companyMembership"
-                  ]
-                },
-                "attributes": {
-                  "type": "object",
-                  "additionalProperties": {}
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "companyId": {
-                  "type": "string"
-                },
-                "userId": {
-                  "type": "string"
-                },
-                "company": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "type": "string",
-                      "enum": [
-                        "company"
-                      ]
-                    },
-                    "attributes": {
-                      "type": "object",
-                      "additionalProperties": {}
-                    },
-                    "createdAt": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "object",
-                    "attributes",
-                    "createdAt"
-                  ]
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "attributes",
-                "createdAt",
-                "companyId",
-                "userId"
-              ]
-            },
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "object",
-          "attributes",
-          "createdAt",
-          "companies",
-          "memberships"
-        ]
-      },
-      "UpsertUserBodyDto": {
-        "type": "object",
-        "properties": {
-          "attributes": {
-            "description": "Custom attributes to set on the user (merged into existing attributes).",
-            "type": "object",
-            "additionalProperties": {}
-          }
-        }
-      },
-      "ListCompaniesResponseDto": {
-        "type": "object",
-        "properties": {
-          "results": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "company"
-                  ]
-                },
-                "attributes": {
-                  "type": "object",
-                  "additionalProperties": {}
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "users": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "object": {
-                        "type": "string",
-                        "enum": [
-                          "user"
-                        ]
-                      },
-                      "attributes": {
-                        "type": "object",
-                        "additionalProperties": {}
-                      },
-                      "createdAt": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "object",
-                      "attributes",
-                      "createdAt"
-                    ]
-                  },
-                  "nullable": true
-                },
-                "memberships": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "object": {
-                        "type": "string",
-                        "enum": [
-                          "companyMembership"
-                        ]
-                      },
-                      "attributes": {
-                        "type": "object",
-                        "additionalProperties": {}
-                      },
-                      "createdAt": {
-                        "type": "string"
-                      },
-                      "companyId": {
-                        "type": "string"
-                      },
-                      "userId": {
-                        "type": "string"
-                      },
-                      "user": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "object": {
-                            "type": "string",
-                            "enum": [
-                              "user"
-                            ]
-                          },
-                          "attributes": {
-                            "type": "object",
-                            "additionalProperties": {}
-                          },
-                          "createdAt": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "object",
-                          "attributes",
-                          "createdAt"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "object",
-                      "attributes",
-                      "createdAt",
-                      "companyId",
-                      "userId"
-                    ]
-                  },
-                  "nullable": true
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "attributes",
-                "createdAt",
-                "users",
-                "memberships"
-              ]
-            }
-          },
-          "next": {
-            "type": "string",
-            "nullable": true
-          },
-          "previous": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "required": [
-          "results",
-          "next",
-          "previous"
-        ]
-      },
-      "CompanyDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string",
-            "enum": [
-              "company"
-            ]
-          },
-          "attributes": {
-            "type": "object",
-            "additionalProperties": {}
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "users": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "user"
-                  ]
-                },
-                "attributes": {
-                  "type": "object",
-                  "additionalProperties": {}
-                },
-                "createdAt": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "attributes",
-                "createdAt"
-              ]
-            },
-            "nullable": true
-          },
-          "memberships": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "companyMembership"
-                  ]
-                },
-                "attributes": {
-                  "type": "object",
-                  "additionalProperties": {}
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "companyId": {
-                  "type": "string"
-                },
-                "userId": {
-                  "type": "string"
-                },
-                "user": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "type": "string",
-                      "enum": [
-                        "user"
-                      ]
-                    },
-                    "attributes": {
-                      "type": "object",
-                      "additionalProperties": {}
-                    },
-                    "createdAt": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "object",
-                    "attributes",
-                    "createdAt"
-                  ]
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "attributes",
-                "createdAt",
-                "companyId",
-                "userId"
-              ]
-            },
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "object",
-          "attributes",
-          "createdAt",
-          "users",
-          "memberships"
-        ]
-      },
-      "UpsertCompanyBodyDto": {
-        "type": "object",
-        "properties": {
-          "attributes": {
-            "description": "Custom attributes to set on the company (merged into existing attributes).",
-            "type": "object",
-            "additionalProperties": {}
-          }
-        }
-      },
-      "UpsertMembershipBodyDto": {
-        "type": "object",
-        "properties": {
-          "attributes": {
-            "description": "Custom attributes to set on the membership (e.g. the user's role in the company).",
-            "type": "object",
-            "additionalProperties": {}
-          }
-        }
-      },
-      "ListContentSessionsResponseDto": {
-        "type": "object",
-        "properties": {
-          "results": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "contentSession"
-                  ]
-                },
-                "answers": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "object": {
-                        "type": "string",
-                        "enum": [
-                          "contentSessionAnswer"
-                        ]
-                      },
-                      "answerType": {
-                        "type": "string"
-                      },
-                      "answerValue": {
-                        "type": "string"
-                      },
-                      "createdAt": {
-                        "type": "string"
-                      },
-                      "questionCvid": {
-                        "type": "string"
-                      },
-                      "questionName": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "object",
-                      "answerType",
-                      "answerValue",
-                      "createdAt",
-                      "questionCvid",
-                      "questionName"
-                    ]
-                  },
-                  "nullable": true
-                },
-                "completedAt": {
-                  "type": "string",
-                  "nullable": true
-                },
-                "completed": {
-                  "type": "boolean"
-                },
-                "contentId": {
-                  "type": "string"
-                },
-                "content": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "type": "string",
-                      "enum": [
-                        "content"
-                      ]
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "editedVersionId": {
-                      "type": "string"
-                    },
-                    "updatedAt": {
-                      "type": "string"
-                    },
-                    "createdAt": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "object",
-                    "name",
-                    "type",
-                    "editedVersionId",
-                    "updatedAt",
-                    "createdAt"
-                  ],
-                  "nullable": true
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "companyId": {
-                  "type": "string",
-                  "nullable": true
-                },
-                "company": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "type": "string",
-                      "enum": [
-                        "company"
-                      ]
-                    },
-                    "attributes": {
-                      "type": "object",
-                      "additionalProperties": {}
-                    },
-                    "createdAt": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "object",
-                    "attributes",
-                    "createdAt"
-                  ],
-                  "nullable": true
-                },
-                "isPreview": {
-                  "type": "boolean"
-                },
-                "lastActivityAt": {
-                  "type": "string"
-                },
-                "progress": {
-                  "type": "number"
-                },
-                "userId": {
-                  "type": "string",
-                  "nullable": true
-                },
-                "user": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "type": "string",
-                      "enum": [
-                        "user"
-                      ]
-                    },
-                    "attributes": {
-                      "type": "object",
-                      "additionalProperties": {}
-                    },
-                    "createdAt": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "object",
-                    "attributes",
-                    "createdAt"
-                  ],
-                  "nullable": true
-                },
-                "versionId": {
-                  "type": "string"
-                },
-                "version": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "object": {
-                      "type": "string",
-                      "enum": [
-                        "contentVersion"
-                      ]
-                    },
-                    "number": {
-                      "type": "number"
-                    },
-                    "updatedAt": {
-                      "type": "string"
-                    },
-                    "createdAt": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "object",
-                    "number",
-                    "updatedAt",
-                    "createdAt"
-                  ],
-                  "nullable": true
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "answers",
-                "completedAt",
-                "completed",
-                "contentId",
-                "content",
-                "createdAt",
-                "companyId",
-                "company",
-                "isPreview",
-                "lastActivityAt",
-                "progress",
-                "userId",
-                "user",
-                "versionId",
-                "version"
-              ]
-            }
-          },
-          "next": {
-            "type": "string",
-            "nullable": true
-          },
-          "previous": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "required": [
-          "results",
-          "next",
-          "previous"
-        ]
-      },
-      "ContentSessionDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "object": {
-            "type": "string",
-            "enum": [
-              "contentSession"
-            ]
-          },
-          "answers": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "object": {
-                  "type": "string",
-                  "enum": [
-                    "contentSessionAnswer"
-                  ]
-                },
-                "answerType": {
-                  "type": "string"
-                },
-                "answerValue": {
-                  "type": "string"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "questionCvid": {
-                  "type": "string"
-                },
-                "questionName": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "object",
-                "answerType",
-                "answerValue",
-                "createdAt",
-                "questionCvid",
-                "questionName"
-              ]
-            },
-            "nullable": true
-          },
-          "completedAt": {
-            "type": "string",
-            "nullable": true
-          },
-          "completed": {
-            "type": "boolean"
-          },
-          "contentId": {
-            "type": "string"
-          },
-          "content": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "object": {
-                "type": "string",
-                "enum": [
-                  "content"
-                ]
-              },
-              "name": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              },
-              "editedVersionId": {
-                "type": "string"
-              },
-              "updatedAt": {
-                "type": "string"
-              },
-              "createdAt": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "id",
-              "object",
-              "name",
-              "type",
-              "editedVersionId",
-              "updatedAt",
-              "createdAt"
-            ],
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "companyId": {
-            "type": "string",
-            "nullable": true
-          },
-          "company": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "object": {
-                "type": "string",
-                "enum": [
-                  "company"
-                ]
-              },
-              "attributes": {
-                "type": "object",
-                "additionalProperties": {}
-              },
-              "createdAt": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "id",
-              "object",
-              "attributes",
-              "createdAt"
-            ],
-            "nullable": true
-          },
-          "isPreview": {
-            "type": "boolean"
-          },
-          "lastActivityAt": {
-            "type": "string"
-          },
-          "progress": {
-            "type": "number"
-          },
-          "userId": {
-            "type": "string",
-            "nullable": true
-          },
-          "user": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "object": {
-                "type": "string",
-                "enum": [
-                  "user"
-                ]
-              },
-              "attributes": {
-                "type": "object",
-                "additionalProperties": {}
-              },
-              "createdAt": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "id",
-              "object",
-              "attributes",
-              "createdAt"
-            ],
-            "nullable": true
-          },
-          "versionId": {
-            "type": "string"
-          },
-          "version": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "object": {
-                "type": "string",
-                "enum": [
-                  "contentVersion"
-                ]
-              },
-              "number": {
-                "type": "number"
-              },
-              "updatedAt": {
-                "type": "string"
-              },
-              "createdAt": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "id",
-              "object",
-              "number",
-              "updatedAt",
-              "createdAt"
-            ],
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "object",
-          "answers",
-          "completedAt",
-          "completed",
-          "contentId",
-          "content",
-          "createdAt",
-          "companyId",
-          "company",
-          "isPreview",
-          "lastActivityAt",
-          "progress",
-          "userId",
-          "user",
-          "versionId",
-          "version"
-        ]
-      },
       "ListThemesResponseDto__schema0": {
         "anyOf": [
           {
@@ -16256,6 +14851,582 @@
           }
         }
       },
+      "ListUsersResponseDto": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "user"
+                  ]
+                },
+                "attributes": {
+                  "type": "object",
+                  "additionalProperties": {}
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "companies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "object": {
+                        "type": "string",
+                        "enum": [
+                          "company"
+                        ]
+                      },
+                      "attributes": {
+                        "type": "object",
+                        "additionalProperties": {}
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "object",
+                      "attributes",
+                      "createdAt"
+                    ]
+                  },
+                  "nullable": true
+                },
+                "memberships": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "object": {
+                        "type": "string",
+                        "enum": [
+                          "companyMembership"
+                        ]
+                      },
+                      "attributes": {
+                        "type": "object",
+                        "additionalProperties": {}
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "companyId": {
+                        "type": "string"
+                      },
+                      "userId": {
+                        "type": "string"
+                      },
+                      "company": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "object": {
+                            "type": "string",
+                            "enum": [
+                              "company"
+                            ]
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "additionalProperties": {}
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "object",
+                          "attributes",
+                          "createdAt"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "object",
+                      "attributes",
+                      "createdAt",
+                      "companyId",
+                      "userId"
+                    ]
+                  },
+                  "nullable": true
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "attributes",
+                "createdAt",
+                "companies",
+                "memberships"
+              ]
+            }
+          },
+          "next": {
+            "type": "string",
+            "nullable": true
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "results",
+          "next",
+          "previous"
+        ]
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "user"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "companies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "company"
+                  ]
+                },
+                "attributes": {
+                  "type": "object",
+                  "additionalProperties": {}
+                },
+                "createdAt": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "attributes",
+                "createdAt"
+              ]
+            },
+            "nullable": true
+          },
+          "memberships": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "companyMembership"
+                  ]
+                },
+                "attributes": {
+                  "type": "object",
+                  "additionalProperties": {}
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "companyId": {
+                  "type": "string"
+                },
+                "userId": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "string",
+                      "enum": [
+                        "company"
+                      ]
+                    },
+                    "attributes": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "object",
+                    "attributes",
+                    "createdAt"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "attributes",
+                "createdAt",
+                "companyId",
+                "userId"
+              ]
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "attributes",
+          "createdAt",
+          "companies",
+          "memberships"
+        ]
+      },
+      "UpsertUserBodyDto": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "description": "Custom attributes to set on the user (merged into existing attributes).",
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
+      "ListCompaniesResponseDto": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "company"
+                  ]
+                },
+                "attributes": {
+                  "type": "object",
+                  "additionalProperties": {}
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "users": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "object": {
+                        "type": "string",
+                        "enum": [
+                          "user"
+                        ]
+                      },
+                      "attributes": {
+                        "type": "object",
+                        "additionalProperties": {}
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "object",
+                      "attributes",
+                      "createdAt"
+                    ]
+                  },
+                  "nullable": true
+                },
+                "memberships": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "object": {
+                        "type": "string",
+                        "enum": [
+                          "companyMembership"
+                        ]
+                      },
+                      "attributes": {
+                        "type": "object",
+                        "additionalProperties": {}
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "companyId": {
+                        "type": "string"
+                      },
+                      "userId": {
+                        "type": "string"
+                      },
+                      "user": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "object": {
+                            "type": "string",
+                            "enum": [
+                              "user"
+                            ]
+                          },
+                          "attributes": {
+                            "type": "object",
+                            "additionalProperties": {}
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "object",
+                          "attributes",
+                          "createdAt"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "object",
+                      "attributes",
+                      "createdAt",
+                      "companyId",
+                      "userId"
+                    ]
+                  },
+                  "nullable": true
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "attributes",
+                "createdAt",
+                "users",
+                "memberships"
+              ]
+            }
+          },
+          "next": {
+            "type": "string",
+            "nullable": true
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "results",
+          "next",
+          "previous"
+        ]
+      },
+      "CompanyDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "company"
+            ]
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "user"
+                  ]
+                },
+                "attributes": {
+                  "type": "object",
+                  "additionalProperties": {}
+                },
+                "createdAt": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "attributes",
+                "createdAt"
+              ]
+            },
+            "nullable": true
+          },
+          "memberships": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "companyMembership"
+                  ]
+                },
+                "attributes": {
+                  "type": "object",
+                  "additionalProperties": {}
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "companyId": {
+                  "type": "string"
+                },
+                "userId": {
+                  "type": "string"
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "string",
+                      "enum": [
+                        "user"
+                      ]
+                    },
+                    "attributes": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "object",
+                    "attributes",
+                    "createdAt"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "attributes",
+                "createdAt",
+                "companyId",
+                "userId"
+              ]
+            },
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "attributes",
+          "createdAt",
+          "users",
+          "memberships"
+        ]
+      },
+      "UpsertCompanyBodyDto": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "description": "Custom attributes to set on the company (merged into existing attributes).",
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
+      "UpsertMembershipBodyDto": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "description": "Custom attributes to set on the membership (e.g. the user's role in the company).",
+            "type": "object",
+            "additionalProperties": {}
+          }
+        }
+      },
       "ListSegmentsResponseDto__schema0": {
         "anyOf": [
           {
@@ -18326,6 +17497,835 @@
             "items": {
               "$ref": "#/components/schemas/UpdateSegmentBodyDto__schema0"
             }
+          }
+        }
+      },
+      "ListContentSessionsResponseDto": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "contentSession"
+                  ]
+                },
+                "answers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "object": {
+                        "type": "string",
+                        "enum": [
+                          "contentSessionAnswer"
+                        ]
+                      },
+                      "answerType": {
+                        "type": "string"
+                      },
+                      "answerValue": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "questionCvid": {
+                        "type": "string"
+                      },
+                      "questionName": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "object",
+                      "answerType",
+                      "answerValue",
+                      "createdAt",
+                      "questionCvid",
+                      "questionName"
+                    ]
+                  },
+                  "nullable": true
+                },
+                "completedAt": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "completed": {
+                  "type": "boolean"
+                },
+                "contentId": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "string",
+                      "enum": [
+                        "content"
+                      ]
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "editedVersionId": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "object",
+                    "name",
+                    "type",
+                    "editedVersionId",
+                    "updatedAt",
+                    "createdAt"
+                  ],
+                  "nullable": true
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "companyId": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "company": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "string",
+                      "enum": [
+                        "company"
+                      ]
+                    },
+                    "attributes": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "object",
+                    "attributes",
+                    "createdAt"
+                  ],
+                  "nullable": true
+                },
+                "isPreview": {
+                  "type": "boolean"
+                },
+                "lastActivityAt": {
+                  "type": "string"
+                },
+                "progress": {
+                  "type": "number"
+                },
+                "userId": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "string",
+                      "enum": [
+                        "user"
+                      ]
+                    },
+                    "attributes": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "object",
+                    "attributes",
+                    "createdAt"
+                  ],
+                  "nullable": true
+                },
+                "versionId": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "type": "string",
+                      "enum": [
+                        "contentVersion"
+                      ]
+                    },
+                    "number": {
+                      "type": "number"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "object",
+                    "number",
+                    "updatedAt",
+                    "createdAt"
+                  ],
+                  "nullable": true
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "answers",
+                "completedAt",
+                "completed",
+                "contentId",
+                "content",
+                "createdAt",
+                "companyId",
+                "company",
+                "isPreview",
+                "lastActivityAt",
+                "progress",
+                "userId",
+                "user",
+                "versionId",
+                "version"
+              ]
+            }
+          },
+          "next": {
+            "type": "string",
+            "nullable": true
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "results",
+          "next",
+          "previous"
+        ]
+      },
+      "ContentSessionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "contentSession"
+            ]
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "contentSessionAnswer"
+                  ]
+                },
+                "answerType": {
+                  "type": "string"
+                },
+                "answerValue": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "questionCvid": {
+                  "type": "string"
+                },
+                "questionName": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "answerType",
+                "answerValue",
+                "createdAt",
+                "questionCvid",
+                "questionName"
+              ]
+            },
+            "nullable": true
+          },
+          "completedAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "completed": {
+            "type": "boolean"
+          },
+          "contentId": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "object": {
+                "type": "string",
+                "enum": [
+                  "content"
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "editedVersionId": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "object",
+              "name",
+              "type",
+              "editedVersionId",
+              "updatedAt",
+              "createdAt"
+            ],
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "company": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "object": {
+                "type": "string",
+                "enum": [
+                  "company"
+                ]
+              },
+              "attributes": {
+                "type": "object",
+                "additionalProperties": {}
+              },
+              "createdAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "object",
+              "attributes",
+              "createdAt"
+            ],
+            "nullable": true
+          },
+          "isPreview": {
+            "type": "boolean"
+          },
+          "lastActivityAt": {
+            "type": "string"
+          },
+          "progress": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "object": {
+                "type": "string",
+                "enum": [
+                  "user"
+                ]
+              },
+              "attributes": {
+                "type": "object",
+                "additionalProperties": {}
+              },
+              "createdAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "object",
+              "attributes",
+              "createdAt"
+            ],
+            "nullable": true
+          },
+          "versionId": {
+            "type": "string"
+          },
+          "version": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "object": {
+                "type": "string",
+                "enum": [
+                  "contentVersion"
+                ]
+              },
+              "number": {
+                "type": "number"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "object",
+              "number",
+              "updatedAt",
+              "createdAt"
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "answers",
+          "completedAt",
+          "completed",
+          "contentId",
+          "content",
+          "createdAt",
+          "companyId",
+          "company",
+          "isPreview",
+          "lastActivityAt",
+          "progress",
+          "userId",
+          "user",
+          "versionId",
+          "version"
+        ]
+      },
+      "ListAttributeDefinitionsResponseDto": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "attributeDefinition"
+                  ]
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "dataType": {
+                  "type": "string",
+                  "enum": [
+                    "number",
+                    "string",
+                    "boolean",
+                    "list",
+                    "datetime",
+                    "random_ab",
+                    "random_number"
+                  ]
+                },
+                "description": {
+                  "type": "string"
+                },
+                "displayName": {
+                  "type": "string"
+                },
+                "codeName": {
+                  "type": "string"
+                },
+                "scope": {
+                  "type": "string",
+                  "enum": [
+                    "content",
+                    "user",
+                    "company",
+                    "companyMembership",
+                    "contentVersion",
+                    "contentSession",
+                    "attributeDefinition",
+                    "eventDefinition",
+                    "contentSessionAnswer",
+                    "question",
+                    "step",
+                    "block",
+                    "theme",
+                    "segment"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "createdAt",
+                "dataType",
+                "description",
+                "displayName",
+                "codeName",
+                "scope"
+              ]
+            }
+          },
+          "next": {
+            "type": "string",
+            "nullable": true
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "results",
+          "next",
+          "previous"
+        ]
+      },
+      "AttributeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "attributeDefinition"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "number",
+              "string",
+              "boolean",
+              "list",
+              "datetime",
+              "random_ab",
+              "random_number"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "codeName": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "content",
+              "user",
+              "company",
+              "companyMembership",
+              "contentVersion",
+              "contentSession",
+              "attributeDefinition",
+              "eventDefinition",
+              "contentSessionAnswer",
+              "question",
+              "step",
+              "block",
+              "theme",
+              "segment"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "createdAt",
+          "dataType",
+          "description",
+          "displayName",
+          "codeName",
+          "scope"
+        ]
+      },
+      "CreateAttributeBodyDto": {
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "string",
+            "enum": [
+              "user",
+              "company",
+              "companyMembership"
+            ],
+            "description": "Which object the attribute belongs to: user, company, or companyMembership."
+          },
+          "dataType": {
+            "type": "string",
+            "enum": [
+              "number",
+              "string",
+              "boolean",
+              "list",
+              "datetime"
+            ],
+            "description": "The attribute value type."
+          },
+          "codeName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Stable identifier, unique per project + scope. Immutable."
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable name."
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "scope",
+          "dataType",
+          "codeName",
+          "displayName"
+        ]
+      },
+      "UpdateAttributeBodyDto": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "description": "Human-readable name.",
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          }
+        }
+      },
+      "ListEventDefinitionsResponseDto": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "eventDefinition"
+                  ]
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "displayName": {
+                  "type": "string"
+                },
+                "codeName": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "createdAt",
+                "description",
+                "displayName",
+                "codeName"
+              ]
+            }
+          },
+          "next": {
+            "type": "string",
+            "nullable": true
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "results",
+          "next",
+          "previous"
+        ]
+      },
+      "EventDefinitionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "eventDefinition"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "codeName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "createdAt",
+          "description",
+          "displayName",
+          "codeName"
+        ]
+      },
+      "CreateEventDefinitionBodyDto": {
+        "type": "object",
+        "properties": {
+          "codeName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Stable identifier, unique per project. Immutable."
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable name."
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "codeName",
+          "displayName"
+        ]
+      },
+      "UpdateEventDefinitionBodyDto": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "description": "Human-readable name.",
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
           }
         }
       }
