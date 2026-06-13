@@ -1,0 +1,167 @@
+---
+title: 'Conditions & actions'
+description: 'The reusable predicate and behavior primitives — used by start/hide rules, step triggers, and button/question actions.'
+---
+
+**Conditions** decide *whether* something applies; **actions** decide *what
+happens*. They're the same shapes everywhere they appear: version
+[start/hide rules](/api-reference-v2/rules), step triggers, and button / question
+`actions`.
+
+## Conditions
+
+A condition list is **AND** by default. Use a `group` to express **OR** (or to
+nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
+
+```json
+[
+  { "type": "segment", "segment": "seg_power_users", "in": true },
+  { "type": "group", "match": "any", "conditions": [
+    { "type": "current_url", "includes": ["/pricing"] },
+    { "type": "current_url", "includes": ["/billing"] }
+  ]}
+]
+```
+
+#### `group`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"group"` | yes |  |
+| `match` | `all` \| `any` | yes | `all` = AND, `any` = OR (how the children combine). |
+| `conditions` | [Condition](#conditions)[] | yes | Nested conditions. |
+
+#### `user_attribute`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"user_attribute"` | yes |  |
+| `attribute` | string | yes | Attribute code (see [Attributes](/api-reference-v2/attributes)). |
+| `op` | string | yes | Operator — depends on the attribute's data type (e.g. `is`, `contains`, `greater_than`). |
+| `value` | string |  | Comparison value. |
+| `value2` | string |  | Second value (for `between`). |
+| `values` | string[] |  | Value list (for list operators). |
+
+#### `segment`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"segment"` | yes |  |
+| `segment` | string | yes | Segment id. |
+| `in` | boolean | yes | `true` = in the segment, `false` = not in it. |
+
+#### `current_url`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"current_url"` | yes |  |
+| `includes` | string[] | yes | Match when the URL contains any of these. |
+| `excludes` | string[] |  | …and none of these. |
+
+#### `element`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"element"` | yes |  |
+| `target` | [Target](#target) |  | The element to check. |
+| `state` | `present` \| `hidden` \| `disabled` \| `enabled` \| `clicked` \| `unclicked` | yes |  |
+
+#### `flow`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"flow"` | yes |  |
+| `flow` | string | yes | Content id of the flow. |
+| `state` | `seen` \| `unseen` \| `completed` \| `uncompleted` \| `active` \| `inactive` | yes |  |
+
+#### `event`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"event"` | yes |  |
+| `event` | string | yes | Event code. |
+| `count` | `object{ op, n, n2 }` |  | How many times — `op` ∈ `at_least`/`at_most`/`exactly`/`between`. |
+| `within` | `object{ op, value, value2, unit }` |  | Time window — `op` ∈ `in_the_last`/`more_than`/`between`/`any_time`, `unit` ∈ seconds…days. |
+| `scope` | `current_user` \| `current_user_in_company` \| `any_user_in_company` |  |  |
+| `where` | [Condition](#conditions)[] |  | Filter on the event's own attributes (event-attribute conditions only). |
+
+#### `text_input`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"text_input"` | yes |  |
+| `target` | [Target](#target) |  | The input element. |
+| `op` | `is` \| `not` \| `contains` \| `not_contains` \| `starts_with` \| `ends_with` \| `match` \| `unmatch` \| `any` \| `empty` | yes |  |
+| `value` | string |  |  |
+
+#### `text_filled`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"text_filled"` | yes |  |
+| `target` | [Target](#target) |  | The input element. |
+
+#### `time_window`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"time_window"` | yes |  |
+| `start` | string |  | ISO 8601 start. |
+| `end` | string |  | ISO 8601 end. |
+
+## Actions
+
+#### `goto_step`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"goto_step"` | yes |  |
+| `step` | string | yes | Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid. |
+
+#### `start_flow`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"start_flow"` | yes |  |
+| `flow` | string | yes | Content id of the flow to start. |
+| `step` | string |  | Start at this step (cvid). |
+
+#### `navigate`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"navigate"` | yes |  |
+| `url` | string | yes | Supports `{{ attribute }}` interpolation. |
+| `newTab` | boolean |  |  |
+| `newWindow` | boolean |  |  |
+
+#### `dismiss`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `type` | `"dismiss"` | yes | Dismiss the current content. |
+
+<Note>
+  `run_javascript` actions are **read-only**: they appear on reads but are
+  rejected on write (no API/agent-injected JavaScript).
+</Note>
+
+```json
+{ "type": "button", "text": "See pricing", "actions": [{ "type": "navigate", "url": "/pricing", "newTab": true }] }
+```
+
+## Target
+
+An element reference (used by `element` / `text_input` / `text_filled`
+conditions, tooltip steps, and banner container).
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `by` | `selector` \| `text` | yes | Match by CSS selector or by visible text. |
+| `selector` | string | when `by: selector` | A stable CSS selector in the customer's app. |
+| `nth` | number |  | Pick the nth match (with `by: selector`). |
+| `text` | string | when `by: text` | The visible text to match. |
+
+```json
+{ "by": "selector", "selector": "[data-tour='create']" }
+```

@@ -1,0 +1,221 @@
+---
+title: 'Blocks'
+description: 'The visual building units of content — text, image, button, embed, question, and columns — with their exact payloads.'
+---
+
+**Blocks** are the visual units that make up content. They appear in a flow
+step's `content[]`, and in the rich content of checklists, banners, and the
+resource center. A block is a small tagged object:
+
+```json
+{ "object": "block", "id": "bk_…", "type": "text", "markdown": "Hello" }
+```
+
+- **`id`** is the field-merge write handle. Echo a block's `id` to update it in
+  place (styling and other unmodeled details are preserved); **omit** `id` to
+  create a new block. (`object: "block"` is returned on read; you don't send it.)
+- **`type`** selects the block shape below.
+
+Rich text is a small **markdown subset** — see
+[Content representation](/api-reference-v2/content-representation#rich-text).
+Conditions and actions referenced here are documented in
+[Conditions & actions](/api-reference-v2/conditions-and-actions).
+
+## text
+
+A rich-text paragraph block.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string |  | Field-merge write handle. |
+| `type` | `"text"` | yes |  |
+| `markdown` | string | yes | A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only — no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)`, and `{{ attribute_code \| default: "x" }}` for user attributes. |
+
+```json
+{ "type": "text", "markdown": "Welcome **{{ first_name | default: \"there\" }}** 👋" }
+```
+
+## image
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string |  | Field-merge write handle. |
+| `type` | `"image"` | yes |  |
+| `url` | string | yes | Image URL. |
+| `alt` | string |  | Alt text. |
+| `link` | `object{ url, newTab }` |  | Wrap the image in a link. |
+| `width` | [Dimension](#shared-shapes) |  | Image width. |
+| `margin` | [Spacing](#shared-shapes) |  | Outer margin. |
+
+```json
+{
+  "type": "image",
+  "url": "https://example.com/logo.png",
+  "alt": "Logo",
+  "width": { "unit": "percent", "value": 80 },
+  "link": { "url": "https://example.com", "newTab": true }
+}
+```
+
+## button
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string |  | Field-merge write handle. |
+| `type` | `"button"` | yes |  |
+| `text` | string | yes | Button label. |
+| `actions` | [Action](/api-reference-v2/conditions-and-actions#actions)[] |  | What clicking does (e.g. go to a step, dismiss). |
+| `disabledWhen` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Disable the button while these match. |
+| `hiddenWhen` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Hide the button while these match. |
+| `variant` | `primary` \| `secondary` |  | Visual style. |
+| `margin` | [Spacing](#shared-shapes) |  | Outer margin. |
+
+A button needs both `text` **and** at least one action to be publishable.
+
+```json
+{
+  "type": "button",
+  "text": "Next",
+  "variant": "primary",
+  "actions": [{ "type": "goto_step", "step": "pricing" }]
+}
+```
+
+## embed
+
+An embedded URL (video, iframe-able page, …).
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string |  | Field-merge write handle. |
+| `type` | `"embed"` | yes |  |
+| `url` | string | yes | URL to embed. |
+| `width` | [Dimension](#shared-shapes) |  | Width. |
+| `height` | [Dimension](#shared-shapes) |  | Height. |
+| `margin` | [Spacing](#shared-shapes) |  | Outer margin. |
+
+```json
+{ "type": "embed", "url": "https://www.youtube.com/embed/dQw4w9WgXcQ", "width": { "unit": "percent", "value": 100 } }
+```
+
+## question
+
+A survey question. The `question` field is one of the four [Question](#questions)
+shapes below; `actions` run after the user answers.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string |  | Field-merge write handle. |
+| `type` | `"question"` | yes |  |
+| `question` | [Question](#questions) | yes | The question definition. |
+| `actions` | [Action](/api-reference-v2/conditions-and-actions#actions)[] |  | Run after the answer is submitted. |
+
+```json
+{
+  "type": "question",
+  "question": { "kind": "rating", "name": "Satisfaction", "style": "star", "range": { "low": 1, "high": 5 } }
+}
+```
+
+### Questions
+
+Every question needs a `name` (used for analytics). `bindAttribute` (optional)
+stores the answer on a user attribute. `cvid` is server-owned (returned on read).
+
+#### `nps`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `kind` | `"nps"` | yes |  |
+| `name` | string | yes |  |
+| `lowLabel` | string |  | Label under the low end (e.g. "Not likely"). |
+| `highLabel` | string |  | Label under the high end. |
+| `bindAttribute` | string |  | Store the score on this user attribute. |
+
+#### `rating`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `kind` | `"rating"` | yes |  |
+| `name` | string | yes |  |
+| `style` | `star` \| `scale` | yes | Star rating or numeric scale. |
+| `range` | `object{ low, high }` | yes | Score range, e.g. `{ "low": 1, "high": 5 }`. |
+| `default` | number |  | Pre-selected value. |
+| `lowLabel` | string |  |  |
+| `highLabel` | string |  |  |
+| `bindAttribute` | string |  |  |
+
+#### `text`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `kind` | `"text"` | yes |  |
+| `name` | string | yes |  |
+| `multiline` | boolean | yes | Single-line vs multi-line input. |
+| `placeholder` | string |  |  |
+| `buttonText` | string |  | Submit-button label. |
+| `required` | boolean |  |  |
+| `bindAttribute` | string |  |  |
+
+#### `choice`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `kind` | `"choice"` | yes |  |
+| `name` | string | yes |  |
+| `options` | `object{ label, value }[]` | yes | The choices. |
+| `allowMultiple` | boolean | yes | Multi-select vs single-select. |
+| `enableOther` | boolean |  | Add a free-text "Other" option. |
+| `otherPlaceholder` | string |  |  |
+| `shuffle` | boolean |  | Randomize option order. |
+| `buttonText` | string |  |  |
+| `bindAttribute` | string |  |  |
+
+## columns
+
+A row of side-by-side columns, each holding its own blocks — the only nesting in
+the block model.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string |  | Field-merge write handle. |
+| `type` | `"columns"` | yes |  |
+| `columns` | [Column](#shared-shapes)[] | yes | The columns in this row. |
+
+```json
+{
+  "type": "columns",
+  "columns": [
+    { "width": { "unit": "percent", "value": 50 }, "blocks": [{ "type": "text", "markdown": "Left" }] },
+    { "blocks": [{ "type": "image", "url": "https://example.com/x.png" }] }
+  ]
+}
+```
+
+## Shared shapes
+
+Small objects reused across blocks.
+
+**Dimension** — a width/height.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `unit` | `percent` \| `pixels` \| `fill` | yes | `fill` ignores `value`. |
+| `value` | number |  | ≥ 0. For `percent`, values over 100 are allowed (overflow). |
+
+**Spacing** — margin/padding box (pixels; omitted sides inherit the theme).
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `enabled` | boolean |  | Whether spacing is applied. |
+| `top` / `bottom` / `left` / `right` | number |  | Per-side pixels (may be negative). |
+
+**Column** — one column inside a `columns` block.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `width` | Dimension |  | Column width. |
+| `justify` | `start` \| `center` \| `end` \| `between` \| `around` \| `evenly` |  | Horizontal distribution. |
+| `align` | `start` \| `center` \| `end` \| `baseline` |  | Vertical alignment. |
+| `padding` | Spacing |  | Inner padding. |
+| `blocks` | Block[] | yes | The column's blocks. |

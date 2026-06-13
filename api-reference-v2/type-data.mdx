@@ -1,0 +1,122 @@
+---
+title: 'Type-specific data'
+description: 'The `data` body for non-flow content — checklist, launcher, banner, tracker, and resource center.'
+---
+
+Non-flow content carries its body in `data` (read with `?expand=data`, write with
+the `data` field of `PATCH …/versions/{id}`). A newly created content is seeded
+with its type's default `data`, and writes are a **field-level merge**, so you
+only send the fields you want to change. Nested rich content reuses
+[blocks](/api-reference-v2/blocks); conditions/actions reuse
+[rules](/api-reference-v2/conditions-and-actions).
+
+## checklist
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `buttonText` | string |  | The launcher button label. |
+| `initialDisplay` | `expanded` \| `button` |  | Open, or collapsed to a button. |
+| `completionOrder` | `any` \| `ordered` |  | Whether items must be done in order. |
+| `preventDismiss` | boolean |  | Disallow dismissing. |
+| `autoDismiss` | boolean |  | Dismiss when all items complete. |
+| `content` | [Block](/api-reference-v2/blocks)[] |  | Header/intro content. |
+| `items` | [Item](#checklist-item)[] |  | The checklist tasks. |
+
+### Checklist item
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string |  | Field-merge write handle (omit to add a new item). |
+| `name` | string | yes | Item label. |
+| `description` | string |  | Sub-text. |
+| `completeWhen` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Marks the item complete when these match. Also accepts the parameterless `{ "type": "task_clicked" }` (complete when the item is clicked), including inside an OR group. |
+| `clickActions` | [Action](/api-reference-v2/conditions-and-actions#actions)[] |  | Run when the item is clicked. |
+| `onlyShowWhen` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Only show the item while these match. |
+
+An item needs a `name` **and** either a `clickActions` or a `completeWhen`.
+
+```json
+{
+  "buttonText": "Get started",
+  "initialDisplay": "expanded",
+  "items": [
+    { "name": "Create your first project", "clickActions": [{ "type": "navigate", "url": "/projects/new" }], "completeWhen": [{ "type": "task_clicked" }] },
+    { "name": "Invite a teammate", "completeWhen": [{ "type": "event", "event": "member_invited" }] }
+  ]
+}
+```
+
+## launcher
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `style` | `beacon` \| `icon` \| `hidden` \| `button` |  | Visual style. |
+| `icon` | `object{ source, url, type }` |  | Icon config. |
+| `buttonText` | string |  | Label (for `button` style). |
+| `target` | [Target](/api-reference-v2/conditions-and-actions#target) |  | Element the launcher anchors to. |
+| `zIndex` | integer |  | Stacking order. |
+| `tooltip` | `object{ placement, width, reference, content, settings }` |  | Tooltip shown on activation — `content` is [Block](/api-reference-v2/blocks)[]. |
+| `behavior` | `object{ triggerElement, event, action, actions }` |  | What activates it and what it does — `actions` is [Action](/api-reference-v2/conditions-and-actions#actions)[]. |
+
+A launcher needs a `target`; show-tooltip behavior needs tooltip `content`,
+perform-action behavior needs `actions`.
+
+```json
+{
+  "style": "icon",
+  "target": { "by": "selector", "selector": "[data-tour='help']" },
+  "tooltip": { "content": [{ "type": "text", "markdown": "Need help? Start here." }] }
+}
+```
+
+## banner
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `placement` | [Placement](/api-reference-v2/content-representation) |  | Where the banner sits. |
+| `content` | [Block](/api-reference-v2/blocks)[] |  | Banner content. |
+| `zIndex` | integer |  | Stacking order. |
+| `settings` | `object{ overlayOverAppContent, stickToTop, allowDismiss, animateOnAppear }` |  | Behavior toggles. |
+| `containerTarget` | [Target](/api-reference-v2/conditions-and-actions#target) |  | For element-relative placements. |
+| `layout` | `object{ maxContentWidth, maxEmbedWidth, borderRadius, outerMargin }` |  | Sizing. |
+
+A banner needs `content`; element-relative placements need a `containerTarget`.
+
+```json
+{
+  "content": [{ "type": "text", "markdown": "🎉 New feature live!" }],
+  "settings": { "stickToTop": true, "allowDismiss": true }
+}
+```
+
+## tracker
+
+A tracker has no UI — it records an event when its [start rules](/api-reference-v2/rules)
+match. (No theme needed.)
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `event` | string | yes | Event code to track. |
+
+```json
+{ "event": "activated" }
+```
+
+## resource-center
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `buttonText` | string |  | Launcher button label. |
+| `headerText` | string |  | Panel header. |
+| `tabs` | `object{ id, name, icon, blocks }`[] |  | Tabs — each has a name and ≥1 content block. |
+
+A resource center needs ≥1 tab, each with a name and at least one block.
+
+```json
+{
+  "headerText": "Help & resources",
+  "tabs": [
+    { "name": "Guides", "blocks": [{ "type": "text", "markdown": "## Getting started" }] }
+  ]
+}
+```

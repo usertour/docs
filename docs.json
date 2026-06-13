@@ -170,6 +170,10 @@
             "group": "Concepts",
             "pages": [
               "api-reference-v2/content-representation",
+              "api-reference-v2/blocks",
+              "api-reference-v2/conditions-and-actions",
+              "api-reference-v2/rules",
+              "api-reference-v2/type-data",
               "api-reference-v2/mcp"
             ]
           },

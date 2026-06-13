@@ -1,0 +1,68 @@
+---
+title: 'Start, hide & trigger rules'
+description: 'When a content auto-starts, when it hides, and the in-step triggers — all built from conditions and actions.'
+---
+
+Version-level **start** and **hide** rules, plus per-step **triggers**, are how
+content reacts. They reuse [conditions and actions](/api-reference-v2/conditions-and-actions).
+Set them on the version with `PATCH …/versions/{id}` (`startRules`, `hideRules`;
+triggers live on each step).
+
+## Start rules
+
+When the content auto-starts, and how often.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `when` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] | yes | Auto-start when these match. |
+| `frequency` | [Frequency](#frequency) |  | How often it may show. |
+| `priority` | `highest` \| `high` \| `medium` \| `low` \| `lowest` |  | Ordering when several could start at once. |
+| `waitMs` | number |  | Delay before showing, in ms. |
+| `startIfNotComplete` | boolean |  | Only start if the user hasn't completed it. |
+
+Send `startRules: null` to clear them.
+
+### Frequency
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `mode` | `once` \| `multiple` \| `unlimited` | yes | `once` = show a single time; `multiple` = up to N per window; `unlimited` = every time the conditions match. |
+| `every` | `object{ times, duration, unit }` |  | Re-show window — used by `multiple` (with `times`) and `unlimited`; ignored by `once`. `unit` ∈ `seconds`/`minutes`/`hours`/`days`. |
+| `atLeast` | `object{ duration, unit }` |  | Minimum gap between shows. |
+
+```json
+{
+  "when": [{ "type": "current_url", "includes": ["/dashboard"] }],
+  "frequency": { "mode": "once" },
+  "priority": "medium"
+}
+```
+
+## Hide rules
+
+When to hide the content (even if started).
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `when` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] | yes | Hide while these match. |
+
+Send `hideRules: null` to clear them.
+
+## Step triggers
+
+A step can carry **triggers** — run actions when conditions become true while the
+step is showing (e.g. advance when an element appears). Triggers live on the
+step's `triggers[]` (see [Content representation](/api-reference-v2/content-representation#steps-flow)).
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `when` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Fire when these match. |
+| `do` | [Action](/api-reference-v2/conditions-and-actions#actions)[] | yes | Actions to run. |
+| `waitMs` | number |  | Delay before firing, in ms. |
+
+```json
+{
+  "when": [{ "type": "element", "target": { "by": "selector", "selector": "#welcome-modal" }, "state": "present" }],
+  "do": [{ "type": "goto_step", "step": "step-2" }]
+}
+```

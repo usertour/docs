@@ -42,6 +42,7 @@ and a `themeId`.
 
 **Blocks** (`content[]`): `text` (markdown), `image`, `button`, `embed`,
 `question` (nps / rating / text / choice), and `columns` (a row of nested blocks).
+Full payload per block type: **[Blocks](/api-reference-v2/blocks)**.
 
 **Rich text** is a small markdown subset: paragraphs, `# `/`## ` headings (h1/h2
 only — no h3+), `-`/`*` and `1.` lists, ` ``` ` code fences; inline `**bold**`,
@@ -75,6 +76,9 @@ actions, version start/hide rules):
 - **Start rules** (`startRules`) — when the content auto-starts, plus frequency /
   priority / wait. **Hide rules** (`hideRules`) — when to hide it.
 
+Field reference: **[Conditions & actions](/api-reference-v2/conditions-and-actions)**
+and **[Start, hide & trigger rules](/api-reference-v2/rules)**.
+
 ## Type-specific data (non-flow)
 
 For the non-flow types, the body lives in `data` (read with `?expand=data`):
@@ -83,7 +87,8 @@ tracker event, or the resource-center block tree. Nested rich content reuses the
 same blocks, and conditions/actions reuse the same rules.
 
 A newly created non-flow content is seeded with its type's default `data`, so you
-only send the fields you want to change — the write is a field-level merge.
+only send the fields you want to change — the write is a field-level merge. Full
+payload per type: **[Type-specific data](/api-reference-v2/type-data)**.
 
 ## Writing
 
