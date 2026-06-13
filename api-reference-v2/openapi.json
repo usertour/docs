@@ -15033,6 +15033,10 @@
                 "skippable": {
                   "type": "boolean"
                 },
+                "explicitCompletionStep": {
+                  "description": "Marks this step as an explicit completion point \u2014 reaching it completes the flow.",
+                  "type": "boolean"
+                },
                 "content": {
                   "default": [],
                   "type": "array",
@@ -15177,6 +15181,127 @@
                     },
                     "required": [
                       "do"
+                    ]
+                  }
+                },
+                "onClick": {
+                  "description": "Actions to run when the user clicks the step's target element (click-to-advance). Tooltip steps with a `target` only.",
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "goto_step"
+                            ]
+                          },
+                          "step": {
+                            "type": "string",
+                            "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "step"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "start_flow"
+                            ]
+                          },
+                          "flow": {
+                            "type": "string"
+                          },
+                          "step": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "flow"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "navigate"
+                            ]
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "newTab": {
+                            "type": "boolean"
+                          },
+                          "newWindow": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "url"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "dismiss"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "run_javascript"
+                            ]
+                          },
+                          "script": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "script"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "unsupported"
+                            ]
+                          },
+                          "note": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      }
                     ]
                   }
                 }
