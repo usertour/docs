@@ -14820,6 +14820,56 @@
           }
         ]
       },
+      "UpdateVersionBodyDto__schema3": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "task_clicked"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UpdateVersionBodyDto__schema3"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          },
+          {
+            "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+          }
+        ]
+      },
       "UpdateVersionBodyDto": {
         "type": "object",
         "properties": {
@@ -15250,7 +15300,1198 @@
             "description": "Theme to apply (cannot be cleared).",
             "type": "string"
           },
-          "data": {}
+          "data": {
+            "description": "Type-specific body for a non-flow content version: checklist / launcher / banner / tracker / resource-center. Field-level merged onto the existing data.",
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "buttonText": {
+                    "type": "string"
+                  },
+                  "initialDisplay": {
+                    "type": "string",
+                    "enum": [
+                      "expanded",
+                      "button"
+                    ]
+                  },
+                  "completionOrder": {
+                    "type": "string",
+                    "enum": [
+                      "any",
+                      "ordered"
+                    ]
+                  },
+                  "preventDismiss": {
+                    "type": "boolean"
+                  },
+                  "autoDismiss": {
+                    "type": "boolean"
+                  },
+                  "content": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema0"
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "completeWhen": {
+                          "default": [],
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/UpdateVersionBodyDto__schema3"
+                          }
+                        },
+                        "clickActions": {
+                          "default": [],
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "goto_step"
+                                    ]
+                                  },
+                                  "step": {
+                                    "type": "string",
+                                    "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "step"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "start_flow"
+                                    ]
+                                  },
+                                  "flow": {
+                                    "type": "string"
+                                  },
+                                  "step": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "flow"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "navigate"
+                                    ]
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  },
+                                  "newTab": {
+                                    "type": "boolean"
+                                  },
+                                  "newWindow": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "url"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "dismiss"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "type"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "run_javascript"
+                                    ]
+                                  },
+                                  "script": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "script"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "unsupported"
+                                    ]
+                                  },
+                                  "note": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "onlyShowWhen": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                          }
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": {}
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "style": {
+                    "type": "string",
+                    "enum": [
+                      "beacon",
+                      "icon",
+                      "hidden",
+                      "button"
+                    ]
+                  },
+                  "icon": {
+                    "type": "object",
+                    "properties": {
+                      "source": {
+                        "type": "string",
+                        "enum": [
+                          "none",
+                          "builtin",
+                          "upload",
+                          "url",
+                          "inherit"
+                        ]
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "buttonText": {
+                    "type": "string"
+                  },
+                  "target": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "by": {
+                            "type": "string",
+                            "enum": [
+                              "selector"
+                            ]
+                          },
+                          "selector": {
+                            "type": "string"
+                          },
+                          "nth": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "by",
+                          "selector"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "by": {
+                            "type": "string",
+                            "enum": [
+                              "text"
+                            ]
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "by",
+                          "text"
+                        ]
+                      }
+                    ]
+                  },
+                  "zIndex": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "tooltip": {
+                    "type": "object",
+                    "properties": {
+                      "placement": {
+                        "type": "object",
+                        "properties": {
+                          "side": {
+                            "type": "string",
+                            "enum": [
+                              "top",
+                              "right",
+                              "bottom",
+                              "left"
+                            ]
+                          },
+                          "align": {
+                            "type": "string",
+                            "enum": [
+                              "start",
+                              "center",
+                              "end"
+                            ]
+                          },
+                          "sideOffset": {
+                            "type": "number"
+                          },
+                          "alignOffset": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "side",
+                          "align"
+                        ]
+                      },
+                      "width": {
+                        "type": "number"
+                      },
+                      "reference": {
+                        "type": "string",
+                        "enum": [
+                          "target",
+                          "launcher"
+                        ]
+                      },
+                      "content": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/UpdateVersionBodyDto__schema0"
+                        }
+                      },
+                      "settings": {
+                        "type": "object",
+                        "properties": {
+                          "dismissAfterFirstActivation": {
+                            "type": "boolean"
+                          },
+                          "keepOpenWhenHovered": {
+                            "type": "boolean"
+                          },
+                          "hideLauncherWhenTooltipShown": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "behavior": {
+                    "type": "object",
+                    "properties": {
+                      "triggerElement": {
+                        "type": "string",
+                        "enum": [
+                          "launcher",
+                          "target",
+                          "target-or-launcher"
+                        ]
+                      },
+                      "event": {
+                        "type": "string",
+                        "enum": [
+                          "clicked",
+                          "hovered"
+                        ]
+                      },
+                      "action": {
+                        "type": "string",
+                        "enum": [
+                          "show-tooltip",
+                          "perform-action"
+                        ]
+                      },
+                      "actions": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "goto_step"
+                                  ]
+                                },
+                                "step": {
+                                  "type": "string",
+                                  "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "step"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "start_flow"
+                                  ]
+                                },
+                                "flow": {
+                                  "type": "string"
+                                },
+                                "step": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "flow"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "navigate"
+                                  ]
+                                },
+                                "url": {
+                                  "type": "string"
+                                },
+                                "newTab": {
+                                  "type": "boolean"
+                                },
+                                "newWindow": {
+                                  "type": "boolean"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "url"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "dismiss"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "type"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "run_javascript"
+                                  ]
+                                },
+                                "script": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "script"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "unsupported"
+                                  ]
+                                },
+                                "note": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type"
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": {}
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "placement": {
+                    "type": "string",
+                    "enum": [
+                      "top-of-page",
+                      "bottom-of-page",
+                      "top-of-container-element",
+                      "bottom-of-container-element",
+                      "immediately-before-element",
+                      "immediately-after-element"
+                    ]
+                  },
+                  "content": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema0"
+                    }
+                  },
+                  "zIndex": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "settings": {
+                    "type": "object",
+                    "properties": {
+                      "overlayOverAppContent": {
+                        "type": "boolean"
+                      },
+                      "stickToTop": {
+                        "type": "boolean"
+                      },
+                      "allowDismiss": {
+                        "type": "boolean"
+                      },
+                      "animateOnAppear": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "containerTarget": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "by": {
+                            "type": "string",
+                            "enum": [
+                              "selector"
+                            ]
+                          },
+                          "selector": {
+                            "type": "string"
+                          },
+                          "nth": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "by",
+                          "selector"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "by": {
+                            "type": "string",
+                            "enum": [
+                              "text"
+                            ]
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "by",
+                          "text"
+                        ]
+                      }
+                    ]
+                  },
+                  "layout": {
+                    "type": "object",
+                    "properties": {
+                      "maxContentWidth": {
+                        "type": "number"
+                      },
+                      "maxEmbedWidth": {
+                        "type": "number"
+                      },
+                      "borderRadius": {
+                        "type": "number"
+                      },
+                      "outerMargin": {
+                        "type": "object",
+                        "properties": {
+                          "top": {
+                            "type": "number"
+                          },
+                          "right": {
+                            "type": "number"
+                          },
+                          "bottom": {
+                            "type": "number"
+                          },
+                          "left": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "top",
+                          "right",
+                          "bottom",
+                          "left"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "additionalProperties": {}
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "event": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "event"
+                ],
+                "additionalProperties": {}
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "buttonText": {
+                    "type": "string"
+                  },
+                  "headerText": {
+                    "type": "string"
+                  },
+                  "tabs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "icon": {
+                          "type": "object",
+                          "properties": {
+                            "source": {
+                              "type": "string",
+                              "enum": [
+                                "none",
+                                "builtin",
+                                "upload",
+                                "url",
+                                "inherit"
+                              ]
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "url": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "blocks": {
+                          "default": [],
+                          "type": "array",
+                          "items": {
+                            "oneOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "onlyShowWhen": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "richtext"
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "content": {
+                                    "default": [],
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema0"
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "type"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "onlyShowWhen": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "divider"
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "onlyShowWhen": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "action"
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "icon": {
+                                    "type": "object",
+                                    "properties": {
+                                      "source": {
+                                        "type": "string",
+                                        "enum": [
+                                          "none",
+                                          "builtin",
+                                          "upload",
+                                          "url",
+                                          "inherit"
+                                        ]
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "clickActions": {
+                                    "default": [],
+                                    "type": "array",
+                                    "items": {
+                                      "anyOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "type": "string",
+                                              "enum": [
+                                                "goto_step"
+                                              ]
+                                            },
+                                            "step": {
+                                              "type": "string",
+                                              "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                                            }
+                                          },
+                                          "required": [
+                                            "type",
+                                            "step"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "type": "string",
+                                              "enum": [
+                                                "start_flow"
+                                              ]
+                                            },
+                                            "flow": {
+                                              "type": "string"
+                                            },
+                                            "step": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "type",
+                                            "flow"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "type": "string",
+                                              "enum": [
+                                                "navigate"
+                                              ]
+                                            },
+                                            "url": {
+                                              "type": "string"
+                                            },
+                                            "newTab": {
+                                              "type": "boolean"
+                                            },
+                                            "newWindow": {
+                                              "type": "boolean"
+                                            }
+                                          },
+                                          "required": [
+                                            "type",
+                                            "url"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "type": "string",
+                                              "enum": [
+                                                "dismiss"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "type"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "type": "string",
+                                              "enum": [
+                                                "run_javascript"
+                                              ]
+                                            },
+                                            "script": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "type",
+                                            "script"
+                                          ]
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "type": {
+                                              "type": "string",
+                                              "enum": [
+                                                "unsupported"
+                                              ]
+                                            },
+                                            "note": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "type"
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "name"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "onlyShowWhen": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "sub-page"
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "icon": {
+                                    "type": "object",
+                                    "properties": {
+                                      "source": {
+                                        "type": "string",
+                                        "enum": [
+                                          "none",
+                                          "builtin",
+                                          "upload",
+                                          "url",
+                                          "inherit"
+                                        ]
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "content": {
+                                    "default": [],
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema0"
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "name"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "onlyShowWhen": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "content-list"
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "icon": {
+                                    "type": "object",
+                                    "properties": {
+                                      "source": {
+                                        "type": "string",
+                                        "enum": [
+                                          "none",
+                                          "builtin",
+                                          "upload",
+                                          "url",
+                                          "inherit"
+                                        ]
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "flowIcon": {
+                                    "type": "object",
+                                    "properties": {
+                                      "source": {
+                                        "type": "string",
+                                        "enum": [
+                                          "none",
+                                          "builtin",
+                                          "upload",
+                                          "url",
+                                          "inherit"
+                                        ]
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "checklistIcon": {
+                                    "type": "object",
+                                    "properties": {
+                                      "source": {
+                                        "type": "string",
+                                        "enum": [
+                                          "none",
+                                          "builtin",
+                                          "upload",
+                                          "url",
+                                          "inherit"
+                                        ]
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "showSearchField": {
+                                    "type": "boolean"
+                                  },
+                                  "items": {
+                                    "default": [],
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "content": {
+                                          "type": "string"
+                                        },
+                                        "contentType": {
+                                          "type": "string",
+                                          "enum": [
+                                            "flow",
+                                            "checklist"
+                                          ]
+                                        },
+                                        "icon": {
+                                          "type": "object",
+                                          "properties": {
+                                            "source": {
+                                              "type": "string",
+                                              "enum": [
+                                                "none",
+                                                "builtin",
+                                                "upload",
+                                                "url",
+                                                "inherit"
+                                              ]
+                                            },
+                                            "type": {
+                                              "type": "string"
+                                            },
+                                            "url": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "navigateUrl": {
+                                          "type": "string"
+                                        },
+                                        "navigateOpenType": {
+                                          "type": "string",
+                                          "enum": [
+                                            "same",
+                                            "new"
+                                          ]
+                                        },
+                                        "onlyShowWhen": {
+                                          "type": "array",
+                                          "items": {
+                                            "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                                          }
+                                        }
+                                      },
+                                      "required": [
+                                        "content",
+                                        "contentType"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "name"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "onlyShowWhen": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "live-chat"
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "icon": {
+                                    "type": "object",
+                                    "properties": {
+                                      "source": {
+                                        "type": "string",
+                                        "enum": [
+                                          "none",
+                                          "builtin",
+                                          "upload",
+                                          "url",
+                                          "inherit"
+                                        ]
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "provider": {
+                                    "type": "string",
+                                    "enum": [
+                                      "crisp",
+                                      "custom",
+                                      "freshchat",
+                                      "help-scout",
+                                      "hubspot",
+                                      "intercom",
+                                      "zendesk-classic",
+                                      "zendesk-messenger"
+                                    ]
+                                  },
+                                  "customCode": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "name",
+                                  "provider"
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    }
+                  }
+                },
+                "additionalProperties": {}
+              }
+            ]
+          }
         }
       },
       "ListThemesResponseDto__schema0": {
