@@ -46,6 +46,15 @@
             }
           },
           {
+            "name": "published",
+            "required": false,
+            "in": "query",
+            "description": "Filter to content published in at least one environment (true) or none (false).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "expand",
             "required": false,
             "in": "query",
@@ -97,6 +106,24 @@
                   }
                 }
               ]
+            }
+          },
+          {
+            "name": "createdAfter",
+            "required": false,
+            "in": "query",
+            "description": "Only items created at or after this ISO 8601 time.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdBefore",
+            "required": false,
+            "in": "query",
+            "description": "Only items created at or before this ISO 8601 time.",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -1404,6 +1431,24 @@
             }
           },
           {
+            "name": "createdAfter",
+            "required": false,
+            "in": "query",
+            "description": "Only items created at or after this ISO 8601 time.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdBefore",
+            "required": false,
+            "in": "query",
+            "description": "Only items created at or before this ISO 8601 time.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "environmentId",
             "required": true,
             "in": "path",
@@ -1714,6 +1759,24 @@
             "required": false,
             "in": "query",
             "description": "Filter to companies in this segment.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdAfter",
+            "required": false,
+            "in": "query",
+            "description": "Only items created at or after this ISO 8601 time.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdBefore",
+            "required": false,
+            "in": "query",
+            "description": "Only items created at or before this ISO 8601 time.",
             "schema": {
               "type": "string"
             }
@@ -2494,6 +2557,15 @@
             }
           },
           {
+            "name": "completed",
+            "required": false,
+            "in": "query",
+            "description": "Filter to completed (true) or open (false) sessions.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "required": false,
             "in": "query",
@@ -2572,6 +2644,24 @@
                   }
                 }
               ]
+            }
+          },
+          {
+            "name": "createdAfter",
+            "required": false,
+            "in": "query",
+            "description": "Only items created at or after this ISO 8601 time.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdBefore",
+            "required": false,
+            "in": "query",
+            "description": "Only items created at or before this ISO 8601 time.",
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -3761,6 +3851,46 @@
                 "required": [
                   "url"
                 ]
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -3928,6 +4058,26 @@
                   "primary",
                   "secondary"
                 ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -3956,6 +4106,66 @@
               },
               "url": {
                 "type": "string"
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "height": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -4331,12 +4541,53 @@
                           ]
                         },
                         "value": {
-                          "type": "number"
+                          "type": "number",
+                          "minimum": 0
                         }
                       },
                       "required": [
                         "unit"
                       ]
+                    },
+                    "justify": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "between",
+                        "around",
+                        "evenly"
+                      ]
+                    },
+                    "align": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "baseline"
+                      ]
+                    },
+                    "padding": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "top": {
+                          "type": "number"
+                        },
+                        "bottom": {
+                          "type": "number"
+                        },
+                        "left": {
+                          "type": "number"
+                        },
+                        "right": {
+                          "type": "number"
+                        }
+                      }
                     },
                     "blocks": {
                       "type": "array",
@@ -4677,7 +4928,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ListContentResponseDto__schema1"
+                  "$ref": "#/components/schemas/ListContentResponseDto__schema2"
                 }
               }
             },
@@ -4858,6 +5109,73 @@
           }
         ]
       },
+      "ListContentResponseDto__schema2": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ListContentResponseDto__schema2"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          }
+        ]
+      },
       "ListContentResponseDto": {
         "type": "object",
         "properties": {
@@ -5034,6 +5352,19 @@
                                   },
                                   "alignOffset": {
                                     "type": "number"
+                                  },
+                                  "alignType": {
+                                    "type": "string",
+                                    "enum": [
+                                      "auto",
+                                      "fixed"
+                                    ]
+                                  },
+                                  "backdrop": {
+                                    "type": "boolean"
+                                  },
+                                  "blockTarget": {
+                                    "type": "boolean"
                                   }
                                 },
                                 "required": [
@@ -5047,11 +5378,15 @@
                                   "position": {
                                     "type": "string",
                                     "enum": [
+                                      "leftTop",
+                                      "centerTop",
+                                      "rightTop",
+                                      "leftCenter",
                                       "center",
-                                      "top",
-                                      "bottom",
-                                      "left",
-                                      "right"
+                                      "rightCenter",
+                                      "leftBottom",
+                                      "centerBottom",
+                                      "rightBottom"
                                     ]
                                   },
                                   "offsetX": {
@@ -5077,6 +5412,9 @@
                             "type": "number"
                           },
                           "skippable": {
+                            "type": "boolean"
+                          },
+                          "explicitCompletionStep": {
                             "type": "boolean"
                           },
                           "content": {
@@ -5222,6 +5560,126 @@
                               },
                               "required": [
                                 "do"
+                              ]
+                            }
+                          },
+                          "onClick": {
+                            "type": "array",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "goto_step"
+                                      ]
+                                    },
+                                    "step": {
+                                      "type": "string",
+                                      "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "step"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start_flow"
+                                      ]
+                                    },
+                                    "flow": {
+                                      "type": "string"
+                                    },
+                                    "step": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "flow"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "navigate"
+                                      ]
+                                    },
+                                    "url": {
+                                      "type": "string"
+                                    },
+                                    "newTab": {
+                                      "type": "boolean"
+                                    },
+                                    "newWindow": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "url"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "dismiss"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "type"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "run_javascript"
+                                      ]
+                                    },
+                                    "script": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "script"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "unsupported"
+                                      ]
+                                    },
+                                    "note": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type"
+                                  ]
+                                }
                               ]
                             }
                           },
@@ -5536,6 +5994,19 @@
                                         },
                                         "alignOffset": {
                                           "type": "number"
+                                        },
+                                        "alignType": {
+                                          "type": "string",
+                                          "enum": [
+                                            "auto",
+                                            "fixed"
+                                          ]
+                                        },
+                                        "backdrop": {
+                                          "type": "boolean"
+                                        },
+                                        "blockTarget": {
+                                          "type": "boolean"
                                         }
                                       },
                                       "required": [
@@ -5549,11 +6020,15 @@
                                         "position": {
                                           "type": "string",
                                           "enum": [
+                                            "leftTop",
+                                            "centerTop",
+                                            "rightTop",
+                                            "leftCenter",
                                             "center",
-                                            "top",
-                                            "bottom",
-                                            "left",
-                                            "right"
+                                            "rightCenter",
+                                            "leftBottom",
+                                            "centerBottom",
+                                            "rightBottom"
                                           ]
                                         },
                                         "offsetX": {
@@ -5579,6 +6054,9 @@
                                   "type": "number"
                                 },
                                 "skippable": {
+                                  "type": "boolean"
+                                },
+                                "explicitCompletionStep": {
                                   "type": "boolean"
                                 },
                                 "content": {
@@ -5724,6 +6202,126 @@
                                     },
                                     "required": [
                                       "do"
+                                    ]
+                                  }
+                                },
+                                "onClick": {
+                                  "type": "array",
+                                  "items": {
+                                    "anyOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "goto_step"
+                                            ]
+                                          },
+                                          "step": {
+                                            "type": "string",
+                                            "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                                          }
+                                        },
+                                        "required": [
+                                          "type",
+                                          "step"
+                                        ]
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "start_flow"
+                                            ]
+                                          },
+                                          "flow": {
+                                            "type": "string"
+                                          },
+                                          "step": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "type",
+                                          "flow"
+                                        ]
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "navigate"
+                                            ]
+                                          },
+                                          "url": {
+                                            "type": "string"
+                                          },
+                                          "newTab": {
+                                            "type": "boolean"
+                                          },
+                                          "newWindow": {
+                                            "type": "boolean"
+                                          }
+                                        },
+                                        "required": [
+                                          "type",
+                                          "url"
+                                        ]
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "dismiss"
+                                            ]
+                                          }
+                                        },
+                                        "required": [
+                                          "type"
+                                        ]
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "run_javascript"
+                                            ]
+                                          },
+                                          "script": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "type",
+                                          "script"
+                                        ]
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "type": {
+                                            "type": "string",
+                                            "enum": [
+                                              "unsupported"
+                                            ]
+                                          },
+                                          "note": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "type"
+                                        ]
+                                      }
                                     ]
                                   }
                                 },
@@ -5988,6 +6586,46 @@
                 "required": [
                   "url"
                 ]
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -6155,6 +6793,26 @@
                   "primary",
                   "secondary"
                 ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -6183,6 +6841,66 @@
               },
               "url": {
                 "type": "string"
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "height": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -6558,12 +7276,53 @@
                           ]
                         },
                         "value": {
-                          "type": "number"
+                          "type": "number",
+                          "minimum": 0
                         }
                       },
                       "required": [
                         "unit"
                       ]
+                    },
+                    "justify": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "between",
+                        "around",
+                        "evenly"
+                      ]
+                    },
+                    "align": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "baseline"
+                      ]
+                    },
+                    "padding": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "top": {
+                          "type": "number"
+                        },
+                        "bottom": {
+                          "type": "number"
+                        },
+                        "left": {
+                          "type": "number"
+                        },
+                        "right": {
+                          "type": "number"
+                        }
+                      }
                     },
                     "blocks": {
                       "type": "array",
@@ -6904,7 +7663,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ContentDto__schema1"
+                  "$ref": "#/components/schemas/ContentDto__schema2"
                 }
               }
             },
@@ -7085,6 +7844,73 @@
           }
         ]
       },
+      "ContentDto__schema2": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ContentDto__schema2"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          }
+        ]
+      },
       "ContentDto": {
         "type": "object",
         "properties": {
@@ -7256,6 +8082,19 @@
                             },
                             "alignOffset": {
                               "type": "number"
+                            },
+                            "alignType": {
+                              "type": "string",
+                              "enum": [
+                                "auto",
+                                "fixed"
+                              ]
+                            },
+                            "backdrop": {
+                              "type": "boolean"
+                            },
+                            "blockTarget": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -7269,11 +8108,15 @@
                             "position": {
                               "type": "string",
                               "enum": [
+                                "leftTop",
+                                "centerTop",
+                                "rightTop",
+                                "leftCenter",
                                 "center",
-                                "top",
-                                "bottom",
-                                "left",
-                                "right"
+                                "rightCenter",
+                                "leftBottom",
+                                "centerBottom",
+                                "rightBottom"
                               ]
                             },
                             "offsetX": {
@@ -7299,6 +8142,9 @@
                       "type": "number"
                     },
                     "skippable": {
+                      "type": "boolean"
+                    },
+                    "explicitCompletionStep": {
                       "type": "boolean"
                     },
                     "content": {
@@ -7444,6 +8290,126 @@
                         },
                         "required": [
                           "do"
+                        ]
+                      }
+                    },
+                    "onClick": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "goto_step"
+                                ]
+                              },
+                              "step": {
+                                "type": "string",
+                                "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "step"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "start_flow"
+                                ]
+                              },
+                              "flow": {
+                                "type": "string"
+                              },
+                              "step": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "flow"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "navigate"
+                                ]
+                              },
+                              "url": {
+                                "type": "string"
+                              },
+                              "newTab": {
+                                "type": "boolean"
+                              },
+                              "newWindow": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "url"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "dismiss"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "run_javascript"
+                                ]
+                              },
+                              "script": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "script"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "unsupported"
+                                ]
+                              },
+                              "note": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ]
+                          }
                         ]
                       }
                     },
@@ -7749,6 +8715,19 @@
                                   },
                                   "alignOffset": {
                                     "type": "number"
+                                  },
+                                  "alignType": {
+                                    "type": "string",
+                                    "enum": [
+                                      "auto",
+                                      "fixed"
+                                    ]
+                                  },
+                                  "backdrop": {
+                                    "type": "boolean"
+                                  },
+                                  "blockTarget": {
+                                    "type": "boolean"
                                   }
                                 },
                                 "required": [
@@ -7762,11 +8741,15 @@
                                   "position": {
                                     "type": "string",
                                     "enum": [
+                                      "leftTop",
+                                      "centerTop",
+                                      "rightTop",
+                                      "leftCenter",
                                       "center",
-                                      "top",
-                                      "bottom",
-                                      "left",
-                                      "right"
+                                      "rightCenter",
+                                      "leftBottom",
+                                      "centerBottom",
+                                      "rightBottom"
                                     ]
                                   },
                                   "offsetX": {
@@ -7792,6 +8775,9 @@
                             "type": "number"
                           },
                           "skippable": {
+                            "type": "boolean"
+                          },
+                          "explicitCompletionStep": {
                             "type": "boolean"
                           },
                           "content": {
@@ -7937,6 +8923,126 @@
                               },
                               "required": [
                                 "do"
+                              ]
+                            }
+                          },
+                          "onClick": {
+                            "type": "array",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "goto_step"
+                                      ]
+                                    },
+                                    "step": {
+                                      "type": "string",
+                                      "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "step"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "start_flow"
+                                      ]
+                                    },
+                                    "flow": {
+                                      "type": "string"
+                                    },
+                                    "step": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "flow"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "navigate"
+                                      ]
+                                    },
+                                    "url": {
+                                      "type": "string"
+                                    },
+                                    "newTab": {
+                                      "type": "boolean"
+                                    },
+                                    "newWindow": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "url"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "dismiss"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "type"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "run_javascript"
+                                      ]
+                                    },
+                                    "script": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "script"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "enum": [
+                                        "unsupported"
+                                      ]
+                                    },
+                                    "note": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "type"
+                                  ]
+                                }
                               ]
                             }
                           },
@@ -8268,6 +9374,46 @@
                 "required": [
                   "url"
                 ]
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -8435,6 +9581,26 @@
                   "primary",
                   "secondary"
                 ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -8463,6 +9629,66 @@
               },
               "url": {
                 "type": "string"
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "height": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -8838,12 +10064,53 @@
                           ]
                         },
                         "value": {
-                          "type": "number"
+                          "type": "number",
+                          "minimum": 0
                         }
                       },
                       "required": [
                         "unit"
                       ]
+                    },
+                    "justify": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "between",
+                        "around",
+                        "evenly"
+                      ]
+                    },
+                    "align": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "baseline"
+                      ]
+                    },
+                    "padding": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "top": {
+                          "type": "number"
+                        },
+                        "bottom": {
+                          "type": "number"
+                        },
+                        "left": {
+                          "type": "number"
+                        },
+                        "right": {
+                          "type": "number"
+                        }
+                      }
                     },
                     "blocks": {
                       "type": "array",
@@ -9184,7 +10451,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ListContentVersionsResponseDto__schema1"
+                  "$ref": "#/components/schemas/ListContentVersionsResponseDto__schema2"
                 }
               }
             },
@@ -9365,6 +10632,73 @@
           }
         ]
       },
+      "ListContentVersionsResponseDto__schema2": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ListContentVersionsResponseDto__schema2"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          }
+        ]
+      },
       "ListContentVersionsResponseDto": {
         "type": "object",
         "properties": {
@@ -9516,6 +10850,19 @@
                               },
                               "alignOffset": {
                                 "type": "number"
+                              },
+                              "alignType": {
+                                "type": "string",
+                                "enum": [
+                                  "auto",
+                                  "fixed"
+                                ]
+                              },
+                              "backdrop": {
+                                "type": "boolean"
+                              },
+                              "blockTarget": {
+                                "type": "boolean"
                               }
                             },
                             "required": [
@@ -9529,11 +10876,15 @@
                               "position": {
                                 "type": "string",
                                 "enum": [
+                                  "leftTop",
+                                  "centerTop",
+                                  "rightTop",
+                                  "leftCenter",
                                   "center",
-                                  "top",
-                                  "bottom",
-                                  "left",
-                                  "right"
+                                  "rightCenter",
+                                  "leftBottom",
+                                  "centerBottom",
+                                  "rightBottom"
                                 ]
                               },
                               "offsetX": {
@@ -9559,6 +10910,9 @@
                         "type": "number"
                       },
                       "skippable": {
+                        "type": "boolean"
+                      },
+                      "explicitCompletionStep": {
                         "type": "boolean"
                       },
                       "content": {
@@ -9704,6 +11058,126 @@
                           },
                           "required": [
                             "do"
+                          ]
+                        }
+                      },
+                      "onClick": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "goto_step"
+                                  ]
+                                },
+                                "step": {
+                                  "type": "string",
+                                  "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "step"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "start_flow"
+                                  ]
+                                },
+                                "flow": {
+                                  "type": "string"
+                                },
+                                "step": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "flow"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "navigate"
+                                  ]
+                                },
+                                "url": {
+                                  "type": "string"
+                                },
+                                "newTab": {
+                                  "type": "boolean"
+                                },
+                                "newWindow": {
+                                  "type": "boolean"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "url"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "dismiss"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "type"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "run_javascript"
+                                  ]
+                                },
+                                "script": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "script"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "unsupported"
+                                  ]
+                                },
+                                "note": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type"
+                              ]
+                            }
                           ]
                         }
                       },
@@ -9940,6 +11414,46 @@
                 "required": [
                   "url"
                 ]
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -10107,6 +11621,26 @@
                   "primary",
                   "secondary"
                 ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -10135,6 +11669,66 @@
               },
               "url": {
                 "type": "string"
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "height": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -10510,12 +12104,53 @@
                           ]
                         },
                         "value": {
-                          "type": "number"
+                          "type": "number",
+                          "minimum": 0
                         }
                       },
                       "required": [
                         "unit"
                       ]
+                    },
+                    "justify": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "between",
+                        "around",
+                        "evenly"
+                      ]
+                    },
+                    "align": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "baseline"
+                      ]
+                    },
+                    "padding": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "top": {
+                          "type": "number"
+                        },
+                        "bottom": {
+                          "type": "number"
+                        },
+                        "left": {
+                          "type": "number"
+                        },
+                        "right": {
+                          "type": "number"
+                        }
+                      }
                     },
                     "blocks": {
                       "type": "array",
@@ -10856,7 +12491,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ContentVersionDto__schema1"
+                  "$ref": "#/components/schemas/ContentVersionDto__schema2"
                 }
               }
             },
@@ -11037,6 +12672,73 @@
           }
         ]
       },
+      "ContentVersionDto__schema2": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ContentVersionDto__schema2"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          }
+        ]
+      },
       "ContentVersionDto": {
         "type": "object",
         "properties": {
@@ -11183,6 +12885,19 @@
                         },
                         "alignOffset": {
                           "type": "number"
+                        },
+                        "alignType": {
+                          "type": "string",
+                          "enum": [
+                            "auto",
+                            "fixed"
+                          ]
+                        },
+                        "backdrop": {
+                          "type": "boolean"
+                        },
+                        "blockTarget": {
+                          "type": "boolean"
                         }
                       },
                       "required": [
@@ -11196,11 +12911,15 @@
                         "position": {
                           "type": "string",
                           "enum": [
+                            "leftTop",
+                            "centerTop",
+                            "rightTop",
+                            "leftCenter",
                             "center",
-                            "top",
-                            "bottom",
-                            "left",
-                            "right"
+                            "rightCenter",
+                            "leftBottom",
+                            "centerBottom",
+                            "rightBottom"
                           ]
                         },
                         "offsetX": {
@@ -11226,6 +12945,9 @@
                   "type": "number"
                 },
                 "skippable": {
+                  "type": "boolean"
+                },
+                "explicitCompletionStep": {
                   "type": "boolean"
                 },
                 "content": {
@@ -11371,6 +13093,126 @@
                     },
                     "required": [
                       "do"
+                    ]
+                  }
+                },
+                "onClick": {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "goto_step"
+                            ]
+                          },
+                          "step": {
+                            "type": "string",
+                            "description": "Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid."
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "step"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "start_flow"
+                            ]
+                          },
+                          "flow": {
+                            "type": "string"
+                          },
+                          "step": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "flow"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "navigate"
+                            ]
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "newTab": {
+                            "type": "boolean"
+                          },
+                          "newWindow": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "url"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "dismiss"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "run_javascript"
+                            ]
+                          },
+                          "script": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "script"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "unsupported"
+                            ]
+                          },
+                          "note": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      }
                     ]
                   }
                 },
@@ -11653,6 +13495,46 @@
                 "required": [
                   "url"
                 ]
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -11820,6 +13702,26 @@
                   "primary",
                   "secondary"
                 ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -11848,6 +13750,66 @@
               },
               "url": {
                 "type": "string"
+              },
+              "width": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "height": {
+                "type": "object",
+                "properties": {
+                  "unit": {
+                    "type": "string",
+                    "enum": [
+                      "percent",
+                      "pixels",
+                      "fill"
+                    ]
+                  },
+                  "value": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "unit"
+                ]
+              },
+              "margin": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "top": {
+                    "type": "number"
+                  },
+                  "bottom": {
+                    "type": "number"
+                  },
+                  "left": {
+                    "type": "number"
+                  },
+                  "right": {
+                    "type": "number"
+                  }
+                }
               }
             },
             "required": [
@@ -12223,12 +14185,53 @@
                           ]
                         },
                         "value": {
-                          "type": "number"
+                          "type": "number",
+                          "minimum": 0
                         }
                       },
                       "required": [
                         "unit"
                       ]
+                    },
+                    "justify": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "between",
+                        "around",
+                        "evenly"
+                      ]
+                    },
+                    "align": {
+                      "type": "string",
+                      "enum": [
+                        "start",
+                        "center",
+                        "end",
+                        "baseline"
+                      ]
+                    },
+                    "padding": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "top": {
+                          "type": "number"
+                        },
+                        "bottom": {
+                          "type": "number"
+                        },
+                        "left": {
+                          "type": "number"
+                        },
+                        "right": {
+                          "type": "number"
+                        }
+                      }
                     },
                     "blocks": {
                       "type": "array",
@@ -12569,7 +14572,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                  "$ref": "#/components/schemas/UpdateVersionBodyDto__schema2"
                 }
               }
             },
@@ -12750,6 +14753,73 @@
           }
         ]
       },
+      "UpdateVersionBodyDto__schema2": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UpdateVersionBodyDto__schema2"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
+            ]
+          }
+        ]
+      },
       "UpdateVersionBodyDto": {
         "type": "object",
         "properties": {
@@ -12851,6 +14921,19 @@
                         },
                         "alignOffset": {
                           "type": "number"
+                        },
+                        "alignType": {
+                          "type": "string",
+                          "enum": [
+                            "auto",
+                            "fixed"
+                          ]
+                        },
+                        "backdrop": {
+                          "type": "boolean"
+                        },
+                        "blockTarget": {
+                          "type": "boolean"
                         }
                       },
                       "required": [
@@ -12864,11 +14947,15 @@
                         "position": {
                           "type": "string",
                           "enum": [
+                            "leftTop",
+                            "centerTop",
+                            "rightTop",
+                            "leftCenter",
                             "center",
-                            "top",
-                            "bottom",
-                            "left",
-                            "right"
+                            "rightCenter",
+                            "leftBottom",
+                            "centerBottom",
+                            "rightBottom"
                           ]
                         },
                         "offsetX": {
@@ -13458,7 +15545,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ListThemesResponseDto__schema0"
+                  "$ref": "#/components/schemas/ListThemesResponseDto__schema1"
                 }
               }
             },
@@ -13635,6 +15722,73 @@
             },
             "required": [
               "type"
+            ]
+          }
+        ]
+      },
+      "ListThemesResponseDto__schema1": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ListThemesResponseDto__schema1"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
             ]
           }
         ]
@@ -14020,7 +16174,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ThemeDto__schema0"
+                  "$ref": "#/components/schemas/ThemeDto__schema1"
                 }
               }
             },
@@ -14197,6 +16351,73 @@
             },
             "required": [
               "type"
+            ]
+          }
+        ]
+      },
+      "ThemeDto__schema1": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ThemeDto__schema1"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
             ]
           }
         ]
@@ -15166,7 +17387,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ListSegmentsResponseDto__schema0"
+                  "$ref": "#/components/schemas/ListSegmentsResponseDto__schema1"
                 }
               }
             },
@@ -15343,6 +17564,73 @@
             },
             "required": [
               "type"
+            ]
+          }
+        ]
+      },
+      "ListSegmentsResponseDto__schema1": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ListSegmentsResponseDto__schema1"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
             ]
           }
         ]
@@ -15713,7 +18001,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/SegmentDto__schema0"
+                  "$ref": "#/components/schemas/SegmentDto__schema1"
                 }
               }
             },
@@ -15890,6 +18178,73 @@
             },
             "required": [
               "type"
+            ]
+          }
+        ]
+      },
+      "SegmentDto__schema1": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SegmentDto__schema1"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
             ]
           }
         ]
@@ -16239,7 +18594,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/CreateSegmentBodyDto__schema0"
+                  "$ref": "#/components/schemas/CreateSegmentBodyDto__schema1"
                 }
               }
             },
@@ -16416,6 +18771,73 @@
             },
             "required": [
               "type"
+            ]
+          }
+        ]
+      },
+      "CreateSegmentBodyDto__schema1": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreateSegmentBodyDto__schema1"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
             ]
           }
         ]
@@ -16750,7 +19172,7 @@
               "where": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/UpdateSegmentBodyDto__schema0"
+                  "$ref": "#/components/schemas/UpdateSegmentBodyDto__schema1"
                 }
               }
             },
@@ -16927,6 +19349,73 @@
             },
             "required": [
               "type"
+            ]
+          }
+        ]
+      },
+      "UpdateSegmentBodyDto__schema1": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "event_attribute"
+                ]
+              },
+              "attribute": {
+                "type": "string"
+              },
+              "op": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "value2": {
+                "type": "string"
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "attribute",
+              "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "group"
+                ]
+              },
+              "match": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "any"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UpdateSegmentBodyDto__schema1"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "match",
+              "conditions"
             ]
           }
         ]
