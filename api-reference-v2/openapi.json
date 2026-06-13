@@ -5282,6 +5282,10 @@
                           "sequence": {
                             "type": "number"
                           },
+                          "themeId": {
+                            "type": "string",
+                            "nullable": true
+                          },
                           "target": {
                             "anyOf": [
                               {
@@ -5702,6 +5706,7 @@
                           "name",
                           "type",
                           "sequence",
+                          "themeId",
                           "content"
                         ]
                       }
@@ -5923,6 +5928,10 @@
                                 },
                                 "sequence": {
                                   "type": "number"
+                                },
+                                "themeId": {
+                                  "type": "string",
+                                  "nullable": true
                                 },
                                 "target": {
                                   "anyOf": [
@@ -6344,6 +6353,7 @@
                                 "name",
                                 "type",
                                 "sequence",
+                                "themeId",
                                 "content"
                               ]
                             }
@@ -8012,6 +8022,10 @@
                     "sequence": {
                       "type": "number"
                     },
+                    "themeId": {
+                      "type": "string",
+                      "nullable": true
+                    },
                     "target": {
                       "anyOf": [
                         {
@@ -8432,6 +8446,7 @@
                     "name",
                     "type",
                     "sequence",
+                    "themeId",
                     "content"
                   ]
                 }
@@ -8644,6 +8659,10 @@
                           },
                           "sequence": {
                             "type": "number"
+                          },
+                          "themeId": {
+                            "type": "string",
+                            "nullable": true
                           },
                           "target": {
                             "anyOf": [
@@ -9065,6 +9084,7 @@
                           "name",
                           "type",
                           "sequence",
+                          "themeId",
                           "content"
                         ]
                       }
@@ -10780,6 +10800,10 @@
                       "sequence": {
                         "type": "number"
                       },
+                      "themeId": {
+                        "type": "string",
+                        "nullable": true
+                      },
                       "target": {
                         "anyOf": [
                           {
@@ -11200,6 +11224,7 @@
                       "name",
                       "type",
                       "sequence",
+                      "themeId",
                       "content"
                     ]
                   }
@@ -12815,6 +12840,10 @@
                 "sequence": {
                   "type": "number"
                 },
+                "themeId": {
+                  "type": "string",
+                  "nullable": true
+                },
                 "target": {
                   "anyOf": [
                     {
@@ -13235,6 +13264,7 @@
                 "name",
                 "type",
                 "sequence",
+                "themeId",
                 "content"
               ]
             }
@@ -14900,6 +14930,11 @@
                 },
                 "sequence": {
                   "type": "number"
+                },
+                "themeId": {
+                  "type": "string",
+                  "description": "Per-step theme override. Omit to keep the current value; set to a theme id (from list_themes) to override; set to null to clear and inherit the flow theme.",
+                  "nullable": true
                 },
                 "target": {
                   "anyOf": [
