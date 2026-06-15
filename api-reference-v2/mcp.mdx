@@ -86,10 +86,29 @@ untrusted data a read-only token**: with no write scopes, no write tools are
 listed, so there is nothing to exploit. Mint a separate write-scoped token only
 for trusted automation.
 
-## Connecting a client
+## Connecting with OAuth (one-click)
 
-Most MCP clients accept a stdio command. Use `mcp-remote` to bridge to the HTTP
-endpoint:
+Clients that support remote MCP servers with OAuth (e.g. Claude's custom
+connectors) need **no token to copy** — just add the MCP URL:
+
+```
+https://api.usertour.io/mcp
+```
+
+The client discovers the authorization server, registers itself
+([Dynamic Client Registration](https://datatracker.ietf.org/doc/html/rfc7591)),
+and opens your browser. You sign in to Usertour, **pick one project**, and
+approve — then it's connected. The flow is OAuth 2.1 with PKCE; the issued token
+is bound to that project and to the scopes your **role** on it allows (an injected
+instruction can never exceed your own permissions).
+
+Manage or revoke connected apps any time under **Settings → Personal API keys →
+Connected apps** — revoking cuts off the connector immediately.
+
+## Connecting with a personal token (stdio / mcp-remote)
+
+Clients that don't support OAuth (or stdio-only clients) use a personal token.
+Use `mcp-remote` to bridge to the HTTP endpoint:
 
 ```json
 {
