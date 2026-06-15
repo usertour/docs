@@ -157,11 +157,14 @@ conditions, tooltip steps, and banner container).
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `by` | `selector` \| `text` | yes | Match by CSS selector or by visible text. |
-| `selector` | string | when `by: selector` | A stable CSS selector in the customer's app. |
-| `nth` | number |  | Pick the nth match (with `by: selector`). |
-| `text` | string | when `by: text` | The visible text to match. |
+| `selector` | string | yes | A stable CSS selector for the element in your app. |
+| `text` | string |  | Visible text the matched element must contain — narrows the selector match (selector + text). Omit to match by selector alone. |
+| `nth` | number |  | 0-based index of the match to use when the selector resolves to multiple elements. |
 
 ```json
-{ "by": "selector", "selector": "[data-tour='create']" }
+{ "selector": "[data-tour='create']" }
+```
+
+```json
+{ "selector": "button.cta", "text": "Save", "nth": 0 }
 ```

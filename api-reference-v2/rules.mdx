@@ -62,7 +62,7 @@ step's `triggers[]` (see [Content representation](/api-reference-v2/content-repr
 
 ```json
 {
-  "when": [{ "type": "element", "target": { "by": "selector", "selector": "#welcome-modal" }, "state": "present" }],
+  "when": [{ "type": "element", "target": { "selector": "#welcome-modal" }, "state": "present" }],
   "do": [{ "type": "goto_step", "step": "step-2" }]
 }
 ```

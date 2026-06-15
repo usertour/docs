@@ -4760,46 +4760,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -4947,46 +4927,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -5023,46 +4983,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -5287,46 +5227,26 @@
                             "nullable": true
                           },
                           "target": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "by": {
-                                    "type": "string",
-                                    "enum": [
-                                      "selector"
-                                    ]
-                                  },
-                                  "selector": {
-                                    "type": "string"
-                                  },
-                                  "nth": {
-                                    "type": "number"
-                                  }
-                                },
-                                "required": [
-                                  "by",
-                                  "selector"
-                                ]
+                            "type": "object",
+                            "properties": {
+                              "selector": {
+                                "type": "string",
+                                "minLength": 1,
+                                "description": "A stable CSS selector for the element in your app."
                               },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "by": {
-                                    "type": "string",
-                                    "enum": [
-                                      "text"
-                                    ]
-                                  },
-                                  "text": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [
-                                  "by",
-                                  "text"
-                                ]
+                              "text": {
+                                "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                                "type": "string"
+                              },
+                              "nth": {
+                                "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 9007199254740991
                               }
+                            },
+                            "required": [
+                              "selector"
                             ]
                           },
                           "placement": {
@@ -5934,46 +5854,26 @@
                                   "nullable": true
                                 },
                                 "target": {
-                                  "anyOf": [
-                                    {
-                                      "type": "object",
-                                      "properties": {
-                                        "by": {
-                                          "type": "string",
-                                          "enum": [
-                                            "selector"
-                                          ]
-                                        },
-                                        "selector": {
-                                          "type": "string"
-                                        },
-                                        "nth": {
-                                          "type": "number"
-                                        }
-                                      },
-                                      "required": [
-                                        "by",
-                                        "selector"
-                                      ]
+                                  "type": "object",
+                                  "properties": {
+                                    "selector": {
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "description": "A stable CSS selector for the element in your app."
                                     },
-                                    {
-                                      "type": "object",
-                                      "properties": {
-                                        "by": {
-                                          "type": "string",
-                                          "enum": [
-                                            "text"
-                                          ]
-                                        },
-                                        "text": {
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "by",
-                                        "text"
-                                      ]
+                                    "text": {
+                                      "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                                      "type": "string"
+                                    },
+                                    "nth": {
+                                      "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                                      "type": "integer",
+                                      "minimum": 0,
+                                      "maximum": 9007199254740991
                                     }
+                                  },
+                                  "required": [
+                                    "selector"
                                   ]
                                 },
                                 "placement": {
@@ -7505,46 +7405,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -7692,46 +7572,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -7768,46 +7628,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -8027,46 +7867,26 @@
                       "nullable": true
                     },
                     "target": {
-                      "anyOf": [
-                        {
-                          "type": "object",
-                          "properties": {
-                            "by": {
-                              "type": "string",
-                              "enum": [
-                                "selector"
-                              ]
-                            },
-                            "selector": {
-                              "type": "string"
-                            },
-                            "nth": {
-                              "type": "number"
-                            }
-                          },
-                          "required": [
-                            "by",
-                            "selector"
-                          ]
+                      "type": "object",
+                      "properties": {
+                        "selector": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "A stable CSS selector for the element in your app."
                         },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "by": {
-                              "type": "string",
-                              "enum": [
-                                "text"
-                              ]
-                            },
-                            "text": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "by",
-                            "text"
-                          ]
+                        "text": {
+                          "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                          "type": "string"
+                        },
+                        "nth": {
+                          "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
                         }
+                      },
+                      "required": [
+                        "selector"
                       ]
                     },
                     "placement": {
@@ -8665,46 +8485,26 @@
                             "nullable": true
                           },
                           "target": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "by": {
-                                    "type": "string",
-                                    "enum": [
-                                      "selector"
-                                    ]
-                                  },
-                                  "selector": {
-                                    "type": "string"
-                                  },
-                                  "nth": {
-                                    "type": "number"
-                                  }
-                                },
-                                "required": [
-                                  "by",
-                                  "selector"
-                                ]
+                            "type": "object",
+                            "properties": {
+                              "selector": {
+                                "type": "string",
+                                "minLength": 1,
+                                "description": "A stable CSS selector for the element in your app."
                               },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "by": {
-                                    "type": "string",
-                                    "enum": [
-                                      "text"
-                                    ]
-                                  },
-                                  "text": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [
-                                  "by",
-                                  "text"
-                                ]
+                              "text": {
+                                "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                                "type": "string"
+                              },
+                              "nth": {
+                                "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 9007199254740991
                               }
+                            },
+                            "required": [
+                              "selector"
                             ]
                           },
                           "placement": {
@@ -10303,46 +10103,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -10490,46 +10270,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -10566,46 +10326,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -10805,46 +10545,26 @@
                         "nullable": true
                       },
                       "target": {
-                        "anyOf": [
-                          {
-                            "type": "object",
-                            "properties": {
-                              "by": {
-                                "type": "string",
-                                "enum": [
-                                  "selector"
-                                ]
-                              },
-                              "selector": {
-                                "type": "string"
-                              },
-                              "nth": {
-                                "type": "number"
-                              }
-                            },
-                            "required": [
-                              "by",
-                              "selector"
-                            ]
+                        "type": "object",
+                        "properties": {
+                          "selector": {
+                            "type": "string",
+                            "minLength": 1,
+                            "description": "A stable CSS selector for the element in your app."
                           },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "by": {
-                                "type": "string",
-                                "enum": [
-                                  "text"
-                                ]
-                              },
-                              "text": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "by",
-                              "text"
-                            ]
+                          "text": {
+                            "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                            "type": "string"
+                          },
+                          "nth": {
+                            "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9007199254740991
                           }
+                        },
+                        "required": [
+                          "selector"
                         ]
                       },
                       "placement": {
@@ -12348,46 +12068,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -12535,46 +12235,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -12611,46 +12291,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -12845,46 +12505,26 @@
                   "nullable": true
                 },
                 "target": {
-                  "anyOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "by": {
-                          "type": "string",
-                          "enum": [
-                            "selector"
-                          ]
-                        },
-                        "selector": {
-                          "type": "string"
-                        },
-                        "nth": {
-                          "type": "number"
-                        }
-                      },
-                      "required": [
-                        "by",
-                        "selector"
-                      ]
+                  "type": "object",
+                  "properties": {
+                    "selector": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "A stable CSS selector for the element in your app."
                     },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "by": {
-                          "type": "string",
-                          "enum": [
-                            "text"
-                          ]
-                        },
-                        "text": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "by",
-                        "text"
-                      ]
+                    "text": {
+                      "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                      "type": "string"
+                    },
+                    "nth": {
+                      "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
+                  },
+                  "required": [
+                    "selector"
                   ]
                 },
                 "placement": {
@@ -14434,46 +14074,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -14621,46 +14241,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -14697,46 +14297,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -14937,46 +14517,26 @@
                   "nullable": true
                 },
                 "target": {
-                  "anyOf": [
-                    {
-                      "type": "object",
-                      "properties": {
-                        "by": {
-                          "type": "string",
-                          "enum": [
-                            "selector"
-                          ]
-                        },
-                        "selector": {
-                          "type": "string"
-                        },
-                        "nth": {
-                          "type": "number"
-                        }
-                      },
-                      "required": [
-                        "by",
-                        "selector"
-                      ]
+                  "type": "object",
+                  "properties": {
+                    "selector": {
+                      "type": "string",
+                      "minLength": 1,
+                      "description": "A stable CSS selector for the element in your app."
                     },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "by": {
-                          "type": "string",
-                          "enum": [
-                            "text"
-                          ]
-                        },
-                        "text": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "by",
-                        "text"
-                      ]
+                    "text": {
+                      "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                      "type": "string"
+                    },
+                    "nth": {
+                      "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
+                  },
+                  "required": [
+                    "selector"
                   ]
                 },
                 "placement": {
@@ -15689,46 +15249,26 @@
                     "type": "string"
                   },
                   "target": {
-                    "anyOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "by": {
-                            "type": "string",
-                            "enum": [
-                              "selector"
-                            ]
-                          },
-                          "selector": {
-                            "type": "string"
-                          },
-                          "nth": {
-                            "type": "number"
-                          }
-                        },
-                        "required": [
-                          "by",
-                          "selector"
-                        ]
+                    "type": "object",
+                    "properties": {
+                      "selector": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "A stable CSS selector for the element in your app."
                       },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "by": {
-                            "type": "string",
-                            "enum": [
-                              "text"
-                            ]
-                          },
-                          "text": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "by",
-                          "text"
-                        ]
+                      "text": {
+                        "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                        "type": "string"
+                      },
+                      "nth": {
+                        "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
                       }
+                    },
+                    "required": [
+                      "selector"
                     ]
                   },
                   "zIndex": {
@@ -15996,46 +15536,26 @@
                     }
                   },
                   "containerTarget": {
-                    "anyOf": [
-                      {
-                        "type": "object",
-                        "properties": {
-                          "by": {
-                            "type": "string",
-                            "enum": [
-                              "selector"
-                            ]
-                          },
-                          "selector": {
-                            "type": "string"
-                          },
-                          "nth": {
-                            "type": "number"
-                          }
-                        },
-                        "required": [
-                          "by",
-                          "selector"
-                        ]
+                    "type": "object",
+                    "properties": {
+                      "selector": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "A stable CSS selector for the element in your app."
                       },
-                      {
-                        "type": "object",
-                        "properties": {
-                          "by": {
-                            "type": "string",
-                            "enum": [
-                              "text"
-                            ]
-                          },
-                          "text": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "by",
-                          "text"
-                        ]
+                      "text": {
+                        "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                        "type": "string"
+                      },
+                      "nth": {
+                        "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
                       }
+                    },
+                    "required": [
+                      "selector"
                     ]
                   },
                   "layout": {
@@ -16778,46 +16298,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -16965,46 +16465,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -17041,46 +16521,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -17407,46 +16867,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -17594,46 +17034,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -17670,46 +17090,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -18620,46 +18020,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -18807,46 +18187,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -18883,46 +18243,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -19234,46 +18574,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -19421,46 +18741,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -19497,46 +18797,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -19827,46 +19107,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -20014,46 +19274,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -20090,46 +19330,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
@@ -20405,46 +19625,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "state": {
@@ -20592,46 +19792,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               },
               "op": {
@@ -20668,46 +19848,26 @@
                 ]
               },
               "target": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "selector"
-                        ]
-                      },
-                      "selector": {
-                        "type": "string"
-                      },
-                      "nth": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "selector"
-                    ]
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A stable CSS selector for the element in your app."
                   },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "by": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "by",
-                      "text"
-                    ]
+                  "text": {
+                    "description": "Optional visible text the matched element must contain \u2014 narrows the selector match (selector + text). Omit to match by selector alone.",
+                    "type": "string"
+                  },
+                  "nth": {
+                    "description": "0-based index of the match to use when the selector resolves to multiple elements.",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
+                },
+                "required": [
+                  "selector"
                 ]
               }
             },
