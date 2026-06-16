@@ -154,7 +154,8 @@
             "pages": [
               "api-reference-v2/introduction",
               "api-reference-v2/authentication",
-              "api-reference-v2/errors"
+              "api-reference-v2/errors",
+              "api-reference-v2/mcp"
             ]
           },
           {
@@ -173,8 +174,7 @@
               "api-reference-v2/blocks",
               "api-reference-v2/conditions-and-actions",
               "api-reference-v2/rules",
-              "api-reference-v2/type-data",
-              "api-reference-v2/mcp"
+              "api-reference-v2/type-data"
             ]
           },
           {

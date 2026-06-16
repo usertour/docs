@@ -1,5 +1,5 @@
 ---
-title: 'MCP'
+title: 'MCP server'
 description: 'Drive Usertour from an AI agent over the Model Context Protocol.'
 ---
 
@@ -9,16 +9,114 @@ the same v2 services the REST API uses.
 
 ## Endpoint
 
+<CodeGroup>
+```text Cloud
+https://api.usertour.io/mcp
 ```
-POST https://api.usertour.io/mcp
-Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```text Self-hosted
+https://<your-usertour-api-host>/mcp
+```
+</CodeGroup>
+
+It speaks MCP over **Streamable HTTP**. Whichever way you connect, this is the
+only URL you give your client — it discovers everything else (the authorization
+server, the login) automatically.
+
+A connection always acts in **exactly one project** (MCP carries no project in the
+path): with OAuth you pick it during consent; with a personal token it's the
+token's project. Tools are **scope-gated** — a tool is only listed and usable if
+your access includes its capability, so write tools need the matching write scope
+(`content:create`, `user:write`, `segment:create`, `theme:update`,
+`session:manage`, …).
+
+<Note>
+  **Self-hosting?** Use your own API host + `/mcp`. The discovery metadata, the
+  `WWW-Authenticate` challenge, and the consent redirect are all derived from your
+  instance's public URLs, so behind a reverse proxy make sure forwarded headers
+  (`X-Forwarded-Proto` / `Host`) are correct — or pin the public API base with
+  `API_URL` — and that [`APP_HOMEPAGE_URL`](/open-source/env) points at your real,
+  browser-reachable app URL (the consent step redirects there). OAuth 2.1 also
+  requires the endpoint to be reachable over **HTTPS** (loopback is exempt).
+</Note>
+
+## Connect with OAuth (one-click)
+
+Clients that support remote MCP servers over OAuth (Claude Code, Claude's custom
+connectors, Cursor, …) need **no token to copy** — you give them the
+[endpoint](#endpoint) and they run the login for you. On first use the client
+discovers the authorization server, registers itself
+([Dynamic Client Registration](https://datatracker.ietf.org/doc/html/rfc7591)),
+and opens your browser to authorize. The flow is OAuth 2.1 with PKCE.
+
+<CodeGroup>
+```bash Claude Code
+claude mcp add --transport http usertour https://api.usertour.io/mcp
+# then run /mcp inside Claude Code to sign in
+```
+```json Cursor
+// ~/.cursor/mcp.json
+{
+  "mcpServers": {
+    "usertour": {
+      "url": "https://api.usertour.io/mcp"
+    }
+  }
+}
+```
+</CodeGroup>
+
+For **Claude desktop / web** and other apps with a connector UI, add a custom
+connector and paste the endpoint URL — there's nothing else to fill in. Any
+OAuth-capable MCP client works the same way: point it at the `/mcp` URL and it
+discovers the rest.
+
+### Authorizing
+
+When the browser opens, you sign in to Usertour (if you aren't already), **pick
+the one project** the app may act in, and approve.
+
+{/* SCREENSHOT: the consent screen — app name, the project picker, and Allow / Deny. Save as /images/oauth-consent.png */}
+![](/images/oauth-consent.png)
+
+The connection then acts **as you, in that project** — never more than your own
+**role** there allows. There's no separate permission to grant: if your role is
+later downgraded or you're removed from the project, the connection loses that
+access immediately, exactly like a personal key. To hand an agent *less* than your
+full role, use a scoped [personal token](#connect-with-a-personal-token) instead.
+
+## Managing connected apps
+
+Every app you've authorized is listed under **Settings → Connected apps**, with
+the project it can act in, the access it was granted, and when it was last used.
+**Revoke** cuts it off immediately — its tokens stop working on the next call.
+
+{/* SCREENSHOT: Settings → Connected apps — the list with an authorized app row and the Revoke action. Save as /images/connected-apps.png */}
+![](/images/connected-apps.png)
+
+## Connect with a personal token
+
+Clients that don't support OAuth (or stdio-only clients) use a personal token.
+Bridge to the HTTP endpoint with `mcp-remote`:
+
+```json
+{
+  "mcpServers": {
+    "usertour": {
+      "command": "npx",
+      "args": [
+        "-y", "mcp-remote",
+        "https://api.usertour.io/mcp",
+        "--header", "Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      ]
+    }
+  }
+}
 ```
 
-It speaks MCP over **Streamable HTTP**. The token must be scoped to **exactly one
-project** (MCP carries no project in the path). Tools are **scope-gated**: a tool
-is only listed/usable if your token has its capability — e.g. write tools require
-the matching write scope (`content:create`, `user:write`, `segment:create`,
-`theme:update`, `session:manage`, …).
+<Note>
+  Use a single-project token with only the scopes the agent needs. To let it
+  author, include the write scopes — otherwise only read tools appear.
+</Note>
 
 ## Tools
 
@@ -85,47 +183,3 @@ stop an injected instruction from triggering a write, **give any agent that read
 untrusted data a read-only token**: with no write scopes, no write tools are
 listed, so there is nothing to exploit. Mint a separate write-scoped token only
 for trusted automation.
-
-## Connecting with OAuth (one-click)
-
-Clients that support remote MCP servers with OAuth (e.g. Claude's custom
-connectors) need **no token to copy** — just add the MCP URL:
-
-```
-https://api.usertour.io/mcp
-```
-
-The client discovers the authorization server, registers itself
-([Dynamic Client Registration](https://datatracker.ietf.org/doc/html/rfc7591)),
-and opens your browser. You sign in to Usertour, **pick one project**, and
-approve — then it's connected. The flow is OAuth 2.1 with PKCE; the issued token
-is bound to that project and to the scopes your **role** on it allows (an injected
-instruction can never exceed your own permissions).
-
-Manage or revoke connected apps any time under **Settings → Personal API keys →
-Connected apps** — revoking cuts off the connector immediately.
-
-## Connecting with a personal token (stdio / mcp-remote)
-
-Clients that don't support OAuth (or stdio-only clients) use a personal token.
-Use `mcp-remote` to bridge to the HTTP endpoint:
-
-```json
-{
-  "mcpServers": {
-    "usertour": {
-      "command": "npx",
-      "args": [
-        "-y", "mcp-remote",
-        "https://api.usertour.io/mcp",
-        "--header", "Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      ]
-    }
-  }
-}
-```
-
-<Note>
-  Use a single-project token with only the scopes the agent needs. To let it
-  author, include the write scopes — otherwise only read tools appear.
-</Note>
