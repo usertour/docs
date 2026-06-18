@@ -1,0 +1,70 @@
+---
+title: Selecting Elements
+description: Use the OpenPicker extension to point at an element and get a CSS selector — and define stable selectors with your developers so flows don't break on the next release.
+icon: "crosshairs"
+---
+
+Tooltips that attach to an element, and start rules like **Element is present** or **Element is clicked**, all need a **CSS selector** that tells Usertour which element on the page to target. You can type a selector by hand, or point at the element visually with the picker.
+
+## The element picker
+
+Next to any selector field you'll see a crosshair **picker** button. It's powered by [OpenPicker](https://openpicker.dev) — an open-source browser extension, maintained by the Usertour team, that lets you point at an element on your own site and hands back a CSS selector.
+
+<Frame>
+  ![Picking an element with OpenPicker](/images/openpicker-picker.png)
+</Frame>
+
+To pick an element:
+
+1. Click the crosshair button next to the selector field.
+2. If the OpenPicker extension isn't installed yet, Usertour prompts you to add it from the Chrome Web Store, then continues automatically.
+3. Confirm or enter the URL of the page where the element lives — the picker opens that page in a new tab.
+4. Hover to highlight the element you want and click it. The picker returns a CSS selector — and how many elements it currently matches — back into the field.
+
+<Note>
+  OpenPicker can pick on a different tab or origin than the Usertour app. That cross-tab hop is exactly why it's a browser extension rather than something embedded in the page.
+</Note>
+
+## Define stable selectors with your developers
+
+This is the most important part of element targeting, and the difference between onboarding that keeps working and onboarding that silently breaks.
+
+An auto-generated selector — something like `div > div:nth-child(3) > button.css-1x2y3z` — only describes *where an element sits today*. The next time your app's markup changes (a redesign, a refactor, even one new wrapper `<div>`), that selector stops matching, the tooltip loses its anchor, and the flow breaks. A single routine release can take your onboarding down without anyone ever touching Usertour.
+
+The fix is to **agree on stable hooks with your developers** — usually a dedicated `data-*` attribute on the elements your flows target:
+
+```html
+<button data-tour="billing-upgrade">Upgrade</button>
+```
+
+```css
+[data-tour="billing-upgrade"]
+```
+
+A `data-tour` attribute is added on purpose, survives restyles and refactors, and doubles as documentation — developers can see an element is referenced by onboarding and won't remove it by accident. The attribute's value (`billing-upgrade`) is the unique id, so there's no need for a separate `id` attribute. Treat the elements your flows point at as a contract between your team and your product's markup.
+
+### Why not reuse `data-testid`?
+
+It's tempting to point flows at an existing `data-testid`, but for onboarding it has two traps:
+
+- **It may not ship to production.** Many teams strip `data-testid` from production builds to shrink bundles and avoid exposing internals. Onboarding runs in production, so the moment the attribute is stripped, every selector relying on it breaks.
+- **It's coupled to your test suite.** A test id exists for tests; a developer refactoring tests can rename or remove it without realizing onboarding depends on it.
+
+A dedicated `data-tour` attribute keeps onboarding decoupled from your tests and guaranteed to reach production.
+
+### Make the picker use only your stable attributes
+
+OpenPicker has **per-site selector settings** so it generates exactly the kind of selector you want. Open the extension's selector settings for your site and:
+
+- Add your attribute (e.g. `data-tour`) to the **attribute allow-list**.
+- Turn off id and class usage if those are auto-generated or hashed in your app.
+
+<Frame>
+  ![OpenPicker per-site selector settings with an attribute allow-list](/images/openpicker-selector-settings.png)
+</Frame>
+
+Now every element you pick comes back as `[data-tour="..."]` instead of a brittle structural path. And if an element doesn't have your attribute yet, that's your cue to ask a developer to add one before you build onboarding on top of it.
+
+<Warning>
+  Without stable, agreed-upon selectors, element targeting is fragile — a single front-end change can break a flow even though nothing changed in Usertour. Defining `data-*` hooks up front is the single best thing you can do to keep onboarding reliable.
+</Warning>

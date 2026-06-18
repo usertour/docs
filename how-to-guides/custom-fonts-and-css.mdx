@@ -1,0 +1,79 @@
+---
+title: Custom Fonts & CSS
+description: Use your own brand font in Usertour widgets, and inject custom CSS for font loading and advanced style overrides.
+icon: "font"
+---
+
+Usertour's visual theme editor covers colors, sizes, spacing, and most styling without any code. When you need your own brand font, or a tweak the editor doesn't expose, two theme settings let you go further: **Custom font** and **Custom CSS**.
+
+## Setting a custom font
+
+Open **Settings → Themes**, edit (or duplicate) a theme, and find the **Font** section.
+
+1. Open the **Font family** dropdown.
+2. Choose **Custom font** (listed above the built-in system and web fonts).
+3. In the field that appears, type the exact `font-family` name your widgets should use.
+
+<Frame>
+  ![Choosing a custom font in the theme editor](/images/custom-font-01.png)
+</Frame>
+
+How that name resolves depends on the font:
+
+- **A system font** already installed on your users' devices (for example `Segoe UI` or `-apple-system`) works by name alone — nothing else to do.
+- **A web font** must be loaded with `@font-face` rules in the **Custom CSS** section below. Without that, widgets fall back to a default font.
+
+<Tip>
+  The font name accepts a comma-separated stack — e.g. `Brand Sans, PingFang SC` — matched left to right per character, so a Latin brand font can fall back to a CJK font for non-Latin text.
+</Tip>
+
+## Custom CSS
+
+The **Custom CSS** field injects raw CSS as a `<style>` tag into every Usertour widget — tooltips, modals, checklists, banners, and the resource center. Its two sanctioned uses are **loading a custom web font** and **advanced style overrides** the visual editor doesn't cover.
+
+<Frame>
+  ![The Custom CSS field in the theme editor](/images/custom-css-01.png)
+</Frame>
+
+### Loading a web font with `@font-face`
+
+This is the companion to the **Custom font** setting above. Declare the font once in Custom CSS, then set **Custom font** to the same `font-family` name.
+
+The example below is copy-paste runnable: it loads Pacifico from Google's CDN under the name `Test Brand Font`, so you can verify the whole mechanism end to end. Paste it into Custom CSS, set **Custom font** to `Test Brand Font`, and your widgets switch to a handwriting font right away.
+
+```css
+/* Demo: Pacifico from Google's CDN (CORS-enabled), named as a brand font */
+@font-face {
+  font-family: 'Test Brand Font';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/pacifico/v22/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2)
+    format('woff2');
+}
+```
+
+For your real brand font, swap the `src` for your own hosted file and change `font-family` — in both the `@font-face` rule and the **Custom font** field — to your font's name. Add one `@font-face` per weight you use (e.g. 400 and 700).
+
+<Warning>
+  Widgets render inside an iframe, so the font is loaded **cross-origin**. The file's server must send CORS headers (`Access-Control-Allow-Origin`) — Google's CDN already does, which is why the demo just works. When self-hosting, make sure your CDN/server allows cross-origin font requests, or the font silently falls back to the default.
+</Warning>
+
+### Advanced style overrides
+
+You can also use Custom CSS for adjustments the editor doesn't expose, such as fine-tuning spacing or a specific element's appearance.
+
+```css
+/* Example: roomier padding inside tooltips */
+.usertour-widget-tooltip {
+  padding: 20px;
+}
+```
+
+<Warning>
+  Widget internals can change between releases, so complex overrides may break on an update. Keep selectors as simple as possible, and prefer the visual editor whenever it already covers what you need.
+</Warning>
+
+<Note>
+  On Usertour Cloud, **Custom CSS** is a paid feature. The **Custom font** setting itself is always available — only the CSS injection is gated.
+</Note>
