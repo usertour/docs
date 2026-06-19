@@ -136,6 +136,13 @@ Bridge to the HTTP endpoint with `mcp-remote`:
 | Event definitions | `list_event_definitions` |
 | Environments | `list_environments`, `get_environment` |
 
+Every `list_*` tool pages with `cursor` / `limit`. The named-resource lists —
+`list_content`, `list_segments`, `list_themes`, `list_environments`,
+`list_event_definitions`, `list_attribute_definitions` — also take a **`name`**
+filter (case-insensitive substring against the display name). `list_content`
+additionally filters by `type`, `published`, and a created-at range; `list_segments`
+by `bizType`; `list_sessions` by `completed`.
+
 `get_authoring_guide` returns the in-band conventions for building usable content
 (lifecycle, step types, goto-by-key, the markdown subset, per-type requirements) —
 an agent should read it before authoring.
