@@ -37,6 +37,15 @@
             }
           },
           {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Filter by name (case-insensitive substring match).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "type",
             "required": false,
             "in": "query",
@@ -1020,6 +1029,15 @@
             "required": false,
             "in": "query",
             "description": "Pagination cursor from a prior response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Filter by name (case-insensitive substring match).",
             "schema": {
               "type": "string"
             }
@@ -2176,6 +2194,15 @@
             }
           },
           {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Filter by name (case-insensitive substring match).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "orderBy",
             "required": false,
             "in": "query",
@@ -2923,6 +2950,15 @@
             }
           },
           {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Filter by name (case-insensitive substring match).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "scope",
             "required": false,
             "in": "query",
@@ -3238,6 +3274,15 @@
             }
           },
           {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Filter by name (case-insensitive substring match).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "orderBy",
             "required": false,
             "in": "query",
@@ -3512,6 +3557,15 @@
             "required": false,
             "in": "query",
             "description": "Pagination cursor from a prior response.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "required": false,
+            "in": "query",
+            "description": "Filter by name (case-insensitive substring match).",
             "schema": {
               "type": "string"
             }
