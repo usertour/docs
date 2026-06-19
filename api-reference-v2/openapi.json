@@ -17651,7 +17651,7 @@
         "type": "object",
         "properties": {
           "attributes": {
-            "description": "Custom attributes to set on the user (merged into existing attributes).",
+            "description": "Custom attributes to set on the user (merged into existing attributes). Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u201320 chars.",
             "type": "object",
             "additionalProperties": {}
           }
@@ -17934,7 +17934,7 @@
         "type": "object",
         "properties": {
           "attributes": {
-            "description": "Custom attributes to set on the company (merged into existing attributes).",
+            "description": "Custom attributes to set on the company (merged into existing attributes). Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u201320 chars.",
             "type": "object",
             "additionalProperties": {}
           }
@@ -17944,7 +17944,7 @@
         "type": "object",
         "properties": {
           "attributes": {
-            "description": "Custom attributes to set on the membership (e.g. the user's role in the company).",
+            "description": "Custom attributes to set on the membership (e.g. the user's role in the company). Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u201320 chars.",
             "type": "object",
             "additionalProperties": {}
           }
