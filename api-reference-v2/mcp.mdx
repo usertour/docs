@@ -120,6 +120,11 @@ Bridge to the HTTP endpoint with `mcp-remote`:
 
 ## Tools
 
+Every tool carries MCP **annotations** (`readOnlyHint` / `destructiveHint`) so a
+client can gate calls: read tools run freely, while destructive writes
+(`delete_*`, `unpublish_*`, `end_session`, …) are flagged so the client can ask
+for confirmation first.
+
 **Read**
 
 | Group | Tools |
