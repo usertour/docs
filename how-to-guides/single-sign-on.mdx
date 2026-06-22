@@ -125,6 +125,10 @@ Keycloak's docs: [Managing OIDC clients](https://www.keycloak.org/docs/latest/se
   Keycloak announces its issuer based on its **hostname configuration** (`KC_HOSTNAME`). If that's misconfigured, the issuer in `/.well-known/openid-configuration` can come back as an internal address like `http://localhost:8080/...`, and discovery or token validation will fail. Confirm the issuer by opening `https://<host>/realms/<realm>/.well-known/openid-configuration` and using the exact `"issuer"` value it returns.
 </Warning>
 
+<Note>
+  If your Keycloak runs on an internal network or `localhost`, a self-hosted Usertour refuses to reach it until you set `ALLOW_PRIVATE_NETWORK_EGRESS=true` — by default Usertour makes outbound SSO requests to public HTTPS addresses only (an SSRF safeguard). See [Environment Variables](/open-source/env).
+</Note>
+
 ## Troubleshooting
 
 **"Invalid parameter: redirect_uri" on the IdP's page.** The Redirect URI registered in your IdP must match the value Usertour shows **exactly** — scheme, host, port, and path. Re-copy it from the New Provider dialog and add it to the IdP's allowed redirect URIs.
@@ -133,7 +137,7 @@ Keycloak's docs: [Managing OIDC clients](https://www.keycloak.org/docs/latest/se
 
 **The login fails with an "email not verified" error.** Usertour rejects a sign-in when the IdP explicitly marks the email as unverified. In your IdP, mark the user's email as verified (in Keycloak: **Users → the user → Email verified → On**), then try again.
 
-**A self-hosted IdP on `localhost` or an internal hostname.** These are supported — Usertour only needs the issuer to be reachable from the server, not publicly resolvable. Use the issuer exactly as it appears in the IdP's `/.well-known/openid-configuration`.
+**A self-hosted IdP on `localhost` or an internal hostname.** Supported, but the server only makes outbound SSO requests to public HTTPS addresses by default (an SSRF safeguard), so an internal issuer is refused until you set `ALLOW_PRIVATE_NETWORK_EGRESS=true` (see [Environment Variables](/open-source/env)). With that set, use the issuer exactly as it appears in the IdP's `/.well-known/openid-configuration`.
 
 **A teammate can't sign in after you turned on Require SSO.** They likely joined with an email that isn't in your IdP. Add them in the IdP, or have them use their IdP identity.
 
