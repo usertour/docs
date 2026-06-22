@@ -72,6 +72,8 @@ Copy the **per-project SSO login URL** shown on the SSO page and share it with y
 
 ### Okta
 
+Okta's own guide: [Create an OIDC app integration](https://help.okta.com/en-us/Content/Topics/Apps/Apps_App_Integration_Wizard_OIDC.htm).
+
 1. Okta Admin Console → **Applications → Create App Integration** → **OIDC - OpenID Connect**, application type **Web Application**.
 2. **Sign-in redirect URIs** → paste your Usertour Redirect URI.
 3. Assign the app to the users or groups who should have access.
@@ -80,12 +82,16 @@ Copy the **per-project SSO login URL** shown on the SSO page and share it with y
 
 ### Google Workspace
 
+Google's docs: [OpenID Connect](https://developers.google.com/identity/openid-connect/openid-connect).
+
 1. Google Cloud Console → **APIs & Services → Credentials → Create Credentials → OAuth client ID**, application type **Web application**.
 2. **Authorized redirect URIs** → paste your Usertour Redirect URI.
 3. Copy the **Client ID** and **Client secret**.
 4. **Issuer URL** = `https://accounts.google.com`.
 
 ### Microsoft Entra ID (Azure AD)
+
+Microsoft's docs: [Microsoft identity platform and the OpenID Connect protocol](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc).
 
 1. Azure Portal → **Microsoft Entra ID → App registrations → New registration**. Name it, set the **Redirect URI** platform to **Web**, and paste your Usertour Redirect URI.
 2. **Certificates & secrets → New client secret** → copy the secret **Value** immediately.
@@ -98,6 +104,8 @@ Copy the **per-project SSO login URL** shown on the SSO page and share it with y
 </Note>
 
 ### Keycloak
+
+Keycloak's docs: [Managing OIDC clients](https://www.keycloak.org/docs/latest/server_admin/#assembly-managing-clients_server_administration_guide).
 
 1. Keycloak Admin Console → your realm → **Clients → Create client** → type **OpenID Connect**. Enable **Client authentication** (a confidential client).
 2. In the client's **Settings**, add your Usertour Redirect URI under **Valid redirect URIs**.
