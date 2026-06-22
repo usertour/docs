@@ -103,6 +103,15 @@ Microsoft's docs: [Microsoft identity platform and the OpenID Connect protocol](
   Entra ID often omits `email` from the ID token. Usertour handles this automatically — it falls back to the userinfo endpoint and to the `upn` / `preferred_username` claim — so **no extra claim configuration is needed**.
 </Note>
 
+### Auth0
+
+Auth0's docs: [Register Regular Web Applications](https://auth0.com/docs/get-started/auth0-overview/create-applications/regular-web-apps).
+
+1. Auth0 Dashboard → **Applications → Create Application**, select **Regular Web Applications**.
+2. On the **Settings** tab → **Application URIs → Allowed Callback URLs** → paste your Usertour Redirect URI.
+3. Still on **Settings**, copy the **Domain**, **Client ID**, and **Client Secret**.
+4. **Issuer URL** = your Auth0 domain, for example `https://your-tenant.us.auth0.com`.
+
 ### Keycloak
 
 Keycloak's docs: [Managing OIDC clients](https://www.keycloak.org/docs/latest/server_admin/#assembly-managing-clients_server_administration_guide).
