@@ -150,6 +150,7 @@
       {
         "anchor": "API Reference",
         "icon": "terminal",
+        "tag": "Beta",
         "groups": [
           {
             "group": "Getting started",
