@@ -50,8 +50,13 @@ and opens your browser to authorize. The flow is OAuth 2.1 with PKCE.
 
 <CodeGroup>
 ```bash Claude Code
+# Recommended — the plugin bundles the MCP tools *and* the Usertour authoring
+# skills. Run these inside Claude Code, then /mcp to sign in:
+/plugin marketplace add usertour/skills
+/plugin install usertour@usertour
+
+# Or just the MCP tools, no skills (a shell command):
 claude mcp add --transport http usertour https://api.usertour.io/mcp
-# then run /mcp inside Claude Code to sign in
 ```
 ```json Cursor
 // ~/.cursor/mcp.json
@@ -64,6 +69,13 @@ claude mcp add --transport http usertour https://api.usertour.io/mcp
 }
 ```
 </CodeGroup>
+
+In Claude Code the [plugin](https://github.com/usertour/skills) is the easiest
+path: one install wires up both the MCP server and the authoring skills
+(`build-onboarding`, content authoring, SDK install), and login is the same
+one-click OAuth. **Self-hosting?** Point the plugin at your instance by setting
+`USERTOUR_MCP_URL` before launching (e.g. `export
+USERTOUR_MCP_URL="https://<your-usertour-api-host>/mcp"`); it defaults to Cloud.
 
 For **Claude desktop / web** and other apps with a connector UI, add a custom
 connector and paste the endpoint URL — there's nothing else to fill in. Any
