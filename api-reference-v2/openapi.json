@@ -4790,9 +4790,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -7435,9 +7437,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -10133,9 +10137,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -12098,9 +12104,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -14104,9 +14112,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -16333,9 +16343,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -16902,9 +16914,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -21841,9 +21855,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -22395,9 +22411,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -22928,9 +22946,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -23446,9 +23466,11 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "description": "URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. Omitting the path matches EVERY path (the whole site) \u2014 scope it: `*/` (homepage only), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a host)."
               },
               "excludes": {
+                "description": "URL patterns to exclude (same syntax as includes); excludes win over includes.",
                 "type": "array",
                 "items": {
                   "type": "string"
