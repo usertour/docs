@@ -17361,6 +17361,1801 @@
           "isDefault": {
             "description": "Make this the project default theme.",
             "type": "boolean"
+          },
+          "settings": {
+            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. Auto colors are derived server-side.",
+            "type": "object",
+            "properties": {
+              "avatar": {
+                "type": "object",
+                "properties": {
+                  "size": {
+                    "type": "number",
+                    "minimum": 24,
+                    "maximum": 120
+                  }
+                },
+                "additionalProperties": false
+              },
+              "backdrop": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "highlight": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      "opacity": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      },
+                      "radius": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 40
+                      },
+                      "spread": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 40
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "outside",
+                          "inside"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                },
+                "additionalProperties": false
+              },
+              "banner": {
+                "type": "object",
+                "properties": {
+                  "animationDuration": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "animationTiming": {
+                    "type": "string",
+                    "enum": [
+                      "smooth",
+                      "snappy",
+                      "gentle",
+                      "linear"
+                    ]
+                  },
+                  "backgroundColor": {
+                    "type": "object",
+                    "properties": {
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "padding": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "textColor": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "border": {
+                "type": "object",
+                "properties": {
+                  "borderColor": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "borderWidth": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "borderWidthEnabled": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "brandColor": {
+                "type": "object",
+                "properties": {
+                  "active": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "background": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "hover": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "bubble": {
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "number",
+                    "minimum": 200,
+                    "maximum": 600
+                  }
+                },
+                "additionalProperties": false
+              },
+              "buttons": {
+                "type": "object",
+                "properties": {
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 32
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 24,
+                    "maximum": 64
+                  },
+                  "minWidth": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 200
+                  },
+                  "primary": {
+                    "type": "object",
+                    "properties": {
+                      "backgroundColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "background": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "border": {
+                        "type": "object",
+                        "properties": {
+                          "borderWidth": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 10
+                          },
+                          "color": {
+                            "type": "object",
+                            "properties": {
+                              "active": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "color": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "hover": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "fontWeight": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "enum": [
+                              100
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              200
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              300
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              400
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              500
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              600
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              700
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              800
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              900
+                            ]
+                          }
+                        ]
+                      },
+                      "textColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "color": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "px": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "secondary": {
+                    "type": "object",
+                    "properties": {
+                      "backgroundColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "background": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "border": {
+                        "type": "object",
+                        "properties": {
+                          "borderWidth": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 10
+                          },
+                          "color": {
+                            "type": "object",
+                            "properties": {
+                              "active": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "color": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "hover": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "fontWeight": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "enum": [
+                              100
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              200
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              300
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              400
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              500
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              600
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              700
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              800
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              900
+                            ]
+                          }
+                        ]
+                      },
+                      "textColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "color": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "checklist": {
+                "type": "object",
+                "properties": {
+                  "checkmarkColor": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "completedTaskTextDecoration": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "line-through"
+                    ]
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 240,
+                    "maximum": 600
+                  },
+                  "zIndex": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "checklistLauncher": {
+                "type": "object",
+                "properties": {
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "color": {
+                    "type": "object",
+                    "properties": {
+                      "active": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "hover": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "counter": {
+                    "type": "object",
+                    "properties": {
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "fontWeight": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "enum": [
+                          100
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          200
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          300
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          400
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          500
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          600
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          700
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          800
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          900
+                        ]
+                      }
+                    ]
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 32,
+                    "maximum": 80
+                  }
+                },
+                "additionalProperties": false
+              },
+              "customCss": {
+                "type": "string"
+              },
+              "focusHighlight": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                },
+                "additionalProperties": false
+              },
+              "font": {
+                "type": "object",
+                "properties": {
+                  "customFontFamily": {
+                    "type": "string"
+                  },
+                  "fontFamily": {
+                    "type": "string"
+                  },
+                  "fontSize": {
+                    "type": "number",
+                    "minimum": 10,
+                    "maximum": 24
+                  },
+                  "fontWeightBold": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "enum": [
+                          100
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          200
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          300
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          400
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          500
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          600
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          700
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          800
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          900
+                        ]
+                      }
+                    ]
+                  },
+                  "fontWeightNormal": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "enum": [
+                          100
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          200
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          300
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          400
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          500
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          600
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          700
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          800
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          900
+                        ]
+                      }
+                    ]
+                  },
+                  "h1FontSize": {
+                    "type": "number",
+                    "minimum": 16,
+                    "maximum": 48
+                  },
+                  "h2FontSize": {
+                    "type": "number",
+                    "minimum": 14,
+                    "maximum": 32
+                  },
+                  "lineHeight": {
+                    "type": "number",
+                    "minimum": 12,
+                    "maximum": 40
+                  },
+                  "linkColor": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "launcherBeacon": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "size": {
+                    "type": "number",
+                    "minimum": 8,
+                    "maximum": 32
+                  }
+                },
+                "additionalProperties": false
+              },
+              "launcherButtons": {
+                "type": "object",
+                "properties": {
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 24,
+                    "maximum": 80
+                  },
+                  "primary": {
+                    "type": "object",
+                    "properties": {
+                      "backgroundColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "background": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "border": {
+                        "type": "object",
+                        "properties": {
+                          "borderWidth": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 10
+                          },
+                          "color": {
+                            "type": "object",
+                            "properties": {
+                              "active": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "color": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "hover": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "fontWeight": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "enum": [
+                              100
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              200
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              300
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              400
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              500
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              600
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              700
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              800
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              900
+                            ]
+                          }
+                        ]
+                      },
+                      "textColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "color": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "px": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 400
+                  }
+                },
+                "additionalProperties": false
+              },
+              "launcherIcon": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "object",
+                    "properties": {
+                      "active": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "hover": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "size": {
+                    "type": "number",
+                    "minimum": 8,
+                    "maximum": 64
+                  }
+                },
+                "additionalProperties": false
+              },
+              "mainColor": {
+                "type": "object",
+                "properties": {
+                  "active": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "background": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "hover": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "modal": {
+                "type": "object",
+                "properties": {
+                  "backdropClickBehavior": {
+                    "type": "string",
+                    "enum": [
+                      "do-nothing",
+                      "dismiss-flow"
+                    ]
+                  },
+                  "padding": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 80
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 320,
+                    "maximum": 1200
+                  }
+                },
+                "additionalProperties": false
+              },
+              "progress": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "position": {
+                    "type": "string",
+                    "enum": [
+                      "top",
+                      "bottom"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "full-width",
+                      "narrow",
+                      "chain-rounded",
+                      "chain-squared",
+                      "dots",
+                      "numbered"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "resourceCenter": {
+                "type": "object",
+                "properties": {
+                  "headerBackground": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "gradientFrom": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "gradientTo": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "none",
+                          "color",
+                          "gradient",
+                          "image"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "largeWidth": {
+                    "type": "number",
+                    "minimum": 320,
+                    "maximum": 800
+                  },
+                  "maxHeight": {
+                    "type": "number",
+                    "minimum": 200,
+                    "maximum": 1200
+                  },
+                  "normalWidth": {
+                    "type": "number",
+                    "minimum": 240,
+                    "maximum": 600
+                  },
+                  "offsetX": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 200
+                  },
+                  "offsetY": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 200
+                  },
+                  "placement": {
+                    "type": "string",
+                    "enum": [
+                      "top-left",
+                      "top-right",
+                      "bottom-left",
+                      "bottom-right"
+                    ]
+                  },
+                  "transitionDuration": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "zIndex": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "resourceCenterLauncherButton": {
+                "type": "object",
+                "properties": {
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "color": {
+                    "type": "object",
+                    "properties": {
+                      "active": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "foreground": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "hover": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 24,
+                    "maximum": 80
+                  },
+                  "iconType": {
+                    "type": "string",
+                    "enum": [
+                      "default-question-mark",
+                      "plaintext-question-mark",
+                      "custom"
+                    ]
+                  },
+                  "imageHeight": {
+                    "type": "number",
+                    "minimum": 16,
+                    "maximum": 80
+                  },
+                  "textMode": {
+                    "type": "string",
+                    "enum": [
+                      "resource-center-text",
+                      "no-text"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "survey": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "tooltip": {
+                "type": "object",
+                "properties": {
+                  "missingTargetBehavior": {
+                    "type": "string",
+                    "enum": [
+                      "auto-dismiss",
+                      "use-bubble"
+                    ]
+                  },
+                  "missingTargetTolerance": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "notchSize": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 30
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 200,
+                    "maximum": 600
+                  }
+                },
+                "additionalProperties": false
+              },
+              "xbutton": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
           }
         },
         "required": [
@@ -17376,6 +19171,1801 @@
           },
           "isDefault": {
             "type": "boolean"
+          },
+          "settings": {
+            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. Auto colors are derived server-side.",
+            "type": "object",
+            "properties": {
+              "avatar": {
+                "type": "object",
+                "properties": {
+                  "size": {
+                    "type": "number",
+                    "minimum": 24,
+                    "maximum": 120
+                  }
+                },
+                "additionalProperties": false
+              },
+              "backdrop": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "highlight": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      "opacity": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      },
+                      "radius": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 40
+                      },
+                      "spread": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 40
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "outside",
+                          "inside"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                },
+                "additionalProperties": false
+              },
+              "banner": {
+                "type": "object",
+                "properties": {
+                  "animationDuration": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "animationTiming": {
+                    "type": "string",
+                    "enum": [
+                      "smooth",
+                      "snappy",
+                      "gentle",
+                      "linear"
+                    ]
+                  },
+                  "backgroundColor": {
+                    "type": "object",
+                    "properties": {
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "padding": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "textColor": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "border": {
+                "type": "object",
+                "properties": {
+                  "borderColor": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "borderWidth": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "borderWidthEnabled": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "brandColor": {
+                "type": "object",
+                "properties": {
+                  "active": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "background": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "hover": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "bubble": {
+                "type": "object",
+                "properties": {
+                  "width": {
+                    "type": "number",
+                    "minimum": 200,
+                    "maximum": 600
+                  }
+                },
+                "additionalProperties": false
+              },
+              "buttons": {
+                "type": "object",
+                "properties": {
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 32
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 24,
+                    "maximum": 64
+                  },
+                  "minWidth": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 200
+                  },
+                  "primary": {
+                    "type": "object",
+                    "properties": {
+                      "backgroundColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "background": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "border": {
+                        "type": "object",
+                        "properties": {
+                          "borderWidth": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 10
+                          },
+                          "color": {
+                            "type": "object",
+                            "properties": {
+                              "active": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "color": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "hover": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "fontWeight": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "enum": [
+                              100
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              200
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              300
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              400
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              500
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              600
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              700
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              800
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              900
+                            ]
+                          }
+                        ]
+                      },
+                      "textColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "color": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "px": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "secondary": {
+                    "type": "object",
+                    "properties": {
+                      "backgroundColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "background": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "border": {
+                        "type": "object",
+                        "properties": {
+                          "borderWidth": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 10
+                          },
+                          "color": {
+                            "type": "object",
+                            "properties": {
+                              "active": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "color": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "hover": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "fontWeight": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "enum": [
+                              100
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              200
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              300
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              400
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              500
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              600
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              700
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              800
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              900
+                            ]
+                          }
+                        ]
+                      },
+                      "textColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "color": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              },
+              "checklist": {
+                "type": "object",
+                "properties": {
+                  "checkmarkColor": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "completedTaskTextDecoration": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "line-through"
+                    ]
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 240,
+                    "maximum": 600
+                  },
+                  "zIndex": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "checklistLauncher": {
+                "type": "object",
+                "properties": {
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "color": {
+                    "type": "object",
+                    "properties": {
+                      "active": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "hover": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "counter": {
+                    "type": "object",
+                    "properties": {
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "fontWeight": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "enum": [
+                          100
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          200
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          300
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          400
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          500
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          600
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          700
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          800
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          900
+                        ]
+                      }
+                    ]
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 32,
+                    "maximum": 80
+                  }
+                },
+                "additionalProperties": false
+              },
+              "customCss": {
+                "type": "string"
+              },
+              "focusHighlight": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                },
+                "additionalProperties": false
+              },
+              "font": {
+                "type": "object",
+                "properties": {
+                  "customFontFamily": {
+                    "type": "string"
+                  },
+                  "fontFamily": {
+                    "type": "string"
+                  },
+                  "fontSize": {
+                    "type": "number",
+                    "minimum": 10,
+                    "maximum": 24
+                  },
+                  "fontWeightBold": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "enum": [
+                          100
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          200
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          300
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          400
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          500
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          600
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          700
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          800
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          900
+                        ]
+                      }
+                    ]
+                  },
+                  "fontWeightNormal": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "enum": [
+                          100
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          200
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          300
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          400
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          500
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          600
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          700
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          800
+                        ]
+                      },
+                      {
+                        "type": "number",
+                        "enum": [
+                          900
+                        ]
+                      }
+                    ]
+                  },
+                  "h1FontSize": {
+                    "type": "number",
+                    "minimum": 16,
+                    "maximum": 48
+                  },
+                  "h2FontSize": {
+                    "type": "number",
+                    "minimum": 14,
+                    "maximum": 32
+                  },
+                  "lineHeight": {
+                    "type": "number",
+                    "minimum": 12,
+                    "maximum": 40
+                  },
+                  "linkColor": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "launcherBeacon": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "size": {
+                    "type": "number",
+                    "minimum": 8,
+                    "maximum": 32
+                  }
+                },
+                "additionalProperties": false
+              },
+              "launcherButtons": {
+                "type": "object",
+                "properties": {
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 24,
+                    "maximum": 80
+                  },
+                  "primary": {
+                    "type": "object",
+                    "properties": {
+                      "backgroundColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "background": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "border": {
+                        "type": "object",
+                        "properties": {
+                          "borderWidth": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 10
+                          },
+                          "color": {
+                            "type": "object",
+                            "properties": {
+                              "active": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "color": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              },
+                              "hover": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                  },
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "Auto"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "fontWeight": {
+                        "anyOf": [
+                          {
+                            "type": "number",
+                            "enum": [
+                              100
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              200
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              300
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              400
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              500
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              600
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              700
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              800
+                            ]
+                          },
+                          {
+                            "type": "number",
+                            "enum": [
+                              900
+                            ]
+                          }
+                        ]
+                      },
+                      "textColor": {
+                        "type": "object",
+                        "properties": {
+                          "active": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "color": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          },
+                          "hover": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                              },
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "Auto"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "px": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 400
+                  }
+                },
+                "additionalProperties": false
+              },
+              "launcherIcon": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "type": "object",
+                    "properties": {
+                      "active": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "hover": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "opacity": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "size": {
+                    "type": "number",
+                    "minimum": 8,
+                    "maximum": 64
+                  }
+                },
+                "additionalProperties": false
+              },
+              "mainColor": {
+                "type": "object",
+                "properties": {
+                  "active": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "background": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                  },
+                  "hover": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "modal": {
+                "type": "object",
+                "properties": {
+                  "backdropClickBehavior": {
+                    "type": "string",
+                    "enum": [
+                      "do-nothing",
+                      "dismiss-flow"
+                    ]
+                  },
+                  "padding": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 80
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 320,
+                    "maximum": 1200
+                  }
+                },
+                "additionalProperties": false
+              },
+              "progress": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "position": {
+                    "type": "string",
+                    "enum": [
+                      "top",
+                      "bottom"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "full-width",
+                      "narrow",
+                      "chain-rounded",
+                      "chain-squared",
+                      "dots",
+                      "numbered"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "resourceCenter": {
+                "type": "object",
+                "properties": {
+                  "headerBackground": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "gradientFrom": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "gradientTo": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "none",
+                          "color",
+                          "gradient",
+                          "image"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "largeWidth": {
+                    "type": "number",
+                    "minimum": 320,
+                    "maximum": 800
+                  },
+                  "maxHeight": {
+                    "type": "number",
+                    "minimum": 200,
+                    "maximum": 1200
+                  },
+                  "normalWidth": {
+                    "type": "number",
+                    "minimum": 240,
+                    "maximum": 600
+                  },
+                  "offsetX": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 200
+                  },
+                  "offsetY": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 200
+                  },
+                  "placement": {
+                    "type": "string",
+                    "enum": [
+                      "top-left",
+                      "top-right",
+                      "bottom-left",
+                      "bottom-right"
+                    ]
+                  },
+                  "transitionDuration": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "zIndex": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "resourceCenterLauncherButton": {
+                "type": "object",
+                "properties": {
+                  "borderRadius": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 40
+                  },
+                  "color": {
+                    "type": "object",
+                    "properties": {
+                      "active": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "foreground": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      },
+                      "hover": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 24,
+                    "maximum": 80
+                  },
+                  "iconType": {
+                    "type": "string",
+                    "enum": [
+                      "default-question-mark",
+                      "plaintext-question-mark",
+                      "custom"
+                    ]
+                  },
+                  "imageHeight": {
+                    "type": "number",
+                    "minimum": 16,
+                    "maximum": 80
+                  },
+                  "textMode": {
+                    "type": "string",
+                    "enum": [
+                      "resource-center-text",
+                      "no-text"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "survey": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "tooltip": {
+                "type": "object",
+                "properties": {
+                  "missingTargetBehavior": {
+                    "type": "string",
+                    "enum": [
+                      "auto-dismiss",
+                      "use-bubble"
+                    ]
+                  },
+                  "missingTargetTolerance": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "notchSize": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 30
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 200,
+                    "maximum": 600
+                  }
+                },
+                "additionalProperties": false
+              },
+              "xbutton": {
+                "type": "object",
+                "properties": {
+                  "color": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "Auto"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
           }
         }
       },
