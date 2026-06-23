@@ -14543,6 +14543,11 @@
               "type": "object",
               "properties": {
                 "id": {
+                  "description": "Primary id of an existing step to update in place. It is regenerated when you fork a version (create_content_version), so for edits that must survive a fork prefer `cvid`.",
+                  "type": "string"
+                },
+                "cvid": {
+                  "description": "Stable step handle that survives forking (create_content_version): echo it to update an existing step in place without re-reading new ids. A step is matched by `id` first, then `cvid`; omit both to create a new step.",
                   "type": "string"
                 },
                 "key": {
