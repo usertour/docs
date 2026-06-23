@@ -17567,6 +17567,30 @@
               "bubble": {
                 "type": "object",
                 "properties": {
+                  "placement": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string",
+                        "enum": [
+                          "leftTop",
+                          "centerTop",
+                          "rightTop",
+                          "leftBottom",
+                          "centerBottom",
+                          "rightBottom",
+                          "center"
+                        ]
+                      },
+                      "positionOffsetX": {
+                        "type": "number"
+                      },
+                      "positionOffsetY": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
                   "width": {
                     "type": "number",
                     "minimum": 200,
@@ -18069,6 +18093,28 @@
                       "line-through"
                     ]
                   },
+                  "placement": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string",
+                        "enum": [
+                          "leftTop",
+                          "rightTop",
+                          "leftBottom",
+                          "rightBottom",
+                          "center"
+                        ]
+                      },
+                      "positionOffsetX": {
+                        "type": "number"
+                      },
+                      "positionOffsetY": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
                   "width": {
                     "type": "number",
                     "minimum": 240,
@@ -18246,6 +18292,28 @@
                     "type": "number",
                     "minimum": 32,
                     "maximum": 80
+                  },
+                  "placement": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string",
+                        "enum": [
+                          "leftTop",
+                          "rightTop",
+                          "leftBottom",
+                          "rightBottom",
+                          "center"
+                        ]
+                      },
+                      "positionOffsetX": {
+                        "type": "number"
+                      },
+                      "positionOffsetY": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
                   }
                 },
                 "additionalProperties": false
@@ -18845,6 +18913,16 @@
               "progress": {
                 "type": "object",
                 "properties": {
+                  "chainRoundedHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
+                  "chainSquaredHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
                   "color": {
                     "anyOf": [
                       {
@@ -18859,8 +18937,28 @@
                       }
                     ]
                   },
+                  "dotsHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
                   "enabled": {
                     "type": "boolean"
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
+                  "narrowHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
+                  "numberedHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
                   },
                   "position": {
                     "type": "string",
@@ -19377,6 +19475,30 @@
               "bubble": {
                 "type": "object",
                 "properties": {
+                  "placement": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string",
+                        "enum": [
+                          "leftTop",
+                          "centerTop",
+                          "rightTop",
+                          "leftBottom",
+                          "centerBottom",
+                          "rightBottom",
+                          "center"
+                        ]
+                      },
+                      "positionOffsetX": {
+                        "type": "number"
+                      },
+                      "positionOffsetY": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
                   "width": {
                     "type": "number",
                     "minimum": 200,
@@ -19879,6 +20001,28 @@
                       "line-through"
                     ]
                   },
+                  "placement": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string",
+                        "enum": [
+                          "leftTop",
+                          "rightTop",
+                          "leftBottom",
+                          "rightBottom",
+                          "center"
+                        ]
+                      },
+                      "positionOffsetX": {
+                        "type": "number"
+                      },
+                      "positionOffsetY": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
                   "width": {
                     "type": "number",
                     "minimum": 240,
@@ -20056,6 +20200,28 @@
                     "type": "number",
                     "minimum": 32,
                     "maximum": 80
+                  },
+                  "placement": {
+                    "type": "object",
+                    "properties": {
+                      "position": {
+                        "type": "string",
+                        "enum": [
+                          "leftTop",
+                          "rightTop",
+                          "leftBottom",
+                          "rightBottom",
+                          "center"
+                        ]
+                      },
+                      "positionOffsetX": {
+                        "type": "number"
+                      },
+                      "positionOffsetY": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
                   }
                 },
                 "additionalProperties": false
@@ -20655,6 +20821,16 @@
               "progress": {
                 "type": "object",
                 "properties": {
+                  "chainRoundedHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
+                  "chainSquaredHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
                   "color": {
                     "anyOf": [
                       {
@@ -20669,8 +20845,28 @@
                       }
                     ]
                   },
+                  "dotsHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
                   "enabled": {
                     "type": "boolean"
+                  },
+                  "height": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
+                  "narrowHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
+                  },
+                  "numberedHeight": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 50
                   },
                   "position": {
                     "type": "string",
