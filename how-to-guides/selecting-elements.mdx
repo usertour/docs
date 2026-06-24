@@ -25,7 +25,7 @@ To pick an element:
   OpenPicker can pick on a different tab or origin than the Usertour app. That cross-tab hop is exactly why it's a browser extension rather than something embedded in the page.
 </Note>
 
-## Define stable selectors with your developers
+## Define stable selectors
 
 This is the most important part of element targeting, and the difference between onboarding that keeps working and onboarding that silently breaks.
 
@@ -54,16 +54,38 @@ A dedicated `data-tour` attribute keeps onboarding decoupled from your tests and
 
 ### Make the picker use only your stable attributes
 
-OpenPicker has **per-site selector settings** so it generates exactly the kind of selector you want. Open the extension's selector settings for your site and:
+OpenPicker builds selectors from a set of **selector rules**. Each anchor type — **id**, **class**, **attribute**, and **tag** — can be turned on or off, and each has an **Allow** / **Ignore** regex that controls which names it may use. To make every pick come back as `[data-tour="..."]`:
 
-- Add your attribute (e.g. `data-tour`) to the **attribute allow-list**.
-- Turn off id and class usage if those are auto-generated or hashed in your app.
+- Enable **Attribute** and set its **Allow** to `^data-tour$`.
+- Turn off **id**, **class**, and **tag** if those are auto-generated or hashed in your app.
 
 <Frame>
-  ![OpenPicker per-site selector settings with an attribute allow-list](/images/openpicker-selector-settings-2.png)
+  ![OpenPicker selector settings with an attribute allow-list](/images/openpicker-selector-settings-2.png)
 </Frame>
 
 Now every element you pick comes back as `[data-tour="..."]` instead of a brittle structural path. And if an element doesn't have your attribute yet, that's your cue to ask a developer to add one before you build onboarding on top of it.
+
+### Set your rules once in the extension's Settings
+
+You can adjust these rules mid-pick from the sidebar **gear** button, but that only applies to the site you're currently picking on — so you'd repeat it on every site, and it's easy to forget. To set a default that **every pick reuses automatically**, configure it once in the extension's **Settings** (its options page):
+
+1. Click the **OpenPicker** icon in your browser's toolbar, then choose **Settings** (or right-click the icon and choose **Options**).
+
+<Frame>
+  ![Opening OpenPicker Settings from the toolbar popup](/images/openpicker-popup-settings.png)
+</Frame>
+
+2. In the **Selector rules** section, the **Global default** applies to every site you pick on — set your `data-tour` rule here. Use **Per-site rules** to override the default for specific origins, e.g. a different attribute on your production app versus a staging environment.
+
+<Frame>
+  ![OpenPicker Settings — Selector rules with a global default and per-site overrides](/images/openpicker-settings-selector-rules.png)
+</Frame>
+
+The rules are saved in your browser, so every pick — from any selector field in Usertour — reuses them without asking again. You configure your `data-tour` rule once and never touch it per pick.
+
+<Tip>
+  The sidebar gear during a pick and the **Per-site rules** in Settings edit the same per-site configuration. Use Settings to set things up ahead of time; use the gear for a quick one-off tweak while you're picking.
+</Tip>
 
 <Warning>
   Without stable, agreed-upon selectors, element targeting is fragile — a single front-end change can break a flow even though nothing changed in Usertour. Defining `data-*` hooks up front is the single best thing you can do to keep onboarding reliable.
