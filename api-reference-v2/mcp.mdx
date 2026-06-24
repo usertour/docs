@@ -17,7 +17,7 @@ the same v2 services the REST API uses.
 
 <CodeGroup>
 ```text Cloud
-https://api.usertour.io/mcp
+https://mcp.usertour.io/mcp
 ```
 ```text Self-hosted
 https://<your-usertour-api-host>/mcp
@@ -62,14 +62,14 @@ and opens your browser to authorize. The flow is OAuth 2.1 with PKCE.
 /plugin install usertour@usertour
 
 # Or just the MCP tools, no skills (a shell command):
-claude mcp add --transport http usertour https://api.usertour.io/mcp
+claude mcp add --transport http usertour https://mcp.usertour.io/mcp
 ```
 ```json Cursor
 // ~/.cursor/mcp.json
 {
   "mcpServers": {
     "usertour": {
-      "url": "https://api.usertour.io/mcp"
+      "url": "https://mcp.usertour.io/mcp"
     }
   }
 }
@@ -123,7 +123,7 @@ Bridge to the HTTP endpoint with `mcp-remote`:
       "command": "npx",
       "args": [
         "-y", "mcp-remote",
-        "https://api.usertour.io/mcp",
+        "https://mcp.usertour.io/mcp",
         "--header", "Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       ]
     }
