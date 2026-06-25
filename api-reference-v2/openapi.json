@@ -4735,6 +4735,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -5124,7 +5153,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -7388,6 +7446,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -7777,7 +7864,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -10094,6 +10210,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -10483,7 +10628,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -12066,6 +12240,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -12455,7 +12658,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -14079,6 +14311,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -14468,7 +14729,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -16319,6 +16609,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -16708,7 +17027,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -16894,6 +17242,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -17283,7 +17660,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -21839,6 +22245,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -22228,7 +22663,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -22399,6 +22863,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -22788,7 +23281,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -22938,6 +23460,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -23327,7 +23878,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
@@ -23462,6 +24042,35 @@
               },
               "op": {
                 "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ],
                 "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
@@ -23851,7 +24460,36 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "is",
+                  "not",
+                  "contains",
+                  "not_contains",
+                  "starts_with",
+                  "ends_with",
+                  "match",
+                  "unmatch",
+                  "any",
+                  "empty",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "between",
+                  "true",
+                  "false",
+                  "includes_any",
+                  "includes_all",
+                  "not_includes_any",
+                  "not_includes_all",
+                  "less_than",
+                  "exactly",
+                  "more_than",
+                  "before",
+                  "on",
+                  "after"
+                ]
               },
               "value": {
                 "type": "string"
