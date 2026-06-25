@@ -4734,15 +4734,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -5386,7 +5390,8 @@
                                   "position"
                                 ]
                               }
-                            ]
+                            ],
+                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
                           },
                           "width": {
                             "type": "number"
@@ -6013,7 +6018,8 @@
                                         "position"
                                       ]
                                     }
-                                  ]
+                                  ],
+                                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
                                 },
                                 "width": {
                                   "type": "number"
@@ -7381,15 +7387,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -8028,7 +8038,8 @@
                             "position"
                           ]
                         }
-                      ]
+                      ],
+                      "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
                     },
                     "width": {
                       "type": "number"
@@ -8646,7 +8657,8 @@
                                   "position"
                                 ]
                               }
-                            ]
+                            ],
+                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
                           },
                           "width": {
                             "type": "number"
@@ -10081,15 +10093,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -10708,7 +10724,8 @@
                               "position"
                             ]
                           }
-                        ]
+                        ],
+                        "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
                       },
                       "width": {
                         "type": "number"
@@ -12048,15 +12065,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -12670,7 +12691,8 @@
                         "position"
                       ]
                     }
-                  ]
+                  ],
+                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
                 },
                 "width": {
                   "type": "number"
@@ -14056,15 +14078,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -14689,7 +14715,8 @@
                         "position"
                       ]
                     }
-                  ]
+                  ],
+                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
                 },
                 "width": {
                   "type": "number"
@@ -15125,6 +15152,7 @@
                     }
                   },
                   "items": {
+                    "description": "The checklist tasks. To be usable (enforced at publish) each item needs a `name` AND at least one of `completeWhen` (how it auto-completes) or `clickActions` (what its row does) \u2014 an item with neither is a dead row. `task_clicked` in `completeWhen` is the only completion that needs no app instrumentation.",
                     "type": "array",
                     "items": {
                       "type": "object",
@@ -15140,6 +15168,7 @@
                         },
                         "completeWhen": {
                           "default": [],
+                          "description": "Condition(s) that mark THIS task done. Use [{ \"type\": \"task_clicked\" }] to complete it when the user clicks the task \u2014 the only option that needs no app instrumentation; other conditions (event / element / segment / current_url / user_attribute) require the matching wiring or data in your app. Empty = the task never auto-completes.",
                           "type": "array",
                           "items": {
                             "$ref": "#/components/schemas/UpdateVersionBodyDto__schema3"
@@ -15147,6 +15176,7 @@
                         },
                         "clickActions": {
                           "default": [],
+                          "description": "What happens when the user CLICKS the task row (e.g. [{ \"type\": \"navigate\", \"url\": \"/x\" }]) \u2014 a side effect, NOT completion. To also mark the task done on that click, add { \"type\": \"task_clicked\" } to completeWhen.",
                           "type": "array",
                           "items": {
                             "anyOf": [
@@ -15723,6 +15753,7 @@
                         },
                         "blocks": {
                           "default": [],
+                          "description": "Tab blocks use the resource-center vocabulary \u2014 richtext / divider / action / sub-page / content-list / live-chat \u2014 NOT the flow content blocks. Put text inside a `richtext` block: { \"type\": \"richtext\", \"content\": [{ \"object\": \"block\", \"type\": \"text\", \"markdown\": \"\u2026\" }] }. A bare top-level text block (type \"text\") is rejected here.",
                           "type": "array",
                           "items": {
                             "oneOf": [
@@ -16287,15 +16318,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -16858,15 +16893,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -21799,15 +21838,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -22355,15 +22398,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -22890,15 +22937,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -23410,15 +23461,19 @@
                 "type": "string"
               },
               "op": {
-                "type": "string"
+                "type": "string",
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
+                "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
                 "type": "string"
               },
               "value2": {
+                "description": "Upper bound for the `between` operator (`value` is the lower bound).",
                 "type": "string"
               },
               "values": {
+                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
