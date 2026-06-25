@@ -4735,7 +4735,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -4746,7 +4746,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -7388,7 +7388,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -7399,7 +7399,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -10094,7 +10094,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -10105,7 +10105,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -12066,7 +12066,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -12077,7 +12077,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -14079,7 +14079,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -14090,7 +14090,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -16319,7 +16319,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -16330,7 +16330,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -16894,7 +16894,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -16905,7 +16905,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -21839,7 +21839,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -21850,7 +21850,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -22399,7 +22399,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -22410,7 +22410,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -22938,7 +22938,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -22949,7 +22949,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -23462,7 +23462,7 @@
               },
               "op": {
                 "type": "string",
-                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | notContain | startsWith | endsWith | any | empty. Number: is | not | isLessThan | isLessThanOrEqualTo | isGreaterThan | isGreaterThanOrEqualTo | between | any | empty. Boolean: true | false | any | empty. List: includesAtLeastOne | includesAll | notIncludesAtLeastOne | notIncludesAll | any | empty. DateTime: lessThan | exactly | moreThan (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `lessThan`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
+                "description": "Operator \u2014 the allowed set depends on the attribute dataType. String: is | not | contains | not_contains | starts_with | ends_with | any | empty. Number: is | not | lt | lte | gt | gte | between | any | empty. Boolean: true | false | any | empty. List: includes_any | includes_all | not_includes_any | not_includes_all | any | empty. DateTime: less_than | exactly | more_than (relative \"days ago\" \u2014 `value` is a number of days; e.g. attribute `first_seen_at` with op `less_than`, value `7` = \"first seen in the last 7 days\", the canonical new-user filter) | before | on | after (`value` is an absolute date) | any | empty."
               },
               "value": {
                 "description": "The comparison value (string / number-as-string / date). Omit for any/empty/true/false.",
@@ -23473,7 +23473,7 @@
                 "type": "string"
               },
               "values": {
-                "description": "Values for the List operators (includesAtLeastOne / includesAll / \u2026).",
+                "description": "Values for the List operators (includes_any / includes_all / \u2026).",
                 "type": "array",
                 "items": {
                   "type": "string"
