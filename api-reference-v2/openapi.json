@@ -3887,7 +3887,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "alt": {
                 "type": "string"
@@ -3913,8 +3914,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -4161,7 +4161,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "width": {
                 "type": "object",
@@ -4170,8 +4171,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -4190,8 +4190,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -6647,7 +6646,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "alt": {
                 "type": "string"
@@ -6673,8 +6673,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -6921,7 +6920,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "width": {
                 "type": "object",
@@ -6930,8 +6930,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -6950,8 +6949,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -9460,7 +9458,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "alt": {
                 "type": "string"
@@ -9486,8 +9485,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -9734,7 +9732,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "width": {
                 "type": "object",
@@ -9743,8 +9742,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -9763,8 +9761,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -11531,7 +11528,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "alt": {
                 "type": "string"
@@ -11557,8 +11555,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -11805,7 +11802,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "width": {
                 "type": "object",
@@ -11814,8 +11812,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -11834,8 +11831,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -13643,7 +13639,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "alt": {
                 "type": "string"
@@ -13669,8 +13666,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -13917,7 +13913,8 @@
                 ]
               },
               "url": {
-                "type": "string"
+                "type": "string",
+                "minLength": 1
               },
               "width": {
                 "type": "object",
@@ -13926,8 +13923,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
@@ -13946,8 +13942,7 @@
                     "type": "string",
                     "enum": [
                       "percent",
-                      "pixels",
-                      "fill"
+                      "pixels"
                     ]
                   },
                   "value": {
