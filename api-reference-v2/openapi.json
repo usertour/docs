@@ -4927,7 +4927,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -4939,7 +4939,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -4961,6 +4961,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -4985,6 +4986,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -7685,7 +7687,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -7697,7 +7699,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -7719,6 +7721,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -7743,6 +7746,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -10496,7 +10500,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -10508,7 +10512,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -10530,6 +10534,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -10554,6 +10559,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -12565,7 +12571,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -12577,7 +12583,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -12599,6 +12605,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -12623,6 +12630,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -14675,7 +14683,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -14687,7 +14695,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -14709,6 +14717,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -14733,6 +14742,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -15635,7 +15645,7 @@
                     ]
                   },
                   "completionOrder": {
-                    "description": "Whether tasks can be completed in `any` order, or must be completed `ordered` (top to bottom).",
+                    "description": "Whether tasks can be completed in `any` order, or must be completed `ordered` (top to bottom). This is the ONLY built-in cross-task sequencing \u2014 there is no per-task \"after task X\" condition; for finer dependencies gate a task's `onlyShowWhen` on the shared event/state that completes its prerequisite.",
                     "type": "string",
                     "enum": [
                       "any",
@@ -15804,6 +15814,7 @@
                           }
                         },
                         "onlyShowWhen": {
+                          "description": "Condition(s) that gate whether this task is VISIBLE (distinct from `completeWhen`, which marks it done). Omit = always shown. There is no \"task X is completed\" condition, so to make this task appear only after another is done, gate on the same event/state that completes that other task \u2014 you cannot reference another task directly.",
                           "type": "array",
                           "items": {
                             "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
@@ -17032,7 +17043,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -17044,7 +17055,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -17066,6 +17077,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -17090,6 +17102,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -17678,7 +17691,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -17690,7 +17703,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -17712,6 +17725,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -17736,6 +17750,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -22694,7 +22709,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -22706,7 +22721,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -22728,6 +22743,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -22752,6 +22768,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -23325,7 +23342,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -23337,7 +23354,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -23359,6 +23376,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -23383,6 +23401,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -23935,7 +23954,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -23947,7 +23966,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -23969,6 +23988,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -23993,6 +24013,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -24530,7 +24551,7 @@
               },
               "flow": {
                 "type": "string",
-                "description": "contentId of the flow whose state to check (from list_content)."
+                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
               },
               "state": {
                 "type": "string",
@@ -24542,7 +24563,7 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced flow's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
@@ -24564,6 +24585,7 @@
                 "type": "string"
               },
               "count": {
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -24588,6 +24610,7 @@
                 ]
               },
               "within": {
+                "description": "Optional time window for the event count. Omit it (or use `any_time`) to count over all time \u2014 \"the event has ever happened\". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected \u2014 the runtime would otherwise silently assume days); `between` also needs `value2`.",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -25730,7 +25753,7 @@
             "items": {
               "type": "string"
             },
-            "description": "codeNames of event-scoped attributes to attach. Unknown codeNames are rejected."
+            "description": "codeNames of EXISTING event-scoped attributes to attach to this event \u2014 the built-in / predefined ones, or custom event properties that were auto-created when your app tracked this event with a properties payload. Note: you cannot PRE-DEFINE a new event property via create_attribute_definition (its scope is only user / company / companyMembership); event properties are created automatically at ingestion when the SDK calls usertour.track(name, { prop: value }). Unknown codeNames are rejected."
           }
         },
         "required": [
