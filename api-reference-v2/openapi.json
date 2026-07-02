@@ -4248,7 +4248,7 @@
                 ]
               },
               "question": {
-                "anyOf": [
+                "oneOf": [
                   {
                     "type": "object",
                     "properties": {
@@ -5171,7 +5171,7 @@
         ]
       },
       "ListContentResponseDto__schema2": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -7007,7 +7007,7 @@
                 ]
               },
               "question": {
-                "anyOf": [
+                "oneOf": [
                   {
                     "type": "object",
                     "properties": {
@@ -7930,7 +7930,7 @@
         ]
       },
       "ContentDto__schema2": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -9819,7 +9819,7 @@
                 ]
               },
               "question": {
-                "anyOf": [
+                "oneOf": [
                   {
                     "type": "object",
                     "properties": {
@@ -10742,7 +10742,7 @@
         ]
       },
       "ListContentVersionsResponseDto__schema2": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -11889,7 +11889,7 @@
                 ]
               },
               "question": {
-                "anyOf": [
+                "oneOf": [
                   {
                     "type": "object",
                     "properties": {
@@ -12812,7 +12812,7 @@
         ]
       },
       "ContentVersionDto__schema2": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -14000,7 +14000,7 @@
                 ]
               },
               "question": {
-                "anyOf": [
+                "oneOf": [
                   {
                     "type": "object",
                     "properties": {
@@ -14923,7 +14923,7 @@
         ]
       },
       "UpdateVersionBodyDto__schema2": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -17283,7 +17283,7 @@
         ]
       },
       "ListThemesResponseDto__schema1": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -17931,7 +17931,7 @@
         ]
       },
       "ThemeDto__schema1": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -22949,7 +22949,7 @@
         ]
       },
       "ListSegmentsResponseDto__schema1": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -23582,7 +23582,7 @@
         ]
       },
       "SegmentDto__schema1": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -24194,7 +24194,7 @@
         ]
       },
       "CreateSegmentBodyDto__schema1": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -24791,7 +24791,7 @@
         ]
       },
       "UpdateSegmentBodyDto__schema1": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
