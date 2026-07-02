@@ -64,6 +64,15 @@
             }
           },
           {
+            "name": "deleted",
+            "required": false,
+            "in": "query",
+            "description": "List soft-deleted (archived) content instead of live content \u2014 the recovery pool for restore.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "expand",
             "required": false,
             "in": "query",
@@ -362,6 +371,56 @@
         "responses": {
           "204": {
             "description": "Content deleted"
+          },
+          "404": {
+            "description": "Content not found"
+          }
+        },
+        "tags": [
+          "Content"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/content/{id}/restore": {
+      "post": {
+        "operationId": "ApiContentController_restore",
+        "summary": "Restore deleted content",
+        "description": "Restore soft-deleted content (find it via GET /content?deleted=true). It returns as an unpublished draft with versions and history intact \u2014 publish again explicitly to go live. Idempotent on content that is not deleted.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Content not found"
@@ -3822,11 +3881,7 @@
     "contact": {}
   },
   "tags": [],
-  "servers": [
-    {
-      "url": "https://api.usertour.io"
-    }
-  ],
+  "servers": [],
   "components": {
     "securitySchemes": {
       "bearer": {
@@ -6560,6 +6615,9 @@
                     ]
                   }
                 },
+                "deleted": {
+                  "type": "boolean"
+                },
                 "updatedAt": {
                   "type": "string"
                 },
@@ -6575,6 +6633,7 @@
                 "buildUrl",
                 "editedVersionId",
                 "environments",
+                "deleted",
                 "updatedAt",
                 "createdAt"
               ]
@@ -9305,6 +9364,9 @@
               ]
             }
           },
+          "deleted": {
+            "type": "boolean"
+          },
           "updatedAt": {
             "type": "string"
           },
@@ -9320,6 +9382,7 @@
           "buildUrl",
           "editedVersionId",
           "environments",
+          "deleted",
           "updatedAt",
           "createdAt"
         ]
