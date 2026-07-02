@@ -3837,7 +3837,7 @@
     },
     "schemas": {
       "ListContentResponseDto__schema0": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -6596,7 +6596,7 @@
         ]
       },
       "ContentDto__schema0": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -9408,7 +9408,7 @@
         ]
       },
       "ListContentVersionsResponseDto__schema0": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -11478,7 +11478,7 @@
         ]
       },
       "ContentVersionDto__schema0": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
@@ -13589,7 +13589,7 @@
         ]
       },
       "UpdateVersionBodyDto__schema0": {
-        "anyOf": [
+        "oneOf": [
           {
             "type": "object",
             "properties": {
