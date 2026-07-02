@@ -4003,12 +4003,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -4017,7 +4017,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -4477,12 +4477,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -4491,7 +4491,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -4921,12 +4921,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -4938,12 +4938,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -5538,12 +5538,12 @@
                                           "type": {
                                             "type": "string",
                                             "enum": [
-                                              "start_flow"
+                                              "start_content"
                                             ]
                                           },
-                                          "flow": {
+                                          "content": {
                                             "type": "string",
-                                            "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                            "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                           },
                                           "step": {
                                             "description": "Optional cvid of a step within the launched flow to start at.",
@@ -5552,7 +5552,7 @@
                                         },
                                         "required": [
                                           "type",
-                                          "flow"
+                                          "content"
                                         ]
                                       },
                                       {
@@ -5669,12 +5669,12 @@
                                     "type": {
                                       "type": "string",
                                       "enum": [
-                                        "start_flow"
+                                        "start_content"
                                       ]
                                     },
-                                    "flow": {
+                                    "content": {
                                       "type": "string",
-                                      "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                      "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                     },
                                     "step": {
                                       "description": "Optional cvid of a step within the launched flow to start at.",
@@ -5683,7 +5683,7 @@
                                   },
                                   "required": [
                                     "type",
-                                    "flow"
+                                    "content"
                                   ]
                                 },
                                 {
@@ -6174,12 +6174,12 @@
                                                 "type": {
                                                   "type": "string",
                                                   "enum": [
-                                                    "start_flow"
+                                                    "start_content"
                                                   ]
                                                 },
-                                                "flow": {
+                                                "content": {
                                                   "type": "string",
-                                                  "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                                  "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                                 },
                                                 "step": {
                                                   "description": "Optional cvid of a step within the launched flow to start at.",
@@ -6188,7 +6188,7 @@
                                               },
                                               "required": [
                                                 "type",
-                                                "flow"
+                                                "content"
                                               ]
                                             },
                                             {
@@ -6305,12 +6305,12 @@
                                           "type": {
                                             "type": "string",
                                             "enum": [
-                                              "start_flow"
+                                              "start_content"
                                             ]
                                           },
-                                          "flow": {
+                                          "content": {
                                             "type": "string",
-                                            "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                            "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                           },
                                           "step": {
                                             "description": "Optional cvid of a step within the launched flow to start at.",
@@ -6319,7 +6319,7 @@
                                         },
                                         "required": [
                                           "type",
-                                          "flow"
+                                          "content"
                                         ]
                                       },
                                       {
@@ -6762,12 +6762,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -6776,7 +6776,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -7236,12 +7236,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -7250,7 +7250,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -7680,12 +7680,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -7697,12 +7697,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -8292,12 +8292,12 @@
                                     "type": {
                                       "type": "string",
                                       "enum": [
-                                        "start_flow"
+                                        "start_content"
                                       ]
                                     },
-                                    "flow": {
+                                    "content": {
                                       "type": "string",
-                                      "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                      "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                     },
                                     "step": {
                                       "description": "Optional cvid of a step within the launched flow to start at.",
@@ -8306,7 +8306,7 @@
                                   },
                                   "required": [
                                     "type",
-                                    "flow"
+                                    "content"
                                   ]
                                 },
                                 {
@@ -8423,12 +8423,12 @@
                               "type": {
                                 "type": "string",
                                 "enum": [
-                                  "start_flow"
+                                  "start_content"
                                 ]
                               },
-                              "flow": {
+                              "content": {
                                 "type": "string",
-                                "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                               },
                               "step": {
                                 "description": "Optional cvid of a step within the launched flow to start at.",
@@ -8437,7 +8437,7 @@
                             },
                             "required": [
                               "type",
-                              "flow"
+                              "content"
                             ]
                           },
                           {
@@ -8919,12 +8919,12 @@
                                           "type": {
                                             "type": "string",
                                             "enum": [
-                                              "start_flow"
+                                              "start_content"
                                             ]
                                           },
-                                          "flow": {
+                                          "content": {
                                             "type": "string",
-                                            "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                            "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                           },
                                           "step": {
                                             "description": "Optional cvid of a step within the launched flow to start at.",
@@ -8933,7 +8933,7 @@
                                         },
                                         "required": [
                                           "type",
-                                          "flow"
+                                          "content"
                                         ]
                                       },
                                       {
@@ -9050,12 +9050,12 @@
                                     "type": {
                                       "type": "string",
                                       "enum": [
-                                        "start_flow"
+                                        "start_content"
                                       ]
                                     },
-                                    "flow": {
+                                    "content": {
                                       "type": "string",
-                                      "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                      "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                     },
                                     "step": {
                                       "description": "Optional cvid of a step within the launched flow to start at.",
@@ -9064,7 +9064,7 @@
                                   },
                                   "required": [
                                     "type",
-                                    "flow"
+                                    "content"
                                   ]
                                 },
                                 {
@@ -9574,12 +9574,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -9588,7 +9588,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -10048,12 +10048,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -10062,7 +10062,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -10492,12 +10492,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -10509,12 +10509,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -11084,12 +11084,12 @@
                                       "type": {
                                         "type": "string",
                                         "enum": [
-                                          "start_flow"
+                                          "start_content"
                                         ]
                                       },
-                                      "flow": {
+                                      "content": {
                                         "type": "string",
-                                        "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                        "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                       },
                                       "step": {
                                         "description": "Optional cvid of a step within the launched flow to start at.",
@@ -11098,7 +11098,7 @@
                                     },
                                     "required": [
                                       "type",
-                                      "flow"
+                                      "content"
                                     ]
                                   },
                                   {
@@ -11215,12 +11215,12 @@
                                 "type": {
                                   "type": "string",
                                   "enum": [
-                                    "start_flow"
+                                    "start_content"
                                   ]
                                 },
-                                "flow": {
+                                "content": {
                                   "type": "string",
-                                  "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                  "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                 },
                                 "step": {
                                   "description": "Optional cvid of a step within the launched flow to start at.",
@@ -11229,7 +11229,7 @@
                               },
                               "required": [
                                 "type",
-                                "flow"
+                                "content"
                               ]
                             },
                             {
@@ -11644,12 +11644,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -11658,7 +11658,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -12118,12 +12118,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -12132,7 +12132,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -12562,12 +12562,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -12579,12 +12579,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -13149,12 +13149,12 @@
                                 "type": {
                                   "type": "string",
                                   "enum": [
-                                    "start_flow"
+                                    "start_content"
                                   ]
                                 },
-                                "flow": {
+                                "content": {
                                   "type": "string",
-                                  "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                  "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                 },
                                 "step": {
                                   "description": "Optional cvid of a step within the launched flow to start at.",
@@ -13163,7 +13163,7 @@
                               },
                               "required": [
                                 "type",
-                                "flow"
+                                "content"
                               ]
                             },
                             {
@@ -13280,12 +13280,12 @@
                           "type": {
                             "type": "string",
                             "enum": [
-                              "start_flow"
+                              "start_content"
                             ]
                           },
-                          "flow": {
+                          "content": {
                             "type": "string",
-                            "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                            "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                           },
                           "step": {
                             "description": "Optional cvid of a step within the launched flow to start at.",
@@ -13294,7 +13294,7 @@
                         },
                         "required": [
                           "type",
-                          "flow"
+                          "content"
                         ]
                       },
                       {
@@ -13755,12 +13755,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -13769,7 +13769,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -14229,12 +14229,12 @@
                         "type": {
                           "type": "string",
                           "enum": [
-                            "start_flow"
+                            "start_content"
                           ]
                         },
-                        "flow": {
+                        "content": {
                           "type": "string",
-                          "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                          "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                         },
                         "step": {
                           "description": "Optional cvid of a step within the launched flow to start at.",
@@ -14243,7 +14243,7 @@
                       },
                       "required": [
                         "type",
-                        "flow"
+                        "content"
                       ]
                     },
                     {
@@ -14673,12 +14673,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -14690,12 +14690,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -15273,12 +15273,12 @@
                                 "type": {
                                   "type": "string",
                                   "enum": [
-                                    "start_flow"
+                                    "start_content"
                                   ]
                                 },
-                                "flow": {
+                                "content": {
                                   "type": "string",
-                                  "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                  "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                 },
                                 "step": {
                                   "description": "Optional cvid of a step within the launched flow to start at.",
@@ -15287,7 +15287,7 @@
                               },
                               "required": [
                                 "type",
-                                "flow"
+                                "content"
                               ]
                             },
                             {
@@ -15405,12 +15405,12 @@
                           "type": {
                             "type": "string",
                             "enum": [
-                              "start_flow"
+                              "start_content"
                             ]
                           },
-                          "flow": {
+                          "content": {
                             "type": "string",
-                            "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                            "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                           },
                           "step": {
                             "description": "Optional cvid of a step within the launched flow to start at.",
@@ -15419,7 +15419,7 @@
                         },
                         "required": [
                           "type",
-                          "flow"
+                          "content"
                         ]
                       },
                       {
@@ -15715,12 +15715,12 @@
                                   "type": {
                                     "type": "string",
                                     "enum": [
-                                      "start_flow"
+                                      "start_content"
                                     ]
                                   },
-                                  "flow": {
+                                  "content": {
                                     "type": "string",
-                                    "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                    "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                   },
                                   "step": {
                                     "description": "Optional cvid of a step within the launched flow to start at.",
@@ -15729,7 +15729,7 @@
                                 },
                                 "required": [
                                   "type",
-                                  "flow"
+                                  "content"
                                 ]
                               },
                               {
@@ -16011,12 +16011,12 @@
                                 "type": {
                                   "type": "string",
                                   "enum": [
-                                    "start_flow"
+                                    "start_content"
                                   ]
                                 },
-                                "flow": {
+                                "content": {
                                   "type": "string",
-                                  "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                  "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                 },
                                 "step": {
                                   "description": "Optional cvid of a step within the launched flow to start at.",
@@ -16025,7 +16025,7 @@
                               },
                               "required": [
                                 "type",
-                                "flow"
+                                "content"
                               ]
                             },
                             {
@@ -16419,12 +16419,12 @@
                                             "type": {
                                               "type": "string",
                                               "enum": [
-                                                "start_flow"
+                                                "start_content"
                                               ]
                                             },
-                                            "flow": {
+                                            "content": {
                                               "type": "string",
-                                              "description": "contentId of the flow OR checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
+                                              "description": "contentId of the flow or checklist to launch (from list_content) \u2014 a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate."
                                             },
                                             "step": {
                                               "description": "Optional cvid of a step within the launched flow to start at.",
@@ -16433,7 +16433,7 @@
                                           },
                                           "required": [
                                             "type",
-                                            "flow"
+                                            "content"
                                           ]
                                         },
                                         {
@@ -17033,12 +17033,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -17050,12 +17050,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -17681,12 +17681,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -17698,12 +17698,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -22699,12 +22699,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -22716,12 +22716,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -23332,12 +23332,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -23349,12 +23349,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -23944,12 +23944,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -23961,12 +23961,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
@@ -24541,12 +24541,12 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "flow"
+                  "content_state"
                 ]
               },
-              "flow": {
+              "content": {
                 "type": "string",
-                "description": "contentId of the content whose lifecycle state to check \u2014 despite the `flow` key name this gates on ANY content type (flow, checklist, banner, launcher, resource-center), e.g. start a tour only after a banner has been `seen` (from list_content)."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (from list_content). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -24558,12 +24558,12 @@
                   "active",
                   "inactive"
                 ],
-                "description": "The referenced content's state for THIS user (any content type, not only flows). seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
+                "description": "The referenced flow/checklist's state for THIS user. seen = started at least once (TRUE from the moment it opens); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual \"show next thing after the welcome flow\" sequencing), use `seen` AND `inactive` together \u2014 `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A."
               }
             },
             "required": [
               "type",
-              "flow",
+              "content",
               "state"
             ]
           },
