@@ -33,10 +33,19 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1001` | 404 | User not found |
 | `E1002` | 404 | Company not found |
 | `E1021` | 404 | Theme not found |
+| `E1022` | 404 | Attribute definition not found |
+| `E1024` | 404 | Event definition not found |
+| `E1025` | 404 | Segment not found |
+| `E1026` | 404 | Environment not found |
 | `E1017` | 400 | Request validation failed (bad body / params) |
 | `E1006` | 400 | Invalid `limit` |
 | `E1007` | 400 | Invalid pagination cursor |
 | `E1015` | 400 | Invalid `scope` filter value |
+| `E1023` | 409 | Resource conflict (e.g. duplicate `codeName`) |
+| `E1028` | 409 | Content is still published — unpublish from every environment before deleting |
+| `E1030` | 409 | Event definition already has recorded events |
+| `E1031` | 409 | Theme is used by live or draft content — switch that content to another theme first |
+| `E1027` | 422 | Content version is not publishable (fails render-usability validation) |
 | `E1013` | 429 | Rate limit exceeded |
 
 <Note>

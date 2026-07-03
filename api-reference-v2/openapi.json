@@ -1358,6 +1358,7 @@
       "delete": {
         "operationId": "ApiThemesController_remove",
         "summary": "Delete a theme",
+        "description": "Rejected for the default / system theme, and while any live or draft version still uses the theme (409 E1031 \u2014 switch that content to another theme first). Historical versions do not block deletion.",
         "parameters": [
           {
             "name": "projectId",
@@ -1384,6 +1385,9 @@
           },
           "404": {
             "description": "Theme not found"
+          },
+          "409": {
+            "description": "Theme is used by live or draft content (E1031)"
           }
         },
         "tags": [
