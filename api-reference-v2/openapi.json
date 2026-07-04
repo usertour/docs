@@ -739,7 +739,7 @@
       "post": {
         "operationId": "ApiContentVersionsController_create",
         "summary": "Create a content version",
-        "description": "Fork the content's current edited version into a new draft.",
+        "description": "Fork the content's current edited version into a new draft. Returns the slim version envelope \u2014 the copied steps/data are not inlined; read the version with `expand` to inspect them.",
         "parameters": [
           {
             "name": "projectId",
@@ -16206,7 +16206,7 @@
                     "type": "object",
                     "properties": {
                       "overlayOverAppContent": {
-                        "description": "When true the banner floats over the page; when false it takes its own space and pushes the page content down.",
+                        "description": "When true the banner floats over the page; when false it takes its own space and pushes the page content down. Push mode only displaces normal-flow content \u2014 the host app's `position: fixed` bars (top nav, sidebars) do NOT move and will overlap the banner. For such apps, either float the banner over the content (true), or use a container/element-relative `placement` so the banner lives inside the scrolling content area instead of fighting the fixed bars.",
                         "type": "boolean"
                       },
                       "stickToTop": {
