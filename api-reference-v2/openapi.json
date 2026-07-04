@@ -17468,6 +17468,9 @@
                 "isDefault": {
                   "type": "boolean"
                 },
+                "isSystem": {
+                  "type": "boolean"
+                },
                 "updatedAt": {
                   "type": "string"
                 },
@@ -17514,6 +17517,7 @@
                 "object",
                 "name",
                 "isDefault",
+                "isSystem",
                 "updatedAt",
                 "createdAt"
               ]
@@ -18111,6 +18115,9 @@
           "isDefault": {
             "type": "boolean"
           },
+          "isSystem": {
+            "type": "boolean"
+          },
           "updatedAt": {
             "type": "string"
           },
@@ -18157,6 +18164,7 @@
           "object",
           "name",
           "isDefault",
+          "isSystem",
           "updatedAt",
           "createdAt"
         ]
@@ -25475,6 +25483,9 @@
                     "attributeDefinition"
                   ]
                 },
+                "predefined": {
+                  "type": "boolean"
+                },
                 "createdAt": {
                   "type": "string"
                 },
@@ -25523,6 +25534,7 @@
               "required": [
                 "id",
                 "object",
+                "predefined",
                 "createdAt",
                 "dataType",
                 "description",
@@ -25558,6 +25570,9 @@
             "enum": [
               "attributeDefinition"
             ]
+          },
+          "predefined": {
+            "type": "boolean"
           },
           "createdAt": {
             "type": "string"
@@ -25607,6 +25622,7 @@
         "required": [
           "id",
           "object",
+          "predefined",
           "createdAt",
           "dataType",
           "description",
@@ -25872,6 +25888,9 @@
                   "type": "string",
                   "description": "The environment's SDK token \u2014 pass it to usertour.init() to load this environment's published content."
                 },
+                "inTokenScope": {
+                  "type": "boolean"
+                },
                 "createdAt": {
                   "type": "string"
                 },
@@ -25885,6 +25904,7 @@
                 "name",
                 "isPrimary",
                 "token",
+                "inTokenScope",
                 "createdAt",
                 "updatedAt"
               ]
@@ -25928,6 +25948,9 @@
             "type": "string",
             "description": "The environment's SDK token \u2014 pass it to usertour.init() to load this environment's published content."
           },
+          "inTokenScope": {
+            "type": "boolean"
+          },
           "createdAt": {
             "type": "string"
           },
@@ -25941,6 +25964,7 @@
           "name",
           "isPrimary",
           "token",
+          "inTokenScope",
           "createdAt",
           "updatedAt"
         ]
