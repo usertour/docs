@@ -5,7 +5,7 @@
       "get": {
         "operationId": "ApiAnalyticsController_contentAnalytics",
         "summary": "Get content analytics",
-        "description": "Views / completions (unique + total), a per-day series, and the per-type breakdown: per-step funnel with tooltip-target-missing counts (flows), per-task completion (checklists), per-block clicks (resource centers). Defaults to the last 30 days, UTC.",
+        "description": "The response shape follows the content type (discriminated on `contentType`): flows report starts + completions and a per-step funnel with tooltip-target-missing counts; checklists starts + completions and per-task rows; launchers seen + activations; banners seen + dismissals; resource centers opens + block clicks; trackers users + occurrences of the tracked event. All with a per-day series. Defaults to the last 30 days, UTC.",
         "parameters": [
           {
             "name": "id",
@@ -64,11 +64,33 @@
         ],
         "responses": {
           "200": {
-            "description": "Content analytics",
+            "description": "Content analytics \u2014 the shape follows the content type",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ContentAnalyticsDto"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/FlowAnalyticsDto"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ChecklistAnalyticsDto"
+                    },
+                    {
+                      "$ref": "#/components/schemas/LauncherAnalyticsDto"
+                    },
+                    {
+                      "$ref": "#/components/schemas/BannerAnalyticsDto"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ResourceCenterAnalyticsDto"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TrackerAnalyticsDto"
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "contentType"
+                  }
                 }
               }
             }
@@ -4067,7 +4089,7 @@
       }
     },
     "schemas": {
-      "ContentAnalyticsDto": {
+      "FlowAnalyticsDto": {
         "type": "object",
         "properties": {
           "object": {
@@ -4091,12 +4113,18 @@
           "timezone": {
             "type": "string"
           },
-          "uniqueViews": {
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "flow"
+            ]
+          },
+          "uniqueStarts": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
           },
-          "totalViews": {
+          "totalStarts": {
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991
@@ -4104,7 +4132,8 @@
           "uniqueCompletions": {
             "type": "integer",
             "minimum": -9007199254740991,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Distinct users who reached the end of the flow (or an explicit completion step)."
           },
           "totalCompletions": {
             "type": "integer",
@@ -4120,12 +4149,12 @@
                   "type": "string",
                   "description": "ISO date (bucketed in the requested timezone)."
                 },
-                "uniqueViews": {
+                "uniqueStarts": {
                   "type": "integer",
                   "minimum": -9007199254740991,
                   "maximum": 9007199254740991
                 },
-                "totalViews": {
+                "totalStarts": {
                   "type": "integer",
                   "minimum": -9007199254740991,
                   "maximum": 9007199254740991
@@ -4143,8 +4172,8 @@
               },
               "required": [
                 "date",
-                "uniqueViews",
-                "totalViews",
+                "uniqueStarts",
+                "totalStarts",
                 "uniqueCompletions",
                 "totalCompletions"
               ]
@@ -4212,8 +4241,114 @@
                 "uniqueTooltipTargetMissing",
                 "totalTooltipTargetMissing"
               ]
-            },
-            "nullable": true
+            }
+          }
+        },
+        "required": [
+          "object",
+          "contentId",
+          "environmentId",
+          "startDate",
+          "endDate",
+          "timezone",
+          "contentType",
+          "uniqueStarts",
+          "totalStarts",
+          "uniqueCompletions",
+          "totalCompletions",
+          "byDay",
+          "steps"
+        ]
+      },
+      "ChecklistAnalyticsDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "contentAnalytics"
+            ]
+          },
+          "contentId": {
+            "type": "string"
+          },
+          "environmentId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "checklist"
+            ]
+          },
+          "uniqueStarts": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "totalStarts": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "uniqueCompletions": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Distinct users who completed every visible task."
+          },
+          "totalCompletions": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "byDay": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "description": "ISO date (bucketed in the requested timezone)."
+                },
+                "uniqueStarts": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "totalStarts": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "uniqueCompletions": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "totalCompletions": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "date",
+                "uniqueStarts",
+                "totalStarts",
+                "uniqueCompletions",
+                "totalCompletions"
+              ]
+            }
           },
           "tasks": {
             "type": "array",
@@ -4267,8 +4402,329 @@
                 "uniqueClicks",
                 "totalClicks"
               ]
-            },
-            "nullable": true
+            }
+          }
+        },
+        "required": [
+          "object",
+          "contentId",
+          "environmentId",
+          "startDate",
+          "endDate",
+          "timezone",
+          "contentType",
+          "uniqueStarts",
+          "totalStarts",
+          "uniqueCompletions",
+          "totalCompletions",
+          "byDay",
+          "tasks"
+        ]
+      },
+      "LauncherAnalyticsDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "contentAnalytics"
+            ]
+          },
+          "contentId": {
+            "type": "string"
+          },
+          "environmentId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "launcher"
+            ]
+          },
+          "uniqueSeen": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "totalSeen": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "uniqueActivations": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Distinct users who clicked (activated) the launcher."
+          },
+          "totalActivations": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "byDay": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "description": "ISO date (bucketed in the requested timezone)."
+                },
+                "uniqueSeen": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "totalSeen": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "uniqueActivations": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who clicked (activated) the launcher."
+                },
+                "totalActivations": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "date",
+                "uniqueSeen",
+                "totalSeen",
+                "uniqueActivations",
+                "totalActivations"
+              ]
+            }
+          }
+        },
+        "required": [
+          "object",
+          "contentId",
+          "environmentId",
+          "startDate",
+          "endDate",
+          "timezone",
+          "contentType",
+          "uniqueSeen",
+          "totalSeen",
+          "uniqueActivations",
+          "totalActivations",
+          "byDay"
+        ]
+      },
+      "BannerAnalyticsDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "contentAnalytics"
+            ]
+          },
+          "contentId": {
+            "type": "string"
+          },
+          "environmentId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "banner"
+            ]
+          },
+          "uniqueSeen": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "totalSeen": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "uniqueDismissals": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Distinct users who closed the banner."
+          },
+          "totalDismissals": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "byDay": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "description": "ISO date (bucketed in the requested timezone)."
+                },
+                "uniqueSeen": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "totalSeen": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "uniqueDismissals": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who closed the banner."
+                },
+                "totalDismissals": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "date",
+                "uniqueSeen",
+                "totalSeen",
+                "uniqueDismissals",
+                "totalDismissals"
+              ]
+            }
+          }
+        },
+        "required": [
+          "object",
+          "contentId",
+          "environmentId",
+          "startDate",
+          "endDate",
+          "timezone",
+          "contentType",
+          "uniqueSeen",
+          "totalSeen",
+          "uniqueDismissals",
+          "totalDismissals",
+          "byDay"
+        ]
+      },
+      "ResourceCenterAnalyticsDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "contentAnalytics"
+            ]
+          },
+          "contentId": {
+            "type": "string"
+          },
+          "environmentId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "resource-center"
+            ]
+          },
+          "uniqueOpens": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "totalOpens": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "uniqueClicks": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Distinct users who clicked a block inside the panel."
+          },
+          "totalClicks": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "byDay": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "description": "ISO date (bucketed in the requested timezone)."
+                },
+                "uniqueOpens": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "totalOpens": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "uniqueClicks": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who clicked a block inside the panel."
+                },
+                "totalClicks": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "date",
+                "uniqueOpens",
+                "totalOpens",
+                "uniqueClicks",
+                "totalClicks"
+              ]
+            }
           },
           "blocks": {
             "type": "array",
@@ -4303,8 +4759,7 @@
                 "uniqueClicks",
                 "totalClicks"
               ]
-            },
-            "nullable": true
+            }
           }
         },
         "required": [
@@ -4314,14 +4769,98 @@
           "startDate",
           "endDate",
           "timezone",
-          "uniqueViews",
-          "totalViews",
-          "uniqueCompletions",
-          "totalCompletions",
+          "contentType",
+          "uniqueOpens",
+          "totalOpens",
+          "uniqueClicks",
+          "totalClicks",
           "byDay",
-          "steps",
-          "tasks",
           "blocks"
+        ]
+      },
+      "TrackerAnalyticsDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "contentAnalytics"
+            ]
+          },
+          "contentId": {
+            "type": "string"
+          },
+          "environmentId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "tracker"
+            ]
+          },
+          "uniqueUsers": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Distinct users who fired the tracked event."
+          },
+          "totalOccurrences": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Occurrences of the tracked event."
+          },
+          "byDay": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "description": "ISO date (bucketed in the requested timezone)."
+                },
+                "uniqueUsers": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who fired the tracked event."
+                },
+                "totalOccurrences": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Occurrences of the tracked event."
+                }
+              },
+              "required": [
+                "date",
+                "uniqueUsers",
+                "totalOccurrences"
+              ]
+            }
+          }
+        },
+        "required": [
+          "object",
+          "contentId",
+          "environmentId",
+          "startDate",
+          "endDate",
+          "timezone",
+          "contentType",
+          "uniqueUsers",
+          "totalOccurrences",
+          "byDay"
         ]
       },
       "QuestionAnalyticsResponseDto": {
