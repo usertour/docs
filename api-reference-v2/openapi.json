@@ -5069,7 +5069,8 @@
                 "nps",
                 "rating"
               ]
-            }
+            },
+            "description": "One entry per aggregable question (nps / rating / choice). Free-text questions (single/multi-line text) are omitted entirely \u2014 no aggregate signal for open text. To read raw answers (including free text), fetch sessions for this content with answers expanded."
           }
         },
         "required": [
