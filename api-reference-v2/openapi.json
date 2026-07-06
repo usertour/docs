@@ -6012,8 +6012,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -6437,8 +6435,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -6649,6 +6645,7 @@
                                 "type": "object",
                                 "properties": {
                                   "side": {
+                                    "description": "Which side of the target the tooltip sits on. OMIT side+align to auto-position (the tooltip picks a spot and flips to avoid the viewport edge \u2014 best when you can't see the element). Setting side (or align) pins that direction: the tooltip renders exactly there and no longer auto-flips, so only pin when the element is not near a screen edge.",
                                     "type": "string",
                                     "enum": [
                                       "top",
@@ -6658,6 +6655,7 @@
                                     ]
                                   },
                                   "align": {
+                                    "description": "Alignment along the side. See `side`.",
                                     "type": "string",
                                     "enum": [
                                       "start",
@@ -6672,6 +6670,7 @@
                                     "type": "number"
                                   },
                                   "alignType": {
+                                    "description": "Position mode. `auto` auto-positions and flips to avoid the viewport edge (ignoring side/align); `fixed` pins to side/align without flipping. Usually omit it: providing side/align implies `fixed`, and omitting them implies `auto`. Set it only to override that (e.g. `auto` while still passing a side/align you want ignored).",
                                     "type": "string",
                                     "enum": [
                                       "auto",
@@ -6685,10 +6684,7 @@
                                     "type": "boolean"
                                   }
                                 },
-                                "required": [
-                                  "side",
-                                  "align"
-                                ]
+                                "additionalProperties": false
                               },
                               {
                                 "type": "object",
@@ -6722,7 +6718,8 @@
                                 },
                                 "required": [
                                   "position"
-                                ]
+                                ],
+                                "additionalProperties": false
                               }
                             ],
                             "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
@@ -7286,6 +7283,7 @@
                                       "type": "object",
                                       "properties": {
                                         "side": {
+                                          "description": "Which side of the target the tooltip sits on. OMIT side+align to auto-position (the tooltip picks a spot and flips to avoid the viewport edge \u2014 best when you can't see the element). Setting side (or align) pins that direction: the tooltip renders exactly there and no longer auto-flips, so only pin when the element is not near a screen edge.",
                                           "type": "string",
                                           "enum": [
                                             "top",
@@ -7295,6 +7293,7 @@
                                           ]
                                         },
                                         "align": {
+                                          "description": "Alignment along the side. See `side`.",
                                           "type": "string",
                                           "enum": [
                                             "start",
@@ -7309,6 +7308,7 @@
                                           "type": "number"
                                         },
                                         "alignType": {
+                                          "description": "Position mode. `auto` auto-positions and flips to avoid the viewport edge (ignoring side/align); `fixed` pins to side/align without flipping. Usually omit it: providing side/align implies `fixed`, and omitting them implies `auto`. Set it only to override that (e.g. `auto` while still passing a side/align you want ignored).",
                                           "type": "string",
                                           "enum": [
                                             "auto",
@@ -7322,10 +7322,7 @@
                                           "type": "boolean"
                                         }
                                       },
-                                      "required": [
-                                        "side",
-                                        "align"
-                                      ]
+                                      "additionalProperties": false
                                     },
                                     {
                                       "type": "object",
@@ -7359,7 +7356,8 @@
                                       },
                                       "required": [
                                         "position"
-                                      ]
+                                      ],
+                                      "additionalProperties": false
                                     }
                                   ],
                                   "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
@@ -8780,8 +8778,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -9205,8 +9201,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -9412,6 +9406,7 @@
                           "type": "object",
                           "properties": {
                             "side": {
+                              "description": "Which side of the target the tooltip sits on. OMIT side+align to auto-position (the tooltip picks a spot and flips to avoid the viewport edge \u2014 best when you can't see the element). Setting side (or align) pins that direction: the tooltip renders exactly there and no longer auto-flips, so only pin when the element is not near a screen edge.",
                               "type": "string",
                               "enum": [
                                 "top",
@@ -9421,6 +9416,7 @@
                               ]
                             },
                             "align": {
+                              "description": "Alignment along the side. See `side`.",
                               "type": "string",
                               "enum": [
                                 "start",
@@ -9435,6 +9431,7 @@
                               "type": "number"
                             },
                             "alignType": {
+                              "description": "Position mode. `auto` auto-positions and flips to avoid the viewport edge (ignoring side/align); `fixed` pins to side/align without flipping. Usually omit it: providing side/align implies `fixed`, and omitting them implies `auto`. Set it only to override that (e.g. `auto` while still passing a side/align you want ignored).",
                               "type": "string",
                               "enum": [
                                 "auto",
@@ -9448,10 +9445,7 @@
                               "type": "boolean"
                             }
                           },
-                          "required": [
-                            "side",
-                            "align"
-                          ]
+                          "additionalProperties": false
                         },
                         {
                           "type": "object",
@@ -9485,7 +9479,8 @@
                           },
                           "required": [
                             "position"
-                          ]
+                          ],
+                          "additionalProperties": false
                         }
                       ],
                       "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
@@ -10040,6 +10035,7 @@
                                 "type": "object",
                                 "properties": {
                                   "side": {
+                                    "description": "Which side of the target the tooltip sits on. OMIT side+align to auto-position (the tooltip picks a spot and flips to avoid the viewport edge \u2014 best when you can't see the element). Setting side (or align) pins that direction: the tooltip renders exactly there and no longer auto-flips, so only pin when the element is not near a screen edge.",
                                     "type": "string",
                                     "enum": [
                                       "top",
@@ -10049,6 +10045,7 @@
                                     ]
                                   },
                                   "align": {
+                                    "description": "Alignment along the side. See `side`.",
                                     "type": "string",
                                     "enum": [
                                       "start",
@@ -10063,6 +10060,7 @@
                                     "type": "number"
                                   },
                                   "alignType": {
+                                    "description": "Position mode. `auto` auto-positions and flips to avoid the viewport edge (ignoring side/align); `fixed` pins to side/align without flipping. Usually omit it: providing side/align implies `fixed`, and omitting them implies `auto`. Set it only to override that (e.g. `auto` while still passing a side/align you want ignored).",
                                     "type": "string",
                                     "enum": [
                                       "auto",
@@ -10076,10 +10074,7 @@
                                     "type": "boolean"
                                   }
                                 },
-                                "required": [
-                                  "side",
-                                  "align"
-                                ]
+                                "additionalProperties": false
                               },
                               {
                                 "type": "object",
@@ -10113,7 +10108,8 @@
                                 },
                                 "required": [
                                   "position"
-                                ]
+                                ],
+                                "additionalProperties": false
                               }
                             ],
                             "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
@@ -11601,8 +11597,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -12026,8 +12020,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -12213,6 +12205,7 @@
                             "type": "object",
                             "properties": {
                               "side": {
+                                "description": "Which side of the target the tooltip sits on. OMIT side+align to auto-position (the tooltip picks a spot and flips to avoid the viewport edge \u2014 best when you can't see the element). Setting side (or align) pins that direction: the tooltip renders exactly there and no longer auto-flips, so only pin when the element is not near a screen edge.",
                                 "type": "string",
                                 "enum": [
                                   "top",
@@ -12222,6 +12215,7 @@
                                 ]
                               },
                               "align": {
+                                "description": "Alignment along the side. See `side`.",
                                 "type": "string",
                                 "enum": [
                                   "start",
@@ -12236,6 +12230,7 @@
                                 "type": "number"
                               },
                               "alignType": {
+                                "description": "Position mode. `auto` auto-positions and flips to avoid the viewport edge (ignoring side/align); `fixed` pins to side/align without flipping. Usually omit it: providing side/align implies `fixed`, and omitting them implies `auto`. Set it only to override that (e.g. `auto` while still passing a side/align you want ignored).",
                                 "type": "string",
                                 "enum": [
                                   "auto",
@@ -12249,10 +12244,7 @@
                                 "type": "boolean"
                               }
                             },
-                            "required": [
-                              "side",
-                              "align"
-                            ]
+                            "additionalProperties": false
                           },
                           {
                             "type": "object",
@@ -12286,7 +12278,8 @@
                             },
                             "required": [
                               "position"
-                            ]
+                            ],
+                            "additionalProperties": false
                           }
                         ],
                         "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
@@ -13675,8 +13668,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -14100,8 +14091,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -14282,6 +14271,7 @@
                       "type": "object",
                       "properties": {
                         "side": {
+                          "description": "Which side of the target the tooltip sits on. OMIT side+align to auto-position (the tooltip picks a spot and flips to avoid the viewport edge \u2014 best when you can't see the element). Setting side (or align) pins that direction: the tooltip renders exactly there and no longer auto-flips, so only pin when the element is not near a screen edge.",
                           "type": "string",
                           "enum": [
                             "top",
@@ -14291,6 +14281,7 @@
                           ]
                         },
                         "align": {
+                          "description": "Alignment along the side. See `side`.",
                           "type": "string",
                           "enum": [
                             "start",
@@ -14305,6 +14296,7 @@
                           "type": "number"
                         },
                         "alignType": {
+                          "description": "Position mode. `auto` auto-positions and flips to avoid the viewport edge (ignoring side/align); `fixed` pins to side/align without flipping. Usually omit it: providing side/align implies `fixed`, and omitting them implies `auto`. Set it only to override that (e.g. `auto` while still passing a side/align you want ignored).",
                           "type": "string",
                           "enum": [
                             "auto",
@@ -14318,10 +14310,7 @@
                           "type": "boolean"
                         }
                       },
-                      "required": [
-                        "side",
-                        "align"
-                      ]
+                      "additionalProperties": false
                     },
                     {
                       "type": "object",
@@ -14355,7 +14344,8 @@
                       },
                       "required": [
                         "position"
-                      ]
+                      ],
+                      "additionalProperties": false
                     }
                   ],
                   "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
@@ -15790,8 +15780,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -16215,8 +16203,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -16408,6 +16394,7 @@
                       "type": "object",
                       "properties": {
                         "side": {
+                          "description": "Which side of the target the tooltip sits on. OMIT side+align to auto-position (the tooltip picks a spot and flips to avoid the viewport edge \u2014 best when you can't see the element). Setting side (or align) pins that direction: the tooltip renders exactly there and no longer auto-flips, so only pin when the element is not near a screen edge.",
                           "type": "string",
                           "enum": [
                             "top",
@@ -16417,6 +16404,7 @@
                           ]
                         },
                         "align": {
+                          "description": "Alignment along the side. See `side`.",
                           "type": "string",
                           "enum": [
                             "start",
@@ -16431,6 +16419,7 @@
                           "type": "number"
                         },
                         "alignType": {
+                          "description": "Position mode. `auto` auto-positions and flips to avoid the viewport edge (ignoring side/align); `fixed` pins to side/align without flipping. Usually omit it: providing side/align implies `fixed`, and omitting them implies `auto`. Set it only to override that (e.g. `auto` while still passing a side/align you want ignored).",
                           "type": "string",
                           "enum": [
                             "auto",
@@ -16444,10 +16433,7 @@
                           "type": "boolean"
                         }
                       },
-                      "required": [
-                        "side",
-                        "align"
-                      ]
+                      "additionalProperties": false
                     },
                     {
                       "type": "object",
@@ -16481,7 +16467,8 @@
                       },
                       "required": [
                         "position"
-                      ]
+                      ],
+                      "additionalProperties": false
                     }
                   ],
                   "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
@@ -17167,6 +17154,7 @@
                         "type": "object",
                         "properties": {
                           "side": {
+                            "description": "Which side of the target the tooltip opens on. OMIT side+align to auto-position (picks a spot + flips to avoid the viewport edge); setting side (or align) pins that direction (no auto-flip). Same auto/fixed derivation as a flow tooltip.",
                             "type": "string",
                             "enum": [
                               "top",
@@ -17176,6 +17164,7 @@
                             ]
                           },
                           "align": {
+                            "description": "Alignment along the side. See `side`.",
                             "type": "string",
                             "enum": [
                               "start",
@@ -17188,12 +17177,16 @@
                           },
                           "alignOffset": {
                             "type": "number"
+                          },
+                          "alignType": {
+                            "description": "Position mode. `auto` auto-positions + flips (ignoring side/align); `fixed` pins to side/align. Usually omit \u2014 providing side/align implies `fixed`, omitting them implies `auto`. Without this, an `auto` launcher renders center and your `align` is ignored.",
+                            "type": "string",
+                            "enum": [
+                              "auto",
+                              "fixed"
+                            ]
                           }
-                        },
-                        "required": [
-                          "side",
-                          "align"
-                        ]
+                        }
                       },
                       "width": {
                         "type": "number"
@@ -18151,8 +18144,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -18576,8 +18567,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -18803,8 +18792,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -19228,8 +19215,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -23825,8 +23810,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -24250,8 +24233,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -24458,8 +24439,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -24883,8 +24862,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -25070,8 +25047,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -25495,8 +25470,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -25667,8 +25640,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
@@ -26092,8 +26063,6 @@
                   "not_contains",
                   "starts_with",
                   "ends_with",
-                  "match",
-                  "unmatch",
                   "any",
                   "empty",
                   "lt",
