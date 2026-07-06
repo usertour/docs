@@ -5862,6 +5862,7 @@
                       ]
                     },
                     "justify": {
+                      "description": "Horizontal alignment of this column's own block(s) within the column's width \u2014 use \"end\"/\"center\" to right-align or center a lone button (a single-column `columns` block).",
                       "type": "string",
                       "enum": [
                         "start",
@@ -5911,13 +5912,15 @@
                   "required": [
                     "blocks"
                   ]
-                }
+                },
+                "description": "One entry per column, laid out left-to-right. Each column is a mini vertical stack of `blocks` (usually one)."
               }
             },
             "required": [
               "type",
               "columns"
-            ]
+            ],
+            "description": "Lays 2+ blocks out side by side in one row. Top-level `content` blocks otherwise stack vertically \u2014 each is its own full-width row \u2014 so two `button` blocks placed directly in `content` render as two stacked rows, NOT a button pair. For a modal/tooltip footer with a Skip + primary button: one `columns` block with two `{ width: { unit: \"fill\" }, blocks: [...] }` entries, one button per column."
           },
           {
             "type": "object",
@@ -6872,7 +6875,8 @@
                                     ]
                                   }
                                 },
-                                "waitMs": {
+                                "waitSeconds": {
+                                  "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
                                   "type": "number"
                                 }
                               },
@@ -7111,8 +7115,8 @@
                             "lowest"
                           ]
                         },
-                        "waitMs": {
-                          "description": "Delay in milliseconds between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start.",
+                        "waitSeconds": {
+                          "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
                           "type": "number"
                         },
                         "startIfNotComplete": {
@@ -7508,7 +7512,8 @@
                                           ]
                                         }
                                       },
-                                      "waitMs": {
+                                      "waitSeconds": {
+                                        "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
                                         "type": "number"
                                       }
                                     },
@@ -7747,8 +7752,8 @@
                                   "lowest"
                                 ]
                               },
-                              "waitMs": {
-                                "description": "Delay in milliseconds between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start.",
+                              "waitSeconds": {
+                                "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
                                 "type": "number"
                               },
                               "startIfNotComplete": {
@@ -8625,6 +8630,7 @@
                       ]
                     },
                     "justify": {
+                      "description": "Horizontal alignment of this column's own block(s) within the column's width \u2014 use \"end\"/\"center\" to right-align or center a lone button (a single-column `columns` block).",
                       "type": "string",
                       "enum": [
                         "start",
@@ -8674,13 +8680,15 @@
                   "required": [
                     "blocks"
                   ]
-                }
+                },
+                "description": "One entry per column, laid out left-to-right. Each column is a mini vertical stack of `blocks` (usually one)."
               }
             },
             "required": [
               "type",
               "columns"
-            ]
+            ],
+            "description": "Lays 2+ blocks out side by side in one row. Top-level `content` blocks otherwise stack vertically \u2014 each is its own full-width row \u2014 so two `button` blocks placed directly in `content` render as two stacked rows, NOT a button pair. For a modal/tooltip footer with a Skip + primary button: one `columns` block with two `{ width: { unit: \"fill\" }, blocks: [...] }` entries, one button per column."
           },
           {
             "type": "object",
@@ -9630,7 +9638,8 @@
                               ]
                             }
                           },
-                          "waitMs": {
+                          "waitSeconds": {
+                            "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
                             "type": "number"
                           }
                         },
@@ -9869,8 +9878,8 @@
                       "lowest"
                     ]
                   },
-                  "waitMs": {
-                    "description": "Delay in milliseconds between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start.",
+                  "waitSeconds": {
+                    "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
                     "type": "number"
                   },
                   "startIfNotComplete": {
@@ -10257,7 +10266,8 @@
                                     ]
                                   }
                                 },
-                                "waitMs": {
+                                "waitSeconds": {
+                                  "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
                                   "type": "number"
                                 }
                               },
@@ -10496,8 +10506,8 @@
                             "lowest"
                           ]
                         },
-                        "waitMs": {
-                          "description": "Delay in milliseconds between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start.",
+                        "waitSeconds": {
+                          "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
                           "type": "number"
                         },
                         "startIfNotComplete": {
@@ -11441,6 +11451,7 @@
                       ]
                     },
                     "justify": {
+                      "description": "Horizontal alignment of this column's own block(s) within the column's width \u2014 use \"end\"/\"center\" to right-align or center a lone button (a single-column `columns` block).",
                       "type": "string",
                       "enum": [
                         "start",
@@ -11490,13 +11501,15 @@
                   "required": [
                     "blocks"
                   ]
-                }
+                },
+                "description": "One entry per column, laid out left-to-right. Each column is a mini vertical stack of `blocks` (usually one)."
               }
             },
             "required": [
               "type",
               "columns"
-            ]
+            ],
+            "description": "Lays 2+ blocks out side by side in one row. Top-level `content` blocks otherwise stack vertically \u2014 each is its own full-width row \u2014 so two `button` blocks placed directly in `content` render as two stacked rows, NOT a button pair. For a modal/tooltip footer with a Skip + primary button: one `columns` block with two `{ width: { unit: \"fill\" }, blocks: [...] }` entries, one button per column."
           },
           {
             "type": "object",
@@ -12426,7 +12439,8 @@
                                 ]
                               }
                             },
-                            "waitMs": {
+                            "waitSeconds": {
+                              "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
                               "type": "number"
                             }
                           },
@@ -12665,8 +12679,8 @@
                         "lowest"
                       ]
                     },
-                    "waitMs": {
-                      "description": "Delay in milliseconds between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start.",
+                    "waitSeconds": {
+                      "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
                       "type": "number"
                     },
                     "startIfNotComplete": {
@@ -13511,6 +13525,7 @@
                       ]
                     },
                     "justify": {
+                      "description": "Horizontal alignment of this column's own block(s) within the column's width \u2014 use \"end\"/\"center\" to right-align or center a lone button (a single-column `columns` block).",
                       "type": "string",
                       "enum": [
                         "start",
@@ -13560,13 +13575,15 @@
                   "required": [
                     "blocks"
                   ]
-                }
+                },
+                "description": "One entry per column, laid out left-to-right. Each column is a mini vertical stack of `blocks` (usually one)."
               }
             },
             "required": [
               "type",
               "columns"
-            ]
+            ],
+            "description": "Lays 2+ blocks out side by side in one row. Top-level `content` blocks otherwise stack vertically \u2014 each is its own full-width row \u2014 so two `button` blocks placed directly in `content` render as two stacked rows, NOT a button pair. For a modal/tooltip footer with a Skip + primary button: one `columns` block with two `{ width: { unit: \"fill\" }, blocks: [...] }` entries, one button per column."
           },
           {
             "type": "object",
@@ -14491,7 +14508,8 @@
                           ]
                         }
                       },
-                      "waitMs": {
+                      "waitSeconds": {
+                        "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
                         "type": "number"
                       }
                     },
@@ -14730,8 +14748,8 @@
                   "lowest"
                 ]
               },
-              "waitMs": {
-                "description": "Delay in milliseconds between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start.",
+              "waitSeconds": {
+                "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
                 "type": "number"
               },
               "startIfNotComplete": {
@@ -15622,6 +15640,7 @@
                       ]
                     },
                     "justify": {
+                      "description": "Horizontal alignment of this column's own block(s) within the column's width \u2014 use \"end\"/\"center\" to right-align or center a lone button (a single-column `columns` block).",
                       "type": "string",
                       "enum": [
                         "start",
@@ -15671,13 +15690,15 @@
                   "required": [
                     "blocks"
                   ]
-                }
+                },
+                "description": "One entry per column, laid out left-to-right. Each column is a mini vertical stack of `blocks` (usually one)."
               }
             },
             "required": [
               "type",
               "columns"
-            ]
+            ],
+            "description": "Lays 2+ blocks out side by side in one row. Top-level `content` blocks otherwise stack vertically \u2014 each is its own full-width row \u2014 so two `button` blocks placed directly in `content` render as two stacked rows, NOT a button pair. For a modal/tooltip footer with a Skip + primary button: one `columns` block with two `{ width: { unit: \"fill\" }, blocks: [...] }` entries, one button per column."
           },
           {
             "type": "object",
@@ -16615,7 +16636,8 @@
                           ]
                         }
                       },
-                      "waitMs": {
+                      "waitSeconds": {
+                        "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
                         "type": "number"
                       }
                     },
@@ -16838,8 +16860,8 @@
                   "lowest"
                 ]
               },
-              "waitMs": {
-                "description": "Delay in milliseconds between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start.",
+              "waitSeconds": {
+                "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
                 "type": "number"
               },
               "startIfNotComplete": {
