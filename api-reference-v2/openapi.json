@@ -6202,7 +6202,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -6215,10 +6215,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -8968,7 +8972,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -8981,10 +8985,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -11787,7 +11795,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -11800,10 +11808,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -13858,7 +13870,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -13871,10 +13883,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -15970,7 +15986,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -15983,10 +15999,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -18334,7 +18354,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -18347,10 +18367,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -18982,7 +19006,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -18995,10 +19019,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -24000,7 +24028,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -24013,10 +24041,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -24629,7 +24661,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -24642,10 +24674,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -25237,7 +25273,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -25250,10 +25286,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
@@ -25830,7 +25870,7 @@
                 "type": "string"
               },
               "count": {
-                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`).",
+                "description": "How many times the event must have occurred. Omit it for the common case \"the event has happened\" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n \u2265 1; use `at_most`/`exactly` with 0 for \"never happened\".",
                 "type": "object",
                 "properties": {
                   "op": {
@@ -25843,10 +25883,14 @@
                     ]
                   },
                   "n": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   },
                   "n2": {
-                    "type": "number"
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
                   }
                 },
                 "required": [
