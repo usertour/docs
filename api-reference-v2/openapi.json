@@ -4079,7 +4079,11 @@
     "contact": {}
   },
   "tags": [],
-  "servers": [],
+  "servers": [
+    {
+      "url": "https://api.usertour.io"
+    }
+  ],
   "components": {
     "securitySchemes": {
       "bearer": {
@@ -10633,10 +10637,6 @@
         "properties": {
           "name": {
             "description": "Name for the copy (defaults to the source name).",
-            "type": "string"
-          },
-          "environmentId": {
-            "description": "Target environment (defaults to the source content\u2019s environment).",
             "type": "string"
           }
         }
