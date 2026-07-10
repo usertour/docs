@@ -324,7 +324,7 @@
             "name": "createdAfter",
             "required": false,
             "in": "query",
-            "description": "Only items created at or after this ISO 8601 time.",
+            "description": "Only items created at or after this time \u2014 ISO date or datetime WITH timezone.",
             "schema": {
               "type": "string"
             }
@@ -333,7 +333,7 @@
             "name": "createdBefore",
             "required": false,
             "in": "query",
-            "description": "Only items created at or before this ISO 8601 time.",
+            "description": "Only items created at or before this time \u2014 ISO date or datetime WITH timezone.",
             "schema": {
               "type": "string"
             }
@@ -1709,7 +1709,7 @@
             "name": "createdAfter",
             "required": false,
             "in": "query",
-            "description": "Only items created at or after this ISO 8601 time.",
+            "description": "Only items created at or after this time \u2014 ISO date or datetime WITH timezone.",
             "schema": {
               "type": "string"
             }
@@ -1718,7 +1718,7 @@
             "name": "createdBefore",
             "required": false,
             "in": "query",
-            "description": "Only items created at or before this ISO 8601 time.",
+            "description": "Only items created at or before this time \u2014 ISO date or datetime WITH timezone.",
             "schema": {
               "type": "string"
             }
@@ -2042,7 +2042,7 @@
             "name": "createdAfter",
             "required": false,
             "in": "query",
-            "description": "Only items created at or after this ISO 8601 time.",
+            "description": "Only items created at or after this time \u2014 ISO date or datetime WITH timezone.",
             "schema": {
               "type": "string"
             }
@@ -2051,7 +2051,7 @@
             "name": "createdBefore",
             "required": false,
             "in": "query",
-            "description": "Only items created at or before this ISO 8601 time.",
+            "description": "Only items created at or before this time \u2014 ISO date or datetime WITH timezone.",
             "schema": {
               "type": "string"
             }
@@ -2934,7 +2934,7 @@
             "name": "createdAfter",
             "required": false,
             "in": "query",
-            "description": "Only items created at or after this ISO 8601 time.",
+            "description": "Only items created at or after this time \u2014 ISO date or datetime WITH timezone.",
             "schema": {
               "type": "string"
             }
@@ -2943,7 +2943,7 @@
             "name": "createdBefore",
             "required": false,
             "in": "query",
-            "description": "Only items created at or before this ISO 8601 time.",
+            "description": "Only items created at or before this time \u2014 ISO date or datetime WITH timezone.",
             "schema": {
               "type": "string"
             }
