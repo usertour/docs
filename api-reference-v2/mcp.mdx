@@ -138,6 +138,10 @@ Bridge to the HTTP endpoint with `mcp-remote`:
 
 ## Tools
 
+The server ships a routing map as MCP **server instructions** in the initialize
+handshake — which tool serves which intent, and to read `get_authoring_guide`
+before authoring — so an agent starts oriented without spending a tool call.
+
 Every tool carries MCP **annotations** (`readOnlyHint` / `destructiveHint`) so a
 client can gate calls: read tools run freely, while destructive writes
 (`delete_*`, `unpublish_*`, `end_session`, …) are flagged so the client can ask
