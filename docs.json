@@ -294,6 +294,12 @@
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/changelog",
+      "destination": "/changelog/2026"
+    }
+  ],
   "logo": {
     "light": "/logo-dark.svg",
     "dark": "/logo-light.svg",
