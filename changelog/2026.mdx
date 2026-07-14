@@ -1,0 +1,1013 @@
+---
+title: "2026"
+description: "Usertour releases in 2026"
+rss: true
+---
+
+<Update label="v0.8.8" description="July 14, 2026">
+
+This release makes **localization** a first-class capability: translate flows, checklists, launchers, banners, announcements and resource centers into any number of languages, let AI fill in the blanks, and deliver each user the language matching their `locale_code` attribute — with untranslated text always falling back to the source, so a half-finished translation never breaks content. Translations are versioned with the content and ship through the normal publish flow.
+
+### 🌍 A translation editor for every content type
+
+Define your languages once under **Settings → Localization**, then every content gets a **Localization** tab: pick a language and translate side by side — source on the left, translation on the right, grouped the way the content is structured (per flow step, per checklist section, and so on). Rich text keeps its formatting automatically, red and yellow markers track what's untranslated and what's outdated, an **Only untranslated** filter hides finished work, and everything autosaves. Resource-center content lists get translatable display names, so entries no longer leak the internal content name to end users. See the [Localization guide](https://docs.usertour.io/how-to-guides/localization) for the full tour.
+
+### 🤖 AI machine translation
+
+One click on **AI translate** machine-translates everything that's still untranslated — in batches, with live progress, resumable if a batch fails. Each row also gets a magic-wand button for translating just that text. Machine translation fills blanks only: it never overwrites a translation a human wrote or edited. On Usertour Cloud it ships with every paid plan; self-hosted instances bring their own provider — Anthropic, any OpenAI-compatible gateway (OpenAI, OpenRouter, Azure, local gateways), or AWS Bedrock, configured through `AI_*` environment variables.
+
+For agencies and external translators, **Export CSV / Import CSV** round-trips the whole translation set — blank cells keep existing translations, stale rows are skipped safely.
+
+### 🚚 Delivery keyed on the user's locale
+
+Set `locale_code` when you identify the user and Usertour picks the matching enabled translation — exact code first, then the primary language (`fr-CA` falls back to `fr`). The locale is **never auto-detected** from the browser: the right language for your product is the one your app renders in, and only your app knows that. Switching `locale_code` mid-session re-delivers live content in the new language on the spot. The widgets' built-in interface text — checklist prompts, survey buttons, screen-reader labels, dates — follows the same signal and ships in ten languages.
+
+### 🔁 Versioned, publish-gated, preview-ready
+
+Translations belong to the content version: enable a language when it's ready, publish to ship it, and forks or restores carry every translation along. Editing translations of a live version quietly continues on a draft — merely viewing translations never creates one. A **Preview** button renders any language with your working translations applied, no publish needed, and source-copy edits flag the affected rows for review so translations never silently drift.
+
+### 🐛 Fixes
+
+- **Widgets now apply mid-session updates fully.** A session update refreshed only part of the widget state, so changes like a plan's branding flag — and now the interface language — didn't take effect until reload.
+- **Checklists re-deliver when their delivered content changes.** The change detector compared only task lists, so updates to the launcher button or checklist body were dropped as "no change".
+- **Viewers see announcement content read-only** instead of an editable-looking editor, and the announcement list's guide link now points at the announcements guide.
+- **Settings row-action icons align on a shared icon box** across all settings tables.
+
+### 🛠️ Under the hood
+
+Localization is built as a structural-merge pipeline with one delivery gate:
+
+- Translations live in `VersionOnLocalization` rows — a structural clone of the source per (version, locale), where empty string means untranslated. Delivery merges structurally: the source tree owns structure and behavior, the translation donates non-empty text. Rows are keyed by step cvid, so forks and restores copy them verbatim with zero remapping.
+- Locale resolution is a pure function of the `locale_code` user attribute (seeded and backfilled as a default attribute), shared by content delivery, widget chrome, and the delivered-locale stamp on analytics events.
+- Machine translation is served by a new instance-level `ai` module (Vercel AI SDK; Anthropic / OpenAI-compatible / Bedrock with a three-tier AWS credential chain). Structured outputs are enforced end to end, and responses that split one translation across entries are dropped for retry instead of saving fragments.
+- The translation editor saves through read-write-symmetric payload builders: a session may only overwrite what it could read, so drifted or unreadable fragments of the stored row survive every save. Published versions fork lazily on the first actual write, and the editor pins its version so its own fork never remounts it mid-edit.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.8.7...v0.8.8
+
+</Update>
+
+<Update label="v0.8.7" description="July 8, 2026">
+
+This release brings **announcements** back as a first-class content type: compose product news in the builder, target and schedule it, and it lands in the Resource Center as a dated feed — with unread badges on the launcher and, for the news that deserves attention, a one-time popup shown as a centered modal or a speech bubble. Alongside it, a round of content-editor autosave hardening so concurrent edits, republishes, and page exits no longer lose work.
+
+### 📣 Announcements in the Resource Center
+
+The new **Announcement** content type publishes into its own Resource Center tab as a feed: newest first, grouped under date separators, each entry showing its intro content. An optional **Read more** opens the full article on a detail page inside the panel, and navigating back returns to the feed exactly where you left it. Announcement content supports the full block editor, user-attribute interpolation, and buttons limited to the actions that make sense inside a feed.
+
+### 🔔 Notification levels: silent, badge, popup
+
+Each announcement chooses how loudly it announces itself:
+
+- **Silent** — it simply appears in the feed.
+- **Badge** — an unread count appears on the launcher, the announcement tab, and the Resource Center home row; opening the feed marks everything seen and clears the badges immediately.
+- **Popup** — the newest unseen announcement additionally presents itself once, either as a **centered modal** or as a **speech bubble** anchored to the launcher, following all four launcher placements.
+
+Popup sizing lives in a dedicated **Announcement** section of the theme editor, so popups follow your theme like every other surface.
+
+### 🎯 Targeting, scheduling, and analytics
+
+Every announcement carries its own audience rules, evaluated server-side so the feed, the badge count, and the popup always agree on who sees what. Publishing stamps the announcement time; set a future time instead and the announcement stays hidden everywhere until that moment, then slots into the feed under the right date. Seen state is tracked per user and flows into analytics — announcement events show up in the user's activity feed, and the new default events are backfilled into existing projects on upgrade so no analytics are lost.
+
+### 🐛 Fixes
+
+- **The content editor no longer loses edits under concurrent saves.** Editing a published version's content and settings at the same time could fork two drafts and drop one side's changes, republishing could ship a stale config, and targeting edits could silently revert to the pre-edit rules after republish. Forks are now serialized and each save path applies its own changes.
+- **The save indicator tells the truth** — it stays on while a debounced save is still pending and survives edits made mid-write, so leaving the page no longer discards work that looked saved.
+- **Previews no longer crash on empty versions** — the launcher list and content-detail previews guard against versions that have no data yet.
+- **Resource Center home header background defaults to none**, so themes without an explicit header color render as designed.
+- **SDK: a failed Resource Center data load is no longer mistaken for an empty one** — failures are now retried, and widget socket round-trips are bounded by a timeout so a dropped acknowledgment can't hang the panel.
+
+### 🛠️ Under the hood
+
+The announcement pipeline is built around a single service so its security-sensitive decisions can't drift:
+
+- `AnnouncementService` owns one visibility gate — published, not deleted, announcement time reached, targeting passed — shared by the feed scan and the direct by-id fetch, so a deep link can never expose what the feed would hide. Websocket payloads for the announcement APIs are validated at the boundary.
+- Read state lives in a dedicated `BizAnnouncementSeen` table; marking is batched, and the insert-returning first-seen path emits each analytics event exactly once.
+- Default events/attributes backfill for existing projects moved from app boot into `prisma/seed`, running idempotently on every deploy; the seed now connects over `DATABASE_DIRECT_URL` so a saturated connection pooler can't silently skip it.
+- `@usertour/types` now holds only types and enums — all instantiated constants moved to `@usertour/constants`.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.8.6...v0.8.7
+
+</Update>
+
+<Update label="v0.8.6" description="June 24, 2026">
+
+This release brings **enterprise single sign-on**: any BUSINESS or ENTERPRISE project can now let its team sign in through its own OIDC identity provider — Okta, Microsoft Entra, Auth0, OneLogin, Authentik, or Google Workspace — configured entirely from Settings, with an optional **force-SSO** mode that routes everyone through the IdP. Alongside it, a new **Installation** page helps you wire up usertour.js and confirms it's working, plus a round of stability and crash-reporting improvements.
+
+### 🔐 Project-level single sign-on (OIDC)
+
+Each project can connect its own OIDC identity provider from **Settings → SSO** — paste in the issuer, client ID, and secret, copy the generated callback URL into your IdP, and pick the default role for new members.
+
+- **Works with any standard OIDC provider** — Okta, Microsoft Entra, Auth0, OneLogin, Authentik, Google Workspace — through issuer discovery, with optional explicit endpoint overrides.
+- **Force SSO**: require everyone in a project to sign in through the IdP; password and social logins are routed to the SSO entry instead.
+- **Invite-first provisioning by default**: a user must hold a pending invite to join through SSO, with optional **auto-provisioning** (just-in-time account creation) when you'd rather let the IdP vouch for new members. An existing account is never silently linked into a project it isn't already a member of.
+- **Branded sign-in**: upload a project logo in Settings and it appears on the SSO sign-in page.
+- **Graceful edges**: pending invites can be accepted through SSO, callback failures show friendly messages, and members aren't locked out if the project's SSO entitlement lapses.
+
+### 🧩 SDK installation page
+
+A new **Settings → Installation** page gives you the install snippet for the selected environment and a live check that polls until it detects your first identified user, so you know the SDK is wired up before you start building.
+
+### 🛡️ Stability & error reporting
+
+- **Automatic recovery from stale assets after a deploy** — a missing code chunk now triggers a clean reload instead of a broken screen.
+- **Browser auto-translation no longer crashes the app**, and unexpected errors are now reported to PostHog so they surface earlier.
+
+### 🐛 Fixes
+
+- **Bulk selection in the users / companies tables tracks the right rows** — after deleting a couple of entries the selection no longer jumps to unrelated rows (it's now keyed by entity ID rather than row position).
+- **Double-escaped text in translated strings is fixed** — apostrophes and quotes no longer render as HTML entities.
+- Builder polish: the exit-button icon points outward, and the bubble notch matches the bubble's background color.
+- **Dark mode and additional languages are still being completed** — this release defaults the workspace to light / English until that coverage lands.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.8.5...v0.8.6
+
+</Update>
+
+<Update label="v0.8.5" description="June 18, 2026">
+
+This release rebuilds the **content builder** and gives the whole admin app a visual refresh. Every content type — flows, launchers, checklists, banners, and resource centers — now lives in one route-driven builder that shares the same floating-panel chrome, settings fields, and navigation. Alongside it the workspace gains a full **dark mode** and a round of design-system cleanup so weights, cards, and controls read consistently everywhere.
+
+### 🏗️ A rebuilt content builder
+
+All five content types now share one builder shell — a floating sidebar panel, route-driven views (no more mode flags), and a common set of field primitives. Editing feels the same whether you're in a flow, launcher, checklist, banner, or resource center. The sidebar footer was redesigned too: an honest save-state indicator (saving / saved / unsaved / failed) and a clear **Exit**, instead of the old misleading "Save preferences".
+
+### 🌙 Dark mode
+
+The entire back office now has a proper dark theme — a calm blue-tinted near-black with layered surfaces for panels, cards, popovers, and controls, so depth still reads without harsh borders.
+
+### 🎨 Design-system polish
+
+A consistency pass across the app: emphasis weight unified from semibold to medium, a single type scale, calmer cards and checkboxes, borderless shadow-based dropdowns and popovers, and friendlier auto-generated step names. Builder tooltips were also rewritten in plainer, more conversational language.
+
+### 🐛 Fixes
+
+- **Launcher tooltips now render inside an iframe** like flows and checklists, so the host page's CSS can no longer corrupt their styling.
+- **Embedding a YouTube URL works in resource centers, banners, checklists, and launchers** — they now resolve oembed instead of trying to iframe the raw watch URL.
+- **Modal placements apply both offsets** on edge-centered positions, and **icon-launcher theme opacity** takes effect in the SDK.
+- **A step's "Same as flow" theme persists** instead of silently reverting to a specific theme.
+- The element-picker button now shows a real tooltip so its purpose is clear.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.8.4...v0.8.5
+
+</Update>
+
+<Update label="v0.8.4" description="May 30, 2026">
+
+This release rebuilds how the admin app fetches and caches server data — moving apps/web off its React-Context data layer onto Apollo's normalized cache and a set of focused hooks, and unifying every list's pagination behind shared primitives. For day-to-day use the wins are freshness and stability: a teammate's edits show up without a manual refresh, the content detail page and theme builder no longer flash or go stale after a save, and the users / companies / sessions tables share one consistent, race-free pager. Under the hood this retires roughly twenty server-state Contexts and consolidates the duplicated users/companies UI.
+
+  ## What's Changed
+
+  ### 🔄 Live, consistent data across the workspace
+
+  The admin app now reads through a normalized Apollo cache, so a mutation in one place updates every view showing the same record. Shared lists run cache-and-network, which means members of the same project see each other's edits without reloading.
+  Account email / profile changes, theme edits, and content updates now reflect immediately and in full.
+
+  ### ✨ Content detail and theme builder stop flashing
+
+  Restoring a version or a publish-then-edit no longer blanks the content detail page mid-transition, and the theme builder reflects a theme edit the moment it saves instead of briefly showing the pre-edit state. The builder also stays mounted through background refetches rather than momentarily going blank.
+
+  ### 📜 Unified, sturdier list pagination
+
+  Users, companies, sessions, and analytics tables now share one cursor-pagination engine. Clicking the pager faster than the network can respond no longer races into showing one page while the indicator reads the next, and bulk-deleting the rows on the last page no longer strands you on a page that no longer exists. The contents list moved to infinite scroll, and the "Load more" lists no longer collapse or double-fetch.
+
+  ### 🚧 Explicit not-found pages
+
+  Opening a stale or invalid detail URL now shows a clear "not found" page instead of a silent blank screen.
+
+  ### 🐛 Fixes
+
+  - **Mutations that reuse a cached record no longer fail.** Outgoing variables now strip the cache's `__typename` tag, which the server's input types had been rejecting.
+  - **The segment-filter "Save" button hides correctly after saving, and no-op edits stop re-running queries.** Condition comparison now matches the server's JSON-equivalent form instead of in-memory key differences.
+
+  ### 🛠️ Under the hood
+
+  The apps/web data layer was reorganised end-to-end; the sections above are the visible surface, here is the shape behind them:
+
+  - Apollo `InMemoryCache` switched to normalized mode with per-mutation `update(cache)` callbacks. The app-wide default is `no-cache`, with an explicit `SHARED_CACHE_QUERY_OPTIONS` (cache-and-network) opt-in for shared lists and facade hooks. Recorded as ADR 0005 / 0006.
+  - The server-state-in-Context anti-pattern is retired: ~20 Context providers deleted in favour of focused hooks, `AppContext` is now a thin facade over identity hooks, and the remaining raw `useQuery` / `useMutation` calls are wrapped in
+  `@usertour/hooks`.
+  - List pagination unified into three documented primitives — `useCursorPagination` (page buttons), `useLoadMoreAccumulator` (load-more), and a shared `useCursorFetchMore` request-side helper — with cache-level merge owned by typePolicy accumulators.
+  - Users and companies UI deduplicated into shared `components/segments/entity/*` components.
+  - `apollo3-cache-persist` dropped (in-memory cache only); the analytics session table's row-shared queries hoisted from per-row to per-table (~80 → 3 observers); a lighter `useShouldShowMadeWith` reader replaces a three-query `useSubscription` on theme previews.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.8.3...v0.8.4
+
+</Update>
+
+<Update label="v0.8.3" description="May 28, 2026">
+
+Hardens the segments / users / companies surface and lands a workspace-wide UI package consolidation.
+
+  ✨ Highlights
+
+  - Viewer-role members get a clean read-only list. Row checkboxes and bulk-action buttons (add to manual segment, remove, delete) no longer appear on the users / companies tables for viewer-role accounts — no more grey buttons or fake affordances they can't act on.
+  - Segment dialogs settle down. The rename dialog no longer refetches the segment list on Cancel / Escape (used to flash the table); selecting a row on a MANUAL segment on the companies page no longer hits the error boundary; double-submit and view-only guards aligned across the user / company filter-save dialogs.
+  - Soft-deleted content surfaces correctly. The content detail page renders a "404 / This content has been deleted" placeholder instead of going blank for deleted flows / checklists / etc. Sessions tied to deleted content now carry a "Deleted" badge on the user-detail Sessions tab and the session-detail page so historical analytics stay legible.
+  - @usertour/ui consolidation (ADR 0004). The 38 per-component packages under packages/components/\<atom>/ (button, dialog, popover, ...) collapse into a single @usertour/ui aligned with shadcn's single-directory convention. @usertour/frame is kept standalone so the embedded SDK / widget bundles stay unaffected — SDK usertour.js is byte-identical to the v0.8.2 build. See docs/adr/0004 for the full migration story.
+
+  🐛 Fixes
+
+  - Non-English users no longer see hardcoded English literals from shared UI primitives — date-range picker presets, locale selector
+  placeholders, and content-loading spinner messages now flow through i18n.
+  - Two DateRangePicker instances on the content analytics page (header + tooltip-target-missing dialog) no longer share a duplicate DOM id="date" — axe / lighthouse no longer flag the a11y violation.
+  - SegmentEditDialog's Save with a missing segment id now surfaces an error toast instead of silently dead-buttoning.
+  - Bulk delete / remove toasts no longer render "0 users deleted" on a successful action when the server's count field comes back nullable — falls back to the confirmed selection count.
+  - useSaveCompanySegmentFilter no longer misattributes a post-save refetch failure as "save failed".
+  - ENCRYPTION_KEY is wired through config and the in-service 'development-key-not-secure' fallback is removed — operators must set the env var explicitly (production deployments unaffected).
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.8.2...v0.8.3
+
+</Update>
+
+<Update label="v0.8.2" description="May 27, 2026">
+
+Wraps up the Settings module hygiene pass, codifies two project-wide React component conventions, and lands a batch of audit-discovered fixes.
+
+  ✨ Highlights
+
+  - Settings refactor wraps up. Shared primitives (NewItemButton, DestructiveConfirmDialog managed mode, useSettingsForm), consistent "New X" copy across create dialogs, and faster /settings/events (no per-row listAttributeOnEvents fetch on mount).
+  - Component-style conventions. Two new rules under docs/conventions/react-components.md — Radix-style named *Props + body destructure, and const over function for component declarations — applied across @usertour/ui, theme builder, and settings.
+  - Attribute & event picker overhaul. + New attribute defaults Object type to the active tab; the event dialogs' attribute picker now scrolls inside the dialog, searches by display name (not UUID), and hides already-selected items.
+
+  🐛 Fixes
+
+  - Profile name save no longer wipes the user's avatar.
+  - Attribute delete handles the AttributeOnEvent foreign key instead of throwing a Prisma error.
+  - Salesforce-sandbox now writes to its own integration row (was silently aliasing production).
+  - Toggling an integration's "Stream events" switch off no longer commits unsaved API key edits.
+  - Destructive dialogs stay locked while their mutation is in flight; 2FA Setup / Regenerate dialogs reset on Cancel; session delete / end dialogs no longer hang on soft-failure.
+  - Segment edit dialogs and theme variation rename no longer clobber the user's typing on Apollo cache updates.
+  - PostHog "Personal API key" and HubSpot "Private App access token" labels restored (had regressed to generic "API Key").
+
+</Update>
+
+<Update label="v0.8.1" description="May 24, 2026">
+
+This release introduces a capability-based permission system that runs from a single role-capability matrix on the server through to the navigation gating in the web app. User-visible deltas are mostly about feedback — error toasts now show the server's
+   actual reason, save dialogs confirm success and keep your input on failure, and a handful of admin pages no longer crash when you open a soft-deleted record. Under the hood, 11 per-module permission guards collapse into one capability guard backed by a
+   93-endpoint authorization test matrix.
+
+  ## What's Changed
+
+  ### 🛡️ Settings nav and routes match real permissions
+
+  VIEWER members previously saw greyed-out menu items and pages the backend would reject anyway (Themes, Integrations, API Keys, Team management). The web app now hides or redirects based on the user's actual capabilities, derived from a single
+  server-defined role-capability matrix. A VIEWER lands on a cleaner Settings shell with only what they can use.
+
+  ### 💬 Error toasts show the server's actual reason
+
+  A handful of admin actions (End / Delete session, several integration and API-key flows) used to swallow the server's error and show a static "Failed to X" string. They now surface the real reason — "You do not have permission to access this project",
+  "A resource with this identifier already exists", and so on. The destructive toast shape is also unified across the app, dropping the odd "Error" headers that appeared in five places and nowhere else.
+
+  ### ✅ Save dialogs confirm success and retain input on failure
+
+  Create / Update Attribute and Event dialogs used to close silently on success (no green toast) and also close on failure (eating the user's input). They now show a "successfully updated" toast on success, stay open on failure so you can retry without
+  retyping, and the submit button no longer gets stuck loading on the failure path.
+
+  ### 🐛 Fixes
+
+  - **Viewing a soft-deleted content no longer 500s.** `getContent` returned a generic 500 when the underlying row was soft-deleted; it now returns a typed not-found response the UI can render.
+  - **Viewing a soft-deleted session no longer 500s.** Same shape for `querySessionDetail`.
+  - **Duplicate event / attribute names return a typed error.** Creating a row with a duplicate `codeName` previously leaked Prisma's `P2002` as a generic 500; it now returns `E0048` (`ResourceAlreadyExistsError`).
+  - **Deleting a localization with localized version data no longer 500s.** The delete now cascades `VersionOnLocalization` rows in one transaction.
+  - **Step / version-localization mutations stop bouncing on soft-deleted content.** `contentVersionIsEditable` null-guards before reading `editedVersionId`.
+
+  ### 🛠️ Under the hood
+
+  The server's permission surface was refactored end-to-end. The bullets above are the visible deltas; here's the architectural shape behind them:
+
+  - A single `ROLE_CAPABILITIES` matrix in `@usertour/constants` is the source of truth for "what each role can do". The previous pattern of 93 `@Roles([VIEWER, ADMIN, OWNER])` decorators scattered across resolvers is replaced by
+  `@RequirePermission(Capability.X)` plus one `PermissionGuard` that reads the matrix. Adding a new role is now one matrix row, not 93 decorator edits.
+  - 11 per-module guards (content / environments / biz / integration / localizations / attributes / themes / events / analytics / team / projects) collapse into one `PermissionGuard` with a scope-resolver registry. Each resolver registers how to derive
+  `projectId` from its args (e.g. `contentId → content.projectId`), so the guard's "is this user a member of the resource's owning project" check is one code path.
+  - `UserOnProject.capabilities: [String]` is now part of the GraphQL schema. The web app's `useAppContext().can(capability)` reads from this array instead of re-deriving from the role string, so frontend and backend gates can't drift.
+  - A 93-endpoint × 5-role authorization test matrix lives in `test/e2e/endpoints.ts` and drives two surfaces: `permission.e2e-spec.ts` (jest, 312 deny-direction assertions + cross-project IDOR coverage) and `test/smoke/spot-check.sh` (env-driven bash
+  tool, 558-row diagnostic against a seeded fixture). Adding a new role-gated endpoint is one row in the table; both surfaces pick it up.
+  - Test factories adopt the outline-style "recursive override" shape — `buildX(prisma, overrides?)` auto-builds missing parent FKs, so a new spec can do `await buildStep(prisma)` and get a fully-wired project → environment → content → version → step
+  chain in one line.
+
+  **Full Changelog**: https://github.com/usertour/usertour/compare/v0.8.0...v0.8.1
+
+</Update>
+
+<Update label="v0.8.0" description="May 21, 2026">
+
+A bug-fix release: flows no longer re-trigger after dismissal, the user / company / session detail pages show live SDK data, and the session-management surface is cleaned up.
+
+  🐛 Fixes
+
+  🔁 Flows and checklists honour "show once"
+
+  A single-step flow no longer re-starts every time it's dismissed. "Once" is now the real default, and already-published content is healed automatically — no re-publish needed.
+
+  🔄 Detail pages show live data
+
+  Attributes and events the SDK creates at runtime (identify / track) now appear on the User, Company, and Session pages without a hard reload.
+
+  🧹 Smaller fixes
+
+  - 📋 Banner button "Start a flow / checklist" was empty — it now lists your content.
+  - 📊 Analytics charts went stale after deleting or ending a session — they now refresh along with the table.
+  - ⏳ Detail pages no longer flash "not found" before the record loads; a session still loading its events shows a spinner instead.
+  - 💬 Cleaned up the delete-session dialog wording.
+
+  Full Changelog: https://github.com/usertour/usertour/compare/v0.7.9...v0.8.0
+
+</Update>
+
+<Update label="v0.7.9" description="May 20, 2026">
+
+Authentication overhaul: sign-up, login, forgot-password, team invites and
+  logout were rebuilt and hardened end to end, plus self-serve project selection.
+
+  ## Highlights
+  - **Reworked auth flows** — invite rebuilt, reset-password folded into the login
+    page, reset codes hardened, and the whole signup/login/invite path tightened.
+  - **Self-serve project selection** — a user with no active project now lands on a
+    dedicated page to create or pick one, instead of a silent "Unnamed Project"
+    bootstrap or a blank admin shell.
+
+  ## Security
+  - Login no longer runs invite/side effects before the password is verified, and
+    invites are bound to the recipient's email.
+  - Refresh tokens are single-use and **deleted** on rotation/logout (no more
+    unbounded `revoked` rows); a daily job sweeps expired rows.
+  - Logout ends **only the current session**; "log out everywhere" stays reserved
+    for password change / 2FA enrollment.
+  - Reset-by-code consumption + password update are atomic; OAuth email is
+    lowercased at the boundary; invite races and seat-count edges tightened.
+
+  ## Fixes
+  - Logout / account-switch hard-loads a clean login page — no `?next` flash and
+    no leaking of the page you just left.
+  - Cross-tab auth sync: login/logout/register in one tab reloads the others onto
+    the shared session; stale-tab drift on email-link flows self-recovers.
+  - Auth pages gate on globalConfig (no OAuth-button flash) and read it from a
+    single source (no duplicate queries / double loading).
+  - Invite email now renders the project name correctly.
+
+  ## Performance
+  - Project initialization batched into far fewer queries.
+
+</Update>
+
+<Update label="v0.7.8" description="May 17, 2026">
+
+This release polishes the sign-in flow and the routing layer that supports it. Auth pages now respect the user's locale, sign-in remembers the page the user was trying to reach before being bounced, and the app lands on an environment the user actually
+  has access to instead of the hardcoded `/env/1/flows`. Under the hood the auth router is rebuilt around a single state machine and @usertour/hooks's monolithic `gql.ts` gets its first domain split.
+
+  ## What's Changed
+
+  ### 🌐 Localization on auth pages
+
+  Eight auth pages and their shared components — sign-in, sign-up, registration, invite, password reset, set-up admin, and the two 2FA screens — now go through `useTranslation('ui')` under a new `auth.*` namespace. Switching to zh-Hans flips every label,
+  button, placeholder, and validation message; English remains the default.
+
+  ### 🔗 Deep-link return after sign-in
+
+  When a not-yet-logged-in user opens a deep link (e.g. a `/env/X/users` URL shared from elsewhere), they're bounced to sign-in with the original URL preserved as `?next=…`. After signing in, they land back on the original page instead of the default
+  home. Same applies on the way through 2FA — `?next=` is carried across the challenge step.
+
+  ### 🧭 Environment-aware landing
+
+  The "where do I go after sign-in?" decision is no longer a hardcoded env id baked into server config. The SPA now picks the landing env from `useAppContext().environment` → `localStorage` → primary env → first env in the user's list, so a user who only
+  belongs to env 7 is no longer dumped on env 1.
+
+  ### 🪟 404 stays inside the admin shell
+
+  Hitting an unknown URL while logged in used to drop the user on a fullscreen blank 404 with no way back to the app. The 404 now renders inside the same shell, with the sidebar still visible, so navigation is one click away. Hitting an unknown URL while
+  not logged in funnels through the same sign-in flow as any other protected page (preserving `?next=`); hitting it on a still-being-set-up self-host instance redirects to `/auth/setup-admin` like the rest of the routes.
+
+  ### 🎨 Sign-in visual refresh
+
+  The sign-in / sign-up / 2FA / password-reset cards now sit on a subtle grid-and-glow background keyed off the site's brand HSL variable, replacing the flat indigo gradient. Adjusting the brand colour in the future will carry these pages along
+  automatically.
+
+  ### 🐛 Fixes
+
+  - **Admin nav highlight restored.** Users / Companies / Settings were no longer highlighted in the sidebar after navigating into them. Fixed by switching active-state detection from the (now wrong) inner-route id to URL pattern matching.
+  - **OAuth failure lands on the sign-in page, not the API.** Split-origin deploys (API and SPA on different hosts) used to dump OAuth-failure traffic onto a non-existent `/auth/signin` route on the *API* host. The redirect now prefixes the SPA host
+  correctly.
+
+  ### 🛠️ Under the hood
+
+  The `apps/web` auth surface was reorganised end-to-end. The bullets above are the visible deltas; here's the architectural shape behind them:
+
+  - The hand-rolled `CustomRoute` if-chain in `routes/index.tsx` is replaced by `<AuthGuard mode='guest' | 'user' | 'setup'>`, a single three-mode state machine that owns every auth-related redirect (setup-admin enforcement, sign-in bounce with `?next=`,
+  2FA enrolment). `routes/config.ts` becomes a nested `RouteObject` tree with `React.lazy` per-page chunks; page-area providers (Environment / Attribute / Subscription) mount once at the user-area parent and stop remounting on every navigation.
+  - Seven hand-rolled `<Card>` + `<CardHeader>` blocks across the auth pages collapse into one `<AuthCard>` shell that owns the title chrome, description, footer slot, and loading skeleton. The three legacy React contexts that shadowed `react-hook-form`'s
+   `<Form>` (SignInContext / RegistrationContext / InviteContext) are dropped — the same data flows through `useFormContext()` and props.
+  - The `Auth.redirectUrl` field on the GraphQL schema and the `LOGIN_REDIRECT_URL` env var that fed it are gone. The SPA now owns the post-login destination decision: `?next=` (validated as same-origin) wins, otherwise `LandingRedirect` resolves the env.
+   OAuth callbacks redirect to the SPA root through the same handler.
+  - `packages/hooks/src/hooks/gql.ts` had grown to 1306 lines; the auth domain (13 hooks + 3 new mutation wrappers) splits out to a new `hooks/auth.ts` module. The why, and the triggers that should pull more domains out in the future, are documented in
+  `docs/adr/0002-hook-domain-boundary.md`. The package also gets a README with the decision tree for adding new hooks.
+
+  **Full Changelog**: https://github.com/usertour/usertour/compare/v0.7.7...v0.7.8
+
+</Update>
+
+<Update label="v0.7.7" description="May 16, 2026">
+
+This release polishes the content-detail editor: clearer empty-state guidance when an auto-start rule isn't yet usable, two end-to-end races around publish-then-edit and rapid-delete eliminated, and the tracker editor brought in line with the auto-start
+   rules card so they no longer behave differently from the user's side.
+
+  What's Changed
+
+  🎯 Auto-start rules editor
+
+  - "No conditions yet" empty state. When the auto-start toggle is on but no conditions are set, ContentDetailAutoStartRules now surfaces an inline "rule won't activate until you add at least one condition" card. The runtime is never sent an enabled=true
+  rule with an empty autoStartRules — coerceEnabledForPersist writes enabled=false on the wire even while the local toggle visually stays on, so the user can see what they're configuring without producing an un-actionable server state.
+  - Sibling settings hide while incomplete. Wait / Frequency / "Only start if not complete" / Priority now render only when the rule is on AND has at least one condition. Off-state hides them along with the conditions list; empty-state hides them because
+  their writes would never reach the wire anyway (and fully-controlled Priority would visibly snap back on click).
+  - No-op saves removed. Flipping the auto-start switch when the coerced enabled value already matches the server no longer queues a save. Previously, turning the toggle on or off with no conditions wrote (false, []) even though the server was already in
+  that state — and on a published version, that no-op write silently forked a new draft.
+  - "Only start if not complete" responds instantly on Frequency change. Switching Frequency between Once / Multiple / Unlimited used to leave the IfCompleted control hidden for ~1s because its visibility gate read from the setting prop, which goes
+  through the debounced save / mutation / refetch round-trip. A localSetting mirror in autostart-rules now reflects user edits synchronously; a lastObservedSettingRef with deep-equal compare ignores reference-only prop flips emitted during the save cycle
+  (where setIsSaving(true) triggers a parent re-render carrying the still-stale version.config).
+  - No flicker on Frequency switch. Switching options no longer triggers a redundant setData re-render in ConditionFrequency that briefly flashed the picker's children. The prop-sync useEffect uses value-equality bailout (isEqual(prev, next)) so the
+  user's own edit echoing back through defaultValue doesn't cycle the children.
+
+  🧪 Tracker editor
+
+  - Trigger conditions share the auto-start empty-state UX. Auto-start rules and tracker rules now behave identically when their conditions list is empty: both show "No conditions yet" with the same hint. The showEmptyState gate moved from
+  showEnabledSwitch && enabled && … to effectiveEnabled && …, so switchless consumers (tracker passes showEnabledSwitch=\{false\}) automatically participate.
+  - Same "don't autosave empty" policy. Tracker's handleAutoStartRulesDataChange now calls debouncedUpdateVersion.cancel() when conditions go empty, mirroring content-detail-settings.tsx. Without this, a rapid delete sequence in the tracker editor had the
+   same lost-deletion race as the auto-start card.
+
+  🚦 Publish gating
+
+  - Flow publish requires at least one step. useContentPublishState now keeps the Publish button disabled when content.type === FLOW and version.steps is empty — an empty flow has nothing for the runtime to render. Mirrors the existing
+  tracker-needs-event-and-conditions check.
+
+  🐛 Fixes
+
+  - Rapid condition deletion no longer resurrects deleted conditions. A "delete A → delete B → delete C" burst previously left the debounce queue holding the second-to-last value (e.g. [C]), which fired ~500ms after the user emptied the list and re-synced
+   the server back to that stale state on refetch. Both content-detail-settings.tsx and content-detail-tracker-editor.tsx now call debouncedUpdateVersion.cancel() when conditions become empty.
+  - Version history shows the new draft after publish-then-edit. Editing a just-published content silently forks a new draft version (because ensureEditableVersionId refuses to update a published version in place), but the Apollo listContentVersions cache
+   wasn't auto-refreshed — so the Version tab kept showing the pre-fork list until reload. processVersion / saveVersionData / saveVersionTheme / saveVersionScheduledAt now detect fork via editableVersionId !== version.id and add refetchVersionList to the
+  post-mutation Promise.all.
+  - Frequency / Wait pickers sync on content or version switch. ConditionFrequency and ConditionWait previously only read defaultValue for the initial useState value; subsequent prop changes were ignored, so navigating between contents left both pickers
+  stuck on the prior content's values until the user re-interacted. Both now sync internal state via a prop-sync useEffect on defaultValue change.
+
+  Full Changelog: https://github.com/usertour/usertour/compare/v0.7.6...v0.7.7
+
+</Update>
+
+<Update label="v0.7.6" description="May 15, 2026">
+
+This release adds two-factor authentication to Usertour. Every account can now opt into TOTP-based 2FA from Settings → Account, and
+  self-hosted system admins can require it for everyone on the instance. Password login also gets per-email lockout after repeated failures.
+
+  What's Changed
+
+  🔐 Two-factor authentication
+
+  - New TOTP-based 2FA flow using authenticator apps (Google Authenticator, Authy, 1Password, etc.). Secrets are stored AES-256-GCM encrypted;
+  each user gets 10 one-time recovery codes (bcrypt-hashed) at setup, shown once with a Download / Copy / "I have saved" confirmation gate.
+  - Sign-in adds an /auth/2fa step when 2FA is on. The page accepts both an authenticator code and — via "Use a recovery code instead" — a
+  one-time recovery code. The same flow applies to email/password and the Google/GitHub OAuth callbacks.
+  - Step-up auth on sensitive operations: disabling 2FA and regenerating recovery codes both require a fresh authenticator (or recovery) code.
+  Recovery code consumption is an atomic CAS so a stolen list cannot be replayed concurrently.
+  - Settings → Account exposes the full lifecycle: enable, regenerate, disable, plus a recovery-codes sub-row that reflects current state.
+
+  🏢 Instance-wide enforcement (self-hosted)
+
+  - New Require 2FA for all users toggle on System Admin → Authentication. When on, non-enrolled users are redirected to a forced
+  /auth/2fa/setup page on their next request and cannot bypass it via API clients.
+  - Server-side enforcement runs in two layers: turning the policy on revokes refresh tokens of every non-enrolled user, and a
+  TwoFactorEnrollmentGuard rejects non-bootstrap GraphQL operations from non-enrolled users while the policy is active.
+  - The toggle is gated by the instance license. If the license stops covering 2FA, the policy goes dormant (not silently off): existing
+  enrolled users keep verifying, new non-enrolled users stop being forced. Admins cannot turn the policy on until they have enabled 2FA on
+  their own account, to avoid self-lockout.
+  - SaaS deployments don't surface the instance-wide toggle — per-user 2FA only.
+
+  🛡️ Password lockout
+
+  - Email/password login now locks out a given email after 10 failed attempts in a rolling 10-minute window, backed by a Redis Lua-script INCR
+  + EXPIRE helper. Lockout is per-email, not per-IP, and clears automatically on success.
+
+  Full Changelog: https://github.com/usertour/usertour/compare/v0.7.5...v0.7.6
+
+</Update>
+
+<Update label="v0.7.5" description="May 14, 2026">
+
+This release collapses the monorepo's two package scopes into one. @usertour-packages/* is gone — every workspace package now lives under @usertour/*, matching the four packages that were already there. No user-visible behaviour change; this is a
+  one-shot mechanical refactor that closes a long-running source of decision friction and rename churn whenever a package's runtime shape changed.
+
+  What's Changed
+
+  📦 Unified package namespace
+
+  - All 60 packages previously under @usertour-packages/* move to @usertour/*: every packages/components/* and packages/radix/* leaf, plus business-components / builder / contexts / editor / finder / gql / hooks / i18n / icons / dom / tailwind / widget /
+  ui. Apps and the four pre-unified packages (types, helpers, constants, license) keep their existing names.
+  - Roughly 791 import sites, every workspace package.json's name and dependencies entries, the root build:deps script, the four dev* filter lists, turbo.json's dev.dependsOn, and the SDK Vite bundler's manual-chunk regex all switch over in one mechanical
+   pass.
+  - docs/architecture/packages.md updates: the Namespace section now reads "every workspace package lives under @usertour/*", and the P1 → P2 migration checklist drops the namespace-rewrite step that's no longer needed. The types-vs-constants boundary
+  still applies.
+
+  🔢 SDK 0.7.0
+
+  - @usertour/sdk bumps to 0.7.0 to signal the namespace rename, since every transitive @usertour-packages/* import path that SDK consumers reached through has shifted.
+
+  🧹 Why now
+
+  The split between @usertour/* and @usertour-packages/* had drifted into a marker of "this package has been promoted to a Node-consumable shape yet" — a moving target that forced a rename every time a P1 package was promoted to P2. The v0.7.4 work to
+  promote @usertour-packages/constants triggered one such rename; codifying the unification now avoids the next one. With one scope, the package shape (P1 / P2) lives entirely in package.json fields and the build pipeline, which is where it belongs.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.7.4...v0.7.5
+
+</Update>
+
+<Update label="v0.7.4" description="May 13, 2026">
+
+This release lands a shared plan-features matrix that finally unifies how the server enforces plan gates and how the pricing page presents
+  them — Subscription.overridePlan lights up across the stack so per-customer CS grants take effect everywhere instead of just one layer. The
+  team-invite path also gains long-missing safety nets, and the pricing settings page aligns with usertour.io's marketing copy.
+
+  What's Changed
+
+  🧱 Plan features matrix (cross-cutting infrastructure)
+
+  - New PlanFeatures type in @usertour/types and a shared PLAN_FEATURES matrix in @usertour-packages/constants/billing that covers every
+  per-tier value the product gates on today: removeBranding, sessionsLimit, teamMemberLimit, environmentLimit, dataRetentionYears,
+  apiRateLimit, plus placeholders for upcoming auditLogs / ssoSaml / ssoOidc gates.
+  - resolvePlanFeatures(planType, overridePlan), parseOverridePlan, and isWithinLimit helpers live in @usertour/helpers and run on both server
+  and web — the same merged feature set drives runtime enforcement and UI rendering.
+  - Subscription.overridePlan (the JSONB column that was wired up but unread) is now the canonical layer for per-customer grants. Override
+  fields replace base fields via spread, so a CS-granted seat bump or a legacy benefit (\{"removeBranding": true\} for grandfathered Starter
+  projects) lands in resolution without any code change.
+  - @usertour-packages/constants was promoted from P1 (source-direct) to P2 (pre-built dist) since the NestJS server now requires it at
+  runtime. The P1 → P2 migration steps are codified in docs/architecture/packages.md.
+  - PlanType enum gains ENTERPRISE so the self-hosted license path stops using bare strings; the two existing Record\<PlanType, …> maps on the
+  web pick up the new key.
+
+  🛡 Server-side quota enforcement
+
+  - ProjectsService gains resolveProjectFeatures, checkEnvironmentLimit, and checkTeamMemberLimit. The cloud / self-hosted bypass, subscription
+   lookup, override merge, count query, and error throw all live in one place and accept a Prisma TransactionClient.
+  - EnvironmentsService.create was previously gated only by the client — useEnvironmentLimit disabled the form button but any consumer that
+  bypassed the form (stale UI, direct mutation call) could create past the cap. The mutation now delegates to
+  projectsService.checkEnvironmentLimit inside its own transaction. New EnvironmentLimitError (E0030) with en/zh messages.
+  - TeamService.inviteTeamMember's hand-rolled hobby/starter/growth if-chain is gone; the gate now goes through
+  projectsService.checkTeamMemberLimit, which honours overridePlan the same way the client does. The roughly 230-line dup between
+  projects.service and web-socket.service for cloud / self-hosted config resolution also collapses — web-socket.service.getConfig delegates to
+  projects.
+
+  📧 Team invite hardening
+
+  - The same email used to accumulate multiple Invite pending rows on the team settings page because there was no dedup before
+  prisma.invite.create. Each row counted against the seat quota, letting a project artificially fill its allotment by inviting one address
+  twice. Two new errors register pre-create: TeamMemberAlreadyInvitedError (E0031) and TeamMemberAlreadyInProjectError (E0032).
+  - When the SMTP layer rejected the recipient (e.g. 550 / EENVELOPE for a bad mailbox), the freshly created invite row stayed in the DB while
+  the client got a generic 500 and the new dedup check blocked the user from retrying. The mutation now wraps sendInviteEmail in a try / catch
+  — failure soft-deletes the invite (matching the cancel / accept lifecycle) and surfaces InvitationDeliveryFailedError (E0033).
+
+  🎨 Pricing page polish
+
+  - Comparison table aligns with usertour.io: Support & service section becomes Community / Email / Priority with priority gated to Business
+  only, the ghost Concierge support row is gone, and the Growth card's redundant Live chat support line drops back to Email support.
+  - Every drift-prone row (Sessions / Data Retention / Environments / API rate / Team members / No-branding) is now matrix-driven via a typed
+  matrixRow helper instead of a hardcoded values: [false, true, true, true] literal.
+  - Per-customer override surfaces only on the user's current plan card and current plan column. Other cards stay base so a CS-granted sessions
+   bump on Growth doesn't make the Starter or Business columns claim the same number. The comparison table stays apples-to-apples for upgrade
+  decisions while honouring the user's actual entitlement on their own row.
+  - Pricing page icons switch from lucide-react + a custom BoxIcon to the project's standard remix icons (@usertour-packages/icons).
+  - Unlimited sessions render as 123 / Unlimited instead of 123 / Infinity; the percent / threshold caption hides when the cap is unbounded.
+
+  🪝 Quota hooks on the web
+
+  - SubscriptionContext now exposes effective features: PlanFeatures so consumers stop re-resolving themselves.
+  - apps/web/src/hooks/use-plan-limits.ts adds useEnvironmentLimit, useTeamMemberLimit, and useSessionsLimit. Each hook composes the
+  subscription features, the relevant resource list, and the self-hosted bypass into a single \{ limit, current, canUseMore \} shape. Consumers
+  like EnvironmentCreateForm and MemberInviteDialog shrink to one line and now honour override on the client side too — the server check the
+  hook mirrors used to be the only place that saw the override.
+
+  📘 Architecture doctrine
+
+  - docs/architecture/packages.md gets a @usertour/types vs @usertour-packages/constants split (contracts vs values, with the "delete-the-line,
+   what breaks?" heuristic), a P1 / P2 package-shape section with the 6-step migration checklist that this branch's constants promotion
+  follows, and a note that runtime values should share as soon as a second real consumer exists — including code that copies the same business
+  contract values without importing them.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.7.3...v0.7.4
+
+</Update>
+
+<Update label="v0.7.3" description="May 12, 2026">
+
+This release brings the same schema-driven rewrite to Actions that v0.7.2 brought to Conditions, lands a long-overdue package-layering pass
+  that flattens shared/ and codifies the architecture in an RFC, and finally seeds and stabilizes the predefined-event list so Events settings
+  reads cleanly.
+
+  What's Changed
+
+  🧱 Actions (schema-driven replacement for the hand-rolled list)
+
+  - Replaced the legacy ContentActions component with a schema-driven registry parallel to Conditions: each action type (Step goto / Flow
+  dismiss / Flow start / Page navigate / JavaScript evaluate / Launcher / Banner / Checklist dismiss) is now a self-contained schema with its
+  own Summary, Editor, validate and normalize.
+  - Save-time validation gates on every consumer with an explicit Save click — flow trigger, checklist item, launcher behavior, resource-center
+   block, step builder — so incomplete chips can't slip through.
+  - Outer red indicator on button / question elements now reflects the actual chip state inside, keeping the visible error consistent with what
+   reaches storage.
+  - Restored the v1 mutex semantic: Dismiss flow + Start new flow can coexist again (encoded as two pairwise sets against Step goto instead of
+  one transitive 3-set).
+  - Launcher behavior's debounced auto-save now gates on the same validateActions check so partial chips never reach the DB, with the validator
+   hoisted to LauncherBuilder so subpage switches (Target / Tooltip modes) don't bypass it. The gate also respects actionType so a stale action
+   list under SHOW_TOOLTIP no longer blocks tooltip saves.
+  - Dismiss-chip remove button rebuilt as a plain \<button> matching the other chip variants (the \<Button size="compact-icon-sm"> previously
+  pinned height to 24px and didn't snap to the chip edge).
+
+  📦 Package layering
+
+  - Flattened packages/shared/* into packages/* and dropped the shared- prefix where it had stopped carrying meaning: shared-editor → editor,
+  shared-hooks → hooks, shared-components → business-components; builder, contexts, finder, gql, i18n, assets move up to top level.
+  - Promoted generic UI primitives (SelectPopover, ColorPicker, DateTimePicker, LoadingContainer, LocateSelect, ScaledPreviewContainer,
+  ErrorTooltip) from shared-components into @usertour-packages/ui. ColorPicker took a userId prop so it no longer drags useCurrentUserId() and
+  the Apollo hook tree into L1 UI.
+  - Added a layering RFC at docs/architecture/packages.md that defines L0–L5, the dependency rules, the decision tree for new packages, and the
+   known drift it accepts.
+
+  🗂 Predefined events
+
+  - Every predefined event (PAGE_VIEWED, FLOW_STARTED, FLOW_ENDED, FLOW_STEP_*, LAUNCHER_*, BANNER_*, RESOURCE_CENTER_*, CHECKLIST_*,
+  QUESTION_ANSWERED, TOOLTIP_TARGET_MISSING) now ships with a one-line description written in agent-agnostic passive voice — meaning it stays
+  accurate whether the event is fired by the SDK, by user code via usertour.track(), or by the server-side API. Events settings page surfaces
+  them directly under each event name.
+  - Switched the project-init event seed from a one-shot createMany to a per-event upsert, mirroring the existing attribute init, so re-running
+   init backfills displayName + description on existing predefined rows.
+  - Events list query gained a secondary id order key so the predefined block stops reshuffling on every page refresh (a quirk left over from
+  the original createMany clustering every row at the same createdAt).
+
+  🧹 Misc
+
+  - Tailwind content globs in apps/web and apps/sdk collapsed to packages/**/src/** so package relocations don't silently drop styles again.
+  - Actions chip's isEqual now routes through @usertour/helpers' existing re-export instead of pulling fast-deep-equal as an undeclared
+  transitive.
+  - SDK bumped to 0.6.9.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.7.2...v0.7.3
+
+</Update>
+
+<Update label="v0.7.2" description="May 11, 2026">
+
+This release lands Theme Builder v2 — a full three-column rebuild with variations, schema-driven settings, and macOS-style browser-chrome previews — and replaces the legacy Rules engine with a schema-driven Conditions system that powers every condition
+  surface in the admin and runtime.
+
+  It also brings multi-environment safety to publish/edit flows, sliding-indicator animation to tab navigation, and a broad UI consistency pass across settings tables, list headers, and content detail chrome.
+
+  What's Changed
+
+  🎨 Theme Builder v2
+
+  - Rebuilt the theme builder as a three-column shell with variations on the left, schema-driven settings in the right inspector, and a live macOS-chrome preview in the middle.
+  - Added variations support with drag-to-reorder, inline rename, conditions, and Base pinning.
+  - Replaced the legacy v1 inspector with schema-driven field components (typed FieldDef schema, cascade rules, coverage-tested round-trip).
+  - Restored per-setting tooltips on every inspector field with full i18n in en-US and zh-Hans.
+  - Added preview-frame chrome (browser bar + widget switcher) so widgets keep their intended layout context.
+  - Added unsaved-changes warning on close and pre-publish readonly + validation guards.
+  - Theme detail now lives inside the shared sidebar shell, matching the rest of the admin's detail-page architecture.
+  - New variations seed from the current Base settings rather than factory defaults.
+  - Polished active color swatch labels, font-color positioning, Auto fallback rendering, primary brand color seeding, banner alignment in chrome, and many smaller details.
+
+  🧱 Conditions (schema-driven replacement for Rules)
+
+  - Replaced v1 Rules with a schema-driven Conditions system covering every condition type (user-attr, current-page, event, event-attribute, segment, content, element, text-input, text-fill, time, task-clicked, group).
+  - Migrated every Rules consumer in the admin and shared editor to the new component; deleted v1 Rules from shared-components.
+  - Added a Where-clause UI for event filters with errors that bubble up to the outer event chip and a [Where] badge that distinguishes it from [If].
+  - Added standalone exports for Frequency, IfCompleted, Wait, and Priority that reuse the same primitives.
+  - Validation now spans snapshot, property-based, and production-fixture tests.
+
+  📅 Conditions polish
+
+  - Date attributes now render in the chip as MMM d, yyyy, matching the picker trigger.
+  - Split absolute-date operator labels into separate dropdown vs chip forms so "Signed up on May 13, 2026" reads naturally.
+  - Inline the two range inputs for between on a single row.
+  - Keep "Add value" alive when list-attribute popovers reopen, and hide stale list values on valueless operators (is empty / has any value).
+  - Commit invalid edits on popover close so the save gate catches them; block save when checklist / resource center conditions are incomplete.
+  - Honor the consumer's filterItems array order in the add-condition dropdown.
+  - The DateTimePicker calendar now sits above its parent popover (no more z-index clipping in builder chrome) and matches the conditions-popover trigger hover language.
+  - Say "Add filter" instead of "Add condition" when the same component is used to filter a list (segments, user/company tables).
+
+  ✨ Tabs & UI animation
+
+  - Replaced the instant data-state styling on Tabs with a shared motion.span that slides between triggers via framer-motion's layoutId. Pill and underline variants both ride the same mechanism.
+  - Added a variant="primary" cva variant for tinted active pills (replaces six call sites that hand-rolled data-[state=active]:bg-primary overrides).
+  - The content detail header's underline now slides between Analytics / Content / Versions on route change.
+
+  🛡️ Multi-environment safety
+
+  - useContentBuilder and the rename / open-editor form now decide whether to fork using contentOnEnvironments (per-env source of truth) instead of the deprecated Content.publishedVersionId field. Resolves a class of bugs where a publish in one
+  environment could send authors straight into a still-live version in another.
+  - Session status badges flip to terminal-first priority (Dismissed > Completed > Active) so a session that was completed and then dismissed reads as Dismissed, matching the underlying event log.
+  - "Finished in X" wording in session lists aligned to "Completed in X" to match the canonical FLOW_COMPLETED event name.
+  - Removed the "Published X ago" badge from the content detail header — per-env publish times don't reduce to one number, and version history surfaces the detail when needed.
+
+  📋 Settings & list cleanup
+
+  - Dropped the CreatedAt column from Attributes / Events / Environments settings tables. API keys keep it because creation time is a real security / rotation signal.
+  - Unified the eight "New X" buttons across settings and content lists onto a single RiAddLine + mr-2 h-4 w-4 pattern. Fixed New Events → New Event along the way.
+  - Segment headers now use horizontal dots (matching page-level overflow conventions elsewhere).
+
+  🔧 Fixes & refactors
+
+  - Fixed analytics: NPS / Scale response-rate denominator now aligns with the rolling-window aggregate.
+  - Fixed resource center: active session resumes on refresh regardless of current page; attrCodes preloaded from action-block clickedActions.
+  - Fixed content loading spinner to center reliably inside detail pages' min-h-full containers via a min-h-[60vh] floor.
+  - Extracted CompactPopoverTrigger to consolidate three identical inline trigger className chains (ConditionCombobox, ConditionSelect, DateTimePicker).
+  - Several i18n polishes across theme-builder option labels ("Dismiss the flow", "Show a speech bubble instead"), DateTime operator phrasing, dead placement keys, etc.
+  - Build / typecheck: exported forwardRef prop interfaces so tsup --dts can emit valid declarations; aligned border.borderRadius type to number.
+
+  Full Changelog: https://github.com/usertour/usertour/compare/v0.7.1...v0.7.2
+
+</Update>
+
+<Update label="v0.7.1" description="April 26, 2026">
+
+This release focuses on Resource Center session behavior, admin-ended session tracking, and a small documentation improvement in the web app.
+
+### 🧭 Resource Center
+
+* Updated Resource Center to follow one-session-per-user behavior, matching Banner behavior.
+* Prevented dismissed or completed Resource Centers from being reactivated for the same user.
+* Added a Resource Center guide link to the Resource Centers list header.
+
+### 📊 Analytics & Session Management
+
+* Added support for ending Banner and Resource Center sessions from the analytics/session management flow.
+* Added admin-ended tracking for server-side ended sessions.
+* Added end-reason attributes for Banner and Resource Center dismissed events.
+* Reused dismissed-event session ending logic across Checklist, Launcher, Banner, and Resource Center.
+
+### ⚙️ SDK & Types
+
+* Added `ADMIN_ENDED` as a content end reason.
+* Added `banner_end_reason` and `resource_center_end_reason` event attributes.
+* Bumped `@usertour/sdk` from `0.6.4` to `0.6.6`.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.7.0...v0.7.1
+
+</Update>
+
+<Update label="v0.7.0" description="April 25, 2026">
+
+This release introduces Resource Center end-to-end, with major upgrades across content building, SDK delivery, theming, live chat, analytics, and user-facing navigation.
+
+It also improves user, company, and session management workflows, with redesigned detail pages, better activity feeds, stronger table customization, and clearer analytics.
+
+### 🧭 Resource Center
+
+* Added Resource Center as a new content type with full builder, preview, SDK, widget, and server support.
+* Added tab-based Resource Center navigation with configurable tabs, icons, ordering, and filtered visibility.
+* Added Resource Center blocks for rich text, action links, dividers, content lists, sub-pages, and live chat.
+* Added search, detail views, and grouped display for Resource Center content lists.
+* Added Resource Center launcher behavior, visibility controls, open/close lifecycle handling, and persisted navigation state.
+* Added conditional block visibility and attribute preloading for more personalized Resource Center experiences.
+* Added Resource Center theme settings for launcher styling, panel sizing, header background, logo upload, and layout controls.
+
+### 💬 Live Chat & Actions
+
+* Added live chat block support for multiple providers and custom JavaScript providers.
+* Added SDK live chat management for loading, showing, hiding, and cleaning up provider widgets.
+* Improved live chat behavior when Resource Center blocks are opened, closed, or destroyed.
+* Added collapse-to-launcher behavior after Resource Center action and content-list item clicks.
+
+### 📊 Analytics
+
+* Added Resource Center analytics for views and clicks grouped by tab and block.
+* Added Resource Center event attributes for tab ID and tab name.
+* Added analytics support for announcement-style Resource Center content.
+* Improved analytics charts, granularity controls, session columns, and status display.
+* Improved analytics labels, tooltips, ranking indicators, and CSV export handling.
+* Fixed Resource Center analytics ordering and array payload handling.
+
+### 👥 Users, Companies & Sessions
+
+* Redesigned user, company, and session detail pages with clearer layout and navigation.
+* Added richer activity feeds with event categorization, icons, translations, and count labels.
+* Improved session lists with clickable rows, status columns, and clearer session detail views.
+* Improved company/member attribute display and membership layouts.
+* Added `externalId` columns for user and company tables.
+* Added collapsible search and improved filter toolbar behavior for user and company tables.
+* Improved column customization with drag-and-drop, search, visibility management, and divider rows.
+
+### 🎨 UI & Builder Improvements
+
+* Added a shared icon picker with upload, URL, and built-in icon options.
+* Replaced initials avatars with a curated default avatar icon set.
+* Improved Resource Center builder layout, block settings, validation, loading states, and error tooltips.
+* Added Resource Center preview support in theme settings.
+* Improved admin layouts, subpage layouts, warning display, and navigation clarity.
+* Rewrote tooltips and labels across auto-start, hide rules, attributes, events, announcements, and Resource Center settings.
+
+### ⚙️ SDK, Server & Infrastructure
+
+* Added SDK Resource Center APIs and global launcher visibility handling.
+* Added Resource Center socket handling, reconnect restoration, session activation, and `RESOURCE_CENTER_STARTED` support.
+* Improved server-side content orchestration, session building, condition evaluation, socket emitting, and event tracking.
+* Added PostgreSQL backup script support and Dockerfile updates for backup tooling.
+* Added Redis TLS support through environment configuration.
+* Updated default initialization for missing attributes and clearer predefined attribute descriptions.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.6.0...v0.7.0
+
+</Update>
+
+<Update label="v0.6.0" description="March 23, 2026">
+
+This release introduces **Event Trackers** end-to-end, with major upgrades across event creation, rule building, tracking context, and analytics workflows.
+
+It also adds a new **Admin Panel for self-hosted deployments**, including system admin setup, instance settings, license management, and user/project administration tools.
+
+### 📡 Event Trackers
+
+- Added **Event Trackers** for capturing and managing event-based tracking flows.
+- Added event creation and tracker-related content management capabilities.
+- Added event-based rule building with new event condition and filtering components.
+- Expanded event tracking with richer client and business context.
+- Improved websocket event tracking handling, validation, and response behavior.
+
+### 🛠️ Self-Hosted Admin Panel
+
+- Added a new **Admin Panel** for self-hosted deployments.
+- Added a setup flow for **system administrators**.
+- Added user and project management capabilities for self-hosted teams.
+- Added instance settings management for general and authentication configuration.
+- Added project-level subscription management controls.
+
+### 🔐 Licensing & Instance Management
+
+- Added license key upload, validation, and instance-level license management.
+- Improved license limit handling and related error messages.
+- Updated licensing-related validation behavior across instance and project flows.
+
+### 📊 Analytics & Export
+
+- Added CSV export support for analytics-related data.
+- Improved analytics queries and filtering capabilities.
+- Improved export handling for checklist, session reason, and flow question data.
+- Added and expanded test coverage for export payload generation.
+
+### ✨ UX & Platform Improvements
+
+- Improved admin navigation, layouts, and search experience.
+- Improved project member management and owner selection flows.
+- Improved redirect URL handling through configuration.
+- Updated terminology from `company` to `project` across multiple areas.
+- Improved rule builder behavior, state handling, and styling.
+- Fixed date-fns-tz type issues.
+- Upgraded server dependencies to address related advisories.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.5.0...v
+
+</Update>
+
+<Update label="v0.5.0" description="March 4, 2026">
+
+This release introduces the new **Banner content capability end-to-end**, with major upgrades across SDK rendering, content configuration, URL-based targeting, and interaction handling.
+
+It also includes a set of reliability and UX refinements for preview, analytics, and session orchestration.
+
+---
+
+### 🧩 Banner Content Type (Core)
+
+- Added full **Banner content type** support across editor, preview, and runtime flows.
+- Implemented **banner embed placement controls** with more consistent rendering behavior.
+- Improved banner layout structure for better alignment, readability, and responsive presentation.
+- Added configurable **banner wrapper behavior**, including theme padding and max-width handling.
+- Standardized **z-index behavior** for banner-related components to reduce overlap issues.
+
+### 🎛️ Content Configuration & Interaction
+
+- Added **button visibility and disabled-state conditions** for more flexible interaction logic.
+- Added **banner dismiss action handling** for better user-controlled behavior.
+- Improved content detail settings and priority logic for **content-type-specific behavior**.
+- Refined descriptions and guidance text in content settings to improve usability.
+
+### 🔗 URL Targeting & Link Handling
+
+- Added **module-level URL filtering** and improved URL change detection.
+- Added **link editing capabilities** and **URL decorator support** for richer link control.
+- Improved targeting consistency for condition matching and runtime content delivery.
+
+### 📊 Analytics & Session Reliability
+
+- Extended analytics data model and queries with **content field support**.
+- Improved session creation flow with **`findOrCreateBizSession` plus distributed locking**.
+- Reduced duplicate session creation risk in concurrent scenarios.
+
+### 🖥️ Preview & UI Refinements
+
+- Improved browser preview layout and visual structure.
+- Enhanced badge placement and preview presentation for **banner content**.
+- Cleaned up unused preview components and improved overall UI consistency.
+- Updated default embed width behavior for better visual balance.
+
+### 🧹 Refactors & Cleanup
+
+- Consolidated parts of **content create/detail flows** for better maintainability.
+- Removed legacy **NPS/Survey references** from content-related modules.
+- Performed structural refactors in **banner/theme settings** for clearer logic and easier extension.
+---
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.4.9...v0.5.0
+
+</Update>
+
+<Update label="v0.4.9" description="February 12, 2026">
+
+## 📦 v0.4.9
+
+This release focuses on improving Popper stability and refining SDK styling calculations, particularly around button sizing and Tailwind font-weight integration.
+
+---
+
+### 🧭 Popper Stability Improvements
+
+- Improved reference element handling to prevent Popper flash during initialization and repositioning.
+- Reduced visual flicker when tooltips or modals mount under dynamic layout changes.
+- Enhanced positioning reliability in async rendering scenarios.
+
+### 🎛 SDK Component Fixes
+
+- Fixed incorrect button padding calculations in SDK components.
+- Updated padding logic to derive height from `font-size`, ensuring correct button height when used with utilities like `leading-none`.
+- Improved sizing consistency across different Tailwind setups.
+
+### 🎨 Tailwind Integration Fixes
+
+- Corrected SDK font-weight variable mappings in Tailwind configuration.
+- Aligned font-weight variable names with Tailwind conventions.
+- Improved typography customization reliability when overriding theme tokens.
+
+---
+
+**Full Changelog:**  
+https://github.com/usertour/usertour/compare/v0.4.8...v0.4.9
+
+</Update>
+
+<Update label="v0.4.8" description="January 29, 2026">
+
+# 🚀 v0.4.8 — Editor makeover, launcher icons & bug fixes
+
+## ✨ What’s New
+- Revamped editor toolbar with a sleek TipTap style  
+- Editor got a facelift: new color picker, smoother drag & drop, and more flexible layouts for easier editing  
+- Columns in the editor now support padding adjustments  
+- `Usertour.js` now has a handy `disableEvalJs` method  
+- Website UI is more responsive across devices  
+- Flow components now support Speech Bubbles  
+- Launcher icons can now be uploaded and we added more built-in options  
+
+## 🐛 Fixes
+- Checklist preview now shows the header properly  
+- Star Rating no longer overflows when there are lots of stars  
+- Editor won’t reset button text when you select an action  
+- NPS can now set user properties even when selecting 0
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.4.7...v0.4.8
+
+</Update>
+
+<Update label="v0.4.7" description="January 9, 2026">
+
+## 🚀 v0.4.7 — UI polish, segment & checklist fixes, UX improvements
+
+This release focuses on UI/UX refinements, segment & filter stability, checklist behavior fixes, and multiple builder and SDK improvements to make Usertour more polished and reliable.
+
+### 🧠 Segment & Filtering
+- Set **default column** when initializing or creating a segment.
+- Fixed a bug where **column filters stopped working** after selecting a filter in segments.
+
+### 🎨 UI / UX Improvements
+- Improved **focus effect** for Launcher checklist.
+- Fixed preview **flash issue** by scaling preview components from `0 → 1`.
+- Optimized **progress bar styles**.
+- Fixed **theme list preview overflow** issues.
+- Fixed **default theme button height** calculation errors.
+- **System theme** now properly disables buttons.
+- Improved layout for **theme and trigger components** that were too narrow.
+- Fixed SDK button height issue caused by default Tailwind `line-height: 1.25rem`.
+
+### ✅ Checklist & Flow Fixes
+- Fixed issue where **completion animation reappeared** after dismissing a checklist.
+- Fixed **inaccurate checklist list styles**.
+- Added **title length limits** to checklist task breakdown.
+- Fixed browser **history back behavior** when switching between Draft and Published states.
+- Improved **launch rule auto-expand animation** for smoother transitions.
+
+### 🛠 Builder & Page Improvements
+- Standardized page buttons to use **`<Button>` components** so they can receive focus.
+- Removed **globalSocketId** to avoid stale or unnecessary socket identifiers.
+- Session list now displays **company information**.
+
+### 📊 Analytics & Data
+- Improved handling of **numeric stats with large arrays** and overly long labels.
+- Unified **right alignment** for step-level analytics data.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.4.6...v0.4.7
+
+</Update>

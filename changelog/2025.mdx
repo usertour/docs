@@ -1,0 +1,705 @@
+---
+title: "2025"
+description: "Usertour releases in 2025"
+rss: true
+---
+
+<Update label="v0.4.6" description="December 31, 2025">
+
+## 🚀 Usertour v0.4.6
+
+This release focuses on **builder stability**, **launch rules UX**, and **SDK / WebSocket robustness**.  
+It fixes many long-standing edge cases and makes Usertour more reliable in production.
+
+### ✨ Highlights
+- Builder save reliability improved (unsaved warnings, fast-click save fix)
+- Launch rules UX optimized (auto-expand, checklist support)
+- Analytics accuracy improved (step stats now keyed by `cvid`)
+- WebSocket v2 hardened (throttling, validation, deadlock fixes)
+- Environments now support **Primary** setting
+
+### 🧩 Builder & UX
+- Unsaved changes warning when navigating back
+- Back button & auto-save behavior optimized
+- Copy / duplicate content fixes
+- Missing or invalid configs now show explicit errors
+- SDK & Builder UI consistency fixes
+
+### 🚀 Rules & Conditions
+- Checklist supported in launch rules
+- Rule selection now opens config immediately
+- Rules evaluator rewritten with cache isolation
+- Date conditions now support common presets
+
+### 📊 Analytics
+- Step funnel & completed step icon fixed
+- Tooltip missing data issues resolved
+
+### 🔌 SDK, Embed & WebSocket
+- WebSocket throttling, param validation, and better logging
+- Prevented potential WebSocket deadlocks
+
+### 🔐 Auth & Infra
+- Login flow improved with refresh token support
+- Removed Google Analytics from app
+
+**Full Changelog**  
+https://github.com/usertour/usertour/compare/v0.4.5...v0.4.6
+
+</Update>
+
+<Update label="v0.4.5" description="December 12, 2025">
+
+## ✨ Improvements
+
+* **Enhanced Docker production environment**
+  * Added `NODE_ENV=production` environment variable by default, ensuring proper production mode operation.
+  * Updated CMD instruction to shell form for proper stdout/stderr log flushing, improving container log visibility.
+
+* **Improved database migration reliability**
+  * Added automatic retry mechanism for database migrations with configurable attempts via `DB_MIGRATE_RETRIES` environment variable (default: 3 retries).
+  * Migration failures now provide clearer error messages and graceful retry handling.
+
+* **Optimized Docker file structure**
+  * Reorganized startup scripts to `/app/scripts/` directory for better maintainability.
+
+---
+
+**Full Changelog:** [v0.4.4...v0.4.5](https://github.com/usertour/usertour/compare/v0.4.4...v0.4.5)
+
+</Update>
+
+<Update label="v0.4.4" description="December 11, 2025">
+
+### 🐛 Bug Fixes
+
+* **Fixed compatibility with numeric `userId` / `companyId`.**
+  The SDK now properly handles number types by converting them to strings automatically.
+
+### ✨ Improvements
+
+* **Optimized exception handling in the SDK**
+  Improved error clarity and reliability across various SDK operations.
+* **Enhanced Docker experience**
+
+  * Added default `PORT` and `NEST_SERVER_PORT` environment variables in the Dockerfile, so most users no longer need to configure them manually.
+  * Improved port handling and startup checks to avoid conflicts and provide clearer logs.
+
+---
+
+**Full Changelog:** [https://github.com/usertour/usertour/compare/v0.4.3...v0.4.4](https://github.com/usertour/usertour/compare/v0.4.3...v0.4.4)
+
+</Update>
+
+<Update label="v0.4.3" description="December 9, 2025">
+
+##  🐛 Bug Fixes
+* Socket Reconnection Handling – Fixed an issue where the SDK would fail silently when the initial WebSocket connection failed. The SDK now waits for Socket.IO automatic reconnection instead of giving up on the first error, ensuring proper initialization after network recovery.
+* Connection Promise Caching – Added connection promise caching to prevent duplicate connection attempts when identify() is called multiple times in quick succession for the same user.
+* Timer Management – Unified all timer operations to use timerManager, ensuring proper cleanup when reset() is called and preventing memory leaks.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.4.2...v0.4.3
+
+</Update>
+
+<Update label="v0.4.2" description="December 7, 2025">
+
+## 🐛 **Bug Fixes**
+
+* **Conditional Usertour Initialization** – Added a check to ensure `userTourToken` exists before calling `usertour.init()` and `usertour.identify()`. This prevents initialization errors in environments where the Usertour token is not configured.
+
+---
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/0.4.1...v0.4.2
+
+</Update>
+
+<Update label="v0.4.1" description="December 7, 2025">
+
+## 🛠 **Dev & Infrastructure**
+
+* **Multi-Architecture Docker Build Support** – Docker images now support building for multiple architectures (x86_64, ARM64) without manual configuration.
+
+* **Dynamic Prisma Client Generation** – Prisma Client is now generated at build time rather than relying on hardcoded binary targets, ensuring correct binaries for the target platform.
+
+* **Simplified Prisma Configuration** – Removed `binaryTargets` from `schema.prisma`, allowing Prisma to auto-detect the correct platform during build.
+
+* **Improved Dockerfile** – Added OpenSSL dependencies in the build stage for proper version detection; streamlined runtime dependencies.
+
+* **Cleaner docker-compose.yml** – Removed `platforms` restriction and `PRISMA_BINARY_PLATFORM` environment variable for better cross-platform compatibility.
+
+---
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.4.0...0.4.1
+
+</Update>
+
+<Update label="v0.4.0" description="December 7, 2025">
+
+## 🚀 **Core Architecture Upgrades**
+
+* **Rewritten SDK & WebSocket Core** – Usertour.js and the real-time layer have been fully rebuilt to better leverage **Socket.IO**, enabling more reliable real-time communication.
+
+* **Multi-Tab Sync** – Launcher, flows, and UI state are now synchronized across browser tabs. Showing or closing content in one tab instantly reflects in others.
+
+* **Smarter Reconnect & Dedup Logic** – Network reconnection and edge-case handling have been significantly improved to avoid repeated execution and inconsistent UI states.
+
+* **Centralized Timer Manager** – Introduced a `timerManager` to manage all `setTimeout`, `setInterval`, and heartbeat checks in one place, improving performance and stability.
+
+---
+
+## ✅ **Checklist & Launcher Improvements**
+
+* **Always-Update Content** – Checklist and Launcher now **always load the latest published version**. Once published, users see the newest content without manual refresh.
+
+* **Checklist Session Snapshots** – Session details now include checklist snapshots (hidden, clicked, and completed states for each item).
+
+* **Auto Dismiss Countdown** – When checklist auto-dismiss is enabled, a live countdown progress bar is now displayed.
+
+---
+
+## 🎨 **Editor & Theme Fixes**
+
+* Fixed an issue where **Backdrop opacity** could not be edited.
+* Fixed an issue where **Highlight type** changes were not saved correctly.
+
+---
+
+## 🔄 **Flow & Versioning Behavior**
+
+* **Smart Version Checking** – When starting a flow, the system now compares the latest published version with the active session version. If they don’t match, a fresh session is created using the latest version.
+
+* **Improved Element Matching** – Flow targeting rules are now more reliable when DOM elements change dynamically.
+
+---
+
+## 🛠 **Dev & Infrastructure**
+
+* Added `REDIS_USER` to `.env.example` for clearer Redis configuration.
+* Improved `EMAIL_SENDER` documentation for better setup clarity.
+* Added detailed **emit-with-ack timing logs** to improve observability.
+* Multiple UX improvements and internal refactors.
+
+---
+
+## 🐞 **Bug Fixes**
+
+* Fixed issues related to published version updates.
+* Fixed edge cases that could cause released versions to be overwritten.
+* Fixed incorrect theme display behavior during rename operations.
+
+---
+
+**Full Changelog**:
+[https://github.com/usertour/usertour/compare/v0.3.3...v0.4.0](https://github.com/usertour/usertour/compare/v0.3.3...v0.4.0)
+
+</Update>
+
+<Update label="v0.3.3" description="October 23, 2025">
+
+* Remove the “Temporarily hide” feature from **Launcher**
+* Rename **Auto-start launcher if...** → **Show launcher if...**
+* Updated logic: *Show the launcher if the user matches the given condition. If the user doesn’t match the condition, the launcher will not be displayed.*
+* Improved flow rule evaluation when elements change
+* Optimized **Launcher** element detection — now uses the same mechanism as **Flow**, resulting in more accurate targeting
+
+**Full Changelog**: [https://github.com/usertour/usertour/compare/v0.3.1...v0.3.2](https://github.com/usertour/usertour/compare/v0.3.1...v0.3.2)
+
+</Update>
+
+<Update label="v0.3.2" description="August 19, 2025">
+
+* Update env example by @winter100004 in https://github.com/usertour/usertour/pull/220
+* Update .env.example by @winter100004 in https://github.com/usertour/usertour/pull/221
+* Fix password error message by @winter100004 in https://github.com/usertour/usertour/pull/223
+* Enhance docker-compose configuration with health checks by @winter100004 in https://github.com/usertour/usertour/pull/224
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.3.1...v0.3.2
+
+</Update>
+
+<Update label="v0.3.1" description="July 31, 2025">
+
+## 🚀 Usertour v0.3.1 — Smarter license support, better caching
+
+A small but important release focused on smoother upgrades and license key management.
+
+### ✨ New Features
+
+**License Key Upload**
+You can now upload license keys directly from the admin panel — making it easier for self-hosted customers to unlock paid features.
+
+### 🛠 Improvements
+
+**Smarter Nginx Configuration**
+We’ve updated the default Nginx setup to avoid browser caching issues with `usertour.js` and `usertour.iife.js` during upgrades. No more mysterious version mismatches.
+
+---
+
+**Full Changelog**: [https://github.com/usertour/usertour/compare/v0.3.0...v0.3.1](https://github.com/usertour/usertour/compare/v0.3.0...v0.3.1)
+
+</Update>
+
+<Update label="v0.3.0" description="July 30, 2025">
+
+## ✨ New Features
+
+**OpenTelemetry Integration**
+Usertour now supports [[OpenTelemetry](https://opentelemetry.io/)](https://opentelemetry.io/) out of the box.
+You can export both traces and metrics by configuring your preferred endpoint — perfect for production observability.
+
+* Report WebSocket session metrics in real time
+* Trace request flows across your system
+* Easily integrate with Grafana, Prometheus, and more
+
+**License Key Support for Paid Features**
+We’ve added license key validation to support our self-hosted Business and Enterprise plans.
+Just drop in your license key and unlock premium features without cloud dependency.
+
+**Workspace-based Module Resolution**
+Cleaner internal structure and faster local development using workspaces.
+
+**Custom Cursor Configuration**
+You can now customize the pointer style (cursor) for tour steps — useful for highlighting interactive elements in your app.
+
+## 🛠 Improvements
+
+**Smarter Launcher Handling**
+WebSocket sessions now respond immediately for launcher-based tours — improving perceived speed and interactivity.
+
+**Sentry Integration**
+We’ve integrated Sentry to help debug issues faster — for both us and those running their own instances.
+
+**Cleaner Package Naming**
+Smaller, more consistent packages — easier to read, install, and manage.
+
+**Branding Control**
+Added an environment variable to remove Usertour branding — available for paid plans.
+
+## 🐞 Bug Fixes
+
+* No more duplicated analytics calls when using WebSocket events
+* Stability improvements across all real-time interactions
+* Edge case handling for license validation and missing keys
+
+**Full Changelog**: [https://github.com/usertour/usertour/compare/v0.2.7...v0.3.0](https://github.com/usertour/usertour/compare/v0.2.7...v0.3.0)
+
+</Update>
+
+<Update label="v0.2.7" description="July 22, 2025">
+
+## ✨ **New Features**
+
+* **Conditional Variations by Theme**
+  Usertour now supports **conditional content variations** based on the active theme.
+  You can target `light` vs `dark` modes, or use user traits and URL rules — perfect for adapting your experience visually.
+
+* **Smarter Content Refresh & Requests**
+  We've optimized how `usertour.js` fetches and syncs content:
+
+  * Fewer network requests
+  * Faster response between steps
+  * Smoother transitions on click
+
+---
+
+## 🛠 **Improvements**
+
+* **WebSocket Performance Boost**
+
+  * Combined multiple fetches into one parallel call
+  * Reduced response time on session analytics
+  * Cleaner query syntax under the hood
+
+* **UI/UX Polishing**
+
+  * Better loading and disabled states after deletion actions
+  * Fewer awkward moments when waiting for UI updates
+
+* **Developer Quality of Life**
+
+  * Avatar fallback fixes in environment switcher
+  * Improved session navigation with wrapped links
+
+---
+
+## 🐞 **Bug Fixes**
+
+* No more unnecessary `listContents` requests on `SendEvent`
+* Segment filtering is now rock-solid
+
+---
+
+## 🙌 **Shoutout**
+
+Thanks to @shodown96 for their first contribution! 🎉
+
+---
+
+**Full Changelog**: [[v0.2.6...v0.2.7](https://github.com/usertour/usertour/compare/v0.2.6...v0.2.7)](https://github.com/usertour/usertour/compare/v0.2.6...v0.2.7)
+
+</Update>
+
+<Update label="v0.2.6" description="July 14, 2025">
+
+## 🚀 **New Features**
+
+* **Flexible Progress Bar Styles** – You can now choose from 5 types of tooltip progress bars by setting the `theme`:
+
+  * Narrow Progress Bar
+  * Chain (Rounded or Squared)
+  * Dots
+  * Numbered (`1 of 3`)
+    These options let you better match your product's style and vibe.
+
+* **Auto Dismiss for Checklists** – Add `autodismiss` to your checklist. When users complete all items, the checklist will auto-close — no clicks required.
+
+* **Smarter Flow Logic** – Temporarily hidden content no longer blocks other flows from starting. This makes auto-started content more predictable and reliable.
+
+* **User & Company Session Lists** – You can now view a user's session history, and also see all members under a company. Super helpful for debugging or analytics.
+
+---
+
+## 🛠 **Improvements**
+
+* Replaced all toast notifications with [[Sonner](https://sonner.emilkowal.ski/)](https://sonner.emilkowal.ski/) for a cleaner, more modern feel.
+* Improved SDK component performance and animations.
+* Loading states and spinners added for a smoother experience in detailed content views.
+* Segment loading and filtering logic fully optimized.
+
+---
+
+## 🐞 **Bug Fixes**
+
+* Fixed an issue where segment filtering caused incorrect results.
+* Resolved bugs related to checklist progress bar display and default behavior.
+
+---
+
+**Full Changelog**: [[v0.2.5...v0.2.6](https://github.com/usertour/usertour/compare/v0.2.5...v0.2.6)](https://github.com/usertour/usertour/compare/v0.2.5...v0.2.6)
+
+</Update>
+
+<Update label="v0.2.3" description="July 5, 2025">
+
+See the [release notes on GitHub](https://github.com/usertour/usertour/releases/tag/v0.2.3).
+
+</Update>
+
+<Update label="v0.2.2" description="July 5, 2025">
+
+See the [release notes on GitHub](https://github.com/usertour/usertour/releases/tag/v0.2.2).
+
+</Update>
+
+<Update label="v0.2.1" description="July 5, 2025">
+
+See the [release notes on GitHub](https://github.com/usertour/usertour/releases/tag/v0.2.1).
+
+</Update>
+
+<Update label="v0.2.0" description="July 4, 2025">
+
+## 🚀 **New Features**
+
+* **New Animations** – Tooltips now include smooth docking transitions. Checklists come with a completion animation and will automatically expand when users complete an item, creating a more dynamic experience.
+
+* **Flow + Checklist = Infinite Logic** – We’ve enhanced how flows and checklists can work together. You can now build complex, multi-branch onboarding logic using a mix of flows and checklists — flexible enough to cover almost any use case.
+
+* **Push-based Updates** – Usertour.js no longer relies on polling to fetch content. Instead, we now use **Socket.IO** to push real-time updates to users — including modals, surveys, and checklists. It’s faster, lighter, and smarter.
+
+* **🔁 Start From a Specific Step** – When triggering a flow from inside another flow or checklist, you can now choose which step to start from — not just the first step. This gives you more flexibility in designing contextual onboarding.
+
+---
+
+## 🎨 **UX & Interaction Improvements**
+
+* Improved all loading and debounce logic across the app for smoother data handling.
+* Reworked several core components to drastically improve the interactive experience.
+* Added confirmation modal when dismissing incomplete checklists (fully completed ones dismiss instantly).
+* Fixed checklist launcher sizing issues.
+* Optimized checklist item interactivity and launcher visuals.
+
+---
+
+## 🐞 **Bug Fixes**
+
+* Fixed an issue where attribute selectors could make the page unclickable.
+* Added `try-catch` around `eval()` usage to prevent runtime crashes caused by malformed logic.
+* Fixed flow startup rule behavior when used with checklists and branching flows.
+
+---
+
+**Full Changelog**: [https://github.com/usertour/usertour/compare/v0.1.13...v0.2.0](https://github.com/usertour/usertour/compare/v0.1.13...v0.2.0)
+
+</Update>
+
+<Update label="v0.1.13" description="June 18, 2025">
+
+## 🚀 **New Features**
+
+* **Programmatic Flow Start** – Added a `start()` method to trigger flows, checklists, or guides on demand. Great for custom triggers like a “Replay Tutorial” button in your app.
+
+* **Self-hosted Mode Member Invites** – Now you can invite team members when using Usertour in self-hosted mode.
+
+---
+
+## 🐞 **Bug Fixes**
+
+* Improved error handling on the startup rules page — invalid or missing rules won’t auto-save and now show clear error messages.
+
+* Fixed flow activation and deactivation issues related to startup rules.
+
+* Added exception handling to the list-content API to prevent crashes from misconfigurations.
+
+---
+
+## 🎨 **Improvements**
+
+* Enhanced editor default placeholder text for a smoother editing experience.
+
+---
+
+**Full Changelog**: [https://github.com/usertour/usertour/compare/v0.1.12...v0.1.13](https://github.com/usertour/usertour/compare/v0.1.12...v0.1.13)
+
+</Update>
+
+<Update label="v0.1.12" description="June 6, 2025">
+
+## 🚀 **New Features**
+
+* **Project-level content support** – Content is no longer tied to a single environment. Now, the same content (and its versions) can be published to different environments within the same project.
+  This better matches a typical developer release workflow — for example:
+  ➤ Publish to `development` →
+  ➤ Verify in `staging` →
+  ➤ Release to `production`.
+  Content sessions, users, companies, segments, and analytics **remain isolated per environment**, so your data stays clean and separate.
+
+---
+
+## 🐞 **Bug Fixes**
+
+* Fixed an issue where segment filtering could cause **infinite request loops**.
+* Fixed the **OpenAPI `end session` endpoint**, which previously could not be used properly.
+
+---
+
+## 🔁 **Removals**
+
+* Removed the **"cross-environment content duplicate"** feature, as it’s no longer necessary under the new project-level content model.
+
+---
+
+**Full Changelog**: [https://github.com/usertour/usertour/compare/v0.1.11...v0.1.12](https://github.com/usertour/usertour/compare/v0.1.11...v0.1.12)
+
+</Update>
+
+<Update label="v0.1.11" description="May 23, 2025">
+
+## 🚀 **What's New**
+
+* **Flow session support in Usertour.js** – Flows and checklists now remember where users left off. If they don’t finish, they can pick it up later—seamlessly.
+* **Cross-page flows** – Start a tour on one page and continue it on another—even in a new browser tab.
+* **Hidden steps** – Use invisible steps to create more dynamic flows while keeping the experience clean and focused.
+* **User data deletion** – You can now fully delete user data, reset flow sessions, or dismiss flows for everyone with just a few clicks.
+
+## 🎄 **Improvements**
+
+* Major docs update! We rewrote most of the documentation and added video walkthroughs to help you get up and running faster.
+
+## 🐞 **Fixes**
+
+* Fixed company field handling in the SDK.
+* Improved URL matching for better targeting accuracy.
+* Survey limits now work as expected.
+* Cleaned up and refactored code for improved clarity and performance.
+
+## 📊 **New Contributors**
+
+* Big thanks to @winter100004 for contributing across the board on this release!
+
+**[[Full Changelog](https://github.com/usertour/usertour/compare/v0.1.10...v0.1.11)](https://github.com/usertour/usertour/compare/v0.1.10...v0.1.11)**
+
+</Update>
+
+<Update label="v0.1.10" description="May 9, 2025">
+
+## 🚀 **New Features**
+
+* Launched the completed REST API, allowing you to synchronize your user data with Usertour and track events directly from your back-end application.
+* Added company segment support in startup rules, enabling content display control based on the company.
+
+## 🎄 **Enhancements**
+
+* Added Prisma direct URL configuration, allowing support for PgBouncer and other Postgres proxies in production environments.
+* Added WebSocket URI path configuration, allowing the use of a given `wsUri` to handle full URLs with protocol, just domain, and relative path.
+
+## 🐞 **Bug Fixes**
+
+* Fixed the spelling of "Acount" to "Account" in the admin user navigation.
+
+## 📊 **New Contributors**
+
+* @omari58 made their first contribution in [[#71](https://github.com/usertour/usertour/pull/71)](https://github.com/usertour/usertour/pull/71)
+
+</Update>
+
+<Update label="v0.1.9" description="April 18, 2025">
+
+🚀 UserTour v0.1.9 Release Notes
+💡 Major Updates
+
+Stripe Integration: Added payment functionality with Stripe, including version display for paid features.
+
+Session Data Export: Supports CSV exports with customizable fields (standard user attributes or full user properties).
+
+🔔 Breaking Changes
+
+Socket.IO Scaling: Fixed multi-replica deployment compatibility for Socket.IO (infrastructure impact).
+
+🐞 Bug Fixes
+
+Resolved stability issues in distributed environments.
+
+🔗 Full Changelog: [v0.1.8...v0.1.9](https://github.com/usertour/usertour/compare/v0.1.8...v0.1.9)
+
+</Update>
+
+<Update label="v0.1.8" description="April 7, 2025">
+
+💡 **Major Updates**  
+- Added support for surveys (Multi Line Text, Single Line Text, Multiple Choice, Star Rating, Scale, NPS) by @winter100004 in #51  
+- Flow analytics now support surveys and session detail viewing   by @winter100004  in #51  
+
+🎄 **Enhancements**  
+- Added height parameter by @devcodes9 in #43  
+- Added content type for duplication feature by @devcodes9 in #49  
+- Version updated to 0.1.9 with display height label in embed by @winter100004 in #45  
+
+🐞 **Bug Fixes**  
+- Fixed step trigger activation and jump behavior by @winter100004 in #39  
+- Fixed server hot reload issue by @devcodes9 in #50  
+
+👏 **Special Thanks**  
+- @devcodes9 for multiple contributions (#43, #49, #50)  
+
+🔔 **Full Changelog**  
+v0.1.7...v0.1.8: https://github.com/usertour/usertour/compare/v0.1.7...v0.1.8
+
+</Update>
+
+<Update label="v0.1.7" description="March 24, 2025">
+
+* feat: Update sidebar icons and add new icons to shared package by @winter100004 in https://github.com/usertour/usertour/pull/26
+* feat: Update theme configuration with new checklist and launcher styles by @winter100004 in https://github.com/usertour/usertour/pull/29
+* refactor: Simplify registration page component structure by @winter100004 in https://github.com/usertour/usertour/pull/30
+* fix(web): resolve authentication error for me query before login by @winter100004 in https://github.com/usertour/usertour/pull/31
+* enhancement: targetEnvironment added by @devcodes9 in https://github.com/usertour/usertour/pull/33
+* enhancement: make targetEnvironmentId optional and update permissions… by @winter100004 in https://github.com/usertour/usertour/pull/34
+
+## New Contributors
+* @devcodes9 made their first contribution in https://github.com/usertour/usertour/pull/33
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.1.6...v0.1.7
+
+</Update>
+
+<Update label="v0.1.6" description="March 7, 2025">
+
+**💡 Major Updates**
+- Added redirect URL support for signup and login flows by @winter100004 in [#15](https://github.com/usertour/usertour/pull/15)
+- Introduced member-related features by @winter100004 in [#24](https://github.com/usertour/usertour/pull/24)
+
+**🔔 Breaking Changes**
+- Refactored error handling mechanisms by @winter100004 in [#21](https://github.com/usertour/usertour/pull/21)
+
+**🎄 Enhancements**
+- Improved word wrapping functionality by @winter100004 in [#23](https://github.com/usertour/usertour/pull/23)
+
+**🐞 Bug Fixes**
+- Fixed issue where login configuration could not be obtained for Email, Google, etc. by @winter100004 in [#17](https://github.com/usertour/usertour/pull/17)
+- Updated README documentation by @dongfengtaoadmin in [#18](https://github.com/usertour/usertour/pull/18)
+- Updated docker-compose command in README by @winter100004 in [#20](https://github.com/usertour/usertour/pull/20)
+
+**👏 Special Thanks**
+- @dongfengtaoadmin made their first contribution in [#18](https://github.com/usertour/usertour/pull/18)
+
+**🔔 Full Changelog**
+- [v0.1.5...v0.1.6](https://github.com/usertour/usertour/compare/v0.1.5...v0.1.6)
+
+</Update>
+
+<Update label="v0.1.5" description="February 16, 2025">
+
+**💡 Major Updates**
+- Implemented dynamic authentication provider rendering
+- Added environment variables for authentication and file storage
+- Supported Google login authentication
+
+**🔔 Breaking Changes**
+- Removed unnecessary logging in JWT strategy
+- Migrated to a new environment configuration for API routing and authentication
+
+**🎄 Enhancements**
+- Enhanced user creation and project initialization during OAuth login
+- Added GraphQL query to retrieve authentication provider configuration
+- Integrated logging for GraphQL errors and JWT token extraction
+
+**🐞 Bug Fixes**
+- Fixed issue where login was not executed after creating a user in the server
+
+</Update>
+
+<Update label="v0.1.4" description="February 13, 2025">
+
+💡 Major Updates
+- Integrated Biome and Husky for enhanced code quality management
+- SDK version upgraded to 0.0.5
+- Added placement documentation accessibility in Flow Builder
+
+🔔 Breaking Changes
+- Migrated from ESLint/Prettier to Biome for code formatting and linting
+- Updated all codebase to comply with Biome standards
+
+🎄 Enhancements
+- Added direct documentation link for placement configuration in Flow Builder UI
+- Enhanced development workflow with Husky git hooks
+- Improved code consistency across the project with Biome integration
+
+🐞 Bug Fixes
+- Resolved formatting inconsistencies through Biome implementation
+- Fixed code style issues across the codebase
+
+</Update>
+
+<Update label="v0.1.3" description="February 10, 2025">
+
+##  🐞 Bug fix ##
+
+Fix the issue of email sending failure during signup
+Fix the self-hosting link in the README is incorrect
+Fix Property 'ENV' does not exist on type 'WindowWithUsertour & typeof globalThis'
+
+#5 #9
+
+</Update>
+
+<Update label="v0.1.2" description="February 1, 2025">
+
+## 🚀  Easy Onboarding: Build Flows Fast with Simple Integration and Smart Targeting ##
+🌐 Compatible with all frameworks: If your app runs in a browser, it seamlessly integrates with Usertour.
+📄 Supports multi-page apps: Whether it's a single-page application or spans across multiple pages, Usertour fits perfectly.
+🎯 Advanced user targeting: Define custom user attributes and track events to segment and engage your audience effectively.
+
+## 🚀 Built for professional workflows with version control and environments ##
+🛠️ Multiple environments supported: Manage environments like Production and Staging within a single Usertour account.
+🔄 Version tracking: Monitor every change in your flows, including who made adjustments and when.
+
+## 🚀 Fully customizable appearance ##
+🎨 Tailor your design: Adjust text, button colors, font family, and size to match your branding.
+🖌️ Support for multiple themes: Create unique themes for different flows, offering flexibility for varied use cases.
+
+## 🚀 Gain actionable insights with powerful analytics ##
+📊 Performance metrics: Track the effectiveness of your flows with detailed data on views and completion rates.
+🚨 Identify problem areas: Pinpoint steps causing user confusion or drop-offs and address the issues seamlessly.
+
+</Update>
