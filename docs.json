@@ -67,7 +67,7 @@
           },
           {
             "group": "Developers",
-            "pages": ["developers/csp"]
+            "pages": ["developers/identity-verification", "developers/csp"]
           }
         ]
       },

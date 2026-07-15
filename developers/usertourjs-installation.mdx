@@ -81,6 +81,10 @@ That’s it! Your Usertour installation is ready.
 
 Usertour.js supports sending custom attributes: Key-value pairs of data such as user role or other preferences. See Usertour.js Reference for how to use attributes.
 
+## Optional: Prove user identities
+
+Your environment token is public, so by default anyone holding it could call usertour.identify() with any user ID. To prevent impersonation, your backend can sign an identity token (a JWT) for each user and pass it as identify()'s third argument. See the [Identity Verification guide](/developers/identity-verification).
+
 ## Optional: Install Usertour for uauthenticated users
 
 Running usertour.identify() is a mandatory part of the script. But if you want to show Usertour content on public pages to users who are not yet signed into your application, you can install the script on those pages and replace usertour.identify() with usertour.identifyAnonymous(). With this function Usertour.js will automatically assign the current user a unique ID. But note that they will count as users in the MAU balance.
