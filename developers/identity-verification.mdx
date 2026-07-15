@@ -125,6 +125,16 @@ await usertour.group(
 
 Nothing else changes — attributes, membership, and all other SDK calls work exactly as before. Deploy this and let it run.
 
+<Note>
+  **Loader version:** if you install via the [usertour.js npm
+  package](https://www.npmjs.com/package/usertour.js), upgrade to **0.0.24 or
+  later** — earlier versions don't have the `token` option in their TypeScript
+  types. If you install via the HTML snippet, the snippet forwards the option
+  as-is, but make sure you're using the current snippet from the [installation
+  guide](/developers/usertourjs-installation) or your Settings → Installation
+  page.
+</Note>
+
 To check a token you've generated, paste it into **Validate a token** on the Identity Verification settings page — it reports whether the token verifies, and if not, exactly why (expired, wrong signature, missing `sub`).
 
 ## Step 3: Watch coverage, then enforce
