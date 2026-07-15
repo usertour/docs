@@ -103,6 +103,9 @@ Go to **Settings → Identity Verification**. Each environment has its own secre
 
 Click **Generate secret** and copy the value (it looks like `utv_…`) into your backend configuration. You can reveal it again later from the same page. Use the full string, including the `utv_` prefix, as the HS256 signing key.
 
+{/* TODO screenshot: Settings → Identity Verification, Signing secret card with a current secret (masked input + copy/reveal buttons, Rotate secret button) */}
+![The Signing secret card on the Identity Verification settings page](/images/identity-verification-01.png)
+
 ## Step 2: Pass the token to the SDK
 
 Add the token as the third argument of `identify()`; when you use `group()`, mint the token with the matching `companyId` claim:
@@ -137,9 +140,15 @@ Nothing else changes — attributes, membership, and all other SDK calls work ex
 
 To check a token you've generated, paste it into **Validate a token** on the Identity Verification settings page — it reports whether the token verifies, and if not, exactly why (expired, wrong signature, missing `sub`).
 
+{/* TODO screenshot: Validate a token card with a pasted token showing the "Valid" badge plus decoded User / Company / Expires fields */}
+![Validating an identity token](/images/identity-verification-02.png)
+
 ## Step 3: Watch coverage, then enforce
 
 Back in **Settings → Identity Verification**, the **Signed traffic** card shows what share of `identify()` and `group()` calls over the last 7 days carried a valid identity token. Anonymous users are listed separately — they can never be signed and don't count against coverage.
+
+{/* TODO screenshot: Signed traffic card with Users and Companies rows both reading 100% */}
+![Signed traffic coverage at 100%](/images/identity-verification-03.png)
 
 When both rows read **100%**, turn on **Require identity verification**. From then on:
 
@@ -157,10 +166,13 @@ When both rows read **100%**, turn on **Require identity verification**. From th
 
 Each environment can hold **two** active secrets at once — one in use, one rotation slot — and tokens signed with either are accepted. To rotate:
 
-1. Click **Generate secret** to create the new secret.
+1. Click **Rotate secret** to create the new secret.
 2. Switch every backend signer to the new secret.
 3. Watch the old secret's **Last used** time on the settings page. Once it goes stale, no signer still depends on it.
 4. **Revoke** the old secret.
+
+{/* TODO screenshot: Signing secret card mid-rotation — Current secret on top, Previous secret below with the "Rotating out" badge and revoke button */}
+![A rotation in progress: current and previous secrets](/images/identity-verification-04.png)
 
 While enforcement is on, the last active secret cannot be revoked — that would instantly sign out every verified user.
 
