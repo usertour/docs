@@ -243,7 +243,7 @@
             "name": "type",
             "required": false,
             "in": "query",
-            "description": "Filter by content type: flow, checklist, launcher, banner, tracker, resource-center. (A survey is a flow with question blocks \u2014 there is no separate survey type.)",
+            "description": "Filter by content type: flow, checklist, launcher, banner, tracker, resource-center, announcement. (A survey is a flow with question blocks \u2014 there is no separate survey type.)",
             "schema": {
               "type": "string"
             }
@@ -5275,7 +5275,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -5749,7 +5750,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -6814,7 +6816,8 @@
                                             ]
                                           },
                                           "url": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                           },
                                           "newTab": {
                                             "type": "boolean"
@@ -6946,7 +6949,8 @@
                                       ]
                                     },
                                     "url": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                     },
                                     "newTab": {
                                       "type": "boolean"
@@ -7148,6 +7152,9 @@
                       ]
                     },
                     "data": {},
+                    "scheduledAt": {
+                      "type": "string"
+                    },
                     "updatedAt": {
                       "type": "string"
                     },
@@ -7452,7 +7459,8 @@
                                                   ]
                                                 },
                                                 "url": {
-                                                  "type": "string"
+                                                  "type": "string",
+                                                  "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                                 },
                                                 "newTab": {
                                                   "type": "boolean"
@@ -7584,7 +7592,8 @@
                                             ]
                                           },
                                           "url": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                           },
                                           "newTab": {
                                             "type": "boolean"
@@ -7786,6 +7795,9 @@
                             ]
                           },
                           "data": {},
+                          "scheduledAt": {
+                            "type": "string"
+                          },
                           "updatedAt": {
                             "type": "string"
                           },
@@ -8045,7 +8057,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -8519,7 +8532,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -9579,7 +9593,8 @@
                                       ]
                                     },
                                     "url": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                     },
                                     "newTab": {
                                       "type": "boolean"
@@ -9711,7 +9726,8 @@
                                 ]
                               },
                               "url": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                               },
                               "newTab": {
                                 "type": "boolean"
@@ -9913,6 +9929,9 @@
                 ]
               },
               "data": {},
+              "scheduledAt": {
+                "type": "string"
+              },
               "updatedAt": {
                 "type": "string"
               },
@@ -10208,7 +10227,8 @@
                                             ]
                                           },
                                           "url": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                           },
                                           "newTab": {
                                             "type": "boolean"
@@ -10340,7 +10360,8 @@
                                       ]
                                     },
                                     "url": {
-                                      "type": "string"
+                                      "type": "string",
+                                      "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                     },
                                     "newTab": {
                                       "type": "boolean"
@@ -10542,6 +10563,9 @@
                       ]
                     },
                     "data": {},
+                    "scheduledAt": {
+                      "type": "string"
+                    },
                     "updatedAt": {
                       "type": "string"
                     },
@@ -10602,11 +10626,13 @@
               "launcher",
               "banner",
               "tracker",
-              "resource-center"
+              "resource-center",
+              "announcement"
             ],
-            "description": "Content kind."
+            "description": "Content kind. An `announcement` is a feed item delivered through a resource center that has an `announcement` block \u2014 publish alone does not surface it without one."
           },
           "name": {
+            "description": "Display name. For `announcement` it also seeds the draft title.",
             "type": "string"
           },
           "buildUrl": {
@@ -10864,7 +10890,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -11338,7 +11365,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -12378,7 +12406,8 @@
                                         ]
                                       },
                                       "url": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                       },
                                       "newTab": {
                                         "type": "boolean"
@@ -12510,7 +12539,8 @@
                                   ]
                                 },
                                 "url": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                 },
                                 "newTab": {
                                   "type": "boolean"
@@ -12712,6 +12742,9 @@
                   ]
                 },
                 "data": {},
+                "scheduledAt": {
+                  "type": "string"
+                },
                 "updatedAt": {
                   "type": "string"
                 },
@@ -12939,7 +12972,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -13413,7 +13447,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -14448,7 +14483,8 @@
                                   ]
                                 },
                                 "url": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                 },
                                 "newTab": {
                                   "type": "boolean"
@@ -14580,7 +14616,8 @@
                             ]
                           },
                           "url": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                           },
                           "newTab": {
                             "type": "boolean"
@@ -14776,6 +14813,9 @@
             }
           },
           "data": {},
+          "scheduledAt": {
+            "type": "string"
+          },
           "updatedAt": {
             "type": "string"
           },
@@ -15055,7 +15095,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -15529,7 +15570,8 @@
                           ]
                         },
                         "url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
                           "type": "boolean"
@@ -16577,7 +16619,8 @@
                                   ]
                                 },
                                 "url": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                 },
                                 "newTab": {
                                   "type": "boolean"
@@ -16710,7 +16753,8 @@
                             ]
                           },
                           "url": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                           },
                           "newTab": {
                             "type": "boolean"
@@ -16901,7 +16945,7 @@
             "type": "string"
           },
           "data": {
-            "description": "Type-specific body for a non-flow content version: checklist / launcher / banner / tracker / resource-center. Field-level merged onto the existing data.",
+            "description": "Type-specific body for a non-flow content version: checklist / launcher / banner / tracker / announcement / resource-center. Field-level merged onto the existing data.",
             "anyOf": [
               {
                 "type": "object",
@@ -17020,7 +17064,8 @@
                                     ]
                                   },
                                   "url": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                   },
                                   "newTab": {
                                     "type": "boolean"
@@ -17322,7 +17367,8 @@
                                   ]
                                 },
                                 "url": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                 },
                                 "newTab": {
                                   "type": "boolean"
@@ -17524,6 +17570,64 @@
               {
                 "type": "object",
                 "properties": {
+                  "title": {
+                    "description": "Title shown in the feed row and the detail view. Required to publish \u2014 an untitled announcement would render a blank row.",
+                    "type": "string"
+                  },
+                  "introContent": {
+                    "description": "Rich content shown in the feed row (and in the popup, for `distribution: \"popup\"`). Same block vocabulary as flow steps MINUS questions: text / image / button / embed / columns. Button actions here: start_content / navigate / run_javascript only \u2014 no dismiss (feed items are marked seen, not dismissed) and no goto_step.",
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema0"
+                    }
+                  },
+                  "enableReadMore": {
+                    "description": "Adds a \"Read more\" button that opens a detail page rendered from `detailContent`.",
+                    "type": "boolean"
+                  },
+                  "readMoreLabel": {
+                    "description": "Label of the \"Read more\" button (default \"Read more\").",
+                    "type": "string"
+                  },
+                  "detailContent": {
+                    "description": "Full content of the \"Read more\" detail page \u2014 only rendered when `enableReadMore` is true. Same block rules as `introContent`.",
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema0"
+                    }
+                  },
+                  "distribution": {
+                    "description": "How loudly users are notified: `silent` = appears in the feed only; `badge` (default) = feed + unread-count badge on the resource-center launcher; `popup` = feed + badge + actively presented ONCE to each user (style per `popupConfig`). Only the newest unseen popup self-presents; it never re-shows after being seen.",
+                    "type": "string",
+                    "enum": [
+                      "silent",
+                      "badge",
+                      "popup"
+                    ]
+                  },
+                  "popupConfig": {
+                    "description": "Popup presentation \u2014 only meaningful when `distribution` is `popup`. Omit for the default (bubble).",
+                    "type": "object",
+                    "properties": {
+                      "style": {
+                        "type": "string",
+                        "enum": [
+                          "modal",
+                          "bubble"
+                        ],
+                        "description": "`modal` = centered modal with overlay; `bubble` = speech bubble anchored at the resource-center launcher."
+                      }
+                    },
+                    "required": [
+                      "style"
+                    ]
+                  }
+                },
+                "additionalProperties": {}
+              },
+              {
+                "type": "object",
+                "properties": {
                   "buttonText": {
                     "type": "string"
                   },
@@ -17566,7 +17670,7 @@
                         },
                         "blocks": {
                           "default": [],
-                          "description": "Tab blocks use the resource-center vocabulary \u2014 richtext / divider / action / sub-page / content-list / live-chat \u2014 NOT the flow content blocks. Put text inside a `richtext` block: { \"type\": \"richtext\", \"content\": [{ \"object\": \"block\", \"type\": \"text\", \"markdown\": \"\u2026\" }] }. A bare top-level text block (type \"text\") is rejected here.",
+                          "description": "Tab blocks use the resource-center vocabulary \u2014 richtext / divider / action / sub-page / content-list / live-chat / announcement \u2014 NOT the flow content blocks. Put text inside a `richtext` block: { \"type\": \"richtext\", \"content\": [{ \"object\": \"block\", \"type\": \"text\", \"markdown\": \"\u2026\" }] }. A bare top-level text block (type \"text\") is rejected here. At most one `announcement` block per resource center (across all tabs).",
                           "type": "array",
                           "items": {
                             "oneOf": [
@@ -17730,7 +17834,8 @@
                                               ]
                                             },
                                             "url": {
-                                              "type": "string"
+                                              "type": "string",
+                                              "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                             },
                                             "newTab": {
                                               "type": "boolean"
@@ -18086,6 +18191,82 @@
                                   "name",
                                   "provider"
                                 ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "onlyShowWhen": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "announcement"
+                                    ]
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "icon": {
+                                    "type": "object",
+                                    "properties": {
+                                      "source": {
+                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                                        "type": "string",
+                                        "enum": [
+                                          "none",
+                                          "builtin",
+                                          "upload",
+                                          "url",
+                                          "inherit"
+                                        ]
+                                      },
+                                      "type": {
+                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in get_authoring_guide.",
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "name"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "onlyShowWhen": {
+                                    "type": "array",
+                                    "items": {
+                                      "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
+                                    }
+                                  },
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "unsupported"
+                                    ]
+                                  },
+                                  "note": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type"
+                                ]
                               }
                             ]
                           }
@@ -18100,6 +18281,11 @@
                 "additionalProperties": {}
               }
             ]
+          },
+          "scheduledAt": {
+            "type": "string",
+            "description": "Announcement versions only: the \"announcement time\" \u2014 the feed hides the announcement until this instant passes, and orders the feed by it (newest first). ISO date or datetime WITH timezone. `null` = clear (publish stamps the publish time instead). A future value defers visibility; the value carries across version forks.",
+            "nullable": true
           }
         }
       },
