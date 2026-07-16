@@ -4,6 +4,39 @@ description: "Usertour releases in 2026"
 rss: true
 ---
 
+<Update label="v0.8.9" description="July 16, 2026">
+
+This release lets you **prove that `identify()` and `group()` calls really come from your app**, so your public environment token stops being enough to impersonate your users. Your backend signs a short JSON Web Token for each logged-in user; Usertour verifies it before accepting the identity. Verification is opt-in per environment and rolls out safely — unsigned traffic keeps working while a coverage meter shows you when it's safe to switch enforcement on.
+
+### 🔐 Prove user identities with a signed token
+
+Your environment token ships in every visitor's page source — it has to, so the SDK can connect. That means the token alone can't prove *who* is calling: anyone who has viewed your page could call `identify()` with someone else's user ID and read or overwrite that user's data. Identity verification closes this. Your backend mints a JWT (HS256) signed with a per-environment **signing secret** only you hold, carrying the user's ID as the `sub` claim (and optionally the company as `companyId`). Pass it to the SDK — `usertour.identify(userId, attrs, { token })` — and Usertour rejects any identity claim that isn't backed by a valid token. One token proves both the user and their company membership. See the [Identity Verification guide](https://docs.usertour.io/developers/identity-verification) for backend signing samples in Node, Python, Ruby, PHP and Go.
+
+### 🎛️ A new Identity Verification settings page
+
+**Settings → Identity Verification** manages the whole lifecycle: generate a signing secret, copy it into your backend, and rotate it with zero downtime — a new secret and the old one are both accepted until you revoke the old one, and a **Last used** timestamp tells you when it's safe to revoke. A built-in **Validate a token** tool takes a token you've generated and tells you exactly whether it verifies, and if not, why — expired, wrong signature, wrong algorithm, missing claim — so you debug the real problem instead of guessing.
+
+### 📊 Coverage-first, opt-in enforcement
+
+Turning on enforcement while some of your pages still send unsigned identities would lock those users out, so the release is built to prevent that. Even with enforcement off, Usertour verifies every identity claim and records the result. The **Signed traffic** card shows the share of `identify()` and `group()` calls over the last 7 days that carried a valid token; when it reads 100%, you flip **Require identity verification** on with confidence. Anonymous visitors (`identifyAnonymous()`) stay exempt — they involve no backend, so they can't be signed — and keep working with enforcement on.
+
+### 🔑 What identity verification does and doesn't cover
+
+With enforcement on, the environment token is no longer a write credential: nobody can impersonate your users, mass-create fake users, or attach users to companies they don't belong to. It deliberately doesn't try to hide published content (that's served to anonymous visitors by design) or stop a real signed-in user from editing their own attributes. Signing secrets are stored encrypted at rest and are only ever visible to workspace owners, alongside your API keys.
+
+### 🛠️ Under the hood
+
+Identity verification is a single verification path feeding an opt-in gate, designed across [ADR 0008](https://github.com/usertour/usertour/blob/main/docs/adr/0008-sdk-identity-verification.md) (the verification model) and [ADR 0009](https://github.com/usertour/usertour/blob/main/docs/adr/0009-jwt-identity-tokens.md) (the JWT token format, which replaced an initial bare-HMAC design before release):
+
+- One `checkToken` classifier is the single source of truth for both the runtime handshake and the console validator, so they can never disagree. Claim comparison is string-coerced (numeric IDs), `exp`/`nbf` carry a 30-second clock tolerance, tokens are length-bounded before any decode on the unauthenticated handshake path, and a handshake with a company claim verifies its token exactly once.
+- Signing secrets live in a dedicated `EnvironmentSigningSecret` table — `utv_`-prefixed, AES-256-GCM encrypted at rest (HMAC needs the original value, so hashing is impossible by construction), at most two active per environment for the rotation window, with `lastUsedAt` observability. The lifecycle mutations run in serializable transactions that retry on serialization failure.
+- The SDK keeps a single identity token as the source of truth for reconnect credentials: a refreshed token revives a handshake that was rejected while a token was expiring, and a server-rejected `group()` claim rolls back with concurrency-safe compare-and-restore so it can never poison a later reconnect.
+- Verification runs only on the v2 WebSocket surface; the REST API already authenticates with secret, server-side keys, and the v1 socket path is out of scope as it winds down.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.8.8...v0.8.9
+
+</Update>
+
 <Update label="v0.8.8" description="July 14, 2026">
 
 This release makes **localization** a first-class capability: translate flows, checklists, launchers, banners, announcements and resource centers into any number of languages, let AI fill in the blanks, and deliver each user the language matching their `locale_code` attribute — with untranslated text always falling back to the source, so a half-finished translation never breaks content. Translations are versioned with the content and ship through the normal publish flow.

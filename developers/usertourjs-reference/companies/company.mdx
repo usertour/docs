@@ -21,10 +21,21 @@ When you provide `attributes`, they will be merged with the company's existing a
   Membership attributes to update for the user's relationship with the company. These attributes describe the user's role or position within the company (e.g., "role", "department", "join_date"). They can be used in the Usertour UI just like company attributes.
 </ParamField>
 
+<ParamField path="options.token" type="string">
+  An identity token: a JWT minted by your backend, HS256-signed with your
+  environment's signing secret, whose `sub` claim equals the current user's ID
+  and whose `companyId` claim must equal `groupId`. Proves the user's
+  membership of this company; it supersedes the token supplied to
+  `identify()`. Required once **Require identity verification** is enabled
+  for the environment. See [Identity Verification](/developers/identity-verification).
+</ParamField>
+
 ## Returns
 A `Promise` that resolves when the group association is complete.
 
-## Example
+## Examples
+
+### Basic Usage
 
 ```javascript
 // Associate user with a company and update attributes
@@ -41,10 +52,24 @@ usertour.group('comp_123456', {
 });
 ```
 
+### With Identity Verification
+
+```javascript
+// The token is a JWT your backend signs with the environment's
+// signing secret: { sub: '<current user id>', companyId: 'comp_123456' }
+usertour.group('comp_123456', {
+  name: 'Acme Corp'
+}, {
+  membership: { role: 'admin' },
+  token: identityTokenFromYourBackend
+});
+```
+
 ## Notes
 
 - Call this method when a user starts working with a specific company
-- Call again when the user switches to a different company
+- Call again when the user switches to a different company — with identity verification, mint a fresh token whose `companyId` claim matches the new company
 - Company attributes are merged with existing values
 - Membership attributes describe the user's relationship with the company
 - All attributes can be used in flow conditions and content
+- With identity verification enforced, calls without a valid `options.token` are rejected — see [Identity Verification](/developers/identity-verification)

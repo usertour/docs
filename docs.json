@@ -71,6 +71,7 @@
           {
             "group": "Developers",
             "pages": [
+              "developers/identity-verification",
               "developers/csp"
             ]
           }
