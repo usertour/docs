@@ -6676,9 +6676,11 @@
                                     ]
                                   },
                                   "sideOffset": {
+                                    "description": "Pixels between the target and the tooltip, along `side`.",
                                     "type": "number"
                                   },
                                   "alignOffset": {
+                                    "description": "Pixel shift along the alignment axis. Only applies when `align` is `start` or `end` \u2014 at `center` alignment the runtime ignores it silently.",
                                     "type": "number"
                                   },
                                   "alignType": {
@@ -6716,9 +6718,11 @@
                                     ]
                                   },
                                   "offsetX": {
+                                    "description": "Pixel shift from the grid cell. Applies in every cell EXCEPT `position: \"center\"`, where both offsets are ignored silently.",
                                     "type": "number"
                                   },
                                   "offsetY": {
+                                    "description": "See `offsetX`.",
                                     "type": "number"
                                   },
                                   "backdrop": {
@@ -6886,7 +6890,7 @@
                                   }
                                 },
                                 "waitSeconds": {
-                                  "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                                  "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The timer arms the first time `when` matches and the actions fire after the wait EVEN IF the conditions have since stopped matching (the match is latched, not re-checked). Capped at 300 seconds by the runtime (a larger value is clamped).",
                                   "type": "number"
                                 }
                               },
@@ -7128,7 +7132,7 @@
                           ]
                         },
                         "waitSeconds": {
-                          "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                          "description": "Delay in SECONDS between the conditions matching and the start firing. This wait is server-tracked: the conditions must keep matching for the entire wait, or it is cancelled (unlike a step trigger `waitSeconds`, which latches on first match). Capped at 300 seconds by the runtime (a larger value is clamped).",
                           "type": "number"
                         },
                         "startIfNotComplete": {
@@ -7149,7 +7153,8 @@
                       },
                       "required": [
                         "when"
-                      ]
+                      ],
+                      "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page)."
                     },
                     "data": {},
                     "scheduledAt": {
@@ -7317,9 +7322,11 @@
                                           ]
                                         },
                                         "sideOffset": {
+                                          "description": "Pixels between the target and the tooltip, along `side`.",
                                           "type": "number"
                                         },
                                         "alignOffset": {
+                                          "description": "Pixel shift along the alignment axis. Only applies when `align` is `start` or `end` \u2014 at `center` alignment the runtime ignores it silently.",
                                           "type": "number"
                                         },
                                         "alignType": {
@@ -7357,9 +7364,11 @@
                                           ]
                                         },
                                         "offsetX": {
+                                          "description": "Pixel shift from the grid cell. Applies in every cell EXCEPT `position: \"center\"`, where both offsets are ignored silently.",
                                           "type": "number"
                                         },
                                         "offsetY": {
+                                          "description": "See `offsetX`.",
                                           "type": "number"
                                         },
                                         "backdrop": {
@@ -7527,7 +7536,7 @@
                                         }
                                       },
                                       "waitSeconds": {
-                                        "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                                        "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The timer arms the first time `when` matches and the actions fire after the wait EVEN IF the conditions have since stopped matching (the match is latched, not re-checked). Capped at 300 seconds by the runtime (a larger value is clamped).",
                                         "type": "number"
                                       }
                                     },
@@ -7769,7 +7778,7 @@
                                 ]
                               },
                               "waitSeconds": {
-                                "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                                "description": "Delay in SECONDS between the conditions matching and the start firing. This wait is server-tracked: the conditions must keep matching for the entire wait, or it is cancelled (unlike a step trigger `waitSeconds`, which latches on first match). Capped at 300 seconds by the runtime (a larger value is clamped).",
                                 "type": "number"
                               },
                               "startIfNotComplete": {
@@ -7790,7 +7799,8 @@
                             },
                             "required": [
                               "when"
-                            ]
+                            ],
+                            "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page)."
                           },
                           "data": {},
                           "scheduledAt": {
@@ -9451,9 +9461,11 @@
                               ]
                             },
                             "sideOffset": {
+                              "description": "Pixels between the target and the tooltip, along `side`.",
                               "type": "number"
                             },
                             "alignOffset": {
+                              "description": "Pixel shift along the alignment axis. Only applies when `align` is `start` or `end` \u2014 at `center` alignment the runtime ignores it silently.",
                               "type": "number"
                             },
                             "alignType": {
@@ -9491,9 +9503,11 @@
                               ]
                             },
                             "offsetX": {
+                              "description": "Pixel shift from the grid cell. Applies in every cell EXCEPT `position: \"center\"`, where both offsets are ignored silently.",
                               "type": "number"
                             },
                             "offsetY": {
+                              "description": "See `offsetX`.",
                               "type": "number"
                             },
                             "backdrop": {
@@ -9661,7 +9675,7 @@
                             }
                           },
                           "waitSeconds": {
-                            "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                            "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The timer arms the first time `when` matches and the actions fire after the wait EVEN IF the conditions have since stopped matching (the match is latched, not re-checked). Capped at 300 seconds by the runtime (a larger value is clamped).",
                             "type": "number"
                           }
                         },
@@ -9903,7 +9917,7 @@
                     ]
                   },
                   "waitSeconds": {
-                    "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                    "description": "Delay in SECONDS between the conditions matching and the start firing. This wait is server-tracked: the conditions must keep matching for the entire wait, or it is cancelled (unlike a step trigger `waitSeconds`, which latches on first match). Capped at 300 seconds by the runtime (a larger value is clamped).",
                     "type": "number"
                   },
                   "startIfNotComplete": {
@@ -9924,7 +9938,8 @@
                 },
                 "required": [
                   "when"
-                ]
+                ],
+                "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page)."
               },
               "data": {},
               "scheduledAt": {
@@ -10083,9 +10098,11 @@
                                     ]
                                   },
                                   "sideOffset": {
+                                    "description": "Pixels between the target and the tooltip, along `side`.",
                                     "type": "number"
                                   },
                                   "alignOffset": {
+                                    "description": "Pixel shift along the alignment axis. Only applies when `align` is `start` or `end` \u2014 at `center` alignment the runtime ignores it silently.",
                                     "type": "number"
                                   },
                                   "alignType": {
@@ -10123,9 +10140,11 @@
                                     ]
                                   },
                                   "offsetX": {
+                                    "description": "Pixel shift from the grid cell. Applies in every cell EXCEPT `position: \"center\"`, where both offsets are ignored silently.",
                                     "type": "number"
                                   },
                                   "offsetY": {
+                                    "description": "See `offsetX`.",
                                     "type": "number"
                                   },
                                   "backdrop": {
@@ -10293,7 +10312,7 @@
                                   }
                                 },
                                 "waitSeconds": {
-                                  "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                                  "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The timer arms the first time `when` matches and the actions fire after the wait EVEN IF the conditions have since stopped matching (the match is latched, not re-checked). Capped at 300 seconds by the runtime (a larger value is clamped).",
                                   "type": "number"
                                 }
                               },
@@ -10535,7 +10554,7 @@
                           ]
                         },
                         "waitSeconds": {
-                          "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                          "description": "Delay in SECONDS between the conditions matching and the start firing. This wait is server-tracked: the conditions must keep matching for the entire wait, or it is cancelled (unlike a step trigger `waitSeconds`, which latches on first match). Capped at 300 seconds by the runtime (a larger value is clamped).",
                           "type": "number"
                         },
                         "startIfNotComplete": {
@@ -10556,7 +10575,8 @@
                       },
                       "required": [
                         "when"
-                      ]
+                      ],
+                      "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page)."
                     },
                     "data": {},
                     "scheduledAt": {
@@ -12262,9 +12282,11 @@
                                 ]
                               },
                               "sideOffset": {
+                                "description": "Pixels between the target and the tooltip, along `side`.",
                                 "type": "number"
                               },
                               "alignOffset": {
+                                "description": "Pixel shift along the alignment axis. Only applies when `align` is `start` or `end` \u2014 at `center` alignment the runtime ignores it silently.",
                                 "type": "number"
                               },
                               "alignType": {
@@ -12302,9 +12324,11 @@
                                 ]
                               },
                               "offsetX": {
+                                "description": "Pixel shift from the grid cell. Applies in every cell EXCEPT `position: \"center\"`, where both offsets are ignored silently.",
                                 "type": "number"
                               },
                               "offsetY": {
+                                "description": "See `offsetX`.",
                                 "type": "number"
                               },
                               "backdrop": {
@@ -12472,7 +12496,7 @@
                               }
                             },
                             "waitSeconds": {
-                              "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                              "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The timer arms the first time `when` matches and the actions fire after the wait EVEN IF the conditions have since stopped matching (the match is latched, not re-checked). Capped at 300 seconds by the runtime (a larger value is clamped).",
                               "type": "number"
                             }
                           },
@@ -12714,7 +12738,7 @@
                       ]
                     },
                     "waitSeconds": {
-                      "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                      "description": "Delay in SECONDS between the conditions matching and the start firing. This wait is server-tracked: the conditions must keep matching for the entire wait, or it is cancelled (unlike a step trigger `waitSeconds`, which latches on first match). Capped at 300 seconds by the runtime (a larger value is clamped).",
                       "type": "number"
                     },
                     "startIfNotComplete": {
@@ -12735,7 +12759,8 @@
                   },
                   "required": [
                     "when"
-                  ]
+                  ],
+                  "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page)."
                 },
                 "data": {},
                 "scheduledAt": {
@@ -14339,9 +14364,11 @@
                           ]
                         },
                         "sideOffset": {
+                          "description": "Pixels between the target and the tooltip, along `side`.",
                           "type": "number"
                         },
                         "alignOffset": {
+                          "description": "Pixel shift along the alignment axis. Only applies when `align` is `start` or `end` \u2014 at `center` alignment the runtime ignores it silently.",
                           "type": "number"
                         },
                         "alignType": {
@@ -14379,9 +14406,11 @@
                           ]
                         },
                         "offsetX": {
+                          "description": "Pixel shift from the grid cell. Applies in every cell EXCEPT `position: \"center\"`, where both offsets are ignored silently.",
                           "type": "number"
                         },
                         "offsetY": {
+                          "description": "See `offsetX`.",
                           "type": "number"
                         },
                         "backdrop": {
@@ -14549,7 +14578,7 @@
                         }
                       },
                       "waitSeconds": {
-                        "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                        "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The timer arms the first time `when` matches and the actions fire after the wait EVEN IF the conditions have since stopped matching (the match is latched, not re-checked). Capped at 300 seconds by the runtime (a larger value is clamped).",
                         "type": "number"
                       }
                     },
@@ -14791,7 +14820,7 @@
                 ]
               },
               "waitSeconds": {
-                "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                "description": "Delay in SECONDS between the conditions matching and the start firing. This wait is server-tracked: the conditions must keep matching for the entire wait, or it is cancelled (unlike a step trigger `waitSeconds`, which latches on first match). Capped at 300 seconds by the runtime (a larger value is clamped).",
                 "type": "number"
               },
               "startIfNotComplete": {
@@ -14809,7 +14838,8 @@
                   "$ref": "#/components/schemas/ContentVersionDto__schema1"
                 }
               }
-            }
+            },
+            "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page)."
           },
           "data": {},
           "scheduledAt": {
@@ -16476,9 +16506,11 @@
                           ]
                         },
                         "sideOffset": {
+                          "description": "Pixels between the target and the tooltip, along `side`.",
                           "type": "number"
                         },
                         "alignOffset": {
+                          "description": "Pixel shift along the alignment axis. Only applies when `align` is `start` or `end` \u2014 at `center` alignment the runtime ignores it silently.",
                           "type": "number"
                         },
                         "alignType": {
@@ -16516,9 +16548,11 @@
                           ]
                         },
                         "offsetX": {
+                          "description": "Pixel shift from the grid cell. Applies in every cell EXCEPT `position: \"center\"`, where both offsets are ignored silently.",
                           "type": "number"
                         },
                         "offsetY": {
+                          "description": "See `offsetX`.",
                           "type": "number"
                         },
                         "backdrop": {
@@ -16688,7 +16722,7 @@
                         }
                       },
                       "waitSeconds": {
-                        "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The conditions must keep matching for the entire wait, or the actions do not fire. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                        "description": "Delay in SECONDS between the `when` conditions matching and the `do` actions firing. The timer arms the first time `when` matches and the actions fire after the wait EVEN IF the conditions have since stopped matching (the match is latched, not re-checked). Capped at 300 seconds by the runtime (a larger value is clamped).",
                         "type": "number"
                       }
                     },
@@ -16914,7 +16948,7 @@
                 ]
               },
               "waitSeconds": {
-                "description": "Delay in SECONDS between the conditions matching and the start firing. The conditions must keep matching for the entire wait, or it will not start. Capped at 300 seconds by the runtime (a larger value is clamped).",
+                "description": "Delay in SECONDS between the conditions matching and the start firing. This wait is server-tracked: the conditions must keep matching for the entire wait, or it is cancelled (unlike a step trigger `waitSeconds`, which latches on first match). Capped at 300 seconds by the runtime (a larger value is clamped).",
                 "type": "number"
               },
               "startIfNotComplete": {
@@ -16922,6 +16956,7 @@
                 "type": "boolean"
               }
             },
+            "description": "PATCHES the stored rules field-by-field: an omitted setting (frequency / priority / waitSeconds / startIfNotComplete) keeps its stored value \u2014 including one inherited from the forked version \u2014 so to turn a setting off, send it explicitly (e.g. `startIfNotComplete: false`). `when`, when present, fully replaces the condition list. `null` clears the rules entirely (content stops auto-starting).",
             "nullable": true
           },
           "hideRules": {
@@ -16937,6 +16972,7 @@
             "required": [
               "when"
             ],
+            "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page).",
             "nullable": true
           },
           "themeId": {
