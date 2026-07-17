@@ -7046,6 +7046,7 @@
                       "type": "object",
                       "properties": {
                         "when": {
+                          "description": "Start conditions (full replacement when present). Omit to keep the existing conditions and change only the settings.",
                           "type": "array",
                           "items": {
                             "$ref": "#/components/schemas/ListContentResponseDto__schema1"
@@ -7134,10 +7135,7 @@
                           "description": "When true, this content won't auto-start for users who have already completed it.",
                           "type": "boolean"
                         }
-                      },
-                      "required": [
-                        "when"
-                      ]
+                      }
                     },
                     "hideRules": {
                       "type": "object",
@@ -7689,6 +7687,7 @@
                             "type": "object",
                             "properties": {
                               "when": {
+                                "description": "Start conditions (full replacement when present). Omit to keep the existing conditions and change only the settings.",
                                 "type": "array",
                                 "items": {
                                   "$ref": "#/components/schemas/ListContentResponseDto__schema1"
@@ -7777,10 +7776,7 @@
                                 "description": "When true, this content won't auto-start for users who have already completed it.",
                                 "type": "boolean"
                               }
-                            },
-                            "required": [
-                              "when"
-                            ]
+                            }
                           },
                           "hideRules": {
                             "type": "object",
@@ -9825,6 +9821,7 @@
                 "type": "object",
                 "properties": {
                   "when": {
+                    "description": "Start conditions (full replacement when present). Omit to keep the existing conditions and change only the settings.",
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/ContentDto__schema1"
@@ -9913,10 +9910,7 @@
                     "description": "When true, this content won't auto-start for users who have already completed it.",
                     "type": "boolean"
                   }
-                },
-                "required": [
-                  "when"
-                ]
+                }
               },
               "hideRules": {
                 "type": "object",
@@ -10459,6 +10453,7 @@
                       "type": "object",
                       "properties": {
                         "when": {
+                          "description": "Start conditions (full replacement when present). Omit to keep the existing conditions and change only the settings.",
                           "type": "array",
                           "items": {
                             "$ref": "#/components/schemas/ContentDto__schema1"
@@ -10547,10 +10542,7 @@
                           "description": "When true, this content won't auto-start for users who have already completed it.",
                           "type": "boolean"
                         }
-                      },
-                      "required": [
-                        "when"
-                      ]
+                      }
                     },
                     "hideRules": {
                       "type": "object",
@@ -12640,6 +12632,7 @@
                   "type": "object",
                   "properties": {
                     "when": {
+                      "description": "Start conditions (full replacement when present). Omit to keep the existing conditions and change only the settings.",
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/ListContentVersionsResponseDto__schema1"
@@ -12728,10 +12721,7 @@
                       "description": "When true, this content won't auto-start for users who have already completed it.",
                       "type": "boolean"
                     }
-                  },
-                  "required": [
-                    "when"
-                  ]
+                  }
                 },
                 "hideRules": {
                   "type": "object",
@@ -14719,6 +14709,7 @@
             "type": "object",
             "properties": {
               "when": {
+                "description": "Start conditions (full replacement when present). Omit to keep the existing conditions and change only the settings.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ContentVersionDto__schema1"
@@ -16841,6 +16832,7 @@
             "type": "object",
             "properties": {
               "when": {
+                "description": "Start conditions (full replacement when present). Omit to keep the existing conditions and change only the settings.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
@@ -16930,9 +16922,6 @@
                 "type": "boolean"
               }
             },
-            "required": [
-              "when"
-            ],
             "nullable": true
           },
           "hideRules": {
