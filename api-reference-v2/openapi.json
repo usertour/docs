@@ -5320,7 +5320,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -5337,7 +5338,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -5795,7 +5797,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -5812,7 +5815,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -6867,7 +6871,8 @@
                                         "required": [
                                           "type",
                                           "script"
-                                        ]
+                                        ],
+                                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                       },
                                       {
                                         "type": "object",
@@ -6884,7 +6889,8 @@
                                         },
                                         "required": [
                                           "type"
-                                        ]
+                                        ],
+                                        "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                                       }
                                     ]
                                   }
@@ -7000,7 +7006,8 @@
                                   "required": [
                                     "type",
                                     "script"
-                                  ]
+                                  ],
+                                  "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                 },
                                 {
                                   "type": "object",
@@ -7017,7 +7024,8 @@
                                   },
                                   "required": [
                                     "type"
-                                  ]
+                                  ],
+                                  "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                                 }
                               ]
                             }
@@ -7057,6 +7065,7 @@
                           }
                         },
                         "frequency": {
+                          "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
                           "type": "object",
                           "properties": {
                             "mode": {
@@ -7121,7 +7130,7 @@
                           ]
                         },
                         "priority": {
-                          "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first.",
+                          "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first. Content with no priority set ranks as `medium`.",
                           "type": "string",
                           "enum": [
                             "highest",
@@ -7513,7 +7522,8 @@
                                               "required": [
                                                 "type",
                                                 "script"
-                                              ]
+                                              ],
+                                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                             },
                                             {
                                               "type": "object",
@@ -7530,7 +7540,8 @@
                                               },
                                               "required": [
                                                 "type"
-                                              ]
+                                              ],
+                                              "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                                             }
                                           ]
                                         }
@@ -7646,7 +7657,8 @@
                                         "required": [
                                           "type",
                                           "script"
-                                        ]
+                                        ],
+                                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                       },
                                       {
                                         "type": "object",
@@ -7663,7 +7675,8 @@
                                         },
                                         "required": [
                                           "type"
-                                        ]
+                                        ],
+                                        "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                                       }
                                     ]
                                   }
@@ -7703,6 +7716,7 @@
                                 }
                               },
                               "frequency": {
+                                "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
                                 "type": "object",
                                 "properties": {
                                   "mode": {
@@ -7767,7 +7781,7 @@
                                 ]
                               },
                               "priority": {
-                                "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first.",
+                                "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first. Content with no priority set ranks as `medium`.",
                                 "type": "string",
                                 "enum": [
                                   "highest",
@@ -8110,7 +8124,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -8127,7 +8142,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -8585,7 +8601,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -8602,7 +8619,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -9652,7 +9670,8 @@
                                   "required": [
                                     "type",
                                     "script"
-                                  ]
+                                  ],
+                                  "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                 },
                                 {
                                   "type": "object",
@@ -9669,7 +9688,8 @@
                                   },
                                   "required": [
                                     "type"
-                                  ]
+                                  ],
+                                  "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                                 }
                               ]
                             }
@@ -9785,7 +9805,8 @@
                             "required": [
                               "type",
                               "script"
-                            ]
+                            ],
+                            "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                           },
                           {
                             "type": "object",
@@ -9802,7 +9823,8 @@
                             },
                             "required": [
                               "type"
-                            ]
+                            ],
+                            "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                           }
                         ]
                       }
@@ -9842,6 +9864,7 @@
                     }
                   },
                   "frequency": {
+                    "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
                     "type": "object",
                     "properties": {
                       "mode": {
@@ -9906,7 +9929,7 @@
                     ]
                   },
                   "priority": {
-                    "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first.",
+                    "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first. Content with no priority set ranks as `medium`.",
                     "type": "string",
                     "enum": [
                       "highest",
@@ -10289,7 +10312,8 @@
                                         "required": [
                                           "type",
                                           "script"
-                                        ]
+                                        ],
+                                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                       },
                                       {
                                         "type": "object",
@@ -10306,7 +10330,8 @@
                                         },
                                         "required": [
                                           "type"
-                                        ]
+                                        ],
+                                        "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                                       }
                                     ]
                                   }
@@ -10422,7 +10447,8 @@
                                   "required": [
                                     "type",
                                     "script"
-                                  ]
+                                  ],
+                                  "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                 },
                                 {
                                   "type": "object",
@@ -10439,7 +10465,8 @@
                                   },
                                   "required": [
                                     "type"
-                                  ]
+                                  ],
+                                  "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                                 }
                               ]
                             }
@@ -10479,6 +10506,7 @@
                           }
                         },
                         "frequency": {
+                          "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
                           "type": "object",
                           "properties": {
                             "mode": {
@@ -10543,7 +10571,7 @@
                           ]
                         },
                         "priority": {
-                          "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first.",
+                          "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first. Content with no priority set ranks as `medium`.",
                           "type": "string",
                           "enum": [
                             "highest",
@@ -10951,7 +10979,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -10968,7 +10997,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -11426,7 +11456,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -11443,7 +11474,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -12473,7 +12505,8 @@
                                     "required": [
                                       "type",
                                       "script"
-                                    ]
+                                    ],
+                                    "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                   },
                                   {
                                     "type": "object",
@@ -12490,7 +12523,8 @@
                                     },
                                     "required": [
                                       "type"
-                                    ]
+                                    ],
+                                    "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                                   }
                                 ]
                               }
@@ -12606,7 +12640,8 @@
                               "required": [
                                 "type",
                                 "script"
-                              ]
+                              ],
+                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                             },
                             {
                               "type": "object",
@@ -12623,7 +12658,8 @@
                               },
                               "required": [
                                 "type"
-                              ]
+                              ],
+                              "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                             }
                           ]
                         }
@@ -12663,6 +12699,7 @@
                       }
                     },
                     "frequency": {
+                      "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
                       "type": "object",
                       "properties": {
                         "mode": {
@@ -12727,7 +12764,7 @@
                       ]
                     },
                     "priority": {
-                      "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first.",
+                      "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first. Content with no priority set ranks as `medium`.",
                       "type": "string",
                       "enum": [
                         "highest",
@@ -13038,7 +13075,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -13055,7 +13093,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -13513,7 +13552,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -13530,7 +13570,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -14555,7 +14596,8 @@
                               "required": [
                                 "type",
                                 "script"
-                              ]
+                              ],
+                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                             },
                             {
                               "type": "object",
@@ -14572,7 +14614,8 @@
                               },
                               "required": [
                                 "type"
-                              ]
+                              ],
+                              "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                             }
                           ]
                         }
@@ -14688,7 +14731,8 @@
                         "required": [
                           "type",
                           "script"
-                        ]
+                        ],
+                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                       },
                       {
                         "type": "object",
@@ -14705,7 +14749,8 @@
                         },
                         "required": [
                           "type"
-                        ]
+                        ],
+                        "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                       }
                     ]
                   }
@@ -14745,6 +14790,7 @@
                 }
               },
               "frequency": {
+                "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
                 "type": "object",
                 "properties": {
                   "mode": {
@@ -14809,7 +14855,7 @@
                 ]
               },
               "priority": {
-                "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first.",
+                "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first. Content with no priority set ranks as `medium`.",
                 "type": "string",
                 "enum": [
                   "highest",
@@ -15169,7 +15215,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -15186,7 +15233,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -15644,7 +15692,8 @@
                       "required": [
                         "type",
                         "script"
-                      ]
+                      ],
+                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -15661,7 +15710,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                     }
                   ]
                 }
@@ -16699,7 +16749,8 @@
                               "required": [
                                 "type",
                                 "script"
-                              ]
+                              ],
+                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                             },
                             {
                               "type": "object",
@@ -16716,7 +16767,8 @@
                               },
                               "required": [
                                 "type"
-                              ]
+                              ],
+                              "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                             }
                           ]
                         }
@@ -16833,7 +16885,8 @@
                         "required": [
                           "type",
                           "script"
-                        ]
+                        ],
+                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                       },
                       {
                         "type": "object",
@@ -16850,7 +16903,8 @@
                         },
                         "required": [
                           "type"
-                        ]
+                        ],
+                        "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                       }
                     ]
                   }
@@ -16873,6 +16927,7 @@
                 }
               },
               "frequency": {
+                "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
                 "type": "object",
                 "properties": {
                   "mode": {
@@ -16937,7 +16992,7 @@
                 ]
               },
               "priority": {
-                "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first.",
+                "description": "Tie-breaker when a user matches the start conditions for more than one piece of content at the same time \u2014 the higher priority starts first. Content with no priority set ranks as `medium`.",
                 "type": "string",
                 "enum": [
                   "highest",
@@ -17144,7 +17199,8 @@
                                 "required": [
                                   "type",
                                   "script"
-                                ]
+                                ],
+                                "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                               },
                               {
                                 "type": "object",
@@ -17161,7 +17217,8 @@
                                 },
                                 "required": [
                                   "type"
-                                ]
+                                ],
+                                "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                               }
                             ]
                           }
@@ -17447,7 +17504,8 @@
                               "required": [
                                 "type",
                                 "script"
-                              ]
+                              ],
+                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                             },
                             {
                               "type": "object",
@@ -17464,7 +17522,8 @@
                               },
                               "required": [
                                 "type"
-                              ]
+                              ],
+                              "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                             }
                           ]
                         }
@@ -17914,7 +17973,8 @@
                                           "required": [
                                             "type",
                                             "script"
-                                          ]
+                                          ],
+                                          "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                         },
                                         {
                                           "type": "object",
@@ -17931,7 +17991,8 @@
                                           },
                                           "required": [
                                             "type"
-                                          ]
+                                          ],
+                                          "description": "Echo-only placeholder for a stored action this schema cannot express (`note` = internal type). Echo it back to preserve the stored action; writing one fresh is rejected."
                                         }
                                       ]
                                     }
