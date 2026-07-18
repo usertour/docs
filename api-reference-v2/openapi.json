@@ -17750,14 +17750,13 @@
                           "type": "object",
                           "properties": {
                             "source": {
-                              "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                              "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon.",
                               "type": "string",
                               "enum": [
                                 "none",
                                 "builtin",
                                 "upload",
-                                "url",
-                                "inherit"
+                                "url"
                               ]
                             },
                             "type": {
@@ -17859,14 +17858,13 @@
                                     "type": "object",
                                     "properties": {
                                       "source": {
-                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon.",
                                         "type": "string",
                                         "enum": [
                                           "none",
                                           "builtin",
                                           "upload",
-                                          "url",
-                                          "inherit"
+                                          "url"
                                         ]
                                       },
                                       "type": {
@@ -18035,14 +18033,13 @@
                                     "type": "object",
                                     "properties": {
                                       "source": {
-                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon.",
                                         "type": "string",
                                         "enum": [
                                           "none",
                                           "builtin",
                                           "upload",
-                                          "url",
-                                          "inherit"
+                                          "url"
                                         ]
                                       },
                                       "type": {
@@ -18092,14 +18089,13 @@
                                     "type": "object",
                                     "properties": {
                                       "source": {
-                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon.",
                                         "type": "string",
                                         "enum": [
                                           "none",
                                           "builtin",
                                           "upload",
-                                          "url",
-                                          "inherit"
+                                          "url"
                                         ]
                                       },
                                       "type": {
@@ -18115,14 +18111,13 @@
                                     "type": "object",
                                     "properties": {
                                       "source": {
-                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon.",
                                         "type": "string",
                                         "enum": [
                                           "none",
                                           "builtin",
                                           "upload",
-                                          "url",
-                                          "inherit"
+                                          "url"
                                         ]
                                       },
                                       "type": {
@@ -18138,14 +18133,13 @@
                                     "type": "object",
                                     "properties": {
                                       "source": {
-                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon.",
                                         "type": "string",
                                         "enum": [
                                           "none",
                                           "builtin",
                                           "upload",
-                                          "url",
-                                          "inherit"
+                                          "url"
                                         ]
                                       },
                                       "type": {
@@ -18176,11 +18170,15 @@
                                             "checklist"
                                           ]
                                         },
+                                        "label": {
+                                          "description": "Display name for this list entry; omitted or empty falls back to the referenced content's admin name. `items` is a full-list replacement \u2014 when rewriting it, echo the read-back `label` or it is cleared.",
+                                          "type": "string"
+                                        },
                                         "icon": {
                                           "type": "object",
                                           "properties": {
                                             "source": {
-                                              "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                                              "description": "Icon source. 'inherit' (default) falls back to the block's flowIcon/checklistIcon; 'builtin' = a named RemixIcon (see `type`); 'upload'/'url' = a custom image; 'none' = no icon.",
                                               "type": "string",
                                               "enum": [
                                                 "none",
@@ -18253,14 +18251,13 @@
                                     "type": "object",
                                     "properties": {
                                       "source": {
-                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon.",
                                         "type": "string",
                                         "enum": [
                                           "none",
                                           "builtin",
                                           "upload",
-                                          "url",
-                                          "inherit"
+                                          "url"
                                         ]
                                       },
                                       "type": {
@@ -18320,14 +18317,13 @@
                                     "type": "object",
                                     "properties": {
                                       "source": {
-                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon; 'inherit' (content-list items only) falls back to the block default.",
+                                        "description": "Icon source. 'builtin' = a named icon from the bundled RemixIcon set (see `type`); 'upload'/'url' = a custom image via `url`; 'none' = no icon.",
                                         "type": "string",
                                         "enum": [
                                           "none",
                                           "builtin",
                                           "upload",
-                                          "url",
-                                          "inherit"
+                                          "url"
                                         ]
                                       },
                                       "type": {
