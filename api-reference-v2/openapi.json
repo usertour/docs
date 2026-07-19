@@ -25556,6 +25556,17 @@
           "description": {
             "description": "Optional description.",
             "type": "string"
+          },
+          "dataType": {
+            "description": "Change the attribute's value type. Allowed only while NO stored value would conflict with the new type (else rejected \u2014 clear the conflicting values, or delete + recreate). Fixes a wrong type inferred from a first mistyped upsert. `scope` and `codeName` stay immutable.",
+            "type": "string",
+            "enum": [
+              "number",
+              "string",
+              "boolean",
+              "list",
+              "datetime"
+            ]
           }
         }
       },
