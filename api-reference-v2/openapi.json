@@ -2847,7 +2847,7 @@
             "name": "completed",
             "required": false,
             "in": "query",
-            "description": "Filter to completed (true) or open (false) sessions.",
+            "description": "Filter by GENUINE completion: true = the user reached the goal (flow finished / every checklist task done), false = did not. This is NOT \"ended\" \u2014 a dismissed session is not completed, and a completed checklist may still be open.",
             "schema": {
               "type": "string"
             }
@@ -24870,12 +24870,24 @@
                   },
                   "nullable": true
                 },
+                "completed": {
+                  "type": "boolean",
+                  "description": "Whether the user GENUINELY reached the goal \u2014 a flow ran to its end (or an explicit completion step) / every checklist task was checked. Independent of whether the session is still open: a completed checklist can still be showing, and a flow can complete at a mid-flow completion step and keep running. Only flows and checklists can be completed; banners / launchers / resource centers are seen-then-dismissed and are always false."
+                },
                 "completedAt": {
                   "type": "string",
+                  "description": "When the goal was reached (null if never completed).",
                   "nullable": true
                 },
-                "completed": {
-                  "type": "boolean"
+                "endedAt": {
+                  "type": "string",
+                  "description": "When the session closed (null while it is still open/active). A session can be completed but not yet ended (still open), or ended without being completed (dismissed).",
+                  "nullable": true
+                },
+                "endReason": {
+                  "type": "string",
+                  "description": "Why the session ended (null while open) \u2014 e.g. `user_closed`, `auto_dismissed`, `action`, `end_from_program`, `admin_ended`. Distinguishes a genuine finish from a dismissal even when both leave the session ended.",
+                  "nullable": true
                 },
                 "contentId": {
                   "type": "string"
@@ -25034,8 +25046,10 @@
                 "id",
                 "object",
                 "answers",
-                "completedAt",
                 "completed",
+                "completedAt",
+                "endedAt",
+                "endReason",
                 "contentId",
                 "content",
                 "createdAt",
@@ -25120,12 +25134,24 @@
             },
             "nullable": true
           },
+          "completed": {
+            "type": "boolean",
+            "description": "Whether the user GENUINELY reached the goal \u2014 a flow ran to its end (or an explicit completion step) / every checklist task was checked. Independent of whether the session is still open: a completed checklist can still be showing, and a flow can complete at a mid-flow completion step and keep running. Only flows and checklists can be completed; banners / launchers / resource centers are seen-then-dismissed and are always false."
+          },
           "completedAt": {
             "type": "string",
+            "description": "When the goal was reached (null if never completed).",
             "nullable": true
           },
-          "completed": {
-            "type": "boolean"
+          "endedAt": {
+            "type": "string",
+            "description": "When the session closed (null while it is still open/active). A session can be completed but not yet ended (still open), or ended without being completed (dismissed).",
+            "nullable": true
+          },
+          "endReason": {
+            "type": "string",
+            "description": "Why the session ended (null while open) \u2014 e.g. `user_closed`, `auto_dismissed`, `action`, `end_from_program`, `admin_ended`. Distinguishes a genuine finish from a dismissal even when both leave the session ended.",
+            "nullable": true
           },
           "contentId": {
             "type": "string"
@@ -25284,8 +25310,10 @@
           "id",
           "object",
           "answers",
-          "completedAt",
           "completed",
+          "completedAt",
+          "endedAt",
+          "endReason",
           "contentId",
           "content",
           "createdAt",
