@@ -24847,7 +24847,22 @@
                         "type": "string"
                       },
                       "answerValue": {
-                        "type": "string"
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        ],
+                        "description": "The answer's value in its real type, keyed off answerType: nps / star-rating / scale \u2192 a number; single-line-text / multi-line-text \u2192 a string; multiple-choice \u2192 an array of the chosen option strings. null only when the stored value is missing.",
+                        "nullable": true
                       },
                       "createdAt": {
                         "type": "string"
@@ -25111,7 +25126,22 @@
                   "type": "string"
                 },
                 "answerValue": {
-                  "type": "string"
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "description": "The answer's value in its real type, keyed off answerType: nps / star-rating / scale \u2192 a number; single-line-text / multi-line-text \u2192 a string; multiple-choice \u2192 an array of the chosen option strings. null only when the stored value is missing.",
+                  "nullable": true
                 },
                 "createdAt": {
                   "type": "string"
