@@ -24809,7 +24809,8 @@
               "$ref": "#/components/schemas/UpdateSegmentBodyDto__schema0"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "ListContentSessionsResponseDto": {
         "type": "object",
@@ -25859,7 +25860,8 @@
         },
         "required": [
           "name"
-        ]
+        ],
+        "additionalProperties": false
       }
     }
   }
