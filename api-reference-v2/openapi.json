@@ -17386,6 +17386,46 @@
                         "type": "integer",
                         "minimum": 0,
                         "maximum": 4
+                      },
+                      "placement": {
+                        "description": "Where the beacon sits relative to its target element. Omit to center it on the target. (The tooltip has its own `tooltip.placement`; this positions the launcher itself.) Read back ONLY when a side/align is pinned \u2014 an auto-centered beacon omits it.",
+                        "type": "object",
+                        "properties": {
+                          "side": {
+                            "description": "Which side of the target the beacon sits on. OMIT side+align to center the beacon on the target (with viewport-edge flipping); setting side (or align) pins it there.",
+                            "type": "string",
+                            "enum": [
+                              "top",
+                              "right",
+                              "bottom",
+                              "left"
+                            ]
+                          },
+                          "align": {
+                            "description": "Alignment along the side. See `side`.",
+                            "type": "string",
+                            "enum": [
+                              "start",
+                              "center",
+                              "end"
+                            ]
+                          },
+                          "sideOffset": {
+                            "type": "number"
+                          },
+                          "alignOffset": {
+                            "description": "Pixel shift along the alignment axis. Only applies when `align` is `start`/`end` \u2014 at `center` (or under `auto`) the runtime ignores it.",
+                            "type": "number"
+                          },
+                          "alignType": {
+                            "description": "Position mode. `auto` centers on the target and flips at the viewport edge (ignoring side/align); `fixed` pins to side/align. Providing side/align implies `fixed`, omitting them implies `auto` \u2014 so leave `auto` and the beacon centers regardless of `align`.",
+                            "type": "string",
+                            "enum": [
+                              "auto",
+                              "fixed"
+                            ]
+                          }
+                        }
                       }
                     },
                     "required": [
@@ -17459,12 +17499,15 @@
                         "type": "object",
                         "properties": {
                           "dismissAfterFirstActivation": {
+                            "description": "Dismiss the launcher after its tooltip is first shown and closed.",
                             "type": "boolean"
                           },
                           "keepOpenWhenHovered": {
+                            "description": "READ-ONLY \u2014 not wired at runtime: the tooltip ALWAYS stays open while hovered regardless of this value. Echoed for round-trip; changing it is rejected.",
                             "type": "boolean"
                           },
                           "hideLauncherWhenTooltipShown": {
+                            "description": "READ-ONLY \u2014 not wired at runtime: the launcher is NEVER hidden while its tooltip shows. Echoed for round-trip; changing it is rejected.",
                             "type": "boolean"
                           }
                         }
