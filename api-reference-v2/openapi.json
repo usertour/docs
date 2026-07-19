@@ -86,6 +86,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/TrackerAnalyticsDto"
+                    },
+                    {
+                      "$ref": "#/components/schemas/AnnouncementAnalyticsDto"
                     }
                   ],
                   "discriminator": {
@@ -4866,6 +4869,89 @@
           "contentType",
           "uniqueUsers",
           "totalOccurrences",
+          "byDay"
+        ]
+      },
+      "AnnouncementAnalyticsDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "contentAnalytics"
+            ]
+          },
+          "contentId": {
+            "type": "string"
+          },
+          "environmentId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "announcement"
+            ]
+          },
+          "uniqueSeen": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Distinct users who saw the announcement (opened the feed listing it, or had its popup presented). Seen fires once per (user, announcement), so unique and total normally match."
+          },
+          "totalSeen": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "byDay": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "description": "ISO date (bucketed in the requested timezone)."
+                },
+                "uniqueSeen": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who saw the announcement (opened the feed listing it, or had its popup presented). Seen fires once per (user, announcement), so unique and total normally match."
+                },
+                "totalSeen": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "date",
+                "uniqueSeen",
+                "totalSeen"
+              ]
+            }
+          }
+        },
+        "required": [
+          "object",
+          "contentId",
+          "environmentId",
+          "startDate",
+          "endDate",
+          "timezone",
+          "contentType",
+          "uniqueSeen",
+          "totalSeen",
           "byDay"
         ]
       },
@@ -17672,7 +17758,7 @@
                 "type": "object",
                 "properties": {
                   "title": {
-                    "description": "Title shown in the feed row and the detail view. Required to publish \u2014 an untitled announcement would render a blank row.",
+                    "description": "Title shown in the feed row and the detail view. Required to publish \u2014 an untitled announcement would render a blank row. Seeded from the content's `name` at create, then INDEPENDENT: renaming the content later does not update the title (and events/analytics label by the content name, not this title).",
                     "type": "string"
                   },
                   "introContent": {
@@ -17707,7 +17793,7 @@
                     ]
                   },
                   "popupConfig": {
-                    "description": "Popup presentation \u2014 only meaningful when `distribution` is `popup`. Omit for the default (bubble).",
+                    "description": "Popup presentation \u2014 only USED when `distribution` is `popup` (stored and echoed under other distributions, taking effect if distribution later switches to popup). Omit for the default (bubble).",
                     "type": "object",
                     "properties": {
                       "style": {
