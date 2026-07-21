@@ -3266,7 +3266,7 @@
             "name": "eventName",
             "required": false,
             "in": "query",
-            "description": "Filter to attributes on these event(s).",
+            "description": "Filter to attributes attached to these event(s), matched by event codeName (EXACT match \u2014 not displayName; a displayName silently matches nothing). Multiple values OR together.",
             "schema": {
               "anyOf": [
                 {
@@ -25406,24 +25406,12 @@
                 "scope": {
                   "type": "string",
                   "enum": [
-                    "content",
                     "user",
                     "company",
                     "companyMembership",
-                    "contentVersion",
-                    "contentSession",
-                    "attributeDefinition",
-                    "eventDefinition",
-                    "contentSessionAnswer",
-                    "question",
-                    "step",
-                    "block",
-                    "theme",
-                    "segment",
-                    "environment",
-                    "contentAnalytics",
-                    "questionAnalytics"
-                  ]
+                    "eventDefinition"
+                  ],
+                  "description": "Which object the attribute belongs to. `eventDefinition` = an event attribute (managed via the event-definitions surface)."
                 }
               },
               "required": [
@@ -25496,24 +25484,12 @@
           "scope": {
             "type": "string",
             "enum": [
-              "content",
               "user",
               "company",
               "companyMembership",
-              "contentVersion",
-              "contentSession",
-              "attributeDefinition",
-              "eventDefinition",
-              "contentSessionAnswer",
-              "question",
-              "step",
-              "block",
-              "theme",
-              "segment",
-              "environment",
-              "contentAnalytics",
-              "questionAnalytics"
-            ]
+              "eventDefinition"
+            ],
+            "description": "Which object the attribute belongs to. `eventDefinition` = an event attribute (managed via the event-definitions surface)."
           }
         },
         "required": [
