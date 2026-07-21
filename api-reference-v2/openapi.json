@@ -3222,7 +3222,7 @@
             "name": "scope",
             "required": false,
             "in": "query",
-            "description": "Filter by scope: user, company, or companyMembership.",
+            "description": "Filter by scope: user, company, companyMembership, or eventDefinition (event attributes \u2014 read-only here; they are managed via the event-definitions surface).",
             "schema": {
               "type": "string"
             }
