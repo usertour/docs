@@ -26411,6 +26411,23 @@
               "attribute",
               "op"
             ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "unsupported"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
           }
         ]
       },
@@ -26593,6 +26610,23 @@
               "attribute",
               "op"
             ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "unsupported"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
           }
         ]
       },
@@ -26754,6 +26788,23 @@
               "attribute",
               "op"
             ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "unsupported"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
           }
         ]
       },
@@ -26900,6 +26951,23 @@
               "scope",
               "attribute",
               "op"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "unsupported"
+                ]
+              },
+              "note": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
             ]
           }
         ]
