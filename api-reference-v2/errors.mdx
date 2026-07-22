@@ -64,6 +64,7 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1024` | 404 | Event definition not found |
 | `E1025` | 404 | Segment not found |
 | `E1026` | 404 | Environment not found |
+| `E1033` | 404 | Unknown API route (no /v2 endpoint matches the path) |
 | `E0003` | 400 | Request is invalid against current domain state |
 | `E1017` | 400 | Request validation failed (bad body / params; may carry `issues`) |
 | `E1015` | 400 | Invalid `scope` filter value |
@@ -80,6 +81,9 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
   Write endpoints validate the request body against the schema and return `E1017`
   with a message pointing at the offending field — for example, a malformed
   `data` body for a non-flow content type, or a step referencing an unknown value.
+  Bodies are validated **strictly**: an unknown top-level key (e.g. `isPrimary`
+  copied from a read response) is rejected with `E1017`, never silently dropped.
+  A body that is not valid JSON at all is also `E1017` (`Invalid JSON body: ...`).
 </Note>
 
 ## Pagination cursors never error

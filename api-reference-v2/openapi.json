@@ -12568,7 +12568,8 @@
         },
         "required": [
           "type"
-        ]
+        ],
+        "additionalProperties": false
       },
       "UpdateContentBodyDto": {
         "type": "object",
@@ -12579,7 +12580,8 @@
           "buildUrl": {
             "type": "string"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "DuplicateContentBodyDto": {
         "type": "object",
@@ -20304,7 +20306,8 @@
             "description": "Announcement versions only: the \"announcement time\" \u2014 the feed hides the announcement until this instant passes, and orders the feed by it (newest first). ISO date or datetime WITH timezone. `null` = clear (publish stamps the publish time instead). A future value defers visibility; the value carries across version forks.",
             "nullable": true
           }
-        }
+        },
+        "additionalProperties": false
       },
       "ListThemesResponseDto__schema0": {
         "oneOf": [
@@ -23503,7 +23506,8 @@
         },
         "required": [
           "name"
-        ]
+        ],
+        "additionalProperties": false
       },
       "UpdateThemeBodyDto": {
         "type": "object",
@@ -25409,7 +25413,8 @@
             },
             "additionalProperties": false
           }
-        }
+        },
+        "additionalProperties": false
       },
       "ListUsersResponseDto": {
         "type": "object",
@@ -25692,7 +25697,8 @@
             "type": "object",
             "additionalProperties": {}
           }
-        }
+        },
+        "additionalProperties": false
       },
       "ListCompaniesResponseDto": {
         "type": "object",
@@ -25975,7 +25981,8 @@
             "type": "object",
             "additionalProperties": {}
           }
-        }
+        },
+        "additionalProperties": false
       },
       "UpsertMembershipBodyDto": {
         "type": "object",
@@ -25985,7 +25992,8 @@
             "type": "object",
             "additionalProperties": {}
           }
-        }
+        },
+        "additionalProperties": false
       },
       "ListSegmentsResponseDto__schema0": {
         "oneOf": [
@@ -26474,7 +26482,8 @@
           "name",
           "bizType",
           "kind"
-        ]
+        ],
+        "additionalProperties": false
       },
       "UpdateSegmentBodyDto__schema0": {
         "oneOf": [
@@ -27338,7 +27347,8 @@
           "dataType",
           "codeName",
           "displayName"
-        ]
+        ],
+        "additionalProperties": false
       },
       "UpdateAttributeBodyDto": {
         "type": "object",
@@ -27363,7 +27373,8 @@
               "datetime"
             ]
           }
-        }
+        },
+        "additionalProperties": false
       },
       "ListEventDefinitionsResponseDto": {
         "type": "object",
@@ -27510,7 +27521,8 @@
         "required": [
           "codeName",
           "displayName"
-        ]
+        ],
+        "additionalProperties": false
       },
       "UpdateEventDefinitionBodyDto": {
         "type": "object",
@@ -27531,7 +27543,8 @@
               "type": "string"
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "ListEnvironmentsResponseDto": {
         "type": "object",
@@ -27653,7 +27666,8 @@
         },
         "required": [
           "name"
-        ]
+        ],
+        "additionalProperties": false
       },
       "UpdateEnvironmentBodyDto": {
         "type": "object",
