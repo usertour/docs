@@ -40,6 +40,7 @@ Request multiple expansions by repeating the parameter (both forms work):
 | Content session | `answers`, `content`, `company`, `user`, `version` |
 | User | `companies`, `memberships`, `memberships.company` |
 | Company | `users`, `memberships`, `memberships.user` |
+| Theme | `settings`, `variations` |
 
 A **dotted** option expands one level deeper: `memberships.company` inlines each
 membership **and** the company on it (it implies `memberships`). The same goes for

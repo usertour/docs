@@ -1409,7 +1409,7 @@
             "name": "expand",
             "required": false,
             "in": "query",
-            "description": "Inline the version questions.",
+            "description": "Inline: questions, steps (the full step tree \u2014 how you read a flow body), data.",
             "schema": {
               "anyOf": [
                 {
@@ -1628,7 +1628,7 @@
             "name": "expand",
             "required": false,
             "in": "query",
-            "description": "Inline the version questions.",
+            "description": "Inline: questions, steps (the full step tree \u2014 how you read a flow body), data.",
             "schema": {
               "anyOf": [
                 {
