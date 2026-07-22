@@ -137,6 +137,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -253,6 +263,16 @@
           },
           "404": {
             "description": "Content or environment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -456,6 +476,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -524,6 +554,16 @@
           },
           "403": {
             "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -644,6 +684,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -739,6 +789,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -826,6 +886,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -906,6 +976,16 @@
           },
           "404": {
             "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1003,6 +1083,16 @@
           },
           "404": {
             "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1117,6 +1207,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1207,6 +1307,16 @@
           },
           "404": {
             "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1365,6 +1475,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1443,6 +1563,16 @@
           },
           "404": {
             "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1574,6 +1704,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1688,6 +1828,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1784,6 +1934,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1873,6 +2033,16 @@
           },
           "404": {
             "description": "Content version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2031,6 +2201,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2099,6 +2279,16 @@
           },
           "403": {
             "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2219,6 +2409,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2313,6 +2513,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2394,6 +2604,16 @@
           },
           "409": {
             "description": "Theme is used by live or draft content (E1031)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2597,6 +2817,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2717,6 +2947,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2806,6 +3046,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2881,6 +3131,16 @@
           },
           "404": {
             "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3064,6 +3324,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3184,6 +3454,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3273,6 +3553,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3348,6 +3638,16 @@
           },
           "404": {
             "description": "Company not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3459,6 +3759,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3544,6 +3854,16 @@
           },
           "404": {
             "description": "Membership not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3688,6 +4008,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3756,6 +4086,16 @@
           },
           "403": {
             "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3842,6 +4182,16 @@
           },
           "404": {
             "description": "Segment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3943,6 +4293,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4013,6 +4373,16 @@
           },
           "404": {
             "description": "Segment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4116,6 +4486,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4203,6 +4583,16 @@
           },
           "404": {
             "description": "Segment, user, or company not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4409,6 +4799,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4533,6 +4933,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4608,6 +5018,16 @@
           },
           "404": {
             "description": "Content session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4699,6 +5119,16 @@
           },
           "404": {
             "description": "Content session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4866,6 +5296,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4944,6 +5384,16 @@
           },
           "409": {
             "description": "An attribute with this codeName already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5030,6 +5480,16 @@
           },
           "404": {
             "description": "Attribute definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5131,6 +5591,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5201,6 +5671,16 @@
           },
           "404": {
             "description": "Attribute definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5332,6 +5812,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5410,6 +5900,16 @@
           },
           "409": {
             "description": "An event with this codeName already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5496,6 +5996,16 @@
           },
           "404": {
             "description": "Event definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5597,6 +6107,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5677,6 +6197,16 @@
           },
           "409": {
             "description": "Event definition already has recorded events (E1030) and cannot be deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5808,6 +6338,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5877,6 +6417,16 @@
           },
           "403": {
             "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5963,6 +6513,16 @@
           },
           "404": {
             "description": "Environment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6065,6 +6625,16 @@
                 }
               }
             }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -6146,6 +6716,16 @@
           },
           "409": {
             "description": "State conflict \u2014 E0023 cannot delete the primary environment (set another primary first), E0022 cannot delete the last environment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. Limits apply per API credential (falling back to client IP); retry after backing off.",
             "content": {
               "application/json": {
                 "schema": {
