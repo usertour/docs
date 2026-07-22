@@ -77,7 +77,7 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1030` | 409 | Event definition already has recorded events |
 | `E1031` | 409 | Theme is used by live or draft content — switch that content to another theme first |
 | `E1027` | 422 | Content version is not publishable (fails render-usability validation) |
-| `E1013` | 429 | Rate limit exceeded — limits apply per API credential (default 1000 requests/minute); back off and retry |
+| `E1013` | 429 | Rate limit exceeded — the limit follows your plan (100/500/1000/3000 requests/min); the standard `Retry-After` header says how long to back off |
 
 <Note>
   Write endpoints validate the request body against the schema and return `E1017`
