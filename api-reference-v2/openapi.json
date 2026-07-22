@@ -816,6 +816,16 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Content is still published (E1028) \u2014 unpublish it from every environment first.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1661,6 +1671,16 @@
           },
           "404": {
             "description": "Content version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "E0049 the version is published (read-only \u2014 fork an editable draft first), or E0050 it was modified concurrently (re-read and retry).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5654,6 +5674,16 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Event definition already has recorded events (E1030) and cannot be deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -6106,6 +6136,16 @@
           },
           "404": {
             "description": "Environment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "State conflict \u2014 E0023 cannot delete the primary environment (set another primary first), E0022 cannot delete the last environment.",
             "content": {
               "application/json": {
                 "schema": {

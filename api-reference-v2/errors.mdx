@@ -68,6 +68,8 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E0003` | 400 | Request is invalid against current domain state |
 | `E1017` | 400 | Request validation failed (bad body / params; may carry `issues`) |
 | `E1015` | 400 | Invalid `scope` filter value |
+| `E0022` | 409 | Cannot delete the last environment |
+| `E0023` | 409 | Cannot delete the primary environment — set another environment as primary first |
 | `E0049` | 409 | Version is published (read-only) — fork a draft with the versions endpoint first |
 | `E0050` | 409 | Version was modified concurrently — re-read and retry |
 | `E1023` | 409 | Resource conflict (e.g. duplicate `codeName`) |
