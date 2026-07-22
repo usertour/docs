@@ -98,6 +98,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Content or environment not found"
           }
@@ -180,6 +210,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/QuestionAnalyticsResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -352,6 +412,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -394,6 +484,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -471,6 +591,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Content not found"
           }
@@ -529,6 +679,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Content not found"
           }
@@ -568,6 +748,36 @@
         "responses": {
           "204": {
             "description": "Content deleted"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Content not found"
@@ -615,6 +825,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -679,6 +919,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Content not found"
           }
@@ -739,6 +1009,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Content or version not found"
           }
@@ -795,6 +1095,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -922,6 +1252,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -964,6 +1324,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContentVersionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -1055,6 +1445,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Content version not found"
           }
@@ -1122,6 +1542,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Content version not found"
           }
@@ -1181,6 +1631,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Content version not found"
           }
@@ -1236,6 +1716,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContentVersionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -1363,6 +1873,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1405,6 +1945,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -1482,6 +2052,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Theme not found"
           }
@@ -1539,6 +2139,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Theme not found"
           }
@@ -1579,6 +2209,36 @@
         "responses": {
           "204": {
             "description": "Theme deleted"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Theme not found"
@@ -1751,6 +2411,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1832,6 +2522,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "User not found"
           }
@@ -1893,6 +2613,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1935,6 +2685,36 @@
         "responses": {
           "204": {
             "description": "User deleted"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "User not found"
@@ -2084,6 +2864,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2165,6 +2975,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Company not found"
           }
@@ -2226,6 +3066,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2268,6 +3138,36 @@
         "responses": {
           "204": {
             "description": "Company deleted"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Company not found"
@@ -2336,6 +3236,36 @@
           "204": {
             "description": "Membership created or updated"
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Company or user not found"
           }
@@ -2390,6 +3320,36 @@
         "responses": {
           "204": {
             "description": "Membership removed"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Membership not found"
@@ -2500,6 +3460,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2542,6 +3532,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SegmentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -2588,6 +3608,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SegmentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -2649,6 +3699,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Segment not found"
           }
@@ -2688,6 +3768,36 @@
         "responses": {
           "204": {
             "description": "Segment deleted"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Segment not found"
@@ -2748,6 +3858,36 @@
           "204": {
             "description": "Member added"
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Segment, user, or company not found"
           }
@@ -2804,6 +3944,36 @@
         "responses": {
           "204": {
             "description": "Member removed"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Segment, user, or company not found"
@@ -2976,6 +4146,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3061,6 +4261,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Content session not found"
           }
@@ -3105,6 +4335,36 @@
         "responses": {
           "204": {
             "description": "Content session deleted"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Content session not found"
@@ -3156,6 +4416,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ContentSessionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -3292,6 +4582,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3334,6 +4654,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AttributeDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -3383,6 +4733,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AttributeDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -3444,6 +4824,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Attribute definition not found"
           }
@@ -3483,6 +4893,36 @@
         "responses": {
           "204": {
             "description": "Attribute definition deleted"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Attribute definition not found"
@@ -3580,6 +5020,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3622,6 +5092,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EventDefinitionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -3671,6 +5171,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EventDefinitionDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -3732,6 +5262,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Event definition not found"
           }
@@ -3771,6 +5331,36 @@
         "responses": {
           "204": {
             "description": "Event definition deleted"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "404": {
             "description": "Event definition not found"
@@ -3868,6 +5458,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3914,6 +5534,36 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3957,6 +5607,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EnvironmentDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
                 }
               }
             }
@@ -4019,6 +5699,36 @@
               }
             }
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Environment not found"
           }
@@ -4060,6 +5770,36 @@
           "204": {
             "description": "Environment deleted"
           },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a full-scope token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Environment not found"
           }
@@ -4096,6 +5836,55 @@
       }
     },
     "schemas": {
+      "ErrorResponseDto": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Stable machine-readable code (e.g. E1017). Match on this, never on `message`."
+              },
+              "message": {
+                "type": "string",
+                "description": "Human-readable summary. Wording may change between releases."
+              },
+              "issues": {
+                "description": "Validation errors (E1017) may carry one entry per problem so every field can be fixed in a single round-trip. Absent on other errors.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rule": {
+                      "type": "string",
+                      "description": "Which validation layer rejected it: schema | reactive_condition | action_not_allowed | step_shape | reference_target | auto_start."
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "description": "Path into the request body (e.g. `steps[0].triggers[0].when[1]`).",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "rule",
+                    "message"
+                  ]
+                }
+              },
+              "doc_url": {
+                "type": "string",
+                "description": "Base URL of the API documentation."
+              }
+            }
+          }
+        },
+        "required": [
+          "error"
+        ]
+      },
       "FlowAnalyticsDto": {
         "type": "object",
         "properties": {

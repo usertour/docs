@@ -10,10 +10,34 @@ match on `code`, not on the message (messages may change):
 {
   "error": {
     "code": "E1012",
-    "message": "API key lacks the required scope for this operation"
+    "message": "API key lacks the required scope for this operation",
+    "doc_url": "https://docs.usertour.io"
   }
 }
 ```
+
+Validation errors (`E1017`) may additionally carry an `issues` array with one
+entry **per problem**, so you can fix every field in a single round-trip
+instead of resubmitting once per error:
+
+```json
+{
+  "error": {
+    "code": "E1017",
+    "message": "steps[0].target: selector is required; steps[1]: unknown step type",
+    "issues": [
+      { "rule": "schema", "path": "steps[0].target", "message": "selector is required" },
+      { "rule": "step_shape", "path": "steps[1]", "message": "unknown step type" }
+    ],
+    "doc_url": "https://docs.usertour.io"
+  }
+}
+```
+
+Each issue has a `rule` (which validation layer rejected it: `schema`,
+`reactive_condition`, `action_not_allowed`, `step_shape`, `reference_target`,
+`auto_start`), a `message`, and — when it maps to a request field — a `path`
+into the request body.
 
 HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 `5xx` Usertour.
@@ -27,20 +51,24 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1011` | 403 | Token not scoped to the requested project |
 | `E1012` | 403 | Token lacks the required scope |
 | `E1019` | 403 | Environment does not belong to the project |
+| `E1029` | 403 | Environment is outside the token's environment allowlist |
+| `E1032` | 403 | Creating an environment requires a token scoped to all environments |
 | `E1020` | 401 | API token has expired |
-| `E1004` | 404 | Content or content version not found |
-| `E1005` | 404 | Content session not found |
 | `E1001` | 404 | User not found |
 | `E1002` | 404 | Company not found |
+| `E1003` | 404 | Company membership not found |
+| `E1004` | 404 | Content or content version not found |
+| `E1005` | 404 | Content session not found |
 | `E1021` | 404 | Theme not found |
 | `E1022` | 404 | Attribute definition not found |
 | `E1024` | 404 | Event definition not found |
 | `E1025` | 404 | Segment not found |
 | `E1026` | 404 | Environment not found |
-| `E1017` | 400 | Request validation failed (bad body / params) |
-| `E1006` | 400 | Invalid `limit` |
-| `E1007` | 400 | Invalid pagination cursor |
+| `E0003` | 400 | Request is invalid against current domain state |
+| `E1017` | 400 | Request validation failed (bad body / params; may carry `issues`) |
 | `E1015` | 400 | Invalid `scope` filter value |
+| `E0049` | 409 | Version is published (read-only) — fork a draft with the versions endpoint first |
+| `E0050` | 409 | Version was modified concurrently — re-read and retry |
 | `E1023` | 409 | Resource conflict (e.g. duplicate `codeName`) |
 | `E1028` | 409 | Content is still published — unpublish from every environment before deleting |
 | `E1030` | 409 | Event definition already has recorded events |
@@ -53,3 +81,19 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
   with a message pointing at the offending field — for example, a malformed
   `data` body for a non-flow content type, or a step referencing an unknown value.
 </Note>
+
+## Pagination cursors never error
+
+An invalid or expired `cursor` does **not** return an error — the request
+succeeds with an empty final page:
+
+```json
+{ "results": [], "next": null, "previous": null }
+```
+
+This is deliberate: a cursor the server itself issued can stop matching rows
+when the underlying data is deleted mid-pagination, and from the server's side
+that is indistinguishable from a mistyped cursor. Treating both as "you have
+reached the end" keeps a client that is iterating `next` links from crashing
+halfway through a sync. If you loop on `next`, an empty page with `next: null`
+is your termination signal — don't probe cursors expecting a 4xx.
