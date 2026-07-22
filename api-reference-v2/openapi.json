@@ -5205,7 +5205,7 @@
             "name": "orderBy",
             "required": false,
             "in": "query",
-            "description": "Order by field(s), e.g. -createdAt.",
+            "description": "Order by createdAt / codeName / displayName (prefix - for descending).",
             "schema": {
               "anyOf": [
                 {
