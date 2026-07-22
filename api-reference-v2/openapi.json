@@ -5748,14 +5748,18 @@
             "name": "orderBy",
             "required": false,
             "in": "query",
-            "description": "Order by createdAt / -createdAt.",
+            "description": "Order by createdAt / codeName / displayName (prefix - for descending).",
             "schema": {
               "anyOf": [
                 {
                   "type": "string",
                   "enum": [
                     "createdAt",
-                    "-createdAt"
+                    "-createdAt",
+                    "codeName",
+                    "-codeName",
+                    "displayName",
+                    "-displayName"
                   ]
                 },
                 {
@@ -5764,7 +5768,11 @@
                     "type": "string",
                     "enum": [
                       "createdAt",
-                      "-createdAt"
+                      "-createdAt",
+                      "codeName",
+                      "-codeName",
+                      "displayName",
+                      "-displayName"
                     ]
                   }
                 }
