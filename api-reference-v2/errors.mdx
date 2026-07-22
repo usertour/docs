@@ -52,7 +52,7 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1012` | 403 | Token lacks the required scope |
 | `E1019` | 403 | Environment does not belong to the project |
 | `E1029` | 403 | Environment is outside the token's environment allowlist |
-| `E1032` | 403 | Creating an environment requires a token scoped to all environments |
+| `E1032` | 403 | Creating an environment needs a token WITHOUT env-targeted capabilities (user/company/session/segment/analytics, content:publish) — those must name environments, and no allowlist can cover an environment that does not exist yet; use a separate project-level-only token |
 | `E1020` | 401 | API token has expired |
 | `E1001` | 404 | User not found |
 | `E1002` | 404 | Company not found |
