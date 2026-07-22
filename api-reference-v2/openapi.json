@@ -5592,6 +5592,16 @@
               }
             }
           },
+          "409": {
+            "description": "The definition is predefined (E1036) \u2014 it cannot be modified or deleted; create your own definition instead.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "429": {
             "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
             "content": {
@@ -5671,6 +5681,16 @@
           },
           "404": {
             "description": "Attribute definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The definition is predefined (E1036) \u2014 it cannot be modified or deleted; create your own definition instead.",
             "content": {
               "application/json": {
                 "schema": {
@@ -6116,6 +6136,16 @@
               }
             }
           },
+          "409": {
+            "description": "The definition is predefined (E1036) \u2014 it cannot be modified or deleted; create your own definition instead.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "429": {
             "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
             "content": {
@@ -6204,7 +6234,7 @@
             }
           },
           "409": {
-            "description": "Event definition already has recorded events (E1030) and cannot be deleted.",
+            "description": "State conflict \u2014 E1030 the event already has recorded events, E1036 it is predefined; neither can be deleted.",
             "content": {
               "application/json": {
                 "schema": {
