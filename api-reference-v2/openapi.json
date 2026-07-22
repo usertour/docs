@@ -99,7 +99,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -215,7 +215,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -414,7 +414,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -489,7 +489,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -592,7 +592,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -680,7 +680,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -750,7 +750,7 @@
             "description": "Content deleted"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -830,7 +830,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -920,7 +920,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1010,7 +1010,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1100,7 +1100,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1254,7 +1254,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1329,7 +1329,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1446,7 +1446,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1543,7 +1543,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1632,7 +1632,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1721,7 +1721,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1875,7 +1875,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -1950,7 +1950,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2053,7 +2053,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2140,7 +2140,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2211,7 +2211,7 @@
             "description": "Theme deleted"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2413,7 +2413,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2523,7 +2523,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2615,7 +2615,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2687,7 +2687,7 @@
             "description": "User deleted"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2866,7 +2866,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2976,7 +2976,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3068,7 +3068,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3140,7 +3140,7 @@
             "description": "Company deleted"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3237,7 +3237,7 @@
             "description": "Membership created or updated"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3322,7 +3322,7 @@
             "description": "Membership removed"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3462,7 +3462,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3537,7 +3537,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3613,7 +3613,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3700,7 +3700,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3770,7 +3770,7 @@
             "description": "Segment deleted"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3859,7 +3859,7 @@
             "description": "Member added"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3946,7 +3946,7 @@
             "description": "Member removed"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4148,7 +4148,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4262,7 +4262,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4337,7 +4337,7 @@
             "description": "Content session deleted"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4421,7 +4421,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4584,7 +4584,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4659,7 +4659,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4738,7 +4738,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4825,7 +4825,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4895,7 +4895,7 @@
             "description": "Attribute definition deleted"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5022,7 +5022,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5097,7 +5097,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5176,7 +5176,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5263,7 +5263,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5333,7 +5333,7 @@
             "description": "Event definition deleted"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5460,7 +5460,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5536,7 +5536,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5612,7 +5612,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5700,7 +5700,7 @@
             }
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
@@ -5771,7 +5771,7 @@
             "description": "Environment deleted"
           },
           "400": {
-            "description": "Invalid request \u2014 E1017 validation (may carry `issues`), E1015 invalid scope, E1016 invalid orderBy.",
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
             "content": {
               "application/json": {
                 "schema": {
