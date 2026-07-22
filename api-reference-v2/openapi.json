@@ -2603,7 +2603,7 @@
             }
           },
           "409": {
-            "description": "Theme is used by live or draft content (E1031)",
+            "description": "State conflict \u2014 E1031 the theme is used by a draft or live version (the message names them), E1034 it is the project default (set another default first), E1035 system themes cannot be deleted.",
             "content": {
               "application/json": {
                 "schema": {
