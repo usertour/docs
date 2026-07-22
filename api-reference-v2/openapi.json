@@ -129,7 +129,14 @@
             }
           },
           "404": {
-            "description": "Content or environment not found"
+            "description": "Content or environment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -245,7 +252,14 @@
             }
           },
           "404": {
-            "description": "Content or environment not found"
+            "description": "Content or environment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -622,7 +636,14 @@
             }
           },
           "404": {
-            "description": "Content not found"
+            "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -710,7 +731,14 @@
             }
           },
           "404": {
-            "description": "Content not found"
+            "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -780,7 +808,14 @@
             }
           },
           "404": {
-            "description": "Content not found"
+            "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -860,7 +895,14 @@
             }
           },
           "404": {
-            "description": "Content not found"
+            "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -950,7 +992,14 @@
             }
           },
           "404": {
-            "description": "Content not found"
+            "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1040,7 +1089,24 @@
             }
           },
           "404": {
-            "description": "Content or version not found"
+            "description": "Content or version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Version is not publishable (E1027) \u2014 it fails render-usability validation; the message lists every blocking issue. Run the validate endpoint first for a dry-run.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1130,7 +1196,14 @@
             }
           },
           "404": {
-            "description": "Content not found"
+            "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1359,7 +1432,14 @@
             }
           },
           "404": {
-            "description": "Content not found"
+            "description": "Content not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1476,7 +1556,14 @@
             }
           },
           "404": {
-            "description": "Content version not found"
+            "description": "Content version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1573,7 +1660,14 @@
             }
           },
           "404": {
-            "description": "Content version not found"
+            "description": "Content version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1662,7 +1756,14 @@
             }
           },
           "404": {
-            "description": "Content version not found"
+            "description": "Content version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1751,7 +1852,14 @@
             }
           },
           "404": {
-            "description": "Content version not found"
+            "description": "Content version not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2083,7 +2191,14 @@
             }
           },
           "404": {
-            "description": "Theme not found"
+            "description": "Theme not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2170,7 +2285,14 @@
             }
           },
           "404": {
-            "description": "Theme not found"
+            "description": "Theme not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2241,10 +2363,24 @@
             }
           },
           "404": {
-            "description": "Theme not found"
+            "description": "Theme not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           },
           "409": {
-            "description": "Theme is used by live or draft content (E1031)"
+            "description": "Theme is used by live or draft content (E1031)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2553,7 +2689,14 @@
             }
           },
           "404": {
-            "description": "User not found"
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2717,7 +2860,14 @@
             }
           },
           "404": {
-            "description": "User not found"
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3006,7 +3156,14 @@
             }
           },
           "404": {
-            "description": "Company not found"
+            "description": "Company not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3170,7 +3327,14 @@
             }
           },
           "404": {
-            "description": "Company not found"
+            "description": "Company not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3267,7 +3431,14 @@
             }
           },
           "404": {
-            "description": "Company or user not found"
+            "description": "Company or user not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3352,7 +3523,14 @@
             }
           },
           "404": {
-            "description": "Membership not found"
+            "description": "Membership not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3643,7 +3821,14 @@
             }
           },
           "404": {
-            "description": "Segment not found"
+            "description": "Segment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3730,7 +3915,14 @@
             }
           },
           "404": {
-            "description": "Segment not found"
+            "description": "Segment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3800,7 +3992,14 @@
             }
           },
           "404": {
-            "description": "Segment not found"
+            "description": "Segment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3889,7 +4088,14 @@
             }
           },
           "404": {
-            "description": "Segment, user, or company not found"
+            "description": "Segment, user, or company not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -3976,7 +4182,14 @@
             }
           },
           "404": {
-            "description": "Segment, user, or company not found"
+            "description": "Segment, user, or company not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4292,7 +4505,14 @@
             }
           },
           "404": {
-            "description": "Content session not found"
+            "description": "Content session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4367,7 +4587,14 @@
             }
           },
           "404": {
-            "description": "Content session not found"
+            "description": "Content session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4451,7 +4678,14 @@
             }
           },
           "404": {
-            "description": "Content session not found"
+            "description": "Content session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4689,7 +4923,14 @@
             }
           },
           "409": {
-            "description": "An attribute with this codeName already exists"
+            "description": "An attribute with this codeName already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4768,7 +5009,14 @@
             }
           },
           "404": {
-            "description": "Attribute definition not found"
+            "description": "Attribute definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4855,7 +5103,14 @@
             }
           },
           "404": {
-            "description": "Attribute definition not found"
+            "description": "Attribute definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -4925,7 +5180,14 @@
             }
           },
           "404": {
-            "description": "Attribute definition not found"
+            "description": "Attribute definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5127,7 +5389,14 @@
             }
           },
           "409": {
-            "description": "An event with this codeName already exists"
+            "description": "An event with this codeName already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5206,7 +5475,14 @@
             }
           },
           "404": {
-            "description": "Event definition not found"
+            "description": "Event definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5293,7 +5569,14 @@
             }
           },
           "404": {
-            "description": "Event definition not found"
+            "description": "Event definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5363,7 +5646,14 @@
             }
           },
           "404": {
-            "description": "Event definition not found"
+            "description": "Event definition not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5642,7 +5932,14 @@
             }
           },
           "404": {
-            "description": "Environment not found"
+            "description": "Environment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5730,7 +6027,14 @@
             }
           },
           "404": {
-            "description": "Environment not found"
+            "description": "Environment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5801,7 +6105,14 @@
             }
           },
           "404": {
-            "description": "Environment not found"
+            "description": "Environment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
