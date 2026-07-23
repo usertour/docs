@@ -340,8 +340,17 @@
             "name": "type",
             "required": false,
             "in": "query",
-            "description": "Filter by content type: flow, checklist, launcher, banner, tracker, resource-center, announcement. (A survey is a flow with question blocks \u2014 there is no separate survey type.)",
+            "description": "Filter by content type. (A survey is a flow with question blocks \u2014 there is no separate survey type.)",
             "schema": {
+              "enum": [
+                "checklist",
+                "flow",
+                "launcher",
+                "banner",
+                "tracker",
+                "resource-center",
+                "announcement"
+              ],
               "type": "string"
             }
           },
@@ -13543,8 +13552,8 @@
           "type": {
             "type": "string",
             "enum": [
-              "flow",
               "checklist",
+              "flow",
               "launcher",
               "banner",
               "tracker",
