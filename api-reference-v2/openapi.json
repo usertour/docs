@@ -2514,6 +2514,16 @@
               }
             }
           },
+          "409": {
+            "description": "System themes cannot be modified (E1035) \u2014 duplicate one into your own theme; isDefault: true alone is allowed (it only moves the project default pointer).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "429": {
             "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
             "content": {
@@ -4294,6 +4304,16 @@
               }
             }
           },
+          "409": {
+            "description": "The built-in \"all\" segment cannot be modified or deleted (E1037) \u2014 create a condition segment for a filtered audience.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
           "429": {
             "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
             "content": {
@@ -4373,6 +4393,16 @@
           },
           "404": {
             "description": "Segment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The built-in \"all\" segment cannot be modified or deleted (E1037) \u2014 create a condition segment for a filtered audience.",
             "content": {
               "application/json": {
                 "schema": {

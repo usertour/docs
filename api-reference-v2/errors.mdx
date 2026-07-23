@@ -75,9 +75,10 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1023` | 409 | Resource conflict (e.g. duplicate `codeName`) |
 | `E1028` | 409 | Content is still published — unpublish from every environment before deleting |
 | `E1030` | 409 | Event definition already has recorded events |
+| `E1037` | 409 | The built-in "all" segment cannot be modified or deleted — create a condition segment for a filtered audience |
 | `E1036` | 409 | Predefined attribute/event definitions cannot be modified or deleted — create your own definition instead |
 | `E1034` | 409 | Cannot delete the default theme — set another theme as the project default first |
-| `E1035` | 409 | System themes cannot be deleted — duplicate one into your own theme for a variant |
+| `E1035` | 409 | System themes cannot be modified or deleted — duplicate one into your own theme (setting one as the project default is allowed) |
 | `E1031` | 409 | Theme is used by live or draft content — switch that content to another theme first |
 | `E1027` | 422 | Content version is not publishable (fails render-usability validation) |
 | `E1013` | 429 | Rate limit exceeded — the limit follows your plan (100/500/1000/3000 requests/min); the standard `Retry-After` header says how long to back off |
