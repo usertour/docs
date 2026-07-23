@@ -13564,7 +13564,8 @@
           },
           "name": {
             "description": "Display name. For `announcement` it also seeds the draft title.",
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "buildUrl": {
             "type": "string"
@@ -13583,7 +13584,8 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "buildUrl": {
             "type": "string"
@@ -13596,7 +13598,8 @@
         "properties": {
           "name": {
             "description": "Name for the copy (defaults to the source name).",
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         }
       },
