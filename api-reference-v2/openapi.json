@@ -5090,6 +5090,7 @@
       "post": {
         "operationId": "ApiContentSessionsController_end",
         "summary": "End a session",
+        "description": "End an in-progress session. Idempotent: a session already in its terminal state is returned as-is. Tracker sessions have no end semantics and refuse with E1017.",
         "parameters": [
           {
             "name": "id",
