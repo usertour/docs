@@ -8407,7 +8407,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -8466,7 +8466,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -8507,7 +8507,7 @@
                         "type": "boolean"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -8569,7 +8569,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -11212,7 +11212,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -11271,7 +11271,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -11312,7 +11312,7 @@
                         "type": "boolean"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -11374,7 +11374,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -14073,7 +14073,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -14132,7 +14132,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -14173,7 +14173,7 @@
                         "type": "boolean"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -14235,7 +14235,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -16170,7 +16170,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -16229,7 +16229,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -16270,7 +16270,7 @@
                         "type": "boolean"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -16332,7 +16332,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -18311,7 +18311,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -18370,7 +18370,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -18411,7 +18411,7 @@
                         "type": "boolean"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
@@ -18473,7 +18473,7 @@
                         "type": "string"
                       },
                       "bindAttribute": {
-                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. It is NOT validated: a wrong/typo'd code still publishes and then silently captures nothing. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
+                        "description": "Optional: codeName of an EXISTING attribute (create it first with create_attribute_definition) to ALSO save this answer onto the user for targeting/segmentation \u2014 use the codeName, NOT the id. The write does not check it, but validate_content_version WARNS when the attribute is missing or its dataType mismatches the answer \u2014 read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event \u2014 bind only when you need to target/segment on it.",
                         "type": "string"
                       }
                     },
