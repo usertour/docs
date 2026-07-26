@@ -57,7 +57,7 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1001` | 404 | User not found |
 | `E1002` | 404 | Company not found |
 | `E1003` | 404 | Company membership not found |
-| `E1004` | 404 | Content or content version not found |
+| `E1004` | 404 | Content or content version not found. The message distinguishes two states: a plain "Content not found" means the id never existed here; an "exists but is ARCHIVED (soft-deleted)" message means the content is in the trash — list it with `deleted=true`, restore it with `POST /content/{id}/restore` |
 | `E1005` | 404 | Content session not found |
 | `E1021` | 404 | Theme not found |
 | `E1022` | 404 | Attribute definition not found |
