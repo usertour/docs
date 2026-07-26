@@ -22690,12 +22690,15 @@
                     "nullable": true
                   },
                   "type": {
+                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "url": {
+                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "name": {
+                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   }
                 },
@@ -25741,6 +25744,8 @@
                         "nullable": true
                       },
                       "imageUrl": {
+                        "type": "string",
+                        "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
                         "nullable": true
                       }
                     },
@@ -25798,10 +25803,13 @@
                     "type": "number",
                     "nullable": true
                   },
-                  "logoUrl": {
+                  "dividerLines": {
+                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
-                  "dividerLines": {
+                  "logoUrl": {
+                    "type": "string",
+                    "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
                     "nullable": true
                   }
                 },
@@ -25916,6 +25924,8 @@
                     "nullable": true
                   },
                   "iconUrl": {
+                    "type": "string",
+                    "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
                     "nullable": true
                   }
                 },
@@ -26220,12 +26230,15 @@
                     "nullable": true
                   },
                   "type": {
+                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "url": {
+                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "name": {
+                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   }
                 },
@@ -29271,6 +29284,8 @@
                         "nullable": true
                       },
                       "imageUrl": {
+                        "type": "string",
+                        "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
                         "nullable": true
                       }
                     },
@@ -29328,10 +29343,13 @@
                     "type": "number",
                     "nullable": true
                   },
-                  "logoUrl": {
+                  "dividerLines": {
+                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
-                  "dividerLines": {
+                  "logoUrl": {
+                    "type": "string",
+                    "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
                     "nullable": true
                   }
                 },
@@ -29446,6 +29464,8 @@
                     "nullable": true
                   },
                   "iconUrl": {
+                    "type": "string",
+                    "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
                     "nullable": true
                   }
                 },
