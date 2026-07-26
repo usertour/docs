@@ -3802,7 +3802,7 @@
       "delete": {
         "operationId": "ApiCompaniesController_removeMembership",
         "summary": "Remove a member",
-        "description": "Remove a user from the company.",
+        "description": "Remove a user from the company. DESTRUCTIVE, not a hide: the membership record and its membership-scoped attributes (e.g. a role) are deleted for good \u2014 re-adding creates a brand-new membership with empty attributes and a new join date, so remove-then-re-add is NOT an undo.",
         "parameters": [
           {
             "name": "id",
@@ -4996,6 +4996,7 @@
       "delete": {
         "operationId": "ApiContentSessionsController_remove",
         "summary": "Delete a session",
+        "description": "PERMANENT, with three distinct consequences: the session record is gone (no restore exists); its recorded answers vanish from question analytics irreversibly \u2014 deleting \"test\" sessions rewrites real response counts; and attribute values the session wrote onto the user via bindAttribute REMAIN on the user (clearing those is a separate user-attribute update, or the profile will contradict the survey analytics).",
         "parameters": [
           {
             "name": "id",
