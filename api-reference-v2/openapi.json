@@ -3691,7 +3691,7 @@
       "put": {
         "operationId": "ApiCompaniesController_upsertMembership",
         "summary": "Add a member",
-        "description": "Add a user to the company, or update the membership (idempotent).",
+        "description": "Add a user to the company, or update the membership (idempotent). Returns the membership (external ids + attributes). Membership attributes with an unknown codeName auto-create a definition (dataType inferred from the value) \u2014 a typo'd codeName therefore silently creates a new attribute while the real one is not updated.",
         "parameters": [
           {
             "name": "id",
@@ -3737,8 +3737,8 @@
           }
         },
         "responses": {
-          "204": {
-            "description": "Membership created or updated"
+          "200": {
+            "description": "Membership created or updated (echoed)"
           },
           "400": {
             "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
