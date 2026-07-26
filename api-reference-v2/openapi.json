@@ -30830,7 +30830,7 @@
             "description": "Segment kind. Immutable."
           },
           "conditions": {
-            "description": "Membership conditions (condition segments only) \u2014 ATTRIBUTE conditions and groups of them, nothing else (a segment is an attribute query). For \"users who did X\" audiences, store the fact as an attribute too and segment on that, or put the event condition on the content's start rules.",
+            "description": "Membership conditions (condition segments only) \u2014 ATTRIBUTE conditions and groups of them, nothing else (a segment is an attribute query). Multiple top-level conditions are ANDed \u2014 [A, B] means A AND B (measured, not assumed); for OR wrap them in one { \"type\": \"group\", \"match\": \"any\", \"conditions\": [A, B] }, same as content rules. For \"users who did X\" audiences, store the fact as an attribute too and segment on that, or put the event condition on the content's start rules.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CreateSegmentBodyDto__schema0"
@@ -30977,7 +30977,7 @@
             "minLength": 1
           },
           "conditions": {
-            "description": "Replaces the conditions (condition segments only). Attribute conditions and groups only \u2014 see create_segment.",
+            "description": "Replaces the conditions (condition segments only). Attribute conditions and groups only; top-level siblings are ANDed, wrap in a match:\"any\" group for OR \u2014 see create_segment.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/UpdateSegmentBodyDto__schema0"
