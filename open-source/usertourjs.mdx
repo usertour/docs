@@ -44,9 +44,16 @@ After completing the basic installation, you need to add the following configura
 If you're not using the default port (8011) or host (localhost), update the URLs in the configuration:
 
 - `WS_URI`: WebSocket connection URL
-- `ASSETS_URI`: Base URL for SDK assets
+- `ASSETS_URI`: Base URL for SDK assets — the **serve root**: the bundle appends
+  its own `/<version>/<target>/css/index.css` path. If you serve a locally
+  built `apps/sdk/dist` directly, do NOT point this at the version or target
+  folder — the doubled path 404s the CSS and widgets render invisibly (0×0)
+  with no console error.
 - `USERTOURJS_ES2020_URL`: URL for the modern JavaScript bundle
 - `USERTOURJS_LEGACY_URL`: URL for the legacy JavaScript bundle
+- `USERTOURJS_BROWSER_TARGET` (optional): `"es2020"` or `"legacy"` — force a
+  bundle instead of the loader's user-agent detection; only needed when the
+  detection guesses wrong (unusual webviews)
 
 ### 4. Next Steps
 

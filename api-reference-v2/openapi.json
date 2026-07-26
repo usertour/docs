@@ -19937,6 +19937,7 @@
                 "type": "object",
                 "properties": {
                   "buttonText": {
+                    "description": "Label on the collapsed checklist launcher pill (e.g. \"Getting started\").",
                     "type": "string"
                   },
                   "initialDisplay": {
@@ -19964,6 +19965,7 @@
                     "type": "boolean"
                   },
                   "content": {
+                    "description": "Rich content shown at the top of the expanded panel, above the task list \u2014 typically a short welcome line framing what the tasks achieve.",
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/UpdateVersionBodyDto__schema0"
@@ -19976,12 +19978,14 @@
                       "type": "object",
                       "properties": {
                         "id": {
+                          "description": "Server-owned task identity \u2014 ECHO it back when rewriting `items`. An item written without its existing id gets a NEW one: in-flight users' completion state for it resets and its per-task analytics rows break. Omit only for a genuinely new task.",
                           "type": "string"
                         },
                         "name": {
                           "type": "string"
                         },
                         "description": {
+                          "description": "Optional supporting text rendered below the task name. A short benefit statement or time estimate (\"Send an invite so your team can collaborate\", \"~30 sec\") measurably lifts task click-through \u2014 prefer setting it over leaving the row name-only.",
                           "type": "string"
                         },
                         "completeWhen": {
@@ -20139,6 +20143,7 @@
                 "type": "object",
                 "properties": {
                   "style": {
+                    "description": "Visual form: `beacon` = pulsing dot, `icon` = a static icon (see `icon`), `button` = a text button (see `buttonText`), `hidden` = no visual \u2014 interactions on the target element itself drive `behavior`.",
                     "type": "string",
                     "enum": [
                       "beacon",
@@ -20151,6 +20156,7 @@
                     "type": "object",
                     "properties": {
                       "source": {
+                        "description": "Where the icon comes from: `builtin` uses `type` (a RemixIcon name), `upload`/`url` use `url`, `inherit` takes the theme launcher icon, `none` shows no icon.",
                         "type": "string",
                         "enum": [
                           "none",
@@ -20161,6 +20167,7 @@
                         ]
                       },
                       "url": {
+                        "description": "Image URL for the icon \u2014 only used when source is 'upload' or 'url'.",
                         "type": "string"
                       },
                       "type": {
@@ -20170,9 +20177,11 @@
                     }
                   },
                   "buttonText": {
+                    "description": "Label of the button \u2014 only rendered when style is 'button'.",
                     "type": "string"
                   },
                   "target": {
+                    "description": "The page element the launcher anchors to (selector + beacon placement on it).",
                     "type": "object",
                     "properties": {
                       "selector": {
@@ -20214,6 +20223,7 @@
                             ]
                           },
                           "sideOffset": {
+                            "description": "Gap in pixels between the beacon and the target edge, along `side`.",
                             "type": "number"
                           },
                           "alignOffset": {
@@ -20244,6 +20254,7 @@
                     "type": "object",
                     "properties": {
                       "placement": {
+                        "description": "Where the tooltip opens relative to its anchor (see `reference`).",
                         "type": "object",
                         "properties": {
                           "side": {
@@ -20266,9 +20277,11 @@
                             ]
                           },
                           "sideOffset": {
+                            "description": "Gap in pixels between the tooltip and its anchor, along `side`.",
                             "type": "number"
                           },
                           "alignOffset": {
+                            "description": "Pixel shift along the alignment axis. Only applies when `align` is `start`/`end`.",
                             "type": "number"
                           },
                           "alignType": {
@@ -20282,6 +20295,7 @@
                         }
                       },
                       "width": {
+                        "description": "Tooltip width in pixels. Omit for the default.",
                         "type": "number"
                       },
                       "reference": {
@@ -20318,9 +20332,11 @@
                     }
                   },
                   "behavior": {
+                    "description": "How users interact with the launcher and what that interaction does. Omit for the default (click the launcher to show the tooltip).",
                     "type": "object",
                     "properties": {
                       "triggerElement": {
+                        "description": "Which element listens for the interaction: the launcher visual, the target element itself, or either. With style 'hidden' the target is the only thing to interact with.",
                         "type": "string",
                         "enum": [
                           "launcher",
@@ -20329,6 +20345,7 @@
                         ]
                       },
                       "event": {
+                        "description": "The interaction that triggers the launcher: click or hover.",
                         "type": "string",
                         "enum": [
                           "clicked",
@@ -20336,6 +20353,7 @@
                         ]
                       },
                       "action": {
+                        "description": "What the interaction does: 'show-tooltip' opens `tooltip.content`; 'perform-action' runs `actions` directly (e.g. start a flow) with no tooltip.",
                         "type": "string",
                         "enum": [
                           "show-tooltip",
@@ -20343,6 +20361,7 @@
                         ]
                       },
                       "actions": {
+                        "description": "The action list run when action is 'perform-action' (e.g. [{ \"type\": \"start_content\", \"content\": \"<flowId>\" }]). Ignored under 'show-tooltip' \u2014 put button actions inside the tooltip content instead.",
                         "type": "array",
                         "items": {
                           "oneOf": [
@@ -20520,6 +20539,7 @@
                     }
                   },
                   "containerTarget": {
+                    "description": "The anchor element for the container/element-relative `placement` variants (top/bottom of it, or immediately before/after it). Required by those placements; ignored for top/bottom-of-page.",
                     "type": "object",
                     "properties": {
                       "selector": {
