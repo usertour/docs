@@ -29801,10 +29801,12 @@
                         "type": "string"
                       },
                       "companyId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "External company id \u2014 the id companies are addressed by."
                       },
                       "userId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "External user id \u2014 the id users are addressed by."
                       },
                       "company": {
                         "type": "object",
@@ -29943,10 +29945,12 @@
                   "type": "string"
                 },
                 "companyId": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "External company id \u2014 the id companies are addressed by."
                 },
                 "userId": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "External user id \u2014 the id users are addressed by."
                 },
                 "company": {
                   "type": "object",
@@ -30085,10 +30089,12 @@
                         "type": "string"
                       },
                       "companyId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "External company id \u2014 the id companies are addressed by."
                       },
                       "userId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "External user id \u2014 the id users are addressed by."
                       },
                       "user": {
                         "type": "object",
@@ -30227,10 +30233,12 @@
                   "type": "string"
                 },
                 "companyId": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "External company id \u2014 the id companies are addressed by."
                 },
                 "userId": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "External user id \u2014 the id users are addressed by."
                 },
                 "user": {
                   "type": "object",
