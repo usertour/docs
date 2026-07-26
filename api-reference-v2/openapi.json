@@ -19937,7 +19937,7 @@
                 "type": "object",
                 "properties": {
                   "buttonText": {
-                    "description": "Label on the collapsed checklist launcher pill (e.g. \"Getting started\").",
+                    "description": "Label on the collapsed checklist launcher pill (e.g. \"Getting started\"). Plain string \u2014 NO `{{ }}` interpolation (braces would render literally).",
                     "type": "string"
                   },
                   "initialDisplay": {
@@ -19982,10 +19982,11 @@
                           "type": "string"
                         },
                         "name": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "The visible task row label. Plain string \u2014 NO `{{ }}` interpolation (braces would render literally)."
                         },
                         "description": {
-                          "description": "Optional supporting text rendered below the task name. A short benefit statement or time estimate (\"Send an invite so your team can collaborate\", \"~30 sec\") measurably lifts task click-through \u2014 prefer setting it over leaving the row name-only.",
+                          "description": "Optional supporting text rendered below the task name. A short benefit statement or time estimate (\"Send an invite so your team can collaborate\", \"~30 sec\") measurably lifts task click-through \u2014 prefer setting it over leaving the row name-only. Plain string \u2014 NO `{{ }}` interpolation (braces would render literally).",
                           "type": "string"
                         },
                         "completeWhen": {
@@ -20177,7 +20178,7 @@
                     }
                   },
                   "buttonText": {
-                    "description": "Label of the button \u2014 only rendered when style is 'button'.",
+                    "description": "Label of the button \u2014 only rendered when style is 'button'. Plain string \u2014 NO `{{ }}` interpolation.",
                     "type": "string"
                   },
                   "target": {
@@ -20624,7 +20625,7 @@
                 "type": "object",
                 "properties": {
                   "title": {
-                    "description": "Title shown in the feed row and the detail view. Required to publish \u2014 an untitled announcement would render a blank row. Seeded from the content's `name` at create, then INDEPENDENT: renaming the content later does not update the title (and events/analytics label by the content name, not this title).",
+                    "description": "Title shown in the feed row and the detail view. Required to publish \u2014 an untitled announcement would render a blank row. Seeded from the content's `name` at create, then INDEPENDENT: renaming the content later does not update the title (and events/analytics label by the content name, not this title). Plain string \u2014 NO `{{ }}` interpolation (braces would render literally). For a personalized body use the intro/detail content blocks.",
                     "type": "string"
                   },
                   "introContent": {
@@ -20682,9 +20683,11 @@
                 "type": "object",
                 "properties": {
                   "buttonText": {
+                    "description": "Text on the floating resource-center launcher (only rendered when the theme launcher is in text mode). Plain string \u2014 NO `{{ }}` interpolation.",
                     "type": "string"
                   },
                   "headerText": {
+                    "description": "Panel header title on the home view. Plain string \u2014 NO `{{ }}` interpolation (braces would render literally); for a personalized greeting use a `richtext` block instead.",
                     "type": "string"
                   },
                   "tabs": {
@@ -20696,7 +20699,8 @@
                           "type": "string"
                         },
                         "name": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Tab label. Plain text \u2014 NO `{{ }}` interpolation (braces would render literally)."
                         },
                         "icon": {
                           "type": "object",
@@ -20804,7 +20808,8 @@
                                     ]
                                   },
                                   "name": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "Visible label of this block row. Supports `{{ attribute_code | default: \"x\" }}` user-attribute interpolation."
                                   },
                                   "icon": {
                                     "type": "object",
@@ -20979,7 +20984,8 @@
                                     ]
                                   },
                                   "name": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "Visible label of this block row. Supports `{{ attribute_code | default: \"x\" }}` user-attribute interpolation."
                                   },
                                   "icon": {
                                     "type": "object",
@@ -21035,7 +21041,8 @@
                                     ]
                                   },
                                   "name": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "Visible label of this block row. Supports `{{ attribute_code | default: \"x\" }}` user-attribute interpolation."
                                   },
                                   "icon": {
                                     "type": "object",
@@ -21113,7 +21120,8 @@
                                       "type": "object",
                                       "properties": {
                                         "content": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "description": "Id of the flow/checklist this entry starts on click."
                                         },
                                         "contentType": {
                                           "type": "string",
@@ -21150,9 +21158,11 @@
                                           }
                                         },
                                         "navigateUrl": {
+                                          "description": "URL also opened when the entry is clicked, AFTER the referenced content starts \u2014 e.g. take the user to the page where the flow begins. Supports `{{ attribute_code | default: \"x\" }}` interpolation.",
                                           "type": "string"
                                         },
                                         "navigateOpenType": {
+                                          "description": "Open `navigateUrl` in the same tab (default) or a new one.",
                                           "type": "string",
                                           "enum": [
                                             "same",
@@ -21197,7 +21207,8 @@
                                     ]
                                   },
                                   "name": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "Visible label of this block row. Supports `{{ attribute_code | default: \"x\" }}` user-attribute interpolation."
                                   },
                                   "icon": {
                                     "type": "object",
@@ -21232,9 +21243,11 @@
                                       "intercom",
                                       "zendesk-classic",
                                       "zendesk-messenger"
-                                    ]
+                                    ],
+                                    "description": "Which chat widget the click opens. The SDK only INVOKES the provider \u2014 the host page must already have that provider's script installed, or clicking logs a console warning and nothing opens. Not checkable at write time (the server cannot see the host page), so confirm which provider the host actually runs."
                                   },
                                   "customCode": {
+                                    "description": "For provider 'custom': script run on CLICK (not page load) via new Function; hosts can disable it with usertour.disableEvalJs(). Echo-only via the API \u2014 echo the stored code back unchanged (or omit the field) to keep it, empty string clears it; writing new or edited code is rejected (same security policy as run_javascript). Author scripts in the builder.",
                                     "type": "string"
                                   }
                                 },
@@ -21263,7 +21276,8 @@
                                     ]
                                   },
                                   "name": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "Visible label of this block row. Supports `{{ attribute_code | default: \"x\" }}` user-attribute interpolation."
                                   },
                                   "icon": {
                                     "type": "object",
