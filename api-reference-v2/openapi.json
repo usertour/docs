@@ -9048,7 +9048,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely."
+                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. `clicked` LATCHES: the SDK attaches a click listener the FIRST time the condition is evaluated \u2014 clicks before that are invisible \u2014 and once a click lands the condition stays true until the page reloads (`unclicked` is its negation). Two consequences: a tracker gated on `clicked` fires ONCE per page load (its event is edge-triggered), so it counts \"page loads with at least one click\", NOT total clicks; and a click that happens before the content is distributed to the page is never seen."
               }
             },
             "required": [
@@ -11863,7 +11863,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely."
+                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. `clicked` LATCHES: the SDK attaches a click listener the FIRST time the condition is evaluated \u2014 clicks before that are invisible \u2014 and once a click lands the condition stays true until the page reloads (`unclicked` is its negation). Two consequences: a tracker gated on `clicked` fires ONCE per page load (its event is edge-triggered), so it counts \"page loads with at least one click\", NOT total clicks; and a click that happens before the content is distributed to the page is never seen."
               }
             },
             "required": [
@@ -14733,7 +14733,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely."
+                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. `clicked` LATCHES: the SDK attaches a click listener the FIRST time the condition is evaluated \u2014 clicks before that are invisible \u2014 and once a click lands the condition stays true until the page reloads (`unclicked` is its negation). Two consequences: a tracker gated on `clicked` fires ONCE per page load (its event is edge-triggered), so it counts \"page loads with at least one click\", NOT total clicks; and a click that happens before the content is distributed to the page is never seen."
               }
             },
             "required": [
@@ -16835,7 +16835,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely."
+                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. `clicked` LATCHES: the SDK attaches a click listener the FIRST time the condition is evaluated \u2014 clicks before that are invisible \u2014 and once a click lands the condition stays true until the page reloads (`unclicked` is its negation). Two consequences: a tracker gated on `clicked` fires ONCE per page load (its event is edge-triggered), so it counts \"page loads with at least one click\", NOT total clicks; and a click that happens before the content is distributed to the page is never seen."
               }
             },
             "required": [
@@ -18981,7 +18981,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely."
+                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. `clicked` LATCHES: the SDK attaches a click listener the FIRST time the condition is evaluated \u2014 clicks before that are invisible \u2014 and once a click lands the condition stays true until the page reloads (`unclicked` is its negation). Two consequences: a tracker gated on `clicked` fires ONCE per page load (its event is edge-triggered), so it counts \"page loads with at least one click\", NOT total clicks; and a click that happens before the content is distributed to the page is never seen."
               }
             },
             "required": [
@@ -21585,7 +21585,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely."
+                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. `clicked` LATCHES: the SDK attaches a click listener the FIRST time the condition is evaluated \u2014 clicks before that are invisible \u2014 and once a click lands the condition stays true until the page reloads (`unclicked` is its negation). Two consequences: a tracker gated on `clicked` fires ONCE per page load (its event is edge-triggered), so it counts \"page loads with at least one click\", NOT total clicks; and a click that happens before the content is distributed to the page is never seen."
               }
             },
             "required": [
@@ -22240,7 +22240,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely."
+                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. `clicked` LATCHES: the SDK attaches a click listener the FIRST time the condition is evaluated \u2014 clicks before that are invisible \u2014 and once a click lands the condition stays true until the page reloads (`unclicked` is its negation). Two consequences: a tracker gated on `clicked` fires ONCE per page load (its event is edge-triggered), so it counts \"page loads with at least one click\", NOT total clicks; and a click that happens before the content is distributed to the page is never seen."
               }
             },
             "required": [
