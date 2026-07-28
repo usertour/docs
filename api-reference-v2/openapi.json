@@ -9456,6 +9456,10 @@
                     "number": {
                       "type": "number"
                     },
+                    "firstPublishedAt": {
+                      "type": "string",
+                      "nullable": true
+                    },
                     "themeId": {
                       "type": "string",
                       "nullable": true
@@ -10069,6 +10073,7 @@
                     "id",
                     "object",
                     "number",
+                    "firstPublishedAt",
                     "themeId",
                     "questions",
                     "updatedAt",
@@ -10106,6 +10111,10 @@
                           },
                           "number": {
                             "type": "number"
+                          },
+                          "firstPublishedAt": {
+                            "type": "string",
+                            "nullable": true
                           },
                           "themeId": {
                             "type": "string",
@@ -10720,6 +10729,7 @@
                           "id",
                           "object",
                           "number",
+                          "firstPublishedAt",
                           "themeId",
                           "questions",
                           "updatedAt",
@@ -12256,6 +12266,10 @@
               "number": {
                 "type": "number"
               },
+              "firstPublishedAt": {
+                "type": "string",
+                "nullable": true
+              },
               "themeId": {
                 "type": "string",
                 "nullable": true
@@ -12898,6 +12912,10 @@
                     "number": {
                       "type": "number"
                     },
+                    "firstPublishedAt": {
+                      "type": "string",
+                      "nullable": true
+                    },
                     "themeId": {
                       "type": "string",
                       "nullable": true
@@ -13511,6 +13529,7 @@
                     "id",
                     "object",
                     "number",
+                    "firstPublishedAt",
                     "themeId",
                     "questions",
                     "updatedAt",
@@ -15097,6 +15116,10 @@
                 "number": {
                   "type": "number"
                 },
+                "firstPublishedAt": {
+                  "type": "string",
+                  "nullable": true
+                },
                 "themeId": {
                   "type": "string",
                   "nullable": true
@@ -15710,6 +15733,7 @@
                 "id",
                 "object",
                 "number",
+                "firstPublishedAt",
                 "themeId",
                 "questions",
                 "updatedAt",
@@ -17189,6 +17213,10 @@
           "number": {
             "type": "number"
           },
+          "firstPublishedAt": {
+            "type": "string",
+            "nullable": true
+          },
           "themeId": {
             "type": "string",
             "nullable": true
@@ -17799,6 +17827,7 @@
           "id",
           "object",
           "number",
+          "firstPublishedAt",
           "themeId",
           "questions",
           "updatedAt",
