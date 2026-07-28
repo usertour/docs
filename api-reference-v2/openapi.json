@@ -2288,7 +2288,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope; E1038 custom CSS requires the Growth plan or above (below that the runtime strips `customCss` at delivery, so the write is refused instead of silently stored).",
             "content": {
               "application/json": {
                 "schema": {
@@ -2505,7 +2505,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope; E1038 custom CSS requires the Growth plan or above \u2014 introducing or changing a non-empty `customCss` is refused below that plan (echoing the stored value back, or clearing it, always passes).",
             "content": {
               "application/json": {
                 "schema": {
