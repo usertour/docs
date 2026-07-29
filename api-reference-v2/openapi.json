@@ -9458,6 +9458,7 @@
                     },
                     "firstPublishedAt": {
                       "type": "string",
+                      "description": "When this version FIRST went live (ISO). Non-null means the version is frozen: it can never be edited again \u2014 not even after unpublishing \u2014 edit by forking (create_content_version). null means it never went live \u2014 OR its first publish predates this stamp (older versions were never backfilled), so on old data null is not proof it never shipped. This is history, not live state: for \"is it live NOW, where\" read the content's `environments[]`; for who published what when, `list_publish_history`.",
                       "nullable": true
                     },
                     "themeId": {
@@ -10114,6 +10115,7 @@
                           },
                           "firstPublishedAt": {
                             "type": "string",
+                            "description": "When this version FIRST went live (ISO). Non-null means the version is frozen: it can never be edited again \u2014 not even after unpublishing \u2014 edit by forking (create_content_version). null means it never went live \u2014 OR its first publish predates this stamp (older versions were never backfilled), so on old data null is not proof it never shipped. This is history, not live state: for \"is it live NOW, where\" read the content's `environments[]`; for who published what when, `list_publish_history`.",
                             "nullable": true
                           },
                           "themeId": {
@@ -12268,6 +12270,7 @@
               },
               "firstPublishedAt": {
                 "type": "string",
+                "description": "When this version FIRST went live (ISO). Non-null means the version is frozen: it can never be edited again \u2014 not even after unpublishing \u2014 edit by forking (create_content_version). null means it never went live \u2014 OR its first publish predates this stamp (older versions were never backfilled), so on old data null is not proof it never shipped. This is history, not live state: for \"is it live NOW, where\" read the content's `environments[]`; for who published what when, `list_publish_history`.",
                 "nullable": true
               },
               "themeId": {
@@ -12914,6 +12917,7 @@
                     },
                     "firstPublishedAt": {
                       "type": "string",
+                      "description": "When this version FIRST went live (ISO). Non-null means the version is frozen: it can never be edited again \u2014 not even after unpublishing \u2014 edit by forking (create_content_version). null means it never went live \u2014 OR its first publish predates this stamp (older versions were never backfilled), so on old data null is not proof it never shipped. This is history, not live state: for \"is it live NOW, where\" read the content's `environments[]`; for who published what when, `list_publish_history`.",
                       "nullable": true
                     },
                     "themeId": {
@@ -15118,6 +15122,7 @@
                 },
                 "firstPublishedAt": {
                   "type": "string",
+                  "description": "When this version FIRST went live (ISO). Non-null means the version is frozen: it can never be edited again \u2014 not even after unpublishing \u2014 edit by forking (create_content_version). null means it never went live \u2014 OR its first publish predates this stamp (older versions were never backfilled), so on old data null is not proof it never shipped. This is history, not live state: for \"is it live NOW, where\" read the content's `environments[]`; for who published what when, `list_publish_history`.",
                   "nullable": true
                 },
                 "themeId": {
@@ -17215,6 +17220,7 @@
           },
           "firstPublishedAt": {
             "type": "string",
+            "description": "When this version FIRST went live (ISO). Non-null means the version is frozen: it can never be edited again \u2014 not even after unpublishing \u2014 edit by forking (create_content_version). null means it never went live \u2014 OR its first publish predates this stamp (older versions were never backfilled), so on old data null is not proof it never shipped. This is history, not live state: for \"is it live NOW, where\" read the content's `environments[]`; for who published what when, `list_publish_history`.",
             "nullable": true
           },
           "themeId": {
