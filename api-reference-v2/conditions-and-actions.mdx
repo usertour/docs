@@ -15,7 +15,7 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 
 ```json
 [
-  { "type": "segment", "segment": "seg_power_users", "in": true },
+  { "type": "segment", "segment": "cm9f6vwed0002iejc4vg2zu3t", "in": true },
   { "type": "group", "match": "any", "conditions": [
     { "type": "current_url", "includes": ["/pricing"] },
     { "type": "current_url", "includes": ["/billing"] }
@@ -31,16 +31,20 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 | `match` | `all` \| `any` | yes | `all` = AND, `any` = OR (how the children combine). |
 | `conditions` | [Condition](#conditions)[] | yes | Nested conditions. |
 
-#### `user_attribute`
+#### `attribute`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `type` | `"user_attribute"` | yes |  |
+| `type` | `"attribute"` | yes |  |
+| `scope` | `user` \| `company` \| `companyMembership` | yes | Whose attribute: the user's, their company's, or their membership in that company. |
 | `attribute` | string | yes | Attribute code (see [Attributes](/api-reference-v2/attributes)). |
 | `op` | string | yes | Operator — depends on the attribute's data type (e.g. `is`, `contains`, `greater_than`). |
 | `value` | string |  | Comparison value. |
 | `value2` | string |  | Second value (for `between`). |
 | `values` | string[] |  | Value list (for list operators). |
+
+The same shape with `type: "event_attribute"` (and no `scope`) filters on an
+**event's own** attributes — valid only inside an `event` condition's `where`.
 
 #### `segment`
 
@@ -55,8 +59,8 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"current_url"` | yes |  |
-| `includes` | string[] | yes | Match when the URL contains any of these. |
-| `excludes` | string[] |  | …and none of these. |
+| `includes` | string[] | yes | URL **patterns** (anchored whole-URL match — NOT substring): `*` is a wildcard within one URL part, `:name` matches one path segment. `/pricing` alone never matches — use `*/pricing`; a bare `*` matches every page. Multiple patterns OR together. |
+| `excludes` | string[] |  | Patterns to exclude (same syntax); excludes win over includes. |
 
 #### `element`
 
@@ -64,15 +68,15 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 |---|---|---|---|
 | `type` | `"element"` | yes |  |
 | `target` | [Target](#target) |  | The element to check. |
-| `state` | `present` \| `hidden` \| `disabled` \| `enabled` \| `clicked` \| `unclicked` | yes |  |
+| `state` | `present` \| `hidden` \| `disabled` \| `enabled` \| `clicked` \| `unclicked` | yes | `present` means visible **in the viewport** (not merely in the DOM); `clicked` latches per page load — the listener attaches on first evaluation and the condition stays true until reload. |
 
-#### `flow`
+#### `content_state`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `type` | `"flow"` | yes |  |
-| `flow` | string | yes | Content id of the flow. |
-| `state` | `seen` \| `unseen` \| `completed` \| `uncompleted` \| `active` \| `inactive` | yes |  |
+| `type` | `"content_state"` | yes |  |
+| `content` | string | yes | Content id of the **flow or checklist** whose per-user state to check (other types are rejected). |
+| `state` | `seen` \| `unseen` \| `completed` \| `uncompleted` \| `active` \| `inactive` | yes | To sequence "show B after A has run and closed", use `seen` AND `inactive` together — `seen` alone fires while A is still open. |
 
 #### `event`
 
@@ -83,7 +87,7 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 | `count` | `object{ op, n, n2 }` |  | How many times — `op` ∈ `at_least`/`at_most`/`exactly`/`between`. |
 | `within` | `object{ op, value, value2, unit }` |  | Time window — `op` ∈ `in_the_last`/`more_than`/`between`/`any_time`, `unit` ∈ seconds…days. |
 | `scope` | `current_user` \| `current_user_in_company` \| `any_user_in_company` |  |  |
-| `where` | [Condition](#conditions)[] |  | Filter on the event's own attributes (event-attribute conditions only). |
+| `where` | Condition[] |  | Filter on the event's own attributes — `event_attribute` conditions only (see [`attribute`](#attribute)). |
 
 #### `text_input`
 
@@ -106,8 +110,20 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"time_window"` | yes |  |
-| `start` | string |  | ISO 8601 start. |
-| `end` | string |  | ISO 8601 end. |
+| `start` | string | yes | ISO 8601 start. Required on write — the runtime never matches a window without a start. For "until X", set `start` to any past instant. |
+| `end` | string |  | ISO 8601 end. Omit for an open-ended "from start onwards" window. |
+
+#### `task_clicked`
+
+Parameterless (`{ "type": "task_clicked" }`). Valid only in a checklist item's
+`completeWhen` — the item completes when clicked.
+
+#### `unsupported`
+
+Read-back only: a stored condition the representation cannot express is returned
+as `{ "type": "unsupported", "note": "…" }`. **Echo it back unchanged** when
+rewriting the surrounding list to preserve it — condition lists are full
+replacements, so leaving it out deletes it. Authoring a new one is rejected.
 
 ## Actions
 
@@ -118,12 +134,12 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 | `type` | `"goto_step"` | yes |  |
 | `step` | string | yes | Target step: a step `key` declared elsewhere in the same write, or an existing step cvid. Resolved server-side to the cvid. |
 
-#### `start_flow`
+#### `start_content`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `type` | `"start_flow"` | yes |  |
-| `flow` | string | yes | Content id of the flow to start. |
+| `type` | `"start_content"` | yes |  |
+| `content` | string | yes | Content id of the **flow or checklist** to launch (other types are rejected). The target must be published in the same environment to actually start. |
 | `step` | string |  | Start at this step (cvid). |
 
 #### `navigate`
@@ -142,8 +158,11 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 | `type` | `"dismiss"` | yes | Dismiss the current content. |
 
 <Note>
-  `run_javascript` actions are **read-only**: they appear on reads but are
-  rejected on write (no API/agent-injected JavaScript).
+  `run_javascript` is **echo-only**: builder-authored script actions appear on
+  reads, and echoing one back **unchanged** preserves it when you rewrite the
+  surrounding list (action lists are full replacements — leaving it out deletes
+  it). Authoring a new or edited script is rejected (no API/agent-injected
+  JavaScript).
 </Note>
 
 ```json
@@ -158,8 +177,8 @@ conditions, tooltip steps, and banner container).
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `selector` | string | yes | A stable CSS selector for the element in your app. |
-| `text` | string |  | Visible text the matched element must contain — narrows the selector match (selector + text). Omit to match by selector alone. |
-| `nth` | number |  | 0-based index of the match to use when the selector resolves to multiple elements. |
+| `text` | string |  | Visible text the targeted element must **equal** (exact match, after trim) — refines the element chosen by `selector`/`nth`; it does not search among multiple matches. |
+| `nth` | number |  | 0-based index of the match when the selector isn't unique, in document order. Range 0–4 (only the first 5 matches are addressable). |
 
 ```json
 { "selector": "[data-tour='create']" }

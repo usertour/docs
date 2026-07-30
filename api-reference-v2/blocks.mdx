@@ -4,8 +4,10 @@ description: 'The visual building units of content — text, image, button, embe
 ---
 
 **Blocks** are the visual units that make up content. They appear in a flow
-step's `content[]`, and in the rich content of checklists, banners, and the
-resource center. A block is a small tagged object:
+step's `content[]`, and in the rich content of checklists and banners. (The
+resource center has its own block vocabulary — see
+[Type-specific data](/api-reference-v2/type-data#resource-center).) A block is a
+small tagged object:
 
 ```json
 { "object": "block", "id": "bk_…", "type": "text", "markdown": "Hello" }
@@ -29,7 +31,7 @@ A rich-text paragraph block.
 |---|---|---|---|
 | `id` | string |  | Field-merge write handle. |
 | `type` | `"text"` | yes |  |
-| `markdown` | string | yes | A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only — no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)`, and `{{ attribute_code \| default: "x" }}` for user attributes. |
+| `markdown` | string | yes | A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only — no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)` (append `{target=_blank}` for a new tab), and `{{ attribute_code \| default: "x" }}` for user attributes — emphasis applies to placeholders too (`**Hi {{ name }}!**` bolds the interpolated value). |
 
 ```json
 { "type": "text", "markdown": "Welcome **{{ first_name | default: \"there\" }}** 👋" }
@@ -41,7 +43,7 @@ A rich-text paragraph block.
 |---|---|---|---|
 | `id` | string |  | Field-merge write handle. |
 | `type` | `"image"` | yes |  |
-| `url` | string | yes | Image URL. |
+| `url` | string | yes | Image URL (http/https). |
 | `alt` | string |  | Alt text. |
 | `link` | `object{ url, newTab }` |  | Wrap the image in a link. |
 | `width` | [Dimension](#shared-shapes) |  | Image width. |
@@ -89,13 +91,13 @@ An embedded URL (video, iframe-able page, …).
 |---|---|---|---|
 | `id` | string |  | Field-merge write handle. |
 | `type` | `"embed"` | yes |  |
-| `url` | string | yes | URL to embed. |
+| `url` | string | yes | Paste the page's normal URL (e.g. a `youtube.com/watch` link) — on write it is resolved through the standard oEmbed provider registry and the provider's official embed markup is stored, so you never hand-build `/embed/` URLs. A URL no provider claims is iframed as-is and renders only if the site allows being framed. |
 | `width` | [Dimension](#shared-shapes) |  | Width. |
 | `height` | [Dimension](#shared-shapes) |  | Height. |
 | `margin` | [Spacing](#shared-shapes) |  | Outer margin. |
 
 ```json
-{ "type": "embed", "url": "https://www.youtube.com/embed/dQw4w9WgXcQ", "width": { "unit": "percent", "value": 100 } }
+{ "type": "embed", "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "width": { "unit": "percent", "value": 100 } }
 ```
 
 ## question
@@ -200,7 +202,7 @@ Small objects reused across blocks.
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `unit` | `percent` \| `pixels` \| `fill` | yes | `fill` ignores `value`. |
+| `unit` | `percent` \| `pixels` \| `fill` | yes | `fill` ignores `value`, and is a **column-only** unit — an image/embed width or height with `fill` is rejected. |
 | `value` | number |  | ≥ 0. For `percent`, values over 100 are allowed (overflow). |
 
 **Spacing** — margin/padding box (pixels; omitted sides inherit the theme).

@@ -36,8 +36,8 @@ instead of resubmitting once per error:
 
 Each issue has a `rule` (which validation layer rejected it: `schema`,
 `reactive_condition`, `action_not_allowed`, `step_shape`, `reference_target`,
-`auto_start`), a `message`, and — when it maps to a request field — a `path`
-into the request body.
+`auto_start`, `media_url`), a `message`, and — when it maps to a request field —
+a `path` into the request body.
 
 HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 `5xx` Usertour.
@@ -53,6 +53,7 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1019` | 403 | Environment does not belong to the project |
 | `E1029` | 403 | Environment is outside the token's environment allowlist |
 | `E1032` | 403 | Creating an environment needs a token WITHOUT env-targeted capabilities (user/company/session/segment/analytics, content:publish) — those must name environments, and no allowlist can cover an environment that does not exist yet; use a separate project-level-only token |
+| `E1038` | 403 | Custom CSS requires the Growth plan or above — below that the runtime strips `customCss` at delivery, so the write is refused instead of silently stored (echoing a stored value back, or clearing it, always passes) |
 | `E1020` | 401 | API token has expired |
 | `E1001` | 404 | User not found |
 | `E1002` | 404 | Company not found |

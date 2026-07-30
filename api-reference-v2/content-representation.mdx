@@ -4,7 +4,7 @@ description: 'How a content version is read and written — steps, blocks, rules
 ---
 
 A piece of **content** (flow, checklist, launcher, banner, tracker,
-resource-center) has **versions**. The editable head is the *draft* version
+resource-center, announcement) has **versions**. The editable head is the *draft* version
 (`editedVersionId`); publishing makes a version live in an environment.
 
 A version's authorable body is exposed as a stable **representation** — the same
@@ -17,7 +17,7 @@ shape you read and write — rather than Usertour's internal builder model. You
 | Content type | Body | Read with | Write field |
 |---|---|---|---|
 | `flow` (tooltip / modal / …) | **steps** | `?expand=steps` | `steps` |
-| `checklist` / `launcher` / `banner` / `tracker` / `resource-center` | **data** | `?expand=data` | `data` |
+| `checklist` / `launcher` / `banner` / `tracker` / `resource-center` / `announcement` | **data** | `?expand=data` | `data` |
 
 Both also carry version-level **start / hide rules** (`startRules`, `hideRules`)
 and a `themeId`.
@@ -31,7 +31,7 @@ and a `themeId`.
   "key": "welcome",        // your handle, write-only — wire goto_step by it
   "name": "Welcome",
   "type": "modal",
-  "placement": { "side": "bottom", "align": "center" },
+  "placement": { "position": "center" },
   "content": [
     { "object": "block", "type": "text", "markdown": "Welcome **{{ first_name | default: \"there\" }}**" },
     { "object": "block", "type": "button", "text": "Next", "variant": "primary", "actions": [{ "type": "goto_step", "step": "pricing" }] }
@@ -46,8 +46,11 @@ Full payload per block type: **[Blocks](/api-reference-v2/blocks)**.
 
 **Rich text** is a small markdown subset: paragraphs, `# `/`## ` headings (h1/h2
 only — no h3+), `-`/`*` and `1.` lists, ` ``` ` code fences; inline `**bold**`,
-`*italic*`, `[text](url)`, and a Liquid-style user-attribute placeholder
-`{{ attribute | default: "fallback" }}`.
+`*italic*`, `[text](url)` (append `{target=_blank}` right after a link to open
+it in a new tab), and a Liquid-style user-attribute placeholder
+`{{ attribute | default: "fallback" }}`. Emphasis applies to placeholders too:
+`**Hi {{ name }}!**` renders the whole greeting — the interpolated value
+included — in bold.
 
 ### Step identifiers: `id`, `cvid`, `key`
 
@@ -69,10 +72,12 @@ is always the cvid (reads return cvids).
 Conditions and actions are reused everywhere (step triggers, button/question
 actions, version start/hide rules):
 
-- **Conditions** — a recursive tree (`user_attribute`, `current_url`, `segment`,
-  `element`, `event`, `text_input`, time/wait, nested `group` with `and`/`or`).
-- **Actions** — `goto_step`, `start_flow`, `navigate`, `dismiss`. (`run_javascript`
-  is **read-only**: it appears on reads but is rejected on write.)
+- **Conditions** — a recursive tree (`attribute` with a `scope`, `current_url`,
+  `segment`, `element`, `content_state`, `event`, `text_input`, `text_filled`,
+  `time_window`, nested `group` with `all`/`any`).
+- **Actions** — `goto_step`, `start_content`, `navigate`, `dismiss`.
+  (`run_javascript` is **echo-only**: builder-authored scripts appear on reads
+  and are preserved by echoing them back unchanged; authoring one is rejected.)
 - **Start rules** (`startRules`) — when the content auto-starts, plus frequency /
   priority / wait. **Hide rules** (`hideRules`) — when to hide it.
 

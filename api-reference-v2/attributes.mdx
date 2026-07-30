@@ -10,9 +10,14 @@ object.
 
 ## Naming
 
-- Alphanumeric, plus underscores, dashes, and spaces
-- Case-sensitive and unique within the object
-- Prefer `snake_case` (e.g. `signed_up_at`, `last_login_time`)
+A `codeName` created through the API must start with a letter and contain only
+letters, digits, and underscores, 2–20 characters (`snake_case` is the
+convention — `signed_up_at`, `last_login_time`). It is case-sensitive and unique
+per scope. SDK ingestion is deliberately more lenient: an attribute key your app
+sends that isn't defined yet is **auto-created** with a type inferred from the
+first value — so send a number as `42` (not `"42"`) and dates as full ISO
+timestamps; a wrongly inferred type can be corrected later while no stored value
+conflicts.
 
 Display names (shown in the Usertour UI) are configured separately — e.g.
 `signed_up_at` can display as "Signed Up".

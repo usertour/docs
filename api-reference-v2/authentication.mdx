@@ -11,18 +11,25 @@ Bearer header on every request:
 Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-A token is owned by a user and has two properties that gate every request:
+A token is owned by a user and has three properties that gate every request:
 
 - **Projects** — the token is bound to one or more projects. A request to
   `/v2/projects/{projectId}/...` is rejected unless the token includes that project.
 - **Scopes** — fine-grained capabilities. A request is rejected unless the token
   carries the scope its endpoint requires.
+- **Environments** — an optional allowlist. Environment-targeted operations
+  (publishing, end-user data, sessions, …) are rejected outside it (`E1029`);
+  with no allowlist the token covers every environment of its projects.
+
+Connections authorized over [MCP OAuth](/api-reference-v2/mcp) hold `uto_`
+tokens with the same three properties (granted on the consent screen); they
+authenticate REST requests exactly like a personal `utp_` token.
 
 ## Scopes
 
 | Scope | Grants |
 |---|---|
-| `content:read` | Read content, versions, and themes |
+| `content:read` | Read content and versions |
 | `content:create` | Create / duplicate content, create draft versions |
 | `content:update` | Edit drafts (steps, rules, theme, body), restore versions |
 | `content:delete` | Delete content |

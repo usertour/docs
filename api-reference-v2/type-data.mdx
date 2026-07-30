@@ -1,6 +1,6 @@
 ---
 title: 'Type-specific data'
-description: 'The `data` body for non-flow content — checklist, launcher, banner, tracker, and resource center.'
+description: 'The `data` body for non-flow content — checklist, launcher, banner, tracker, resource center, and announcement.'
 ---
 
 Non-flow content carries its body in `data` (read with `?expand=data`, write with
@@ -108,7 +108,13 @@ match. (No theme needed.)
 |---|---|---|---|
 | `buttonText` | string |  | Launcher button label. |
 | `headerText` | string |  | Panel header. |
-| `tabs` | `object{ id, name, icon, blocks }`[] |  | Tabs — each has a name and ≥1 content block. |
+| `tabs` | `object{ id, name, icon, blocks }`[] |  | Tabs — each has a name and ≥1 block. |
+
+Tab blocks use the resource center's **own** vocabulary — `richtext`, `divider`,
+`action`, `sub-page`, `content-list`, `live-chat`, and `announcement` (the feed;
+at most one per resource center) — **not** the flow blocks. Rich text goes
+inside a `richtext` block, which wraps regular [blocks](/api-reference-v2/blocks)
+in its `content`; a bare flow `text` block at the tab level is rejected.
 
 A resource center needs ≥1 tab, each with a name and at least one block.
 
@@ -116,7 +122,40 @@ A resource center needs ≥1 tab, each with a name and at least one block.
 {
   "headerText": "Help & resources",
   "tabs": [
-    { "name": "Guides", "blocks": [{ "type": "text", "markdown": "## Getting started" }] }
+    {
+      "name": "Guides",
+      "blocks": [
+        { "type": "richtext", "content": [{ "type": "text", "markdown": "## Getting started" }] },
+        { "type": "content-list", "name": "Tours", "items": [{ "content": "cm9f6vwed0002iejc4vg2zu3t", "contentType": "flow" }] }
+      ]
+    }
   ]
+}
+```
+
+## announcement
+
+The announcement-feed body. Announcements reach users **only** through a
+resource center with an `announcement` block — publishing alone does not
+surface them.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `title` | string |  | Feed-row / detail title. **Required to publish.** Plain string — no `{{ }}` interpolation. Seeded from the content name at create, then independent. |
+| `introContent` | [Block](/api-reference-v2/blocks)[] |  | Feed-row content — the flow block vocabulary minus questions (button actions: `start_content` / `navigate` / `run_javascript` only). |
+| `enableReadMore` | boolean |  | Adds a "Read more" button opening a detail page. Enabling it with an empty `detailContent` is rejected. |
+| `readMoreLabel` | string |  | The button's label. |
+| `detailContent` | [Block](/api-reference-v2/blocks)[] |  | The detail page (same block rules as `introContent`). |
+| `distribution` | `silent` \| `badge` \| `popup` |  | How loudly users are notified (`badge` is the default). |
+
+The "announcement time" is **not** in `data` — it is the version-level
+`scheduledAt` field (the feed hides the announcement until that instant and
+orders by it, newest first).
+
+```json
+{
+  "title": "Dark mode is here",
+  "introContent": [{ "type": "text", "markdown": "Flip it on in **Settings → Appearance**." }],
+  "distribution": "badge"
 }
 ```

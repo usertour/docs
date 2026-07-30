@@ -14,10 +14,10 @@ When the content auto-starts, and how often.
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `when` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] | yes | Auto-start when these match. |
+| `when` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Auto-start when these match. A **full replacement** when present; omit it to keep the stored conditions and patch only the settings (frequency / priority / …). |
 | `frequency` | [Frequency](#frequency) |  | How often it may show. |
 | `priority` | `highest` \| `high` \| `medium` \| `low` \| `lowest` |  | Ordering when several could start at once. |
-| `waitMs` | number |  | Delay before showing, in ms. |
+| `waitSeconds` | number |  | Delay in **seconds** (not ms) before the content becomes eligible after the conditions first match. Capped at 300 by the runtime. |
 | `startIfNotComplete` | boolean |  | Only start if the user hasn't completed it. |
 
 Send `startRules: null` to clear them.
@@ -26,7 +26,7 @@ Send `startRules: null` to clear them.
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `mode` | `once` \| `multiple` \| `unlimited` | yes | `once` = show a single time; `multiple` = up to N per window; `unlimited` = every time the conditions match. |
+| `mode` | `once` \| `multiple` \| `unlimited` | yes | `once` = show a single time; `multiple` = up to N per window; `unlimited` = every time the conditions match. Omitting `frequency` entirely behaves as `once` (the default is applied at evaluation time and does not appear on read-backs). |
 | `every` | `object{ times, duration, unit }` |  | Re-show window — used by `multiple` (with `times`) and `unlimited`; ignored by `once`. `unit` ∈ `seconds`/`minutes`/`hours`/`days`. |
 | `atLeast` | `object{ duration, unit }` |  | Minimum gap between shows. |
 
@@ -40,7 +40,9 @@ Send `startRules: null` to clear them.
 
 ## Hide rules
 
-When to hide the content (even if started).
+When to hide the content (even if started). Hiding **suspends** the session
+rather than ending it — when the conditions stop matching, the same session
+reappears at the same step.
 
 | Field | Type | Required | Description |
 |---|---|---|---|
@@ -58,7 +60,7 @@ step's `triggers[]` (see [Content representation](/api-reference-v2/content-repr
 |---|---|---|---|
 | `when` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Fire when these match. |
 | `do` | [Action](/api-reference-v2/conditions-and-actions#actions)[] | yes | Actions to run. |
-| `waitMs` | number |  | Delay before firing, in ms. |
+| `waitSeconds` | number |  | Delay in **seconds** (not ms) between `when` matching and `do` firing. The match is latched: the actions fire after the wait even if the conditions have since stopped matching. Capped at 300. |
 
 ```json
 {
