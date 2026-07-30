@@ -5238,7 +5238,7 @@
             "name": "scope",
             "required": false,
             "in": "query",
-            "description": "Filter by scope: user, company, companyMembership, or eventDefinition (event attributes \u2014 read-only here; they are managed via the event-definitions surface).",
+            "description": "Filter by scope: user, company, companyMembership, or eventDefinition (event attributes \u2014 attach them to events via the event-definitions surface).",
             "schema": {
               "type": "string"
             }
@@ -39892,7 +39892,7 @@
                     "companyMembership",
                     "eventDefinition"
                   ],
-                  "description": "Which object the attribute belongs to. `eventDefinition` = an event attribute (managed via the event-definitions surface)."
+                  "description": "Which object the attribute belongs to. `eventDefinition` = an event attribute (attach it to events via the event-definitions surface)."
                 }
               },
               "required": [
@@ -39970,7 +39970,7 @@
               "companyMembership",
               "eventDefinition"
             ],
-            "description": "Which object the attribute belongs to. `eventDefinition` = an event attribute (managed via the event-definitions surface)."
+            "description": "Which object the attribute belongs to. `eventDefinition` = an event attribute (attach it to events via the event-definitions surface)."
           }
         },
         "required": [
@@ -39993,9 +39993,10 @@
             "enum": [
               "user",
               "company",
-              "companyMembership"
+              "companyMembership",
+              "eventDefinition"
             ],
-            "description": "Which object the attribute belongs to: user, company, or companyMembership."
+            "description": "Which object the attribute belongs to: user, company, companyMembership, or eventDefinition (an event attribute \u2014 pre-defines an event property; attach it to events via the event-definitions surface. Tracking also auto-registers event properties at ingestion, so pre-defining is only needed to pin the type or attach before the first track)."
           },
           "dataType": {
             "type": "string",
@@ -40198,7 +40199,7 @@
             "items": {
               "type": "string"
             },
-            "description": "codeNames of EXISTING event-scoped attributes to attach to this event \u2014 the built-in / predefined ones, or custom event properties that were auto-created when your app tracked this event with a properties payload. Note: you cannot PRE-DEFINE a new event property via create_attribute_definition (its scope is only user / company / companyMembership); event properties are created automatically at ingestion when the SDK calls usertour.track(name, { prop: value }). Unknown codeNames are rejected."
+            "description": "codeNames of EXISTING event-scoped attributes to attach to this event \u2014 the built-in / predefined ones, custom event properties auto-registered at ingestion when your app tracked an event with a properties payload, or ones pre-defined via create_attribute_definition with scope `eventDefinition`. Unknown codeNames are rejected."
           }
         },
         "required": [
