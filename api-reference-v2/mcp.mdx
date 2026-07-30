@@ -1,6 +1,6 @@
 ---
-title: 'MCP server'
-description: 'Drive Usertour from an AI agent over the Model Context Protocol.'
+title: "MCP server"
+description: "Drive Usertour from an AI agent over the Model Context Protocol."
 ---
 
 Usertour exposes a [Model Context Protocol](https://modelcontextprotocol.io)
@@ -8,9 +8,9 @@ endpoint so AI agents (Claude, Cursor, …) can read and write your project thro
 the same v2 services the REST API uses.
 
 <Info>
-  **Beta.** The MCP endpoint is new and evolving with the [v2 API](/api-reference-v2/introduction) —
-  tools and behavior may still change. Breaking changes will be called out in the
-  changelog. Feedback is welcome.
+  **Beta.** The MCP endpoint is new and evolving with the [v2
+  API](/api-reference-v2/introduction) — tools and behavior may still change.
+  Breaking changes will be called out in the changelog. Feedback is welcome.
 </Info>
 
 ## Endpoint
@@ -29,20 +29,21 @@ only URL you give your client — it discovers everything else (the authorizatio
 server, the login) automatically.
 
 A connection always acts in **exactly one project** (MCP carries no project in the
-path): with OAuth you pick it during consent; with a personal token it's the
-token's project. Tools are **scope-gated** — a tool is only listed and usable if
+path): with OAuth you pick it — along with the environments and permissions the
+app gets — during consent; with a personal token it's the token's project. Tools are **scope-gated** — a tool is only listed and usable if
 your access includes its capability, so write tools need the matching write scope
 (`content:create`, `user:write`, `segment:create`, `theme:update`,
 `session:manage`, …).
 
 <Note>
   **Self-hosting?** Use your own API host + `/mcp`. The discovery metadata, the
-  `WWW-Authenticate` challenge, and the consent redirect are all derived from your
-  instance's public URLs, so behind a reverse proxy make sure forwarded headers
-  (`X-Forwarded-Proto` / `Host`) are correct — or pin the public API base with
-  `API_URL` — and that [`APP_HOMEPAGE_URL`](/open-source/env) points at your real,
-  browser-reachable app URL (the consent step redirects there). OAuth 2.1 also
-  requires the endpoint to be reachable over **HTTPS** (loopback is exempt).
+  `WWW-Authenticate` challenge, and the consent redirect are all derived from
+  your instance's public URLs, so behind a reverse proxy make sure forwarded
+  headers (`X-Forwarded-Proto` / `Host`) are correct — or pin the public API
+  base with `API_URL` — and that [`APP_HOMEPAGE_URL`](/open-source/env) points
+  at your real, browser-reachable app URL (the consent step redirects there).
+  OAuth 2.1 also requires the endpoint to be reachable over **HTTPS** (loopback
+  is exempt).
 </Note>
 
 ## Connect with OAuth (one-click)
@@ -62,8 +63,10 @@ and opens your browser to authorize. The flow is OAuth 2.1 with PKCE.
 /plugin install usertour@usertour
 
 # Or just the MCP tools, no skills (a shell command):
+
 claude mcp add --transport http usertour https://mcp.usertour.io/mcp
-```
+
+````
 ```json Cursor
 // ~/.cursor/mcp.json
 {
@@ -73,7 +76,8 @@ claude mcp add --transport http usertour https://mcp.usertour.io/mcp
     }
   }
 }
-```
+````
+
 </CodeGroup>
 
 In Claude Code the [plugin](https://github.com/usertour/skills) is the easiest
@@ -90,17 +94,25 @@ discovers the rest.
 
 ### Authorizing
 
-When the browser opens, you sign in to Usertour (if you aren't already), **pick
-the one project** the app may act in, and approve.
+When the browser opens, you sign in to Usertour (if you aren't already) and the
+consent screen lets you shape exactly what the app gets:
 
-{/* SCREENSHOT: the consent screen — app name, the project picker, and Allow / Deny. Save as /images/oauth-consent.png */}
-![](/images/oauth-consent.png)
+- **Project** — the one project the connection may act in (fixed when you only
+  have one).
+- **Environments** — which of that project's environments it can act on.
+  Environment-targeted permissions (publishing, end-user data, sessions, …)
+  require at least one; with several environments none are pre-selected, so
+  handing an agent Production is always an explicit choice.
+- **Permissions** — what the app asked for, capped by your role on that
+  project. Everything grantable starts checked; uncheck what you don't want to
+  hand over, or flip **Read-only** to drop every write in one click.
 
-The connection then acts **as you, in that project** — never more than your own
-**role** there allows. There's no separate permission to grant: if your role is
-later downgraded or you're removed from the project, the connection loses that
-access immediately, exactly like a personal key. To hand an agent *less* than your
-full role, use a scoped [personal token](#connect-with-a-personal-token) instead.
+![](/images/oauth-consent-2.png)
+
+The connection then acts **as you, within that grant** — the grant is a ceiling
+under your role, never an extension of it: if your role is later downgraded or
+you are removed from the project, the connection loses that access immediately,
+exactly like a personal key.
 
 ## Managing connected apps
 
@@ -122,9 +134,11 @@ Bridge to the HTTP endpoint with `mcp-remote`:
     "usertour": {
       "command": "npx",
       "args": [
-        "-y", "mcp-remote",
+        "-y",
+        "mcp-remote",
         "https://mcp.usertour.io/mcp",
-        "--header", "Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        "--header",
+        "Authorization: Bearer utp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       ]
     }
   }
@@ -149,20 +163,22 @@ for confirmation first.
 
 **Read**
 
-| Group | Tools |
-|---|---|
-| Guide | `get_authoring_guide` |
-| Content | `list_content`, `get_content` |
-| Analytics | `get_content_analytics`, `get_content_question_analytics` |
-| Versions | `list_content_versions`, `get_content_version`, `validate_content_version` |
-| Users | `list_users`, `get_user` |
-| Companies | `list_companies`, `get_company` |
-| Segments | `list_segments`, `get_segment` |
-| Sessions | `list_sessions`, `get_session` |
-| Themes | `list_themes` |
-| Attribute definitions | `list_attribute_definitions` |
-| Event definitions | `list_event_definitions` |
-| Environments | `list_environments`, `get_environment` |
+| Group                 | Tools                                                                      |
+| --------------------- | -------------------------------------------------------------------------- |
+| Guide & schemas       | `get_authoring_guide`, `get_content_schema`, `get_theme_schema`            |
+| Diagnosis             | `diagnose_content`, `diagnose_user`                                        |
+| Content               | `list_content`, `get_content`, `list_publish_history`                      |
+| Analytics             | `get_content_analytics`, `get_content_question_analytics`, `get_usage_overview` |
+| Versions              | `list_content_versions`, `get_content_version`, `validate_content_version` |
+| Users                 | `list_users`, `get_user`                                                   |
+| Companies             | `list_companies`, `get_company`                                            |
+| Segments              | `list_segments`, `get_segment`                                             |
+| Sessions              | `list_sessions`, `get_session`                                             |
+| Themes                | `list_themes`, `get_theme`                                                 |
+| Attribute definitions | `list_attribute_definitions`, `get_attribute_definition`                   |
+| Event definitions     | `list_event_definitions`, `get_event_definition`                           |
+| Environments          | `list_environments`, `get_environment`                                     |
+| References            | `list_references`                                                          |
 
 Every `list_*` tool pages with `cursor` / `limit`. The named-resource lists —
 `list_content`, `list_segments`, `list_themes`, `list_environments`,
@@ -178,20 +194,25 @@ an agent should read it before authoring.
 `get_content_version` with `expand: ["steps"]` returns the decompiled steps — read
 them before editing with `update_content_version`.
 
+`diagnose_content` answers "why isn't my content showing?" by evaluating the SAME
+runtime gates the SDK uses (published / user identified / start rules / frequency /
+session state) as a per-gate checklist; `list_references` answers "who still uses
+this attribute / event / segment / theme / content" before you delete it.
+
 **Write**
 
-| Group | Tools |
-|---|---|
-| Content | `create_content`, `update_content`, `delete_content`, `restore_content`, `duplicate_content`, `publish_content`, `unpublish_content` |
-| Versions | `create_content_version`, `update_content_version`, `restore_content_version` |
-| Users | `upsert_user`, `delete_user` |
-| Companies | `upsert_company`, `delete_company`, `add_company_member`, `remove_company_member` |
-| Segments | `create_segment`, `update_segment`, `delete_segment`, `add_segment_member`, `remove_segment_member` |
-| Themes | `create_theme`, `update_theme`, `delete_theme` (metadata only) |
-| Attribute definitions | `create_attribute_definition`, `update_attribute_definition`, `delete_attribute_definition` |
-| Event definitions | `create_event_definition`, `update_event_definition`, `delete_event_definition` |
-| Sessions | `end_session`, `delete_session` |
-| Environments | `create_environment`, `update_environment`, `delete_environment` |
+| Group                 | Tools                                                                                                                                |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Content               | `create_content`, `update_content`, `delete_content`, `restore_content`, `duplicate_content`, `publish_content`, `unpublish_content` |
+| Versions              | `create_content_version`, `update_content_version`, `restore_content_version`                                                        |
+| Users                 | `upsert_user`, `delete_user`                                                                                                         |
+| Companies             | `upsert_company`, `delete_company`, `add_company_member`, `remove_company_member`                                                    |
+| Segments              | `create_segment`, `update_segment`, `delete_segment`, `add_segment_member`, `remove_segment_member`                                  |
+| Themes                | `create_theme`, `update_theme`, `delete_theme`                                                                                       |
+| Attribute definitions | `create_attribute_definition`, `update_attribute_definition`, `delete_attribute_definition`                                          |
+| Event definitions     | `create_event_definition`, `update_event_definition`, `delete_event_definition`                                                      |
+| Sessions              | `end_session`, `delete_session`                                                                                                      |
+| Environments          | `create_environment`, `update_environment`, `delete_environment`                                                                     |
 
 Content write tools take the same [representation](/api-reference-v2/content-representation)
 as the REST endpoints (markdown blocks, `{{ attribute }}` placeholders, rules);
@@ -200,10 +221,13 @@ and `data`. The rest mirror their REST bodies one-to-one. Give each step a `key`
 and wire `goto_step` to it to author a multi-step flow (forward or cyclic links)
 in a single call — see [step identifiers](/api-reference-v2/content-representation).
 
-Theme tools are **metadata only** (`name` / `isDefault`): a created theme is seeded
-with the default styling, and theme `settings` / `variations` are not writable
-through the API — they're a cascaded, visually-tuned structure best edited in the
-theme builder. They remain readable via `?expand=settings,variations`.
+Theme `settings` are writable as a **partial patch**: send only the fields you
+change (colors, fonts, sizes, …) — they're field-merged onto the current
+settings, and "Auto" hover/active colors are derived server-side. Conditional
+`variations` are writable too, with the same condition set the theme builder's
+variation editor offers. Call `get_theme_schema` for the exact writable fields
+and their ranges; media assets (avatars, logo, custom icons) are still set in
+the theme builder.
 
 `publish_content` rejects content that wouldn't render — no theme, a tooltip step
 with no target, an empty checklist, a launcher with no anchor, and so on. Call
@@ -215,6 +239,7 @@ of `{ ok, errors, warnings }`; `errors` are exactly what blocks publish.
 Untrusted text reaches an agent through **read** tools — session answers and
 custom user/company attributes can contain anything, including instructions. To
 stop an injected instruction from triggering a write, **give any agent that reads
-untrusted data a read-only token**: with no write scopes, no write tools are
+untrusted data read-only access** — flip **Read-only** on the OAuth consent, or
+mint a token with only read scopes: with no write scopes, no write tools are
 listed, so there is nothing to exploit. Mint a separate write-scoped token only
 for trusted automation.
