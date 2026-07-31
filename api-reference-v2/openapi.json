@@ -4157,6 +4157,40 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "expand",
+            "required": false,
+            "in": "query",
+            "description": "Inline: memberCount (needs environmentId).",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "memberCount"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "memberCount"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": false,
+            "in": "query",
+            "description": "Environment whose members to count (segment definitions are project-level, members are environment-scoped). Required with expand=memberCount.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -5247,7 +5281,7 @@
             "name": "orderBy",
             "required": false,
             "in": "query",
-            "description": "Order by createdAt / codeName / displayName (prefix - for descending).",
+            "description": "Order by createdAt / codeName / displayName (prefix - for descending). Text sorting is case-sensitive (byte order): uppercase sorts before lowercase.",
             "schema": {
               "anyOf": [
                 {
@@ -5810,7 +5844,7 @@
             "name": "orderBy",
             "required": false,
             "in": "query",
-            "description": "Order by createdAt / codeName / displayName (prefix - for descending).",
+            "description": "Order by createdAt / codeName / displayName (prefix - for descending). Text sorting is case-sensitive (byte order): uppercase sorts before lowercase.",
             "schema": {
               "anyOf": [
                 {
@@ -19981,7 +20015,7 @@
                 "type": "boolean"
               }
             },
-            "description": "PATCHES the stored rules field-by-field: an omitted setting (frequency / priority / waitSeconds / startIfNotComplete) keeps its stored value \u2014 including one inherited from the forked version \u2014 so to turn a setting off, send it explicitly (e.g. `startIfNotComplete: false`). `when`, when present, fully replaces the condition list. `null` clears the rules entirely (content stops auto-starting).",
+            "description": "PATCHES the stored rules field-by-field: an omitted setting (frequency / priority / waitSeconds / startIfNotComplete) keeps its stored value \u2014 including one inherited from the forked version \u2014 so to turn a setting off, send it explicitly (e.g. `startIfNotComplete: false`). `when`, when present, fully replaces the condition list. `null` clears the rules entirely (content stops auto-starting). Which settings and which `when` condition types the CONTENT TYPE supports varies (e.g. no priority on a launcher, attribute/segment-only targeting on an announcement) \u2014 unsupported ones are rejected per type.",
             "nullable": true
           },
           "hideRules": {
@@ -19997,7 +20031,7 @@
             "required": [
               "when"
             ],
-            "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page).",
+            "description": "Temporarily-hide rules. Only some content types support them (rejected per type).",
             "nullable": true
           },
           "themeId": {
@@ -38781,6 +38815,10 @@
                     "$ref": "#/components/schemas/ListSegmentsResponseDto__schema0"
                   }
                 },
+                "memberCount": {
+                  "description": "Members in the requested environment \u2014 only with `expand=memberCount` (+ environmentId). manual = explicit members; condition = users/companies matching the conditions right now; all = everyone in the environment. Counted with the SAME filter the users/companies list applies for `segmentId`, so the two always agree.",
+                  "type": "number"
+                },
                 "createdAt": {
                   "type": "string"
                 },
@@ -38974,6 +39012,10 @@
             "items": {
               "$ref": "#/components/schemas/SegmentDto__schema0"
             }
+          },
+          "memberCount": {
+            "description": "Members in the requested environment \u2014 only with `expand=memberCount` (+ environmentId). manual = explicit members; condition = users/companies matching the conditions right now; all = everyone in the environment. Counted with the SAME filter the users/companies list applies for `segmentId`, so the two always agree.",
+            "type": "number"
           },
           "createdAt": {
             "type": "string"
@@ -40019,7 +40061,7 @@
             "minLength": 2,
             "maxLength": 20,
             "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$",
-            "description": "Stable identifier, unique per project + scope. Immutable."
+            "description": "Stable identifier, unique per project + scope. Immutable. Must start with a letter, then letters/digits/underscores, 2\u201320 chars."
           },
           "displayName": {
             "type": "string",
@@ -40188,7 +40230,7 @@
             "minLength": 2,
             "maxLength": 20,
             "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$",
-            "description": "Stable identifier, unique per project. Immutable."
+            "description": "Stable identifier, unique per project. Immutable. Must start with a letter, then letters/digits/underscores, 2\u201320 chars."
           },
           "displayName": {
             "type": "string",
