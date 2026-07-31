@@ -7837,7 +7837,8 @@
                   "type": "object",
                   "properties": {
                     "score": {
-                      "type": "number"
+                      "type": "number",
+                      "description": "ROLLING-WINDOW aggregate (the last byDay row) \u2014 computed over the trailing `rollingWindowDays`, NOT over the requested range. It therefore does not share a denominator with `totalResponses` (which IS range-scoped): promoter/passive/detractor counts can legitimately dwarf it."
                     },
                     "promoters": {
                       "type": "object",
@@ -7854,7 +7855,8 @@
                       "required": [
                         "count",
                         "percentage"
-                      ]
+                      ],
+                      "description": "Rolling-window share \u2014 same window as `score`, see its note."
                     },
                     "passives": {
                       "type": "object",
@@ -7871,7 +7873,8 @@
                       "required": [
                         "count",
                         "percentage"
-                      ]
+                      ],
+                      "description": "Rolling-window share \u2014 same window as `score`."
                     },
                     "detractors": {
                       "type": "object",
@@ -7888,7 +7891,8 @@
                       "required": [
                         "count",
                         "percentage"
-                      ]
+                      ],
+                      "description": "Rolling-window share \u2014 same window as `score`."
                     },
                     "rollingWindowDays": {
                       "type": "integer",
@@ -7937,7 +7941,8 @@
                   "type": "object",
                   "properties": {
                     "average": {
-                      "type": "number"
+                      "type": "number",
+                      "description": "ROLLING-WINDOW average (the last byDay row) over the trailing `rollingWindowDays` \u2014 not scoped to the requested range like `totalResponses`."
                     },
                     "rollingWindowDays": {
                       "type": "integer",
@@ -23288,7 +23293,7 @@
             "type": "boolean"
           },
           "settings": {
-            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. Auto colors are derived server-side.",
+            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. \"Auto\" hover/active colors: the base colors (mainColor/brandColor) and the two button groups get persisted `auto*` values derived server-side on write; every OTHER color group resolves \"Auto\" at render time from the base colors \u2014 its objects carry no `auto*` keys, by design.",
             "type": "object",
             "properties": {
               "announcement": {
@@ -30944,7 +30949,7 @@
             "type": "boolean"
           },
           "settings": {
-            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. Auto colors are derived server-side.",
+            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. \"Auto\" hover/active colors: the base colors (mainColor/brandColor) and the two button groups get persisted `auto*` values derived server-side on write; every OTHER color group resolves \"Auto\" at render time from the base colors \u2014 its objects carry no `auto*` keys, by design.",
             "type": "object",
             "properties": {
               "announcement": {
@@ -39383,7 +39388,7 @@
                 },
                 "endReason": {
                   "type": "string",
-                  "description": "Why the session ended (null while open) \u2014 e.g. `user_closed`, `auto_dismissed`, `action`, `end_from_program`, `admin_ended`. Distinguishes a genuine finish from a dismissal even when both leave the session ended.",
+                  "description": "Why the session ended (null while open). Vocabulary \u2014 user actions: `close_button_dismiss` (the X), `backdrop_dismiss`, `dismiss_button`, `user_closed`; authored behavior: `action_dismiss` (a dismiss action ran), `trigger_dismiss`, `auto_dismissed`, `end_from_program`; displacement: `replaced`, `user_started_other_content`, `program_started_other_content`; health/diagnostic: **`tooltip_target_missing`** (the tooltip anchor was never found \u2014 the per-session selector-health signal), `step_not_found`, `content_not_found`, `store_not_found`, `unpublished_content`, `session_timeout`, `system_closed`, `url_start_closed`, `launcher_deactivated`; admin: `admin_ended`. Old sessions may carry legacy spellings (e.g. bare `action`) \u2014 treat unknown values as \"ended, reason unclassified\".",
                   "nullable": true
                 },
                 "contentId": {
@@ -39662,7 +39667,7 @@
           },
           "endReason": {
             "type": "string",
-            "description": "Why the session ended (null while open) \u2014 e.g. `user_closed`, `auto_dismissed`, `action`, `end_from_program`, `admin_ended`. Distinguishes a genuine finish from a dismissal even when both leave the session ended.",
+            "description": "Why the session ended (null while open). Vocabulary \u2014 user actions: `close_button_dismiss` (the X), `backdrop_dismiss`, `dismiss_button`, `user_closed`; authored behavior: `action_dismiss` (a dismiss action ran), `trigger_dismiss`, `auto_dismissed`, `end_from_program`; displacement: `replaced`, `user_started_other_content`, `program_started_other_content`; health/diagnostic: **`tooltip_target_missing`** (the tooltip anchor was never found \u2014 the per-session selector-health signal), `step_not_found`, `content_not_found`, `store_not_found`, `unpublished_content`, `session_timeout`, `system_closed`, `url_start_closed`, `launcher_deactivated`; admin: `admin_ended`. Old sessions may carry legacy spellings (e.g. bare `action`) \u2014 treat unknown values as \"ended, reason unclassified\".",
             "nullable": true
           },
           "contentId": {
@@ -40256,7 +40261,8 @@
                 },
                 "token": {
                   "type": "string",
-                  "description": "The environment's SDK token \u2014 pass it to usertour.init() to load this environment's published content."
+                  "description": "The environment's SDK token \u2014 pass it to usertour.init() to load this environment's published content. null when `inTokenScope` is false: an out-of-scope environment is listed for discovery, but its key is withheld (the SDK token accepts identify/track ingestion, so handing it out would let a scoped credential act on an environment it was denied).",
+                  "nullable": true
                 },
                 "inTokenScope": {
                   "type": "boolean"
@@ -40316,7 +40322,8 @@
           },
           "token": {
             "type": "string",
-            "description": "The environment's SDK token \u2014 pass it to usertour.init() to load this environment's published content."
+            "description": "The environment's SDK token \u2014 pass it to usertour.init() to load this environment's published content. null when `inTokenScope` is false: an out-of-scope environment is listed for discovery, but its key is withheld (the SDK token accepts identify/track ingestion, so handing it out would let a scoped credential act on an environment it was denied).",
+            "nullable": true
           },
           "inTokenScope": {
             "type": "boolean"
