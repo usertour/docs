@@ -20630,11 +20630,11 @@
                     "type": "object",
                     "properties": {
                       "overlayOverAppContent": {
-                        "description": "When true the banner floats over the page; when false it takes its own space and pushes the page content down. Push mode only displaces normal-flow content \u2014 the host app's `position: fixed` bars (top nav, sidebars) do NOT move and will overlap the banner. For such apps, either float the banner over the content (true), or use a container/element-relative `placement` so the banner lives inside the scrolling content area instead of fighting the fixed bars.",
+                        "description": "When true the banner floats over the page; when false it takes its own space and pushes the page content down. Push mode only displaces normal-flow content \u2014 the host app's `position: fixed` bars (top nav, sidebars) do NOT move and will overlap the banner. For such apps, either float the banner over the content (true), or use a container/element-relative `placement` so the banner lives inside the scrolling content area instead of fighting the fixed bars. Floating alone does NOT keep the banner on screen \u2014 it still scrolls away with the page (CSS absolute); pair it with `stickToTop` for the always-visible floating bar (see the 2x2 there).",
                         "type": "boolean"
                       },
                       "stickToTop": {
-                        "description": "Keeps the banner pinned at the top while the user scrolls.",
+                        "description": "Pins the banner to the viewport edge while the user scrolls \u2014 the EDGE follows `placement`, despite the name: top variants pin to the top, bottom variants to the BOTTOM. Combines with `overlayOverAppContent` into four modes (CSS position): neither = in-flow, scrolls away with the page (the default); stick only = keeps its own space and pins (sticky); overlay only = floats but STILL scrolls away (absolute); both = floats and stays pinned (fixed) \u2014 the classic always-visible bar. So for \"visible while scrolling\", set this true regardless of overlay.",
                         "type": "boolean"
                       },
                       "allowDismiss": {
