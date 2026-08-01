@@ -2653,6 +2653,113 @@
         ]
       }
     },
+    "/v2/projects/{projectId}/themes/{id}/duplicate": {
+      "post": {
+        "operationId": "ApiThemesController_duplicate",
+        "summary": "Duplicate a theme",
+        "description": "Copy a theme (settings + variations verbatim) into a fresh non-default theme \u2014 the same path the builder's duplicate dialog uses. System themes may be duplicated (the natural \"derive from Standard Light\" flow).",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Theme ID (the source)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DuplicateThemeBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Theme duplicated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThemeDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Theme not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Themes"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/v2/projects/{projectId}/environments/{environmentId}/users": {
       "get": {
         "operationId": "ApiUsersController_list",
@@ -19640,7 +19747,7 @@
                   "type": "boolean"
                 },
                 "content": {
-                  "default": [],
+                  "description": "The step's body blocks. On an ECHOED step (matched by cvid/id), omit to keep the stored content unchanged \u2014 an explicit [] clears it. Same omit-keeps semantics as `triggers`.",
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/UpdateVersionBodyDto__schema0"
@@ -30412,6 +30519,17 @@
         "required": [
           "name"
         ],
+        "additionalProperties": false
+      },
+      "DuplicateThemeBodyDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name for the copy (defaults to the source name).",
+            "type": "string",
+            "minLength": 1
+          }
+        },
         "additionalProperties": false
       },
       "UpdateThemeBodyDto__schema0": {
