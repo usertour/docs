@@ -21,6 +21,22 @@ A token is owned by a user and has three properties that gate every request:
   (publishing, end-user data, sessions, …) are rejected outside it (`E1029`);
   with no allowlist the token covers every environment of its projects.
 
+<Warning>
+**The environment allowlist is not a content-isolation boundary.** It fences
+*delivery and end-user data* — publishing / unpublishing, users, companies,
+sessions, segment membership, analytics, and the environment records themselves
+(an out-of-scope environment's SDK token is withheld). It does **not** limit
+which content a token can see or change: content, versions and themes are
+**project-level**, so any token carrying content scopes can read every piece and
+every version in the project — including one that is live in an environment it
+may not act on — and can edit or delete them with `content:update` /
+`content:delete`.
+
+So a "staging-only" token still reads (and can rewrite) what is live in
+production. If you need someone genuinely walled off from another environment's
+content — a contractor, an agency — put that work in a **separate project**.
+</Warning>
+
 Connections authorized over [MCP OAuth](/api-reference-v2/mcp) hold `uto_`
 tokens with the same three properties (granted on the consent screen); they
 authenticate REST requests exactly like a personal `utp_` token.
