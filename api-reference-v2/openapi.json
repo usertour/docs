@@ -9226,7 +9226,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
+                "description": "`present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors \u2014 scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT \"the user can see something there\": an EMPTY, zero-height placeholder node satisfies `present` (measured \u2014 a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for \"the app has said something\": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
               }
             },
             "required": [
@@ -12045,7 +12045,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
+                "description": "`present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors \u2014 scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT \"the user can see something there\": an EMPTY, zero-height placeholder node satisfies `present` (measured \u2014 a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for \"the app has said something\": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
               }
             },
             "required": [
@@ -14919,7 +14919,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
+                "description": "`present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors \u2014 scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT \"the user can see something there\": an EMPTY, zero-height placeholder node satisfies `present` (measured \u2014 a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for \"the app has said something\": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
               }
             },
             "required": [
@@ -17024,7 +17024,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
+                "description": "`present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors \u2014 scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT \"the user can see something there\": an EMPTY, zero-height placeholder node satisfies `present` (measured \u2014 a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for \"the app has said something\": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
               }
             },
             "required": [
@@ -19173,7 +19173,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
+                "description": "`present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors \u2014 scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT \"the user can see something there\": an EMPTY, zero-height placeholder node satisfies `present` (measured \u2014 a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for \"the app has said something\": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
               }
             },
             "required": [
@@ -21797,7 +21797,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
+                "description": "`present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors \u2014 scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT \"the user can see something there\": an EMPTY, zero-height placeholder node satisfies `present` (measured \u2014 a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for \"the app has said something\": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
               }
             },
             "required": [
@@ -22459,7 +22459,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
+                "description": "`present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors \u2014 scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT \"the user can see something there\": an EMPTY, zero-height placeholder node satisfies `present` (measured \u2014 a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for \"the app has said something\": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
               }
             },
             "required": [
@@ -23100,7 +23100,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
+                "description": "`present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors \u2014 scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT \"the user can see something there\": an EMPTY, zero-height placeholder node satisfies `present` (measured \u2014 a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for \"the app has said something\": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
               }
             },
             "required": [
@@ -23567,78 +23567,23 @@
                         "nullable": true
                       },
                       "background": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "hover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "active": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "autoActive": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       }
                     },
@@ -23652,78 +23597,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -25286,78 +25176,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -25561,78 +25396,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -26346,78 +26126,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -26487,78 +26212,23 @@
                         "nullable": true
                       },
                       "background": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "hover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "active": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "autoActive": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "imageUrl": {
@@ -26786,78 +26456,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -26917,78 +26532,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -27113,78 +26673,23 @@
                               "nullable": true
                             },
                             "background": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "hover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "active": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "autoActive": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             }
                           },
@@ -27198,78 +26703,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -28832,78 +28282,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -29107,78 +28502,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -29892,78 +29232,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -30033,78 +29318,23 @@
                               "nullable": true
                             },
                             "background": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "hover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "active": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "autoActive": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "imageUrl": {
@@ -30332,78 +29562,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -30463,78 +29638,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -30768,7 +29888,7 @@
                   "clicked",
                   "unclicked"
                 ],
-                "description": "`present` means VISIBLE IN THE VIEWPORT, not merely in the DOM \u2014 an element that is scrolled off-screen, clipped, or covered never satisfies it (and `hidden` is its negation). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
+                "description": "`present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors \u2014 scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT \"the user can see something there\": an EMPTY, zero-height placeholder node satisfies `present` (measured \u2014 a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for \"the app has said something\": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means \"clicked since page load AND the element is STILL in the DOM right now\"** \u2014 both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** \u2014 the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (measured: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount \u2014 not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it."
               }
             },
             "required": [
@@ -31234,78 +30354,23 @@
                         "nullable": true
                       },
                       "background": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "hover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "active": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "autoActive": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       }
                     },
@@ -31319,78 +30384,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -32953,78 +31963,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -33228,78 +32183,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -34013,78 +32913,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -34154,78 +32999,23 @@
                         "nullable": true
                       },
                       "background": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "hover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "active": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "autoActive": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
+                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "imageUrl": {
@@ -34453,78 +33243,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -34584,78 +33319,23 @@
                     "nullable": true
                   },
                   "background": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "hover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "active": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   },
                   "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
+                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -34780,78 +33460,23 @@
                               "nullable": true
                             },
                             "background": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "hover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "active": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "autoActive": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             }
                           },
@@ -34865,78 +33490,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -36499,78 +35069,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -36774,78 +35289,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -37559,78 +36019,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -37700,78 +36105,23 @@
                               "nullable": true
                             },
                             "background": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "hover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "active": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "autoActive": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
+                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "imageUrl": {
@@ -37999,78 +36349,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -38130,78 +36425,23 @@
                           "nullable": true
                         },
                         "background": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "active": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         },
                         "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
+                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
