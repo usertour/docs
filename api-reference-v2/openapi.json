@@ -20354,7 +20354,8 @@
                       },
                       "required": [
                         "name"
-                      ]
+                      ],
+                      "additionalProperties": false
                     }
                   }
                 },
@@ -22169,6 +22170,12 @@
                 "createdAt": {
                   "type": "string"
                 },
+                "variationCount": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "How many conditional variations this theme carries (always present, no expand needed). Check it BEFORE pointing content at another theme: variations do NOT travel with the content, so moving from a theme with variations to one with 0 silently drops the conditional styling (e.g. dark mode) for every user those conditions targeted \u2014 nothing errors. Read the variations themselves with expand: [\"variations\"]."
+                },
                 "settings": {
                   "type": "object",
                   "additionalProperties": {}
@@ -22211,7 +22218,8 @@
                 "isDefault",
                 "isSystem",
                 "updatedAt",
-                "createdAt"
+                "createdAt",
+                "variationCount"
               ]
             }
           },
@@ -22819,6 +22827,12 @@
           "createdAt": {
             "type": "string"
           },
+          "variationCount": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "How many conditional variations this theme carries (always present, no expand needed). Check it BEFORE pointing content at another theme: variations do NOT travel with the content, so moving from a theme with variations to one with 0 silently drops the conditional styling (e.g. dark mode) for every user those conditions targeted \u2014 nothing errors. Read the variations themselves with expand: [\"variations\"]."
+          },
           "settings": {
             "type": "object",
             "additionalProperties": {}
@@ -22861,7 +22875,8 @@
           "isDefault",
           "isSystem",
           "updatedAt",
-          "createdAt"
+          "createdAt",
+          "variationCount"
         ]
       },
       "CreateThemeBodyDto__schema0": {
