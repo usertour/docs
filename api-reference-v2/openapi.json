@@ -20943,7 +20943,8 @@
                             "url": {
                               "type": "string"
                             }
-                          }
+                          },
+                          "additionalProperties": false
                         },
                         "blocks": {
                           "default": [],
@@ -20982,7 +20983,8 @@
                                 },
                                 "required": [
                                   "type"
-                                ]
+                                ],
+                                "additionalProperties": false
                               },
                               {
                                 "type": "object",
@@ -21008,7 +21010,8 @@
                                 },
                                 "required": [
                                   "type"
-                                ]
+                                ],
+                                "additionalProperties": false
                               },
                               {
                                 "type": "object",
@@ -21052,7 +21055,8 @@
                                       "url": {
                                         "type": "string"
                                       }
-                                    }
+                                    },
+                                    "additionalProperties": false
                                   },
                                   "clickActions": {
                                     "default": [],
@@ -21184,7 +21188,8 @@
                                 "required": [
                                   "type",
                                   "name"
-                                ]
+                                ],
+                                "additionalProperties": false
                               },
                               {
                                 "type": "object",
@@ -21228,7 +21233,8 @@
                                       "url": {
                                         "type": "string"
                                       }
-                                    }
+                                    },
+                                    "additionalProperties": false
                                   },
                                   "content": {
                                     "default": [],
@@ -21241,7 +21247,8 @@
                                 "required": [
                                   "type",
                                   "name"
-                                ]
+                                ],
+                                "additionalProperties": false
                               },
                               {
                                 "type": "object",
@@ -21285,7 +21292,8 @@
                                       "url": {
                                         "type": "string"
                                       }
-                                    }
+                                    },
+                                    "additionalProperties": false
                                   },
                                   "flowIcon": {
                                     "type": "object",
@@ -21307,7 +21315,8 @@
                                       "url": {
                                         "type": "string"
                                       }
-                                    }
+                                    },
+                                    "additionalProperties": false
                                   },
                                   "checklistIcon": {
                                     "type": "object",
@@ -21329,7 +21338,8 @@
                                       "url": {
                                         "type": "string"
                                       }
-                                    }
+                                    },
+                                    "additionalProperties": false
                                   },
                                   "showSearchField": {
                                     "type": "boolean"
@@ -21376,7 +21386,8 @@
                                             "url": {
                                               "type": "string"
                                             }
-                                          }
+                                          },
+                                          "additionalProperties": false
                                         },
                                         "navigateUrl": {
                                           "description": "URL also opened when the entry is clicked, AFTER the referenced content starts \u2014 e.g. take the user to the page where the flow begins. Supports `{{ attribute_code | default: \"x\" }}` interpolation.",
@@ -21400,14 +21411,16 @@
                                       "required": [
                                         "content",
                                         "contentType"
-                                      ]
+                                      ],
+                                      "additionalProperties": false
                                     }
                                   }
                                 },
                                 "required": [
                                   "type",
                                   "name"
-                                ]
+                                ],
+                                "additionalProperties": false
                               },
                               {
                                 "type": "object",
@@ -21451,7 +21464,8 @@
                                       "url": {
                                         "type": "string"
                                       }
-                                    }
+                                    },
+                                    "additionalProperties": false
                                   },
                                   "provider": {
                                     "type": "string",
@@ -21476,7 +21490,8 @@
                                   "type",
                                   "name",
                                   "provider"
-                                ]
+                                ],
+                                "additionalProperties": false
                               },
                               {
                                 "type": "object",
@@ -21520,13 +21535,15 @@
                                       "url": {
                                         "type": "string"
                                       }
-                                    }
+                                    },
+                                    "additionalProperties": false
                                   }
                                 },
                                 "required": [
                                   "type",
                                   "name"
-                                ]
+                                ],
+                                "additionalProperties": false
                               },
                               {
                                 "type": "object",
@@ -21552,7 +21569,8 @@
                                 },
                                 "required": [
                                   "type"
-                                ]
+                                ],
+                                "additionalProperties": false
                               }
                             ]
                           }
@@ -21560,7 +21578,8 @@
                       },
                       "required": [
                         "name"
-                      ]
+                      ],
+                      "additionalProperties": false
                     }
                   }
                 },
