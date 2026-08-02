@@ -7126,7 +7126,7 @@
                 "totalCompletions"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments \u2014 summing rows over the range gives the totals). Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           },
           "steps": {
             "type": "array",
@@ -7150,7 +7150,8 @@
                 "uniqueViews": {
                   "type": "integer",
                   "minimum": -9007199254740991,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who saw this step. This is the funnel: step-to-step drop-off is the difference between consecutive rows\u2019 uniqueViews."
                 },
                 "totalViews": {
                   "type": "integer",
@@ -7160,12 +7161,14 @@
                 "uniqueCompletions": {
                   "type": "integer",
                   "minimum": -9007199254740991,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users whose FLOW completion fired on this step \u2014 not \"users who advanced past it\". Normally 0 on every step but the last (or an explicit completion step); a 0 here says nothing about that step\u2019s success. Use uniqueViews for step conversion."
                 },
                 "totalCompletions": {
                   "type": "integer",
                   "minimum": -9007199254740991,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Flow completions attributed to this step \u2014 see uniqueCompletions."
                 },
                 "uniqueTooltipTargetMissing": {
                   "type": "integer",
@@ -7299,7 +7302,7 @@
                 "totalCompletions"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments \u2014 summing rows over the range gives the totals). Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           },
           "tasks": {
             "type": "array",
@@ -7464,7 +7467,7 @@
                 "totalActivations"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments \u2014 summing rows over the range gives the totals). Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           }
         },
         "required": [
@@ -7572,7 +7575,7 @@
                 "totalDismissals"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments \u2014 summing rows over the range gives the totals). Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           }
         },
         "required": [
@@ -7680,7 +7683,7 @@
                 "totalClicks"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments \u2014 summing rows over the range gives the totals). Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           },
           "blocks": {
             "type": "array",
@@ -7804,7 +7807,7 @@
                 "totalOccurrences"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments \u2014 summing rows over the range gives the totals). Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           }
         },
         "required": [
@@ -7888,7 +7891,7 @@
                 "totalSeen"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments \u2014 summing rows over the range gives the totals). Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           }
         },
         "required": [
