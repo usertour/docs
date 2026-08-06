@@ -2657,7 +2657,7 @@
       "post": {
         "operationId": "ApiThemesController_duplicate",
         "summary": "Duplicate a theme",
-        "description": "Copy a theme (settings + variations verbatim) into a fresh non-default theme \u2014 the same path the builder's duplicate dialog uses. System themes may be duplicated (the natural \"derive from Standard Light\" flow).",
+        "description": "Copy a theme (settings + variations verbatim) into a fresh non-default theme. System themes may be duplicated (the natural \"derive from Standard Light\" flow).",
         "parameters": [
           {
             "name": "projectId",
@@ -8385,7 +8385,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -8864,7 +8864,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -9944,7 +9944,7 @@
                                           "type",
                                           "script"
                                         ],
-                                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                        "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                       },
                                       {
                                         "type": "object",
@@ -10079,7 +10079,7 @@
                                     "type",
                                     "script"
                                   ],
-                                  "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                  "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                 },
                                 {
                                   "type": "object",
@@ -10601,7 +10601,7 @@
                                                 "type",
                                                 "script"
                                               ],
-                                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                              "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                             },
                                             {
                                               "type": "object",
@@ -10736,7 +10736,7 @@
                                           "type",
                                           "script"
                                         ],
-                                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                        "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                       },
                                       {
                                         "type": "object",
@@ -11204,7 +11204,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -11683,7 +11683,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -12758,7 +12758,7 @@
                                     "type",
                                     "script"
                                   ],
-                                  "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                  "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                 },
                                 {
                                   "type": "object",
@@ -12893,7 +12893,7 @@
                               "type",
                               "script"
                             ],
-                            "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                            "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                           },
                           {
                             "type": "object",
@@ -13405,7 +13405,7 @@
                                           "type",
                                           "script"
                                         ],
-                                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                        "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                       },
                                       {
                                         "type": "object",
@@ -13540,7 +13540,7 @@
                                     "type",
                                     "script"
                                   ],
-                                  "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                  "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                 },
                                 {
                                   "type": "object",
@@ -14078,7 +14078,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -14557,7 +14557,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -15612,7 +15612,7 @@
                                       "type",
                                       "script"
                                     ],
-                                    "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                    "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                   },
                                   {
                                     "type": "object",
@@ -15747,7 +15747,7 @@
                                 "type",
                                 "script"
                               ],
-                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                              "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                             },
                             {
                               "type": "object",
@@ -16183,7 +16183,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -16662,7 +16662,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -17712,7 +17712,7 @@
                                 "type",
                                 "script"
                               ],
-                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                              "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                             },
                             {
                               "type": "object",
@@ -17847,7 +17847,7 @@
                           "type",
                           "script"
                         ],
-                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                        "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                       },
                       {
                         "type": "object",
@@ -18332,7 +18332,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -18811,7 +18811,7 @@
                         "type",
                         "script"
                       ],
-                      "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                      "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                     },
                     {
                       "type": "object",
@@ -19870,7 +19870,7 @@
                                 "type",
                                 "script"
                               ],
-                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                              "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                             },
                             {
                               "type": "object",
@@ -20006,7 +20006,7 @@
                           "type",
                           "script"
                         ],
-                        "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                        "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                       },
                       {
                         "type": "object",
@@ -20325,7 +20325,7 @@
                                   "type",
                                   "script"
                                 ],
-                                "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                               },
                               {
                                 "type": "object",
@@ -20689,7 +20689,7 @@
                                 "type",
                                 "script"
                               ],
-                              "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                              "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                             },
                             {
                               "type": "object",
@@ -21165,7 +21165,7 @@
                                             "type",
                                             "script"
                                           ],
-                                          "description": "Read-back of a builder-authored script action. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
+                                          "description": "Read-back of an existing script action \u2014 scripts are not authorable through this API. Echo it back UNCHANGED (same script) when rewriting the surrounding list and the stored action is preserved; omitting it deletes it (action lists are full replacements). Authoring a new or edited script is rejected."
                                         },
                                         {
                                           "type": "object",
@@ -21486,7 +21486,7 @@
                                     "description": "Which chat widget the click opens. The SDK only INVOKES the provider \u2014 the host page must already have that provider's script installed, or clicking logs a console warning and nothing opens. Not checkable at write time (the server cannot see the host page), so confirm which provider the host actually runs."
                                   },
                                   "customCode": {
-                                    "description": "Only meaningful \u2014 and only RETURNED \u2014 when provider is 'custom': the script run on CLICK (not page load) via new Function; hosts can disable it with usertour.disableEvalJs(). Echo-only via the API \u2014 echo the stored code back unchanged (or omit the field) to keep it, empty string clears it; writing new or edited code is rejected (same security policy as run_javascript). Author scripts in the builder. For other providers the field never appears in reads; any leftover script from a past provider switch stays stored and resurfaces if the provider returns to custom.",
+                                    "description": "Only meaningful \u2014 and only RETURNED \u2014 when provider is 'custom': the script run on CLICK (not page load) via new Function; hosts can disable it with usertour.disableEvalJs(). Echo-only via the API \u2014 echo the stored code back unchanged (or omit the field) to keep it, empty string clears it; writing new or edited code is rejected (same security policy as run_javascript). Scripts can only be authored in the Usertour app. For other providers the field never appears in reads; any leftover script from a past provider switch stays stored and resurfaces if the provider returns to custom.",
                                     "type": "string"
                                   }
                                 },
@@ -23509,15 +23509,15 @@
                     "nullable": true
                   },
                   "type": {
-                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                    "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "url": {
-                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                    "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "name": {
-                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                    "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   }
                 },
@@ -26125,7 +26125,7 @@
                       },
                       "imageUrl": {
                         "type": "string",
-                        "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                        "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                         "nullable": true
                       }
                     },
@@ -26184,12 +26184,12 @@
                     "nullable": true
                   },
                   "dividerLines": {
-                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                    "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "logoUrl": {
                     "type": "string",
-                    "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                    "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                     "nullable": true
                   }
                 },
@@ -26305,7 +26305,7 @@
                   },
                   "iconUrl": {
                     "type": "string",
-                    "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                    "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                     "nullable": true
                   }
                 },
@@ -26423,7 +26423,7 @@
                 "name": {
                   "type": "string",
                   "minLength": 1,
-                  "description": "Variation label shown in the theme builder."
+                  "description": "Human-readable label for this variation."
                 },
                 "conditions": {
                   "minItems": 1,
@@ -26431,7 +26431,7 @@
                   "items": {
                     "$ref": "#/components/schemas/CreateThemeBodyDto__schema0"
                   },
-                  "description": "When this variation applies \u2014 evaluated in the BROWSER on each render; the first variation (in array order) whose conditions match wins, else the base settings apply. Takes user attribute / current_url conditions and groups of them (the same set the theme builder's variation editor offers)."
+                  "description": "When this variation applies \u2014 evaluated in the BROWSER on each render; the first variation (in array order) whose conditions match wins, else the base settings apply. Takes user attribute / current_url conditions and groups of them."
                 },
                 "settings": {
                   "description": "Partial style patch merged onto the merge base (see `id`).",
@@ -26466,15 +26466,15 @@
                           "nullable": true
                         },
                         "type": {
-                          "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                          "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "url": {
-                          "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                          "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "name": {
-                          "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                          "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         }
                       },
@@ -29082,7 +29082,7 @@
                             },
                             "imageUrl": {
                               "type": "string",
-                              "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                              "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                               "nullable": true
                             }
                           },
@@ -29141,12 +29141,12 @@
                           "nullable": true
                         },
                         "dividerLines": {
-                          "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                          "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "logoUrl": {
                           "type": "string",
-                          "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                          "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                           "nullable": true
                         }
                       },
@@ -29262,7 +29262,7 @@
                         },
                         "iconUrl": {
                           "type": "string",
-                          "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                          "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                           "nullable": true
                         }
                       },
@@ -29998,15 +29998,15 @@
                     "nullable": true
                   },
                   "type": {
-                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                    "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "url": {
-                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                    "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "name": {
-                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                    "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   }
                 },
@@ -32614,7 +32614,7 @@
                       },
                       "imageUrl": {
                         "type": "string",
-                        "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                        "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                         "nullable": true
                       }
                     },
@@ -32673,12 +32673,12 @@
                     "nullable": true
                   },
                   "dividerLines": {
-                    "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                    "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "logoUrl": {
                     "type": "string",
-                    "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                    "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                     "nullable": true
                   }
                 },
@@ -32794,7 +32794,7 @@
                   },
                   "iconUrl": {
                     "type": "string",
-                    "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                    "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                     "nullable": true
                   }
                 },
@@ -32912,7 +32912,7 @@
                 "name": {
                   "type": "string",
                   "minLength": 1,
-                  "description": "Variation label shown in the theme builder."
+                  "description": "Human-readable label for this variation."
                 },
                 "conditions": {
                   "minItems": 1,
@@ -32920,7 +32920,7 @@
                   "items": {
                     "$ref": "#/components/schemas/UpdateThemeBodyDto__schema0"
                   },
-                  "description": "When this variation applies \u2014 evaluated in the BROWSER on each render; the first variation (in array order) whose conditions match wins, else the base settings apply. Takes user attribute / current_url conditions and groups of them (the same set the theme builder's variation editor offers)."
+                  "description": "When this variation applies \u2014 evaluated in the BROWSER on each render; the first variation (in array order) whose conditions match wins, else the base settings apply. Takes user attribute / current_url conditions and groups of them."
                 },
                 "settings": {
                   "description": "Partial style patch merged onto the merge base (see `id`).",
@@ -32955,15 +32955,15 @@
                           "nullable": true
                         },
                         "type": {
-                          "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                          "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "url": {
-                          "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                          "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "name": {
-                          "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                          "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         }
                       },
@@ -35571,7 +35571,7 @@
                             },
                             "imageUrl": {
                               "type": "string",
-                              "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                              "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                               "nullable": true
                             }
                           },
@@ -35630,12 +35630,12 @@
                           "nullable": true
                         },
                         "dividerLines": {
-                          "description": "Built-in (builder-managed): echo it back unchanged or omit it \u2014 a changed value is rejected.",
+                          "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "logoUrl": {
                           "type": "string",
-                          "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                          "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                           "nullable": true
                         }
                       },
@@ -35751,7 +35751,7 @@
                         },
                         "iconUrl": {
                           "type": "string",
-                          "description": "Image URL rendered to end users (writable). Empty string clears it. The builder sets this via upload; the API accepts any http(s) URL you host.",
+                          "description": "Image URL rendered to end users (writable). Empty string clears it. Any http(s) URL you host.",
                           "nullable": true
                         }
                       },
