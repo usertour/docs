@@ -23566,26 +23566,6 @@
                           null
                         ],
                         "nullable": true
-                      },
-                      "background": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "hover": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "active": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "autoHover": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "autoActive": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
                       }
                     },
                     "additionalProperties": false,
@@ -23595,26 +23575,6 @@
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
-                    "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -25186,26 +25146,6 @@
                     "minimum": 0,
                     "maximum": 100,
                     "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -25405,26 +25345,6 @@
                     "type": "number",
                     "minimum": 1,
                     "maximum": 100,
-                    "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -26136,26 +26056,6 @@
                       null
                     ],
                     "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -26221,26 +26121,6 @@
                           "image",
                           null
                         ],
-                        "nullable": true
-                      },
-                      "background": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "hover": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "active": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "autoHover": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "autoActive": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "imageUrl": {
@@ -26466,26 +26346,6 @@
                       }
                     ],
                     "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -26541,26 +26401,6 @@
                         ]
                       }
                     ],
-                    "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -26683,26 +26523,6 @@
                                 null
                               ],
                               "nullable": true
-                            },
-                            "background": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "hover": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "active": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "autoHover": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "autoActive": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
                             }
                           },
                           "additionalProperties": false,
@@ -26712,26 +26532,6 @@
                           "type": "number",
                           "minimum": 0,
                           "maximum": 100,
-                          "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -28303,26 +28103,6 @@
                           "minimum": 0,
                           "maximum": 100,
                           "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
                         }
                       },
                       "additionalProperties": false,
@@ -28522,26 +28302,6 @@
                           "type": "number",
                           "minimum": 1,
                           "maximum": 100,
-                          "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -29253,26 +29013,6 @@
                             null
                           ],
                           "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
                         }
                       },
                       "additionalProperties": false,
@@ -29338,26 +29078,6 @@
                                 "image",
                                 null
                               ],
-                              "nullable": true
-                            },
-                            "background": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "hover": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "active": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "autoHover": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "autoActive": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "imageUrl": {
@@ -29583,26 +29303,6 @@
                             }
                           ],
                           "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
                         }
                       },
                       "additionalProperties": false,
@@ -29658,26 +29358,6 @@
                               ]
                             }
                           ],
-                          "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -30375,26 +30055,6 @@
                           null
                         ],
                         "nullable": true
-                      },
-                      "background": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "hover": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "active": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "autoHover": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "autoActive": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
                       }
                     },
                     "additionalProperties": false,
@@ -30404,26 +30064,6 @@
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
-                    "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -31995,26 +31635,6 @@
                     "minimum": 0,
                     "maximum": 100,
                     "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -32214,26 +31834,6 @@
                     "type": "number",
                     "minimum": 1,
                     "maximum": 100,
-                    "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -32945,26 +32545,6 @@
                       null
                     ],
                     "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -33030,26 +32610,6 @@
                           "image",
                           null
                         ],
-                        "nullable": true
-                      },
-                      "background": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "hover": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "active": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "autoHover": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                        "nullable": true
-                      },
-                      "autoActive": {
-                        "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                         "nullable": true
                       },
                       "imageUrl": {
@@ -33275,26 +32835,6 @@
                       }
                     ],
                     "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -33350,26 +32890,6 @@
                         ]
                       }
                     ],
-                    "nullable": true
-                  },
-                  "background": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "hover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "active": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoHover": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                     "nullable": true
                   }
                 },
@@ -33492,26 +33012,6 @@
                                 null
                               ],
                               "nullable": true
-                            },
-                            "background": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "hover": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "active": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "autoHover": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "autoActive": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
                             }
                           },
                           "additionalProperties": false,
@@ -33521,26 +33021,6 @@
                           "type": "number",
                           "minimum": 0,
                           "maximum": 100,
-                          "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -35112,26 +34592,6 @@
                           "minimum": 0,
                           "maximum": 100,
                           "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
                         }
                       },
                       "additionalProperties": false,
@@ -35331,26 +34791,6 @@
                           "type": "number",
                           "minimum": 1,
                           "maximum": 100,
-                          "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
@@ -36062,26 +35502,6 @@
                             null
                           ],
                           "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
                         }
                       },
                       "additionalProperties": false,
@@ -36147,26 +35567,6 @@
                                 "image",
                                 null
                               ],
-                              "nullable": true
-                            },
-                            "background": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "hover": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "active": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "autoHover": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                              "nullable": true
-                            },
-                            "autoActive": {
-                              "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                               "nullable": true
                             },
                             "imageUrl": {
@@ -36392,26 +35792,6 @@
                             }
                           ],
                           "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
                         }
                       },
                       "additionalProperties": false,
@@ -36467,26 +35847,6 @@
                               ]
                             }
                           ],
-                          "nullable": true
-                        },
-                        "background": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "hover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "active": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "description": "NOT RENDERED: this setting takes a single color under `color` \u2014 it is not a {background,color,hover,active} group. Accepted so a read-modify-write round-trips; a changed value is rejected rather than silently ignored.",
                           "nullable": true
                         }
                       },
