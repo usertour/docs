@@ -23887,21 +23887,6 @@
                             ],
                             "nullable": true
                           },
-                          "color": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
                           "autoHover": {
                             "anyOf": [
                               {
@@ -23979,21 +23964,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "background": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -24143,21 +24113,6 @@
                             "nullable": true
                           },
                           "hover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "background": {
                             "anyOf": [
                               {
                                 "type": "string",
@@ -24267,21 +24222,6 @@
                             ],
                             "nullable": true
                           },
-                          "color": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
                           "autoHover": {
                             "anyOf": [
                               {
@@ -24359,21 +24299,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "background": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -24523,21 +24448,6 @@
                             "nullable": true
                           },
                           "hover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "background": {
                             "anyOf": [
                               {
                                 "type": "string",
@@ -24737,36 +24647,6 @@
                           }
                         ],
                         "nullable": true
-                      },
-                      "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoActive": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
                       }
                     },
                     "additionalProperties": false,
@@ -24791,66 +24671,6 @@
                         "nullable": true
                       },
                       "color": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "hover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "active": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoActive": {
                         "anyOf": [
                           {
                             "type": "string",
@@ -25266,51 +25086,6 @@
                               }
                             ],
                             "nullable": true
-                          },
-                          "color": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "autoActive": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
                           }
                         },
                         "additionalProperties": false,
@@ -25359,51 +25134,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "background": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "autoHover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "autoActive": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -25536,51 +25266,6 @@
                               }
                             ],
                             "nullable": true
-                          },
-                          "background": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "autoActive": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
                           }
                         },
                         "additionalProperties": false,
@@ -25643,51 +25328,6 @@
                         "nullable": true
                       },
                       "hover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "background": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoActive": {
                         "anyOf": [
                           {
                             "type": "string",
@@ -26694,21 +26334,6 @@
                                   ],
                                   "nullable": true
                                 },
-                                "color": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
                                 "autoHover": {
                                   "anyOf": [
                                     {
@@ -26786,21 +26411,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "background": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -26950,21 +26560,6 @@
                                   "nullable": true
                                 },
                                 "hover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "background": {
                                   "anyOf": [
                                     {
                                       "type": "string",
@@ -27074,21 +26669,6 @@
                                   ],
                                   "nullable": true
                                 },
-                                "color": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
                                 "autoHover": {
                                   "anyOf": [
                                     {
@@ -27166,21 +26746,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "background": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -27330,21 +26895,6 @@
                                   "nullable": true
                                 },
                                 "hover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "background": {
                                   "anyOf": [
                                     {
                                       "type": "string",
@@ -27544,36 +27094,6 @@
                                 }
                               ],
                               "nullable": true
-                            },
-                            "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoActive": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
                             }
                           },
                           "additionalProperties": false,
@@ -27598,66 +27118,6 @@
                               "nullable": true
                             },
                             "color": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "hover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "active": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoActive": {
                               "anyOf": [
                                 {
                                   "type": "string",
@@ -28073,51 +27533,6 @@
                                     }
                                   ],
                                   "nullable": true
-                                },
-                                "color": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "autoActive": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
                                 }
                               },
                               "additionalProperties": false,
@@ -28166,51 +27581,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "background": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "autoHover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "autoActive": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -28343,51 +27713,6 @@
                                     }
                                   ],
                                   "nullable": true
-                                },
-                                "background": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "autoActive": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
                                 }
                               },
                               "additionalProperties": false,
@@ -28450,51 +27775,6 @@
                               "nullable": true
                             },
                             "hover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "background": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoActive": {
                               "anyOf": [
                                 {
                                   "type": "string",
@@ -30076,21 +29356,6 @@
                             ],
                             "nullable": true
                           },
-                          "color": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
                           "autoHover": {
                             "anyOf": [
                               {
@@ -30168,21 +29433,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "background": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -30332,21 +29582,6 @@
                             "nullable": true
                           },
                           "hover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "background": {
                             "anyOf": [
                               {
                                 "type": "string",
@@ -30456,21 +29691,6 @@
                             ],
                             "nullable": true
                           },
-                          "color": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
                           "autoHover": {
                             "anyOf": [
                               {
@@ -30548,21 +29768,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "background": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -30712,21 +29917,6 @@
                             "nullable": true
                           },
                           "hover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "background": {
                             "anyOf": [
                               {
                                 "type": "string",
@@ -30926,36 +30116,6 @@
                           }
                         ],
                         "nullable": true
-                      },
-                      "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoActive": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
                       }
                     },
                     "additionalProperties": false,
@@ -30980,66 +30140,6 @@
                         "nullable": true
                       },
                       "color": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "hover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "active": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoActive": {
                         "anyOf": [
                           {
                             "type": "string",
@@ -31455,51 +30555,6 @@
                               }
                             ],
                             "nullable": true
-                          },
-                          "color": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "autoActive": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
                           }
                         },
                         "additionalProperties": false,
@@ -31548,51 +30603,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "background": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "autoHover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "nullable": true
-                              },
-                              "autoActive": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -31725,51 +30735,6 @@
                               }
                             ],
                             "nullable": true
-                          },
-                          "background": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
-                          },
-                          "autoActive": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "nullable": true
                           }
                         },
                         "additionalProperties": false,
@@ -31832,51 +30797,6 @@
                         "nullable": true
                       },
                       "hover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "background": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoHover": {
-                        "anyOf": [
-                          {
-                            "type": "string",
-                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                          },
-                          {
-                            "type": "string",
-                            "enum": [
-                              "Auto"
-                            ]
-                          }
-                        ],
-                        "nullable": true
-                      },
-                      "autoActive": {
                         "anyOf": [
                           {
                             "type": "string",
@@ -32883,21 +31803,6 @@
                                   ],
                                   "nullable": true
                                 },
-                                "color": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
                                 "autoHover": {
                                   "anyOf": [
                                     {
@@ -32975,21 +31880,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "background": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -33139,21 +32029,6 @@
                                   "nullable": true
                                 },
                                 "hover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "background": {
                                   "anyOf": [
                                     {
                                       "type": "string",
@@ -33263,21 +32138,6 @@
                                   ],
                                   "nullable": true
                                 },
-                                "color": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
                                 "autoHover": {
                                   "anyOf": [
                                     {
@@ -33355,21 +32215,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "background": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -33519,21 +32364,6 @@
                                   "nullable": true
                                 },
                                 "hover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "background": {
                                   "anyOf": [
                                     {
                                       "type": "string",
@@ -33733,36 +32563,6 @@
                                 }
                               ],
                               "nullable": true
-                            },
-                            "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoActive": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
                             }
                           },
                           "additionalProperties": false,
@@ -33787,66 +32587,6 @@
                               "nullable": true
                             },
                             "color": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "hover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "active": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoActive": {
                               "anyOf": [
                                 {
                                   "type": "string",
@@ -34262,51 +33002,6 @@
                                     }
                                   ],
                                   "nullable": true
-                                },
-                                "color": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "autoActive": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
                                 }
                               },
                               "additionalProperties": false,
@@ -34355,51 +33050,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "background": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "autoHover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "nullable": true
-                                    },
-                                    "autoActive": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -34532,51 +33182,6 @@
                                     }
                                   ],
                                   "nullable": true
-                                },
-                                "background": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
-                                },
-                                "autoActive": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "nullable": true
                                 }
                               },
                               "additionalProperties": false,
@@ -34639,51 +33244,6 @@
                               "nullable": true
                             },
                             "hover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "background": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoHover": {
-                              "anyOf": [
-                                {
-                                  "type": "string",
-                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                },
-                                {
-                                  "type": "string",
-                                  "enum": [
-                                    "Auto"
-                                  ]
-                                }
-                              ],
-                              "nullable": true
-                            },
-                            "autoActive": {
                               "anyOf": [
                                 {
                                   "type": "string",
