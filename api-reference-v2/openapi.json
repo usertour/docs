@@ -23617,6 +23617,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -23645,6 +23646,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -23671,6 +23673,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "borderRadius": {
@@ -23708,6 +23711,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "background": {
@@ -23733,6 +23737,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "autoHover": {
@@ -23748,6 +23753,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "autoActive": {
@@ -23763,6 +23769,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -23855,6 +23862,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "background": {
@@ -23870,6 +23878,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -23885,6 +23894,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoHover": {
@@ -23900,6 +23910,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoActive": {
@@ -23915,6 +23926,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -23946,6 +23958,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "color": {
@@ -23961,6 +23974,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "hover": {
@@ -23976,6 +23990,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "autoHover": {
@@ -23991,6 +24006,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "autoActive": {
@@ -24006,6 +24022,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               }
                             },
@@ -24095,6 +24112,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "color": {
@@ -24110,6 +24128,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -24125,6 +24144,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoHover": {
@@ -24140,6 +24160,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoActive": {
@@ -24155,6 +24176,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -24190,6 +24212,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "background": {
@@ -24205,6 +24228,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -24220,6 +24244,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoHover": {
@@ -24235,6 +24260,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoActive": {
@@ -24250,6 +24276,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -24281,6 +24308,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "color": {
@@ -24296,6 +24324,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "hover": {
@@ -24311,6 +24340,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "autoHover": {
@@ -24326,6 +24356,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "autoActive": {
@@ -24341,6 +24372,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               }
                             },
@@ -24430,6 +24462,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "color": {
@@ -24445,6 +24478,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -24460,6 +24494,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoHover": {
@@ -24475,6 +24510,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoActive": {
@@ -24490,6 +24526,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -24520,6 +24557,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "completedTaskTextDecoration": {
@@ -24601,6 +24639,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "background": {
@@ -24616,6 +24655,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "color": {
@@ -24631,6 +24671,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "hover": {
@@ -24646,6 +24687,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -24668,6 +24710,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "color": {
@@ -24683,6 +24726,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -24809,6 +24853,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "opacity": {
@@ -24987,6 +25032,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -25009,6 +25055,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "size": {
@@ -25055,6 +25102,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "background": {
@@ -25070,6 +25118,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -25085,6 +25134,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -25116,6 +25166,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "color": {
@@ -25131,6 +25182,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "hover": {
@@ -25146,6 +25198,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               }
                             },
@@ -25235,6 +25288,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "color": {
@@ -25250,6 +25304,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -25265,6 +25320,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -25310,6 +25366,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "color": {
@@ -25325,6 +25382,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "hover": {
@@ -25340,6 +25398,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -25378,6 +25437,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "background": {
@@ -25403,6 +25463,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "autoHover": {
@@ -25418,6 +25479,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "autoActive": {
@@ -25433,6 +25495,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -25495,6 +25558,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "dotsHeight": {
@@ -25570,6 +25634,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "gradientFrom": {
@@ -25585,6 +25650,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "gradientTo": {
@@ -25600,6 +25666,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "type": {
@@ -25711,6 +25778,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "background": {
@@ -25726,6 +25794,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "foreground": {
@@ -25741,6 +25810,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "hover": {
@@ -25756,6 +25826,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -25835,6 +25906,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -25891,6 +25963,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -26064,6 +26137,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -26092,6 +26166,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -26118,6 +26193,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "borderRadius": {
@@ -26155,6 +26231,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "background": {
@@ -26180,6 +26257,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "autoHover": {
@@ -26195,6 +26273,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "autoActive": {
@@ -26210,6 +26289,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
@@ -26302,6 +26382,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "background": {
@@ -26317,6 +26398,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -26332,6 +26414,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoHover": {
@@ -26347,6 +26430,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoActive": {
@@ -26362,6 +26446,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -26393,6 +26478,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "color": {
@@ -26408,6 +26494,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "hover": {
@@ -26423,6 +26510,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "autoHover": {
@@ -26438,6 +26526,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "autoActive": {
@@ -26453,6 +26542,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     }
                                   },
@@ -26542,6 +26632,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "color": {
@@ -26557,6 +26648,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -26572,6 +26664,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoHover": {
@@ -26587,6 +26680,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoActive": {
@@ -26602,6 +26696,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -26637,6 +26732,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "background": {
@@ -26652,6 +26748,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -26667,6 +26764,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoHover": {
@@ -26682,6 +26780,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoActive": {
@@ -26697,6 +26796,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -26728,6 +26828,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "color": {
@@ -26743,6 +26844,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "hover": {
@@ -26758,6 +26860,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "autoHover": {
@@ -26773,6 +26876,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "autoActive": {
@@ -26788,6 +26892,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     }
                                   },
@@ -26877,6 +26982,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "color": {
@@ -26892,6 +26998,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -26907,6 +27014,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoHover": {
@@ -26922,6 +27030,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoActive": {
@@ -26937,6 +27046,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -26967,6 +27077,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "completedTaskTextDecoration": {
@@ -27048,6 +27159,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "background": {
@@ -27063,6 +27175,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "color": {
@@ -27078,6 +27191,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "hover": {
@@ -27093,6 +27207,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -27115,6 +27230,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "color": {
@@ -27130,6 +27246,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -27256,6 +27373,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "opacity": {
@@ -27434,6 +27552,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
@@ -27456,6 +27575,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "size": {
@@ -27502,6 +27622,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "background": {
@@ -27517,6 +27638,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -27532,6 +27654,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -27563,6 +27686,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "color": {
@@ -27578,6 +27702,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "hover": {
@@ -27593,6 +27718,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     }
                                   },
@@ -27682,6 +27808,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "color": {
@@ -27697,6 +27824,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -27712,6 +27840,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -27757,6 +27886,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "color": {
@@ -27772,6 +27902,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "hover": {
@@ -27787,6 +27918,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -27825,6 +27957,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "background": {
@@ -27850,6 +27983,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "autoHover": {
@@ -27865,6 +27999,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "autoActive": {
@@ -27880,6 +28015,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
@@ -27942,6 +28078,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "dotsHeight": {
@@ -28017,6 +28154,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "gradientFrom": {
@@ -28032,6 +28170,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "gradientTo": {
@@ -28047,6 +28186,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "type": {
@@ -28158,6 +28298,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "background": {
@@ -28173,6 +28314,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "foreground": {
@@ -28188,6 +28330,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "hover": {
@@ -28203,6 +28346,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -28282,6 +28426,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
@@ -28338,6 +28483,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
@@ -29086,6 +29232,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -29114,6 +29261,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -29140,6 +29288,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "borderRadius": {
@@ -29177,6 +29326,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "background": {
@@ -29202,6 +29352,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "autoHover": {
@@ -29217,6 +29368,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "autoActive": {
@@ -29232,6 +29384,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -29324,6 +29477,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "background": {
@@ -29339,6 +29493,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -29354,6 +29509,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoHover": {
@@ -29369,6 +29525,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoActive": {
@@ -29384,6 +29541,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -29415,6 +29573,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "color": {
@@ -29430,6 +29589,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "hover": {
@@ -29445,6 +29605,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "autoHover": {
@@ -29460,6 +29621,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "autoActive": {
@@ -29475,6 +29637,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               }
                             },
@@ -29564,6 +29727,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "color": {
@@ -29579,6 +29743,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -29594,6 +29759,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoHover": {
@@ -29609,6 +29775,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoActive": {
@@ -29624,6 +29791,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -29659,6 +29827,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "background": {
@@ -29674,6 +29843,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -29689,6 +29859,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoHover": {
@@ -29704,6 +29875,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoActive": {
@@ -29719,6 +29891,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -29750,6 +29923,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "color": {
@@ -29765,6 +29939,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "hover": {
@@ -29780,6 +29955,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "autoHover": {
@@ -29795,6 +29971,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "autoActive": {
@@ -29810,6 +29987,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               }
                             },
@@ -29899,6 +30077,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "color": {
@@ -29914,6 +30093,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -29929,6 +30109,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoHover": {
@@ -29944,6 +30125,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "autoActive": {
@@ -29959,6 +30141,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -29989,6 +30172,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "completedTaskTextDecoration": {
@@ -30070,6 +30254,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "background": {
@@ -30085,6 +30270,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "color": {
@@ -30100,6 +30286,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "hover": {
@@ -30115,6 +30302,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -30137,6 +30325,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "color": {
@@ -30152,6 +30341,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -30278,6 +30468,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "opacity": {
@@ -30456,6 +30647,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -30478,6 +30670,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "size": {
@@ -30524,6 +30717,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "background": {
@@ -30539,6 +30733,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -30554,6 +30749,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -30585,6 +30781,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "color": {
@@ -30600,6 +30797,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               },
                               "hover": {
@@ -30615,6 +30813,7 @@
                                     ]
                                   }
                                 ],
+                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                 "nullable": true
                               }
                             },
@@ -30704,6 +30903,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "color": {
@@ -30719,6 +30919,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           },
                           "hover": {
@@ -30734,6 +30935,7 @@
                                 ]
                               }
                             ],
+                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
                           }
                         },
@@ -30779,6 +30981,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "color": {
@@ -30794,6 +30997,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "hover": {
@@ -30809,6 +31013,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -30847,6 +31052,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "background": {
@@ -30872,6 +31078,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "autoHover": {
@@ -30887,6 +31094,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "autoActive": {
@@ -30902,6 +31110,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -30964,6 +31173,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   },
                   "dotsHeight": {
@@ -31039,6 +31249,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "gradientFrom": {
@@ -31054,6 +31265,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "gradientTo": {
@@ -31069,6 +31281,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "type": {
@@ -31180,6 +31393,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "background": {
@@ -31195,6 +31409,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "foreground": {
@@ -31210,6 +31425,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       },
                       "hover": {
@@ -31225,6 +31441,7 @@
                             ]
                           }
                         ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                         "nullable": true
                       }
                     },
@@ -31304,6 +31521,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -31360,6 +31578,7 @@
                         ]
                       }
                     ],
+                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
                   }
                 },
@@ -31533,6 +31752,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -31561,6 +31781,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -31587,6 +31808,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "borderRadius": {
@@ -31624,6 +31846,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "background": {
@@ -31649,6 +31872,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "autoHover": {
@@ -31664,6 +31888,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "autoActive": {
@@ -31679,6 +31904,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
@@ -31771,6 +31997,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "background": {
@@ -31786,6 +32013,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -31801,6 +32029,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoHover": {
@@ -31816,6 +32045,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoActive": {
@@ -31831,6 +32061,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -31862,6 +32093,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "color": {
@@ -31877,6 +32109,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "hover": {
@@ -31892,6 +32125,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "autoHover": {
@@ -31907,6 +32141,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "autoActive": {
@@ -31922,6 +32157,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     }
                                   },
@@ -32011,6 +32247,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "color": {
@@ -32026,6 +32263,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -32041,6 +32279,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoHover": {
@@ -32056,6 +32295,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoActive": {
@@ -32071,6 +32311,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -32106,6 +32347,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "background": {
@@ -32121,6 +32363,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -32136,6 +32379,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoHover": {
@@ -32151,6 +32395,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoActive": {
@@ -32166,6 +32411,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -32197,6 +32443,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "color": {
@@ -32212,6 +32459,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "hover": {
@@ -32227,6 +32475,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "autoHover": {
@@ -32242,6 +32491,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "autoActive": {
@@ -32257,6 +32507,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     }
                                   },
@@ -32346,6 +32597,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "color": {
@@ -32361,6 +32613,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -32376,6 +32629,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoHover": {
@@ -32391,6 +32645,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "autoActive": {
@@ -32406,6 +32661,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -32436,6 +32692,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "completedTaskTextDecoration": {
@@ -32517,6 +32774,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "background": {
@@ -32532,6 +32790,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "color": {
@@ -32547,6 +32806,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "hover": {
@@ -32562,6 +32822,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -32584,6 +32845,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "color": {
@@ -32599,6 +32861,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -32725,6 +32988,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "opacity": {
@@ -32903,6 +33167,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
@@ -32925,6 +33190,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "size": {
@@ -32971,6 +33237,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "background": {
@@ -32986,6 +33253,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -33001,6 +33269,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -33032,6 +33301,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "color": {
@@ -33047,6 +33317,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     },
                                     "hover": {
@@ -33062,6 +33333,7 @@
                                           ]
                                         }
                                       ],
+                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                       "nullable": true
                                     }
                                   },
@@ -33151,6 +33423,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "color": {
@@ -33166,6 +33439,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 },
                                 "hover": {
@@ -33181,6 +33455,7 @@
                                       ]
                                     }
                                   ],
+                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
                                 }
                               },
@@ -33226,6 +33501,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "color": {
@@ -33241,6 +33517,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "hover": {
@@ -33256,6 +33533,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -33294,6 +33572,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "background": {
@@ -33319,6 +33598,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "autoHover": {
@@ -33334,6 +33614,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "autoActive": {
@@ -33349,6 +33630,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
@@ -33411,6 +33693,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         },
                         "dotsHeight": {
@@ -33486,6 +33769,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "gradientFrom": {
@@ -33501,6 +33785,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "gradientTo": {
@@ -33516,6 +33801,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "type": {
@@ -33627,6 +33913,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "background": {
@@ -33642,6 +33929,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "foreground": {
@@ -33657,6 +33945,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             },
                             "hover": {
@@ -33672,6 +33961,7 @@
                                   ]
                                 }
                               ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                               "nullable": true
                             }
                           },
@@ -33751,6 +34041,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
@@ -33807,6 +34098,7 @@
                               ]
                             }
                           ],
+                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
                         }
                       },
