@@ -23485,13 +23485,13 @@
                 "properties": {
                   "bubbleWidth": {
                     "type": "number",
-                    "minimum": 200,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "modalWidth": {
                     "type": "number",
-                    "minimum": 300,
+                    "minimum": 100,
                     "maximum": 1000,
                     "nullable": true
                   }
@@ -23504,8 +23504,8 @@
                 "properties": {
                   "size": {
                     "type": "number",
-                    "minimum": 24,
-                    "maximum": 120,
+                    "minimum": 10,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "type": {
@@ -23549,13 +23549,13 @@
                       "radius": {
                         "type": "number",
                         "minimum": 0,
-                        "maximum": 40,
+                        "maximum": 100,
                         "nullable": true
                       },
                       "spread": {
                         "type": "number",
                         "minimum": 0,
-                        "maximum": 40,
+                        "maximum": 100,
                         "nullable": true
                       },
                       "type": {
@@ -23627,7 +23627,7 @@
                   "animationDuration": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 1000,
+                    "maximum": 10000,
                     "nullable": true
                   },
                   "animationTiming": {
@@ -23741,7 +23741,7 @@
                   "padding": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "textColor": {
@@ -23866,13 +23866,12 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
                     "nullable": true
                   },
                   "borderWidth": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 10,
+                    "maximum": 50,
                     "nullable": true
                   },
                   "borderWidthEnabled": {
@@ -23982,10 +23981,14 @@
                       },
                       "positionOffsetX": {
                         "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000,
                         "nullable": true
                       },
                       "positionOffsetY": {
                         "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000,
                         "nullable": true
                       }
                     },
@@ -23994,8 +23997,8 @@
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 200,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   }
                 },
@@ -24008,19 +24011,19 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 32,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 24,
-                    "maximum": 64,
+                    "minimum": 1,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "minWidth": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 200,
+                    "maximum": 500,
                     "nullable": true
                   },
                   "primary": {
@@ -24129,7 +24132,7 @@
                           "borderWidth": {
                             "type": "number",
                             "minimum": 0,
-                            "maximum": 10,
+                            "maximum": 20,
                             "nullable": true
                           },
                           "color": {
@@ -24400,7 +24403,7 @@
                   "px": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "secondary": {
@@ -24509,7 +24512,7 @@
                           "borderWidth": {
                             "type": "number",
                             "minimum": 0,
-                            "maximum": 10,
+                            "maximum": 20,
                             "nullable": true
                           },
                           "color": {
@@ -24825,10 +24828,14 @@
                       },
                       "positionOffsetX": {
                         "type": "number",
+                        "minimum": 0,
+                        "maximum": 1000,
                         "nullable": true
                       },
                       "positionOffsetY": {
                         "type": "number",
+                        "minimum": 0,
+                        "maximum": 1000,
                         "nullable": true
                       }
                     },
@@ -24837,8 +24844,8 @@
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 240,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "zIndex": {
@@ -24855,7 +24862,7 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "color": {
@@ -25113,8 +25120,8 @@
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 32,
-                    "maximum": 80,
+                    "minimum": 10,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "placement": {
@@ -25134,10 +25141,14 @@
                       },
                       "positionOffsetX": {
                         "type": "number",
+                        "minimum": 0,
+                        "maximum": 1000,
                         "nullable": true
                       },
                       "positionOffsetY": {
                         "type": "number",
+                        "minimum": 0,
+                        "maximum": 1000,
                         "nullable": true
                       }
                     },
@@ -25214,7 +25225,7 @@
                   "fontSize": {
                     "type": "number",
                     "minimum": 10,
-                    "maximum": 24,
+                    "maximum": 50,
                     "nullable": true
                   },
                   "fontWeightBold": {
@@ -25337,20 +25348,20 @@
                   },
                   "h1FontSize": {
                     "type": "number",
-                    "minimum": 16,
-                    "maximum": 48,
+                    "minimum": 10,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "h2FontSize": {
                     "type": "number",
-                    "minimum": 14,
-                    "maximum": 32,
+                    "minimum": 10,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "lineHeight": {
                     "type": "number",
-                    "minimum": 12,
-                    "maximum": 40,
+                    "minimum": 10,
+                    "maximum": 50,
                     "nullable": true
                   },
                   "linkColor": {
@@ -25392,8 +25403,8 @@
                   },
                   "size": {
                     "type": "number",
-                    "minimum": 8,
-                    "maximum": 32,
+                    "minimum": 1,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "background": {
@@ -25426,13 +25437,13 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 24,
-                    "maximum": 80,
+                    "minimum": 1,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "primary": {
@@ -25541,7 +25552,7 @@
                           "borderWidth": {
                             "type": "number",
                             "minimum": 0,
-                            "maximum": 10,
+                            "maximum": 100,
                             "nullable": true
                           },
                           "color": {
@@ -25812,13 +25823,13 @@
                   "px": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 0,
-                    "maximum": 400,
+                    "minimum": 1,
+                    "maximum": 200,
                     "nullable": true
                   }
                 },
@@ -25933,8 +25944,8 @@
                   },
                   "size": {
                     "type": "number",
-                    "minimum": 8,
-                    "maximum": 64,
+                    "minimum": 1,
+                    "maximum": 200,
                     "nullable": true
                   }
                 },
@@ -26033,13 +26044,13 @@
                   "padding": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 80,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 320,
-                    "maximum": 1200,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   }
                 },
@@ -26052,13 +26063,13 @@
                   "chainRoundedHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "chainSquaredHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "color": {
@@ -26079,7 +26090,7 @@
                   "dotsHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "enabled": {
@@ -26088,20 +26099,20 @@
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 1,
-                    "maximum": 50,
+                    "minimum": 0,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "narrowHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "numberedHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "position": {
@@ -26243,32 +26254,32 @@
                   },
                   "largeWidth": {
                     "type": "number",
-                    "minimum": 320,
-                    "maximum": 800,
+                    "minimum": 100,
+                    "maximum": 2000,
                     "nullable": true
                   },
                   "maxHeight": {
                     "type": "number",
-                    "minimum": 200,
-                    "maximum": 1200,
+                    "minimum": 100,
+                    "maximum": 2000,
                     "nullable": true
                   },
                   "normalWidth": {
                     "type": "number",
-                    "minimum": 240,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "offsetX": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 200,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "offsetY": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 200,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "placement": {
@@ -26285,7 +26296,7 @@
                   "transitionDuration": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 1000,
+                    "maximum": 10000,
                     "nullable": true
                   },
                   "zIndex": {
@@ -26311,7 +26322,7 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "color": {
@@ -26383,8 +26394,8 @@
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 24,
-                    "maximum": 80,
+                    "minimum": 10,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "iconType": {
@@ -26399,8 +26410,8 @@
                   },
                   "imageHeight": {
                     "type": "number",
-                    "minimum": 16,
-                    "maximum": 80,
+                    "minimum": 10,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "textMode": {
@@ -26500,14 +26511,14 @@
                   },
                   "notchSize": {
                     "type": "number",
-                    "minimum": 0,
-                    "maximum": 30,
+                    "minimum": 5,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 200,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   }
                 },
@@ -26591,13 +26602,13 @@
                       "properties": {
                         "bubbleWidth": {
                           "type": "number",
-                          "minimum": 200,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "modalWidth": {
                           "type": "number",
-                          "minimum": 300,
+                          "minimum": 100,
                           "maximum": 1000,
                           "nullable": true
                         }
@@ -26610,8 +26621,8 @@
                       "properties": {
                         "size": {
                           "type": "number",
-                          "minimum": 24,
-                          "maximum": 120,
+                          "minimum": 10,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "type": {
@@ -26655,13 +26666,13 @@
                             "radius": {
                               "type": "number",
                               "minimum": 0,
-                              "maximum": 40,
+                              "maximum": 100,
                               "nullable": true
                             },
                             "spread": {
                               "type": "number",
                               "minimum": 0,
-                              "maximum": 40,
+                              "maximum": 100,
                               "nullable": true
                             },
                             "type": {
@@ -26733,7 +26744,7 @@
                         "animationDuration": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 1000,
+                          "maximum": 10000,
                           "nullable": true
                         },
                         "animationTiming": {
@@ -26847,7 +26858,7 @@
                         "padding": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "textColor": {
@@ -26972,13 +26983,12 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
                           "nullable": true
                         },
                         "borderWidth": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 10,
+                          "maximum": 50,
                           "nullable": true
                         },
                         "borderWidthEnabled": {
@@ -27088,10 +27098,14 @@
                             },
                             "positionOffsetX": {
                               "type": "number",
+                              "minimum": -1000,
+                              "maximum": 1000,
                               "nullable": true
                             },
                             "positionOffsetY": {
                               "type": "number",
+                              "minimum": -1000,
+                              "maximum": 1000,
                               "nullable": true
                             }
                           },
@@ -27100,8 +27114,8 @@
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 200,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         }
                       },
@@ -27114,19 +27128,19 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 32,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 24,
-                          "maximum": 64,
+                          "minimum": 1,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "minWidth": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 200,
+                          "maximum": 500,
                           "nullable": true
                         },
                         "primary": {
@@ -27235,7 +27249,7 @@
                                 "borderWidth": {
                                   "type": "number",
                                   "minimum": 0,
-                                  "maximum": 10,
+                                  "maximum": 20,
                                   "nullable": true
                                 },
                                 "color": {
@@ -27506,7 +27520,7 @@
                         "px": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "secondary": {
@@ -27615,7 +27629,7 @@
                                 "borderWidth": {
                                   "type": "number",
                                   "minimum": 0,
-                                  "maximum": 10,
+                                  "maximum": 20,
                                   "nullable": true
                                 },
                                 "color": {
@@ -27931,10 +27945,14 @@
                             },
                             "positionOffsetX": {
                               "type": "number",
+                              "minimum": 0,
+                              "maximum": 1000,
                               "nullable": true
                             },
                             "positionOffsetY": {
                               "type": "number",
+                              "minimum": 0,
+                              "maximum": 1000,
                               "nullable": true
                             }
                           },
@@ -27943,8 +27961,8 @@
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 240,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "zIndex": {
@@ -27961,7 +27979,7 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "color": {
@@ -28219,8 +28237,8 @@
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 32,
-                          "maximum": 80,
+                          "minimum": 10,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "placement": {
@@ -28240,10 +28258,14 @@
                             },
                             "positionOffsetX": {
                               "type": "number",
+                              "minimum": 0,
+                              "maximum": 1000,
                               "nullable": true
                             },
                             "positionOffsetY": {
                               "type": "number",
+                              "minimum": 0,
+                              "maximum": 1000,
                               "nullable": true
                             }
                           },
@@ -28320,7 +28342,7 @@
                         "fontSize": {
                           "type": "number",
                           "minimum": 10,
-                          "maximum": 24,
+                          "maximum": 50,
                           "nullable": true
                         },
                         "fontWeightBold": {
@@ -28443,20 +28465,20 @@
                         },
                         "h1FontSize": {
                           "type": "number",
-                          "minimum": 16,
-                          "maximum": 48,
+                          "minimum": 10,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "h2FontSize": {
                           "type": "number",
-                          "minimum": 14,
-                          "maximum": 32,
+                          "minimum": 10,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "lineHeight": {
                           "type": "number",
-                          "minimum": 12,
-                          "maximum": 40,
+                          "minimum": 10,
+                          "maximum": 50,
                           "nullable": true
                         },
                         "linkColor": {
@@ -28498,8 +28520,8 @@
                         },
                         "size": {
                           "type": "number",
-                          "minimum": 8,
-                          "maximum": 32,
+                          "minimum": 1,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "background": {
@@ -28532,13 +28554,13 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 24,
-                          "maximum": 80,
+                          "minimum": 1,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "primary": {
@@ -28647,7 +28669,7 @@
                                 "borderWidth": {
                                   "type": "number",
                                   "minimum": 0,
-                                  "maximum": 10,
+                                  "maximum": 100,
                                   "nullable": true
                                 },
                                 "color": {
@@ -28918,13 +28940,13 @@
                         "px": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 0,
-                          "maximum": 400,
+                          "minimum": 1,
+                          "maximum": 200,
                           "nullable": true
                         }
                       },
@@ -29039,8 +29061,8 @@
                         },
                         "size": {
                           "type": "number",
-                          "minimum": 8,
-                          "maximum": 64,
+                          "minimum": 1,
+                          "maximum": 200,
                           "nullable": true
                         }
                       },
@@ -29139,13 +29161,13 @@
                         "padding": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 80,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 320,
-                          "maximum": 1200,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         }
                       },
@@ -29158,13 +29180,13 @@
                         "chainRoundedHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "chainSquaredHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "color": {
@@ -29185,7 +29207,7 @@
                         "dotsHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "enabled": {
@@ -29194,20 +29216,20 @@
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 1,
-                          "maximum": 50,
+                          "minimum": 0,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "narrowHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "numberedHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "position": {
@@ -29349,32 +29371,32 @@
                         },
                         "largeWidth": {
                           "type": "number",
-                          "minimum": 320,
-                          "maximum": 800,
+                          "minimum": 100,
+                          "maximum": 2000,
                           "nullable": true
                         },
                         "maxHeight": {
                           "type": "number",
-                          "minimum": 200,
-                          "maximum": 1200,
+                          "minimum": 100,
+                          "maximum": 2000,
                           "nullable": true
                         },
                         "normalWidth": {
                           "type": "number",
-                          "minimum": 240,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "offsetX": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 200,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "offsetY": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 200,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "placement": {
@@ -29391,7 +29413,7 @@
                         "transitionDuration": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 1000,
+                          "maximum": 10000,
                           "nullable": true
                         },
                         "zIndex": {
@@ -29417,7 +29439,7 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "color": {
@@ -29489,8 +29511,8 @@
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 24,
-                          "maximum": 80,
+                          "minimum": 10,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "iconType": {
@@ -29505,8 +29527,8 @@
                         },
                         "imageHeight": {
                           "type": "number",
-                          "minimum": 16,
-                          "maximum": 80,
+                          "minimum": 10,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "textMode": {
@@ -29606,14 +29628,14 @@
                         },
                         "notchSize": {
                           "type": "number",
-                          "minimum": 0,
-                          "maximum": 30,
+                          "minimum": 5,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 200,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         }
                       },
@@ -30272,13 +30294,13 @@
                 "properties": {
                   "bubbleWidth": {
                     "type": "number",
-                    "minimum": 200,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "modalWidth": {
                     "type": "number",
-                    "minimum": 300,
+                    "minimum": 100,
                     "maximum": 1000,
                     "nullable": true
                   }
@@ -30291,8 +30313,8 @@
                 "properties": {
                   "size": {
                     "type": "number",
-                    "minimum": 24,
-                    "maximum": 120,
+                    "minimum": 10,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "type": {
@@ -30336,13 +30358,13 @@
                       "radius": {
                         "type": "number",
                         "minimum": 0,
-                        "maximum": 40,
+                        "maximum": 100,
                         "nullable": true
                       },
                       "spread": {
                         "type": "number",
                         "minimum": 0,
-                        "maximum": 40,
+                        "maximum": 100,
                         "nullable": true
                       },
                       "type": {
@@ -30414,7 +30436,7 @@
                   "animationDuration": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 1000,
+                    "maximum": 10000,
                     "nullable": true
                   },
                   "animationTiming": {
@@ -30528,7 +30550,7 @@
                   "padding": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "textColor": {
@@ -30653,13 +30675,12 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
                     "nullable": true
                   },
                   "borderWidth": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 10,
+                    "maximum": 50,
                     "nullable": true
                   },
                   "borderWidthEnabled": {
@@ -30769,10 +30790,14 @@
                       },
                       "positionOffsetX": {
                         "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000,
                         "nullable": true
                       },
                       "positionOffsetY": {
                         "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000,
                         "nullable": true
                       }
                     },
@@ -30781,8 +30806,8 @@
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 200,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   }
                 },
@@ -30795,19 +30820,19 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 32,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 24,
-                    "maximum": 64,
+                    "minimum": 1,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "minWidth": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 200,
+                    "maximum": 500,
                     "nullable": true
                   },
                   "primary": {
@@ -30916,7 +30941,7 @@
                           "borderWidth": {
                             "type": "number",
                             "minimum": 0,
-                            "maximum": 10,
+                            "maximum": 20,
                             "nullable": true
                           },
                           "color": {
@@ -31187,7 +31212,7 @@
                   "px": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "secondary": {
@@ -31296,7 +31321,7 @@
                           "borderWidth": {
                             "type": "number",
                             "minimum": 0,
-                            "maximum": 10,
+                            "maximum": 20,
                             "nullable": true
                           },
                           "color": {
@@ -31612,10 +31637,14 @@
                       },
                       "positionOffsetX": {
                         "type": "number",
+                        "minimum": 0,
+                        "maximum": 1000,
                         "nullable": true
                       },
                       "positionOffsetY": {
                         "type": "number",
+                        "minimum": 0,
+                        "maximum": 1000,
                         "nullable": true
                       }
                     },
@@ -31624,8 +31653,8 @@
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 240,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "zIndex": {
@@ -31642,7 +31671,7 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "color": {
@@ -31900,8 +31929,8 @@
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 32,
-                    "maximum": 80,
+                    "minimum": 10,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "placement": {
@@ -31921,10 +31950,14 @@
                       },
                       "positionOffsetX": {
                         "type": "number",
+                        "minimum": 0,
+                        "maximum": 1000,
                         "nullable": true
                       },
                       "positionOffsetY": {
                         "type": "number",
+                        "minimum": 0,
+                        "maximum": 1000,
                         "nullable": true
                       }
                     },
@@ -32001,7 +32034,7 @@
                   "fontSize": {
                     "type": "number",
                     "minimum": 10,
-                    "maximum": 24,
+                    "maximum": 50,
                     "nullable": true
                   },
                   "fontWeightBold": {
@@ -32124,20 +32157,20 @@
                   },
                   "h1FontSize": {
                     "type": "number",
-                    "minimum": 16,
-                    "maximum": 48,
+                    "minimum": 10,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "h2FontSize": {
                     "type": "number",
-                    "minimum": 14,
-                    "maximum": 32,
+                    "minimum": 10,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "lineHeight": {
                     "type": "number",
-                    "minimum": 12,
-                    "maximum": 40,
+                    "minimum": 10,
+                    "maximum": 50,
                     "nullable": true
                   },
                   "linkColor": {
@@ -32179,8 +32212,8 @@
                   },
                   "size": {
                     "type": "number",
-                    "minimum": 8,
-                    "maximum": 32,
+                    "minimum": 1,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "background": {
@@ -32213,13 +32246,13 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 24,
-                    "maximum": 80,
+                    "minimum": 1,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "primary": {
@@ -32328,7 +32361,7 @@
                           "borderWidth": {
                             "type": "number",
                             "minimum": 0,
-                            "maximum": 10,
+                            "maximum": 100,
                             "nullable": true
                           },
                           "color": {
@@ -32599,13 +32632,13 @@
                   "px": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 0,
-                    "maximum": 400,
+                    "minimum": 1,
+                    "maximum": 200,
                     "nullable": true
                   }
                 },
@@ -32720,8 +32753,8 @@
                   },
                   "size": {
                     "type": "number",
-                    "minimum": 8,
-                    "maximum": 64,
+                    "minimum": 1,
+                    "maximum": 200,
                     "nullable": true
                   }
                 },
@@ -32820,13 +32853,13 @@
                   "padding": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 80,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 320,
-                    "maximum": 1200,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   }
                 },
@@ -32839,13 +32872,13 @@
                   "chainRoundedHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "chainSquaredHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "color": {
@@ -32866,7 +32899,7 @@
                   "dotsHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "enabled": {
@@ -32875,20 +32908,20 @@
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 1,
-                    "maximum": 50,
+                    "minimum": 0,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "narrowHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 10,
                     "nullable": true
                   },
                   "numberedHeight": {
                     "type": "number",
                     "minimum": 1,
-                    "maximum": 50,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "position": {
@@ -33030,32 +33063,32 @@
                   },
                   "largeWidth": {
                     "type": "number",
-                    "minimum": 320,
-                    "maximum": 800,
+                    "minimum": 100,
+                    "maximum": 2000,
                     "nullable": true
                   },
                   "maxHeight": {
                     "type": "number",
-                    "minimum": 200,
-                    "maximum": 1200,
+                    "minimum": 100,
+                    "maximum": 2000,
                     "nullable": true
                   },
                   "normalWidth": {
                     "type": "number",
-                    "minimum": 240,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "offsetX": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 200,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "offsetY": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 200,
+                    "maximum": 1000,
                     "nullable": true
                   },
                   "placement": {
@@ -33072,7 +33105,7 @@
                   "transitionDuration": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 1000,
+                    "maximum": 10000,
                     "nullable": true
                   },
                   "zIndex": {
@@ -33098,7 +33131,7 @@
                   "borderRadius": {
                     "type": "number",
                     "minimum": 0,
-                    "maximum": 40,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "color": {
@@ -33170,8 +33203,8 @@
                   },
                   "height": {
                     "type": "number",
-                    "minimum": 24,
-                    "maximum": 80,
+                    "minimum": 10,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "iconType": {
@@ -33186,8 +33219,8 @@
                   },
                   "imageHeight": {
                     "type": "number",
-                    "minimum": 16,
-                    "maximum": 80,
+                    "minimum": 10,
+                    "maximum": 200,
                     "nullable": true
                   },
                   "textMode": {
@@ -33287,14 +33320,14 @@
                   },
                   "notchSize": {
                     "type": "number",
-                    "minimum": 0,
-                    "maximum": 30,
+                    "minimum": 5,
+                    "maximum": 100,
                     "nullable": true
                   },
                   "width": {
                     "type": "number",
-                    "minimum": 200,
-                    "maximum": 600,
+                    "minimum": 100,
+                    "maximum": 1000,
                     "nullable": true
                   }
                 },
@@ -33378,13 +33411,13 @@
                       "properties": {
                         "bubbleWidth": {
                           "type": "number",
-                          "minimum": 200,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "modalWidth": {
                           "type": "number",
-                          "minimum": 300,
+                          "minimum": 100,
                           "maximum": 1000,
                           "nullable": true
                         }
@@ -33397,8 +33430,8 @@
                       "properties": {
                         "size": {
                           "type": "number",
-                          "minimum": 24,
-                          "maximum": 120,
+                          "minimum": 10,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "type": {
@@ -33442,13 +33475,13 @@
                             "radius": {
                               "type": "number",
                               "minimum": 0,
-                              "maximum": 40,
+                              "maximum": 100,
                               "nullable": true
                             },
                             "spread": {
                               "type": "number",
                               "minimum": 0,
-                              "maximum": 40,
+                              "maximum": 100,
                               "nullable": true
                             },
                             "type": {
@@ -33520,7 +33553,7 @@
                         "animationDuration": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 1000,
+                          "maximum": 10000,
                           "nullable": true
                         },
                         "animationTiming": {
@@ -33634,7 +33667,7 @@
                         "padding": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "textColor": {
@@ -33759,13 +33792,12 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
                           "nullable": true
                         },
                         "borderWidth": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 10,
+                          "maximum": 50,
                           "nullable": true
                         },
                         "borderWidthEnabled": {
@@ -33875,10 +33907,14 @@
                             },
                             "positionOffsetX": {
                               "type": "number",
+                              "minimum": -1000,
+                              "maximum": 1000,
                               "nullable": true
                             },
                             "positionOffsetY": {
                               "type": "number",
+                              "minimum": -1000,
+                              "maximum": 1000,
                               "nullable": true
                             }
                           },
@@ -33887,8 +33923,8 @@
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 200,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         }
                       },
@@ -33901,19 +33937,19 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 32,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 24,
-                          "maximum": 64,
+                          "minimum": 1,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "minWidth": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 200,
+                          "maximum": 500,
                           "nullable": true
                         },
                         "primary": {
@@ -34022,7 +34058,7 @@
                                 "borderWidth": {
                                   "type": "number",
                                   "minimum": 0,
-                                  "maximum": 10,
+                                  "maximum": 20,
                                   "nullable": true
                                 },
                                 "color": {
@@ -34293,7 +34329,7 @@
                         "px": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "secondary": {
@@ -34402,7 +34438,7 @@
                                 "borderWidth": {
                                   "type": "number",
                                   "minimum": 0,
-                                  "maximum": 10,
+                                  "maximum": 20,
                                   "nullable": true
                                 },
                                 "color": {
@@ -34718,10 +34754,14 @@
                             },
                             "positionOffsetX": {
                               "type": "number",
+                              "minimum": 0,
+                              "maximum": 1000,
                               "nullable": true
                             },
                             "positionOffsetY": {
                               "type": "number",
+                              "minimum": 0,
+                              "maximum": 1000,
                               "nullable": true
                             }
                           },
@@ -34730,8 +34770,8 @@
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 240,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "zIndex": {
@@ -34748,7 +34788,7 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "color": {
@@ -35006,8 +35046,8 @@
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 32,
-                          "maximum": 80,
+                          "minimum": 10,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "placement": {
@@ -35027,10 +35067,14 @@
                             },
                             "positionOffsetX": {
                               "type": "number",
+                              "minimum": 0,
+                              "maximum": 1000,
                               "nullable": true
                             },
                             "positionOffsetY": {
                               "type": "number",
+                              "minimum": 0,
+                              "maximum": 1000,
                               "nullable": true
                             }
                           },
@@ -35107,7 +35151,7 @@
                         "fontSize": {
                           "type": "number",
                           "minimum": 10,
-                          "maximum": 24,
+                          "maximum": 50,
                           "nullable": true
                         },
                         "fontWeightBold": {
@@ -35230,20 +35274,20 @@
                         },
                         "h1FontSize": {
                           "type": "number",
-                          "minimum": 16,
-                          "maximum": 48,
+                          "minimum": 10,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "h2FontSize": {
                           "type": "number",
-                          "minimum": 14,
-                          "maximum": 32,
+                          "minimum": 10,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "lineHeight": {
                           "type": "number",
-                          "minimum": 12,
-                          "maximum": 40,
+                          "minimum": 10,
+                          "maximum": 50,
                           "nullable": true
                         },
                         "linkColor": {
@@ -35285,8 +35329,8 @@
                         },
                         "size": {
                           "type": "number",
-                          "minimum": 8,
-                          "maximum": 32,
+                          "minimum": 1,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "background": {
@@ -35319,13 +35363,13 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 24,
-                          "maximum": 80,
+                          "minimum": 1,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "primary": {
@@ -35434,7 +35478,7 @@
                                 "borderWidth": {
                                   "type": "number",
                                   "minimum": 0,
-                                  "maximum": 10,
+                                  "maximum": 100,
                                   "nullable": true
                                 },
                                 "color": {
@@ -35705,13 +35749,13 @@
                         "px": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 0,
-                          "maximum": 400,
+                          "minimum": 1,
+                          "maximum": 200,
                           "nullable": true
                         }
                       },
@@ -35826,8 +35870,8 @@
                         },
                         "size": {
                           "type": "number",
-                          "minimum": 8,
-                          "maximum": 64,
+                          "minimum": 1,
+                          "maximum": 200,
                           "nullable": true
                         }
                       },
@@ -35926,13 +35970,13 @@
                         "padding": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 80,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 320,
-                          "maximum": 1200,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         }
                       },
@@ -35945,13 +35989,13 @@
                         "chainRoundedHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "chainSquaredHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "color": {
@@ -35972,7 +36016,7 @@
                         "dotsHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "enabled": {
@@ -35981,20 +36025,20 @@
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 1,
-                          "maximum": 50,
+                          "minimum": 0,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "narrowHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 10,
                           "nullable": true
                         },
                         "numberedHeight": {
                           "type": "number",
                           "minimum": 1,
-                          "maximum": 50,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "position": {
@@ -36136,32 +36180,32 @@
                         },
                         "largeWidth": {
                           "type": "number",
-                          "minimum": 320,
-                          "maximum": 800,
+                          "minimum": 100,
+                          "maximum": 2000,
                           "nullable": true
                         },
                         "maxHeight": {
                           "type": "number",
-                          "minimum": 200,
-                          "maximum": 1200,
+                          "minimum": 100,
+                          "maximum": 2000,
                           "nullable": true
                         },
                         "normalWidth": {
                           "type": "number",
-                          "minimum": 240,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "offsetX": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 200,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "offsetY": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 200,
+                          "maximum": 1000,
                           "nullable": true
                         },
                         "placement": {
@@ -36178,7 +36222,7 @@
                         "transitionDuration": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 1000,
+                          "maximum": 10000,
                           "nullable": true
                         },
                         "zIndex": {
@@ -36204,7 +36248,7 @@
                         "borderRadius": {
                           "type": "number",
                           "minimum": 0,
-                          "maximum": 40,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "color": {
@@ -36276,8 +36320,8 @@
                         },
                         "height": {
                           "type": "number",
-                          "minimum": 24,
-                          "maximum": 80,
+                          "minimum": 10,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "iconType": {
@@ -36292,8 +36336,8 @@
                         },
                         "imageHeight": {
                           "type": "number",
-                          "minimum": 16,
-                          "maximum": 80,
+                          "minimum": 10,
+                          "maximum": 200,
                           "nullable": true
                         },
                         "textMode": {
@@ -36393,14 +36437,14 @@
                         },
                         "notchSize": {
                           "type": "number",
-                          "minimum": 0,
-                          "maximum": 30,
+                          "minimum": 5,
+                          "maximum": 100,
                           "nullable": true
                         },
                         "width": {
                           "type": "number",
-                          "minimum": 200,
-                          "maximum": 600,
+                          "minimum": 100,
+                          "maximum": 1000,
                           "nullable": true
                         }
                       },
