@@ -19740,6 +19740,7 @@
                   "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
                 },
                 "width": {
+                  "description": "Step width in pixels \u2014 OVERRIDES the theme's surface width (tooltip.width / modal.width / bubble.width) for THIS step only; omit to use the theme width. Widths are border-box: the outer edge renders at exactly this value (border inside); the inner iframe measures 2x the theme border width less.",
                   "type": "number"
                 },
                 "skippable": {
@@ -20520,7 +20521,7 @@
                         }
                       },
                       "width": {
-                        "description": "Tooltip width in pixels. Omit for the default.",
+                        "description": "Tooltip width in pixels. Omit to use the theme's tooltip.width.",
                         "type": "number"
                       },
                       "reference": {
