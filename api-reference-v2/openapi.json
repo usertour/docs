@@ -23523,14 +23523,24 @@
                     "nullable": true
                   },
                   "type": {
+                    "type": "string",
+                    "enum": [
+                      "cartoon",
+                      "upload",
+                      "url",
+                      "none",
+                      null
+                    ],
                     "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "url": {
+                    "type": "string",
                     "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "name": {
+                    "type": "string",
                     "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   }
@@ -25499,6 +25509,7 @@
                     "nullable": true
                   },
                   "dividerLines": {
+                    "type": "boolean",
                     "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
@@ -25787,14 +25798,24 @@
                           "nullable": true
                         },
                         "type": {
+                          "type": "string",
+                          "enum": [
+                            "cartoon",
+                            "upload",
+                            "url",
+                            "none",
+                            null
+                          ],
                           "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "url": {
+                          "type": "string",
                           "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "name": {
+                          "type": "string",
                           "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         }
@@ -27763,6 +27784,7 @@
                           "nullable": true
                         },
                         "dividerLines": {
+                          "type": "boolean",
                           "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
@@ -28626,14 +28648,24 @@
                     "nullable": true
                   },
                   "type": {
+                    "type": "string",
+                    "enum": [
+                      "cartoon",
+                      "upload",
+                      "url",
+                      "none",
+                      null
+                    ],
                     "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "url": {
+                    "type": "string",
                     "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
                   "name": {
+                    "type": "string",
                     "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   }
@@ -30602,6 +30634,7 @@
                     "nullable": true
                   },
                   "dividerLines": {
+                    "type": "boolean",
                     "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                     "nullable": true
                   },
@@ -30890,14 +30923,24 @@
                           "nullable": true
                         },
                         "type": {
+                          "type": "string",
+                          "enum": [
+                            "cartoon",
+                            "upload",
+                            "url",
+                            "none",
+                            null
+                          ],
                           "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "url": {
+                          "type": "string",
                           "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
                         "name": {
+                          "type": "string",
                           "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         }
@@ -32866,6 +32909,7 @@
                           "nullable": true
                         },
                         "dividerLines": {
+                          "type": "boolean",
                           "description": "Read-only through the API: echo it back unchanged or omit it \u2014 a changed value is rejected.",
                           "nullable": true
                         },
