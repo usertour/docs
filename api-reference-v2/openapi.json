@@ -2147,14 +2147,15 @@
             "name": "expand",
             "required": false,
             "in": "query",
-            "description": "Inline: settings, variations.",
+            "description": "Inline: settings (stored intent), variations, resolvedSettings (every \"Auto\" resolved).",
             "schema": {
               "anyOf": [
                 {
                   "type": "string",
                   "enum": [
                     "settings",
-                    "variations"
+                    "variations",
+                    "resolvedSettings"
                   ]
                 },
                 {
@@ -2163,7 +2164,8 @@
                     "type": "string",
                     "enum": [
                       "settings",
-                      "variations"
+                      "variations",
+                      "resolvedSettings"
                     ]
                   }
                 }
@@ -2345,14 +2347,15 @@
             "name": "expand",
             "required": false,
             "in": "query",
-            "description": "Inline: settings, variations.",
+            "description": "Inline: settings (stored intent), variations, resolvedSettings (every \"Auto\" resolved).",
             "schema": {
               "anyOf": [
                 {
                   "type": "string",
                   "enum": [
                     "settings",
-                    "variations"
+                    "variations",
+                    "resolvedSettings"
                   ]
                 },
                 {
@@ -2361,7 +2364,8 @@
                     "type": "string",
                     "enum": [
                       "settings",
-                      "variations"
+                      "variations",
+                      "resolvedSettings"
                     ]
                   }
                 }
@@ -22203,6 +22207,11 @@
                   "type": "object",
                   "additionalProperties": {}
                 },
+                "resolvedSettings": {
+                  "description": "Read-only render resolution of `settings`: the same shape with every \"Auto\" replaced by the concrete color the renderer derives (the shared derivation the SDK runs). Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
+                  "type": "object",
+                  "additionalProperties": {}
+                },
                 "variations": {
                   "type": "array",
                   "items": {
@@ -22860,6 +22869,11 @@
             "type": "object",
             "additionalProperties": {}
           },
+          "resolvedSettings": {
+            "description": "Read-only render resolution of `settings`: the same shape with every \"Auto\" replaced by the concrete color the renderer derives (the shared derivation the SDK runs). Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
+            "type": "object",
+            "additionalProperties": {}
+          },
           "variations": {
             "type": "array",
             "items": {
@@ -23477,7 +23491,7 @@
             "type": "boolean"
           },
           "settings": {
-            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. \"Auto\" hover/active colors: the base colors (mainColor/brandColor) and the two button groups get persisted `auto*` values derived server-side on write; every OTHER color group resolves \"Auto\" at render time from the base colors \u2014 its objects carry no `auto*` keys, by design.",
+            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. This is pure INTENT: Auto-capable color fields take a hex or the literal \"Auto\" (derived at render); read what \"Auto\" resolves to with expand: [\"resolvedSettings\"].",
             "type": "object",
             "properties": {
               "announcement": {
@@ -23739,38 +23753,6 @@
                     ],
                     "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
-                  },
-                  "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
-                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
-                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -23896,38 +23878,6 @@
                             ],
                             "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoActive": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
                           }
                         },
                         "additionalProperties": false,
@@ -23978,38 +23928,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                "nullable": true
-                              },
-                              "autoHover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                "nullable": true
-                              },
-                              "autoActive": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -24132,38 +24050,6 @@
                             "nullable": true
                           },
                           "hover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoActive": {
                             "anyOf": [
                               {
                                 "type": "string",
@@ -24246,38 +24132,6 @@
                             ],
                             "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoActive": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
                           }
                         },
                         "additionalProperties": false,
@@ -24328,38 +24182,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                "nullable": true
-                              },
-                              "autoHover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                "nullable": true
-                              },
-                              "autoActive": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -24482,38 +24304,6 @@
                             "nullable": true
                           },
                           "hover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoActive": {
                             "anyOf": [
                               {
                                 "type": "string",
@@ -25465,38 +25255,6 @@
                     ],
                     "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
-                  },
-                  "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
-                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
-                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -26259,38 +26017,6 @@
                           ],
                           "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
-                        },
-                        "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
-                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
-                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                          "nullable": true
                         }
                       },
                       "additionalProperties": false,
@@ -26416,38 +26142,6 @@
                                   ],
                                   "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoActive": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
                                 }
                               },
                               "additionalProperties": false,
@@ -26498,38 +26192,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                      "nullable": true
-                                    },
-                                    "autoHover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                      "nullable": true
-                                    },
-                                    "autoActive": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -26652,38 +26314,6 @@
                                   "nullable": true
                                 },
                                 "hover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoActive": {
                                   "anyOf": [
                                     {
                                       "type": "string",
@@ -26766,38 +26396,6 @@
                                   ],
                                   "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoActive": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
                                 }
                               },
                               "additionalProperties": false,
@@ -26848,38 +26446,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                      "nullable": true
-                                    },
-                                    "autoHover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                      "nullable": true
-                                    },
-                                    "autoActive": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -27002,38 +26568,6 @@
                                   "nullable": true
                                 },
                                 "hover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoActive": {
                                   "anyOf": [
                                     {
                                       "type": "string",
@@ -27971,38 +27505,6 @@
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
-                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
-                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                          "nullable": true
-                        },
-                        "autoActive": {
                           "anyOf": [
                             {
                               "type": "string",
@@ -29092,7 +28594,7 @@
             "type": "boolean"
           },
           "settings": {
-            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. \"Auto\" hover/active colors: the base colors (mainColor/brandColor) and the two button groups get persisted `auto*` values derived server-side on write; every OTHER color group resolves \"Auto\" at render time from the base colors \u2014 its objects carry no `auto*` keys, by design.",
+            "description": "Partial theme styling to merge onto the current settings (colors, fonts, sizes, \u2026). Send only the fields you change; omitted fields are kept. This is pure INTENT: Auto-capable color fields take a hex or the literal \"Auto\" (derived at render); read what \"Auto\" resolves to with expand: [\"resolvedSettings\"].",
             "type": "object",
             "properties": {
               "announcement": {
@@ -29354,38 +28856,6 @@
                     ],
                     "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
-                  },
-                  "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
-                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
-                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -29511,38 +28981,6 @@
                             ],
                             "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoActive": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
                           }
                         },
                         "additionalProperties": false,
@@ -29593,38 +29031,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                "nullable": true
-                              },
-                              "autoHover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                "nullable": true
-                              },
-                              "autoActive": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -29747,38 +29153,6 @@
                             "nullable": true
                           },
                           "hover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoActive": {
                             "anyOf": [
                               {
                                 "type": "string",
@@ -29861,38 +29235,6 @@
                             ],
                             "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                             "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoActive": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
                           }
                         },
                         "additionalProperties": false,
@@ -29943,38 +29285,6 @@
                                 "nullable": true
                               },
                               "hover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                "nullable": true
-                              },
-                              "autoHover": {
-                                "anyOf": [
-                                  {
-                                    "type": "string",
-                                    "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                  },
-                                  {
-                                    "type": "string",
-                                    "enum": [
-                                      "Auto"
-                                    ]
-                                  }
-                                ],
-                                "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                "nullable": true
-                              },
-                              "autoActive": {
                                 "anyOf": [
                                   {
                                     "type": "string",
@@ -30097,38 +29407,6 @@
                             "nullable": true
                           },
                           "hover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoHover": {
-                            "anyOf": [
-                              {
-                                "type": "string",
-                                "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                              },
-                              {
-                                "type": "string",
-                                "enum": [
-                                  "Auto"
-                                ]
-                              }
-                            ],
-                            "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                            "nullable": true
-                          },
-                          "autoActive": {
                             "anyOf": [
                               {
                                 "type": "string",
@@ -31080,38 +30358,6 @@
                     ],
                     "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                     "nullable": true
-                  },
-                  "autoHover": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
-                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                    "nullable": true
-                  },
-                  "autoActive": {
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                      },
-                      {
-                        "type": "string",
-                        "enum": [
-                          "Auto"
-                        ]
-                      }
-                    ],
-                    "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                    "nullable": true
                   }
                 },
                 "additionalProperties": false,
@@ -31874,38 +31120,6 @@
                           ],
                           "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                           "nullable": true
-                        },
-                        "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
-                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                          "nullable": true
-                        },
-                        "autoActive": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
-                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                          "nullable": true
                         }
                       },
                       "additionalProperties": false,
@@ -32031,38 +31245,6 @@
                                   ],
                                   "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoActive": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
                                 }
                               },
                               "additionalProperties": false,
@@ -32113,38 +31295,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                      "nullable": true
-                                    },
-                                    "autoHover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                      "nullable": true
-                                    },
-                                    "autoActive": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -32267,38 +31417,6 @@
                                   "nullable": true
                                 },
                                 "hover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoActive": {
                                   "anyOf": [
                                     {
                                       "type": "string",
@@ -32381,38 +31499,6 @@
                                   ],
                                   "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
                                   "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoActive": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
                                 }
                               },
                               "additionalProperties": false,
@@ -32463,38 +31549,6 @@
                                       "nullable": true
                                     },
                                     "hover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                      "nullable": true
-                                    },
-                                    "autoHover": {
-                                      "anyOf": [
-                                        {
-                                          "type": "string",
-                                          "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                        },
-                                        {
-                                          "type": "string",
-                                          "enum": [
-                                            "Auto"
-                                          ]
-                                        }
-                                      ],
-                                      "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                      "nullable": true
-                                    },
-                                    "autoActive": {
                                       "anyOf": [
                                         {
                                           "type": "string",
@@ -32617,38 +31671,6 @@
                                   "nullable": true
                                 },
                                 "hover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoHover": {
-                                  "anyOf": [
-                                    {
-                                      "type": "string",
-                                      "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                                    },
-                                    {
-                                      "type": "string",
-                                      "enum": [
-                                        "Auto"
-                                      ]
-                                    }
-                                  ],
-                                  "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                                  "nullable": true
-                                },
-                                "autoActive": {
                                   "anyOf": [
                                     {
                                       "type": "string",
@@ -33586,38 +32608,6 @@
                           "nullable": true
                         },
                         "hover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
-                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                          "nullable": true
-                        },
-                        "autoHover": {
-                          "anyOf": [
-                            {
-                              "type": "string",
-                              "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
-                            },
-                            {
-                              "type": "string",
-                              "enum": [
-                                "Auto"
-                              ]
-                            }
-                          ],
-                          "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
-                          "nullable": true
-                        },
-                        "autoActive": {
                           "anyOf": [
                             {
                               "type": "string",
