@@ -7374,6 +7374,18 @@
             "maximum": 9007199254740991,
             "description": "Runs completed in the range."
           },
+          "uniqueOpens": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Distinct users who expanded the checklist panel in the range \u2014 the denominator for per-task click/completion rates. Caveat: completion conditions evaluate regardless of expansion or task visibility (a condition-driven task completes for users who never opened the panel), so only click-completed tasks form a true funnel against this."
+          },
+          "totalOpens": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Panel expansions in the range \u2014 every expansion counts, so repeats by the same user add up."
+          },
           "byDay": {
             "type": "array",
             "items": {
@@ -7429,12 +7441,6 @@
                   "type": "string",
                   "description": "The task's stable identity \u2014 equals the checklist definition's `data.items[].id` on the version; join on it to pair analytics rows with task definitions."
                 },
-                "uniqueViews": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 9007199254740991,
-                  "description": "Distinct users who expanded the CHECKLIST panel \u2014 a whole-checklist count repeated on every task row (there is no per-task view event), not this task\u2019s own visibility."
-                },
                 "uniqueCompletions": {
                   "type": "integer",
                   "minimum": 0,
@@ -7463,7 +7469,6 @@
               "required": [
                 "name",
                 "taskId",
-                "uniqueViews",
                 "uniqueCompletions",
                 "totalCompletions",
                 "uniqueClicks",
@@ -7484,6 +7489,8 @@
           "totalStarts",
           "uniqueCompletions",
           "totalCompletions",
+          "uniqueOpens",
+          "totalOpens",
           "byDay",
           "tasks"
         ]
