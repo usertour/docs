@@ -7417,6 +7417,16 @@
                   "minimum": 0,
                   "maximum": 9007199254740991,
                   "description": "Runs completed in the range."
+                },
+                "uniqueOpens": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "totalOpens": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
                 }
               },
               "required": [
@@ -7424,7 +7434,9 @@
                 "uniqueStarts",
                 "totalStarts",
                 "uniqueCompletions",
-                "totalCompletions"
+                "totalCompletions",
+                "uniqueOpens",
+                "totalOpens"
               ]
             },
             "description": "Per-day activity: each row counts only that calendar day (increments, NOT a running total). Summing the `total*` rows reproduces the `total*` headline; a `unique*` row is distinct users WITHIN THAT DAY, so summing `unique*` rows over-counts a user active on several days \u2014 there is no daily series for range-wide unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
