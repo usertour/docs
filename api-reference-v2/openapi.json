@@ -9820,6 +9820,7 @@
                           },
                           "cvid": {
                             "type": "string",
+                            "description": "Stable step handle that SURVIVES forking (unlike `id`, which is regenerated) \u2014 echo it on a write to update this step in place. Prefer it over `id` for edits that must outlive a new version.",
                             "nullable": true
                           },
                           "name": {
@@ -9840,6 +9841,7 @@
                           },
                           "themeId": {
                             "type": "string",
+                            "description": "Per-step theme override; null = this step inherits the flow version's theme.",
                             "nullable": true
                           },
                           "target": {
@@ -9962,6 +9964,7 @@
                             "type": "boolean"
                           },
                           "explicitCompletionStep": {
+                            "description": "Marks this step as the flow's completion point: reaching it counts the flow as COMPLETED (progress hits 100 and the completion event fires there), and later steps no longer report progress. With no step marked, only reaching the LAST step completes the flow \u2014 which is what a checklist task waiting on \"this flow completed\" depends on.",
                             "type": "boolean"
                           },
                           "content": {
@@ -10117,6 +10120,7 @@
                             }
                           },
                           "onClick": {
+                            "description": "Actions that run when the user clicks the step's TARGET ELEMENT on the page (click-to-advance) \u2014 distinct from a `button` block, whose actions fire on a button rendered inside the step. `tooltip` steps only: the other kinds have no target element to click, and the write rejects `onClick` on them.",
                             "type": "array",
                             "items": {
                               "oneOf": [
@@ -10501,6 +10505,7 @@
                                 },
                                 "cvid": {
                                   "type": "string",
+                                  "description": "Stable step handle that SURVIVES forking (unlike `id`, which is regenerated) \u2014 echo it on a write to update this step in place. Prefer it over `id` for edits that must outlive a new version.",
                                   "nullable": true
                                 },
                                 "name": {
@@ -10521,6 +10526,7 @@
                                 },
                                 "themeId": {
                                   "type": "string",
+                                  "description": "Per-step theme override; null = this step inherits the flow version's theme.",
                                   "nullable": true
                                 },
                                 "target": {
@@ -10643,6 +10649,7 @@
                                   "type": "boolean"
                                 },
                                 "explicitCompletionStep": {
+                                  "description": "Marks this step as the flow's completion point: reaching it counts the flow as COMPLETED (progress hits 100 and the completion event fires there), and later steps no longer report progress. With no step marked, only reaching the LAST step completes the flow \u2014 which is what a checklist task waiting on \"this flow completed\" depends on.",
                                   "type": "boolean"
                                 },
                                 "content": {
@@ -10798,6 +10805,7 @@
                                   }
                                 },
                                 "onClick": {
+                                  "description": "Actions that run when the user clicks the step's TARGET ELEMENT on the page (click-to-advance) \u2014 distinct from a `button` block, whose actions fire on a button rendered inside the step. `tooltip` steps only: the other kinds have no target element to click, and the write rejects `onClick` on them.",
                                   "type": "array",
                                   "items": {
                                     "oneOf": [
@@ -12696,6 +12704,7 @@
                     },
                     "cvid": {
                       "type": "string",
+                      "description": "Stable step handle that SURVIVES forking (unlike `id`, which is regenerated) \u2014 echo it on a write to update this step in place. Prefer it over `id` for edits that must outlive a new version.",
                       "nullable": true
                     },
                     "name": {
@@ -12716,6 +12725,7 @@
                     },
                     "themeId": {
                       "type": "string",
+                      "description": "Per-step theme override; null = this step inherits the flow version's theme.",
                       "nullable": true
                     },
                     "target": {
@@ -12838,6 +12848,7 @@
                       "type": "boolean"
                     },
                     "explicitCompletionStep": {
+                      "description": "Marks this step as the flow's completion point: reaching it counts the flow as COMPLETED (progress hits 100 and the completion event fires there), and later steps no longer report progress. With no step marked, only reaching the LAST step completes the flow \u2014 which is what a checklist task waiting on \"this flow completed\" depends on.",
                       "type": "boolean"
                     },
                     "content": {
@@ -12993,6 +13004,7 @@
                       }
                     },
                     "onClick": {
+                      "description": "Actions that run when the user clicks the step's TARGET ELEMENT on the page (click-to-advance) \u2014 distinct from a `button` block, whose actions fire on a button rendered inside the step. `tooltip` steps only: the other kinds have no target element to click, and the write rejects `onClick` on them.",
                       "type": "array",
                       "items": {
                         "oneOf": [
@@ -13367,6 +13379,7 @@
                           },
                           "cvid": {
                             "type": "string",
+                            "description": "Stable step handle that SURVIVES forking (unlike `id`, which is regenerated) \u2014 echo it on a write to update this step in place. Prefer it over `id` for edits that must outlive a new version.",
                             "nullable": true
                           },
                           "name": {
@@ -13387,6 +13400,7 @@
                           },
                           "themeId": {
                             "type": "string",
+                            "description": "Per-step theme override; null = this step inherits the flow version's theme.",
                             "nullable": true
                           },
                           "target": {
@@ -13509,6 +13523,7 @@
                             "type": "boolean"
                           },
                           "explicitCompletionStep": {
+                            "description": "Marks this step as the flow's completion point: reaching it counts the flow as COMPLETED (progress hits 100 and the completion event fires there), and later steps no longer report progress. With no step marked, only reaching the LAST step completes the flow \u2014 which is what a checklist task waiting on \"this flow completed\" depends on.",
                             "type": "boolean"
                           },
                           "content": {
@@ -13664,6 +13679,7 @@
                             }
                           },
                           "onClick": {
+                            "description": "Actions that run when the user clicks the step's TARGET ELEMENT on the page (click-to-advance) \u2014 distinct from a `button` block, whose actions fire on a button rendered inside the step. `tooltip` steps only: the other kinds have no target element to click, and the write rejects `onClick` on them.",
                             "type": "array",
                             "items": {
                               "oneOf": [
@@ -15602,6 +15618,7 @@
                       },
                       "cvid": {
                         "type": "string",
+                        "description": "Stable step handle that SURVIVES forking (unlike `id`, which is regenerated) \u2014 echo it on a write to update this step in place. Prefer it over `id` for edits that must outlive a new version.",
                         "nullable": true
                       },
                       "name": {
@@ -15622,6 +15639,7 @@
                       },
                       "themeId": {
                         "type": "string",
+                        "description": "Per-step theme override; null = this step inherits the flow version's theme.",
                         "nullable": true
                       },
                       "target": {
@@ -15744,6 +15762,7 @@
                         "type": "boolean"
                       },
                       "explicitCompletionStep": {
+                        "description": "Marks this step as the flow's completion point: reaching it counts the flow as COMPLETED (progress hits 100 and the completion event fires there), and later steps no longer report progress. With no step marked, only reaching the LAST step completes the flow \u2014 which is what a checklist task waiting on \"this flow completed\" depends on.",
                         "type": "boolean"
                       },
                       "content": {
@@ -15899,6 +15918,7 @@
                         }
                       },
                       "onClick": {
+                        "description": "Actions that run when the user clicks the step's TARGET ELEMENT on the page (click-to-advance) \u2014 distinct from a `button` block, whose actions fire on a button rendered inside the step. `tooltip` steps only: the other kinds have no target element to click, and the write rejects `onClick` on them.",
                         "type": "array",
                         "items": {
                           "oneOf": [
@@ -17727,6 +17747,7 @@
                 },
                 "cvid": {
                   "type": "string",
+                  "description": "Stable step handle that SURVIVES forking (unlike `id`, which is regenerated) \u2014 echo it on a write to update this step in place. Prefer it over `id` for edits that must outlive a new version.",
                   "nullable": true
                 },
                 "name": {
@@ -17747,6 +17768,7 @@
                 },
                 "themeId": {
                   "type": "string",
+                  "description": "Per-step theme override; null = this step inherits the flow version's theme.",
                   "nullable": true
                 },
                 "target": {
@@ -17869,6 +17891,7 @@
                   "type": "boolean"
                 },
                 "explicitCompletionStep": {
+                  "description": "Marks this step as the flow's completion point: reaching it counts the flow as COMPLETED (progress hits 100 and the completion event fires there), and later steps no longer report progress. With no step marked, only reaching the LAST step completes the flow \u2014 which is what a checklist task waiting on \"this flow completed\" depends on.",
                   "type": "boolean"
                 },
                 "content": {
@@ -18024,6 +18047,7 @@
                   }
                 },
                 "onClick": {
+                  "description": "Actions that run when the user clicks the step's TARGET ELEMENT on the page (click-to-advance) \u2014 distinct from a `button` block, whose actions fire on a button rendered inside the step. `tooltip` steps only: the other kinds have no target element to click, and the write rejects `onClick` on them.",
                   "type": "array",
                   "items": {
                     "oneOf": [
@@ -20189,7 +20213,7 @@
                   }
                 },
                 "onClick": {
-                  "description": "Actions to run when the user clicks the step's target element (click-to-advance). Tooltip steps with a `target` only.",
+                  "description": "Actions to run when the user clicks the step's TARGET ELEMENT on the page (click-to-advance) \u2014 distinct from a `button` block, whose actions fire on a button rendered inside the step. `tooltip` steps only (the other kinds have no target element); sending it on a modal / bubble / hidden step is rejected.",
                   "type": "array",
                   "items": {
                     "oneOf": [
@@ -20757,6 +20781,7 @@
                     ]
                   },
                   "zIndex": {
+                    "description": "Stacking order (CSS z-index). Integer; negative values are allowed. Omit to use the SDK's default stacking.",
                     "type": "integer",
                     "minimum": -9007199254740991,
                     "maximum": 9007199254740991
@@ -21024,6 +21049,7 @@
                     }
                   },
                   "zIndex": {
+                    "description": "Stacking order (CSS z-index). Integer; negative values are allowed. Omit to use the SDK's default stacking.",
                     "type": "integer",
                     "minimum": -9007199254740991,
                     "maximum": 9007199254740991
@@ -22471,7 +22497,8 @@
                   "type": "boolean"
                 },
                 "isSystem": {
-                  "type": "boolean"
+                  "type": "boolean",
+                  "description": "Built-in theme: read-only \u2014 it cannot be updated or deleted (duplicating it into your own theme is the way to start from it). It CAN be made the project default."
                 },
                 "updatedAt": {
                   "type": "string",
@@ -23139,7 +23166,8 @@
             "type": "boolean"
           },
           "isSystem": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Built-in theme: read-only \u2014 it cannot be updated or deleted (duplicating it into your own theme is the way to start from it). It CAN be made the project default."
           },
           "updatedAt": {
             "type": "string",
@@ -35454,7 +35482,8 @@
                   ]
                 },
                 "predefined": {
-                  "type": "boolean"
+                  "type": "boolean",
+                  "description": "Built-in attribute shipped by Usertour: it cannot be edited or deleted."
                 },
                 "createdAt": {
                   "type": "string",
@@ -35536,7 +35565,8 @@
             ]
           },
           "predefined": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Built-in attribute shipped by Usertour: it cannot be edited or deleted."
           },
           "createdAt": {
             "type": "string",
@@ -35866,7 +35896,8 @@
                   "nullable": true
                 },
                 "inTokenScope": {
-                  "type": "boolean"
+                  "type": "boolean",
+                  "description": "Whether the CURRENT credential may act on this environment. false = the environment is listed for discovery, but reads / writes / publishing targeted at it are rejected (E1029) \u2014 plan against this instead of discovering scope limits from errors."
                 },
                 "createdAt": {
                   "type": "string",
@@ -35931,7 +35962,8 @@
             "nullable": true
           },
           "inTokenScope": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Whether the CURRENT credential may act on this environment. false = the environment is listed for discovery, but reads / writes / publishing targeted at it are rejected (E1029) \u2014 plan against this instead of discovering scope limits from errors."
           },
           "createdAt": {
             "type": "string",
