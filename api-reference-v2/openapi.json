@@ -8455,9 +8455,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -8747,9 +8745,6 @@
                         ],
                         "description": "Numeric range, e.g. { low: 1, high: 5 }."
                       },
-                      "default": {
-                        "type": "number"
-                      },
                       "lowLabel": {
                         "type": "string"
                       },
@@ -8934,9 +8929,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -9908,9 +9901,11 @@
                                     ]
                                   },
                                   "backdrop": {
+                                    "description": "Dim the rest of the page while this tooltip is up.",
                                     "type": "boolean"
                                   },
                                   "blockTarget": {
+                                    "description": "Make the backdrop swallow clicks on the highlighted element, so the user must use the tooltip. REQUIRES `backdrop: true` \u2014 on its own it does nothing (the renderer only consults it inside the backdrop branch).",
                                     "type": "boolean"
                                   }
                                 },
@@ -9943,9 +9938,6 @@
                                   },
                                   "backdrop": {
                                     "type": "boolean"
-                                  },
-                                  "blockTarget": {
-                                    "type": "boolean"
                                   }
                                 },
                                 "required": [
@@ -9954,7 +9946,7 @@
                                 "additionalProperties": false
                               }
                             ],
-                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
+                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
                           },
                           "width": {
                             "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -10044,9 +10036,7 @@
                                             "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                           },
                                           "newTab": {
-                                            "type": "boolean"
-                                          },
-                                          "newWindow": {
+                                            "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                             "type": "boolean"
                                           }
                                         },
@@ -10180,9 +10170,7 @@
                                       "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                     },
                                     "newTab": {
-                                      "type": "boolean"
-                                    },
-                                    "newWindow": {
+                                      "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                       "type": "boolean"
                                     }
                                   },
@@ -10593,9 +10581,11 @@
                                           ]
                                         },
                                         "backdrop": {
+                                          "description": "Dim the rest of the page while this tooltip is up.",
                                           "type": "boolean"
                                         },
                                         "blockTarget": {
+                                          "description": "Make the backdrop swallow clicks on the highlighted element, so the user must use the tooltip. REQUIRES `backdrop: true` \u2014 on its own it does nothing (the renderer only consults it inside the backdrop branch).",
                                           "type": "boolean"
                                         }
                                       },
@@ -10628,9 +10618,6 @@
                                         },
                                         "backdrop": {
                                           "type": "boolean"
-                                        },
-                                        "blockTarget": {
-                                          "type": "boolean"
                                         }
                                       },
                                       "required": [
@@ -10639,7 +10626,7 @@
                                       "additionalProperties": false
                                     }
                                   ],
-                                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
+                                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
                                 },
                                 "width": {
                                   "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -10729,9 +10716,7 @@
                                                   "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                                 },
                                                 "newTab": {
-                                                  "type": "boolean"
-                                                },
-                                                "newWindow": {
+                                                  "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                                   "type": "boolean"
                                                 }
                                               },
@@ -10865,9 +10850,7 @@
                                             "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                           },
                                           "newTab": {
-                                            "type": "boolean"
-                                          },
-                                          "newWindow": {
+                                            "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                             "type": "boolean"
                                           }
                                         },
@@ -11344,9 +11327,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -11636,9 +11617,6 @@
                         ],
                         "description": "Numeric range, e.g. { low: 1, high: 5 }."
                       },
-                      "default": {
-                        "type": "number"
-                      },
                       "lowLabel": {
                         "type": "string"
                       },
@@ -11823,9 +11801,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -12792,9 +12768,11 @@
                               ]
                             },
                             "backdrop": {
+                              "description": "Dim the rest of the page while this tooltip is up.",
                               "type": "boolean"
                             },
                             "blockTarget": {
+                              "description": "Make the backdrop swallow clicks on the highlighted element, so the user must use the tooltip. REQUIRES `backdrop: true` \u2014 on its own it does nothing (the renderer only consults it inside the backdrop branch).",
                               "type": "boolean"
                             }
                           },
@@ -12827,9 +12805,6 @@
                             },
                             "backdrop": {
                               "type": "boolean"
-                            },
-                            "blockTarget": {
-                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -12838,7 +12813,7 @@
                           "additionalProperties": false
                         }
                       ],
-                      "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
+                      "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
                     },
                     "width": {
                       "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -12928,9 +12903,7 @@
                                       "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                     },
                                     "newTab": {
-                                      "type": "boolean"
-                                    },
-                                    "newWindow": {
+                                      "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                       "type": "boolean"
                                     }
                                   },
@@ -13064,9 +13037,7 @@
                                 "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                               },
                               "newTab": {
-                                "type": "boolean"
-                              },
-                              "newWindow": {
+                                "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                 "type": "boolean"
                               }
                             },
@@ -13467,9 +13438,11 @@
                                     ]
                                   },
                                   "backdrop": {
+                                    "description": "Dim the rest of the page while this tooltip is up.",
                                     "type": "boolean"
                                   },
                                   "blockTarget": {
+                                    "description": "Make the backdrop swallow clicks on the highlighted element, so the user must use the tooltip. REQUIRES `backdrop: true` \u2014 on its own it does nothing (the renderer only consults it inside the backdrop branch).",
                                     "type": "boolean"
                                   }
                                 },
@@ -13502,9 +13475,6 @@
                                   },
                                   "backdrop": {
                                     "type": "boolean"
-                                  },
-                                  "blockTarget": {
-                                    "type": "boolean"
                                   }
                                 },
                                 "required": [
@@ -13513,7 +13483,7 @@
                                 "additionalProperties": false
                               }
                             ],
-                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
+                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
                           },
                           "width": {
                             "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -13603,9 +13573,7 @@
                                             "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                           },
                                           "newTab": {
-                                            "type": "boolean"
-                                          },
-                                          "newWindow": {
+                                            "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                             "type": "boolean"
                                           }
                                         },
@@ -13739,9 +13707,7 @@
                                       "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                     },
                                     "newTab": {
-                                      "type": "boolean"
-                                    },
-                                    "newWindow": {
+                                      "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                       "type": "boolean"
                                     }
                                   },
@@ -14288,9 +14254,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -14580,9 +14544,6 @@
                         ],
                         "description": "Numeric range, e.g. { low: 1, high: 5 }."
                       },
-                      "default": {
-                        "type": "number"
-                      },
                       "lowLabel": {
                         "type": "string"
                       },
@@ -14767,9 +14728,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -15706,9 +15665,11 @@
                                 ]
                               },
                               "backdrop": {
+                                "description": "Dim the rest of the page while this tooltip is up.",
                                 "type": "boolean"
                               },
                               "blockTarget": {
+                                "description": "Make the backdrop swallow clicks on the highlighted element, so the user must use the tooltip. REQUIRES `backdrop: true` \u2014 on its own it does nothing (the renderer only consults it inside the backdrop branch).",
                                 "type": "boolean"
                               }
                             },
@@ -15741,9 +15702,6 @@
                               },
                               "backdrop": {
                                 "type": "boolean"
-                              },
-                              "blockTarget": {
-                                "type": "boolean"
                               }
                             },
                             "required": [
@@ -15752,7 +15710,7 @@
                             "additionalProperties": false
                           }
                         ],
-                        "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
+                        "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
                       },
                       "width": {
                         "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -15842,9 +15800,7 @@
                                         "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                       },
                                       "newTab": {
-                                        "type": "boolean"
-                                      },
-                                      "newWindow": {
+                                        "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                         "type": "boolean"
                                       }
                                     },
@@ -15978,9 +15934,7 @@
                                   "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                 },
                                 "newTab": {
-                                  "type": "boolean"
-                                },
-                                "newWindow": {
+                                  "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                   "type": "boolean"
                                 }
                               },
@@ -16422,9 +16376,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -16714,9 +16666,6 @@
                         ],
                         "description": "Numeric range, e.g. { low: 1, high: 5 }."
                       },
-                      "default": {
-                        "type": "number"
-                      },
                       "lowLabel": {
                         "type": "string"
                       },
@@ -16901,9 +16850,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -17835,9 +17782,11 @@
                           ]
                         },
                         "backdrop": {
+                          "description": "Dim the rest of the page while this tooltip is up.",
                           "type": "boolean"
                         },
                         "blockTarget": {
+                          "description": "Make the backdrop swallow clicks on the highlighted element, so the user must use the tooltip. REQUIRES `backdrop: true` \u2014 on its own it does nothing (the renderer only consults it inside the backdrop branch).",
                           "type": "boolean"
                         }
                       },
@@ -17870,9 +17819,6 @@
                         },
                         "backdrop": {
                           "type": "boolean"
-                        },
-                        "blockTarget": {
-                          "type": "boolean"
                         }
                       },
                       "required": [
@@ -17881,7 +17827,7 @@
                       "additionalProperties": false
                     }
                   ],
-                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
+                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
                 },
                 "width": {
                   "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -17971,9 +17917,7 @@
                                   "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                 },
                                 "newTab": {
-                                  "type": "boolean"
-                                },
-                                "newWindow": {
+                                  "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                   "type": "boolean"
                                 }
                               },
@@ -18107,9 +18051,7 @@
                             "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                           },
                           "newTab": {
-                            "type": "boolean"
-                          },
-                          "newWindow": {
+                            "description": "Open the URL in a new browser tab instead of navigating the current one.",
                             "type": "boolean"
                           }
                         },
@@ -18598,9 +18540,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -18890,9 +18830,6 @@
                         ],
                         "description": "Numeric range, e.g. { low: 1, high: 5 }."
                       },
-                      "default": {
-                        "type": "number"
-                      },
                       "lowLabel": {
                         "type": "string"
                       },
@@ -19077,9 +19014,7 @@
                           "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                         },
                         "newTab": {
-                          "type": "boolean"
-                        },
-                        "newWindow": {
+                          "description": "Open the URL in a new browser tab instead of navigating the current one.",
                           "type": "boolean"
                         }
                       },
@@ -20000,9 +19935,11 @@
                           ]
                         },
                         "backdrop": {
+                          "description": "Dim the rest of the page while this tooltip is up.",
                           "type": "boolean"
                         },
                         "blockTarget": {
+                          "description": "Make the backdrop swallow clicks on the highlighted element, so the user must use the tooltip. REQUIRES `backdrop: true` \u2014 on its own it does nothing (the renderer only consults it inside the backdrop branch).",
                           "type": "boolean"
                         }
                       },
@@ -20035,9 +19972,6 @@
                         },
                         "backdrop": {
                           "type": "boolean"
-                        },
-                        "blockTarget": {
-                          "type": "boolean"
                         }
                       },
                       "required": [
@@ -20046,7 +19980,7 @@
                       "additionalProperties": false
                     }
                   ],
-                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop` / `blockTarget`."
+                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
                 },
                 "width": {
                   "description": "Step width in pixels \u2014 OVERRIDES the theme's surface width (tooltip.width / modal.width / bubble.width) for THIS step only; omit to use the theme width. Widths are border-box: the outer edge renders at exactly this value (border inside); the inner iframe measures 2x the theme border width less.",
@@ -20137,9 +20071,7 @@
                                   "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                 },
                                 "newTab": {
-                                  "type": "boolean"
-                                },
-                                "newWindow": {
+                                  "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                   "type": "boolean"
                                 }
                               },
@@ -20273,9 +20205,7 @@
                             "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                           },
                           "newTab": {
-                            "type": "boolean"
-                          },
-                          "newWindow": {
+                            "description": "Open the URL in a new browser tab instead of navigating the current one.",
                             "type": "boolean"
                           }
                         },
@@ -20592,9 +20522,7 @@
                                     "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                   },
                                   "newTab": {
-                                    "type": "boolean"
-                                  },
-                                  "newWindow": {
+                                    "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                     "type": "boolean"
                                   }
                                 },
@@ -20691,14 +20619,12 @@
                     "type": "object",
                     "properties": {
                       "source": {
-                        "description": "Where the icon comes from: `builtin` uses `type` (a RemixIcon name), `upload`/`url` use `url`, `inherit` takes the theme launcher icon, `none` shows no icon.",
+                        "description": "Where the icon comes from: `builtin` uses `type` (a RemixIcon name), `upload`/`url` use `url`. A launcher always renders an icon \u2014 there is no `none` / `inherit` here (the resource-center block icons are a different field and DO support them); to keep a launcher off the page, gate it with start rules instead.",
                         "type": "string",
                         "enum": [
-                          "none",
                           "builtin",
                           "upload",
-                          "url",
-                          "inherit"
+                          "url"
                         ]
                       },
                       "url": {
@@ -20706,7 +20632,7 @@
                         "type": "string"
                       },
                       "type": {
-                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `rocket`. NOT lucide names (`help-circle` / `sparkles` / `book-open` render nothing, silently). Unsure? Use source='none'. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `rocket`. NOT lucide names (`help-circle` / `sparkles` / `book-open` render nothing, silently). Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                         "type": "string"
                       }
                     }
@@ -20957,9 +20883,7 @@
                                   "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                 },
                                 "newTab": {
-                                  "type": "boolean"
-                                },
-                                "newWindow": {
+                                  "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                   "type": "boolean"
                                 }
                               },
@@ -21434,9 +21358,7 @@
                                               "description": "Absolute URL, or an app-relative path (\"/docs/x\") resolved against the origin the user is on \u2014 relative paths are the normal choice for in-app navigation."
                                             },
                                             "newTab": {
-                                              "type": "boolean"
-                                            },
-                                            "newWindow": {
+                                              "description": "Open the URL in a new browser tab instead of navigating the current one.",
                                               "type": "boolean"
                                             }
                                           },
