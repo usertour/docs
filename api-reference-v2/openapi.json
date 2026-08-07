@@ -7163,12 +7163,14 @@
           "uniqueStarts": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Distinct users who started it in the range."
           },
           "totalStarts": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Runs started in the range \u2014 one per session, so a user who ran it twice counts twice."
           },
           "uniqueCompletions": {
             "type": "integer",
@@ -7179,7 +7181,8 @@
           "totalCompletions": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Runs completed in the range."
           },
           "byDay": {
             "type": "array",
@@ -7193,12 +7196,14 @@
                 "uniqueStarts": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who started it in the range."
                 },
                 "totalStarts": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Runs started in the range \u2014 one per session, so a user who ran it twice counts twice."
                 },
                 "uniqueCompletions": {
                   "type": "integer",
@@ -7208,7 +7213,8 @@
                 "totalCompletions": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Runs completed in the range."
                 }
               },
               "required": [
@@ -7219,7 +7225,7 @@
                 "totalCompletions"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day (increments, NOT a running total). Summing the `total*` rows reproduces the `total*` headline; a `unique*` row is distinct users WITHIN THAT DAY, so summing `unique*` rows over-counts a user active on several days \u2014 there is no daily series for range-wide unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           },
           "steps": {
             "type": "array",
@@ -7255,7 +7261,8 @@
                 "totalViews": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Runs in which this step was shown (re-visits within one run do not add)."
                 },
                 "uniqueCompletions": {
                   "type": "integer",
@@ -7273,12 +7280,13 @@
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 9007199254740991,
-                  "description": "Sessions where this tooltip step's target element was never found \u2014 the selector-health signal. Only meaningful on tooltip steps; the field is present (and always 0) on other step types to keep rows uniform."
+                  "description": "Distinct users for whom this tooltip step's target element was never found \u2014 the selector-health signal. Only meaningful on tooltip steps; the field is present (and always 0) on other step types to keep rows uniform."
                 },
                 "totalTooltipTargetMissing": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Runs in which the target element was never found."
                 }
               },
               "required": [
@@ -7345,12 +7353,14 @@
           "uniqueStarts": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Distinct users who started it in the range."
           },
           "totalStarts": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Runs started in the range \u2014 one per session, so a user who ran it twice counts twice."
           },
           "uniqueCompletions": {
             "type": "integer",
@@ -7361,7 +7371,8 @@
           "totalCompletions": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Runs completed in the range."
           },
           "byDay": {
             "type": "array",
@@ -7375,12 +7386,14 @@
                 "uniqueStarts": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who started it in the range."
                 },
                 "totalStarts": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Runs started in the range \u2014 one per session, so a user who ran it twice counts twice."
                 },
                 "uniqueCompletions": {
                   "type": "integer",
@@ -7390,7 +7403,8 @@
                 "totalCompletions": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Runs completed in the range."
                 }
               },
               "required": [
@@ -7401,7 +7415,7 @@
                 "totalCompletions"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day (increments, NOT a running total). Summing the `total*` rows reproduces the `total*` headline; a `unique*` row is distinct users WITHIN THAT DAY, so summing `unique*` rows over-counts a user active on several days \u2014 there is no daily series for range-wide unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           },
           "tasks": {
             "type": "array",
@@ -7419,40 +7433,37 @@
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 9007199254740991,
-                  "description": "Times the CHECKLIST panel was expanded (unique users) \u2014 a whole-checklist count repeated on every task row, not this task\u2019s own visibility."
-                },
-                "totalViews": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 9007199254740991,
-                  "description": "Whole-checklist expansions (all), repeated on every row \u2014 see uniqueViews."
+                  "description": "Distinct users who expanded the CHECKLIST panel \u2014 a whole-checklist count repeated on every task row (there is no per-task view event), not this task\u2019s own visibility."
                 },
                 "uniqueCompletions": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who completed this task."
                 },
                 "totalCompletions": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Runs in which this task was completed."
                 },
                 "uniqueClicks": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who clicked this task."
                 },
                 "totalClicks": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Task-click events (repeats included)."
                 }
               },
               "required": [
                 "name",
                 "taskId",
                 "uniqueViews",
-                "totalViews",
                 "uniqueCompletions",
                 "totalCompletions",
                 "uniqueClicks",
@@ -7510,23 +7521,14 @@
           "uniqueSeen": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Distinct users whose launcher FIRST appeared in the range. The seen event fires once per user (at first display; a launcher has one lifetime session), so a range counts users NEWLY reached in it \u2014 a user first reached before the range does not appear here no matter how often they still see the launcher."
           },
-          "totalSeen": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 9007199254740991
-          },
-          "uniqueActivations": {
+          "newActivations": {
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991,
-            "description": "Distinct users who clicked (activated) the launcher."
-          },
-          "totalActivations": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 9007199254740991
+            "description": "Distinct users whose FIRST-EVER activation (click / hover, per the launcher setting) fell in the range. Later activations never re-count a user, so this pairs with uniqueSeen as a first-touch funnel. A user first reached in an earlier range who first activates now counts here but not in uniqueSeen, so per-range newActivations/uniqueSeen can exceed 1; over an all-time range it cannot."
           },
           "byDay": {
             "type": "array",
@@ -7540,34 +7542,23 @@
                 "uniqueSeen": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users whose launcher FIRST appeared in the range. The seen event fires once per user (at first display; a launcher has one lifetime session), so a range counts users NEWLY reached in it \u2014 a user first reached before the range does not appear here no matter how often they still see the launcher."
                 },
-                "totalSeen": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 9007199254740991
-                },
-                "uniqueActivations": {
+                "newActivations": {
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 9007199254740991,
-                  "description": "Distinct users who clicked (activated) the launcher."
-                },
-                "totalActivations": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 9007199254740991
+                  "description": "Distinct users whose FIRST-EVER activation (click / hover, per the launcher setting) fell in the range. Later activations never re-count a user, so this pairs with uniqueSeen as a first-touch funnel. A user first reached in an earlier range who first activates now counts here but not in uniqueSeen, so per-range newActivations/uniqueSeen can exceed 1; over an all-time range it cannot."
                 }
               },
               "required": [
                 "date",
                 "uniqueSeen",
-                "totalSeen",
-                "uniqueActivations",
-                "totalActivations"
+                "newActivations"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day FIRST-TOUCH activity: each row counts the users whose first event of that kind fell on that calendar day. A user appears on exactly one day, so rows never double-count and summing them equals the range headline. Note the question-analytics nps/rating byDay uses a different convention (rolling-window cumulative)."
           }
         },
         "required": [
@@ -7579,9 +7570,7 @@
           "timezone",
           "contentType",
           "uniqueSeen",
-          "totalSeen",
-          "uniqueActivations",
-          "totalActivations",
+          "newActivations",
           "byDay"
         ]
       },
@@ -7618,23 +7607,14 @@
           "uniqueSeen": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
-          },
-          "totalSeen": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Distinct users whose banner FIRST appeared in the range \u2014 the seen event fires once per user (lifetime single session), so a range counts users newly reached in it, not users who merely still had it on screen."
           },
           "uniqueDismissals": {
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991,
-            "description": "Distinct users who closed the banner."
-          },
-          "totalDismissals": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 9007199254740991
+            "description": "Distinct users who dismissed the banner in the range (a dismissal happens at most once per user)."
           },
           "byDay": {
             "type": "array",
@@ -7648,34 +7628,23 @@
                 "uniqueSeen": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
-                },
-                "totalSeen": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users whose banner FIRST appeared in the range \u2014 the seen event fires once per user (lifetime single session), so a range counts users newly reached in it, not users who merely still had it on screen."
                 },
                 "uniqueDismissals": {
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 9007199254740991,
-                  "description": "Distinct users who closed the banner."
-                },
-                "totalDismissals": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 9007199254740991
+                  "description": "Distinct users who dismissed the banner in the range (a dismissal happens at most once per user)."
                 }
               },
               "required": [
                 "date",
                 "uniqueSeen",
-                "totalSeen",
-                "uniqueDismissals",
-                "totalDismissals"
+                "uniqueDismissals"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day FIRST-TOUCH activity: each row counts the users whose first event of that kind fell on that calendar day. A user appears on exactly one day, so rows never double-count and summing them equals the range headline. Note the question-analytics nps/rating byDay uses a different convention (rolling-window cumulative)."
           }
         },
         "required": [
@@ -7687,9 +7656,7 @@
           "timezone",
           "contentType",
           "uniqueSeen",
-          "totalSeen",
           "uniqueDismissals",
-          "totalDismissals",
           "byDay"
         ]
       },
@@ -7726,12 +7693,14 @@
           "uniqueOpens": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Distinct users who expanded the panel in the range."
           },
           "totalOpens": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Panel expansions in the range \u2014 every expansion counts, so repeats by the same user add up."
           },
           "uniqueClicks": {
             "type": "integer",
@@ -7742,7 +7711,8 @@
           "totalClicks": {
             "type": "integer",
             "minimum": 0,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "description": "Block-click events in the range (repeats included). Normally equals the sum of the block rows' totalClicks; it can exceed that sum when clicks were recorded on blocks since removed from the published version."
           },
           "byDay": {
             "type": "array",
@@ -7756,12 +7726,14 @@
                 "uniqueOpens": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who expanded the panel in the range."
                 },
                 "totalOpens": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Panel expansions in the range \u2014 every expansion counts, so repeats by the same user add up."
                 },
                 "uniqueClicks": {
                   "type": "integer",
@@ -7772,7 +7744,8 @@
                 "totalClicks": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Block-click events in the range (repeats included). Normally equals the sum of the block rows' totalClicks; it can exceed that sum when clicks were recorded on blocks since removed from the published version."
                 }
               },
               "required": [
@@ -7783,7 +7756,7 @@
                 "totalClicks"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day (increments, NOT a running total). Summing the `total*` rows reproduces the `total*` headline; a `unique*` row is distinct users WITHIN THAT DAY, so summing `unique*` rows over-counts a user active on several days \u2014 there is no daily series for range-wide unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           },
           "blocks": {
             "type": "array",
@@ -7796,6 +7769,10 @@
                 "blockId": {
                   "type": "string"
                 },
+                "tabId": {
+                  "type": "string",
+                  "description": "The tab's stable identity \u2014 group block rows by it (tabName can be null or duplicated across tabs)."
+                },
                 "tabName": {
                   "type": "string",
                   "nullable": true
@@ -7803,17 +7780,20 @@
                 "uniqueClicks": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who clicked this block."
                 },
                 "totalClicks": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 9007199254740991
+                  "maximum": 9007199254740991,
+                  "description": "Click events on this block (repeats included)."
                 }
               },
               "required": [
                 "name",
                 "blockId",
+                "tabId",
                 "tabName",
                 "uniqueClicks",
                 "totalClicks"
@@ -7877,7 +7857,7 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991,
-            "description": "Occurrences of the tracked event."
+            "description": "Occurrences of the tracked event (repeats included)."
           },
           "byDay": {
             "type": "array",
@@ -7898,7 +7878,7 @@
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 9007199254740991,
-                  "description": "Occurrences of the tracked event."
+                  "description": "Occurrences of the tracked event (repeats included)."
                 }
               },
               "required": [
@@ -7907,7 +7887,7 @@
                 "totalOccurrences"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day activity: each row counts only that calendar day (increments, NOT a running total). Summing the `total*` rows reproduces the `total*` headline; a `unique*` row is distinct users WITHIN THAT DAY, so summing `unique*` rows over-counts a user active on several days \u2014 there is no daily series for range-wide unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
           }
         },
         "required": [
@@ -7957,12 +7937,7 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991,
-            "description": "Distinct users who saw the announcement (opened the feed listing it, or had its popup presented). Seen fires once per (user, announcement), so unique and total normally match."
-          },
-          "totalSeen": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 9007199254740991
+            "description": "Distinct users who saw the announcement (opened the feed listing it, or had its popup presented). Seen fires once per (user, announcement) \u2014 repeat views never add."
           },
           "byDay": {
             "type": "array",
@@ -7977,21 +7952,15 @@
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 9007199254740991,
-                  "description": "Distinct users who saw the announcement (opened the feed listing it, or had its popup presented). Seen fires once per (user, announcement), so unique and total normally match."
-                },
-                "totalSeen": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "maximum": 9007199254740991
+                  "description": "Distinct users who saw the announcement (opened the feed listing it, or had its popup presented). Seen fires once per (user, announcement) \u2014 repeat views never add."
                 }
               },
               "required": [
                 "date",
-                "uniqueSeen",
-                "totalSeen"
+                "uniqueSeen"
               ]
             },
-            "description": "Per-day activity: each row counts only that calendar day's events (increments, NOT a running total). Summing rows reproduces the `total*` headline; it does NOT reproduce the `unique*` headline \u2014 a `unique*` row is distinct users WITHIN THAT DAY, so a user active on three days is counted three times and the sum over-counts (it converges to `total*`). There is no daily series for range-unique users. Note the question-analytics nps/rating byDay uses the OPPOSITE convention (rolling-window cumulative)."
+            "description": "Per-day FIRST-TOUCH activity: each row counts the users whose first event of that kind fell on that calendar day. A user appears on exactly one day, so rows never double-count and summing them equals the range headline. Note the question-analytics nps/rating byDay uses a different convention (rolling-window cumulative)."
           }
         },
         "required": [
@@ -8003,7 +7972,6 @@
           "timezone",
           "contentType",
           "uniqueSeen",
-          "totalSeen",
           "byDay"
         ]
       },
