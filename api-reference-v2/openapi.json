@@ -7103,7 +7103,7 @@
                   "properties": {
                     "rule": {
                       "type": "string",
-                      "description": "Which validation layer rejected it: schema | reactive_condition | action_not_allowed | step_shape | reference_target | auto_start."
+                      "description": "Which validation layer rejected it: schema | reactive_condition | action_not_allowed | step_shape | reference_target | auto_start | media_url. New values may be added; treat an unknown value as a generic validation failure."
                     },
                     "message": {
                       "type": "string"
