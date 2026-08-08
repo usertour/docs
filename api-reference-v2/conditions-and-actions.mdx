@@ -38,7 +38,7 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 | `type` | `"attribute"` | yes |  |
 | `scope` | `user` \| `company` \| `companyMembership` | yes | Whose attribute: the user's, their company's, or their membership in that company. |
 | `attribute` | string | yes | Attribute code (see [Attributes](/api-reference-v2/attributes)). |
-| `op` | string | yes | Operator — depends on the attribute's data type (e.g. `is`, `contains`, `greater_than`). |
+| `op` | string | yes | Operator — depends on the attribute's data type (strings: `is`, `contains`, …; numbers: `gt` / `gte` / `lt` / `lte` / `between`; presence: `any` / `empty`). |
 | `value` | string |  | Comparison value. |
 | `value2` | string |  | Second value (for `between`). |
 | `values` | string[] |  | Value list (for list operators). |
@@ -148,8 +148,7 @@ replacements, so leaving it out deletes it. Authoring a new one is rejected.
 |---|---|---|---|
 | `type` | `"navigate"` | yes |  |
 | `url` | string | yes | Supports `{{ attribute }}` interpolation. |
-| `newTab` | boolean |  |  |
-| `newWindow` | boolean |  |  |
+| `newTab` | boolean |  | Open the URL in a new browser tab instead of navigating the current one. |
 
 #### `dismiss`
 
