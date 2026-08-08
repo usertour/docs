@@ -31,7 +31,7 @@ A rich-text paragraph block.
 |---|---|---|---|
 | `id` | string |  | Field-merge write handle. |
 | `type` | `"text"` | yes |  |
-| `markdown` | string | yes | A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only — no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)` (append `{target=_blank}` for a new tab), and `{{ attribute_code \| default: "x" }}` for user attributes — emphasis applies to placeholders too (`**Hi {{ name }}!**` bolds the interpolated value). |
+| `markdown` | string | yes | A small markdown subset: paragraphs, `# `/`## ` headings (h1/h2 only — no h3+), `-`/`*` and `1.` lists, ``` code fences; inline `**bold**`, `*italic*`, `[text](url)`, and ``{{ attribute_code \| default: "x" }}`` for user attributes. Anything outside this subset is SILENTLY normalized, not rejected: h3+ → h2; blockquotes flatten to paragraphs; tables, horizontal rules, strikethrough, inline images/code, and liquid filters other than `default` are dropped. Unsupported syntax won't round-trip — don't rely on it. |
 
 ```json
 { "type": "text", "markdown": "Welcome **{{ first_name | default: \"there\" }}** 👋" }
@@ -67,8 +67,8 @@ A rich-text paragraph block.
 | `type` | `"button"` | yes |  |
 | `text` | string | yes | Button label. |
 | `actions` | [Action](/api-reference-v2/conditions-and-actions#actions)[] |  | What clicking does (e.g. go to a step, dismiss). |
-| `disabledWhen` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Disable the button while these match. |
-| `hiddenWhen` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Hide the button while these match. |
+| `disabledWhen` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | REACTIVE slot — polled live in the browser (the button disables the moment the conditions match). Client-evaluable condition types only: attribute / current_url / element / text_input / text_filled / time_window; event / segment / content_state are rejected (E1017). |
+| `hiddenWhen` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | REACTIVE slot — polled live in the browser (the button shows/hides as conditions change). Same client-evaluable-only rule as `disabledWhen`. |
 | `variant` | `primary` \| `secondary` |  | Visual style. |
 | `margin` | [Spacing](#shared-shapes) |  | Outer margin. |
 
@@ -91,9 +91,9 @@ An embedded URL (video, iframe-able page, …).
 |---|---|---|---|
 | `id` | string |  | Field-merge write handle. |
 | `type` | `"embed"` | yes |  |
-| `url` | string | yes | Paste the page's normal URL (e.g. a `youtube.com/watch` link) — on write it is resolved through the standard oEmbed provider registry and the provider's official embed markup is stored, so you never hand-build `/embed/` URLs. A URL no provider claims is iframed as-is and renders only if the site allows being framed. |
+| `url` | string | yes | Paste the page's normal URL (e.g. a youtube.com/watch link) — on write it is resolved through the standard oEmbed provider registry (YouTube, Vimeo, Loom, Figma, …) and the provider's official embed markup is stored, so you never hand-build /embed/ URLs. A URL no provider claims is iframed as-is — it renders only if that site allows being framed (no X-Frame-Options/CSP block). |
 | `width` | [Dimension](#shared-shapes) |  | Width. |
-| `height` | [Dimension](#shared-shapes) |  | Height. |
+| `height` | [Dimension](#shared-shapes) |  | Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/… size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px — the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ "unit": "pixels", "value": … }`. |
 | `margin` | [Spacing](#shared-shapes) |  | Outer margin. |
 
 ```json
@@ -110,7 +110,7 @@ shapes below; `actions` run after the user answers.
 | `id` | string |  | Field-merge write handle. |
 | `type` | `"question"` | yes |  |
 | `question` | [Question](#questions) | yes | The question definition. |
-| `actions` | [Action](/api-reference-v2/conditions-and-actions#actions)[] |  | Run after the answer is submitted. |
+| `actions` | [Action](/api-reference-v2/conditions-and-actions#actions)[] |  | Actions that fire when this question is answered (on pick for nps/rating/single-select; on its Submit button for text/multi-select). Put a `goto_step` HERE to advance to the next step — without it the question records the answer but the flow does NOT advance (validate flags the next step "not reachable"). Do NOT add a separate `button` block just to advance: it doubles up with the question's own submit affordance. |
 
 ```json
 {
@@ -129,49 +129,52 @@ stores the answer on a user attribute. `cvid` is server-owned (returned on read)
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `kind` | `"nps"` | yes |  |
-| `name` | string | yes |  |
-| `lowLabel` | string |  | Label under the low end (e.g. "Not likely"). |
-| `highLabel` | string |  | Label under the high end. |
-| `bindAttribute` | string |  | Store the score on this user attribute. |
+| `name` | string | yes | The question's internal name / analytics label (it is the `questionName` on captured responses). It is NOT rendered to the user — the widget shows only the input (scale / options / text field), not this string. To show a visible question prompt, add a `text` block in the SAME step before the question block; a question with only a `name` renders as bare options with no question text. |
+| `cvid` | string |  |  |
+| `lowLabel` | string |  |  |
+| `highLabel` | string |  |  |
+| `bindAttribute` | string |  | Optional: codeName of an EXISTING attribute (create the attribute definition first) to ALSO save this answer onto the user for targeting/segmentation — use the codeName, NOT the id. The write does not check it, but the version validation WARNS when the attribute is missing or its dataType mismatches the answer — read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event — bind only when you need to target/segment on it. |
 
 #### `rating`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `kind` | `"rating"` | yes |  |
-| `name` | string | yes |  |
-| `style` | `star` \| `scale` | yes | Star rating or numeric scale. |
-| `range` | `object{ low, high }` | yes | Score range, e.g. `{ "low": 1, "high": 5 }`. |
-| `default` | number |  | Pre-selected value. |
+| `name` | string | yes | The question's internal name / analytics label (it is the `questionName` on captured responses). It is NOT rendered to the user — the widget shows only the input (scale / options / text field), not this string. To show a visible question prompt, add a `text` block in the SAME step before the question block; a question with only a `name` renders as bare options with no question text. |
+| `cvid` | string |  |  |
+| `style` | `star` \| `scale` | yes | star = star rating; scale = a numeric scale. A "scale" question IS a rating with style:"scale" — there is no separate "scale" kind. |
+| `range` | `object{ low, high }` | yes | Numeric range, e.g. `{ low: 1, high: 5 }`. |
 | `lowLabel` | string |  |  |
 | `highLabel` | string |  |  |
-| `bindAttribute` | string |  |  |
+| `bindAttribute` | string |  | Optional: codeName of an EXISTING attribute (create the attribute definition first) to ALSO save this answer onto the user for targeting/segmentation — use the codeName, NOT the id. The write does not check it, but the version validation WARNS when the attribute is missing or its dataType mismatches the answer — read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event — bind only when you need to target/segment on it. |
 
 #### `text`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `kind` | `"text"` | yes |  |
-| `name` | string | yes |  |
-| `multiline` | boolean | yes | Single-line vs multi-line input. |
+| `name` | string | yes | The question's internal name / analytics label (it is the `questionName` on captured responses). It is NOT rendered to the user — the widget shows only the input (scale / options / text field), not this string. To show a visible question prompt, add a `text` block in the SAME step before the question block; a question with only a `name` renders as bare options with no question text. |
+| `cvid` | string |  |  |
+| `multiline` | boolean | yes |  |
 | `placeholder` | string |  |  |
-| `buttonText` | string |  | Submit-button label. |
-| `required` | boolean |  |  |
-| `bindAttribute` | string |  |  |
+| `buttonText` | string |  |  |
+| `required` | boolean |  | Require an answer before submit. ONLY `text` supports this — nps / rating / choice cannot be marked required. |
+| `bindAttribute` | string |  | Optional: codeName of an EXISTING attribute (create the attribute definition first) to ALSO save this answer onto the user for targeting/segmentation — use the codeName, NOT the id. The write does not check it, but the version validation WARNS when the attribute is missing or its dataType mismatches the answer — read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event — bind only when you need to target/segment on it. |
 
 #### `choice`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `kind` | `"choice"` | yes |  |
-| `name` | string | yes |  |
-| `options` | `object{ label, value }[]` | yes | The choices. |
-| `allowMultiple` | boolean | yes | Multi-select vs single-select. |
-| `enableOther` | boolean |  | Add a free-text "Other" option. |
+| `name` | string | yes | The question's internal name / analytics label (it is the `questionName` on captured responses). It is NOT rendered to the user — the widget shows only the input (scale / options / text field), not this string. To show a visible question prompt, add a `text` block in the SAME step before the question block; a question with only a `name` renders as bare options with no question text. |
+| `cvid` | string |  |  |
+| `options` | `object{ label, value }`[] | yes | Each option has a human-facing `label` and a stored `value` — the `value` is what gets recorded/bound as the answer. |
+| `allowMultiple` | boolean | yes | false = single-select, true = multi-select. A multi-select answer needs a `list`-typed bound attribute. |
+| `enableOther` | boolean |  |  |
 | `otherPlaceholder` | string |  |  |
-| `shuffle` | boolean |  | Randomize option order. |
+| `shuffle` | boolean |  |  |
 | `buttonText` | string |  |  |
-| `bindAttribute` | string |  |  |
+| `bindAttribute` | string |  | Optional: codeName of an EXISTING attribute (create the attribute definition first) to ALSO save this answer onto the user for targeting/segmentation — use the codeName, NOT the id. The write does not check it, but the version validation WARNS when the attribute is missing or its dataType mismatches the answer — read warnings. A wrong code that slips through silently captures nothing at runtime. Match the attribute dataType to the answer: number (nps / rating), string (single-select choice), list (multi-select choice). Leaving it unset still records the answer as a response event — bind only when you need to target/segment on it. |
 
 ## columns
 
@@ -182,7 +185,7 @@ the block model.
 |---|---|---|---|
 | `id` | string |  | Field-merge write handle. |
 | `type` | `"columns"` | yes |  |
-| `columns` | [Column](#shared-shapes)[] | yes | The columns in this row. |
+| `columns` | Column[] | yes | One entry per column, laid out left-to-right. Each column is a mini vertical stack of `blocks` (usually one). |
 
 ```json
 {

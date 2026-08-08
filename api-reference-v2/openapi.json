@@ -8597,7 +8597,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set { \"unit\": \"pixels\", \"value\": \u2026 }.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {
@@ -11479,7 +11479,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set { \"unit\": \"pixels\", \"value\": \u2026 }.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {
@@ -14416,7 +14416,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set { \"unit\": \"pixels\", \"value\": \u2026 }.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {
@@ -16545,7 +16545,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set { \"unit\": \"pixels\", \"value\": \u2026 }.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {
@@ -18716,7 +18716,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set { \"unit\": \"pixels\", \"value\": \u2026 }.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {

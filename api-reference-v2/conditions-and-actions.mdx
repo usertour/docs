@@ -28,20 +28,20 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"group"` | yes |  |
-| `match` | `all` \| `any` | yes | `all` = AND, `any` = OR (how the children combine). |
-| `conditions` | [Condition](#conditions)[] | yes | Nested conditions. |
+| `match` | `all` \| `any` | yes |  |
+| `conditions` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] | yes |  |
 
 #### `attribute`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"attribute"` | yes |  |
-| `scope` | `user` \| `company` \| `companyMembership` | yes | Whose attribute: the user's, their company's, or their membership in that company. |
-| `attribute` | string | yes | Attribute code (see [Attributes](/api-reference-v2/attributes)). |
-| `op` | string | yes | Operator — depends on the attribute's data type (strings: `is`, `contains`, …; numbers: `gt` / `gte` / `lt` / `lte` / `between`; presence: `any` / `empty`). |
-| `value` | string |  | Comparison value. |
-| `value2` | string |  | Second value (for `between`). |
-| `values` | string[] |  | Value list (for list operators). |
+| `scope` | `user` \| `company` \| `companyMembership` | yes | Which entity owns the attribute — `user` (the end user), `company`, or `companyMembership`. Same value as the attribute definition's `scope` (see the attribute definitions list); required to disambiguate a codeName that exists in more than one scope. |
+| `attribute` | string | yes |  |
+| `op` | `is` \| `not` \| `contains` \| `not_contains` \| `starts_with` \| `ends_with` \| `any` \| `empty` \| `lt` \| `lte` \| `gt` \| `gte` \| `between` \| `true` \| `false` \| `includes_any` \| `includes_all` \| `not_includes_any` \| `not_includes_all` \| `less_than` \| `exactly` \| `more_than` \| `before` \| `on` \| `after` | yes | Operator — the allowed set depends on the attribute dataType. String: is \| not \| contains \| not_contains \| starts_with \| ends_with \| any \| empty. Number: is \| not \| lt \| lte \| gt \| gte \| between \| any \| empty. Boolean: true \| false \| any \| empty. List: includes_any \| includes_all \| not_includes_any \| not_includes_all \| any \| empty. DateTime: less_than \| exactly \| more_than (relative — `value` is a number of days) \| before \| on \| after (`value` is an absolute date) \| any \| empty. The relative ops are ONE-SIDED bounds around (now − N days): `less_than N` = the date is AFTER now−N — so it also matches every FUTURE date, and on a future-dated attribute (a trial end, a renewal date) it is NOT "within the last N days"; `more_than N` = the date is BEFORE now−N. **"Signed up in the last N days" therefore needs BOTH bounds** — `less_than N` AND `more_than 0` in one `all` group; `less_than N` alone silently includes anyone whose date is in the future (a mis-mapped trial-end column, a clock/timezone slip), and those are exactly the users a new-user audience must not contain (observed in testing). Negative N shifts the bound into the future: the rolling "within the NEXT 7 days" window is `less_than` value "0" AND `more_than` value "-7" (two conditions, both required). The relative ops are DAY-granularity only — no unit field; for hour/minute windows use an `event` condition with a `within` (which has a `unit`). |
+| `value` | string |  | The comparison value (string / number-as-string / date). Omit for any/empty/true/false. |
+| `value2` | string |  | Upper bound for the `between` operator (`value` is the lower bound). |
+| `values` | string[] |  | Values for the List operators (includes_any / includes_all / …). |
 
 The same shape with `type: "event_attribute"` (and no `scope`) filters on an
 **event's own** attributes — valid only inside an `event` condition's `where`.
@@ -51,50 +51,50 @@ The same shape with `type: "event_attribute"` (and no `scope`) filters on an
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"segment"` | yes |  |
-| `segment` | string | yes | Segment id. |
-| `in` | boolean | yes | `true` = in the segment, `false` = not in it. |
+| `segment` | string | yes |  |
+| `in` | boolean | yes |  |
 
 #### `current_url`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"current_url"` | yes |  |
-| `includes` | string[] | yes | URL **patterns** (anchored whole-URL match — NOT substring): `*` is a wildcard within one URL part, `:name` matches one path segment. `/pricing` alone never matches — use `*/pricing`; a bare `*` matches every page. Multiple patterns OR together. |
-| `excludes` | string[] |  | Patterns to exclude (same syntax); excludes win over includes. |
+| `includes` | string[] | yes | URL patterns (anchored whole-url match, NOT substring/regex). `*` = wildcard within one url part; `:name` = one path segment. A bare `*` (i.e. `["*"]`) matches EVERY page on every host incl. deep paths — the canonical always-on / whole-site pattern (use it when content should be available everywhere). Scope it down instead with: `*/` (homepage only — path exactly `/`), `*/pricing` (one page), `*/app/*` (a section + below), `host.com/*` (any page on a specific host). Multiple patterns are OR-matched: the URL matches this list if it matches ANY one pattern (so "/tasks OR /dashboard" is one condition with both patterns here — no group needed). |
+| `excludes` | string[] |  | URL patterns to exclude (same syntax as includes); excludes win over includes. |
 
 #### `element`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"element"` | yes |  |
-| `target` | [Target](#target) |  | The element to check. |
-| `state` | `present` \| `hidden` \| `disabled` \| `enabled` \| `clicked` \| `unclicked` | yes | `present` means visible **in the viewport** (not merely in the DOM); `clicked` latches per page load — the listener attaches on first evaluation and the condition stays true until reload. |
+| `target` | Target |  |  |
+| `state` | `present` \| `hidden` \| `disabled` \| `enabled` \| `clicked` \| `unclicked` | yes | `present` means NOT CLIPPED AWAY: the element is in the DOM and its box lies inside the viewport / its scroll ancestors — scrolled off-screen or `display:none` never satisfies it (and `hidden` is its negation). It is NOT "the user can see something there": an EMPTY, zero-height placeholder node satisfies `present` (observed in testing: a checklist task keyed on an initially-empty `<p>` status line ticked itself the moment the checklist appeared, before the shopper did anything). So do not use element presence as a proxy for "the app has said something": most apps keep the container mounted and only fill in its text. Match the TEXT instead (`target.text` + `present`, or the negation trick: the old text `hidden`). Appearances shorter than about a second can be missed entirely. `disabled`/`enabled` read the element disabled state at evaluation time. **`clicked` means "clicked since page load AND the element is STILL in the DOM right now"** — both halves, re-checked every evaluation. The click memory latches (the listener attaches the FIRST time the condition is evaluated, so earlier clicks are invisible, and the memory survives a re-render), but the element lookup is redone each poll. Two consequences, one of them silent: (1) **an element that UNMOUNTS on click can NEVER satisfy it** — the click lands, the element vanishes, the lookup fails from then on and the condition stays false forever with no error (observed in testing: a tracker on a button that clears its own toolbar counted ZERO real clicks); (2) an element that unmounts and REMOUNTS satisfies it again, so a tracker gated on it fires once per remount — not once per page load. Unlike `present`, this lookup does NOT require viewport visibility: scrolling the target off-screen keeps `clicked` true. `unclicked` negates the same pair, so it is also false while the element is absent. To count a COMPLETED action, condition on what the app shows afterwards (a success toast, a state change) rather than `clicked` on the button that starts it. |
 
 #### `content_state`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"content_state"` | yes |  |
-| `content` | string | yes | Content id of the **flow or checklist** whose per-user state to check (other types are rejected). |
-| `state` | `seen` \| `unseen` \| `completed` \| `uncompleted` \| `active` \| `inactive` | yes | To sequence "show B after A has run and closed", use `seen` AND `inactive` together — `seen` alone fires while A is still open. |
+| `content` | string | yes | contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state — referencing a banner / launcher / resource-center / tracker is rejected at write. |
+| `state` | `seen` \| `unseen` \| `completed` \| `uncompleted` \| `active` \| `inactive` | yes | The referenced flow/checklist's state for THIS user. seen = started at least once (for a flow, TRUE from the moment it opens; for a checklist, TRUE only once the user EXPANDS the panel — a `initialDisplay: "button"` checklist whose launcher is never clicked stays unseen forever); unseen = never started; active = currently open/running; inactive = NOT currently running (covers both never-started and ran-then-closed); completed = reached a goal/completion step; uncompleted = not completed. To gate piece B until flow A has run AND closed (the usual "show next thing after the welcome flow" sequencing), use `seen` AND `inactive` together — `seen` alone fires while A is still open (B piles on top), and `completed` alone strands users who skip/dismiss A. |
 
 #### `event`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"event"` | yes |  |
-| `event` | string | yes | Event code. |
-| `count` | `object{ op, n, n2 }` |  | How many times — `op` ∈ `at_least`/`at_most`/`exactly`/`between`. |
-| `within` | `object{ op, value, value2, unit }` |  | Time window — `op` ∈ `in_the_last`/`more_than`/`between`/`any_time`, `unit` ∈ seconds…days. |
-| `scope` | `current_user` \| `current_user_in_company` \| `any_user_in_company` |  |  |
-| `where` | Condition[] |  | Filter on the event's own attributes — `event_attribute` conditions only (see [`attribute`](#attribute)). |
+| `event` | string | yes |  |
+| `count` | `object{ op, n, n2 }` |  | How many times the event must have occurred. Omit it for the common case "the event has happened" (treated as at_least 1). Set `op`/`n` for a threshold (`between` needs `n` and `n2`). `at_least`/`between` require n ≥ 1; use `at_most`/`exactly` with 0 for "never happened". |
+| `within` | `object{ op, value, value2, unit }` |  | Optional time window for the event count. Omit it (or use `any_time`) to count over all time — "the event has ever happened". Any other `op` (`in_the_last` / `more_than` / `between`) requires BOTH `value` and `unit` (a windowed op with no `unit` is rejected — the runtime would otherwise silently assume days); `between` also needs `value2`. |
+| `scope` | `current_user` \| `current_user_in_company` \| `any_user_in_company` |  | Whose event activity to count (default `current_user`). `current_user` = only this user's own events. `current_user_in_company` = this user's events, but counted within their currently-associated company context (needs the user associated to a company via `group()` / the company-membership API). `any_user_in_company` = events by ANY user in this user's company — account-level activity (e.g. "anyone on the account has done X"). The two company scopes require the user to be in a company or they never match. |
+| `where` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  |  |
 
 #### `text_input`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"text_input"` | yes |  |
-| `target` | [Target](#target) |  | The input element. |
+| `target` | Target |  |  |
 | `op` | `is` \| `not` \| `contains` \| `not_contains` \| `starts_with` \| `ends_with` \| `match` \| `unmatch` \| `any` \| `empty` | yes |  |
 | `value` | string |  |  |
 
@@ -103,15 +103,15 @@ The same shape with `type: "event_attribute"` (and no `scope`) filters on an
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"text_filled"` | yes |  |
-| `target` | [Target](#target) |  | The input element. |
+| `target` | Target |  |  |
 
 #### `time_window`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"time_window"` | yes |  |
-| `start` | string | yes | ISO 8601 start. Required on write — the runtime never matches a window without a start. For "until X", set `start` to any past instant. |
-| `end` | string |  | ISO 8601 end. Omit for an open-ended "from start onwards" window. |
+| `start` | string |  | Window start (ISO datetime). REQUIRED on write — the runtime never matches a window without a start, so validation rejects end-only windows. For "until X" semantics, set start to any past instant and end to X. |
+| `end` | string |  | Window end (ISO datetime). Omit for an open-ended "from start onwards" window. |
 
 #### `task_clicked`
 
@@ -139,22 +139,22 @@ replacements, so leaving it out deletes it. Authoring a new one is rejected.
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"start_content"` | yes |  |
-| `content` | string | yes | Content id of the **flow or checklist** to launch (other types are rejected). The target must be published in the same environment to actually start. |
-| `step` | string |  | Start at this step (cvid). |
+| `content` | string | yes | contentId of the flow or checklist to launch (an id from the content list) — a raw content id, NOT a step key (unlike goto_step). Must reference a flow or checklist (a banner / launcher / resource-center / tracker is rejected at write). The target must be PUBLISHED to actually start at runtime; an unknown/dangling id is rejected at validate. |
+| `step` | string |  | Optional cvid of a step within the launched flow to start at. |
 
 #### `navigate`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `type` | `"navigate"` | yes |  |
-| `url` | string | yes | Supports `{{ attribute }}` interpolation. |
+| `url` | string | yes | Absolute URL, or an app-relative path ("/docs/x") resolved against the origin the user is on — relative paths are the normal choice for in-app navigation. |
 | `newTab` | boolean |  | Open the URL in a new browser tab instead of navigating the current one. |
 
 #### `dismiss`
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `type` | `"dismiss"` | yes | Dismiss the current content. |
+| `type` | `"dismiss"` | yes |  |
 
 <Note>
   `run_javascript` is **echo-only**: builder-authored script actions appear on
