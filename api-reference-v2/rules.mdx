@@ -28,7 +28,7 @@ Send `startRules: null` to clear them.
 |---|---|---|---|
 | `mode` | `once` \| `multiple` \| `unlimited` | yes | `once` = show a single time; `multiple` = up to N per window; `unlimited` = every time the conditions match. Omitting `frequency` entirely behaves as `once` (the default is applied at evaluation time and does not appear on read-backs). |
 | `every` | `object{ times, duration, unit }` |  | Re-show window — used by `multiple` (with `times`) and `unlimited`; ignored by `once`. `unit` ∈ `seconds`/`minutes`/`hours`/`days`. Manual and programmatic starts also count toward the `multiple` limit. |
-| `atLeast` | `object{ duration, unit }` |  | Quiet period across content: only auto-start if no OTHER content has been shown within this window — avoids showing a user too many things at once. |
+| `atLeast` | `object{ duration, unit }` |  | Quiet period: only auto-start if no OTHER content of the SAME type has been shown within this window — and since only flows accept this knob, in practice: no other FLOW. A banner / checklist / launcher showing does NOT block it. |
 
 ```json
 {
