@@ -8463,7 +8463,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -8506,12 +8507,14 @@
                 }
               },
               "disabledWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button disables the moment the conditions match). Client-evaluable condition types only: attribute / current_url / element / text_input / text_filled / time_window; event / segment / content_state are rejected (E1017).",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListContentResponseDto__schema1"
                 }
               },
               "hiddenWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button shows/hides as conditions change). Same client-evaluable-only rule as `disabledWhen`.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListContentResponseDto__schema1"
@@ -8937,7 +8940,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -9933,7 +9937,7 @@
                                 "additionalProperties": false
                               }
                             ],
-                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
+                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element. A BUBBLE step is positioned by its THEME's bubble placement, so the only key it accepts here is `{ backdrop }` (positional keys are rejected \u2014 move the bubble by changing the theme); a HIDDEN step renders no UI and rejects `placement` entirely."
                           },
                           "width": {
                             "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -9958,6 +9962,7 @@
                               "type": "object",
                               "properties": {
                                 "when": {
+                                  "description": "REACTIVE slot \u2014 polled live in the browser while the step is on screen, so it accepts only client-evaluable condition types: attribute / current_url / element / text_input / text_filled / time_window. Event / segment / content_state conditions are server-evaluated and rejected here (E1017). A trigger with NO `when` never fires (an empty set is \"not matched\", not \"always\").",
                                   "type": "array",
                                   "items": {
                                     "$ref": "#/components/schemas/ListContentResponseDto__schema1"
@@ -10044,7 +10049,8 @@
                                         },
                                         "required": [
                                           "type"
-                                        ]
+                                        ],
+                                        "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                                       },
                                       {
                                         "type": "object",
@@ -10178,7 +10184,8 @@
                                   },
                                   "required": [
                                     "type"
-                                  ]
+                                  ],
+                                  "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                                 },
                                 {
                                   "type": "object",
@@ -10613,7 +10620,7 @@
                                       "additionalProperties": false
                                     }
                                   ],
-                                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
+                                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element. A BUBBLE step is positioned by its THEME's bubble placement, so the only key it accepts here is `{ backdrop }` (positional keys are rejected \u2014 move the bubble by changing the theme); a HIDDEN step renders no UI and rejects `placement` entirely."
                                 },
                                 "width": {
                                   "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -10638,6 +10645,7 @@
                                     "type": "object",
                                     "properties": {
                                       "when": {
+                                        "description": "REACTIVE slot \u2014 polled live in the browser while the step is on screen, so it accepts only client-evaluable condition types: attribute / current_url / element / text_input / text_filled / time_window. Event / segment / content_state conditions are server-evaluated and rejected here (E1017). A trigger with NO `when` never fires (an empty set is \"not matched\", not \"always\").",
                                         "type": "array",
                                         "items": {
                                           "$ref": "#/components/schemas/ListContentResponseDto__schema1"
@@ -10724,7 +10732,8 @@
                                               },
                                               "required": [
                                                 "type"
-                                              ]
+                                              ],
+                                              "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                                             },
                                             {
                                               "type": "object",
@@ -10858,7 +10867,8 @@
                                         },
                                         "required": [
                                           "type"
-                                        ]
+                                        ],
+                                        "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                                       },
                                       {
                                         "type": "object",
@@ -11335,7 +11345,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -11378,12 +11389,14 @@
                 }
               },
               "disabledWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button disables the moment the conditions match). Client-evaluable condition types only: attribute / current_url / element / text_input / text_filled / time_window; event / segment / content_state are rejected (E1017).",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ContentDto__schema1"
                 }
               },
               "hiddenWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button shows/hides as conditions change). Same client-evaluable-only rule as `disabledWhen`.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ContentDto__schema1"
@@ -11809,7 +11822,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -12800,7 +12814,7 @@
                           "additionalProperties": false
                         }
                       ],
-                      "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
+                      "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element. A BUBBLE step is positioned by its THEME's bubble placement, so the only key it accepts here is `{ backdrop }` (positional keys are rejected \u2014 move the bubble by changing the theme); a HIDDEN step renders no UI and rejects `placement` entirely."
                     },
                     "width": {
                       "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -12825,6 +12839,7 @@
                         "type": "object",
                         "properties": {
                           "when": {
+                            "description": "REACTIVE slot \u2014 polled live in the browser while the step is on screen, so it accepts only client-evaluable condition types: attribute / current_url / element / text_input / text_filled / time_window. Event / segment / content_state conditions are server-evaluated and rejected here (E1017). A trigger with NO `when` never fires (an empty set is \"not matched\", not \"always\").",
                             "type": "array",
                             "items": {
                               "$ref": "#/components/schemas/ContentDto__schema1"
@@ -12911,7 +12926,8 @@
                                   },
                                   "required": [
                                     "type"
-                                  ]
+                                  ],
+                                  "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                                 },
                                 {
                                   "type": "object",
@@ -13045,7 +13061,8 @@
                             },
                             "required": [
                               "type"
-                            ]
+                            ],
+                            "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                           },
                           {
                             "type": "object",
@@ -13470,7 +13487,7 @@
                                 "additionalProperties": false
                               }
                             ],
-                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
+                            "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element. A BUBBLE step is positioned by its THEME's bubble placement, so the only key it accepts here is `{ backdrop }` (positional keys are rejected \u2014 move the bubble by changing the theme); a HIDDEN step renders no UI and rejects `placement` entirely."
                           },
                           "width": {
                             "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -13495,6 +13512,7 @@
                               "type": "object",
                               "properties": {
                                 "when": {
+                                  "description": "REACTIVE slot \u2014 polled live in the browser while the step is on screen, so it accepts only client-evaluable condition types: attribute / current_url / element / text_input / text_filled / time_window. Event / segment / content_state conditions are server-evaluated and rejected here (E1017). A trigger with NO `when` never fires (an empty set is \"not matched\", not \"always\").",
                                   "type": "array",
                                   "items": {
                                     "$ref": "#/components/schemas/ContentDto__schema1"
@@ -13581,7 +13599,8 @@
                                         },
                                         "required": [
                                           "type"
-                                        ]
+                                        ],
+                                        "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                                       },
                                       {
                                         "type": "object",
@@ -13715,7 +13734,8 @@
                                   },
                                   "required": [
                                     "type"
-                                  ]
+                                  ],
+                                  "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                                 },
                                 {
                                   "type": "object",
@@ -14262,7 +14282,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -14305,12 +14326,14 @@
                 }
               },
               "disabledWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button disables the moment the conditions match). Client-evaluable condition types only: attribute / current_url / element / text_input / text_filled / time_window; event / segment / content_state are rejected (E1017).",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListContentVersionsResponseDto__schema1"
                 }
               },
               "hiddenWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button shows/hides as conditions change). Same client-evaluable-only rule as `disabledWhen`.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListContentVersionsResponseDto__schema1"
@@ -14736,7 +14759,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -15697,7 +15721,7 @@
                             "additionalProperties": false
                           }
                         ],
-                        "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
+                        "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element. A BUBBLE step is positioned by its THEME's bubble placement, so the only key it accepts here is `{ backdrop }` (positional keys are rejected \u2014 move the bubble by changing the theme); a HIDDEN step renders no UI and rejects `placement` entirely."
                       },
                       "width": {
                         "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -15722,6 +15746,7 @@
                           "type": "object",
                           "properties": {
                             "when": {
+                              "description": "REACTIVE slot \u2014 polled live in the browser while the step is on screen, so it accepts only client-evaluable condition types: attribute / current_url / element / text_input / text_filled / time_window. Event / segment / content_state conditions are server-evaluated and rejected here (E1017). A trigger with NO `when` never fires (an empty set is \"not matched\", not \"always\").",
                               "type": "array",
                               "items": {
                                 "$ref": "#/components/schemas/ListContentVersionsResponseDto__schema1"
@@ -15808,7 +15833,8 @@
                                     },
                                     "required": [
                                       "type"
-                                    ]
+                                    ],
+                                    "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                                   },
                                   {
                                     "type": "object",
@@ -15942,7 +15968,8 @@
                               },
                               "required": [
                                 "type"
-                              ]
+                              ],
+                              "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                             },
                             {
                               "type": "object",
@@ -16384,7 +16411,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -16427,12 +16455,14 @@
                 }
               },
               "disabledWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button disables the moment the conditions match). Client-evaluable condition types only: attribute / current_url / element / text_input / text_filled / time_window; event / segment / content_state are rejected (E1017).",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ContentVersionDto__schema1"
                 }
               },
               "hiddenWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button shows/hides as conditions change). Same client-evaluable-only rule as `disabledWhen`.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ContentVersionDto__schema1"
@@ -16858,7 +16888,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -17814,7 +17845,7 @@
                       "additionalProperties": false
                     }
                   ],
-                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
+                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element. A BUBBLE step is positioned by its THEME's bubble placement, so the only key it accepts here is `{ backdrop }` (positional keys are rejected \u2014 move the bubble by changing the theme); a HIDDEN step renders no UI and rejects `placement` entirely."
                 },
                 "width": {
                   "description": "Per-step width override in pixels (border-box outer width) \u2014 absent = the theme's surface width.",
@@ -17839,6 +17870,7 @@
                     "type": "object",
                     "properties": {
                       "when": {
+                        "description": "REACTIVE slot \u2014 polled live in the browser while the step is on screen, so it accepts only client-evaluable condition types: attribute / current_url / element / text_input / text_filled / time_window. Event / segment / content_state conditions are server-evaluated and rejected here (E1017). A trigger with NO `when` never fires (an empty set is \"not matched\", not \"always\").",
                         "type": "array",
                         "items": {
                           "$ref": "#/components/schemas/ContentVersionDto__schema1"
@@ -17925,7 +17957,8 @@
                               },
                               "required": [
                                 "type"
-                              ]
+                              ],
+                              "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                             },
                             {
                               "type": "object",
@@ -18059,7 +18092,8 @@
                         },
                         "required": [
                           "type"
-                        ]
+                        ],
+                        "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                       },
                       {
                         "type": "object",
@@ -18548,7 +18582,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -18591,12 +18626,14 @@
                 }
               },
               "disabledWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button disables the moment the conditions match). Client-evaluable condition types only: attribute / current_url / element / text_input / text_filled / time_window; event / segment / content_state are rejected (E1017).",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
                 }
               },
               "hiddenWhen": {
+                "description": "REACTIVE slot \u2014 polled live in the browser (the button shows/hides as conditions change). Same client-evaluable-only rule as `disabledWhen`.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
@@ -19022,7 +19059,8 @@
                       },
                       "required": [
                         "type"
-                      ]
+                      ],
+                      "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                     },
                     {
                       "type": "object",
@@ -19967,7 +20005,7 @@
                       "additionalProperties": false
                     }
                   ],
-                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL or any anchorless step uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element."
+                  "description": "Two placement shapes, by step kind: a TOOLTIP (anchored to a `target`) uses `{ side, align, sideOffset?, alignOffset?, alignType? }` positioned relative to the element; a MODAL uses `{ position, offsetX?, offsetY? }` on a 9-cell viewport grid (e.g. `\"center\"`). Both may set `backdrop`; `blockTarget` is TOOLTIP-ONLY (a modal already covers the page) and additionally requires `backdrop: true` \u2014 it makes the backdrop swallow clicks on the highlighted element. A BUBBLE step is positioned by its THEME's bubble placement, so the only key it accepts here is `{ backdrop }` (positional keys are rejected \u2014 move the bubble by changing the theme); a HIDDEN step renders no UI and rejects `placement` entirely."
                 },
                 "width": {
                   "description": "Step width in pixels \u2014 OVERRIDES the theme's surface width (tooltip.width / modal.width / bubble.width) for THIS step only; omit to use the theme width. Widths are border-box: the outer edge renders at exactly this value (border inside); the inner iframe measures 2x the theme border width less.",
@@ -19993,6 +20031,7 @@
                     "type": "object",
                     "properties": {
                       "when": {
+                        "description": "REACTIVE slot \u2014 polled live in the browser while the step is on screen, so it accepts only client-evaluable condition types: attribute / current_url / element / text_input / text_filled / time_window. Event / segment / content_state conditions are server-evaluated and rejected here (E1017). A trigger with NO `when` never fires (an empty set is \"not matched\", not \"always\").",
                         "type": "array",
                         "items": {
                           "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
@@ -20079,7 +20118,8 @@
                               },
                               "required": [
                                 "type"
-                              ]
+                              ],
+                              "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                             },
                             {
                               "type": "object",
@@ -20213,7 +20253,8 @@
                         },
                         "required": [
                           "type"
-                        ]
+                        ],
+                        "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                       },
                       {
                         "type": "object",
@@ -20530,7 +20571,8 @@
                                 },
                                 "required": [
                                   "type"
-                                ]
+                                ],
+                                "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                               },
                               {
                                 "type": "object",
@@ -20891,7 +20933,8 @@
                               },
                               "required": [
                                 "type"
-                              ]
+                              ],
+                              "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                             },
                             {
                               "type": "object",
@@ -21366,7 +21409,8 @@
                                           },
                                           "required": [
                                             "type"
-                                          ]
+                                          ],
+                                          "description": "Dismiss the piece the action lives on. NOT accepted everywhere this union appears: a resource center has no dismiss (closing the panel is a UI affordance, not an action) and an announcement is marked seen, never dismissed \u2014 writes there are rejected (E1017), not ignored. Flows / checklists / launchers / banners all accept it."
                                         },
                                         {
                                           "type": "object",
@@ -22429,7 +22473,7 @@
                   "additionalProperties": {}
                 },
                 "resolvedSettings": {
-                  "description": "Read-only render resolution of `settings`: the same shape with every \"Auto\" replaced by the concrete color the renderer derives (the shared derivation the SDK runs). Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
+                  "description": "Read-only render resolution of `settings` (the shared derivation the SDK runs). Three transformations, not just Auto colors: every \"Auto\" is replaced by the concrete derived color; `font.fontFamily` is rewritten to the real font stack (\"System font\" \u2192 the system stack, \"Custom font\" \u2192 the `customFontFamily` value); and defaults are filled in, so this is a SUPERSET of what was stored \u2014 do not diff it against `settings` to find your edits. Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
                   "type": "object",
                   "additionalProperties": {}
                 },
@@ -23098,7 +23142,7 @@
             "additionalProperties": {}
           },
           "resolvedSettings": {
-            "description": "Read-only render resolution of `settings`: the same shape with every \"Auto\" replaced by the concrete color the renderer derives (the shared derivation the SDK runs). Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
+            "description": "Read-only render resolution of `settings` (the shared derivation the SDK runs). Three transformations, not just Auto colors: every \"Auto\" is replaced by the concrete derived color; `font.fontFamily` is rewritten to the real font stack (\"System font\" \u2192 the system stack, \"Custom font\" \u2192 the `customFontFamily` value); and defaults are filled in, so this is a SUPERSET of what was stored \u2014 do not diff it against `settings` to find your edits. Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
             "type": "object",
             "additionalProperties": {}
           },
@@ -23794,6 +23838,7 @@
                         "nullable": true
                       },
                       "opacity": {
+                        "description": "Percent, 0-100 (not 0-1).",
                         "type": "number",
                         "minimum": 0,
                         "maximum": 100,
@@ -23825,6 +23870,7 @@
                     "nullable": true
                   },
                   "opacity": {
+                    "description": "Percent, 0-100 (not 0-1).",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
@@ -23838,6 +23884,7 @@
                 "type": "object",
                 "properties": {
                   "animationDuration": {
+                    "description": "Milliseconds.",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 10000,
@@ -24886,6 +24933,7 @@
                     "nullable": true
                   },
                   "opacity": {
+                    "description": "Percent, 0-100 (not 0-1).",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
@@ -24900,6 +24948,7 @@
                 "properties": {
                   "customFontFamily": {
                     "type": "string",
+                    "description": "Font family name used when font.fontFamily is \"Custom font\" (declare the face itself via customCss @font-face). When set this way it OVERRIDES font.fontFamily at render.",
                     "nullable": true
                   },
                   "fontFamily": {
@@ -25435,6 +25484,7 @@
                     "nullable": true
                   },
                   "opacity": {
+                    "description": "Percent, 0-100 (not 0-1).",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
@@ -25531,12 +25581,14 @@
                 "type": "object",
                 "properties": {
                   "chainRoundedHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"chain-rounded\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 10,
                     "nullable": true
                   },
                   "chainSquaredHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"chain-squared\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 10,
@@ -25559,6 +25611,7 @@
                     "nullable": true
                   },
                   "dotsHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"dots\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 10,
@@ -25569,18 +25622,21 @@
                     "nullable": true
                   },
                   "height": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"full-width\" \u2014 each progress type reads its own height key.",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 10,
                     "nullable": true
                   },
                   "narrowHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"narrow\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 10,
                     "nullable": true
                   },
                   "numberedHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"numbered\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 100,
@@ -25728,6 +25784,7 @@
                     "nullable": true
                   },
                   "transitionDuration": {
+                    "description": "Milliseconds.",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 10000,
@@ -25924,6 +25981,7 @@
                     "nullable": true
                   },
                   "missingTargetTolerance": {
+                    "description": "SECONDS to keep looking for a missing tooltip target before missingTargetBehavior kicks in. A runtime SDK missing-target setting, when configured, takes precedence over this.",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 10,
@@ -26069,6 +26127,7 @@
                               "nullable": true
                             },
                             "opacity": {
+                              "description": "Percent, 0-100 (not 0-1).",
                               "type": "number",
                               "minimum": 0,
                               "maximum": 100,
@@ -26100,6 +26159,7 @@
                           "nullable": true
                         },
                         "opacity": {
+                          "description": "Percent, 0-100 (not 0-1).",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 100,
@@ -26113,6 +26173,7 @@
                       "type": "object",
                       "properties": {
                         "animationDuration": {
+                          "description": "Milliseconds.",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 10000,
@@ -27161,6 +27222,7 @@
                           "nullable": true
                         },
                         "opacity": {
+                          "description": "Percent, 0-100 (not 0-1).",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 100,
@@ -27175,6 +27237,7 @@
                       "properties": {
                         "customFontFamily": {
                           "type": "string",
+                          "description": "Font family name used when font.fontFamily is \"Custom font\" (declare the face itself via customCss @font-face). When set this way it OVERRIDES font.fontFamily at render.",
                           "nullable": true
                         },
                         "fontFamily": {
@@ -27710,6 +27773,7 @@
                           "nullable": true
                         },
                         "opacity": {
+                          "description": "Percent, 0-100 (not 0-1).",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 100,
@@ -27806,12 +27870,14 @@
                       "type": "object",
                       "properties": {
                         "chainRoundedHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"chain-rounded\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 10,
                           "nullable": true
                         },
                         "chainSquaredHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"chain-squared\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 10,
@@ -27834,6 +27900,7 @@
                           "nullable": true
                         },
                         "dotsHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"dots\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 10,
@@ -27844,18 +27911,21 @@
                           "nullable": true
                         },
                         "height": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"full-width\" \u2014 each progress type reads its own height key.",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 10,
                           "nullable": true
                         },
                         "narrowHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"narrow\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 10,
                           "nullable": true
                         },
                         "numberedHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"numbered\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 100,
@@ -28003,6 +28073,7 @@
                           "nullable": true
                         },
                         "transitionDuration": {
+                          "description": "Milliseconds.",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 10000,
@@ -28199,6 +28270,7 @@
                           "nullable": true
                         },
                         "missingTargetTolerance": {
+                          "description": "SECONDS to keep looking for a missing tooltip target before missingTargetBehavior kicks in. A runtime SDK missing-target setting, when configured, takes precedence over this.",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 10,
@@ -28920,6 +28992,7 @@
                         "nullable": true
                       },
                       "opacity": {
+                        "description": "Percent, 0-100 (not 0-1).",
                         "type": "number",
                         "minimum": 0,
                         "maximum": 100,
@@ -28951,6 +29024,7 @@
                     "nullable": true
                   },
                   "opacity": {
+                    "description": "Percent, 0-100 (not 0-1).",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
@@ -28964,6 +29038,7 @@
                 "type": "object",
                 "properties": {
                   "animationDuration": {
+                    "description": "Milliseconds.",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 10000,
@@ -30012,6 +30087,7 @@
                     "nullable": true
                   },
                   "opacity": {
+                    "description": "Percent, 0-100 (not 0-1).",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
@@ -30026,6 +30102,7 @@
                 "properties": {
                   "customFontFamily": {
                     "type": "string",
+                    "description": "Font family name used when font.fontFamily is \"Custom font\" (declare the face itself via customCss @font-face). When set this way it OVERRIDES font.fontFamily at render.",
                     "nullable": true
                   },
                   "fontFamily": {
@@ -30561,6 +30638,7 @@
                     "nullable": true
                   },
                   "opacity": {
+                    "description": "Percent, 0-100 (not 0-1).",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 100,
@@ -30657,12 +30735,14 @@
                 "type": "object",
                 "properties": {
                   "chainRoundedHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"chain-rounded\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 10,
                     "nullable": true
                   },
                   "chainSquaredHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"chain-squared\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 10,
@@ -30685,6 +30765,7 @@
                     "nullable": true
                   },
                   "dotsHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"dots\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 10,
@@ -30695,18 +30776,21 @@
                     "nullable": true
                   },
                   "height": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"full-width\" \u2014 each progress type reads its own height key.",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 10,
                     "nullable": true
                   },
                   "narrowHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"narrow\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 10,
                     "nullable": true
                   },
                   "numberedHeight": {
+                    "description": "Pixels. Applies ONLY when progress.type is \"numbered\".",
                     "type": "number",
                     "minimum": 1,
                     "maximum": 100,
@@ -30854,6 +30938,7 @@
                     "nullable": true
                   },
                   "transitionDuration": {
+                    "description": "Milliseconds.",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 10000,
@@ -31050,6 +31135,7 @@
                     "nullable": true
                   },
                   "missingTargetTolerance": {
+                    "description": "SECONDS to keep looking for a missing tooltip target before missingTargetBehavior kicks in. A runtime SDK missing-target setting, when configured, takes precedence over this.",
                     "type": "number",
                     "minimum": 0,
                     "maximum": 10,
@@ -31195,6 +31281,7 @@
                               "nullable": true
                             },
                             "opacity": {
+                              "description": "Percent, 0-100 (not 0-1).",
                               "type": "number",
                               "minimum": 0,
                               "maximum": 100,
@@ -31226,6 +31313,7 @@
                           "nullable": true
                         },
                         "opacity": {
+                          "description": "Percent, 0-100 (not 0-1).",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 100,
@@ -31239,6 +31327,7 @@
                       "type": "object",
                       "properties": {
                         "animationDuration": {
+                          "description": "Milliseconds.",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 10000,
@@ -32287,6 +32376,7 @@
                           "nullable": true
                         },
                         "opacity": {
+                          "description": "Percent, 0-100 (not 0-1).",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 100,
@@ -32301,6 +32391,7 @@
                       "properties": {
                         "customFontFamily": {
                           "type": "string",
+                          "description": "Font family name used when font.fontFamily is \"Custom font\" (declare the face itself via customCss @font-face). When set this way it OVERRIDES font.fontFamily at render.",
                           "nullable": true
                         },
                         "fontFamily": {
@@ -32836,6 +32927,7 @@
                           "nullable": true
                         },
                         "opacity": {
+                          "description": "Percent, 0-100 (not 0-1).",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 100,
@@ -32932,12 +33024,14 @@
                       "type": "object",
                       "properties": {
                         "chainRoundedHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"chain-rounded\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 10,
                           "nullable": true
                         },
                         "chainSquaredHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"chain-squared\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 10,
@@ -32960,6 +33054,7 @@
                           "nullable": true
                         },
                         "dotsHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"dots\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 10,
@@ -32970,18 +33065,21 @@
                           "nullable": true
                         },
                         "height": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"full-width\" \u2014 each progress type reads its own height key.",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 10,
                           "nullable": true
                         },
                         "narrowHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"narrow\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 10,
                           "nullable": true
                         },
                         "numberedHeight": {
+                          "description": "Pixels. Applies ONLY when progress.type is \"numbered\".",
                           "type": "number",
                           "minimum": 1,
                           "maximum": 100,
@@ -33129,6 +33227,7 @@
                           "nullable": true
                         },
                         "transitionDuration": {
+                          "description": "Milliseconds.",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 10000,
@@ -33325,6 +33424,7 @@
                           "nullable": true
                         },
                         "missingTargetTolerance": {
+                          "description": "SECONDS to keep looking for a missing tooltip target before missingTargetBehavior kicks in. A runtime SDK missing-target setting, when configured, takes precedence over this.",
                           "type": "number",
                           "minimum": 0,
                           "maximum": 10,
