@@ -17,7 +17,7 @@ When the content auto-starts, and how often.
 | `when` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] |  | Auto-start when these match. A **full replacement** when present; omit it to keep the stored conditions and patch only the settings (frequency / priority / …). |
 | `frequency` | [Frequency](#frequency) |  | How often it may show. |
 | `priority` | `highest` \| `high` \| `medium` \| `low` \| `lowest` |  | Ordering when several could start at once. |
-| `waitSeconds` | number |  | Delay in **seconds** (not ms) before the content becomes eligible after the conditions first match. Capped at 300 by the runtime. |
+| `waitSeconds` | number |  | Delay in **seconds** (not ms) before the content becomes eligible after the conditions first match. The countdown survives the conditions un-matching mid-wait, but an elapsed wait guarantees nothing — the conditions are **re-checked at show time**, and the content starts at the next moment they match again (unlike a trigger wait, which fires its actions regardless). Capped at 300 by the runtime. |
 | `startIfNotComplete` | boolean |  | Only start if the user hasn't completed it. |
 
 Send `startRules: null` to clear them.
