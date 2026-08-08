@@ -121,9 +121,15 @@ Parameterless (`{ "type": "task_clicked" }`). Valid only in a checklist item's
 #### `unsupported`
 
 Read-back only: a stored condition the representation cannot express is returned
-as `{ "type": "unsupported", "note": "…" }`. **Echo it back unchanged** when
-rewriting the surrounding list to preserve it — condition lists are full
-replacements, so leaving it out deletes it. Authoring a new one is rejected.
+as `{ "type": "unsupported", "note": "…" }` — usually a DEAD condition the
+runtime never matches (deleted attribute/event, end-only time window); the
+`note` says which. It cannot be written back: **echoing it is rejected**
+(E1017) — the placeholder carries no data to preserve. Either remove it from
+the list you write, an explicit choice that DELETES the stored condition
+(mind: a never-matching node inside an AND list pins the whole rule to
+"never fires", so deleting it can bring the remaining conditions to life),
+or repair the original condition in the Usertour builder first. The same
+contract applies to segment conditions.
 
 ## Actions
 

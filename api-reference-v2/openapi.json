@@ -9589,7 +9589,7 @@
             "required": [
               "type"
             ],
-            "description": "Read-side placeholder for a stored condition this API cannot express (`note` = the internal type). Never author one: echoing it back is rejected with instructions \u2014 remove it (deleting that stored condition) or edit the conditions in the Usertour app."
+            "description": "Read-side placeholder for a stored condition this API cannot express (`note` says what it stands for \u2014 usually a DEAD condition the runtime never matches: a deleted attribute/event, an end-only time window). It cannot be written back (the placeholder carries no data to preserve): echoing it is rejected. Either remove it from the list you write \u2014 an explicit choice that DELETES the stored condition; mind that a never-matching node inside an AND list pins the whole rule to \"never fires\", so deleting it can bring the remaining conditions to life \u2014 or repair the original condition in the Usertour builder first."
           }
         ]
       },
@@ -12472,7 +12472,7 @@
             "required": [
               "type"
             ],
-            "description": "Read-side placeholder for a stored condition this API cannot express (`note` = the internal type). Never author one: echoing it back is rejected with instructions \u2014 remove it (deleting that stored condition) or edit the conditions in the Usertour app."
+            "description": "Read-side placeholder for a stored condition this API cannot express (`note` says what it stands for \u2014 usually a DEAD condition the runtime never matches: a deleted attribute/event, an end-only time window). It cannot be written back (the placeholder carries no data to preserve): echoing it is rejected. Either remove it from the list you write \u2014 an explicit choice that DELETES the stored condition; mind that a never-matching node inside an AND list pins the whole rule to \"never fires\", so deleting it can bring the remaining conditions to life \u2014 or repair the original condition in the Usertour builder first."
           }
         ]
       },
@@ -15410,7 +15410,7 @@
             "required": [
               "type"
             ],
-            "description": "Read-side placeholder for a stored condition this API cannot express (`note` = the internal type). Never author one: echoing it back is rejected with instructions \u2014 remove it (deleting that stored condition) or edit the conditions in the Usertour app."
+            "description": "Read-side placeholder for a stored condition this API cannot express (`note` says what it stands for \u2014 usually a DEAD condition the runtime never matches: a deleted attribute/event, an end-only time window). It cannot be written back (the placeholder carries no data to preserve): echoing it is rejected. Either remove it from the list you write \u2014 an explicit choice that DELETES the stored condition; mind that a never-matching node inside an AND list pins the whole rule to \"never fires\", so deleting it can bring the remaining conditions to life \u2014 or repair the original condition in the Usertour builder first."
           }
         ]
       },
@@ -17540,7 +17540,7 @@
             "required": [
               "type"
             ],
-            "description": "Read-side placeholder for a stored condition this API cannot express (`note` = the internal type). Never author one: echoing it back is rejected with instructions \u2014 remove it (deleting that stored condition) or edit the conditions in the Usertour app."
+            "description": "Read-side placeholder for a stored condition this API cannot express (`note` says what it stands for \u2014 usually a DEAD condition the runtime never matches: a deleted attribute/event, an end-only time window). It cannot be written back (the placeholder carries no data to preserve): echoing it is rejected. Either remove it from the list you write \u2014 an explicit choice that DELETES the stored condition; mind that a never-matching node inside an AND list pins the whole rule to \"never fires\", so deleting it can bring the remaining conditions to life \u2014 or repair the original condition in the Usertour builder first."
           }
         ]
       },
@@ -19712,7 +19712,7 @@
             "required": [
               "type"
             ],
-            "description": "Read-side placeholder for a stored condition this API cannot express (`note` = the internal type). Never author one: echoing it back is rejected with instructions \u2014 remove it (deleting that stored condition) or edit the conditions in the Usertour app."
+            "description": "Read-side placeholder for a stored condition this API cannot express (`note` says what it stands for \u2014 usually a DEAD condition the runtime never matches: a deleted attribute/event, an end-only time window). It cannot be written back (the placeholder carries no data to preserve): echoing it is rejected. Either remove it from the list you write \u2014 an explicit choice that DELETES the stored condition; mind that a never-matching node inside an AND list pins the whole rule to \"never fires\", so deleting it can bring the remaining conditions to life \u2014 or repair the original condition in the Usertour builder first."
           }
         ]
       },
@@ -22334,7 +22334,7 @@
             "required": [
               "type"
             ],
-            "description": "Read-side placeholder for a stored condition this API cannot express (`note` = the internal type). Never author one: echoing it back is rejected with instructions \u2014 remove it (deleting that stored condition) or edit the conditions in the Usertour app."
+            "description": "Read-side placeholder for a stored condition this API cannot express (`note` says what it stands for \u2014 usually a DEAD condition the runtime never matches: a deleted attribute/event, an end-only time window). It cannot be written back (the placeholder carries no data to preserve): echoing it is rejected. Either remove it from the list you write \u2014 an explicit choice that DELETES the stored condition; mind that a never-matching node inside an AND list pins the whole rule to \"never fires\", so deleting it can bring the remaining conditions to life \u2014 or repair the original condition in the Usertour builder first."
           }
         ]
       },
@@ -23009,7 +23009,7 @@
             "required": [
               "type"
             ],
-            "description": "Read-side placeholder for a stored condition this API cannot express (`note` = the internal type). Never author one: echoing it back is rejected with instructions \u2014 remove it (deleting that stored condition) or edit the conditions in the Usertour app."
+            "description": "Read-side placeholder for a stored condition this API cannot express (`note` says what it stands for \u2014 usually a DEAD condition the runtime never matches: a deleted attribute/event, an end-only time window). It cannot be written back (the placeholder carries no data to preserve): echoing it is rejected. Either remove it from the list you write \u2014 an explicit choice that DELETES the stored condition; mind that a never-matching node inside an AND list pins the whole rule to \"never fires\", so deleting it can bring the remaining conditions to life \u2014 or repair the original condition in the Usertour builder first."
           }
         ]
       },
@@ -23661,7 +23661,7 @@
             "required": [
               "type"
             ],
-            "description": "Read-side placeholder for a stored condition this API cannot express (`note` = the internal type). Never author one: echoing it back is rejected with instructions \u2014 remove it (deleting that stored condition) or edit the conditions in the Usertour app."
+            "description": "Read-side placeholder for a stored condition this API cannot express (`note` says what it stands for \u2014 usually a DEAD condition the runtime never matches: a deleted attribute/event, an end-only time window). It cannot be written back (the placeholder carries no data to preserve): echoing it is rejected. Either remove it from the list you write \u2014 an explicit choice that DELETES the stored condition; mind that a never-matching node inside an AND list pins the whole rule to \"never fires\", so deleting it can bring the remaining conditions to life \u2014 or repair the original condition in the Usertour builder first."
           }
         ]
       },
@@ -28817,7 +28817,7 @@
             "required": [
               "type"
             ],
-            "description": "Read-side placeholder for a stored condition this API cannot express (`note` = the internal type). Never author one: echoing it back is rejected with instructions \u2014 remove it (deleting that stored condition) or edit the conditions in the Usertour app."
+            "description": "Read-side placeholder for a stored condition this API cannot express (`note` says what it stands for \u2014 usually a DEAD condition the runtime never matches: a deleted attribute/event, an end-only time window). It cannot be written back (the placeholder carries no data to preserve): echoing it is rejected. Either remove it from the list you write \u2014 an explicit choice that DELETES the stored condition; mind that a never-matching node inside an AND list pins the whole rule to \"never fires\", so deleting it can bring the remaining conditions to life \u2014 or repair the original condition in the Usertour builder first."
           }
         ]
       },
