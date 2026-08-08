@@ -10263,7 +10263,7 @@
                           }
                         },
                         "frequency": {
-                          "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
+                          "description": "How often the content may auto-start (flow/checklist only). Left unset on a write, the builder default (`once`) is seeded and STORED \u2014 read-backs show the effective mode explicitly. A version stored with NO frequency at all (reachable only through legacy/builder-external writes, never through this API) runs with NO limit: it starts again every time its rules match once the prior session ends \u2014 validate_content_version warns on that state.",
                           "type": "object",
                           "properties": {
                             "mode": {
@@ -10946,7 +10946,7 @@
                                 }
                               },
                               "frequency": {
-                                "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
+                                "description": "How often the content may auto-start (flow/checklist only). Left unset on a write, the builder default (`once`) is seeded and STORED \u2014 read-backs show the effective mode explicitly. A version stored with NO frequency at all (reachable only through legacy/builder-external writes, never through this API) runs with NO limit: it starts again every time its rules match once the prior session ends \u2014 validate_content_version warns on that state.",
                                 "type": "object",
                                 "properties": {
                                   "mode": {
@@ -13140,7 +13140,7 @@
                     }
                   },
                   "frequency": {
-                    "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
+                    "description": "How often the content may auto-start (flow/checklist only). Left unset on a write, the builder default (`once`) is seeded and STORED \u2014 read-backs show the effective mode explicitly. A version stored with NO frequency at all (reachable only through legacy/builder-external writes, never through this API) runs with NO limit: it starts again every time its rules match once the prior session ends \u2014 validate_content_version warns on that state.",
                     "type": "object",
                     "properties": {
                       "mode": {
@@ -13813,7 +13813,7 @@
                           }
                         },
                         "frequency": {
-                          "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
+                          "description": "How often the content may auto-start (flow/checklist only). Left unset on a write, the builder default (`once`) is seeded and STORED \u2014 read-backs show the effective mode explicitly. A version stored with NO frequency at all (reachable only through legacy/builder-external writes, never through this API) runs with NO limit: it starts again every time its rules match once the prior session ends \u2014 validate_content_version warns on that state.",
                           "type": "object",
                           "properties": {
                             "mode": {
@@ -16047,7 +16047,7 @@
                       }
                     },
                     "frequency": {
-                      "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
+                      "description": "How often the content may auto-start (flow/checklist only). Left unset on a write, the builder default (`once`) is seeded and STORED \u2014 read-backs show the effective mode explicitly. A version stored with NO frequency at all (reachable only through legacy/builder-external writes, never through this API) runs with NO limit: it starts again every time its rules match once the prior session ends \u2014 validate_content_version warns on that state.",
                       "type": "object",
                       "properties": {
                         "mode": {
@@ -18171,7 +18171,7 @@
                 }
               },
               "frequency": {
-                "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
+                "description": "How often the content may auto-start (flow/checklist only). Left unset on a write, the builder default (`once`) is seeded and STORED \u2014 read-backs show the effective mode explicitly. A version stored with NO frequency at all (reachable only through legacy/builder-external writes, never through this API) runs with NO limit: it starts again every time its rules match once the prior session ends \u2014 validate_content_version warns on that state.",
                 "type": "object",
                 "properties": {
                   "mode": {
@@ -20314,7 +20314,7 @@
                 }
               },
               "frequency": {
-                "description": "How often the content may auto-start. OMITTED entirely, the runtime behaves as `once` (show a single time, ever) \u2014 the default is applied at evaluation time and does NOT appear on read-backs, so set it explicitly if you want anything else.",
+                "description": "How often the content may auto-start (flow/checklist only). Left unset on a write, the builder default (`once`) is seeded and STORED \u2014 read-backs show the effective mode explicitly. A version stored with NO frequency at all (reachable only through legacy/builder-external writes, never through this API) runs with NO limit: it starts again every time its rules match once the prior session ends \u2014 validate_content_version warns on that state.",
                 "type": "object",
                 "properties": {
                   "mode": {
