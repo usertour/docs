@@ -7541,7 +7541,7 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991,
-            "description": "Distinct users whose launcher FIRST appeared in the range. The seen event fires once per user (at first display; a launcher has one lifetime session), so a range counts users NEWLY reached in it \u2014 a user first reached before the range does not appear here no matter how often they still see the launcher."
+            "description": "Distinct users whose launcher FIRST appeared in the range \u2014 counted from each user's first-ever seen event, so a range counts users NEWLY reached in it and a user first reached before the range never appears, no matter how often they still see the launcher. (Delivery shows a launcher once per user: one lifetime session.)"
           },
           "newActivations": {
             "type": "integer",
@@ -7562,7 +7562,7 @@
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 9007199254740991,
-                  "description": "Distinct users whose launcher FIRST appeared in the range. The seen event fires once per user (at first display; a launcher has one lifetime session), so a range counts users NEWLY reached in it \u2014 a user first reached before the range does not appear here no matter how often they still see the launcher."
+                  "description": "Distinct users whose launcher FIRST appeared in the range \u2014 counted from each user's first-ever seen event, so a range counts users NEWLY reached in it and a user first reached before the range never appears, no matter how often they still see the launcher. (Delivery shows a launcher once per user: one lifetime session.)"
                 },
                 "newActivations": {
                   "type": "integer",
@@ -7627,13 +7627,13 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991,
-            "description": "Distinct users whose banner FIRST appeared in the range \u2014 the seen event fires once per user (lifetime single session), so a range counts users newly reached in it, not users who merely still had it on screen."
+            "description": "Distinct users whose banner FIRST appeared in the range \u2014 counted from each user's first-ever seen event, so a range counts users newly reached in it, not users who merely still had it on screen."
           },
           "uniqueDismissals": {
             "type": "integer",
             "minimum": 0,
             "maximum": 9007199254740991,
-            "description": "Distinct users who dismissed the banner in the range (a dismissal happens at most once per user)."
+            "description": "Distinct users whose first dismissal fell in the range (counted from each user's first dismissal event; a banner is dismissed at most once per user)."
           },
           "byDay": {
             "type": "array",
@@ -7648,13 +7648,13 @@
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 9007199254740991,
-                  "description": "Distinct users whose banner FIRST appeared in the range \u2014 the seen event fires once per user (lifetime single session), so a range counts users newly reached in it, not users who merely still had it on screen."
+                  "description": "Distinct users whose banner FIRST appeared in the range \u2014 counted from each user's first-ever seen event, so a range counts users newly reached in it, not users who merely still had it on screen."
                 },
                 "uniqueDismissals": {
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 9007199254740991,
-                  "description": "Distinct users who dismissed the banner in the range (a dismissal happens at most once per user)."
+                  "description": "Distinct users whose first dismissal fell in the range (counted from each user's first dismissal event; a banner is dismissed at most once per user)."
                 }
               },
               "required": [
