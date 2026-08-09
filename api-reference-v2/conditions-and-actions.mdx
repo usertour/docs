@@ -12,6 +12,11 @@ happens*. They're the same shapes everywhere they appear: version
 
 A condition list is **AND** by default. Use a `group` to express **OR** (or to
 nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
+A group must hold **at least one** condition — an empty group is not "no
+filter", it is a node that never matches, so next to an AND it makes the whole
+rule unmatchable. Writing one is rejected. A version saved with an empty group
+in the builder still reads back with it and draws a validate warning; writing
+that list back is refused until the group is filled or dropped.
 
 ```json
 [
@@ -29,7 +34,7 @@ nest): a group's `match` is how its children combine (`all` = AND, `any` = OR).
 |---|---|---|---|
 | `type` | `"group"` | yes |  |
 | `match` | `all` \| `any` | yes |  |
-| `conditions` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] | yes |  |
+| `conditions` | [Condition](/api-reference-v2/conditions-and-actions#conditions)[] | yes | The grouped conditions — at least one. An EMPTY group is not "no filter": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped. |
 
 #### `attribute`
 

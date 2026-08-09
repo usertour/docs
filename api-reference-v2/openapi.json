@@ -9142,10 +9142,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListContentResponseDto__schema1"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -9673,10 +9675,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListContentResponseDto__schema2"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -12025,10 +12029,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ContentDto__schema1"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -12556,10 +12562,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ContentDto__schema2"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -14963,10 +14971,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListContentVersionsResponseDto__schema1"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -15494,10 +15504,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListContentVersionsResponseDto__schema2"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -17093,10 +17105,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ContentVersionDto__schema1"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -17624,10 +17638,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ContentVersionDto__schema2"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -19265,10 +19281,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UpdateVersionBodyDto__schema1"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -19796,10 +19814,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UpdateVersionBodyDto__schema2"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -19843,10 +19863,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UpdateVersionBodyDto__schema3"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -21887,10 +21909,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListThemesResponseDto__schema0"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -22418,10 +22442,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListThemesResponseDto__schema1"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -22562,10 +22588,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ThemeDto__schema0"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -23093,10 +23121,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ThemeDto__schema1"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -23214,10 +23244,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/CreateThemeBodyDto__schema0"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -23745,10 +23777,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/CreateThemeBodyDto__schema1"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -28370,10 +28404,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UpdateThemeBodyDto__schema0"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -28901,10 +28937,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UpdateThemeBodyDto__schema1"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -34195,10 +34233,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ListSegmentsResponseDto__schema0"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -34400,10 +34440,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/SegmentDto__schema0"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -34586,10 +34628,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/CreateSegmentBodyDto__schema0"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
@@ -34750,10 +34794,12 @@
                 ]
               },
               "conditions": {
+                "minItems": 1,
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UpdateSegmentBodyDto__schema0"
-                }
+                },
+                "description": "The grouped conditions \u2014 at least one. An EMPTY group is not \"no filter\": it never matches, so next to an AND it makes the whole rule unmatchable, and writing one is rejected. A version saved with an empty group in the BUILDER still reads back with it (validate warns); writing that list back is refused until the group is filled or dropped."
               }
             },
             "required": [
