@@ -8597,7 +8597,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height leaves the iframe at the browser's built-in default \u2014 a strip ~150px tall, almost never the intended size (validate warns). For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {
@@ -11480,7 +11480,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height leaves the iframe at the browser's built-in default \u2014 a strip ~150px tall, almost never the intended size (validate warns). For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {
@@ -14418,7 +14418,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height leaves the iframe at the browser's built-in default \u2014 a strip ~150px tall, almost never the intended size (validate warns). For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {
@@ -16548,7 +16548,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height leaves the iframe at the browser's built-in default \u2014 a strip ~150px tall, almost never the intended size (validate warns). For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {
@@ -18720,7 +18720,7 @@
                 ]
               },
               "height": {
-                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height collapses the container to 0px \u2014 the embed passes validation yet renders BLANK. For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
+                "description": "Embed height. Optional ONLY for provider embeds (YouTube/Vimeo/\u2026 size themselves by aspect ratio); a URL with NO oEmbed provider has no ratio, and omitting a pixel height leaves the iframe at the browser's built-in default \u2014 a strip ~150px tall, almost never the intended size (validate warns). For plain-iframe URLs always set `{ \"unit\": \"pixels\", \"value\": \u2026 }`.",
                 "type": "object",
                 "properties": {
                   "unit": {
@@ -20666,7 +20666,7 @@
                         "type": "string"
                       },
                       "type": {
-                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `rocket`. NOT lucide names (`help-circle` / `sparkles` / `book-open` render nothing, silently). Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `rocket`. NOT lucide names (`help-circle` / `sparkles` / `book-open`): a name outside the registry is rejected by validate/publish with the bad name spelled out (it would render nothing). Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                         "type": "string"
                       }
                     }
@@ -21211,7 +21211,7 @@
                               ]
                             },
                             "type": {
-                              "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                              "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set \u2014 validate warns on an unregistered name (the icon slot renders empty; the block itself still shows). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                               "type": "string"
                             },
                             "url": {
@@ -21323,7 +21323,7 @@
                                         ]
                                       },
                                       "type": {
-                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set \u2014 validate warns on an unregistered name (the icon slot renders empty; the block itself still shows). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                                         "type": "string"
                                       },
                                       "url": {
@@ -21500,7 +21500,7 @@
                                         ]
                                       },
                                       "type": {
-                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set \u2014 validate warns on an unregistered name (the icon slot renders empty; the block itself still shows). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                                         "type": "string"
                                       },
                                       "url": {
@@ -21559,7 +21559,7 @@
                                         ]
                                       },
                                       "type": {
-                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set \u2014 validate warns on an unregistered name (the icon slot renders empty; the block itself still shows). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                                         "type": "string"
                                       },
                                       "url": {
@@ -21582,7 +21582,7 @@
                                         ]
                                       },
                                       "type": {
-                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set \u2014 validate warns on an unregistered name (the icon slot renders empty; the block itself still shows). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                                         "type": "string"
                                       },
                                       "url": {
@@ -21605,7 +21605,7 @@
                                         ]
                                       },
                                       "type": {
-                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set \u2014 validate warns on an unregistered name (the icon slot renders empty; the block itself still shows). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                                         "type": "string"
                                       },
                                       "url": {
@@ -21653,7 +21653,7 @@
                                               ]
                                             },
                                             "type": {
-                                              "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                                              "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set \u2014 validate warns on an unregistered name (the icon slot renders empty; the block itself still shows). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                                               "type": "string"
                                             },
                                             "url": {
@@ -21731,7 +21731,7 @@
                                         ]
                                       },
                                       "type": {
-                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set \u2014 validate warns on an unregistered name (the icon slot renders empty; the block itself still shows). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                                         "type": "string"
                                       },
                                       "url": {
@@ -21752,7 +21752,7 @@
                                       "zendesk-classic",
                                       "zendesk-messenger"
                                     ],
-                                    "description": "Which chat widget the click opens. The SDK only INVOKES the provider \u2014 the host page must already have that provider's script installed, or clicking logs a console warning and nothing opens. Not checkable at write time (the server cannot see the host page), so confirm which provider the host actually runs."
+                                    "description": "Which chat widget the click opens. The SDK only INVOKES the provider \u2014 the host page must already have that provider's script installed, or clicking opens nothing (the SDK logs a warning naming the provider, but its console output is off by default \u2014 visible only with the debug flag `localStorage.debug = 'usertour-widget:*'`). Not checkable at write time (the server cannot see the host page), so confirm which provider the host actually runs."
                                   },
                                   "customCode": {
                                     "description": "Only meaningful \u2014 and only RETURNED \u2014 when provider is 'custom': the script run on CLICK (not page load) via new Function; hosts can disable it with usertour.disableEvalJs(). Echo-only via the API \u2014 echo the stored code back unchanged (or omit the field) to keep it, empty string clears it; writing new or edited code is rejected (same security policy as run_javascript). Scripts can only be authored in the Usertour app. For other providers the field never appears in reads; any leftover script from a past provider switch stays stored and resurfaces if the provider returns to custom.",
@@ -21802,7 +21802,7 @@
                                         ]
                                       },
                                       "type": {
-                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set and render nothing (silent, no error). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
+                                        "description": "Builtin icon name (when source='builtin'): a RemixIcon name in kebab `-line`/`-fill` style \u2014 e.g. `home-line`, `question-line`, `chat-line`, `settings-line`, `rocket`. NOT lucide names: `help-circle` / `sparkles` / `book-open` / `message-circle` are not in the set \u2014 validate warns on an unregistered name (the icon slot renders empty; the block itself still shows). Unsure of a name? Use source='none' rather than guess. Common names + an intent\u2192name table are in the MCP authoring guide (icons section).",
                                         "type": "string"
                                       },
                                       "url": {
@@ -22479,7 +22479,7 @@
                   "additionalProperties": {}
                 },
                 "resolvedSettings": {
-                  "description": "Read-only render resolution of `settings` (the shared derivation the SDK runs). Three transformations, not just Auto colors: every \"Auto\" is replaced by the concrete derived color; `font.fontFamily` is rewritten to the real font stack (\"System font\" \u2192 the system stack, \"Custom font\" \u2192 the `customFontFamily` value); and defaults are filled in, so this is a SUPERSET of what was stored \u2014 do not diff it against `settings` to find your edits. Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
+                  "description": "Read-only render resolution of `settings` (the shared derivation the SDK runs). Two transformations: every \"Auto\" is replaced by the concrete derived color, and `font.fontFamily` is rewritten to the real font stack (\"System font\" \u2192 the system stack, \"Custom font\" \u2192 the `customFontFamily` value, named fonts gain a sans-serif fallback). Same field set as `settings` (stored settings are grounded complete at write) \u2014 differences between the two are exactly these derivations, so diff against the `settings` you wrote, not this, to find your edits. Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
                   "type": "object",
                   "additionalProperties": {}
                 },
@@ -23149,7 +23149,7 @@
             "additionalProperties": {}
           },
           "resolvedSettings": {
-            "description": "Read-only render resolution of `settings` (the shared derivation the SDK runs). Three transformations, not just Auto colors: every \"Auto\" is replaced by the concrete derived color; `font.fontFamily` is rewritten to the real font stack (\"System font\" \u2192 the system stack, \"Custom font\" \u2192 the `customFontFamily` value); and defaults are filled in, so this is a SUPERSET of what was stored \u2014 do not diff it against `settings` to find your edits. Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
+            "description": "Read-only render resolution of `settings` (the shared derivation the SDK runs). Two transformations: every \"Auto\" is replaced by the concrete derived color, and `font.fontFamily` is rewritten to the real font stack (\"System font\" \u2192 the system stack, \"Custom font\" \u2192 the `customFontFamily` value, named fonts gain a sans-serif fallback). Same field set as `settings` (stored settings are grounded complete at write) \u2014 differences between the two are exactly these derivations, so diff against the `settings` you wrote, not this, to find your edits. Request with expand: [\"resolvedSettings\"]. Not writable \u2014 author intent in `settings`.",
             "type": "object",
             "additionalProperties": {}
           },
