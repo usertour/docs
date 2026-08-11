@@ -33829,7 +33829,7 @@
         "type": "object",
         "properties": {
           "attributes": {
-            "description": "Custom attributes to set on the user (merged into existing attributes). Attributes with an unknown codeName AUTO-CREATE a definition (dataType inferred from the value) \u2014 a mistyped key silently creates a new attribute instead of updating the real one. Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u201320 chars.",
+            "description": "Custom attributes to set on the user (merged into existing attributes). Attributes with an unknown codeName AUTO-CREATE a definition (dataType inferred from the value) \u2014 a mistyped key silently creates a new attribute instead of updating the real one. Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u2013100 chars.",
             "type": "object",
             "additionalProperties": {}
           }
@@ -34135,7 +34135,7 @@
         "type": "object",
         "properties": {
           "attributes": {
-            "description": "Custom attributes to set on the company (merged into existing attributes). Attributes with an unknown codeName AUTO-CREATE a definition (dataType inferred from the value) \u2014 a mistyped key silently creates a new attribute instead of updating the real one. Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u201320 chars.",
+            "description": "Custom attributes to set on the company (merged into existing attributes). Attributes with an unknown codeName AUTO-CREATE a definition (dataType inferred from the value) \u2014 a mistyped key silently creates a new attribute instead of updating the real one. Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u2013100 chars.",
             "type": "object",
             "additionalProperties": {}
           }
@@ -34146,7 +34146,7 @@
         "type": "object",
         "properties": {
           "attributes": {
-            "description": "Custom attributes to set on the membership (e.g. the user's role in the company). Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u201320 chars.",
+            "description": "Custom attributes to set on the membership (e.g. the user's role in the company). Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u2013100 chars.",
             "type": "object",
             "additionalProperties": {}
           }
@@ -35708,9 +35708,9 @@
           "codeName": {
             "type": "string",
             "minLength": 2,
-            "maxLength": 20,
+            "maxLength": 100,
             "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$",
-            "description": "Stable identifier, unique per project + scope. Immutable. Must start with a letter, then letters/digits/underscores, 2\u201320 chars."
+            "description": "Stable identifier, unique per project + scope. Immutable. Must start with a letter, then letters/digits/underscores, 2\u2013100 chars."
           },
           "displayName": {
             "type": "string",
@@ -35881,9 +35881,9 @@
           "codeName": {
             "type": "string",
             "minLength": 2,
-            "maxLength": 20,
+            "maxLength": 100,
             "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$",
-            "description": "Stable identifier, unique per project. Immutable. Must start with a letter, then letters/digits/underscores, 2\u201320 chars."
+            "description": "Stable identifier, unique per project. Immutable. Must start with a letter, then letters/digits/underscores, 2\u2013100 chars."
           },
           "displayName": {
             "type": "string",
