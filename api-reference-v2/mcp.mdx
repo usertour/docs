@@ -57,7 +57,10 @@ and opens your browser to authorize. The flow is OAuth 2.1 with PKCE.
 
 The snippets below use the Cloud endpoint — self-hosting, substitute your own
 `/mcp` URL. **Settings → MCP** in the app shows the same per-client steps with
-your instance's URL pre-filled.
+your instance's URL pre-filled. To serve MCP on its own domain, set
+`MCP_SERVER_URL` to the full public endpoint — it drives the Settings display
+and the OAuth discovery metadata together, and that domain must also proxy
+`/oauth/*` and `/.well-known/oauth-*` (the shipped nginx config does).
 
 <AccordionGroup>
 <Accordion title="Claude Code">
