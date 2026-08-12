@@ -82,7 +82,7 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1035` | 409 | System themes cannot be modified or deleted — duplicate one into your own theme (setting one as the project default is allowed) |
 | `E1031` | 409 | Theme is used by live or draft content — switch that content to another theme first |
 | `E1027` | 422 | Content version is not publishable (fails render-usability validation) |
-| `E1013` | 429 | Rate limit exceeded — the limit follows your plan (100/500/1000/3000 requests/min); the standard `Retry-After` header says how long to back off |
+| `E1013` | 429 | Rate limit exceeded — on Cloud the limit follows your plan (100/500/1000/3000 requests/min); self-hosted deployments have a flat per-token limit instead (default 1000/min, tunable via [`API_THROTTLE_LIMIT`](/open-source/env)). The standard `Retry-After` header says how long to back off |
 
 <Note>
   Write endpoints validate the request body against the schema and return `E1017`
