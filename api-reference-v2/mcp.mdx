@@ -39,8 +39,9 @@ your access includes its capability, so write tools need the matching write scop
   **Self-hosting?** Use your own API host + `/mcp`. The discovery metadata, the
   `WWW-Authenticate` challenge, and the consent redirect are all derived from
   your instance's public URLs, so behind a reverse proxy make sure forwarded
-  headers (`X-Forwarded-Proto` / `Host`) are correct — or pin the public API
-  base with `API_URL` — and that [`APP_HOMEPAGE_URL`](/open-source/env) points
+  headers (`X-Forwarded-Proto` / `Host`) are correct — or pin them with
+  [`API_URL`](/open-source/env) (every public URL) or `MCP_SERVER_URL` (just
+  the MCP endpoint) — and that [`APP_HOMEPAGE_URL`](/open-source/env) points
   at your real, browser-reachable app URL (the consent step redirects there).
   OAuth 2.1 also requires the endpoint to be reachable over **HTTPS** (loopback
   is exempt).
@@ -335,3 +336,45 @@ untrusted data read-only access** — flip **Read-only** on the OAuth consent, o
 mint a token with only read scopes: with no write scopes, no write tools are
 listed, so there is nothing to exploit. Mint a separate write-scoped token only
 for trusted automation.
+
+## Troubleshooting (self-hosted)
+
+<AccordionGroup>
+<Accordion title="405 Not Allowed when connecting">
+
+```text
+Error POSTing to endpoint: <html>...<h1>405 Not Allowed</h1>...
+```
+
+The client is POSTing MCP requests to your app's web root, which serves the
+admin UI and rejects POST. Almost always the configured server URL is missing
+the **`/mcp` path** — it must be the full endpoint
+(`https://your-usertour-host/mcp`), not the bare domain. Copy it from
+**Settings → MCP**, which shows the exact URL.
+
+</Accordion>
+<Accordion title="Protected resource http://… does not match expected https://…">
+
+```text
+SDK auth failed: Protected resource http://your-host/mcp does not match
+expected https://your-host/mcp (or origin)
+```
+
+Your instance described itself with `http://` URLs while the client connected
+over `https://`: the `https` scheme was lost on the way in, usually because a
+TLS-terminating proxy in front of the instance (a PaaS edge, Cloudflare, a load
+balancer) didn't get `X-Forwarded-Proto: https` through the whole chain. Two
+fixes, either works:
+
+- **Pin the URL** (simplest): set [`API_URL`](/open-source/env) to your public
+  `https://` base — it pins every public URL the instance hands out — or
+  `MCP_SERVER_URL` to pin just the MCP endpoint.
+- **Fix the header chain**: make sure every hop forwards `X-Forwarded-Proto`
+  and `Host` unchanged, and that you run a current Usertour image.
+
+If your instance is genuinely served over plain HTTP (no TLS anywhere), MCP
+authorization cannot work at all — OAuth 2.1 requires HTTPS, with only
+localhost exempt.
+
+</Accordion>
+</AccordionGroup>
