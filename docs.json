@@ -22,7 +22,7 @@
           {
             "group": "Get Started",
             "pages": [
-              "building-experiences/understanding-in-app-flows",
+              "build-onboarding-with-ai",
               "quickstart",
               "faq"
             ]
@@ -30,6 +30,7 @@
           {
             "group": "Core Concepts",
             "pages": [
+              "building-experiences/understanding-in-app-flows",
               "concepts/content-startup",
               "concepts/session-lifecycle"
             ]
@@ -221,6 +222,12 @@
         "anchor": "Use Cases",
         "icon": "route",
         "groups": [
+          {
+            "group": "AI Assistant",
+            "pages": [
+              "use-cases/analyze-onboarding-with-ai"
+            ]
+          },
           {
             "group": "Start Rules",
             "pages": [

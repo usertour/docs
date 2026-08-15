@@ -1,0 +1,157 @@
+---
+title: "Analyze Your Onboarding with AI"
+sidebarTitle: "Analyze with AI"
+description: "Five prompts that turn live onboarding data into rankings, funnels, checklist friction reports and survey readouts — no dashboards, no exports."
+icon: "chart-line"
+---
+
+Building your onboarding is [half the loop](/build-onboarding-with-ai) — the
+other half is knowing what works. The MCP server exposes the same per-type
+analytics the dashboard uses (flow funnels, per-task checklist data,
+per-question survey breakdowns, session history), so an AI assistant can read
+the numbers **and** explain them: rank content, find the drop-off step, cluster
+survey verbatims into themes.
+
+The video below runs five analysis prompts against live data:
+
+<iframe
+  className="w-full aspect-video rounded-xl"
+  src="https://www.youtube.com/embed/dLy3KTpuFqM"
+  title="Analyze your onboarding with AI — Usertour MCP demo"
+  allowFullScreen
+></iframe>
+
+<Tip>
+  Analysis needs **no write access**. Connect the assistant with **Read-only**
+  on the OAuth consent (or a read-scoped token) and it can do everything on
+  this page but change nothing — the grant enforces what the prompts request.
+  See [read-only by default](/api-reference-v2/mcp#read-only-by-default-prompt-injection-safety).
+</Tip>
+
+These prompts deliberately ask for more than any product tracks and instruct
+the assistant to say which metrics are unavailable — so you get an honest
+report of what the data supports, not invented numbers. Run them as-is, or trim
+them to the metrics you care about.
+
+## 1 — Portfolio overview: everything live, in one table
+
+```text
+Use the Usertour MCP to retrieve performance data for all active flows,
+checklists, announcements, surveys, and Resource Center content from the
+last 30 days.
+
+Present the results in a concise table with:
+
+* Content name and type
+* Number of users reached
+* Starts or impressions
+* Completion rate
+* Dismissal rate
+* Average completion time, if available
+* Primary CTA conversion rate
+* Trend compared with the previous 30 days
+
+Highlight the strongest and weakest experiences. Clearly state the
+reporting period, sample size, and any metrics that are unavailable.
+Do not change any content.
+```
+
+## 2 — Effectiveness ranking: top three, bottom three
+
+```text
+Use the Usertour MCP to analyze all onboarding content from the last
+30 days and rank it by effectiveness.
+
+Evaluate each experience using:
+
+* Reach
+* Engagement rate
+* Completion rate
+* Drop-off rate
+* CTA conversion
+* Contribution to activation, when activation events are available
+
+Identify the top three and bottom three experiences. Explain the likely
+reasons behind their performance using only available data. Separate
+confirmed findings from hypotheses.
+```
+
+## 3 — Flow funnel: find the drop-off step
+
+Replace `[FLOW NAME]` with one of your flows:
+
+```text
+Use the Usertour MCP to analyze the flow named [FLOW NAME] over the
+last 30 days.
+
+Build a step-by-step funnel showing:
+
+* Users who entered each step
+* Step-view rate
+* Next-step conversion rate
+* Drop-off rate
+* Average time spent on each step
+* Final completion rate
+
+Identify the step with the largest meaningful drop-off. Recommend
+specific changes to the copy, CTA, targeting, or step structure, but
+do not modify the flow.
+```
+
+## 4 — Checklist friction: which tasks stall adoption
+
+```text
+Use the Usertour MCP to analyze the User List onboarding checklist from
+the last 30 days.
+
+For every checklist item, report:
+
+* Number of users who started it
+* Number and percentage who completed it
+* Manual versus automatic completions, if available
+* Median time to completion
+* Related flow launch and completion rates
+* The most common completion order
+
+Identify the checklist items that contribute most to activation and the
+items that create the most friction. Recommend whether any items should
+be reordered, rewritten, merged, or removed. Do not make changes.
+```
+
+## 5 — Survey readout: from responses to opportunities
+
+```text
+Use the Usertour MCP to analyze responses from the product feedback
+survey.
+
+Provide:
+
+* Total invitations, starts, submissions, and completion rate
+* Average and median rating for each rated feature
+* Rating distribution
+* Overall satisfaction score
+* Most frequently praised features
+* Most common usability problems
+* Recurring feature requests
+* Major themes from open-ended responses
+* Representative short excerpts, with personal information removed
+
+Group feedback into positive, neutral, and negative themes. Do not
+invent sentiment scores or conclusions when the sample size is too
+small.
+
+Finish with the five most important product opportunities, ranked by
+user impact and frequency.
+```
+
+## Where to next
+
+<CardGroup cols={2}>
+  <Card title="Build your onboarding with AI" icon="sparkles" href="/build-onboarding-with-ai">
+    The other half of the loop — four prompts that ship a complete onboarding
+    experience.
+  </Card>
+  <Card title="MCP server reference" icon="robot" href="/api-reference-v2/mcp">
+    Connect any client, see every tool, understand scopes and read-only mode.
+  </Card>
+</CardGroup>

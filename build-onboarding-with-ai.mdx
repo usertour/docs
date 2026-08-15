@@ -1,0 +1,221 @@
+---
+title: "Build Your Onboarding with AI"
+description: "Watch an AI assistant build production-ready onboarding — a flow, a checklist, a survey, an announcement and a resource center — in a real app, then follow along with the exact prompts."
+icon: "sparkles"
+---
+
+Usertour is open-source user onboarding with an [MCP server](/api-reference-v2/mcp)
+built in: connect an AI assistant like Claude Code, Cursor or Codex, describe the
+experience you want, and it authors, themes and publishes the content directly in
+your project — matched to your app's design, verified in your running app.
+
+The video below does exactly that against a real app
+([shadcn-admin](https://github.com/satnaing/shadcn-admin)): four prompts, and
+after each one — the result live in the app, then the content and data in the
+Usertour dashboard.
+
+<iframe
+  className="w-full aspect-video rounded-xl"
+  src="https://www.youtube.com/embed/StOBwVbiG-Y"
+  title="Build your onboarding with AI — Usertour MCP demo"
+  allowFullScreen
+></iframe>
+
+## Before you start
+
+All you need is a Usertour account and an AI assistant connected to the MCP
+server. With Claude Code that's the plugin (it registers the MCP connection,
+the authoring skills, and the SDK-install skill in one):
+
+```text
+/plugin marketplace add usertour/skills
+/plugin install usertour@usertour
+```
+
+Then run `/mcp` and authorize in the browser — pick the project, the
+environments, and the access level. That's the whole setup: you don't even
+install the [Usertour SDK](/quickstart) by hand — on the first prompt the
+assistant notices it's missing and wires it into the app itself, then builds
+the content.
+
+<Tip>
+  **Optional, recommended:** also install the
+  [Chrome DevTools plugin](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+  so the assistant can open your running app, pick element selectors from the
+  real DOM, and verify each experience actually renders before publishing —
+  noticeably better tooltip accuracy.
+
+  ```text
+  /plugin marketplace add ChromeDevTools/chrome-devtools-mcp
+  /plugin install chrome-devtools-mcp@chrome-devtools-plugins
+  ```
+</Tip>
+
+Using Cursor, Codex, VS Code or another client? See the
+[MCP connection guide](/api-reference-v2/mcp) — every client gets the same
+one-URL setup, and **Settings → MCP** in the app shows the steps with your
+instance's URL pre-filled.
+
+## Step 1 — A feature onboarding flow
+
+```text
+Using Usertour, build a user onboarding flow for the Create Task feature.
+
+Requirements:
+- The visual theme must match the website's existing design.
+- The flow must be production-ready and suitable for launch.
+- Every step should provide genuine value to users. Avoid adding steps
+  simply for the sake of having a flow — the experience should help users
+  understand and successfully use the feature.
+```
+
+**In the app** — before building anything, the assistant notices the app has
+no Usertour SDK yet and installs it on its own (the loader snippet, `init()`
+and `identify()`); then the flow runs against the real UI: tooltips anchor to
+the actual Create Task controls, and the styling matches the app because the
+agent read the design system first and themed the content to it.
+
+**In the dashboard** — the flow appears under **Content** with its steps,
+targeting and a published version; **Analytics** starts counting views and
+completions as sessions come in.
+
+## Step 2 — An adoption checklist
+
+```text
+Create a checklist for the features on the User List page.
+
+Requirements:
+- Combine the checklist with relevant onboarding flows to significantly
+  improve product adoption.
+- Ensure production-level quality.
+- Match the checklist's visual theme to the website's existing style.
+```
+
+**In the app** — a checklist panel lists the User List features as tasks;
+completing a task can launch the matching flow, so the two content types work
+as one adoption journey.
+
+**In the dashboard** — the checklist shows per-task completion in
+**Analytics**, so you can see which features users actually adopt and where
+they stall.
+
+## Step 3 — A product feedback survey
+
+```text
+Create a survey to collect user feedback about the product's different
+features, including:
+
+- Feature ratings
+- Overall satisfaction
+- Usability feedback
+- Suggestions for improvement
+- Open-ended comments
+
+The survey should be thoughtfully structured and suitable for production use.
+```
+
+**In the app** — a multi-question survey renders in the app's own look:
+ratings, scales and open-text questions in a sensible order.
+
+**In the dashboard** — every question gets its own breakdown under
+**Analytics**: score distributions for the ratings, and the open-text answers
+collected per response, ready to read through (or to hand back to the AI to
+summarize).
+
+## Step 4 — A welcome announcement + resource center
+
+```text
+Use the Usertour MCP to create a production-ready welcome announcement and
+improve the Resource Center as one cohesive onboarding experience.
+
+Welcome Announcement — use Usertour's native Announcement feature (not a
+Flow):
+- Use the speech bubble announcement format.
+- Target new users only.
+- Welcome users and briefly introduce the product's core value.
+- Guide users to the User List page with a clear primary CTA.
+- Include a link to https://usertour.io/ explaining that the onboarding
+  experience is powered and maintained by Usertour.
+- Keep the copy concise, helpful, and professional.
+- Match the website's existing visual style.
+- Configure sensible display frequency, dismissal behavior, and audience
+  targeting.
+- Ensure the announcement does not conflict with other active onboarding
+  experiences.
+
+Resource Center — make it support the same onboarding journey:
+- Add an entry that helps users navigate to the User List page.
+- Make the experiences created in the previous steps accessible from the
+  Resource Center.
+- Organize resources into clear, user-focused groups.
+- Use concise titles and descriptions that explain the value of each
+  resource.
+- Remove or avoid duplicate and low-value entries.
+- Match the Resource Center's design to the website's visual theme.
+- Configure appropriate visibility and audience rules.
+- Ensure all links, actions, flows, surveys, and video content launch
+  correctly.
+- Make the experience accessible, responsive, and production-ready.
+```
+
+**In the app** — new users get a speech-bubble welcome pointing them at the
+User List page, and the resource center becomes the lasting home for
+everything built above: the flow, the checklist and the survey, organized into
+groups and launchable on demand.
+
+**In the dashboard** — the announcement and resource center sit alongside the
+rest under **Content**, each with its own targeting and analytics, and
+**Publish history** records what went live in which environment.
+
+## One more: a one-prompt task
+
+Not everything is a four-step journey — one-off tasks are a single prompt. Here
+the assistant builds a video modal, verifies the embed actually plays, and
+leaves it as a draft for review instead of publishing:
+
+<iframe
+  className="w-full aspect-video rounded-xl"
+  src="https://www.youtube.com/embed/vaP2QuhOHLk"
+  title="One-prompt video modal — Usertour MCP demo"
+  allowFullScreen
+></iframe>
+
+```text
+Use the Usertour MCP to create a one-step modal flow featuring this
+YouTube video:
+
+https://www.youtube.com/watch?v=ZIaOBAjvc38
+
+Use the title:
+
+**Sam Altman: "Never a Better Time to Do a Startup"**
+
+Add concise supporting copy explaining why this is a uniquely promising
+time to build a startup and what viewers can learn from the video.
+Include a clear watch action and an easy way to close the modal.
+
+Match the product's visual style, verify that the video embed works
+correctly, and save the flow as a draft.
+```
+
+## Where to next
+
+<CardGroup cols={2}>
+  <Card title="Analyze your onboarding with AI" icon="chart-line" href="/use-cases/analyze-onboarding-with-ai">
+    The other half of the loop — five prompts that turn the collected data
+    into rankings, funnels and survey readouts.
+  </Card>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Install the SDK and identify your users — everything above builds on it.
+  </Card>
+  <Card title="MCP server reference" icon="robot" href="/api-reference-v2/mcp">
+    Connect any client, see every tool, understand scopes and read-only mode.
+  </Card>
+  <Card title="Build in the visual builder" icon="wand-magic-sparkles" href="/building-experiences/creating-your-first-flow">
+    Prefer hands-on? Build the same flows, checklists and surveys visually.
+  </Card>
+  <Card title="Self-host Usertour" icon="server" href="/open-source/self-hosting">
+    Run the whole platform — MCP server included — on your own
+    infrastructure.
+  </Card>
+</CardGroup>
