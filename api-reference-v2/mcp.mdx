@@ -147,8 +147,12 @@ npx skills add https://github.com/usertour/skills
 </Accordion>
 <Accordion title="VS Code (Copilot Chat)">
 
-Open the Command Palette and run **MCP: Open User Configuration** to open your
-`mcp.json`, then add this entry — the root key is `servers`, **not**
+One click: [**Add to VS Code**](vscode:mcp/install?%7B%22name%22%3A%20%22usertour%22%2C%20%22type%22%3A%20%22http%22%2C%20%22url%22%3A%20%22https%3A//mcp.usertour.io/mcp%22%7D) — VS Code prompts to
+install the server with the values pre-filled.
+
+Prefer manual setup? Open the Command Palette and run **MCP: Open User
+Configuration** to open your `mcp.json`, then add this entry — the root key is
+`servers`, **not**
 `mcpServers` (the #1 copy-paste mistake coming from a Cursor/Claude config):
 
 ```json
@@ -168,16 +172,17 @@ First use prompts you to authorize.
 </Accordion>
 <Accordion title="ChatGPT">
 
-Open **Settings → Connectors → Advanced**, toggle **Developer mode** on, and
-click **Create app**. Set the name (`Usertour`) and the MCP Server URL
-(`https://mcp.usertour.io/mcp`), leave Authentication on **OAuth**, and submit —
-ChatGPT opens the Usertour authorization screen. Approve to connect.
+Open [chatgpt.com/plugins](https://chatgpt.com/plugins), enable **Developer
+mode**, and click **New Plugin** (requires a paid ChatGPT plan). Set the name
+(`Usertour`) and the MCP Server URL (`https://mcp.usertour.io/mcp`), leave
+Authentication on **OAuth**, and submit — ChatGPT opens the Usertour
+authorization screen. Approve to connect.
 
 </Accordion>
 <Accordion title="Claude (claude.ai)">
 
-Open [claude.ai/settings/connectors](https://claude.ai/settings/connectors) and
-click **Add custom connector**. Set the name (`Usertour`), paste the Server URL
+Open [Claude's connector settings](https://claude.ai/new#settings/customize-connectors)
+and click **Add → Add custom connector**. Set the name (`Usertour`), paste the Server URL
 (`https://mcp.usertour.io/mcp`), and click **Add** — Claude opens the Usertour
 authorization screen. Pick the project, environments, and access level, then
 approve.
