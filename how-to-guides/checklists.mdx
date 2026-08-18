@@ -1,117 +1,121 @@
 ---
 title: Checklists
-description: Learn how to create and manage interactive checklists to guide users through your product
+description: Build task lists that guide users to activation — wired to flows, completed by real behavior, and measured per task
 icon: "list-check"
 ---
 
-## Overview
+## What is a checklist?
 
-Checklists are powerful tools for user onboarding and task completion. They provide:
+A checklist is a persistent task list that lives in the corner of your app: a launcher button that expands into a panel of tasks, each with a progress bar ticking toward done. Unlike a flow — which walks a user through one thing right now — a checklist is an **anchor across sessions**: it stays until the work is done, tracks progress automatically, and gives users a place to come back to.
 
-- A reliable anchor for new users
-- Clear progress tracking
-- Easy access to related tours
-- A sense of achievement
-- Persistent guidance throughout the user journey
+Use a checklist when activation takes several distinct actions (set up a project, invite a teammate, install the SDK…), especially when users complete them across multiple visits.
 
-## Creating Checklists
+{/* screenshot: expanded checklist panel with a few tasks, one completed */}
+![](/images/checklist-05.png)
 
-### Basic Setup
+## Creating a checklist
 
-1. Navigate to the **Checklists** page in the sidebar
-2. Create a new checklist
-3. Configure auto-start conditions
-4. Publish your checklist
+1. Head over to [Usertour](https://app.usertour.io) and sign in
+2. Click **Checklists** in the sidebar and create a new checklist
+3. Add tasks and configure their actions and completion conditions (see below)
+4. Set auto-start conditions on the detail page
+5. Publish
 
-The checklist will automatically appear in your application via [Usertour.js](/developers/usertourjs-reference/overview) - no additional installation required.
+Once published, the checklist appears in your app via [Usertour.js](/developers/usertourjs-reference/overview) — no extra installation required. Checklists always deliver the **latest published version**: publish an update and users see it without refreshing.
 
 ![](/images/checklist-07.png)
 
-### Task Configuration
+<Note>
+Make sure [Usertour.js](/developers/usertourjs-reference/installation) is installed in your app. Without it the checklist will not show up for your users.
+</Note>
 
-Each checklist task includes:
+<Tip>
+You can also build checklists by describing them to an AI assistant — see [Build Your Onboarding with AI](/build-onboarding-with-ai).
+</Tip>
 
-- Task name
-- Optional subtitle
-- Completion condition
-- One or more actions
+## Checklist settings
 
-For example, you can create a task that:
+These live on the checklist itself and shape how the whole list behaves:
 
-- Triggers when users create their first project
-- Launches a guided tour
-- Updates the checklist progress
+| Setting | What it does |
+| --- | --- |
+| **Launcher button text** | The label on the minimized button (e.g. "Get started"). The button also shows the count of remaining tasks. |
+| **Initial display** | Whether the checklist first appears **expanded** (the full panel opens — strongest for brand-new users) or as the **button** only (quieter; the user opens it when ready). |
+| **Completion order** | **Any order** lets users complete tasks freely; **In order** locks each task until the previous ones are done — use it when tasks genuinely build on each other. |
+| **Prevent dismissal** | Hides the "Dismiss checklist" action so users can't close the list before finishing. |
+| **Auto-dismiss when completed** | When every task is done, a countdown progress bar appears and the checklist dismisses itself — a built-in "you're done" moment. |
 
-## User Experience
+The panel also carries an intro text block above the tasks — use it for a one-line promise ("Five minutes to your first published flow"), not a paragraph.
 
-### Default Display
+## Tasks
 
-Checklists appear in the lower-right corner of the screen:
+Each task has a name, an optional description, and three independent pieces of behavior:
+
+### Click actions
+
+What happens when the user clicks the task row — any combination of four actions:
+
+- **Start a flow** — the most common pattern: click → the flow that teaches this task
+- **Navigate to a page** — send the user to the screen where the task happens
+- **Evaluate JavaScript** — run custom code in your app
+- **Dismiss checklist** — for an explicit "close this list" task
+
+### Completion conditions
+
+What marks the task as done. Three patterns, from weakest to strongest:
+
+- **Completed when clicked** — the task ticks as soon as the user clicks it. Fine for "read this" tasks; weak for anything you actually want done.
+- **Completed when its flow completes** — pair with a click action that starts the flow. The task only ticks when the user finishes the guided walkthrough.
+- **Completed by real behavior** — condition on an event or attribute ("created their first project", "invited a teammate"). The task ticks even if the user did the thing on their own, without touching the checklist.
+
+Those are the common patterns, but the full condition toolbox applies: user attributes, events (including event attributes), segment membership, the current page URL, on-page element state (present / clicked / disabled), text input values, and time — combinable with and/or groups. If your app exposes it, a task can complete on it.
 
 ![](/images/checklist-06.png)
 
-### Interaction Features
+<Warning>
+Make completion conditions **specific**. A condition that is already true when the checklist first appears (an attribute that defaults to the right value, a text element that exists on every page) ticks the task instantly, before the user has done anything — which reads as broken. Test with a fresh user.
+</Warning>
 
-- Click tasks to trigger associated actions
-- Minimize to show the "Get started" launcher
-- View remaining task count
-- See real-time progress updates
-- Watch checkmark animations on completion
+Completed tasks play a checkmark animation, and completion is evaluated live — a task can tick while the user is elsewhere in your app.
 
-### Flow Completion Integration
+### Per-task visibility
 
-To mark tasks as complete when users finish a flow:
+Each task can carry its own visibility condition (the same condition toolbox as completion), so different users see different lists: hide the "Invite your team" task for solo plans, show an admin-only task to admins. Hidden tasks don't count toward progress.
 
-![](/images/checklist-05.png)
+## Wiring tasks to flows
+
+The pattern that makes checklists work as an activation engine:
+
+1. Build a flow that teaches one task (e.g. "Create your first project")
+2. In the checklist task, set the **click action** to start that flow
+3. Set the task's **completion condition** to "flow completed"
+
+The checklist becomes a hub: users pick a task, get walked through it, return to a ticked box and the next task. Conditions in other content can also reference the checklist's own state (seen / completed), so you can chain what happens after activation.
+
+## User experience
+
+- **First appearance** follows your initial-display setting; after that, the expanded/collapsed state follows the user's own choice.
+- **Minimized**, the launcher button shows the remaining-task count; the panel shows a live progress bar.
+- **Dismissing** asks for confirmation. With *prevent dismissal* on, the dismiss action is hidden entirely — except after completion when *auto-dismiss* takes over.
+- **One checklist at a time**: if several published checklists match a user, only one shows — order them with the priority setting on the detail page.
 
 ## Customization
 
-### Appearance
+Style checklists through the theme editor: [Settings → Themes](https://app.usertour.io/project/1/settings/themes) → the Checklist section — launcher shape and color, panel width, progress bar, fonts and corner radius. Changes apply to every checklist using that theme. See [customizing themes](/how-to-guides/customizing-themes) for the full guide.
 
-Customize your checklist through the theme editor:
+## Measuring
 
-- Access via [Settings -> Themes](https://app.usertour.io/project/1/settings/themes)
-- Modify colors and styling
-- Adjust positioning
-- Customize launcher appearance
+The analytics tab answers the questions that matter for a checklist:
 
-### Visibility Control
+- **Opens** — unique users who opened the panel, and total opens
+- **Per-task completion** — for every task: how many users completed it, and the completion rate. This is where you find the task everyone skips.
+- **Session details** include a per-item snapshot (shown / clicked / completed) for each user's run, so support can see exactly where one user stands.
 
-#### Dismissal Options
+## Best practices
 
-- Users can dismiss via the "Dismiss checklist" button
-- Prevent dismissal in advanced settings
-- Toggle "Prevent users from dismissing checklist"
-
-#### Conditional Hiding
-
-Control checklist visibility with temporary hide conditions:
-
-- Hide on specific pages
-- Hide in certain scenarios
-- Hide when embedded in resource centers
-- Hide launcher independently
-
-> **Note**: For complete control over checklist visibility, configure auto-start conditions rather than using temporary hide conditions.
-
-## Best Practices
-
-1. **Keep it Focused**
-   - Limit tasks to essential steps
-   - Use clear, actionable language
-   - Provide context in subtitles
-
-2. **Progress Tracking**
-   - Show clear progress indicators
-   - Celebrate task completion
-   - Maintain engagement
-
-3. **Integration**
-   - Connect with relevant flows
-   - Link to important features
-   - Guide users naturally
-
-4. **User Control**
-   - Allow task skipping when appropriate
-   - Provide clear navigation
-   - Enable easy access to help
+1. **Three to six tasks.** Below three, use a flow; above six, completion rates collapse. Split a long list into a "getting started" checklist and a later "go further" one.
+2. **Order tasks by increasing effort** — first task doable in under a minute. Early momentum is what carries users to the harder ones.
+3. **Prefer behavior-based completion.** "Completed when clicked" measures curiosity; an event condition measures activation. The per-task analytics are only as honest as the conditions behind them.
+4. **Use *In order* sparingly.** Locking tasks reads as friction unless the dependency is real (you genuinely can't invite teammates before creating a workspace).
+5. **Turn on auto-dismiss.** The countdown-and-gone moment is the closest thing to a celebration the checklist has; a completed list that lingers forever just becomes clutter.
+6. **Think twice before *prevent dismissal*.** A list users can't close is a list users learn to ignore. Prefer making the tasks worth finishing.
