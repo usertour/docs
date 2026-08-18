@@ -119,7 +119,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -252,7 +252,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -485,7 +485,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -570,7 +570,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -683,7 +683,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -788,7 +788,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -876,7 +876,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -983,7 +983,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -1090,7 +1090,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -1197,7 +1197,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -1314,7 +1314,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -1487,7 +1487,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -1572,7 +1572,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -1706,7 +1706,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -1820,7 +1820,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -1936,7 +1936,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -2042,7 +2042,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -2215,7 +2215,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -2415,7 +2415,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -2617,7 +2617,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -2734,7 +2734,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -2954,7 +2954,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -3078,7 +3078,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -3191,7 +3191,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -3278,7 +3278,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -3478,7 +3478,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -3602,7 +3602,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -3715,7 +3715,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -3802,7 +3802,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -3927,7 +3927,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -4033,7 +4033,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -4190,7 +4190,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -4275,7 +4275,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -4395,7 +4395,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -4499,7 +4499,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -4596,7 +4596,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -4714,7 +4714,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -4820,7 +4820,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5047,7 +5047,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5175,7 +5175,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5272,7 +5272,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5378,7 +5378,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5564,7 +5564,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5649,7 +5649,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5745,7 +5745,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5849,7 +5849,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -5946,7 +5946,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -6108,7 +6108,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -6193,7 +6193,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -6289,7 +6289,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -6393,7 +6393,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -6490,7 +6490,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -6532,6 +6532,335 @@
         },
         "tags": [
           "Event definitions"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/webhooks": {
+      "get": {
+        "operationId": "ApiWebhooksController_list",
+        "summary": "List webhooks",
+        "parameters": [
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "description": "Opaque page cursor \u2014 the `cursor` query value found inside a prior response's `next`/`previous` URL. Normally you never build this yourself: just GET those URLs as-is.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Max items per page (1-100, default 20).",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of webhooks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListWebhooksResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ApiWebhooksController_create",
+        "summary": "Create a webhook",
+        "description": "On Usertour Cloud, webhooks need a paid plan (Starter or above) \u2014 a Hobby project gets 403 E0043. Self-hosted instances are never gated. The same applies to update, rotate-secret and delivery; reads and delete stay available on any plan.",
+        "parameters": [
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWebhookBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Webhook created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/webhooks/{id}": {
+      "get": {
+        "operationId": "ApiWebhooksController_get",
+        "summary": "Get a webhook (includes the signing secret)",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Webhook ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Webhook found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Webhook not found"
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ApiWebhooksController_update",
+        "summary": "Update a webhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Webhook ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWebhookBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Webhook not found"
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiWebhooksController_remove",
+        "summary": "Delete a webhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Webhook ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Webhook deleted"
+          },
+          "404": {
+            "description": "Webhook not found"
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/webhooks/{id}/rotate-secret": {
+      "post": {
+        "operationId": "ApiWebhooksController_rotateSecret",
+        "summary": "Rotate the signing secret",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Webhook ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Secret rotated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Webhook not found"
+          }
+        },
+        "tags": [
+          "Webhooks"
         ],
         "security": [
           {
@@ -6644,7 +6973,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -6730,7 +7059,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -6816,7 +7145,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -6921,7 +7250,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -7009,7 +7338,7 @@
             }
           },
           "403": {
-            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment).",
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
             "content": {
               "application/json": {
                 "schema": {
@@ -35929,6 +36258,173 @@
           }
         },
         "additionalProperties": false
+      },
+      "ListWebhooksResponseDto": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "webhook"
+                  ]
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "topics": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "enabled": {
+                  "type": "boolean"
+                },
+                "description": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "secret": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "createdAt",
+                "url",
+                "topics",
+                "enabled",
+                "description"
+              ]
+            }
+          },
+          "next": {
+            "type": "string",
+            "nullable": true
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "results",
+          "next",
+          "previous"
+        ]
+      },
+      "WebhookDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "webhook"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "secret": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "createdAt",
+          "url",
+          "topics",
+          "enabled",
+          "description"
+        ]
+      },
+      "CreateWebhookBodyDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Public HTTPS endpoint events are POSTed to (SSRF-guarded server-side)."
+          },
+          "topics": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Topic subscriptions: \"*\" (everything); \"event.tracked\" (all behavior events) or \"event.tracked.<codeName>\" for one; \"content\" / \"content.published\"; \"user\" or \"user.created\" / \"user.updated\" / \"user.deleted\"; \"company\" or \"company.created\" / \"company.updated\" / \"company.deleted\". A bare family name also covers topics added to it later. High-volume events (page_viewed) are excluded from the wildcard forms and must be subscribed explicitly."
+          },
+          "enabled": {
+            "description": "Defaults to true.",
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "url",
+          "topics"
+        ]
+      },
+      "UpdateWebhookBodyDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "topics": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "Topic subscriptions: \"*\" (everything); \"event.tracked\" (all behavior events) or \"event.tracked.<codeName>\" for one; \"content\" / \"content.published\"; \"user\" or \"user.created\" / \"user.updated\" / \"user.deleted\"; \"company\" or \"company.created\" / \"company.updated\" / \"company.deleted\". A bare family name also covers topics added to it later. High-volume events (page_viewed) are excluded from the wildcard forms and must be subscribed explicitly."
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 200
+          }
+        }
       },
       "ListEnvironmentsResponseDto": {
         "type": "object",

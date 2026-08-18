@@ -292,6 +292,7 @@ for confirmation first.
 | Attribute definitions | `list_attribute_definitions`, `get_attribute_definition`                   |
 | Event definitions     | `list_event_definitions`, `get_event_definition`                           |
 | Environments          | `list_environments`, `get_environment`                                     |
+| Webhooks              | `list_webhooks`                                                            |
 | References            | `list_references`                                                          |
 
 Every `list_*` tool pages with `cursor` / `limit`. The named-resource lists —
@@ -327,6 +328,7 @@ this attribute / event / segment / theme / content" before you delete it.
 | Event definitions     | `create_event_definition`, `update_event_definition`, `delete_event_definition`                                                      |
 | Sessions              | `end_session`, `delete_session`                                                                                                      |
 | Environments          | `create_environment`, `update_environment`, `delete_environment`                                                                     |
+| Webhooks              | `create_webhook`, `update_webhook`, `delete_webhook` — see [Webhooks](/developers/webhooks)                                          |
 
 Content write tools take the same [representation](/api-reference-v2/content-representation)
 as the REST endpoints (markdown blocks, `{{ attribute }}` placeholders, rules);
