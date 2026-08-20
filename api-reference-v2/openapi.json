@@ -36555,6 +36555,7 @@
                   "nullable": true
                 },
                 "secret": {
+                  "description": "HMAC signing secret (whsec_...). Present only for tokens holding webhook:manage, and only on single-object reads, create, and rotate. An EMPTY string means the stored secret can no longer be decrypted (e.g. the encryption key changed) \u2014 call rotate-secret to mint a fresh one.",
                   "type": "string"
                 }
               },
@@ -36635,6 +36636,7 @@
             "nullable": true
           },
           "secret": {
+            "description": "HMAC signing secret (whsec_...). Present only for tokens holding webhook:manage, and only on single-object reads, create, and rotate. An EMPTY string means the stored secret can no longer be decrypted (e.g. the encryption key changed) \u2014 call rotate-secret to mint a fresh one.",
             "type": "string"
           }
         },
