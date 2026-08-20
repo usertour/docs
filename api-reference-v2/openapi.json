@@ -36539,11 +36539,11 @@
                   "type": "integer",
                   "minimum": -9007199254740991,
                   "maximum": 9007199254740991,
-                  "description": "Messages in a row whose retry budget was exhausted (circuit-breaker streak)."
+                  "description": "Consecutive failed delivery attempts (circuit-breaker streak; any success resets)."
                 },
                 "cooldownUntil": {
                   "type": "string",
-                  "description": "While in the future, delivery is paused for this endpoint (cooldown).",
+                  "description": "While in the future, deliveries to this endpoint are held and sent after the window (cooldown).",
                   "nullable": true
                 },
                 "autoDisabledAt": {
@@ -36619,11 +36619,11 @@
             "type": "integer",
             "minimum": -9007199254740991,
             "maximum": 9007199254740991,
-            "description": "Messages in a row whose retry budget was exhausted (circuit-breaker streak)."
+            "description": "Consecutive failed delivery attempts (circuit-breaker streak; any success resets)."
           },
           "cooldownUntil": {
             "type": "string",
-            "description": "While in the future, delivery is paused for this endpoint (cooldown).",
+            "description": "While in the future, deliveries to this endpoint are held and sent after the window (cooldown).",
             "nullable": true
           },
           "autoDisabledAt": {
@@ -36653,6 +36653,7 @@
         "properties": {
           "url": {
             "type": "string",
+            "maxLength": 2083,
             "pattern": "^https?:\\/\\/",
             "description": "Endpoint events are POSTed to. Public HTTPS by default; deployments with ALLOW_PRIVATE_NETWORK_EGRESS may use private/http targets (SSRF-guarded server-side)."
           },
@@ -36684,6 +36685,7 @@
         "properties": {
           "url": {
             "type": "string",
+            "maxLength": 2083,
             "pattern": "^https?:\\/\\/"
           },
           "topics": {
