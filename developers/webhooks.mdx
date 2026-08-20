@@ -227,9 +227,11 @@ def usertour():
 ## Delivery, retries, and the message log
 
 - **Success** is any `2xx` response within **10 seconds**. Respond first, do the work afterwards.
-- **Anything else** — a non-2xx status, a timeout, a connection error, or a redirect — counts as a failure and is retried with exponential backoff: **5 attempts** in total (after ~1 s, 2 s, 4 s, 8 s). All attempts carry the same body and message `id`; only the signature timestamp changes.
+- **Anything else** — a non-2xx status, a timeout, a connection error, or a redirect — counts as a failure and is retried with growing delays over roughly **24 hours**: **8 attempts** in total (after ~5 s, 1 m, 10 m, 1 h, 4 h, 8 h, 12 h). An outage on your side that lasts less than a day heals itself — every message is delivered once the receiver is back, no action needed. All attempts carry the same body and message `id`; only the signature timestamp changes.
+- **Rate limiting**: respond `429` with a `Retry-After` header and the next attempt waits at least that long (never sooner than the schedule above).
 - **Ordering is not guaranteed** across messages; use `createdAt` (and the object's own timestamps) rather than arrival order.
-- **Disabled or deleted endpoints** silently drop their in-flight deliveries.
+- **Repeated failures pause deliveries briefly.** After 10 failed attempts in a row the endpoint **cools down** (starting at 1 minute, growing to at most 1 hour while failures continue — the dashboard shows a *Cooling down* badge). Deliveries are **held, not dropped**: everything is sent once the pause ends or a **Send test event** succeeds. If an endpoint keeps failing for **7 days**, Usertour disables it and emails the project owner; re-enable it after fixing the receiver and use Resend for anything you need.
+- **Disabled or deleted endpoints** drop their in-flight deliveries; the drops are recorded in the message log as failed attempts, so after re-enabling you can see and re-send what was missed.
 - **The message log** on the endpoint's detail page keeps every message for **30 days**: the payload as sent and each attempt with status code, response excerpt, and error. Open a message to inspect it or **Resend** it — the same payload under the same message id, as one more attempt — after fixing your receiver.
 
 ![The Recent messages log](/images/webhooks-04.png)
