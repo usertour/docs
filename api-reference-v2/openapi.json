@@ -6737,7 +6737,8 @@
     "/v2/projects/{projectId}/environments/{environmentId}/webhooks/{id}": {
       "get": {
         "operationId": "ApiWebhooksController_get",
-        "summary": "Get a webhook (includes the signing secret)",
+        "summary": "Get a webhook (includes the signing secret for webhook:manage tokens)",
+        "description": "The signing secret is the ability to forge signed deliveries, so it rides only on tokens holding webhook:manage \u2014 a read-only token gets every other field.",
         "parameters": [
           {
             "name": "id",
@@ -6749,17 +6750,19 @@
             }
           },
           {
-            "name": "environmentId",
-            "required": true,
-            "in": "path",
-            "description": "Environment ID",
-            "schema": {}
-          },
-          {
             "name": "projectId",
             "required": true,
             "in": "path",
             "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
             "schema": {}
           }
         ],
