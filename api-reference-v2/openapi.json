@@ -7045,7 +7045,7 @@
           }
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Secret rotated",
             "content": {
               "application/json": {
@@ -36659,6 +36659,7 @@
           },
           "topics": {
             "minItems": 1,
+            "maxItems": 100,
             "type": "array",
             "items": {
               "type": "string",
@@ -36690,6 +36691,7 @@
           },
           "topics": {
             "minItems": 1,
+            "maxItems": 100,
             "type": "array",
             "items": {
               "type": "string",
