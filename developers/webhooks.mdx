@@ -228,7 +228,7 @@ def usertour():
 
 - **Success** is any `2xx` response within **10 seconds**. Respond first, do the work afterwards.
 - **Anything else** — a non-2xx status, a timeout, a connection error, or a redirect — counts as a failure and is retried with growing delays over roughly **24 hours**: **8 attempts** in total (after ~5 s, 1 m, 10 m, 1 h, 4 h, 8 h, 12 h). An outage on your side that lasts less than a day heals itself — every message is delivered once the receiver is back, no action needed. All attempts carry the same body and message `id`; only the signature timestamp changes.
-- **Rate limiting**: respond `429` with a `Retry-After` header and the next attempt waits at least that long (never sooner than the schedule above).
+- **Rate limiting**: respond `429` (or `503`) with a `Retry-After` header and the next attempt waits at least that long (never sooner than the schedule above); the header is ignored on other statuses.
 - **Ordering is not guaranteed** across messages; use `createdAt` (and the object's own timestamps) rather than arrival order.
 - **Repeated failures pause deliveries briefly.** After 10 failed attempts in a row the endpoint **cools down** (starting at 1 minute, growing to at most 1 hour while failures continue — the dashboard shows a *Cooling down* badge). Deliveries are **held, not dropped**: everything is sent once the pause ends or a **Send test event** succeeds. If an endpoint keeps failing for **7 days**, Usertour disables it and emails the project owner; re-enable it after fixing the receiver and use Resend for anything you need.
 - **Disabled or deleted endpoints** drop their in-flight deliveries; the drops are recorded in the message log as failed attempts, so after re-enabling you can see and re-send what was missed.
