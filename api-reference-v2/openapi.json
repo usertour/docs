@@ -36668,7 +36668,8 @@
             "type": "array",
             "items": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 200
             },
             "description": "Topic subscriptions: \"*\" (everything); \"event.tracked\" (all behavior events) or \"event.tracked.<codeName>\" for one; \"content\" / \"content.published\"; \"user\" or \"user.created\" / \"user.updated\" / \"user.deleted\"; \"company\" or \"company.created\" / \"company.updated\" / \"company.deleted\". A bare family name also covers topics added to it later. High-volume events (page_viewed) are excluded from the wildcard forms and must be subscribed explicitly."
           },
@@ -36700,7 +36701,8 @@
             "type": "array",
             "items": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "maxLength": 200
             },
             "description": "Topic subscriptions: \"*\" (everything); \"event.tracked\" (all behavior events) or \"event.tracked.<codeName>\" for one; \"content\" / \"content.published\"; \"user\" or \"user.created\" / \"user.updated\" / \"user.deleted\"; \"company\" or \"company.created\" / \"company.updated\" / \"company.deleted\". A bare family name also covers topics added to it later. High-volume events (page_viewed) are excluded from the wildcard forms and must be subscribed explicitly."
           },
