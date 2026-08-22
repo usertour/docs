@@ -32,7 +32,22 @@ Creating the endpoint generates its **signing secret** (`whsec_…`). Open the e
 ![Endpoint detail page with the signing secret](/images/webhooks-02.png)
 
 <Tip>
-  To see raw messages before writing a receiver, point an endpoint at a request-inspection service, subscribe to everything, and hit **Send test event**. To test a receiver running on your machine, expose it through an HTTPS tunnel — private addresses are refused by design.
+  **Trying it out before you have a receiver.**
+
+  - **Fastest check:** save the endpoint and hit **Send test event** — a
+    `webhook.test` message arrives immediately, so you can confirm the URL is
+    reachable and your signature check works before any real event fires.
+  - **No receiver yet?** Point the endpoint at a request-inspection service
+    such as [webhook.site](https://webhook.site) or
+    [Beeceptor](https://beeceptor.com): they hand you a throwaway HTTPS URL and
+    show every request they receive, headers included.
+  - **Receiver running on your machine?** It needs a public HTTPS address, so
+    put a tunnel in front of it — [ngrok](https://ngrok.com) or
+    [cloudflared](https://developers.cloudflare.com/cloudflare-tunnel/) forward
+    a public URL to `localhost`. (A tunnel is not a receiver: your own service
+    still has to be running behind it.) Self-hosted operators can skip the
+    tunnel by setting `ALLOW_PRIVATE_NETWORK_EGRESS=true` and pointing the
+    endpoint straight at `http://localhost:…`.
 </Tip>
 
 ## Topics
