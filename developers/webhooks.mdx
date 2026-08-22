@@ -74,6 +74,17 @@ Every delivery is a JSON body with a fixed envelope. `type` is the topic, `id` i
 }
 ```
 
+<Note>
+  **Two naming layers.** Field names that Usertour defines — the envelope and
+  the objects inside `data` — are camelCase, identical to the [REST
+  API](/api-reference-v2/introduction). Keys **inside** `attributes` are event
+  or user/company attribute code names, passed through exactly as they exist in
+  your workspace: built-in ones are snake_case (`flow_id`, `page_url`), and
+  custom ones appear under whatever code name you created them with. They are
+  deliberately not rewritten, so the key you filter on in Usertour is the key
+  you receive here.
+</Note>
+
 ### `event.tracked.*`
 
 `data.event` is the [event object](/api-reference-v2/introduction) — the same shape the REST API returns. `userId` / `companyId` are the ids you passed to `identify()` / `group()`; `sessionId` / `contentId` / `versionId` are set for session-scoped events (flow, checklist, banner, …) and `null` for sessionless ones (custom `track()` events, trackers); `attributes` holds the event's properties (the per-type `*_id` / `*_name` / `*_version_*` fields plus `page_url` and viewport size).
