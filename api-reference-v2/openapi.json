@@ -7112,6 +7112,167 @@
         ]
       }
     },
+    "/v2/me": {
+      "get": {
+        "operationId": "ApiMeController_me",
+        "summary": "Introspect the token",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Token scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MeResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Me"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "Returns the token's name and the projects and environments it may act on \u2014 the credential-test and picker-population call for integration platforms."
+      }
+    },
+    "/v2/projects/{projectId}/environments/{environmentId}/events": {
+      "post": {
+        "operationId": "ApiEventsController_track",
+        "summary": "Track an event",
+        "parameters": [
+          {
+            "name": "environmentId",
+            "required": true,
+            "in": "path",
+            "description": "Environment ID",
+            "schema": {}
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrackEventBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The recorded event",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Events"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "description": "Records a behavior event for a user. Unseen users are created; an unknown event name registers a definition on first use; built-in Usertour event names are refused."
+      }
+    },
     "/v2/projects/{projectId}/environments": {
       "get": {
         "operationId": "ApiEnvironmentsController_list",
@@ -36714,6 +36875,175 @@
             "maxLength": 200
           }
         }
+      },
+      "MeResponseDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "me"
+            ]
+          },
+          "tokenName": {
+            "type": "string"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "project"
+                  ]
+                },
+                "name": {
+                  "type": "string"
+                },
+                "environments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "object": {
+                        "type": "string",
+                        "enum": [
+                          "environment"
+                        ]
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "object",
+                      "name"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "name",
+                "environments"
+              ]
+            }
+          }
+        },
+        "required": [
+          "object",
+          "tokenName",
+          "projects"
+        ]
+      },
+      "TrackEventBodyDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "The user's external ID \u2014 the same value passed to usertour.identify(). Unseen users are created."
+          },
+          "companyId": {
+            "description": "External ID of the company to associate the event with. Must already exist \u2014 an unknown id records the event without the association.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 100,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$",
+            "description": "The event code name. An unknown name creates the event definition on first use; built-in Usertour event names are refused."
+          },
+          "attributes": {
+            "description": "Event attribute values. Unknown attribute names register on the event definition automatically.",
+            "type": "object",
+            "additionalProperties": {}
+          },
+          "occurredAt": {
+            "description": "When the event actually happened (ISO 8601); defaults to now.",
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+          }
+        },
+        "required": [
+          "userId",
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "EventDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "event"
+            ]
+          },
+          "codeName": {
+            "type": "string"
+          },
+          "eventDefinitionId": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "companyId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sessionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "contentId": {
+            "type": "string",
+            "nullable": true
+          },
+          "versionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "codeName",
+          "eventDefinitionId",
+          "createdAt",
+          "userId",
+          "companyId",
+          "sessionId",
+          "contentId",
+          "versionId",
+          "attributes"
+        ]
       },
       "ListEnvironmentsResponseDto": {
         "type": "object",

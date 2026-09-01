@@ -74,6 +74,7 @@
             "pages": [
               "integrations/overview",
               "integrations/cohort-sync",
+              "integrations/zapier",
               "integrations/amplitude",
               "integrations/heap",
               "integrations/mixpanel",

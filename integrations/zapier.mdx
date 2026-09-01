@@ -1,0 +1,51 @@
+---
+title: Zapier
+description: Connect Usertour to thousands of apps — trigger Zaps from Usertour events, and create users, companies, and events from anywhere.
+icon: "bolt"
+---
+
+The Zapier integration connects Usertour to 7,000+ apps with no code: a flow
+completion can create a CRM task or post to Slack, a new signup in your
+billing tool can create a Usertour user, a support ticket can record an event
+you target content with.
+
+## What's available
+
+**Triggers** (fire a Zap when something happens in Usertour — all instant):
+
+- **Flow Started / Flow Completed / Flow Ended** — a user starts, completes, or leaves a flow
+- **Checklist Completed** — a user finishes every task of a checklist
+- **Survey Question Answered** — a user answers a survey question (NPS, scale, text, choice)
+- **Launcher Activated** — a user clicks or hovers over a launcher
+- **User Created** — Usertour sees a user for the first time
+- **Event Tracked** — any event definition in your project fires, custom events included
+
+**Actions** (do something in Usertour from a Zap):
+
+- **Create or Update User** — set attributes you can target content with
+- **Create or Update Company**
+- **Track Event** — record a behavior event; unseen users are created, unknown event names register a definition on first use
+
+**Searches**: **Find User** and **Find Company** by their external IDs — pair
+them with the create actions for Zapier's find-or-create pattern.
+
+## Connect
+
+1. Accept the Usertour app invite link (below) with your Zapier account, or find **Usertour** when adding a Zap step.
+2. In Usertour, create an API token under **Settings → API**. Give it the **Webhooks: manage** scope for triggers, plus **Users: write** if you use the actions, and include the environments you want to connect.
+3. When Zapier asks you to connect your account: keep the default **Server URL** on Usertour Cloud (self-hosted instances enter their own API URL), and paste the token.
+4. Pick your **project** and **environment** in each Zap step — the dropdowns list exactly what your token can access.
+
+## How triggers work
+
+Turning a Zap on creates an ordinary [webhook](/developers/webhooks) in that
+environment, labeled *"Managed by Zapier"* — you'll see it under **Settings →
+Webhooks**, message log included, and delivery gets the same retry and
+circuit-breaker treatment as any webhook. Turning the Zap off removes it.
+Don't delete that webhook by hand: the Zap silently stops firing.
+
+## Troubleshooting
+
+- **A Zap stopped firing:** check **Settings → Webhooks** — if the "Managed by Zapier" entry is missing (deleted by hand) or auto-disabled, turn the Zap off and on again to re-subscribe.
+- **The connection test fails:** the token may lack the required scopes or environments, or (self-hosted) the Server URL isn't reachable from the public internet — Zapier's servers must be able to call your instance.
+- **Rotated or deleted the API token:** reconnect the Usertour account in Zapier with a fresh token; existing Zaps pick the connection back up.
