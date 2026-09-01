@@ -4,6 +4,193 @@ description: "Usertour releases in 2026"
 rss: true
 ---
 
+<Update label="v0.9.3" description="August 22, 2026">
+
+This release ships **outbound webhooks**: tracked events, content publishes, and user or company changes POSTed to an endpoint you control the moment they happen. Every message is signed with a per-endpoint secret, retried across a day-long ladder when your receiver is down, and kept for 30 days with each delivery attempt — so you can see exactly what was sent, what came back, and re-send it. New signups also land on a starting-point screen: build with an AI assistant, or go straight into the dashboard.
+
+### 🪝 Outbound webhooks
+
+Endpoints live in **Settings → Webhooks** and belong to one environment — Production and Staging keep separate lists, separate signing secrets, and never see each other's traffic. Point one at any public HTTPS URL and pick what it should receive from a subscription tree: everything, a whole family (all tracked events, all user changes, all company changes), a group, or a single topic. Families cover topics added later, so subscribing to `user` today keeps working when a new user topic ships.
+
+Available topics are the tracked events your workspace already defines (`event.tracked.flow_completed`, `event.tracked.checklist_task_completed`, …), `content.published`, and the entity-change set — `user.created` / `user.updated` / `user.deleted` and the same three for `company`. Entity messages carry the full object plus `previousAttributes` holding just the keys that changed. High-volume `page_viewed` is excluded from the wildcard forms and has to be named explicitly.
+
+Each request carries `X-Usertour-Signature` — a timestamp and an HMAC-SHA256 of the exact bytes on the wire, computed with the endpoint's `whsec_…` secret — so a receiver can verify authenticity and reject replays. Rotating a secret takes effect immediately, including for retries already in flight. **Send test event** delivers a `webhook.test` message on demand, so you can prove the URL and your signature check work before any real event fires.
+
+On Usertour Cloud webhooks are included from the **Starter** plan; self-hosted instances are never gated. Managing endpoints requires the Owner role.
+
+### 🛡️ Delivery that survives an outage
+
+A receiver that is down for an afternoon does not cost you messages. Each delivery gets **8 attempts spread over roughly 24 hours** (5s, 1m, 10m, 1h, 4h, 8h, 12h), and a `429` or `503` carrying `Retry-After` pushes the next attempt out to the time you asked for. Between attempts the job costs nothing — no held connection, no worker.
+
+An endpoint that keeps failing is slowed rather than dropped. After ten consecutive failed attempts it enters a **cooldown** (a minute, doubling toward an hour while failures continue, shown as a *Cooling down* badge). Messages created during a cooldown are still recorded and still delivered once the window passes — the pause defers traffic, it never discards it. A successful **Send test event** ends the cooldown immediately, so fixing your receiver and probing it is the fastest way back. If an endpoint fails continuously for **seven days**, Usertour disables it and emails the project owner; re-enabling resets the whole breaker.
+
+### 🧾 A message log you can re-send from
+
+The endpoint's detail page keeps every message for **30 days**: the payload exactly as sent, its status, and each delivery attempt with response code, response excerpt, error and duration. Open a message to inspect the full JSON, or **Re-send** it — same payload, same message id, appended to the same attempt history — after fixing your receiver.
+
+Delivery is at-least-once and message ids are stable across retries and re-sends, so deduplicating on the id is safe. Ordering across messages is not guaranteed; use each object's own timestamps.
+
+### 🔌 Endpoints as an API resource
+
+Webhooks are also a v2 REST resource under the environment, so you can provision them from scripts or infrastructure-as-code, and the MCP server exposes them as `list_webhooks`, `create_webhook`, `update_webhook` and `delete_webhook` for AI assistants. The signing secret is only returned to tokens holding `webhook:manage` — a read-only token gets every other field, because the secret is the ability to sign deliveries.
+
+### 🚀 A starting point after signup
+
+A fresh signup now chooses how to begin instead of landing cold on the dashboard: **Build with AI** opens the connection guide for your assistant, **Build it yourself** continues straight in. The guide leads each client with a one-click entry — a VS Code install deeplink with the values pre-filled, Cursor's deeplink, and direct paths into Claude's and ChatGPT's connector settings — and flips to a copyable starter prompt the moment your authorization lands. Manual steps remain as the fallback.
+
+### 🐛 Fixes
+
+- **`docker stop` always burned the full grace period and then killed the container.** A shell held PID 1 with no signal handler, so the SIGTERM never reached Node. The image now runs Node as PID 1 and shuts down cleanly — HTTP server, Redis and Prisma closed in order.
+- **Detail dialogs could grow past the screen and jump while closing.** They are now bounded by the viewport and scroll inside, and the closing animation no longer collapses their content.
+- **Long values broke the webhook screens' layout.** Status badges and table headers no longer wrap inside their columns, long topics and URLs truncate with the full value on hover, and an over-long URL or an oversized topic list is caught inline in the form instead of coming back as a raw server error.
+
+### 🛠️ Under the hood
+
+The delivery pipeline is built on a **shared outbound ledger** — one row per message holding the payload as sent, one row per attempt — deliberately generic, because the integrations event push lands on the same bookkeeping next. The design and its failure-handling decisions are written up in ADR 0010.
+
+- Domain events are emitted **after commit**, so a rolled-back transaction can never produce a webhook. Delete events are sourced from `DELETE … RETURNING`, which gives per-row attribution: concurrent duplicate deletes emit exactly one message instead of two with different ids.
+- Signing secrets are **AES-256-GCM encrypted at rest**, the treatment the SDK signing secrets and 2FA secrets already had. The plaintext boundary is the domain service; the delivery worker decrypts its own read.
+- User-controlled URLs run behind the shared SSRF egress guard — HTTPS-only fail-fast at save time, DNS-rebinding-pinned resolution and IP-literal vetting at send time, and **proxy environment variables are disabled** on guarded deliveries, since dialing a proxy would leave the guard inspecting the wrong host. `ALLOW_PRIVATE_NETWORK_EGRESS` opts self-hosted deployments out.
+- Retries live in Redis for a day, so an hourly **reconcile sweep** re-queues messages whose job was lost with the queue — resuming from the highest logged attempt, never from a row count.
+- Concurrent writes to breaker and message state are compare-and-swap guarded end to end; the rules that came out of it are now a written convention (`docs/conventions/concurrent-state-writes.md`) rather than tribal knowledge.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.2...v0.9.3
+
+</Update>
+
+<Update label="v0.9.2" description="August 15, 2026">
+
+This release is about trust between your deployment and the proxies it runs behind. A zero-config self-host now reports correct URLs everywhere out of the box — the right scheme behind TLS-terminating edges like Railway and Cloudflare, the right port on the stock Docker setup — and the forwarded-header chain that feeds rate limiting and the audit log can no longer be spoofed. Startup failures now crash loudly instead of hanging silently.
+
+### 🔗 Zero-config self-hosting tells the truth about its address
+
+With no `API_URL` configured, the server derives its public URLs from each request — and every ingredient of that derivation now survives the trip through the bundled nginx. The edge proxy's `X-Forwarded-Proto` is passed through instead of overwritten (allow-listed to `http`/`https`, tolerant of duplicate-header merges), the client's `Host` header keeps its port, and the real peer is appended to `X-Forwarded-For`. **Settings → MCP**, the OAuth discovery metadata, the 401 challenge and the installation snippet all read the same derivation, so `docker compose up` shows a copyable, working MCP URL with zero configuration — on Railway, the whole OAuth connect flow works the same way.
+
+Derivation is only ever the fallback: every URL it produces can be pinned with `API_URL` / `MCP_SERVER_URL`, which win unconditionally.
+
+### 🛡️ A forwarded-header chain that can't be spoofed
+
+New `TRUST_PROXY` setting (any form Express accepts — a hop count, an address list, `false`). The default trusts **only the bundled nginx**: every other peer counts as the client itself, so a spoofed `X-Forwarded-For` prefix can no longer mint fresh per-IP rate-limit buckets — on public hosts, LANs and Docker networks alike. The resolved client IP also becomes the actor IP in the audit log; if a real proxy fronts your container (Railway, Cloudflare, an ingress), declare it (e.g. `TRUST_PROXY=2`) so audit entries record operators rather than proxy addresses.
+
+### 🐛 Fixes
+
+- **Settings → MCP showed an empty Server URL on a zero-config self-host.** The `/mcp` endpoint itself self-described fine; the display read raw config. Both now share one derivation — along with the installation page's API URL.
+- **Behind a TLS-terminating edge, OAuth metadata advertised `http://` and MCP clients refused to connect.** nginx overwrote the edge's `X-Forwarded-Proto` with its own scheme. It now passes the header through — including when duplicate headers arrive merged as `https, https`.
+- **The port vanished from derived URLs.** nginx's `$host` strips it, so the stock `8011:80` setup derived dead `http://localhost/…` links. The client's own `Host` header is forwarded intact.
+- **A bad `TRUST_PROXY` value — or any startup error — left a zombie container.** Bootstrap exceptions died in a log-only handler: the process neither listened nor exited, and restart policies never fired. Input is now sanitized (`""`, wrapping quotes and `True` all parse), anything still invalid throws naming the variable, and startup fails fast with exit code 1.
+- **`globalConfig` threw over the legacy websocket transport** when `API_URL` was unset (no HTTP request to derive from). It returns empty values instead.
+
+### 🛠️ Under the hood
+
+- The URL-derivation contract is pinned by e2e: scheme from `X-Forwarded-Proto`, host **and port** from `Host`, resolved per request, config always winning — and the derived MCP URL must equal the `oauth-protected-resource` metadata byte-for-byte (RFC 9728).
+- Rate-limit regression tests cover the spoofing paths: rotating fake `X-Forwarded-For` prefixes over one real client — public or private-range — land in a single bucket and hit 429.
+- The Docker-image workflow actions moved to their Node 24 majors, clearing the runner deprecation warnings.
+- The README now opens with **Build Your Onboarding with AI**: three real prompts with their unedited results, and the self-host pointer for the Claude Code plugin (`USERTOUR_MCP_URL`).
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.1...v0.9.2
+
+</Update>
+
+<Update label="v0.9.1" description="August 12, 2026">
+
+This release opens Usertour to programmatic and AI-assisted authoring: a **public v2 REST API**, an **MCP server** that lets assistants build and debug content directly, **personal API keys** and **OAuth connections** to reach them, and an **audit log** over everything they write. Content authored this way is held to a stricter bar than the builder's — the API refuses configurations that would publish green and never render. Along the way the analytics response shapes were made honest per content type, versions gained author attribution and publish history, and project members can be restricted to specific environments.
+
+### 🔌 Public v2 REST API
+
+A contract-first API covering the whole product surface: content and versions (including full authoring of steps, blocks, conditions, actions and triggers), themes, attribute and event definitions, segments, environments, end users, companies, sessions, and analytics. Every response shape is generated from the same schemas the server validates against, published as an OpenAPI document at `/api-v2-json` and rendered in the docs site — so the reference cannot drift from the implementation.
+
+Reads support cursor pagination, `orderBy`, name search, typed filters (created-at ranges, published, completed) and `expand` for inlining related objects. Writes are transactional and return the stored result. Every endpoint declares its 400/401/403 shapes, errors carry stable machine codes (match on `code`, never on `message`), and responses include `X-RateLimit-*` pacing headers with a plan-tiered limit and a standard `Retry-After` on 429.
+
+### 🤖 MCP server for AI assistants
+
+Point Claude Code, Cursor, Codex, VS Code or ChatGPT at `/mcp` and they can author, publish and debug content in place. The server ships 67 tools, a self-describing authoring guide (`get_authoring_guide` serves sections on demand), per-type write schemas (`get_content_schema`), and a routing map delivered in the `initialize` handshake so an assistant knows which tool answers which intent before its first call.
+
+Two diagnosis tools answer the questions support actually gets: `diagnose_content` runs the SAME runtime gates the SDK uses ("why isn't my flow showing?" — published, identified, start rules, frequency, session state) and expands the condition tree with each leaf marked matched/unmatched/unknown, including the user's actual attribute values; `diagnose_user` sorts everything published in an environment into showing / queued / blocked / browser-dependent for one person, with the slot races settled by the runtime's own selectors.
+
+**Settings → MCP** carries per-client connection steps with your instance's URL pre-filled.
+
+### 🔑 Personal API keys and Connected apps
+
+Two ways in, both account-level and both bounded by your role. **Personal API keys** (`utp_…`) are created in Settings → Account with a purpose-named scope preset or a per-resource access-level picker, scoped to one project and the environments you name; they can be edited, rotated (new secret shown once) and deleted. **Connected apps** is the OAuth 2.1 + PKCE side — an assistant registers itself, you approve the scopes and environments on a consent screen, and no token is ever copied by hand.
+
+Both are checked live on every request: the token's own scopes, intersected with the owner's current role on that project, intersected with the environments it may act on. Demote or remove a member and their keys narrow or stop working immediately — no revocation step required. Env-targeted scopes (end-user data, sessions, segments, analytics, publish) must name their environments at creation; "all environments" is not grantable for them.
+
+### 🧾 Audit log
+
+Every write through the open surface is recorded — API, MCP and the web admin alike — with the actor (user or token name), source, resource, environment and timestamp. Filterable by source, action, resource type, environment, actor and date range. Reads are never audited; captures always run, and the read page is gated on the Business plan (Growth sees a 7-day window).
+
+### ✋ Authoring that refuses to fail silently
+
+Content built by an agent has no human watching a live preview, so the API enforces what the builder leaves to the eye. Node-local mistakes are rejected at **write** — a condition group with no children, a time window with no start, an event window with no unit, a step holding two questions, a placement shape that doesn't fit the step kind. Version-level completeness is checked at **publish**, with `validate_content_version` as a dry run of the same rules.
+
+Warnings cover the legal-but-wrong: a launcher, banner or resource center with no start rules (published, reachable by nobody), a flow or checklist that nothing references and no rule starts, an embed whose provider never resolved, a `{{ token }}` naming a non-user attribute (it renders as an empty gap), a theme switch that drops the conditional variations the live version had, and a URL pattern of `*/` — which matches only the site root.
+
+### 📊 Analytics that says what it counts
+
+Analytics responses are now shaped per content type instead of one generic envelope: flows report starts, completions and a per-step funnel with tooltip-target-missing counts; checklists add panel opens and per-task rows; launchers and banners report first-touch user counts (no totals — the events fire once per user); resource centers report opens and block clicks; trackers users and occurrences. `unique*` always counts distinct users in the range; what `total*` counts follows the type, and each field says which. Question analytics zero-fills every configured choice and echoes the rolling window it aggregated with.
+
+### 👥 Environment-scoped members, version history
+
+Project memberships can be restricted to specific environments, and invites carry the same restriction. Versions now record who created them, and each content has a **publish history** — who put which version live in which environment, and who took it down — surviving later deletion of the version or actor.
+
+### 🐛 Fixes
+
+- **`waitMs` was always seconds.** The trigger and start-rule field is renamed `waitSeconds`; the runtime never read it as milliseconds, so the old name mis-taught everyone who saw it.
+- **A version that ever shipped is now frozen.** Unpublishing used to unlock a live version for editing, silently rewriting what users had already seen; fork it instead.
+- **Banners had no start priority.** Two banners competing for the single banner slot resolved arbitrarily; banner now takes a priority like resource center.
+- **Attribute conditions were not scoped by entity.** A condition on a company attribute could be built against a user, and vice versa.
+- **Launcher fringe on dark hosts.** A backdrop behind icon launchers leaked a light seam on dark pages; removed.
+- **Banner remount on SPA navigation**, live-chat provider guard, choice-label ids and watcher idempotency in the SDK (0.7.9).
+- **Social login dropped the flow it interrupted.** Signing in with Google or GitHub from a page that required a login (the MCP consent screen) landed on the homepage instead of returning; the target now rides the OAuth state round-trip, validated same-origin on the way back.
+
+### 🛠️ Under the hood
+
+- The v2 surface is a self-contained module: zod contracts generate both validation and the OpenAPI document, mappers are pure functions testable without DI, and a response-contract check runs on every e2e request so a mapper can't quietly return a shape the spec doesn't declare.
+- Content authoring rides a codec pair — a decompiler that presents stored steps/rules as an intent-level representation, and a compiler that turns that representation back into internal structures (markdown→slate, blocks and rules→storage). A permanent round-trip corpus pins it against real content.
+- Condition validators live in `@usertour/helpers` as a single source of truth, shared by the builder and by the v2 publish/dry-run gate.
+- The MCP server is scope-gated by construction: a token only sees the tools its capabilities allow, and every handler re-authorizes on call.
+- OAuth issues short-lived access tokens with rotating refresh tokens (60s grace so a lost response can't brick a grant), and `MCP_SERVER_URL` is the single truth for the advertised MCP resource — set it to serve `/mcp` on its own domain.
+- Test coverage: every MCP tool ships with an e2e case, the v2 capability matrix is asserted route-by-route against the OpenAPI document, and theme settings round-trip per field across 158 paths.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.0...v0.9.1
+
+</Update>
+
+<Update label="v0.9.0" description="July 25, 2026">
+
+This release lets segments **filter across entities**: user segments can target company and membership attributes, and company segments can target the people inside them. Segment pages get a faster filter-editing flow to match, and trackers now follow company switches instead of staying frozen on their first evaluation. Under the hood, all segment conditions — runtime and list pages alike — now compile through a single filter builder, and the v2 WebSocket surface gains an end-to-end test harness.
+
+### 🧬 Segments can filter across entities
+
+User segments can now use company and membership attributes ("users whose company is on the Pro plan"), and company segments can use user attributes ("companies with at least one admin member"). Conditions that span entities bind to the same company relationship: an AND of cross-entity conditions only matches when one membership satisfies them together, not when two different companies each satisfy half. In segment lists a user matches if any of their companies qualifies; in live targeting the conditions evaluate against the company the user is currently active in — so what you preview in the list is what delivery enforces.
+
+### 🎛️ Faster segment filter editing
+
+Segment list pages get a one-click **Add filter** flow, condition chips now carry an icon showing which entity the attribute belongs to (user, company, or membership), and the attribute pickers and create/edit dialogs show data-type icons in a more compact layout. The **Save filter** button also surfaces reliably — including after deleting the last remaining condition, which previously left the view and the saved segment silently out of sync.
+
+### 📡 Trackers follow company switches
+
+The SDK used to keep a tracker's condition snapshot frozen at first distribution: switch to a company that doesn't qualify and the tracker kept firing, switch into one that does and it never started. Tracker sessions now re-distribute whenever a server-side condition result changes, so the client always evaluates the current rules. Ingestion got honest to match: a report only counts when it matches the exact snapshot the server distributed to that client, reports arriving after unpublish are rejected, and the Users card on tracker analytics now labels each row with the company where the events actually fired — "from B +2" when a user triggered the tracker in more than one company. SDK 0.7.8 carries the client half.
+
+### 🐛 Fixes
+
+- **Company segments with grouped conditions matched every company at runtime.** Runtime evaluation didn't recurse into condition groups, so a segment whose conditions were wrapped in a group silently compiled to "no filter" — auto-start rules fired (and hide rules stayed off) for companies far outside the segment, while the segment's company list, which compiled correctly, looked right.
+- **Mixed-entity OR conditions were evaluated as AND at runtime.** Company segment evaluation partitioned conditions into per-entity buckets that all had to match, dropping the OR semantics between them.
+- **Company lists dropped membership conditions.** Offline company queries ignored membership-attribute conditions entirely; they now filter with the same semantics as runtime.
+- **Search no longer clobbers filters.** On list pages, the search box's OR clause could overwrite a condition filter's own top-level OR; the two now combine as independent AND members.
+
+### 🛠️ Under the hood
+
+Segment evaluation was rebuilt on one compiler so list pages and live delivery can no longer disagree:
+
+- `common/attribute/filter.ts` gains a three-projection builder — `createBizUserConditionsFilter` (with all / current / none company-scan modes) and `createBizCompanyConditionsFilter` — sharing a membership-anchored condition tree with boolean-simplified fallback branches for rows without memberships. Runtime segment evaluation, offline user/company queries, and list search all ride it.
+- Tracker ingest validates the report's (content, version) pair against the socket's distributed session and resolves the event id from that snapshot rather than the live Version row, with the publish-state check moved inside the ingest transaction. Batch diffs identify tracker sessions by composite key — they carry no biz session id — and compare tracker payloads so condition changes re-emit.
+- The v2 WebSocket gateway gains an e2e harness with coverage batches across flow auto-start, checklists, launchers, banners, announcements, resource center, timers, frequency rules, session recovery, identity verification, and runtime segment evaluation.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.8.9...v0.9.0
+
+</Update>
+
 <Update label="v0.8.9" description="July 16, 2026">
 
 This release lets you **prove that `identify()` and `group()` calls really come from your app**, so your public environment token stops being enough to impersonate your users. Your backend signs a short JSON Web Token for each logged-in user; Usertour verifies it before accepting the identity. Verification is opt-in per environment and rolls out safely — unsigned traffic keeps working while a coverage meter shows you when it's safe to switch enforcement on.
