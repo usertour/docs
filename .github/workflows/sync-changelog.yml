@@ -1,0 +1,44 @@
+name: Sync changelog
+
+on:
+  schedule:
+    - cron: "17 2 * * *" # daily, 02:17 UTC
+  workflow_dispatch:
+  # Optional instant sync: a workflow in usertour/usertour can fire
+  # `gh api repos/usertour/docs/dispatches -f event_type=release-published`
+  # on release publish (needs a PAT with contents:write on this repo).
+  repository_dispatch:
+    types: [release-published]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate changelog pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          out=$(python3 scripts/sync-changelog.py)
+          echo "$out"
+          # The script prints a NOTE when a new year page needs a docs.json
+          # nav entry — that part is manual, so surface it loudly.
+          if grep -q "NOTE:" <<<"$out"; then
+            echo "::warning title=docs.json needs updating::$(grep 'NOTE:' <<<"$out")"
+          fi
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet; then
+            echo "changelog already up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add changelog
+          git commit -m "docs(changelog): sync from usertour/usertour releases"
+          git push
