@@ -25,8 +25,8 @@ jobs:
         run: |
           out=$(python3 scripts/sync-changelog.py)
           echo "$out"
-          # The script prints a NOTE when a new year page needs a docs.json
-          # nav entry — that part is manual, so surface it loudly.
+          # The script updates docs.json's Changelog group itself; it only
+          # prints a NOTE if the group went missing and needs a hand.
           if grep -q "NOTE:" <<<"$out"; then
             echo "::warning title=docs.json needs updating::$(grep 'NOTE:' <<<"$out")"
           fi
@@ -39,6 +39,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add changelog
+          git add changelog docs.json
           git commit -m "docs(changelog): sync from usertour/usertour releases"
           git push

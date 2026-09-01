@@ -3,9 +3,9 @@
 
 Usage: python3 scripts/sync-changelog.py  (requires the `gh` CLI, logged in)
 
-Fetches every release, groups them by year, and rewrites one MDX page per
-year using Mintlify <Update> components. If a new year appears, add
-"changelog/<year>" to the Changelog group in docs.json.
+Fetches every release, groups them by year, rewrites one MDX page per
+year using Mintlify <Update> components, and keeps the Changelog group
+in docs.json listing exactly those year pages.
 """
 
 import json
@@ -93,11 +93,31 @@ rss: true
             f.write(frontmatter + "\n" + "\n\n".join(by_year[year]) + "\n")
         print(f"wrote {os.path.relpath(path, ROOT)} with {len(by_year[year])} entries")
 
-    with open(os.path.join(ROOT, "docs.json")) as f:
+    update_nav(years)
+
+
+def update_nav(years):
+    """Rewrite the Changelog group's pages in docs.json to match the year pages.
+
+    Textual edit rather than a JSON round-trip: docs.json uses compact
+    one-line arrays that json.dumps would reformat wholesale.
+    """
+    path = os.path.join(ROOT, "docs.json")
+    with open(path) as f:
         nav = f.read()
-    missing = [y for y in years if f"changelog/{y}" not in nav]
-    if missing:
-        print(f"NOTE: add {['changelog/' + str(y) for y in missing]} to the Changelog group in docs.json")
+    pages = ", ".join(f'"changelog/{y}"' for y in years)  # newest first
+    new_nav, n = re.subn(
+        r'("group": "Changelog",\s*"pages": \[)[^\]]*(\])',
+        lambda m: m.group(1) + pages + m.group(2),
+        nav,
+        count=1,
+    )
+    if n == 0:
+        print(f"NOTE: Changelog group not found in docs.json; add {[f'changelog/{y}' for y in years]} by hand")
+    elif new_nav != nav:
+        with open(path, "w") as f:
+            f.write(new_nav)
+        print(f"updated docs.json Changelog group to {len(years)} year pages")
 
 
 if __name__ == "__main__":
