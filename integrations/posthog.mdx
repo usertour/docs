@@ -1,0 +1,23 @@
+---
+title: PostHog
+description: Stream Usertour events into PostHog as they happen.
+icon: "chart-line"
+---
+
+The PostHog integration streams **events out**: every event Usertour tracks arrives in your PostHog project in real time, under the same user IDs your own instrumentation reports. See [what gets sent](/integrations/overview#what-gets-sent).
+
+## Connect
+
+Go to **Settings → Integrations → PostHog** and follow the [standard connect flow](/integrations/overview#connect-a-provider) with:
+
+- **Credential:** the **Project API key**, from PostHog project settings — it starts with `phc_`. A *personal* API key (`phx_`) is not the same thing; the capture endpoint rejects it.
+- **Data residency:** US or EU, matching your PostHog Cloud region.
+
+## Stream events to PostHog
+
+Streaming starts with the first save and is controlled by the switch at the top of the page. Delivery, retries, and the message log are described in the [overview](/integrations/overview#delivery-and-reliability).
+
+## Troubleshooting
+
+- **Everything is rejected:** check the key prefix — `phx_` (personal API key) is rejected by PostHog's capture endpoint; you need the project key (`phc_`).
+- Everything else: see the [overview troubleshooting](/integrations/overview#troubleshooting).

@@ -1,10 +1,15 @@
 ---
-title: Integrations
-description: Stream Usertour events into Amplitude, Heap, Mixpanel, PostHog, or Segment as they happen — no code, just a key.
+title: Overview
+description: Connect Usertour to Amplitude, Heap, Mixpanel, PostHog, or Segment — stream events out as they happen, and sync cohorts back in.
 icon: "plug"
 ---
 
-Integrations forward every event Usertour tracks — flow starts and completions, checklist progress, survey answers, your custom events — into your analytics tool in real time. Once connected, Usertour events sit next to your product's own events, ready for funnels, cohorts, and dashboards.
+Integrations connect Usertour to your analytics stack, in both directions:
+
+- **Events out.** Every event Usertour tracks — flow starts and completions, checklist progress, survey answers, your custom events — streams into your analytics tool in real time, ready for funnels, cohorts, and dashboards.
+- **Cohorts in.** Mixpanel and Amplitude cohorts sync back into Usertour as targeting-ready user segments — see [cohort sync](/integrations/cohort-sync).
+
+Each provider has its own page with setup steps and provider-specific notes: [Amplitude](/integrations/amplitude), [Heap](/integrations/heap), [Mixpanel](/integrations/mixpanel), [PostHog](/integrations/posthog), [Segment](/integrations/segment).
 
 If you want events delivered to **your own endpoint** instead of an analytics tool, use [webhooks](/developers/webhooks) — same pipeline, different destination.
 
@@ -24,7 +29,7 @@ Go to **Settings → Integrations** (pick the environment first — the page is 
 
 On the provider's page:
 
-1. Paste the provider credential (see [where to find it](#provider-credentials) below) and, where offered, pick the **data residency** region (US or EU — it must match where your provider project is hosted).
+1. Paste the provider credential (each provider's page tells you exactly which credential and where to find it) and, where offered, pick the **data residency** region (US or EU — it must match where your provider project is hosted).
 2. Click **Save**. The first save connects the integration and turns streaming on.
 3. The switch at the top controls streaming from then on — flipping it takes effect immediately, no Save needed.
 4. Click **Send test event** to push a sample event through the full pipeline and confirm it arrives in the provider.
@@ -34,20 +39,6 @@ On the provider's page:
 The **message log** at the bottom of the page keeps every delivered event for 30 days, with each delivery attempt and the provider's response — the first place to look when something doesn't arrive.
 
 ![The message log](/images/integrations-03.png)
-
-## Provider credentials
-
-Each provider authenticates with a single write credential. All of them are the *write-side* key — safe to think of as "the key the provider's own SDK would embed in your website".
-
-| Provider | Credential | Where to find it |
-| --- | --- | --- |
-| Amplitude | **API key** | Amplitude project settings (each Amplitude project has its own API key) |
-| Heap | **App ID** | Heap account settings, under Projects — the numeric ID of the environment |
-| Mixpanel | **Project token** | Mixpanel project settings (the *token*, not an API secret or service account) |
-| PostHog | **Project API key** | PostHog project settings — starts with `phc_`. Not a personal API key (`phx_`), which the capture endpoint rejects |
-| Segment | **Write key** | On a Segment *source*: create an **HTTP API** source, then Settings → API Keys. Cloud sources don't have write keys — it must be an event-stream source |
-
-Amplitude, Mixpanel, PostHog, and Segment offer EU data residency; set the region to match your provider project. Heap has a single region.
 
 ## What gets sent
 
@@ -79,4 +70,4 @@ Delivery runs through the same pipeline as [webhooks](/developers/webhooks#deliv
 
 ## Removing an integration
 
-The trash icon on the provider's page removes the configuration: streaming stops immediately, and the stored key and the message log are deleted. Your data already delivered to the provider is not affected.
+The trash icon on the provider's page removes the configuration: streaming stops immediately, and the stored key and the message log are deleted. Synced segments are released back into ordinary, editable segments (members included). Your data already delivered to the provider is not affected.

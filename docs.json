@@ -65,9 +65,20 @@
               "how-to-guides/companies",
               "how-to-guides/urls",
               "how-to-guides/flow-analytics",
-              "how-to-guides/integrations",
               "how-to-guides/embed",
               "how-to-guides/mobile"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/cohort-sync",
+              "integrations/amplitude",
+              "integrations/heap",
+              "integrations/mixpanel",
+              "integrations/posthog",
+              "integrations/segment"
             ]
           },
           {
@@ -357,6 +368,10 @@
     {
       "source": "/changelog",
       "destination": "/changelog/2026"
+    },
+    {
+      "source": "/how-to-guides/integrations",
+      "destination": "/integrations/overview"
     }
   ],
   "logo": {

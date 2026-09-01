@@ -1,0 +1,24 @@
+---
+title: Segment
+description: Stream Usertour events into Segment as they happen.
+icon: "chart-pie"
+---
+
+The Segment integration streams **events out**: every event Usertour tracks arrives as `track` calls on a Segment source in real time, with `messageId` deduplication, ready to fan out to your Segment destinations. See [what gets sent](/integrations/overview#what-gets-sent).
+
+## Connect
+
+Go to **Settings → Integrations → Segment** and follow the [standard connect flow](/integrations/overview#connect-a-provider) with:
+
+- **Credential:** a **Write key** from a Segment *source*. In Segment, click **Add Source**, search for **HTTP API**, and add it (use a dedicated source rather than sharing a write key with other producers); the write key is on the source's settings page under API Keys. Cloud sources don't have write keys — it must be an event-stream source.
+- **Data residency:** US or EU, matching where your Segment workspace is hosted.
+
+## Stream events to Segment
+
+Streaming starts with the first save and is controlled by the switch at the top of the page. Delivery, retries, and the message log are described in the [overview](/integrations/overview#delivery-and-reliability).
+
+## Troubleshooting
+
+- **Verify arrivals in the Debugger:** the source's **Debugger** tab in Segment shows events within seconds — the fastest way to confirm the pipe after **Send test event**.
+- **Nothing arrives:** confirm the write key comes from an **HTTP API** source (not a cloud source) and that the source is enabled in Segment.
+- Everything else: see the [overview troubleshooting](/integrations/overview#troubleshooting).

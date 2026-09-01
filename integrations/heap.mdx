@@ -1,0 +1,22 @@
+---
+title: Heap
+description: Stream Usertour events into Heap as they happen.
+icon: "layer-group"
+---
+
+The Heap integration streams **events out**: every event Usertour tracks arrives in your Heap environment in real time, under the same user IDs your own instrumentation reports. See [what gets sent](/integrations/overview#what-gets-sent).
+
+## Connect
+
+Go to **Settings → Integrations → Heap** and follow the [standard connect flow](/integrations/overview#connect-a-provider) with:
+
+- **Credential:** the **App ID** — the numeric ID of the Heap environment you want events in. The quickest way to grab it: open that environment in Heap and copy the `<id>` part of the address bar URL, `https://heapanalytics.com/app/env/<id>/…`. It's also listed in Heap account settings under Projects.
+- **Data residency:** Heap has a single region, so there is nothing to pick.
+
+## Stream events to Heap
+
+Streaming starts with the first save and is controlled by the switch at the top of the page. Delivery, retries, and the message log are described in the [overview](/integrations/overview#delivery-and-reliability).
+
+## Troubleshooting
+
+See the [overview troubleshooting](/integrations/overview#troubleshooting). Heap-specific: make sure the App ID belongs to the environment you expect — each Heap environment (production, development) has its own ID.
