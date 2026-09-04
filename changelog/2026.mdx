@@ -4,6 +4,75 @@ description: "Usertour releases in 2026"
 rss: true
 ---
 
+<Update label="v0.9.4" description="September 4, 2026">
+
+This release connects Usertour to your analytics stack in both directions, and to Zapier. Every tracked event can now stream to **Amplitude, Heap, Mixpanel, PostHog or Segment** the moment it happens; cohorts you define in **Mixpanel or Amplitude** come back as segments you can target flows and checklists at; and a **Zapier app** triggers Zaps from Usertour events and creates users, companies and events from thousands of other apps. Server-side code gets its own way to record events through the v2 API, and localized content can finally translate where its links point. Under the hood, integrations ride the same outbound ledger webhooks shipped on, and the dormant legacy integration module is gone.
+
+### 📡 Event streaming to analytics providers
+
+**Settings → Integrations** is open. Pick a provider, paste its API key (Heap takes an app id), choose the EU region where the provider offers one, and flip **Event streaming** on. From then on every event tracked in that environment — flow and checklist lifecycle, survey answers, launcher activations, your own custom events, and `page_viewed` — is forwarded as it happens. There is no topic picker on purpose: an analytics destination's contract is the full stream, and per-event routing is what webhook subscriptions are for.
+
+Two details make the forwarded data trustworthy. Events carry their **event time**, not the time we managed to deliver them, and destinations that support a dedup key (Mixpanel's `$insert_id`, Amplitude's `insert_id`) receive the message id, so a retry can never double-count. Each event also carries its **session id under a per-type name** — `flow_session_id`, `checklist_session_id`, and so on — so a destination can group one user's runs into sessions instead of seeing a flat event list.
+
+Delivery inherits everything webhooks got in v0.9.3: eight attempts across roughly 24 hours, `Retry-After` honoured, a cooldown for a destination that keeps failing, auto-disable with an owner email after seven days of continuous failure, and a 30-day **message log** on the integration's page with the payload, every attempt, and a **Send test event** button. Fixing a key or region applies to retries already in flight.
+
+API keys are AES-256-GCM encrypted at rest and never returned by the API; the dashboard shows the key's last four characters so you can tell which one is configured. On Usertour Cloud integrations are included from the **Starter** plan; self-hosted instances are never gated.
+
+### 🔁 Cohort sync from Mixpanel and Amplitude
+
+The reverse direction: a cohort built on product analytics ("power users who never opened the checklist") becomes a Usertour audience without re-modelling the condition here. Turn on **Cohort sync** on the Mixpanel or Amplitude integration and you get a receive URL. Paste it into a Mixpanel *Custom Webhook* or an Amplitude *Cohort Webhooks* destination and pick the cohorts to sync.
+
+Each synced cohort materialises as a **read-only segment** named after the cohort, marked with the provider's logo in the segment sidebar, the Users page, and the condition picker — and usable in content targeting exactly like any other segment. Membership follows the provider's enter and exit batches; Mixpanel's full-roster exports are treated as a replace, so members who drop out of the cohort drop out of the segment. Renames follow. The same cohort synced from several environments converges onto **one segment per project**, so targeting that references it works in every environment.
+
+Members Usertour has not seen yet are **created as bare users** — external id only — so the flagship scenario works: circle dormant users in your analytics tool, greet them on their next visit. Cohort sync never writes attributes; the SDK and API stay the single authority on user data. Identity needs no setup when your Mixpanel `distinct_id` or Amplitude `user_id` is the id you pass to `identify()`; an optional **User ID property** covers Mixpanel Identity Merge and other divergences. The synced-cohort list shows each cohort's member count, last sync, a link to its users, and an **unresolved** count — the one signal that a payload arrived without a usable identity.
+
+The receive URL's token can be rotated (the old URL dies immediately). Deleting the integration **releases** its segments as ordinary segments rather than deleting them, so live targeting never breaks.
+
+### ⚡ Zapier
+
+Usertour is on Zapier: https://zapier.com/apps/usertour/integrations. Connect with an API token (and your server URL, if self-hosted), then build Zaps from **eight triggers** — Flow Started, Flow Completed, Flow Ended, Checklist Completed, Survey Question Answered, Launcher Activated, User Created, and a generic **Event Tracked** with a dropdown of every event your workspace defines, custom ones included. **Actions** create or update users and companies and track events, with attribute values sent as each attribute's declared type; **Find User** and **Find Company** searches pair with the actions for Zapier's standard "create if not found" step.
+
+Triggers work by subscribing an ordinary webhook in the environment, labelled **Managed by Zapier**, so Zap deliveries get the same retries, breaker and message log as your own endpoints — leave those webhooks to Zapier; deleting one by hand silently stops its Zap. Zapier also appears as a card on the integrations page with the two setup steps and a link to the guide: https://docs.usertour.io/integrations/zapier.
+
+### 🧾 Track events from your own servers
+
+`POST /v2/projects/{projectId}/environments/{environmentId}/events` records an event for a user from server-side code — a purchase, a plan change, an import finishing — through the same pipeline as SDK events, so webhooks, analytics destinations and targeting see it identically. Unknown users are created bare, an unknown event name registers its definition on first use, attribute names join the definition's list, and `occurredAt` backdates. Built-in event names are refused: analytics must not be forgeable.
+
+`GET /v2/me` introspects the bearer token — its name and the projects and environments it may act on — so integration platforms can validate a pasted token and populate pickers.
+
+### 🌐 Localized link destinations
+
+A link's destination is per-locale content too — a localized page behind localized anchor text. Inline links in rich text and image click-through links now get a destination row in the localization editor, travel in the CSV exchange, and are skipped by machine translation and missing-translation counts, exactly like image and embed URLs. Destinations that contain a user-attribute chip stay source-managed.
+
+### 🐳 Self-hosting notes
+
+- **`RUN_SEED=false`** skips the startup seed on an instance. Multi-instance deployments set it on all but one instance (or run the seed from a one-off job) so the idempotent backfills execute once instead of once per replica. Unset, behaviour is unchanged.
+- **If you front the server with your own reverse proxy**, route `/inbound` to the API (cohort-sync receive URLs live there) and allow request bodies up to 5 MB on the API location; the bundled nginx already does both.
+- **The legacy integration tables are dropped**, not migrated. That module was never reachable — hidden menu entry, dead call site — so any rows in them never took effect. `jsforce` leaves the dependency tree.
+
+### 🐛 Fixes
+
+- **A page holding only the public environment token could record built-in events such as `flow_completed`.** The SDK's socket channel kept its own event registration and accepted any name, polluting analytics and firing every webhook or Zap on that topic. It now rides the same core as the REST endpoint and refuses built-in names.
+- **Reload buttons on user and company detail pages misbehaved.** The activity feed's reload crashed with a circular-structure error because the click event was passed as query variables; the sessions list emptied itself on refresh and never repopulated. Both keep their rows on screen, and the buttons now show an in-flight spinner.
+- **A long URL blew the link popover open in the editor**, pushing the attribute and delete buttons outside the card. The URL wraps inside the editable instead. Same fix for the image link panel and the page-navigate action input.
+- **Un-entitled projects flashed all provider cards before the upsell** on the integrations page. Skeleton cards hold the layout while entitlement settles.
+- **An integration running only cohort sync read as "Disabled".** The status badge now considers both capabilities.
+
+### 🛠️ Under the hood
+
+The integrations surface was rebuilt end-to-end rather than repaired; ADR 0011 records why the legacy module could not be revived (error-swallowing queues that disabled retries, plaintext credentials, dedup keyed on the event name, delivery-time timestamps). ADR 0012 covers cohort sync.
+
+- Integrations are a **second transport over the outbound ledger**: `BIZ_EVENT_TRACKED` → listener → ledger → one delivery queue → pure per-provider adapters. The ledger stores the canonical envelope and the wire body is derived at delivery time, which is what lets a key or region fix apply to in-flight retries and keeps the message log uniform across webhooks and integrations. The retry ladder and reconcile parameters moved to `outbound/delivery-backoff.ts`, shared by both transports.
+- Cohort sync is **one provider-agnostic engine behind per-provider entry adapters** that normalise payloads into a single batch contract. Writes are set-based and idempotent (`createMany … skipDuplicates`, bulk deletes), so a retried or out-of-order batch cannot corrupt state; full-roster rounds carry their state on the mapping row and only reap members their own environment bridged. Processing is synchronous in the request — a failure returns 5xx and the provider retries. Tokens are `utin_`-prefixed, encrypted at rest with a sha256 lookup column; a bad token 404s, a disabled switch or lapsed plan 503s so the provider keeps retrying rather than pausing permanently.
+- Custom event registration is **one idempotent step outside the event transaction** (`registerCustomEvent`: definition upsert, reserved-name guard, attribute registration, one retry absorbing concurrent first use), shared by the v2 REST endpoint, the SDK socket channel and the Zapier action.
+- Localization replaces the "stored value equals live source, so not an override" heuristic with an **explicit format stamp** on every localized write, plus an idempotent seed-time backfill for rows saved before link units existed.
+- The integration catalog moved to `@usertour/constants` and provider types split into analytics and automation unions; the Zapier app lives in `integrations/zapier`, deliberately outside the pnpm workspace because the Zapier Platform CLI builds and deploys it.
+- Test coverage: end-to-end suites for cohort sync (materialisation, idempotent increments, paged replace, cross-environment convergence, read-only enforcement, token rotation, release-on-delete), the Amplitude entry, the track-event route, and built-in-name refusal on the socket channel.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.3...v0.9.4
+
+</Update>
+
 <Update label="v0.9.3" description="August 22, 2026">
 
 This release ships **outbound webhooks**: tracked events, content publishes, and user or company changes POSTed to an endpoint you control the moment they happen. Every message is signed with a per-endpoint secret, retried across a day-long ladder when your receiver is down, and kept for 30 days with each delivery attempt — so you can see exactly what was sent, what came back, and re-send it. New signups also land on a starting-point screen: build with an AI assistant, or go straight into the dashboard.
