@@ -130,9 +130,12 @@ the Usertour attribute is cleared too, and a write-back attribute that
 becomes empty clears the HubSpot property. Deleting a record in HubSpot
 does not touch the Usertour record.
 
-Write-backs run through the same pipeline as other integrations, so they
-are retried on failure and appear in the **message log** at the bottom of
-the page — see [delivery and reliability](/integrations/overview#delivery-and-reliability).
+The **Sync activity** card lists every full sync and every batch of
+changes picked up from HubSpot, with the record counts and, for a failed
+run, the reason — the place to look when a sync did not do what you
+expected. Write-backs run through the same pipeline as other integrations,
+so they are retried on failure and appear under **Write-backs** at the
+bottom of the page — see [delivery and reliability](/integrations/overview#delivery-and-reliability).
 
 ## Where synced attributes show up
 
