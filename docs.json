@@ -75,6 +75,7 @@
               "integrations/overview",
               "integrations/cohort-sync",
               "integrations/zapier",
+              "integrations/hubspot",
               "integrations/amplitude",
               "integrations/heap",
               "integrations/mixpanel",
