@@ -165,9 +165,10 @@ account. It takes about ten minutes and needs no code changes.
    [Usertour repository](https://github.com/usertour/usertour/tree/main/integrations/hubspot)
    and edit `src/app/app-hsmeta.json`: set `distribution` to `"private"`,
    and replace the redirect URL with
-   `https://<your-api-host>/integrations/hubspot/oauth/callback`. It must be
-   HTTPS and reachable by the browser of the person connecting; HubSpot's
-   servers never call it.
+   `https://<your-api-host>/api/integrations/hubspot/oauth/callback`. It must be
+   HTTPS, served by the same host your dashboard sends API requests to, and
+   reachable by the browser of the person connecting; HubSpot's servers never
+   call it.
 3. Run `hs project upload` in that directory. The first upload creates the
    app in your developer account.
 4. In the developer account, open the app: under **Distribution**, add the
