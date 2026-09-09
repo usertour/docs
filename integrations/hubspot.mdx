@@ -126,12 +126,48 @@ the Usertour attribute is cleared too, and a write-back attribute that
 becomes empty clears the HubSpot property. Deleting a record in HubSpot
 does not touch the Usertour record.
 
-The **Sync activity** card lists every full sync and every batch of
-changes picked up from HubSpot, with the record counts and, for a failed
-run, the reason — the place to look when a sync did not do what you
-expected. Write-backs run through the same pipeline as other integrations,
-so they are retried on failure and appear under **Write-backs** at the
-bottom of the page — see [delivery and reliability](/integrations/overview#delivery-and-reliability).
+**Sync activity**, in the connection card's menu, lists every full sync
+and every batch of changes picked up from HubSpot, with the record counts
+and, for a failed run, the reason — the place to look when a sync did not
+do what you expected. Write-backs and timeline events run through the same
+pipeline as other integrations, so they are retried on failure and appear
+under **Recent messages** at the bottom of the page — see
+[delivery and reliability](/integrations/overview#delivery-and-reliability).
+
+## Send events to HubSpot
+
+Usertour can write onboarding milestones to the timeline of the linked
+HubSpot contact — and of the linked company, when the Companies ↔
+Companies mapping is set up. They show up as app events, which HubSpot lets
+you use as workflow triggers, list filters and report dimensions: enroll a
+contact in a sequence when they complete the onboarding checklist, or flag
+companies where nobody has started a flow in thirty days.
+
+Turn on **Send events to HubSpot** on the **Timeline events** card and pick
+the milestones you want. Events are written for linked users only, so set
+up the Contacts ↔ Users mapping first.
+
+![The Timeline events card](/images/hubspot-06.png)
+{/* TODO screenshot hubspot-06: the Timeline events card with the switch on and a few of the eight milestones checked. */}
+
+| Event | Sent when | Properties |
+| --- | --- | --- |
+| Flow started | a user starts a flow | flow name and version |
+| Flow completed | a user reaches the end of a flow | flow name and version |
+| Flow ended | a flow ends, completed or dismissed | flow name and version, end reason, last step |
+| Checklist started | a user starts a checklist | checklist name and version |
+| Checklist completed | every task of a checklist is done | checklist name and version |
+| Checklist task completed | one task is done | checklist name and version, task name |
+| Question answered | a survey question is answered | question, question type, answer, score, flow name |
+| Launcher activated | a launcher is clicked or hovered | launcher name and version |
+
+Every event also carries the Usertour user ID and the page URL. Page views
+and step-level events are not sent — a CRM timeline is for milestones, not
+for analytics. Custom events you track yourself are not sent either.
+
+If you connected HubSpot before timeline events were available, HubSpot asks
+you to re-authorize once: click **Reconnect** in the connection card's menu
+and approve the added permission.
 
 ## Where synced attributes show up
 
