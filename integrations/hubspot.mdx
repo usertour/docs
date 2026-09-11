@@ -49,6 +49,12 @@ the permissions, then returns you to Usertour.
 
 ![The HubSpot connection card before connecting](/images/hubspot-01.png)
 
+Installing from the [HubSpot App Marketplace](https://ecosystem.hubspot.com/marketplace/apps)
+works the same way from the other end: **Install app** opens Usertour in a
+new tab, where you sign in and pick the environment to connect, then
+HubSpot asks you to approve the permissions and shows the app as
+installed. Either way you end up with one connection per environment.
+
 The card then shows the connected account. The menu next to it offers
 **Reconnect** — re-authorize when HubSpot revoked the access, or when a
 new version of the integration asks for more permissions — and
@@ -185,6 +191,28 @@ filter, and the same events show up on its timeline.
 If you connected HubSpot before timeline events were available, HubSpot asks
 you to re-authorize once: click **Reconnect** in the connection card's menu
 and approve the added permission.
+
+## Disconnect or uninstall
+
+**Disconnect** in the connection card's menu revokes Usertour's access in
+HubSpot and stops all syncing — full rounds, incoming changes, write-backs
+and timeline events. Nothing is deleted on either side:
+
+- Mappings, links and the message log stay in Usertour, so reconnecting the
+  same HubSpot account picks up where you left off.
+- Attributes owned by HubSpot keep their values and stay read-only until you
+  remove them from a mapping (or remove the mapping), which hands them back
+  as ordinary attributes.
+- The `Usertour` property group, its values and the timeline events stay in
+  HubSpot.
+
+**Uninstalling from HubSpot** (Settings → Integrations → Connected apps →
+Usertour → Uninstall) has the same effect: HubSpot stops accepting
+Usertour's access, the integration page shows a banner saying so, and
+syncing is paused until you click **Reconnect**.
+
+**Removing a mapping** drops its links and hands its HubSpot-owned
+attributes back; values are kept on both sides.
 
 ## Where synced attributes show up
 
