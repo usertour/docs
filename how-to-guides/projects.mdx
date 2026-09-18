@@ -1,0 +1,85 @@
+---
+title: Projects
+description: A project is one application in Usertour. Learn what lives inside a project, how to add a project for a second application, and how projects relate to environments and billing.
+icon: "folder-tree"
+---
+
+## What a project is
+
+A project is the top-level container in Usertour. Everything you build and every setting you configure belongs to exactly one project:
+
+- **Content**: flows, checklists, launchers, banners, announcements, surveys, trackers and resource centers
+- **Environments** and their `Usertour.js` tokens
+- **Themes, attributes, events and localizations**
+- **End users, companies and segments**
+- **Team members** and their roles
+- **Subscription and billing**
+
+Projects are fully isolated from each other. Two projects share nothing: not content, not users, not themes, not team members.
+
+**One application, one project.** If you install Usertour on two separate applications, for example a customer-facing app and an internal admin tool, give each one its own project.
+
+### Projects vs. environments
+
+Environments live *inside* a project. They exist so that one application can have separate development, staging and production setups that share the same themes, attributes and team, and so that a flow can be published to staging first and promoted to production later. See [Environments](/how-to-guides/environments).
+
+| You want to... | Use |
+| --- | --- |
+| Test a flow on staging before it goes live on the same application | Environments |
+| Onboard users on two different applications | Projects |
+
+<Warning>
+Don't use environments to separate different applications. Environments share themes, attributes and localizations, and content is designed to be promoted between them. None of that is what you want across unrelated apps.
+</Warning>
+
+## Your first project
+
+Your first project is created when you sign up. The **Project name** you enter on the sign-up form becomes its name. If you sign up with Google or GitHub instead, the project is called **Unnamed Project**.
+
+{/* SCREENSHOT projects-01.png: the sign-up form, with the "Project name" field visible */}
+![The sign-up form asks for a project name](/images/projects-01.png)
+
+To rename a project later, go to **Settings → Project**, change **Project Name** and click **Save**.
+
+{/* SCREENSHOT projects-02.png: Settings → Project, the "Project Name" field and Save button */}
+![Rename a project under Settings → Project](/images/projects-02.png)
+
+## Working with more than one project
+
+An account can belong to any number of projects, in any role. No plan limits how many projects you can be a member of.
+
+### Switching between projects
+
+1. Click your avatar at the bottom of the sidebar
+2. Open **My Projects**
+3. Under **Other projects**, click the project you want to open
+
+The dashboard reloads into that project. Every page, from content to settings, now shows that project's data.
+
+{/* SCREENSHOT projects-03.png: the avatar menu with the "My Projects" submenu open, showing CURRENT PROJECT and OTHER PROJECTS */}
+![Switch projects from the My Projects menu](/images/projects-03.png)
+
+### Adding a project for another application
+
+There is no **New project** button in Usertour: every sign-up creates exactly one project. To add a project for a second application, create it through a new sign-up and then invite your existing account into it.
+
+1. Sign out, then [sign up](https://app.usertour.io/auth/signup) again with a different email address. A plus alias such as `you+admin-app@yourcompany.com` works and lands in your usual inbox. Name the project after the application.
+2. In the new project, pick a plan under **Settings → Subscription** if you need more than the Hobby plan offers. See the note below on seats.
+3. Go to **Settings → Team**, click **Invite team member** and enter the email of your main account. **Admin** is the right role if that account should manage the project. See [Team Management](/how-to-guides/team) for what each role can do.
+4. Open the invitation email in your main inbox and click **Join the team**. Log in with your main account when asked.
+5. Your main account now lists both projects under **My Projects**.
+
+{/* SCREENSHOT projects-04.png: the invitation landing page with the "Join the team" button */}
+![Accept the invitation with your main account](/images/projects-04.png)
+
+<Note>
+Inviting a team member uses a seat, and the Hobby plan comes with a single seat, which the owner already occupies. If the new project is on Hobby, upgrade it before sending the invitation. Seats per plan are listed on the [pricing page](https://www.usertour.io/pricing).
+</Note>
+
+<Note>
+The sign-up email stays the **Owner** of the new project, and only the owner can change its plan. To manage billing from your main account, transfer ownership to it from **Settings → Team**. See [Make another team member the Owner](/how-to-guides/team#make-another-team-member-the-owner).
+</Note>
+
+## Billing
+
+Each project has its own subscription. Plans, session usage, seats and environments are all counted per project, so two projects on the Starter plan are two Starter subscriptions. Invoices for a project are available from that project's **Settings → Billing**. See [Billing & Invoices](/how-to-guides/billing).
