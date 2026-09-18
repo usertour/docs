@@ -1429,7 +1429,7 @@
             "name": "expand",
             "required": false,
             "in": "query",
-            "description": "Inline: questions, steps (the full step tree \u2014 how you read a flow body), data.",
+            "description": "Inline: questions, steps (the full step tree \u2014 how you read a flow body), data, localizations (per-locale translation status: enabled / missing / outdated).",
             "schema": {
               "anyOf": [
                 {
@@ -1437,7 +1437,8 @@
                   "enum": [
                     "questions",
                     "steps",
-                    "data"
+                    "data",
+                    "localizations"
                   ]
                 },
                 {
@@ -1447,7 +1448,8 @@
                     "enum": [
                       "questions",
                       "steps",
-                      "data"
+                      "data",
+                      "localizations"
                     ]
                   }
                 }
@@ -1648,7 +1650,7 @@
             "name": "expand",
             "required": false,
             "in": "query",
-            "description": "Inline: questions, steps (the full step tree \u2014 how you read a flow body), data.",
+            "description": "Inline: questions, steps (the full step tree \u2014 how you read a flow body), data, localizations (per-locale translation status: enabled / missing / outdated).",
             "schema": {
               "anyOf": [
                 {
@@ -1656,7 +1658,8 @@
                   "enum": [
                     "questions",
                     "steps",
-                    "data"
+                    "data",
+                    "localizations"
                   ]
                 },
                 {
@@ -1666,7 +1669,8 @@
                     "enum": [
                       "questions",
                       "steps",
-                      "data"
+                      "data",
+                      "localizations"
                     ]
                   }
                 }
@@ -7116,6 +7120,7 @@
       "get": {
         "operationId": "ApiMeController_me",
         "summary": "Introspect the token",
+        "description": "Returns the token's name and the projects and environments it may act on \u2014 the credential-test and picker-population call for integration platforms.",
         "parameters": [],
         "responses": {
           "200": {
@@ -7176,14 +7181,14 @@
           {
             "bearer": []
           }
-        ],
-        "description": "Returns the token's name and the projects and environments it may act on \u2014 the credential-test and picker-population call for integration platforms."
+        ]
       }
     },
     "/v2/projects/{projectId}/environments/{environmentId}/events": {
       "post": {
         "operationId": "ApiEventsController_track",
         "summary": "Track an event",
+        "description": "Records a behavior event for a user. Unseen users are created; an unknown event name registers a definition on first use; built-in Usertour event names are refused.",
         "parameters": [
           {
             "name": "environmentId",
@@ -7269,8 +7274,7 @@
           {
             "bearer": []
           }
-        ],
-        "description": "Records a behavior event for a user. Unseen users are created; an unknown event name registers a definition on first use; built-in Usertour event names are refused."
+        ]
       }
     },
     "/v2/projects/{projectId}/environments": {
@@ -7784,6 +7788,332 @@
         },
         "tags": [
           "Environments"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/localizations": {
+      "get": {
+        "operationId": "ApiLocalizationsController_list",
+        "summary": "List localizations",
+        "description": "The locales this project translates content into. The `isDefault` one is the source language; every other `code` can carry a translation on each content version.",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of localizations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListLocalizationsResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Localizations"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/content/{contentId}/versions/{versionId}/localizations/{code}": {
+      "get": {
+        "operationId": "ApiVersionLocalizationsController_get",
+        "summary": "Get a version's translation",
+        "description": "Every translatable unit of the version for one locale: source text, current translation, and whether the source changed since it was translated (`outdated`). A locale that was never translated returns all units with empty translations.",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "versionId",
+            "required": true,
+            "in": "path",
+            "description": "Content version ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "required": true,
+            "in": "path",
+            "description": "Localization code (not the default locale)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Version translation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VersionLocalizationDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Content version or localization not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Localizations"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "ApiVersionLocalizationsController_update",
+        "summary": "Update a version's translation",
+        "description": "Write translations by unit path and/or switch delivery on or off. Only an editable draft accepts translations \u2014 fork a published version first (the fork carries every translation with it). Translations merge onto the stored ones server-side; the response is the full translation as now stored.",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentId",
+            "required": true,
+            "in": "path",
+            "description": "Content ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "versionId",
+            "required": true,
+            "in": "path",
+            "description": "Content version ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "required": true,
+            "in": "path",
+            "description": "Localization code (not the default locale)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVersionLocalizationBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated translation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VersionLocalizationDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Content version or localization not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "E0049 the version is published (read-only \u2014 fork an editable draft first).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Localizations"
         ],
         "security": [
           {
@@ -11104,6 +11434,37 @@
                     "data": {
                       "description": "Decompiled type-specific body for non-flow content \u2014 the same six per-type shapes as the write `data` (fully typed on the content-versions endpoints). Present only with the `data` expand; a flow has no `data` \u2014 its body is `steps`."
                     },
+                    "localizations": {
+                      "description": "Per-locale translation status \u2014 present only when the `localizations` expand is requested on the content-versions endpoints. One entry per non-default project locale, including locales this version was never translated into.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          },
+                          "missing": {
+                            "type": "number"
+                          },
+                          "outdated": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "code",
+                          "name",
+                          "enabled",
+                          "missing",
+                          "outdated"
+                        ]
+                      }
+                    },
                     "scheduledAt": {
                       "description": "Announcement versions only: the \"announcement time\" gating feed visibility and ordering. Absent on other content types and until set (publish stamps it when the author left it null, so published announcements always carry one).",
                       "type": "string"
@@ -11786,6 +12147,37 @@
                           },
                           "data": {
                             "description": "Decompiled type-specific body for non-flow content \u2014 the same six per-type shapes as the write `data` (fully typed on the content-versions endpoints). Present only with the `data` expand; a flow has no `data` \u2014 its body is `steps`."
+                          },
+                          "localizations": {
+                            "description": "Per-locale translation status \u2014 present only when the `localizations` expand is requested on the content-versions endpoints. One entry per non-default project locale, including locales this version was never translated into.",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "enabled": {
+                                  "type": "boolean"
+                                },
+                                "missing": {
+                                  "type": "number"
+                                },
+                                "outdated": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "code",
+                                "name",
+                                "enabled",
+                                "missing",
+                                "outdated"
+                              ]
+                            }
                           },
                           "scheduledAt": {
                             "description": "Announcement versions only: the \"announcement time\" gating feed visibility and ordering. Absent on other content types and until set (publish stamps it when the author left it null, so published announcements always carry one).",
@@ -13986,6 +14378,37 @@
               "data": {
                 "description": "Decompiled type-specific body for non-flow content \u2014 the same six per-type shapes as the write `data` (fully typed on the content-versions endpoints). Present only with the `data` expand; a flow has no `data` \u2014 its body is `steps`."
               },
+              "localizations": {
+                "description": "Per-locale translation status \u2014 present only when the `localizations` expand is requested on the content-versions endpoints. One entry per non-default project locale, including locales this version was never translated into.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "missing": {
+                      "type": "number"
+                    },
+                    "outdated": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "name",
+                    "enabled",
+                    "missing",
+                    "outdated"
+                  ]
+                }
+              },
               "scheduledAt": {
                 "description": "Announcement versions only: the \"announcement time\" gating feed visibility and ordering. Absent on other content types and until set (publish stamps it when the author left it null, so published announcements always carry one).",
                 "type": "string"
@@ -14658,6 +15081,37 @@
                     },
                     "data": {
                       "description": "Decompiled type-specific body for non-flow content \u2014 the same six per-type shapes as the write `data` (fully typed on the content-versions endpoints). Present only with the `data` expand; a flow has no `data` \u2014 its body is `steps`."
+                    },
+                    "localizations": {
+                      "description": "Per-locale translation status \u2014 present only when the `localizations` expand is requested on the content-versions endpoints. One entry per non-default project locale, including locales this version was never translated into.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "enabled": {
+                            "type": "boolean"
+                          },
+                          "missing": {
+                            "type": "number"
+                          },
+                          "outdated": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "code",
+                          "name",
+                          "enabled",
+                          "missing",
+                          "outdated"
+                        ]
+                      }
                     },
                     "scheduledAt": {
                       "description": "Announcement versions only: the \"announcement time\" gating feed visibility and ordering. Absent on other content types and until set (publish stamps it when the author left it null, so published announcements always carry one).",
@@ -16898,6 +17352,37 @@
                 "data": {
                   "description": "Decompiled type-specific body for non-flow content \u2014 the same six per-type shapes as the write `data` (that schema is the field dictionary), fully populated on read. Present only when the `data` expand is requested; a flow has no `data` \u2014 its body is `steps`."
                 },
+                "localizations": {
+                  "description": "Per-locale translation status \u2014 present only when the `localizations` expand is requested on the content-versions endpoints. One entry per non-default project locale, including locales this version was never translated into.",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "enabled": {
+                        "type": "boolean"
+                      },
+                      "missing": {
+                        "type": "number"
+                      },
+                      "outdated": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "code",
+                      "name",
+                      "enabled",
+                      "missing",
+                      "outdated"
+                    ]
+                  }
+                },
                 "scheduledAt": {
                   "description": "Announcement versions only: the \"announcement time\" gating feed visibility and ordering. Absent on other content types and until set (publish stamps it when the author left it null, so published announcements always carry one).",
                   "type": "string"
@@ -19023,6 +19508,37 @@
           },
           "data": {
             "description": "Decompiled type-specific body for non-flow content \u2014 the same six per-type shapes as the write `data` (that schema is the field dictionary), fully populated on read. Present only when the `data` expand is requested; a flow has no `data` \u2014 its body is `steps`."
+          },
+          "localizations": {
+            "description": "Per-locale translation status \u2014 present only when the `localizations` expand is requested on the content-versions endpoints. One entry per non-default project locale, including locales this version was never translated into.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "enabled": {
+                  "type": "boolean"
+                },
+                "missing": {
+                  "type": "number"
+                },
+                "outdated": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "code",
+                "name",
+                "enabled",
+                "missing",
+                "outdated"
+              ]
+            }
           },
           "scheduledAt": {
             "description": "Announcement versions only: the \"announcement time\" gating feed visibility and ordering. Absent on other content types and until set (publish stamps it when the author left it null, so published announcements always carry one).",
@@ -37190,6 +37706,186 @@
         "required": [
           "name"
         ],
+        "additionalProperties": false
+      },
+      "ListLocalizationsResponseDto": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string",
+                  "enum": [
+                    "localization"
+                  ]
+                },
+                "code": {
+                  "type": "string",
+                  "description": "The locale's code \u2014 how version translations are addressed, and the value matched against the end user's `locale_code` attribute to pick a translation at delivery."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Display name, e.g. \"French\"."
+                },
+                "locale": {
+                  "type": "string",
+                  "description": "The locale tag this entry was created from, e.g. `fr-FR`."
+                },
+                "isDefault": {
+                  "type": "boolean",
+                  "description": "The source language content is authored in. It has no translation of its own \u2014 version translations exist only for the non-default locales."
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "code",
+                "name",
+                "locale",
+                "isDefault",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "next": {
+            "type": "string",
+            "description": "Full URL of the next page \u2014 request it as-is (it already carries `cursor=` and your query parameters). null = no further pages.",
+            "nullable": true
+          },
+          "previous": {
+            "type": "string",
+            "description": "Full URL of the previous page \u2014 request it as-is. null = already at the first page.",
+            "nullable": true
+          }
+        },
+        "required": [
+          "results",
+          "next",
+          "previous"
+        ]
+      },
+      "VersionLocalizationDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "contentVersionLocalization"
+            ]
+          },
+          "versionId": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether this translation is delivered. A disabled (or missing) translation means users of that locale see the source language."
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "number",
+                "description": "Number of translatable units in the version."
+              },
+              "missing": {
+                "type": "number",
+                "description": "Required (non-optional) units with no translation."
+              },
+              "outdated": {
+                "type": "number",
+                "description": "Translated units whose source text changed since."
+              }
+            }
+          },
+          "units": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "description": "Stable address of this text within the version. Echo it as the key in `translations` when writing. Flow units are `steps/<step cvid>/<unit path>`."
+                },
+                "source": {
+                  "type": "string",
+                  "description": "The text in the source language."
+                },
+                "translation": {
+                  "type": "string",
+                  "description": "The current translation, or \"\" when untranslated."
+                },
+                "optional": {
+                  "type": "boolean",
+                  "description": "true for media / link URLs: they may be swapped per locale but count as neither text to translate nor \"missing\" when left empty (the source URL is used)."
+                },
+                "outdated": {
+                  "type": "boolean",
+                  "description": "true when the source text changed after this translation was saved \u2014 the translation still ships, but it was written against older source text and should be re-reviewed."
+                }
+              },
+              "required": [
+                "path",
+                "source",
+                "translation",
+                "optional",
+                "outdated"
+              ]
+            }
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the translation was last saved; null when it was never saved.",
+            "nullable": true
+          }
+        },
+        "required": [
+          "object",
+          "versionId",
+          "code",
+          "name",
+          "enabled",
+          "stats",
+          "units",
+          "updatedAt"
+        ]
+      },
+      "UpdateVersionLocalizationBodyDto": {
+        "type": "object",
+        "properties": {
+          "translations": {
+            "description": "Unit path \u2192 translated text. Only the listed units change; a blank value keeps the existing translation. Every path must be one the version currently has (read them first) \u2014 unknown paths are rejected, not dropped. Saving re-bases the WHOLE translation's drift tracking on the current source text, so send every unit you intend to fix for this locale in ONE request.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "enabled": {
+            "description": "Deliver this translation (true) or fall back to the source language (false). Sent alone it only flips the switch and leaves the translation untouched.",
+            "type": "boolean"
+          }
+        },
         "additionalProperties": false
       }
     }

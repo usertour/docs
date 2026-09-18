@@ -115,6 +115,42 @@ Rules on import:
 
 Media URLs (images, videos) are included in the export so a translator can swap in localized assets, but they're optional and don't count as missing translations.
 
+### Translate via the API or MCP
+
+The same rows are available to programs and AI agents as JSON — no file involved. Through the [v2 API](/api-reference-v2/introduction):
+
+```bash
+# 1. Which locales does the project have?
+GET /v2/projects/{projectId}/localizations
+
+# 2. Every translatable row of a version, for one locale
+GET /v2/projects/{projectId}/content/{contentId}/versions/{versionId}/localizations/fr
+
+# 3. Write translations by path, and turn the language on
+PUT /v2/projects/{projectId}/content/{contentId}/versions/{versionId}/localizations/fr
+{
+  "translations": {
+    "steps/abc123/0.0.0:text.0.0": "Bienvenue dans notre application !",
+    "steps/abc123/0.0.1:button.text": "Suivant"
+  },
+  "enabled": true
+}
+```
+
+Each row of the read carries the same `path` and `source` as the CSV, the current `translation`, plus `optional` (media and link URLs) and `outdated` (the source text changed after the row was translated). Over [MCP](/api-reference-v2/mcp) the same three calls are the `list_localizations`, `get_version_localization` and `update_version_localization` tools, so you can simply ask your agent to "translate this flow into French".
+
+It behaves like the CSV import, with three differences worth knowing:
+
+- **Unknown paths are rejected, not skipped.** A path that isn't part of the version fails the whole request and names the offender — read the rows again if the content changed. A blank translation still keeps the existing one.
+- **Only a draft can be written.** A version that is (or ever was) published is read-only: create a new version first — it carries every translation with it — then write to that one. Reading works on any version.
+- **Send a language in one request.** Saving re-bases the *outdated* tracking for the whole language on the current source text, so include every row you're fixing in a single write.
+
+<Note>
+  Writes replace the stored translation as a whole, last writer wins. If someone has the same language open in the editor while an API write lands, their next autosave overwrites it — coordinate who is translating a language at a time.
+</Note>
+
+The locales themselves are managed in **Settings → Localization**; the API lists them but doesn't create them.
+
 ### Preview
 
 The **Preview** button in the editor header renders the content with your working translations applied — no publish needed.
@@ -143,6 +179,8 @@ When you change source copy after it has been translated, the affected rows are 
 ![Outdated translations flagged after a source edit](/images/localization-08.png)
 
 Newly added source text isn't flagged as outdated — it simply shows up as untranslated, and the header **AI translate** button will pick it up.
+
+Programs and agents see the same flags: every row of a [translation read](#translate-via-the-api-or-mcp) has an `outdated` field, and `GET …/versions/{id}?expand=localizations` returns the `missing` / `outdated` counts for every language at once — the check to run after editing source text and before publishing, since publishing never blocks on stale translations.
 
 ## Setting the user's language
 

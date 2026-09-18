@@ -36,7 +36,7 @@ Request multiple expansions by repeating the parameter (both forms work):
 | Resource | `expand` options |
 |---|---|
 | Content | `editedVersion`, `publishedVersion` |
-| Content version | `questions`, `steps`, `data` |
+| Content version | `questions`, `steps`, `data`, `localizations` |
 | Content session | `answers`, `content`, `company`, `user`, `version` |
 | User | `companies`, `memberships`, `memberships.company` |
 | Company | `users`, `memberships`, `memberships.user` |
@@ -51,3 +51,8 @@ membership **and** the company on it (it implies `memberships`). The same goes f
   and only returned when expanded — see
   [Content representation](/api-reference-v2/content-representation).
 </Note>
+
+`localizations` inlines the version's translation status: one entry per
+non-default project locale with `enabled`, `missing` and `outdated` counts — the
+check to run before publishing a version whose text you edited. See
+[Localization](/how-to-guides/localization#translate-via-the-api-or-mcp).
