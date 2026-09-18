@@ -7800,7 +7800,7 @@
       "get": {
         "operationId": "ApiLocalizationsController_list",
         "summary": "List localizations",
-        "description": "The locales this project translates content into. The `isDefault` one is the source language; every other `code` can carry a translation on each content version.",
+        "description": "The locales this project translates content into. The `isDefault` one is the source language; every other `code` can carry a translation on each content version \u2014 read and write those with the version's translation endpoints under Content versions.",
         "parameters": [
           {
             "name": "projectId",
@@ -7877,8 +7877,8 @@
     "/v2/projects/{projectId}/content/{contentId}/versions/{versionId}/localizations/{code}": {
       "get": {
         "operationId": "ApiVersionLocalizationsController_get",
-        "summary": "Get a version's translation",
-        "description": "Every translatable unit of the version for one locale: source text, current translation, and whether the source changed since it was translated (`outdated`). A locale that was never translated returns all units with empty translations.",
+        "summary": "Get a translation",
+        "description": "Every translatable unit of the version for one locale: source text, current translation, and whether the source changed since it was translated (`outdated`). A locale that was never translated returns all units with empty translations. The `code` is one of the project's non-default locales \u2014 see List localizations.",
         "parameters": [
           {
             "name": "projectId",
@@ -7980,7 +7980,7 @@
           }
         },
         "tags": [
-          "Localizations"
+          "Content versions"
         ],
         "security": [
           {
@@ -7990,8 +7990,8 @@
       },
       "put": {
         "operationId": "ApiVersionLocalizationsController_update",
-        "summary": "Update a version's translation",
-        "description": "Write translations by unit path and/or switch delivery on or off. Only an editable draft accepts translations \u2014 fork a published version first (the fork carries every translation with it). Translations merge onto the stored ones server-side; the response is the full translation as now stored.",
+        "summary": "Update a translation",
+        "description": "Write translations by unit path and/or switch delivery on or off. Only an editable draft accepts translations \u2014 fork a published version first (the fork carries every translation with it). Translations merge onto the stored ones server-side; the response is the full translation as now stored. The `code` is one of the project's non-default locales \u2014 see List localizations.",
         "parameters": [
           {
             "name": "projectId",
@@ -8113,7 +8113,7 @@
           }
         },
         "tags": [
-          "Localizations"
+          "Content versions"
         ],
         "security": [
           {
