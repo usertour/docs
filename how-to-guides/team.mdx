@@ -1,55 +1,82 @@
 ---
 title: Team Management
-description: Building onboarding is a collaborative effort, and usertour lets you add your team to the same account so you can all work together on building the content.
+description: Building onboarding is a collaborative effort, and Usertour lets you add your team to the same project so you can all work together on building the content.
 icon: "people-group"
 ---
 ## Team member roles
 
-usertour offers these team member roles:
+Every team member has one of four roles in a project. Each role includes everything the role below it can do.
 
-- **Owner**: The main owner and contact of the usertour account. They can edit the content and settings, and invite/remove team members.
-- **Admin**: The builders of the content, they can edit the content and settings.
-- **Viewer**: A read-only role. They can view the content and settings. 
+- **Viewer**: Read-only. Viewers can view and preview all content, settings and analytics, but can't create, edit or publish anything.
+- **Editor**: The builders. Editors can create and edit everything: content, themes, attributes, events, segments, environments, integrations and webhooks. They can publish only to the environments you allow when you invite them (see [Limiting where an Editor can publish](#limiting-where-an-editor-can-publish)). No access to team management or billing.
+- **Admin**: Everything an Editor can do, plus publishing to any environment, managing team members, SSO and project settings, and viewing the audit log and the billing plan.
+- **Owner**: The main owner and contact of the project. The only role that can change the plan or transfer ownership. Every project has exactly one Owner.
+
+Roles are per project. Someone can be an Admin in one project and a Viewer in another.
 
 ## Add a team member
 
-Only Owners can add team members. Here's how:
+Owners and Admins can add team members. Here's how:
 
-1. Go to [Settings -> Team](https://app.usertour//project/1/settings/team)
+1. Go to [Settings -> Team](https://app.usertour.io/project/1/settings/team)
 2. Click **Invite team member**
-3. Enter the name, email, and role of the team member you want to add
-4. Click send invite
+3. Enter the name, email and role of the team member you want to add
+4. If the role is **Editor**, check the environments they're allowed to publish to
+5. Click **Send invite**
 
-The team member will receive an email with a button they need to click to accept the invite. This applies even if the team member already has a usertour account.
+The team member will receive an email with a button they need to click to accept the invite. This applies even if the team member already has a Usertour account.
 
-![Add a team member](https://r3.usertour.io/docs/how-to-guides/team-2.png)
+{/* SCREENSHOT team-invite-01.png: the "Invite team member" dialog with Editor selected, showing the role description and the "Can publish to these environments" checkboxes */}
+![Invite a team member and, for an Editor, choose where they can publish](/images/team-invite-01.png)
+
+<Note>
+Each plan includes a number of team seats. Pending invites count towards the limit. When the project is full, the invite dialog asks you to upgrade before you can send another invite.
+</Note>
+
+## Limiting where an Editor can publish
+
+Editors can build anything, but they only ship to the environments checked under **Can publish to these environments**. This lets a contractor or a new teammate prepare flows on staging without being able to touch production. Leave every environment unchecked for an Editor who prepares content but never publishes it.
+
+When an Editor opens the **Publish** dialog on a flow, only their allowed environments are listed. Publishing to any other environment is refused by the server, even through the API.
+
+A couple of details worth knowing:
+
+- Admins and Owners always publish everywhere. The checkboxes only appear for the Editor role.
+- New environments are not added to an Editor's list automatically. When you create an environment, edit the role of any Editor who should be able to publish there.
+- Deleting an environment removes it from every Editor's list.
+
+To change an Editor's environments later, use **Change role** on that member and update the checkboxes.
 
 ## Remove a team member
 
-Only Owners can remove team members. Here's how:
+Owners and Admins can remove team members. Here's how:
 
-1. Go to [Settings -> Team](https://app.usertour//project/1/settings/team)
+1. Go to [Settings -> Team](https://app.usertour.io/project/1/settings/team)
 2. Click on the 3-dot menu next to the team member
 3. Click **Remove member**
+
+The member loses access to the project immediately. You can re-invite them later. The Owner can't be removed; transfer ownership first.
 
 ![Remove a team member](https://r3.usertour.io/docs/how-to-guides/team-6.png)
 
 ## Change a team member's role
 
-Only Owners can change the role of team members. Here's how:
+Owners and Admins can change the role of team members. Here's how:
 
-1. Go to [Settings -> Team](https://app.usertour//project/1/settings/team)
+1. Go to [Settings -> Team](https://app.usertour.io/project/1/settings/team)
 2. Click on the 3-dot menu next to the team member
-3. Click **Change role** and select the role
+3. Click **Change role** and select the role. For an Editor, also update the environments they can publish to
 
 ![Change a team member's role](https://r3.usertour.io/docs/how-to-guides/team-4.png)
 
 ## Make another team member the Owner
 
-Only Owners can reassign a new team member to be Owner. Here's how:
+Only the Owner can transfer ownership. Here's how:
 
-1. Go to [Settings -> Team](https://app.usertour//project/1/settings/team)
+1. Go to [Settings -> Team](https://app.usertour.io/project/1/settings/team)
 2. Click on the 3-dot menu next to the team member
-3. Click **Transfer ownership to this user**
+3. Click **Transfer ownership**
+
+The other member becomes the Owner and you become an Admin. This can't be undone from your side: only the new Owner can transfer it back.
 
 ![Make another team member the Owner](https://r3.usertour.io/docs/how-to-guides/team-5.png)
