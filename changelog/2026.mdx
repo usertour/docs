@@ -4,6 +4,103 @@ description: "Usertour releases in 2026"
 rss: true
 ---
 
+<Update label="v0.9.5" description="September 18, 2026">
+
+This release brings Usertour into your CRM and spreads project administration across more than one person. **HubSpot** is now a two-way integration — contact and company properties arrive as attributes you can target on, Usertour attributes are written back onto the records, and onboarding milestones land on HubSpot timelines — and the app is listed on the HubSpot Marketplace. Team roles are redrawn as **Viewer ⊂ Editor ⊂ Admin ⊂ Owner**, with each editor's publishing limited to the environments you tick. **Existing Admin members become Editors on upgrade** — read the roles section before you deploy. Transactional emails are redesigned, and the MCP server is in the official MCP registry.
+
+### 🔗 HubSpot: two-way property sync
+
+**Settings → Integrations → HubSpot** connects with a single OAuth consent — or start from the Marketplace listing (https://ecosystem.hubspot.com/marketplace/apps/usertour), which signs you in and asks which environment to install into. A HubSpot account connects to one environment at a time.
+
+Two object pairs are available: **contacts ↔ users** and **companies ↔ companies**. Each pair has a match rule and a field list per direction. Contacts match by email (any email-typed contact property, `email` by default) or by a contact property holding the id you pass to `usertour.identify()`; companies match by a property holding your `usertour.group()` id.
+
+**Properties coming in** — lifecycle stage, plan, industry, owner — become Usertour attributes marked with the HubSpot logo wherever an attribute name appears: attribute settings, user and company detail, the condition builder. They target content like any other attribute. HubSpot owns them: SDK writes to a synced attribute are dropped, API writes are rejected, and the attribute cannot be deleted or retyped while a mapping syncs it. **Attributes going out** are written to a "Usertour" property group as `usertour_user_<name>` / `usertour_company_<name>`, created on demand. Your own HubSpot properties are never a write target, and an empty value on the owning side clears the other side rather than being skipped.
+
+Sync **links records, it never creates them**. A CRM is mostly leads and sign-ups that never activated; materialising them would bury your user list in people who have never opened the product. A link exists only when both records do, unmatched records are counted on the mapping card, and each round re-evaluates them.
+
+**Run full sync** links the records that already exist, and a daily round runs as a backstop. In between, changes move on their own: a HubSpot edit reaches Usertour in about 30 seconds, an attribute change is written back as it happens, and a user identified for the first time is looked up and filled in on the spot rather than waiting for the next round. Incremental sync pulls from HubSpot's change journal, so **no public inbound URL is needed** — self-hosted instances on private networks sync too.
+
+**Sync activity**, on the connection's menu, lists every full round and journal poll with its record counts and, on failure, HubSpot's own status and message. Write-backs appear in the message log with payload and attempts, on the same retry ladder as webhooks. If the app is uninstalled or the authorizing user removed, the integration switches off at once with a banner naming the cause, and **Reconnect** is the remedy. Disconnect revokes the grant and keeps your mappings and logs.
+
+On Usertour Cloud the HubSpot integration is included from the **Growth** plan; self-hosted instances are never gated (see the self-hosting notes for the one-time app setup). Guide: https://docs.usertour.io/integrations/hubspot.
+
+### 📌 Onboarding milestones on the HubSpot timeline
+
+The **Timeline events** card sends eight milestones to HubSpot: flow started, completed and ended; checklist started, completed and task completed; question answered; launcher activated. Each is written to the linked contact and, when the event carries a linked company, to that company as well.
+
+They arrive as real HubSpot events, usable in **lists, workflows and reports**, with no requirement on your HubSpot tier. Each carries what a workflow would filter on: content name and version, step or task name, the question, answer and score, the Usertour user id and the page URL. Timestamps are the moment the event happened, and a retried delivery never produces a duplicate.
+
+The set is deliberately the milestones. `page_viewed`, step-level events and your own custom events are not sent, and there is no "stream everything" switch — a CRM record is not an analytics sink; the analytics integrations are. Deselecting a milestone also stops deliveries already queued. Users with no linked contact produce nothing.
+
+### 👥 Four roles, and a publish whitelist for editors
+
+Until now a project had one person who could invite a teammate, rotate a token, configure a webhook or see why a sync failed — the Owner — while an "Admin" was an editor by another name. Roles are now four, strictly nested:
+
+| Role | Can do |
+|---|---|
+| **Viewer** | Read everything |
+| **Editor** | Build and edit content, themes, attributes, events, segments and localization; manage users, companies and environments; connect **integrations**, configure **webhooks**, read **environment tokens** and rotate signing secrets; publish to the environments they are allowed |
+| **Admin** | Everything an Editor can, plus publish anywhere, manage the **team**, configure **SSO**, edit project settings, read the **audit log**, and see the plan and usage |
+| **Owner** | Everything, plus billing (checkout, portal, license) and transferring ownership |
+
+The line between Editor and Admin is drawn by consequence, not by where a page sits in Settings. Anything that only affects the project's own operation — installing the SDK, wiring a webhook, connecting a CRM — belongs to the Editor, so a builder can finish the job without asking anyone. Anything that changes **who gets in** or **costs money** sits above.
+
+An Editor publishes (and unpublishes) only to the environments ticked for them when they are invited or their role is changed. The default is none: an editor with nothing ticked edits everything and ships nothing. "Can build but must not ship to production" is one unchecked box, set per member. Admins and the Owner publish anywhere.
+
+Alongside it:
+
+- **Ownership transfer is its own action**, available only to the Owner; the previous owner becomes an Admin. An Admin can invite, re-role and remove anyone except the Owner, and the Owner's row can no longer be changed through the team endpoints at all.
+- **Webhook and integration auto-disable emails** go to every Admin as well as the Owner.
+- **SSO auto-provisioning** assigns Editor or Viewer only, Editor by default; a just-in-time editor starts with an empty whitelist.
+- **Personal API keys** inherit their owner's whitelist as a publish ceiling: REST and MCP publish calls outside it are refused with `E1039`, and over MCP the refusal names the environments the key may publish to, so an assistant can recover on its own. The key's own environment scope still governs everything else.
+
+**What happens to existing members on upgrade.** Every current Admin becomes an **Editor whose whitelist holds all of the project's current environments**, so nobody loses the ability to publish. Pending Admin invites and SSO default roles follow the same rule. Those members also gain integrations, webhooks and environment tokens, which were Owner-only before — nothing beyond what they already held, since they could already delete environments and publish to production. Nobody holds the new Admin role after the upgrade; **owners promote deliberately**. Environments created later join nobody's whitelist until an Admin ticks them.
+
+### ✉️ Redesigned transactional emails
+
+Verify email, reset password, team invite and the two auto-disable notices share one layout: the Usertour wordmark, a single clear action, the full link spelled out on its own line as a fallback, and a footer saying why you are receiving the message. Every email now ships a plain-text alternative alongside the HTML. The wordmark is served by your own instance, so a self-hosted deployment never calls out to us to render an email.
+
+### 🤖 In the official MCP registry
+
+The hosted MCP server is published to registry.modelcontextprotocol.io as `io.github.usertour/mcp`, which feeds the server directories inside MCP clients. The entry carries no API-key header: the endpoint advertises OAuth discovery, so a client authorizes in the browser instead of asking you to paste a token.
+
+### 🐳 Self-hosting notes
+
+- **Seven migrations run on upgrade**, including the role migration described above. It is not a no-op: memberships, pending invites and SSO default roles are rewritten. After deploying, open **Settings → Team** and promote whoever should be an Admin.
+- **HubSpot needs your own HubSpot app.** Redirect URLs and secrets are bound to an app, so upload your copy of `integrations/hubspot` to your HubSpot developer account (the directory README has the procedure) and set `HUBSPOT_CLIENT_ID` / `HUBSPOT_CLIENT_SECRET`. The callback defaults to `${API_URL}/api/integrations/hubspot/oauth/callback`, overridable with `HUBSPOT_CALLBACK_URL`. It must be registered on the app and served by the host the dashboard sends API requests to. Without credentials the HubSpot page shows a pointer to this setup instead of Connect. No traffic is relayed through Usertour Cloud.
+- **`Redis_DB`** selects a logical Redis database (0–15) for the cache, the queues and the socket adapter. Unset, it stays 0.
+- **The default email sender reads `Usertour <support@usertour.io>`** (it was spelled `UserTour`). Setting `EMAIL_SENDER` overrides it as before.
+
+### 🐛 Fixes
+
+- **Any signed-in user could read another project's plan and usage, or open a checkout or billing-portal session against it, by project id.** The subscription endpoints were never attached to the permission guard. Reads now require project membership, and checkout and portal require the Owner.
+- **Switching a flow's frequency from Once to Multiple crashed the builder** when the flow's start rules had been written through the API or MCP; the page showed "Something went wrong" and reloading did not help. The missing repeat window is now filled in on read. Delivery to end users was never affected.
+- **A project could be left with no owner.** The role-change endpoint accepted Owner as a target and would re-role the Owner's own row; the dashboard hid both, the API did not.
+- **Auto-disable notifications could silently fail to send when a project had many recipients.** Each message opened its own SMTP session, and a provider refusing a dozen parallel logins dropped them. Mail now goes through one pooled connection set, and a send during shutdown fails fast instead of hanging the process.
+- **The activity feed on a company's page was slow on large workspaces.** Its query scanned every event in the table — 660 ms on a million rows — and now resolves through indexes in under a millisecond.
+- **An integration's page flashed "not connected" on load** before settling on its real state. It holds a skeleton until the environment is known.
+- **The plan comparison left excluded features blank**, which read as missing data. They show a cross, and integrations are listed by name in their own section, next to webhooks.
+
+### 🛠️ Under the hood
+
+ADR 0013 records the HubSpot design and ADR 0014 the role model; both were revised to match what shipped after their review rounds. The shape behind the sections above:
+
+- The sync engine is **provider-agnostic below the adapter**: mappings, links and sync runs are three tables with no HubSpot assumptions, and the engine is named for object sync rather than for its first provider. The HubSpot app project lives in `integrations/hubspot`, outside the pnpm workspace because HubSpot's CLI builds and deploys it.
+- Write-backs and timeline events are **messages on the outbound ledger**, under topics that name the message rather than the recipient — `sync.object.update` and `event.tracked.<codeName>`. A write-back carries the field set, not values; values are read at delivery, so retries send current data. The timeline occurrence id is the ledger message id, which is what makes a retry idempotent.
+- **Loops are impossible by construction**, through three gates that each suffice alone: inbound applies only listed properties (our own `usertour_*` write-backs never re-enter), outbound skips changes whose origin is the provider, and a field cannot sit in both lists of one mapping.
+- The OAuth handshake binds the callback to **the browser that started it**: a signed ten-minute state plus an httpOnly `SameSite=Lax` transaction cookie set on the authenticated response, so a forwarded authorize link cannot attach a victim's HubSpot account to an attacker's environment. A Marketplace-initiated install finishes inside HubSpot's frame where that cookie never arrives, so its state is verified by being **spent once** instead; `returnUrl` is honoured only for HubSpot app hosts.
+- Tokens are AES-256-GCM encrypted and refreshed under a single-flight lock with compare-and-set, so a disconnect mid-refresh is never overwritten. A rejected access token is refreshed once, then treated as a revoked grant. Provider errors are stripped of their request before they propagate — the token form carries the app secret.
+- **Errors are one of four kinds, each with one handling:** transient (retry ladder, feeds the breaker), rate limit (wait for `Retry-After`, never the breaker), revoked (off at once), refused (a 4xx closes the round immediately with HubSpot's reason, instead of walking a 25-hour ladder). A round is alive while its heartbeat is fresh, and the stale window outlasts any single wait a job can take; one journal poller runs under a renewed Redis lease so ticks never overlap across instances.
+- Every dated HubSpot path — OAuth, CRM objects and properties, the webhooks journal — hangs off one `HUBSPOT_API_VERSION` constant (`2026-09`). Timeline events stay on `/integrators/timeline/v4` until HubSpot publishes a dated replacement.
+- Behaviour is decided **only by capability** — `roleCan(role, capability)` on the server, `can(capability)` in the web app — and role names are compared only where roles are assigned. The `USER → EDITOR` enum change is a hand-written `ALTER TYPE … RENAME VALUE`, metadata-only, instead of the drop-and-recreate Prisma generates.
+- The permission test suite now **fails on any unguarded resolver**: every resolver class must register the guard, and every query and mutation must be in the capability map or in an explicit, reasoned exemption list. The e2e endpoint matrix moved to four tiers.
+- Emails render from typed props in a new `@usertour/emails` package (React templates replacing mjml + handlebars). The SMTP pool closes in the application-shutdown phase, after the queue workers drain.
+- The MCP registry entry is published by CI on release tags over OIDC, taking its version from the tag, so a release cannot ship a stale listing. The e2e suite runs on its own Redis database so it no longer consumes a local dev server's jobs.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.4...v0.9.5
+
+</Update>
+
 <Update label="v0.9.4" description="September 4, 2026">
 
 This release connects Usertour to your analytics stack in both directions, and to Zapier. Every tracked event can now stream to **Amplitude, Heap, Mixpanel, PostHog or Segment** the moment it happens; cohorts you define in **Mixpanel or Amplitude** come back as segments you can target flows and checklists at; and a **Zapier app** triggers Zaps from Usertour events and creates users, companies and events from thousands of other apps. Server-side code gets its own way to record events through the v2 API, and localized content can finally translate where its links point. Under the hood, integrations ride the same outbound ledger webhooks shipped on, and the dormant legacy integration module is gone.
