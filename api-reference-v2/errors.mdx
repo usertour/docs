@@ -66,7 +66,7 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E1024` | 404 | Event definition not found |
 | `E1025` | 404 | Segment not found |
 | `E1026` | 404 | Environment not found |
-| `E1040` | 404 | Localization not found — no locale with this `code` exists in the project |
+| `E1040` | 404 | Localization not found. The message says what was looked for: a live localization by `code` or by id, or a **deleted** one by id (restoring a localization that is already live) |
 | `E1033` | 404 | Unknown API route (no /v2 endpoint matches the path) |
 | `E0003` | 400 | Request is invalid against current domain state |
 | `E1017` | 400 | Request validation failed (bad body / params; may carry `issues`) |
