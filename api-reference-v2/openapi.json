@@ -7800,7 +7800,7 @@
       "get": {
         "operationId": "ApiLocalizationsController_list",
         "summary": "List localizations",
-        "description": "The locales this project translates content into. The `isDefault` one is the source language; every other `code` can carry a translation on each content version \u2014 read and write those with the version's translation endpoints under Content versions.",
+        "description": "The locales this project translates content into. The `isDefault` one is the source language; every other `code` can carry a translation on each content version \u2014 read and write those with the version's translation endpoints under Content versions. `deleted=true` lists the soft-deleted ones instead.",
         "parameters": [
           {
             "name": "projectId",
@@ -7808,6 +7808,19 @@
             "in": "path",
             "description": "Project ID",
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deleted",
+            "required": false,
+            "in": "query",
+            "description": "List soft-deleted localizations instead of live ones \u2014 the recovery pool for restore.",
+            "schema": {
+              "enum": [
+                "true",
+                "false"
+              ],
               "type": "string"
             }
           }
@@ -7845,6 +7858,414 @@
           },
           "403": {
             "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Localizations"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ApiLocalizationsController_create",
+        "summary": "Create a localization",
+        "description": "Add a locale content can be translated into. A `code` stays reserved while its localization is soft-deleted: creating that code again RESTORES the deleted one \u2014 same id, with every translation it held (each with the enabled state it had) \u2014 and the response says so with `restored: true`.",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLocalizationBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created localization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedLocalizationDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "E1023 a live localization already uses this code",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Localizations"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/localizations/{id}": {
+      "patch": {
+        "operationId": "ApiLocalizationsController_update",
+        "summary": "Update a localization",
+        "description": "Rename a locale or change its locale tag / code. Changing `code` takes effect on live content at once: delivery picks a translation by matching it against the end user's `locale_code` attribute, so users carrying the old code fall back to the source language until their attribute matches the new one.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Localization ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLocalizationBodyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated localization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizationDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Localization not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "E1023 another localization already uses this code (a soft-deleted one keeps its code reserved until it is restored)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Localizations"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ApiLocalizationsController_delete",
+        "summary": "Delete a localization",
+        "description": "Soft delete. The locale stops being offered and delivered at once \u2014 its users see the source language \u2014 but the translations it holds on every version are kept, so restoring it brings them all back. The default localization cannot be deleted.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Localization ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Localization deleted"
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Localization not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "E1041 the default localization cannot be deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded \u2014 E1013. The limit follows the project's plan (100/500/1000/3000 requests per minute); unknown credentials share a per-IP bucket. Every response also carries X-RateLimit-Limit / -Remaining / -Reset for pacing; a 429 adds the standard Retry-After header (seconds to back off).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Localizations"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/projects/{projectId}/localizations/{id}/restore": {
+      "post": {
+        "operationId": "ApiLocalizationsController_restore",
+        "summary": "Restore a deleted localization",
+        "description": "Bring a soft-deleted locale back exactly as it was: every version translation it held returns with the enabled state it had, so enabled translations on published versions are delivered again at once.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Localization ID (of a deleted localization)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "description": "Project ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored localization",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocalizationDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request \u2014 E1017 validation (may carry `issues`; an invalid orderBy/limit is also E1017), E1015 invalid scope, E0003 invalid against current domain state.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or expired API key \u2014 E1010, E1020.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Refused \u2014 E1000 invalid key, E1011 project not in token scope, E1012 insufficient scope, E1029 environment not in token scope, E1032 environment creation needs a token without env-targeted capabilities (its allowlist cannot cover a not-yet-existing environment), E0043 the project's plan does not include the feature (e.g. webhooks require a paid plan on cloud).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No deleted localization with this id",
             "content": {
               "application/json": {
                 "schema": {
@@ -37741,6 +38162,10 @@
                   "type": "boolean",
                   "description": "The source language content is authored in. It has no translation of its own \u2014 version translations exist only for the non-default locales."
                 },
+                "deleted": {
+                  "type": "boolean",
+                  "description": "Soft-deleted: no longer offered or delivered, but the translations it holds on every version are kept, so restoring it brings them all back."
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -37757,6 +38182,7 @@
                 "name",
                 "locale",
                 "isDefault",
+                "deleted",
                 "createdAt",
                 "updatedAt"
               ]
@@ -37777,6 +38203,170 @@
           "results",
           "next",
           "previous"
+        ]
+      },
+      "CreateLocalizationBodyDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 35,
+            "description": "The value matched against an end user's `locale_code` attribute to pick their translation. Unique within the project."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64,
+            "description": "Display name, e.g. \"French\"."
+          },
+          "locale": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 35,
+            "description": "The locale tag this entry stands for, e.g. `fr-FR`."
+          }
+        },
+        "required": [
+          "code",
+          "name",
+          "locale"
+        ],
+        "additionalProperties": false
+      },
+      "CreatedLocalizationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "localization"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "description": "The locale's code \u2014 how version translations are addressed, and the value matched against the end user's `locale_code` attribute to pick a translation at delivery."
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name, e.g. \"French\"."
+          },
+          "locale": {
+            "type": "string",
+            "description": "The locale tag this entry was created from, e.g. `fr-FR`."
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "The source language content is authored in. It has no translation of its own \u2014 version translations exist only for the non-default locales."
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "Soft-deleted: no longer offered or delivered, but the translations it holds on every version are kept, so restoring it brings them all back."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "restored": {
+            "type": "boolean",
+            "description": "true when this `code` belonged to a soft-deleted localization: that one was RESTORED (same id, with every translation it held) instead of a new one being created."
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "code",
+          "name",
+          "locale",
+          "isDefault",
+          "deleted",
+          "createdAt",
+          "updatedAt",
+          "restored"
+        ]
+      },
+      "UpdateLocalizationBodyDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 35,
+            "description": "The value matched against an end user's `locale_code` attribute to pick their translation. Unique within the project."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 64,
+            "description": "Display name, e.g. \"French\"."
+          },
+          "locale": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 35,
+            "description": "The locale tag this entry stands for, e.g. `fr-FR`."
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocalizationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string",
+            "enum": [
+              "localization"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "description": "The locale's code \u2014 how version translations are addressed, and the value matched against the end user's `locale_code` attribute to pick a translation at delivery."
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name, e.g. \"French\"."
+          },
+          "locale": {
+            "type": "string",
+            "description": "The locale tag this entry was created from, e.g. `fr-FR`."
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "The source language content is authored in. It has no translation of its own \u2014 version translations exist only for the non-default locales."
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "Soft-deleted: no longer offered or delivered, but the translations it holds on every version are kept, so restoring it brings them all back."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "code",
+          "name",
+          "locale",
+          "isDefault",
+          "deleted",
+          "createdAt",
+          "updatedAt"
         ]
       },
       "VersionLocalizationDto": {

@@ -284,7 +284,8 @@ for confirmation first.
 | Content               | `list_content`, `get_content`, `list_publish_history`                      |
 | Analytics             | `get_content_analytics`, `get_content_question_analytics`, `get_usage_overview` |
 | Versions              | `list_content_versions`, `get_content_version`, `validate_content_version` |
-| Localizations         | `list_localizations`, `get_version_localization`                           |
+| Localizations         | `list_localizations`                                                       |
+| Version translations  | `get_version_localization`                                                 |
 | Users                 | `list_users`, `get_user`                                                   |
 | Companies             | `list_companies`, `get_company`                                            |
 | Segments              | `list_segments`, `get_segment`                                             |
@@ -321,7 +322,8 @@ this attribute / event / segment / theme / content" before you delete it.
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | Content               | `create_content`, `update_content`, `delete_content`, `restore_content`, `duplicate_content`, `publish_content`, `unpublish_content` |
 | Versions              | `create_content_version`, `update_content_version`, `restore_content_version`                                                        |
-| Localizations         | `update_version_localization` — see [Localization](/how-to-guides/localization#translate-via-the-api-or-mcp)                         |
+| Localizations         | `create_localization`, `update_localization`, `delete_localization`, `restore_localization`                                          |
+| Version translations  | `update_version_localization` — see [Localization](/how-to-guides/localization#translate-via-the-api-or-mcp)                         |
 | Users                 | `upsert_user`, `delete_user`                                                                                                         |
 | Companies             | `upsert_company`, `delete_company`, `add_company_member`, `remove_company_member`                                                    |
 | Segments              | `create_segment`, `update_segment`, `delete_segment`, `add_segment_member`, `remove_segment_member`                                  |

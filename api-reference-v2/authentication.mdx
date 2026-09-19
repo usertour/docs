@@ -54,6 +54,10 @@ authenticate REST requests exactly like a personal `utp_` token.
 | `theme:create` | Create themes |
 | `theme:update` | Update themes |
 | `theme:delete` | Delete themes |
+| `localization:read` | List the project's localizations |
+| `localization:create` | Add a localization |
+| `localization:update` | Rename / re-code a localization, restore a deleted one |
+| `localization:delete` | Delete (soft-delete) a localization |
 | `user:read` | Read end-users (and their event history) |
 | `user:write` | Create or update end-users |
 | `user:delete` | Delete end-users |
@@ -79,6 +83,14 @@ authenticate REST requests exactly like a personal `utp_` token.
 | `environment:manage` | Create / rename / delete environments |
 
 Grant a token only the scopes it needs.
+
+<Note>
+  Localization scopes cover the project's **list of languages**. Reading and
+  writing a content version's **translation** is part of the content, so it uses
+  `content:read` / `content:update`. A token with content scopes only can still
+  find the language codes it may translate into: read the version with
+  `expand=localizations`.
+</Note>
 
 ## Errors
 

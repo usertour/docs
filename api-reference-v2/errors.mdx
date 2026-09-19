@@ -76,6 +76,7 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E0049` | 409 | Version is published (read-only) — fork a draft with the versions endpoint first |
 | `E0050` | 409 | Version was modified concurrently — re-read and retry |
 | `E1023` | 409 | Resource conflict (e.g. duplicate `codeName`) |
+| `E1041` | 409 | The default localization cannot be deleted |
 | `E1028` | 409 | Content is still published — unpublish from every environment before deleting |
 | `E1030` | 409 | Event definition already has recorded events |
 | `E1037` | 409 | The built-in "all" segment cannot be modified or deleted — create a condition segment for a filtered audience |

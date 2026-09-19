@@ -51,6 +51,12 @@ Two fields matter later:
 
 The localization marked **Default** represents the language your content is *authored* in. It is not a translation target — there is nothing to translate into it — and users who don't match any translation get this language. Use the **⋯ → Set as project default** menu to change it.
 
+### Deleting a localization
+
+Deleting a localization (**⋯ → Delete**) takes that language out of service everywhere at once: it disappears from every content's Localization tab, and users who were getting it see the source language instead. The default localization can't be deleted.
+
+The translations themselves are kept. To bring a deleted language back — with every translation it had, each with its enabled state — add a localization with the **same code** again, or restore it through the [API or MCP](#translate-via-the-api-or-mcp). To stop delivering a single content's translation without removing the language, turn off its **Status** switch instead.
+
 ## Translate your content
 
 Open any flow, checklist, banner or other content and switch to the **Localization** tab. You'll see one row per language with how much is still missing, an enable switch, and when it was last updated.
@@ -149,7 +155,7 @@ It behaves like the CSV import, with three differences worth knowing:
   Writes replace the stored translation as a whole, last writer wins. If someone has the same language open in the editor while an API write lands, their next autosave overwrites it — coordinate who is translating a language at a time.
 </Note>
 
-The locales themselves are managed in **Settings → Localization**; the API lists them but doesn't create them.
+The languages themselves can be managed the same way — `POST`, `PATCH` and `DELETE` on `/v2/projects/{projectId}/localizations` (MCP: `create_localization`, `update_localization`, `delete_localization`, `restore_localization`), so an agent asked to translate into a language the project doesn't have yet can add it first. These use the `localization:*` scopes, while reading and writing a translation uses the content scopes — see [Scopes](/api-reference-v2/authentication#scopes). Changing the default localization stays in the dashboard.
 
 ### Preview
 
