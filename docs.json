@@ -226,8 +226,9 @@
               "open-source/env",
               "open-source/usertourjs",
               "open-source/system-admin",
-              "open-source/license-management",
               "open-source/business-enterprise",
+              "open-source/buying-a-license",
+              "open-source/license-management",
               "open-source/backups",
               "open-source/troubleshooting"
             ]

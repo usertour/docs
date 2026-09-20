@@ -1,0 +1,143 @@
+---
+title: Buying a License
+description: Buy, activate, renew and share a self-hosted Business license from the Usertour licensing portal
+icon: "credit-card"
+---
+
+Self-hosted licenses are bought from the **licensing portal** at [license.usertour.io](https://license.usertour.io). It is separate from your own deployment: you buy there, and it sends you a signed license token that you paste into your instance.
+
+Licenses are sold per project, billed yearly. One purchase covers a set number of projects on a single instance; see [pricing](https://usertour.io/pricing) for the current rate.
+
+## Before you start
+
+You need two things:
+
+- **Your Instance ID.** In your deployment, open **Admin**, then **Settings**. The Instance ID is shown there with a copy button; see [System Admin](/open-source/system-admin#general). The id exists only once you have installed, so deploy first.
+- **How many projects to cover.** The license carries that number as its project limit, and you assign projects to it afterwards. You can raise the number later without waiting for the renewal.
+
+## Sign in to the portal
+
+Go to [license.usertour.io](https://license.usertour.io) and enter your email address. The portal sends a sign-in link; there is no password to create or remember.
+
+The address you sign in with is where your licenses live, so use one you will keep. You can move the account to another address later, and you can invite colleagues to it — see [Give colleagues access](#give-colleagues-access).
+
+{/* TODO screenshot: license.usertour.io sign-in page with an email typed in, before submitting */}
+
+![The Usertour licensing portal sign-in page](/images/portal-01.png)
+
+## Try it first
+
+If you want to evaluate the licensed features before paying, open **Start a trial** and enter your Instance ID.
+
+A trial license is issued on the spot and emailed to you. It runs for 14 days, unlocks every feature with no project limit, and needs no card. Each instance can trial once, and an instance that already holds a valid license cannot start one.
+
+## Buy a license
+
+### Enter the instance and the project count
+
+Open **Buy a license**, enter your **Instance ID**, and set how many **projects** the license should cover. The page shows the yearly total as you change the count.
+
+{/* TODO screenshot: portal "Buy a license" page with an Instance ID filled in and Projects set to 3, showing the total */}
+
+![Buying a license: instance id, project count and the yearly total](/images/portal-02.png)
+
+### Fill in the details that go on the invoice
+
+**Continue to payment** hands you to Stripe Checkout. Alongside the card, Stripe asks for a **business name**, a **billing address** and, where it applies, a **tax ID**.
+
+<Warning>
+  Fill these in carefully. They are printed on the invoice, and an invoice cannot be edited once it has been issued. If your finance team needs a company name or VAT number on the document, enter it here rather than afterwards.
+</Warning>
+
+{/* TODO screenshot: Stripe Checkout for Usertour Self-hosted with the business name and billing address filled in */}
+
+![Stripe Checkout with the business details that will appear on the invoice](/images/portal-03.png)
+
+### Pay
+
+Paying signs the license immediately. The token is emailed to you and appears in the portal under **Your licenses**.
+
+{/* TODO screenshot: portal purchase success page */}
+
+![The purchase confirmation in the portal](/images/portal-04.png)
+
+## Activate the license
+
+Open **Your licenses**, click the instance, and copy the token. The same token is in the email.
+
+Then, in your own deployment:
+
+1. Open **Admin**, then **Settings**.
+2. Paste the whole token into the license field and save.
+3. Assign the projects the license covers. Each project switches plan as it is assigned.
+
+[License Management](/open-source/license-management) covers this in full, including how instance and project licenses interact.
+
+{/* TODO screenshot: portal license detail page showing the token slab, instance id, plan, projects and expiry */}
+
+![A license in the portal: the token, the instance it is bound to, and when it expires](/images/portal-05.png)
+
+<Note>
+  The token is one long line with no spaces. It is safe to copy again from the portal at any time; nothing about it changes between copies.
+</Note>
+
+## Add projects later
+
+If you need to cover more projects part-way through a term, open the instance under **Your licenses** and click **Add projects**.
+
+Stripe charges only the difference for the time left in the term, and the exact amount is shown on the button before you confirm. A new token is then signed for the higher limit and emailed out; paste it in the same way as the first one.
+
+The count can only go up during a term. To lower it, stop the renewal under **Manage billing** and buy again with the new count once the term ends.
+
+{/* TODO screenshot: the Add projects form with a new count entered and the prorated amount on the button */}
+
+![Adding projects mid-term, with the prorated amount shown before paying](/images/portal-06.png)
+
+## Renewals
+
+Licenses renew yearly on their own. At each renewal a fresh token is signed and emailed to everyone on the account, and it appears under **Your licenses**.
+
+**Paste the new token into your instance.** The token in your deployment does not update itself.
+
+<Note>
+  Every paid token keeps working for 14 days past the end of the billing period it covers. A renewal that lands while you are away, or a card retry that takes a few days, will not cut your instance off — but the new token still has to be pasted in before those 14 days are out.
+</Note>
+
+If a renewal payment fails, the portal emails you once with a link to pay the invoice. Nothing is cancelled while Stripe is still retrying the card.
+
+## Invoices and payment method
+
+Open the instance under **Your licenses** and click **Manage billing**. That opens Stripe's customer portal, where you can:
+
+- change the card on file
+- download past invoices and receipts
+- update the billing name, address and tax ID for future invoices
+- stop the renewal at the end of the current term
+
+Stopping the renewal does not shorten the license you already hold: it runs to the end of the term you paid for, plus the 14-day grace.
+
+## Give colleagues access
+
+The person who buys a license is often not the person who installs it. Rather than forwarding token emails, invite your colleagues to the account.
+
+Open **Organization**, then **Members**, and send an invitation to their email address. They accept by signing in with that address. From then on they see the same licenses and tokens, receive every license email including renewals, and can buy, grow and manage billing alongside you.
+
+An invitation is good for 7 days. Under **Organization → General** you can also give the organization a name, which is what your colleagues see in invitations instead of an email address.
+
+{/* TODO screenshot: portal Members page showing an owner, a member and the invite form */}
+
+![The Members page, where colleagues are invited to the same licenses](/images/portal-07.png)
+
+<Note>
+  One account belongs to one organization. If a colleague already signed in and started their own account, accepting your invitation moves them over; it is refused if their own account holds licenses or trials of its own.
+</Note>
+
+## Something else?
+
+Self-service covers a Business license for a set number of projects on one instance. For anything outside that — an unlimited instance license, a license bound to a single project, an Enterprise agreement, or a quote for your procurement team — email [support@usertour.io](mailto:support@usertour.io).
+
+## Related pages
+
+- [License Management](/open-source/license-management)
+- [System Admin](/open-source/system-admin)
+- [Business + Enterprise](/open-source/business-enterprise)
