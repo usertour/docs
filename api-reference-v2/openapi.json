@@ -37982,10 +37982,14 @@
             }
           },
           "next": {
-            "type": "null"
+            "type": "string",
+            "description": "Full URL of the next page \u2014 request it as-is (it already carries `cursor=` and your query parameters). null = no further pages.",
+            "nullable": true
           },
           "previous": {
-            "type": "null"
+            "type": "string",
+            "description": "Full URL of the previous page \u2014 request it as-is. null = already at the first page.",
+            "nullable": true
           }
         },
         "required": [
