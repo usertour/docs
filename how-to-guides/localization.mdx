@@ -44,8 +44,8 @@ Languages are defined once per project, then every content shares the list.
 
 Two fields matter later:
 
-- **Code** is what gets matched against each user's `locale_code` attribute, using the rules above.
-- **Name** is the display name used across the dashboard. End users never see it.
+- **Code** is what gets matched against each user's `locale_code` attribute, using the rules above. Letters, digits, `-` and `_`; unique within the project, and case doesn't distinguish two codes (`fr` and `FR` would be the same language to a user, so they can't both exist). It's usually the locale tag, but it doesn't have to be: `fr-enterprise` alongside `fr` gives one language two variants, each with its own translations, selected by the `locale_code` you set on the user.
+- **Name** is the language this localization stands for. End users never see it, but [AI translate](#ai-translate) does — it's the language the model is asked to translate into, so "French (France)" works better than a shorthand.
 
 ### The default localization
 
@@ -152,10 +152,10 @@ It behaves like the CSV import, with three differences worth knowing:
 - **Send a language in one request.** Saving re-bases the *outdated* tracking for the whole language on the current source text, so include every row you're fixing in a single write.
 
 <Note>
-  Writes replace the stored translation as a whole, last writer wins. If someone has the same language open in the editor while an API write lands, their next autosave overwrites it — coordinate who is translating a language at a time.
+  Writes merge row by row: the paths you send are saved, every other row keeps what it has. The editor saves the same way, so an API write and someone translating the same language in the dashboard no longer overwrite each other's rows — only the same row, written twice, ends with the later value.
 </Note>
 
-The languages themselves can be managed the same way — `POST`, `PATCH` and `DELETE` on `/v2/projects/{projectId}/localizations` (MCP: `create_localization`, `update_localization`, `delete_localization`, `restore_localization`), so an agent asked to translate into a language the project doesn't have yet can add it first. These use the `localization:*` scopes, while reading and writing a translation uses the content scopes — see [Scopes](/api-reference-v2/authentication#scopes). Changing the default localization stays in the dashboard.
+The languages themselves can be managed the same way — `POST`, `PATCH` and `DELETE` on `/v2/projects/{projectId}/localizations` (MCP: `create_localization`, `update_localization`, `delete_localization`, `restore_localization`), so an agent asked to translate into a language the project doesn't have yet can add it first. `GET /v2/locales` returns the same catalog the dashboard's picker offers — a locale tag with the language name to file it under — so a language added by a program lands under the same name a person would have picked, which is also the name AI translate is given (over MCP the catalog is in `get_authoring_guide`, section `localization`). The catalog is a suggestion, not a fixed list: any well-formed tag is accepted. These use the `localization:*` scopes, while reading and writing a translation uses the content scopes — see [Scopes](/api-reference-v2/authentication#scopes). Changing the default localization stays in the dashboard.
 
 ### Preview
 

@@ -84,6 +84,10 @@ authenticate REST requests exactly like a personal `utp_` token.
 
 Grant a token only the scopes it needs.
 
+Two endpoints need no scope at all, only a valid token: `GET /v2/me` (what this
+token may act on) and `GET /v2/locales` (the locale catalog to file a new
+localization under — see [Localization](/how-to-guides/localization#set-up-your-languages)).
+
 <Note>
   Localization scopes cover the project's **list of languages**. Reading and
   writing a content version's **translation** is part of the content, so it uses
