@@ -119,7 +119,7 @@ Rules on import:
 - A **blank** translation keeps whatever is currently in the editor; it never clears an existing translation.
 - Rows that don't match the current content are skipped silently, so importing a slightly stale file is safe.
 
-Media URLs (images, videos) are included in the export so a translator can swap in localized assets, but they're optional and don't count as missing translations.
+URLs are included in the export too, so a translator can point each language at its own assets and pages: media URLs (images, videos) and destinations — where a link, an image, a button, a checklist task or a resource center entry navigates to. They're optional and don't count as missing translations; leave one blank to keep the original.
 
 ### Translate via the API or MCP
 
@@ -143,7 +143,7 @@ PUT /v2/projects/{projectId}/content/{contentId}/versions/{versionId}/localizati
 }
 ```
 
-Each row of the read carries the same `path` and `source` as the CSV, the current `translation`, plus `optional` (media and link URLs) and `outdated` (the source text changed after the row was translated). Over [MCP](/api-reference-v2/mcp) the same three calls are the `list_localizations`, `get_version_localization` and `update_version_localization` tools, so you can simply ask your agent to "translate this flow into French".
+Each row of the read carries the same `path` and `source` as the CSV, the current `translation`, plus `kind` (`text` to translate; `destination` for where a link or button navigates — any path your app can route, a relative one included; `media` for an image or embed URL, which must be absolute), `optional` (true for the two URL kinds) and `outdated` (the source text changed after the row was translated). Over [MCP](/api-reference-v2/mcp) the same three calls are the `list_localizations`, `get_version_localization` and `update_version_localization` tools, so you can simply ask your agent to "translate this flow into French".
 
 It behaves like the CSV import, with three differences worth knowing:
 
@@ -224,7 +224,7 @@ Built-in translations ship for: English, Simplified Chinese, Traditional Chinese
 
 ## What's translatable
 
-| Content type | Translatable text |
+| Content type | Translatable content |
 |---|---|
 | **Flow** | Everything in each step: rich text, buttons, and survey questions (labels, placeholders, options) |
 | **Checklist** | Launcher button text, checklist content, task names and descriptions |
@@ -232,6 +232,12 @@ Built-in translations ship for: English, Simplified Chinese, Traditional Chinese
 | **Banner** | Banner content |
 | **Announcement** | Title, intro and detail content, "read more" label |
 | **Resource center** | Header text, tab names, block labels, and the display names of content list entries |
+
+Inside that content, three kinds of value can differ per language:
+
+- **Text** — every string a user reads, including an image's alt text and the fallback text of a user attribute placeholder (shown when the attribute is empty).
+- **Destinations** — where a click goes: links in rich text, an image's click-through link, and the **Navigate to page** action on buttons, survey questions, checklist tasks, launchers and resource center blocks, plus a resource center list entry's own navigation. Point each language at its localized page; leave a destination blank to keep the original. A destination whose URL contains a user attribute is managed by the source content and doesn't appear in the translation editor.
+- **Media** — image and video URLs, so each language can ship its own assets.
 
 A few things intentionally never translate:
 

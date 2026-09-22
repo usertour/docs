@@ -38540,9 +38540,18 @@
                   "type": "string",
                   "description": "The current translation, or \"\" when untranslated."
                 },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "text",
+                    "destination",
+                    "media"
+                  ],
+                  "description": "What the value is. `text`: copy to translate. `destination`: a link / button / task navigation target \u2014 swap it for the locale-specific page or leave it empty to keep the source; any string the host can route, a relative path included. `media`: an image / embed URL \u2014 swap it or leave it empty; must be an absolute http(s) URL."
+                },
                 "optional": {
                   "type": "boolean",
-                  "description": "true for media / link URLs: they may be swapped per locale but count as neither text to translate nor \"missing\" when left empty (the source URL is used)."
+                  "description": "Derived from `kind`: true for destinations and media \u2014 they may be swapped per locale but count as neither text to translate nor \"missing\" when left empty."
                 },
                 "outdated": {
                   "type": "boolean",
@@ -38553,6 +38562,7 @@
                 "path",
                 "source",
                 "translation",
+                "kind",
                 "optional",
                 "outdated"
               ]
