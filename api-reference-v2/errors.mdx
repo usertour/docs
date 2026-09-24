@@ -76,15 +76,20 @@ HTTP status follows the usual conventions: `2xx` success, `4xx` your request,
 | `E0049` | 409 | Version is published (read-only) — fork a draft with the versions endpoint first |
 | `E0050` | 409 | Version was modified concurrently — re-read and retry |
 | `E1023` | 409 | Resource conflict (e.g. duplicate `codeName`) |
+| `E1045` | 409 | The `codeName` belongs to a **deleted** attribute of another data type — creating it would restore that attribute, so restore it (`POST /attribute-definitions/{id}/restore`) or choose another `codeName` |
 | `E1041` | 409 | The default localization cannot be deleted |
 | `E1028` | 409 | Content is still published — unpublish from every environment before deleting |
-| `E1030` | 409 | Event definition already has recorded events |
+| `E1030` | 409 | Event definition is used by live or draft content (a tracker, or an event condition) — the message names it; remove it from that content first |
+| `E1042` | 409 | Attribute definition is used by live or draft content, a segment or a theme — the message names them; remove it from them first |
+| `E1043` | 409 | Segment is used by live or draft content or a theme — the message names them; remove it from them first |
+| `E1046` | 409 | A segment or theme cannot be restored while its conditions use **deleted** definitions — the message names them with their ids; restore those first, then retry |
 | `E1037` | 409 | The built-in "all" segment cannot be modified or deleted — create a condition segment for a filtered audience |
 | `E1036` | 409 | Predefined attribute/event definitions cannot be modified or deleted — create your own definition instead |
 | `E1034` | 409 | Cannot delete the default theme — set another theme as the project default first |
 | `E1035` | 409 | System themes cannot be modified or deleted — duplicate one into your own theme (setting one as the project default is allowed) |
 | `E1031` | 409 | Theme is used by live or draft content — switch that content to another theme first |
 | `E1027` | 422 | Content version is not publishable (fails render-usability validation) |
+| `E1044` | 422 | Content version references **deleted** definitions (a theme, attribute, event or segment — typically after restoring an old version) — restore them or replace them, then publish |
 | `E1013` | 429 | Rate limit exceeded — on Cloud the limit follows your plan (100/500/1000/3000 requests/min); self-hosted deployments have a flat per-token limit instead (default 1000/min, tunable via [`API_THROTTLE_LIMIT`](/open-source/env)). The standard `Retry-After` header says how long to back off |
 
 <Note>
