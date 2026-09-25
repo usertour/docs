@@ -36030,9 +36030,254 @@
         "type": "object",
         "properties": {
           "attributes": {
-            "description": "Custom attributes to set on the user (merged into existing attributes). Attributes with an unknown codeName AUTO-CREATE a definition (dataType inferred from the value) \u2014 a mistyped key silently creates a new attribute instead of updating the real one. Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u2013100 chars.",
+            "description": "Custom attributes to write on the user (merged into existing attributes). Each value is a literal, null (remove), or one operation object \u2014 {set}, {set_once}, {add}, {union}, {remove}. Values are coerced losslessly to the definition type; a value that does not fit is rejected. Attributes with an unknown codeName AUTO-CREATE a definition (type inferred from the value, or pinned with `data_type`) \u2014 a mistyped key silently creates a new attribute instead of updating the real one. Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u2013100 chars.",
             "type": "object",
-            "additionalProperties": {}
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "set": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "data_type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "datetime",
+                        "list"
+                      ],
+                      "description": "Pins the type of the attribute definition when this write creates it; never retypes an existing definition (a conflicting data_type is rejected)."
+                    }
+                  },
+                  "required": [
+                    "set"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Set the value (same as a literal), optionally pinning `data_type`."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "set_once": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "data_type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "datetime",
+                        "list"
+                      ],
+                      "description": "Pins the type of the attribute definition when this write creates it; never retypes an existing definition (a conflicting data_type is rejected)."
+                    }
+                  },
+                  "required": [
+                    "set_once"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Set the value only when the attribute has no value yet."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "add": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "add"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Add to a Number attribute (negative to subtract); a missing value starts at 0."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "union": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "union"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Append the value(s) not yet present to a List attribute; a missing list starts empty."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "remove": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "remove"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Remove every matching value from a List attribute; a missing attribute is left undefined."
+                }
+              ],
+              "description": "A literal (string, number, boolean, list of scalars), null to remove the attribute, or exactly one operation object: {set}, {set_once}, {add}, {union}, {remove} \u2014 `set` and `set_once` may carry `data_type`.",
+              "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -36336,9 +36581,254 @@
         "type": "object",
         "properties": {
           "attributes": {
-            "description": "Custom attributes to set on the company (merged into existing attributes). Attributes with an unknown codeName AUTO-CREATE a definition (dataType inferred from the value) \u2014 a mistyped key silently creates a new attribute instead of updating the real one. Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u2013100 chars.",
+            "description": "Custom attributes to write on the company (merged into existing attributes). Each value is a literal, null (remove), or one operation object \u2014 {set}, {set_once}, {add}, {union}, {remove}. Values are coerced losslessly to the definition type; a value that does not fit is rejected. Attributes with an unknown codeName AUTO-CREATE a definition (type inferred from the value, or pinned with `data_type`) \u2014 a mistyped key silently creates a new attribute instead of updating the real one. Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u2013100 chars.",
             "type": "object",
-            "additionalProperties": {}
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "set": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "data_type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "datetime",
+                        "list"
+                      ],
+                      "description": "Pins the type of the attribute definition when this write creates it; never retypes an existing definition (a conflicting data_type is rejected)."
+                    }
+                  },
+                  "required": [
+                    "set"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Set the value (same as a literal), optionally pinning `data_type`."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "set_once": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "data_type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "datetime",
+                        "list"
+                      ],
+                      "description": "Pins the type of the attribute definition when this write creates it; never retypes an existing definition (a conflicting data_type is rejected)."
+                    }
+                  },
+                  "required": [
+                    "set_once"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Set the value only when the attribute has no value yet."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "add": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "add"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Add to a Number attribute (negative to subtract); a missing value starts at 0."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "union": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "union"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Append the value(s) not yet present to a List attribute; a missing list starts empty."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "remove": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "remove"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Remove every matching value from a List attribute; a missing attribute is left undefined."
+                }
+              ],
+              "description": "A literal (string, number, boolean, list of scalars), null to remove the attribute, or exactly one operation object: {set}, {set_once}, {add}, {union}, {remove} \u2014 `set` and `set_once` may carry `data_type`.",
+              "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -36347,9 +36837,254 @@
         "type": "object",
         "properties": {
           "attributes": {
-            "description": "Custom attributes to set on the membership (e.g. the user's role in the company). Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u2013100 chars.",
+            "description": "Custom attributes to write on the membership (e.g. the user's role in the company). Each value is a literal, null (remove), or one operation object \u2014 {set}, {set_once}, {add}, {union}, {remove}. Each key must be a valid codeName: start with a letter, then letters/digits/underscores, 2\u2013100 chars.",
             "type": "object",
-            "additionalProperties": {}
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "set": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "data_type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "datetime",
+                        "list"
+                      ],
+                      "description": "Pins the type of the attribute definition when this write creates it; never retypes an existing definition (a conflicting data_type is rejected)."
+                    }
+                  },
+                  "required": [
+                    "set"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Set the value (same as a literal), optionally pinning `data_type`."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "set_once": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "data_type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "datetime",
+                        "list"
+                      ],
+                      "description": "Pins the type of the attribute definition when this write creates it; never retypes an existing definition (a conflicting data_type is rejected)."
+                    }
+                  },
+                  "required": [
+                    "set_once"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Set the value only when the attribute has no value yet."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "add": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "add"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Add to a Number attribute (negative to subtract); a missing value starts at 0."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "union": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "union"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Append the value(s) not yet present to a List attribute; a missing list starts empty."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "remove": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "remove"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Remove every matching value from a List attribute; a missing attribute is left undefined."
+                }
+              ],
+              "description": "A literal (string, number, boolean, list of scalars), null to remove the attribute, or exactly one operation object: {set}, {set_once}, {add}, {union}, {remove} \u2014 `set` and `set_once` may carry `data_type`.",
+              "nullable": true
+            }
           }
         },
         "additionalProperties": false
@@ -38484,9 +39219,101 @@
             "description": "The event code name. An unknown name creates the event definition on first use; built-in Usertour event names are refused."
           },
           "attributes": {
-            "description": "Event attribute values. Unknown attribute names register on the event definition automatically.",
+            "description": "Event attribute values: a literal, or {set, data_type} to pin the type of a new attribute. Unknown attribute names register on the event definition automatically.",
             "type": "object",
-            "additionalProperties": {}
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "set": {
+                      "anyOf": [
+                        {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "boolean"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "data_type": {
+                      "type": "string",
+                      "enum": [
+                        "string",
+                        "number",
+                        "boolean",
+                        "datetime",
+                        "list"
+                      ],
+                      "description": "Pins the type of the attribute definition when this write creates it; never retypes an existing definition (a conflicting data_type is rejected)."
+                    }
+                  },
+                  "required": [
+                    "set"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Set the value (same as a literal), optionally pinning `data_type`."
+                }
+              ],
+              "description": "A literal (string, number, boolean, list of scalars), null, or {set, data_type} to pin the type of a new event attribute definition.",
+              "nullable": true
+            }
           },
           "occurredAt": {
             "description": "When the event actually happened (ISO 8601); defaults to now.",
