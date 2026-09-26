@@ -1,0 +1,62 @@
+---
+title: "setDebug()"
+description: "Turn on Usertour.js console logging to see what the SDK is doing"
+---
+
+Usertour.js is silent in the browser console by default — it runs inside your production pages. When content does not show or a step does not attach, turn logging on to see what the SDK is doing: which content it evaluated, what the server answered, which element it looked for.
+
+## Turning logging on
+
+Any of the three works. The first two need no code change.
+
+**In the console.** Open the browser's developer tools and run:
+
+```javascript
+usertour.setDebug(true);
+```
+
+Logging starts immediately and stays on for future page loads until you run `usertour.setDebug(false)`.
+
+**In the URL.** Add `?usertour_debug=1` to the page's address and reload. Logging is on for that page load only — useful when you want a screenshot from someone else's browser without changing anything on their machine.
+
+**In code.** Call `usertour.setDebug(true)` right after `usertour.init()`. The call is queued if the script has not loaded yet, so it can sit anywhere in your snippet.
+
+## Parameters
+
+<ParamField path="enabled" type="boolean" required>
+  `true` opens the console log, `false` closes it and forgets the persisted setting.
+</ParamField>
+
+## Reading the output
+
+Every line starts with `[usertour-widget:<component>]`, followed by the message and the milliseconds since the previous line. The component tells you where to look:
+
+| Component | What it logs |
+|:---|:---|
+| `socket` | The realtime connection: connecting, reconnecting, credential changes, messages that failed to send |
+| `core` | Sessions the server assigned or removed, and ones ignored because the user dismissed them |
+| `conditions`, `wait-timer`, `trigger` | Auto-start and trigger conditions being evaluated, wait timers starting and firing |
+| `flow`, `checklist`, `banner`, `launcher`, `resource-center` | Each content type attaching to the page, and target elements it could not find |
+| `ui` | The Usertour container and stylesheet loading |
+
+Levels follow the browser's own: informational lines use `console.log`, degraded-but-continuing situations `console.warn`, failed operations `console.error`.
+
+Two messages are shown **even when logging is off**, because they mean Usertour will not work on the page and nothing else would tell you:
+
+- **UI initialization failed** — the stylesheet or the container could not be set up after several attempts, so no content can render. Check that `js.usertour.io` (or your self-hosted assets host) is reachable from the page.
+- **Connection rejected by the server** — the environment token or the [identity token](/developers/identity-verification) was refused, and the SDK has stopped reconnecting. Check the token passed to `init()`; with identity verification on, refresh the identity token and call `identify()` again.
+
+## By symptom
+
+**Nothing shows at all.** Look for `[usertour-widget:socket]` lines. A connection that is `connecting` and never `connected` points at the network; a `rejected` line points at credentials. Once connected, the server answers each evaluation — if no session is assigned, the content's start conditions did not match this user or page.
+
+**A step or launcher does not attach.** Look for `Step target element was not found` or `Launcher target element was not found` under the content's component. The selector did not match anything on the page at the time; the SDK keeps looking for the configured number of seconds.
+
+**Attributes are not updating.** Look for `Failed to send UpsertUser` under `socket` — the write never reached the server — or a warning under `core` about a deprecated attribute operation. A value the server dropped because it does not fit the attribute's type produces no client-side line; check the attribute's type in **Settings → Attributes** and the value you send.
+
+In the browser's network panel, a healthy page has one `wss://` connection to your Usertour server carrying `client-message` frames; a connection that keeps reopening is a rejection or a proxy closing idle sockets.
+
+## Notes
+
+- Logging goes to the console only. Nothing is sent to Usertour.
+- The setting is per browser, stored under `localStorage.debug` next to other tools that use the same convention; `usertour.setDebug(false)` removes only Usertour's entry.
