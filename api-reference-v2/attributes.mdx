@@ -31,6 +31,29 @@ Display names (shown in the Usertour UI) are configured separately — e.g.
 | `boolean` | `true` or `false`. |
 | `datetime` | A point in time, ISO 8601 in UTC. |
 | `list` | A list of strings. |
+| `random_ab` | Assigned by Usertour: `A` or `B`, split evenly. |
+| `random_number` | Assigned by Usertour: a whole number from 1 to `randomMax`, spread evenly. |
+
+## Random bucketing
+
+`random_ab` and `random_number` attributes exist for users and companies only.
+Their values are not written by you — Usertour derives each one from the
+attribute and the user (or company) id, so it is fixed the moment the attribute
+is created, the same on every device, and the same after a data export and
+import. Existing users and companies receive their values in the background
+right after the attribute is created.
+
+Use them in segments and content targeting:
+
+- **A/B test** — target one flow at `experiment is A` and its variant at
+  `experiment is B`.
+- **Canary rollout** — target `rollout_percent <= 10` on a `random_number`
+  attribute with `randomMax: 100`, then raise the bound over time; a user
+  included at 10 stays included at 20.
+
+The type and `randomMax` are locked once the attribute exists, and writing to
+the attribute is refused: the REST API answers `400`, the SDK drops the key and
+names it in the call's result.
 
 ## Best practices
 
