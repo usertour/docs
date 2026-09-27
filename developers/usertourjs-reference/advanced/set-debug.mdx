@@ -33,8 +33,8 @@ Every line starts with `[usertour-widget:<component>]`, followed by the message 
 
 | Component | What it logs |
 |:---|:---|
-| `socket` | The realtime connection: every state change (`Connection connecting → connected`), reconnects, credential changes, messages that failed to send, writes dropped or replayed after a reconnect |
-| `core` | Identify and group calls, attributes the server refused, and the replay of writes that failed while offline |
+| `socket` | The realtime connection: every state change (`Connection connecting → connected`), each failed connection attempt, reconnects, credential changes, messages that failed to send |
+| `core` | Attributes the server refused, and a deprecated attribute operation the SDK rewrote |
 | `conditions`, `wait-timer`, `trigger` | Auto-start and trigger conditions being evaluated, wait timers starting and firing |
 | `flow`, `checklist`, `banner`, `launcher`, `resource-center` | Each content type attaching to the page, and a target element it gave up on |
 | `ui` | The Usertour container and stylesheet loading |
@@ -48,9 +48,9 @@ Two messages are shown **even when logging is off**, because they mean Usertour 
 
 ## By symptom
 
-**Nothing shows at all.** Look for `[usertour-widget:socket]` lines. `Connection connecting → connected` followed by `Connected` means the network is fine; a `Connection … → reconnecting` that never reaches `Connected` points at the network or a proxy; `Connection rejected by the server` points at credentials. Once connected, content that still does not show did not match its start conditions for this user or page — check them in the builder, or ask the server with the API's diagnose tools.
+**Nothing shows at all.** Look for `[usertour-widget:socket]` lines. `Connection connecting → connected` followed by `Connected` means the network is fine. Only `Connection idle → connecting` and then `Connection attempt failed (…)` lines, never a `Connected`, means the server cannot be reached at all — the message in parentheses (`websocket error`, `xhr poll error`) is the browser's reason, usually a proxy, a firewall or a blocking extension. A `Connection … → reconnecting` that never reaches `Connected` points at the network dropping later; `Connection rejected by the server` points at credentials. Once connected, content that still does not show did not match its start conditions for this user or page — check them in the builder, or ask the server with the API's diagnose tools.
 
-**A step does not attach.** Look under `flow` for `Step target element was not found on the page` — the selector matched nothing for the configured number of seconds (`setTargetMissingSeconds`), and the line says what happened next: the step was shown as a bubble or the flow was closed. `Step has no target element configured` means the step itself is missing a target in the builder. Launchers and banners log `has no target element configured` / `has no container element configured` the same way.
+**A step does not attach.** Look under `flow` for `Step target element was not found on the page` — the selector matched nothing for the configured number of seconds (`setTargetMissingSeconds`, else the theme's setting, else 6 seconds), and the line says what happened next: the step was shown as a bubble or the flow was closed. `Step target element stayed hidden past the timeout` is the same for an element that exists but never became visible. `Step has no target element configured` means the step itself is missing a target in the builder. Launchers and banners log `has no target element configured` / `has no container element configured` the same way.
 
 **Attributes are not updating.** Look for `Failed to send UpsertUser` under `socket` — the write never reached the server — or, under `core`, `Attribute "<name>" was not written: <reason>`: the server refused that one value (it does not fit the attribute's type, or the attribute is assigned by Usertour) and wrote the rest. The same reason comes back in the promise: `const { rejected } = await usertour.updateUser(…)`.
 
@@ -58,5 +58,6 @@ In the browser's network panel, a healthy page has one `wss://` connection to yo
 
 ## Notes
 
+- `setDebug` needs a server of this version or newer: on an older self-hosted server the SDK it serves does not have the method, in the console either.
 - Logging goes to the console only. Nothing is sent to Usertour.
 - The setting is per browser, stored under `localStorage.debug` next to other tools that use the same convention; `usertour.setDebug(false)` removes only Usertour's entry.
