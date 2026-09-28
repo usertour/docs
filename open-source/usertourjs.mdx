@@ -28,7 +28,7 @@ After completing the basic installation, you need to add the following configura
     WS_URI: "http://localhost:8011/",
     
     // Base URL for SDK assets
-    ASSETS_URI: "http://localhost:8011/sdk/",
+    ASSETS_URI: "http://localhost:8011/sdk",
     
     // Modern JavaScript bundle (ES2020)
     USERTOURJS_ES2020_URL: 'http://localhost:8011/sdk/es2020/usertour.js',
@@ -48,14 +48,37 @@ If you're not using the default port (8011) or host (localhost), update the URLs
   its own `/<version>/<target>/css/index.css` path. If you serve a locally
   built `apps/sdk/dist` directly, do NOT point this at the version or target
   folder — the doubled path 404s the CSS and widgets render invisibly (0×0)
-  with no console error.
+  with no console error. Leave off the trailing slash: the appended path
+  already starts with `/`, so `…/sdk/` produces `…/sdk//<version>/…`. The
+  bundled nginx tolerates the double slash, but most object stores and CDNs
+  treat it as a different file and return 404.
 - `USERTOURJS_ES2020_URL`: URL for the modern JavaScript bundle
 - `USERTOURJS_LEGACY_URL`: URL for the legacy JavaScript bundle
 - `USERTOURJS_BROWSER_TARGET` (optional): `"es2020"` or `"legacy"` — force a
   bundle instead of the loader's user-agent detection; only needed when the
   detection guesses wrong (unusual webviews)
 
-### 4. Next Steps
+### 4. Hosting the SDK Files Elsewhere (Optional)
+
+The Docker image already serves the SDK from `/sdk/` with the right headers.
+Follow these rules only if you copy the SDK files to your own CDN or object
+storage:
+
+- **Don't cache the two entry files.** Serve `es2020/usertour.js` and
+  `legacy/usertour.iife.js` with `Cache-Control: no-cache`, so browsers check
+  for a new copy on every page load. If an entry file is cached, your users
+  keep running the old SDK after you upgrade.
+- **Cache everything else for as long as you like.** Every other file the SDK
+  loads carries a content hash in its name or sits under a version folder, so a
+  new release never reuses an old URL.
+- **Allow cross-origin loading.** The ES2020 bundle loads as a JavaScript
+  module, which browsers only accept from another origin when the response
+  carries an `Access-Control-Allow-Origin` header.
+- **Keep the layout.** The other `.js` files must sit in the same folder as
+  `es2020/usertour.js`, and the CSS must be reachable at `ASSETS_URI` +
+  `/<version>/<target>/css/`.
+
+### 5. Next Steps
 
 After completing both the basic installation and self-hosted configuration, you can:
 1. Initialize Usertour.js in your application
