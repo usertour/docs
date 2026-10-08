@@ -1,13 +1,14 @@
 ---
 title: Installation
+description: Add Usertour.js to your web app with npm or an HTML snippet, then identify your users.
 icon: "tag"
 ---
 
-# Installing Usertour.js
+Before your users can see the content you build, you need to install Usertour.js in your web app.
 
-Usertour.js is a lightweight JavaScript library (~20 kB) that loads asynchronously, ensuring it won't impact your page load performance. Follow these simple steps to integrate it into your web application.
+Usertour.js is a lightweight JavaScript library (~20 kB) that loads asynchronously, ensuring it won't impact your page load performance. The installation is simple and only requires two quick steps.
 
-## Installation Methods
+## Step 1: Install Usertour.js
 
 You can install Usertour.js in two ways:
 
@@ -18,7 +19,7 @@ You can install Usertour.js in two ways:
    - [HTML Snippet Installation](#html-snippet-installation)
 
 <Note>
-If you're using a self-hosted UserTour instance, you'll need additional configuration to connect Usertour.js to your own server. See our [Self-Hosted Usertour.js Guide](/open-source/usertourjs) for detailed setup instructions.
+If you're using a self-hosted Usertour instance, you'll need additional configuration to connect Usertour.js to your own server. See our [Self-Hosted Usertour.js Guide](/open-source/usertourjs) for detailed setup instructions.
 </Note>
 
 ### NPM Installation
@@ -47,11 +48,14 @@ usertour.identify('USER_ID', {
 });
 ```
 
+**Important:** Make sure to replace the placeholders with real, dynamic values from your app! See [Step 2](#step-2-replace-placeholders).
+
 ### HTML Snippet Installation
 
 Add this script to your HTML file just before the closing `</body>` tag:
 
 ```html
+<script>
 !function(){var e="undefined"==typeof window?{}:window,r=e.usertour;if(!r){var t="https://js.usertour.io/",n=null;r=e.usertour={_stubbed:!0,load:function(){return n||(n=new Promise((function(r,o){var s=document.createElement("script");s.async=!0;var u=e.USERTOURJS_ENV_VARS||{};"es2020"===(u.USERTOURJS_BROWSER_TARGET||function(e){for(var r=[[/Edg\//,/Edg\/(\d+)/,80],[/OPR\//,/OPR\/(\d+)/,67],[/Chrome\//,/Chrome\/(\d+)/,80],[/CriOS\//,/CriOS\/(\d+)/,100],[/Safari\//,/Version\/(\d+)/,14],[/Firefox\//,/Firefox\/(\d+)/,74]],t=0;t<r.length;t++){var n=r[t],o=n[0],s=n[1],u=n[2];if(e.match(o)){var i=e.match(new RegExp(s));if(i&&parseInt(i[1],10)>=u)return"es2020";break}}return"legacy"}(navigator.userAgent))?(s.type="module",s.src=u.USERTOURJS_ES2020_URL||t+"es2020/usertour.js"):s.src=u.USERTOURJS_LEGACY_URL||t+"legacy/usertour.iife.js",s.onload=function(){r()},s.onerror=function(){document.head.removeChild(s),n=null;var e=new Error("Could not load Usertour.js");console.warn(e.message),o(e)},document.head.appendChild(s)}))),n}};var o=e.USERTOURJS_QUEUE=e.USERTOURJS_QUEUE||[],s=function(){var r=e.usertour;return e.USERTOURJS_QUEUE===o&&!!r&&r._stubbed},u=function(e){console.warn("usertour.js: "+e+" is not supported and was ignored")},i=function(e){r[e]=function(){if(s()){var t=Array.prototype.slice.call(arguments);r.load(),o.push([e,null,t])}else u(e)}},a=function(e){r[e]=function(){if(!s())return u(e),Promise.reject(new Error("usertour.js: "+e+" is not supported"));var t,n=Array.prototype.slice.call(arguments);r.load();var i=new Promise((function(e,r){t={resolve:e,reject:r}}));return o.push([e,t,n]),i}},c=function(e,t){r[e]=function(){return t}},d=function(e){r[e]=function(){u(e)}};i("disableEvalJs"),i("init"),i("off"),i("on"),i("registerCustomInput"),i("reset"),i("setBaseZIndex"),i("setTargetMissingSeconds"),i("setDebug"),i("setCustomNavigate"),i("setCustomScrollIntoView"),i("setUrlFilter"),i("setLinkUrlDecorator"),i("openResourceCenter"),i("closeResourceCenter"),i("toggleResourceCenter"),i("showResourceCenterLauncher"),i("hideResourceCenterLauncher"),d("setCustomInputSelector"),d("setSessionTimeout"),d("setInferenceAttributeFilter"),d("setInferenceAttributeNames"),d("setInferenceClassNameFilter"),d("setScrollPadding"),d("setServerEndpoint"),d("setShadowDomEnabled"),d("setPageTrackingDisabled"),a("endAll"),a("group"),a("identify"),a("identifyAnonymous"),a("start"),a("track"),a("updateGroup"),a("updateUser"),c("isIdentified",!1),c("isResourceCenterOpen",!1),c("isStarted",!1)}}();
 
 // Initialize the Usertour SDK with your environment token
@@ -66,7 +70,9 @@ usertour.identify('USER_ID', {
 </script>
 ```
 
-## Configuration
+**Important:** Make sure to replace the placeholders with real, dynamic values from your app! See [Step 2](#step-2-replace-placeholders).
+
+## Step 2: Replace placeholders
 
 In the code you copy-pasted above, replace **USERTOUR_TOKEN** with the Usertour.js Token you find under [Settings -> Environments](https://app.usertour.io/project/1/settings/environments). Note that if you have multiple environments (e.g. Production and Staging) that each environment has a unique token.
 
@@ -74,9 +80,9 @@ Next, replace **USER_ID** with the currently signed in user's ID in your databas
 
 The properties in usertour.identify()'s second argument are all optional. They're useful for looking up users in Usertour to e.g. see their flow progress, or to use in the flow content or conditions. If you don't want to share this with Usertour, feel free to leave out the argument completely.
 
-## Additional Features
+That's it! Your Usertour installation is ready.
 
-### Custom Attributes
+## Optional: Add custom attributes
 
 You can send custom user attributes to Usertour.js for more personalized experiences. These can include:
 - User roles
@@ -84,8 +90,14 @@ You can send custom user attributes to Usertour.js for more personalized experie
 - Custom metrics
 - Any other relevant user data
 
-### Anonymous Users
+See [Attributes](/developers/usertourjs-reference/overview#attributes) for the values and write operations an attribute accepts.
 
-For public pages where users aren't logged in, use `usertour.identifyAnonymous()` instead of `usertour.identify()`. This automatically generates a unique ID for anonymous users.
+## Optional: Prove user identities
+
+Your environment token is public, so by default anyone holding it could call `usertour.identify()` with any user ID. To prevent impersonation, your backend can sign an identity token (a JWT) for each user and pass it as `identify()`'s third argument. See the [Identity Verification guide](/developers/identity-verification).
+
+## Optional: Install Usertour for unauthenticated users
+
+Running `usertour.identify()` is a mandatory part of the script. But if you want to show Usertour content on public pages to users who are not yet signed into your application, you can install the script on those pages and replace `usertour.identify()` with `usertour.identifyAnonymous()`. Usertour.js then assigns the current user a unique ID automatically. Note that these users count towards your MAU balance.
 
 [Learn more about anonymous user identification →](/developers/usertourjs-reference/users/identify-anonymous)
