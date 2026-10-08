@@ -376,6 +376,10 @@
     {
       "source": "/how-to-guides/integrations",
       "destination": "/integrations/overview"
+    },
+    {
+      "source": "/developers/usertourjs-installation",
+      "destination": "/developers/usertourjs-reference/installation"
     }
   ],
   "logo": {
