@@ -19,7 +19,7 @@ Logging starts immediately and stays on for future page loads until you run `use
 
 **In the URL.** Add `?usertour_debug=1` to the page's address and reload. Logging is on for that page load only — useful when you want a screenshot from someone else's browser without changing anything on their machine. The parameter must be in the query part, before any `#`, and the page you land on must keep it: a login redirect that rewrites the URL drops it.
 
-**In code.** Call `usertour.setDebug(true)` after `usertour.init()`. With the npm package (`usertour.js` 0.0.25 or newer) or an installation snippet copied from **Settings → Installation** after this release, the call is queued until the script has loaded, so it can sit anywhere. An older snippet does not know the method: calling it before the script has loaded throws and stops the rest of your script, so there, use the console or the URL instead.
+**In code.** Call `usertour.setDebug(true)` after `usertour.init()`. With the npm package (`usertour.js` 0.0.26 or newer) or an installation snippet copied from **Settings → Installation** after this release, the call is queued until the script has loaded, so it can sit anywhere. An older snippet does not know the method: calling it before the script has loaded throws and stops the rest of your script, so there, use the console or the URL instead.
 
 ## Parameters
 
