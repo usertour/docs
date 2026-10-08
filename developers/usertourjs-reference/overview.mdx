@@ -124,6 +124,63 @@ usertour.updateUser({
 });
 ```
 
+A `Date` object is sent as an ISO 8601 UTC timestamp, so `signed_up_at: new Date(user.createdAt)` is the simplest way to store a datetime.
+
+### Attribute types
+
+Every attribute has a definition with a type. The first value you send for a new attribute creates the definition and decides its type — a string is stored as **datetime** only in the strict `2024-12-12T00:00:00.000Z` form (what `Date.prototype.toISOString()` produces), otherwise as **string**. Once a definition exists, later values must fit its type; conversions that lose nothing are applied for you, anything else is dropped (the SDK logs a warning) or rejected (the REST API returns 400):
+
+| Definition type | Accepted values |
+|:---|:---|
+| **string** | Any string; numbers and booleans are stored as strings |
+| **number** | Numbers; a numeric string such as `"42"` when it converts exactly (`"007"` does not) |
+| **boolean** | Booleans; the strings `"true"` and `"false"` |
+| **datetime** | Any ISO 8601 date-time with a zone, normalized to UTC (`2024-12-12T08:30:00+08:00` becomes `2024-12-12T00:30:00.000Z`). Date-only strings and epoch numbers are not accepted |
+| **list** | Arrays of strings, numbers or booleans; a single value becomes a one-element list |
+
+You can change a definition's type later in **Settings → Attributes**, as long as no stored value conflicts with the new type.
+
+### Operations
+
+Instead of a literal, an attribute value can be an object with exactly one operation. Operations are computed on the server, so they work even though the browser never sees the stored value:
+
+| Operation | Description |
+|:---|:---|
+| `{ set: value }` | Sets the value — the same as a literal, but lets you add `data_type` |
+| `{ set_once: value }` | Sets the value only if the attribute has no value yet. Works again after the attribute was removed |
+| `{ add: number }` | Adds to a **number** attribute; use a negative number to subtract. A missing attribute starts at 0 |
+| `{ union: value \| [values] }` | Adds the values not already present to a **list** attribute. A missing attribute starts as an empty list |
+| `{ remove: value \| [values] }` | Removes every matching value from a **list** attribute. A missing attribute stays undefined |
+
+```javascript
+usertour.updateUser({
+  signup_source: { set_once: 'google' },
+  widget_count: { add: 1 },
+  days_left: { add: -1 },
+  features_used: { union: ['export', 'share'] },
+  beta_flags: { remove: 'old_ui' }
+});
+```
+
+`add` is not idempotent: if a request is retried after the server already applied it, the value is added twice. For exact counts, track an event instead — conditions can match on how many times an event occurred, optionally within a time window.
+
+### Pinning the type with `data_type`
+
+When the first value of a new attribute could be misread — a string that happens to look like a date, a phone number sent as a number — pin the type with `data_type` next to `set` or `set_once`. The value is converted to that type:
+
+```javascript
+usertour.identify('123456', {
+  // Stored as a string, even though the value looks like a datetime
+  external_ref: { set: '2024-12-12T00:00:00.000Z', data_type: 'string' },
+  // Stored as "12345678"
+  phone: { set: 12345678, data_type: 'string' }
+});
+```
+
+`data_type` only decides the type when the attribute is first created. It never changes an existing definition: a `data_type` that disagrees with the definition is treated as a type mismatch. Change the type in **Settings → Attributes** instead.
+
+Event attributes accept literals, `Date` objects and `{ set, data_type }` only. The same values and operations work through the [REST API](/api-reference-v2/introduction) and the MCP server.
+
 For best results, we recommend:
 - Using consistent naming conventions (lowercase with underscores)
 - Choosing appropriate data types for each attribute
