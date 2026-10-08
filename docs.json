@@ -163,7 +163,8 @@
               "developers/usertourjs-reference/advanced/register-custom-input",
               "developers/usertourjs-reference/advanced/set-custom-scroll-into-view",
               "developers/usertourjs-reference/advanced/set-url-filter",
-              "developers/usertourjs-reference/advanced/set-link-url-decorator"
+              "developers/usertourjs-reference/advanced/set-link-url-decorator",
+              "developers/usertourjs-reference/advanced/set-debug"
             ]
           }
         ]
