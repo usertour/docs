@@ -38500,7 +38500,14 @@
                     "random_ab",
                     "random_number"
                   ],
-                  "description": "Value type. `random_ab` / `random_number` are SYSTEM-GENERATED bucketing types (stable per-user random values for splits) \u2014 they appear in reads and conditions but cannot be created through the API."
+                  "description": "Value type. `random_ab` / `random_number` are SYSTEM-GENERATED bucketing types: each user (or company) is assigned a stable value \u2014 `A`/`B`, or an integer in [1, randomMax] \u2014 for A/B tests and canary rollouts. Their values cannot be written; their type and range are locked after creation."
+                },
+                "randomMax": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991,
+                  "description": "Upper bound of a `random_number` attribute (values are 1..randomMax); null otherwise.",
+                  "nullable": true
                 },
                 "description": {
                   "type": "string"
@@ -38528,6 +38535,7 @@
                 "predefined",
                 "createdAt",
                 "dataType",
+                "randomMax",
                 "description",
                 "displayName",
                 "codeName",
@@ -38583,7 +38591,14 @@
               "random_ab",
               "random_number"
             ],
-            "description": "Value type. `random_ab` / `random_number` are SYSTEM-GENERATED bucketing types (stable per-user random values for splits) \u2014 they appear in reads and conditions but cannot be created through the API."
+            "description": "Value type. `random_ab` / `random_number` are SYSTEM-GENERATED bucketing types: each user (or company) is assigned a stable value \u2014 `A`/`B`, or an integer in [1, randomMax] \u2014 for A/B tests and canary rollouts. Their values cannot be written; their type and range are locked after creation."
+          },
+          "randomMax": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Upper bound of a `random_number` attribute (values are 1..randomMax); null otherwise.",
+            "nullable": true
           },
           "description": {
             "type": "string"
@@ -38611,6 +38626,7 @@
           "predefined",
           "createdAt",
           "dataType",
+          "randomMax",
           "description",
           "displayName",
           "codeName",
@@ -38637,9 +38653,17 @@
               "string",
               "boolean",
               "list",
-              "datetime"
+              "datetime",
+              "random_ab",
+              "random_number"
             ],
-            "description": "The attribute value type."
+            "description": "The attribute value type. `random_ab` / `random_number` (user and company scope only) are assigned by Usertour per entity, stable for life, and cannot be written."
+          },
+          "randomMax": {
+            "description": "Required for `random_number`: values are assigned in 1..randomMax. Ignored for other types. Locked after creation.",
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 10000
           },
           "codeName": {
             "type": "string",
@@ -38679,14 +38703,16 @@
             "type": "string"
           },
           "dataType": {
-            "description": "Change the attribute's value type. Allowed only while NO stored value would conflict with the new type (else rejected \u2014 clear the conflicting values, or delete + recreate). Fixes a wrong type inferred from a first mistyped upsert. `scope` and `codeName` stay immutable.",
+            "description": "Change the attribute's value type. Allowed only while NO stored value would conflict with the new type (else rejected \u2014 clear the conflicting values, or delete + recreate). Fixes a wrong type inferred from a first mistyped upsert. `scope` and `codeName` stay immutable; a random bucketing type can neither be changed into nor out of.",
             "type": "string",
             "enum": [
               "number",
               "string",
               "boolean",
               "list",
-              "datetime"
+              "datetime",
+              "random_ab",
+              "random_number"
             ]
           }
         },

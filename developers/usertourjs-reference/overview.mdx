@@ -97,6 +97,8 @@ When updating objects with attributes, you can use various data types:
 | **boolean** | True/false values | `true` or `false` | Feature flags |
 | **datetime** | ISO 8601 timestamps | `"2023-06-14T16:25:49Z"` | Event times |
 | **list** | Arrays of strings | `["tag1", "tag2"]` | Tags, categories |
+| **random A/B** | Assigned by Usertour: `"A"` or `"B"` | — | A/B tests |
+| **random number** | Assigned by Usertour: 1 to an upper bound | — | Canary rollouts |
 
 Here's how to use attributes in your code:
 
@@ -139,6 +141,26 @@ Every attribute has a definition with a type. The first value you send for a new
 | **list** | Arrays of strings, numbers or booleans; a single value becomes a one-element list |
 
 You can change a definition's type later in **Settings → Attributes**, as long as no stored value conflicts with the new type.
+
+### Random A/B and Random number
+
+These two types are assigned by Usertour rather than written by you. Create one in **Settings → Attributes** (or through the [REST API](/api-reference-v2/attributes)) on users or companies: every user or company then carries a fixed value — `"A"` or `"B"` split evenly, or a whole number from 1 to the upper bound you chose, spread evenly. The value is derived from the attribute and the user id, so it is the same on every device and never changes; users that existed before the attribute receive theirs in the background. Target one flow at `experiment is A` and its variant at `experiment is B`, or roll a feature out with `rollout <= 10` and raise the number over time.
+
+Sending a value for one of these attributes is refused: the key is dropped, the SDK logs a warning, and the call's result names it (see below).
+
+### What a write reports back
+
+`identify`, `identifyAnonymous`, `updateUser`, `group` and `updateGroup` resolve once the server has stored the attributes. The result lists the attributes the server refused — a value that does not fit the definition's type, or a system-generated attribute — with the reason; every other attribute was written:
+
+```javascript
+const { rejected } = await usertour.updateUser({
+  plan: 'pro',
+  experiment: 'A' // a Random A/B attribute — assigned by Usertour, so refused
+});
+// rejected: [{ codeName: 'experiment', reason: 'system-generated attribute (experiment); …' }]
+```
+
+The SDK also logs one warning per refused attribute, so a call whose result is never read still shows why a value is missing.
 
 ### Operations
 
