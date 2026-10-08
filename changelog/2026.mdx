@@ -4,6 +4,86 @@ description: "Usertour releases in 2026"
 rss: true
 ---
 
+<Update label="v0.9.6" description="October 8, 2026">
+
+This release gives attribute writes a vocabulary — `set_once`, `add`, `union`, `remove`, and a `data_type` pin — and adds two attribute types whose values Usertour assigns, **Random A/B** and **Random number**, so a flow can be shown to a stable slice of users without any client-side code. The SDK now **recovers its connection on its own** and replays the writes it lost, and `usertour.setDebug(true)` opens its console log. Localized content can translate where its buttons navigate, translations are readable and writable over the API, and themes, attributes, segments and events soft-delete instead of disappearing from history. Under the hood the server moved into a modules layout, the SDK got the test suite it never had, and that suite found four runtime bugs in the start rules, all fixed here.
+
+### ✍️ Attribute write operations
+
+An attribute value sent from the SDK, the REST v2 API or MCP can now be an **operation** instead of a plain value: `{ set_once: value }` writes only when the attribute has no value yet; `{ add: n }` adds to a number (negative to subtract); `{ union: [...] }` appends the values a list does not have yet; `{ remove: [...] }` takes values out of a list; `{ set: value, data_type: 'datetime' }` pins the type of an attribute that this write creates. `null` removes the attribute, and a `Date` is sent as ISO 8601 UTC. A counter kept with `add` is never lost to a concurrent write: every user, company and membership write runs under a row lock.
+
+The typings had promised this vocabulary since January; the server now implements it with one rule shared by every entry point. The SDK path stays lenient — a value the server refuses is dropped, logged, and reported back — while the v2 API and MCP refuse the whole request with a 400 that names the key. `identify()`, `group()` and their `update*` forms resolve to `{ rejected: [...] }`, listing any key the server refused and why. The legacy `subtract` / `append` / `prepend` spellings still work: the SDK rewrites them and logs a deprecation warning.
+
+Acceptance is also wider and more predictable: a numeric string into a Number, a number into a String and any ISO 8601 date-time into a DateTime are stored rather than dropped as type mismatches, and a date-time already in strict UTC is stored as sent, so re-identifying a user no longer makes unchanged values look changed. Reference: https://docs.usertour.io/developers/usertourjs-reference/overview#attributes
+
+### 🎲 Random bucketing attributes
+
+Two new attribute types, **Random A/B** (`A` or `B`) and **Random number** (1 to a maximum you choose), are assigned by Usertour rather than written by you. The value is derived from a hash of the attribute and the user or company id: fixed when the entity is created, identical on every device, and unchanged when you later raise the maximum. Existing users and companies are backfilled when you create the attribute, so a segment such as `rollout ≤ 30` or a start rule on `experiment = B` is usable at once. Writes to these attributes are refused as system-generated. The attribute dialogs, the condition editor and the segment table all understand the new types. Reference: https://docs.usertour.io/api-reference-v2/attributes#random-bucketing
+
+### 🔌 The SDK reconnects on its own
+
+The SDK used to have two ways to go permanently silent for the rest of a page's life: a disconnect the server initiated, and a handshake the server refused for a reason that was only temporary. Both now reconnect by themselves, backing off from one second to a minute with jitter, and stop only when the server says the credentials are wrong. `identify()` and `group()` calls that failed for a transport reason are replayed on the next connection (with `add` operations stripped, so nothing is counted twice), a reconnect re-evaluates content once, and wait timers and tracked conditions keep their state across it. On the server side every refused or rate-limited message is answered with `false` instead of silence, so the SDK never waits on a reply that is not coming.
+
+### 🐞 `usertour.setDebug(true)`
+
+The SDK is silent in the console by default. `usertour.setDebug(true)` — or `?usertour_debug=1` on the URL for one page load — turns on a log with one line per decision: what connected, which content was evaluated and why it was or was not shown, which element a step is waiting for. The switch is remembered across page loads until you turn it off. Only two lines print unasked, and both mean nothing will show: the UI failed to initialise, or the connection was rejected for good. Guide: https://docs.usertour.io/developers/usertourjs-reference/advanced/set-debug
+
+### 🌐 Localization: destinations, alt text, and the API
+
+A localized banner whose button sends people to a per-language landing page can now translate that destination: the navigate action on buttons, survey questions, checklist tasks, launchers, resource-center blocks and content-list entries has its own row in the translation editor, as do image alt text and the fallback text of a user-attribute chip.
+
+Translation is no longer a dashboard-only workflow. A version's translation is readable and writable over the v2 API and MCP as flat units (`path` / `source` / `translation` / `optional` / `outdated` / `kind`), the project's locales are an API resource with their own scopes, and `GET /v2/locales` serves the same language catalog the dashboard's picker uses. The dashboard saves translations through the same service, by unit, so two people translating one locale merge instead of overwriting each other. Guide: https://docs.usertour.io/how-to-guides/localization
+
+### 🗑️ Soft delete for themes, attributes, segments and events
+
+All four used to be hard-deleted: deleting a theme stripped it from every historical version, and deleting an attribute a live flow targeted made its conditions silently stop matching. They now soft-delete under one rule — **a live surface never references a deleted definition; history may**. Deleting something still in use is refused, and the delete dialog shows what uses it before you click, with a live / draft marker and a link to each place. A deleted definition can be restored from the API or MCP, and creating an attribute or event with the same code name restores it. Error reference: https://docs.usertour.io/api-reference-v2/errors
+
+### 🐛 Fixes
+
+- **A brand-new flow started right after another was dismissed** even with a quiet period ("at least N minutes after any flow") configured: the quiet period never held for a content the user had no event on yet.
+- **A start rule combining an event with a browser condition never fired** when the event alone satisfied its group: the browser leaf was never tracked.
+- **Content gated on a condition that had toggled could not start after a reconnect**, because the reconnect carried the condition's stale state.
+- **Text-input "has any value" was true whenever the input existed**, empty or not; it now requires a non-empty value.
+- **A hover launcher's tooltip** closes when the pointer leaves it; **the banner frame** no longer shows the browser's default iframe border on hosts without a CSS reset.
+- **Two OAuth handshakes in the same second** could no longer collide on their `state` value.
+- **The self-hosted installation snippet's `ASSETS_URI`** no longer carries a trailing slash, as the docs say, and the snippet queues a `setDebug` call placed before the script loads.
+- **`identifyAnonymous()`'s `opts` parameter** is documented as having no effect: anonymous ids are minted client-side, so a backend can never sign one.
+
+## Behaviour changes to check
+
+- **Text-input "has any value" now requires a value.** A rule that meant "the input is on the page" should use an element "present" condition on the same selector.
+- **The quiet period now holds for content the user has never seen.**
+- **Segments using `is empty` / `has any value` on a List attribute** never matched anyone before; they match now, so their membership changes after upgrade.
+- **Attribute acceptance is wider** (numeric strings into Numbers, numbers into Strings, any ISO 8601 date-time into a DateTime). Inference on first creation stays strict.
+- **Deletes can be refused.** An attribute, segment, theme or event still used by live content answers 409 (E1042 / E1043 / E1030 / E1031); E1030 now means "used by live content" rather than "has recorded events", so fired events can be deleted. Publishing a version that references a deleted definition answers E1044.
+- **`identify()` / `group()` resolve to `{ rejected }`** instead of a boolean; truthiness is unchanged, and an older SDK reads the new acknowledgement as truthy.
+
+## Upgrade notes
+
+Usertour Cloud is already running this release. Self-hosted:
+
+- **One migration**, additive (`Localization.deleted`, default false, no backfill), and **one seed backfill** that runs on start: translation rows below schema version 2 get their navigate / alt / chip-fallback clones blanked so the new rows start as real untranslated copy. Expect a `Localized unit stores backfill completed` log line.
+- **A new BullMQ queue, `attribute-backfill`,** runs in the server process on your existing Redis; a job is enqueued when a bucketing attribute is created or restored.
+- **SDK 0.8.1 ships in the image.** The server is backward compatible with pages still running 0.8.0, and the handshake log line now names each connection's SDK version (`… authenticated for user u1 (sdk 0.8.0)`), so the pages that have not reloaded since the deploy can be counted from the logs.
+- **usertour.js 0.0.26 on npm** carries the operation typings, the `setDebug` stub and the write-result type; it is safe with every bundle version, including ones older than this release.
+- **Nest log contexts** that used the old class names change (for example `SharedModule` → `CommonModule`); update any log filters that key on them.
+- No new environment variable. Rollback is a plain revert: bucketing values already written are inert under the previous server, and SDK 0.8.1 accepts the previous server's acknowledgements.
+
+### 🛠️ Under the hood
+
+- **Server modules layout (ADR 0015).** Every directory under `apps/server/src` moved into `src/modules/<name>/`; `src/` holds only the entry points (`api/`, `openapi/`, `mcp/`, `web-socket/`). A test enforces the import direction. Queue, cron, Redis key, cookie and event names are unchanged. The GraphQL schema and the v2 OpenAPI document are byte-identical before and after.
+- **One rule point for attribute writes (ADR 0017).** `resolveAttributeWrites` → `judgeAttributeWrite` → `applyAttributeWrites`, shared by the socket, v2 and MCP paths; user, company and membership rows are locked with `FOR NO KEY UPDATE` (so foreign-key inserts never deadlock against them), in the order user → companies by id → memberships; a write that changes nothing takes no lock. Prisma transactions wait up to 10 s and may run 15 s, so the socket queue's 10 s timeout is always the first limit to fire.
+- **Connection recovery (ADR 0018)** is an explicit state machine in the SDK; failed writes are kept in a replay registry with one record per target, keyed by the latest send, replayed once within ten minutes. The server disconnects a socket whose data is gone instead of rebuilding it from a stale handshake, and the throttler marks a refused message rather than throwing.
+- **Debug logging (ADR 0019)** reclassified every SDK message into `debug` / `info` / `warn` / `error` / `critical` with a scope per component.
+- **Bucketing (ADR 0020)** values are a hash of attribute and entity id, materialised at birth and by the backfill, derived at read time when missing.
+- **Tests and CI.** 65 real-browser widget render checks, a 71-scenario SDK runtime suite against a protocol server the test controls, 26 server rules-conformance scenarios including composite start-rule trees, and a GitHub Actions workflow that lints, type-checks and runs the unit, server e2e and browser suites on every pull request and on pushes to `staging` and `main`.
+- **Authorization registry.** The endpoint-to-capability test now covers every endpoint, including the identity-verification signing secrets and the audit log, which had drifted out of it.
+- **Validation.** v2 bodies skip class-transformer in the global pipe (zod DTOs carry no metadata for it); `__proto__` is refused as an attribute name on every path.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.5...v0.9.6
+
+</Update>
+
 <Update label="v0.9.5" description="September 18, 2026">
 
 This release brings Usertour into your CRM and spreads project administration across more than one person. **HubSpot** is now a two-way integration — contact and company properties arrive as attributes you can target on, Usertour attributes are written back onto the records, and onboarding milestones land on HubSpot timelines — and the app is listed on the HubSpot Marketplace. Team roles are redrawn as **Viewer ⊂ Editor ⊂ Admin ⊂ Owner**, with each editor's publishing limited to the environments you tick. **Existing Admin members become Editors on upgrade** — read the roles section before you deploy. Transactional emails are redesigned, and the MCP server is in the official MCP registry.
