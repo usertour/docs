@@ -4,6 +4,87 @@ description: "Usertour releases in 2026"
 rss: true
 ---
 
+<Update label="v0.9.7" description="October 30, 2026">
+
+This release makes the server faster and steadier rather than adding a content type. Content reaches the page sooner over the SDK connection: a message handler no longer loads a user's whole event history, no longer waits for the user's other tabs, and no longer waits for a receipt on every push, so a batch that used to show its pieces one at a time shows them together. Under a reconnect storm after a deploy the server queues work on itself instead of on the database, the per-connection rate limit applies as designed, and a hidden session can no longer send a process into a loop. Self-hosted instances get a readiness endpoint apart from liveness, OpenTelemetry configured through the standard `OTEL_*` variables, and a Debian-based image whose query engine costs a fraction of the CPU it did on Alpine. The dashboard says what was wrong when it refuses an input, in the user's language, and its data layer was rebuilt on documents typed from the server's own schema.
+
+### ⚡ Content reaches the page sooner
+
+Three changes on the SDK websocket, each removing a wait from the path between a client message and the content it starts:
+
+- **The newest event per content is picked in the database.** Every evaluation used to fetch the user's whole event history on the contents in play and walk it in memory for two rows per content. Postgres now picks those rows. On an account with twelve contents and 3.7k events, `EndBatch` went from 1120 to 387 ms and `EndContent` from 1965 to 713 ms on staging.
+- **A user's other tabs are synced through their own queues.** Activating or cancelling a session no longer waits for every other connection of the same user across the cluster to acknowledge; the sender is answered as soon as its own connection is in step, and the others follow a moment later. A tab that has stopped answering no longer costs anyone else its emit timeout.
+- **Pushes go out without a receipt.** Every push to a client awaited an acknowledgement with a 2 s timeout, so an evaluation that activated six sessions paid six client round trips in series. The receipt carried no information (the SDK acknowledged before it processed), so the emitter now sends and returns. Six pieces of content that used to appear one after another appear together, and a slow link is no longer recorded as a failed push.
+
+### 🛡️ Steady under reconnect storms
+
+After a deploy or a replica restart every client reconnects at once. The server now admits websocket work through a per-replica gate: a handshake and a client message are each one unit, at most 16 run at a time, the rest wait up to 15 s and are refused with a retryable rejection the SDK backs off on; handshakes are paced at 50 per second. A refused identify or group write is left unanswered so the SDK replays it. The gate reports refusals and long waits in one warn line per 5 s window.
+
+Two causes of the pressure are gone as well. The server image moves from Alpine to Debian: the query engine's musl build did not scale across its worker threads and used about 2.8 cores under a burst against about 0.4 on Debian, starving the application thread and surfacing as "Can't reach database server" while the database sat idle. And user, company and membership writes are planned outside the row lock and applied under it only when something changes, so dozens of identical concurrent identifies from one user no longer queue on the lock until the transaction closes.
+
+### 🚦 The per-connection rate limit applies as designed
+
+The websocket limiter had been counting messages against the REST limiter's 1000 per minute since July: the throttler module keeps one options token and the REST registration won it. Each guard now builds its own options. A socket sending more than 30 messages in a second or 300 in a minute has the excess answered `false`, which the SDK treats as a refusal rather than a network failure. For scale, the busiest production socket observed sent 7 in a second. Idle limiter records are swept, so the limiters' memory no longer grows with every connection and credential seen.
+
+### 🩺 Readiness, telemetry and the image, for self-hosted instances
+
+- **`GET /api/health/ready`** answers 200 only when the database and Redis answer from this process, within three seconds each, and 503 naming what is down otherwise. **`GET /api/health`** stays dependency-free liveness. Point the deploy-time healthcheck at `/ready`: a new replica then takes traffic only once it can serve, and a deploy that coincides with a dependency outage stays on the previous replicas.
+- **OpenTelemetry is configured from the standard variables** (`OTEL_EXPORTER_OTLP_ENDPOINT`, `OTEL_TRACES_EXPORTER`, `OTEL_TRACES_SAMPLER`, …) and starts before the framework loads, so every instrumentation the SDK ships is active, each websocket message is one span named by its kind, and the packages are on the current 0.300 line. With no `OTEL_*` variable set the SDK is not built; previously it exported to `localhost:4318` and failed on every batch.
+- **The image is `node:22.23-trixie-slim`** (was Alpine, Node 22.13). Same packages one to one; `pg_dump` 17; nginx workers run as `www-data`; about 200 MB larger.
+- **nginx** proxies to the app by `127.0.0.1` instead of `localhost`: the latter resolved to two addresses, an implicit two-server upstream that answered sporadic `no live upstreams` 502s without attempting a connection. A path under the web root that begins with a dot (`/.env`, `/.git/…`) answers 404 instead of the SPA shell; `/.well-known` keeps its routing.
+
+### 🧭 Dashboard
+
+- **Refusals say what was wrong, in the dashboard's language.** A variable the GraphQL schema rejects answers `E1017` with status 400 instead of a masked internal error; an explicit null for a column that cannot hold one is refused before it reaches the database; catalogue messages answer in the request's language, which the dashboard sends.
+- **System Admin refusals name their cause** (E0064 to E0072: no valid instance license, a license issued for another instance, the last active System Admin, the owner role that needs a transfer, …) instead of the generic "System parameter error", and "Use Instance License" is offered only when the instance has a valid license to assign.
+- **A project list that could not be read shows a retry card** instead of sending the user to the create-project form as if they had none.
+- **The seven content-type icons are one set** on the same grid and weight, and the nav rail shows them a little larger and softer.
+
+### 🐛 Fixes
+
+- **A hidden session on a superseded version could pin a replica.** The resume strategy handed back a session whose own version's hide rules were active, cancelling it came back to the resume, and the laps held the socket's data until the process ran out of memory. Such a session is now passed over for the next live one, and resumes with the same id once the rules clear.
+- **The mouse went dead after closing a select inside a dialog** (#568): two copies of Radix's dismissable layer each remembered body's `pointer-events`. One copy remains; Escape inside a select closes only the select.
+- **`Transaction already closed` on the identify path** when one user's many identical identifies queued on the row lock. A write that changes nothing opens no transaction, and the first write of a new user or company no longer fails under concurrency.
+- **Save & Leave in the builder raised `Invalid blocker state transition`** when Stay or a second click arrived while the save ran, and switching between a flow's steps while a save was pending raised the unsaved-work dialog although nothing could be lost.
+- **The builder's save gate rejected segment and content conditions** while those lists were still loading.
+- **The CSV export** wrote a single-choice answer stored as text and a zero score; the user activity feed's events carry their user.
+- **The question editor** no longer logs a `missingKey` warning per render.
+- **Log levels.** Log lines carry `"level":"warn"` and so on instead of a number, so level filters on a log platform work; every evaluation's "nothing to start" warn line is gone (it was close to half of the volume under load); catalogue refusals on GraphQL log once at `warn` with the code, path and reason instead of at `error` with a stack; logs no longer carry end-user identifiers, attributes or payloads.
+
+## Behaviour changes to check
+
+- **A socket over 30 messages per second or 300 per minute** has the excess answered `false`. Nothing in normal SDK use comes near; an integration that drives the connection itself should watch for it.
+- **`OTLP_TRACES_ENDPOINT` and `OTLP_METRICS_ENDPOINT` are no longer read.** Tracing is configured by the standard `OTEL_*` variables and off until one names an endpoint or an exporter.
+- **`/api/health`** keeps answering 200; its body loses `timestamp` and takes terminus's `info` / `error` / `details` shape. Both health routes answer `Cache-Control: no-cache`.
+- **GraphQL schema** (the dashboard's API): ten `String` fields are enums, the integration config and mapping fields are object types needing selection sets, the config, settings, target and analytics payloads are named scalars, and fields backed by NOT NULL columns are non-null. `E1017`'s `message` is the localized catalogue text; the specific text moved to `extensions.reason`. REST v2 and MCP are unchanged.
+- **Creating a content without a name stores `''`** instead of NULL.
+- **`POST /api/auth/refresh`** accepts only a refresh token carrying its own `jti` and `userId`, and consumes exactly that row.
+
+## Upgrade notes
+
+Usertour Cloud is already running this release. Self-hosted:
+
+- **One migration**, `20261012000000_required_content_step_theme_segment_columns`: `Content.name` / `publishedAt` / `environmentId`, `Step.name` / `type` / `setting` / `data` / `target`, `Theme.settings` and `Segment.source` become NOT NULL with the defaults their writers assume. On a snapshot it ran 22 statements in about 0.5 s with every backfill touching zero rows. A row with NULL in `Content.environmentId` or `Step.type` fails it and has to be resolved first; such a row was already unreadable through the API.
+- **Switch the platform healthcheck to `/api/health/ready`** after the deploy. `/api/health` keeps working, so the order is safe; a rollback to an older image needs the path back.
+- **Environment variables.** New and optional: `WS_ADMISSION_CONCURRENCY` (16), `WS_ADMISSION_HANDSHAKE_WAIT_MS` (15000), `WS_ADMISSION_MESSAGE_WAIT_MS` (15000), `WS_HANDSHAKE_RATE_PER_SECOND` (50), per replica, and `JWT_REFRESH_SECRET` (defaults to `JWT_SECRET`; setting or changing it makes every user sign in again once). Replaced: `OTLP_TRACES_ENDPOINT` / `OTLP_METRICS_ENDPOINT` by the standard `OTEL_*` set, documented in `.env.example`. Removed: `SENTRY_DSN`, which nothing read. A blank or zero `API_THROTTLE_*` value now means the default instead of a limit of zero.
+- **The image** is about 200 MB larger, runs Node 22.23, and its nginx workers run as `www-data`. Every replica restarts on deploy, as with any image change; the reconnect burst that follows is the load the gate was measured against.
+- **No SDK bundle change.** apps/sdk stays at 0.8.1 and usertour.js on npm stays at 0.0.26; older SDK builds take a push without an acknowledgement id the same way. Nothing to upload.
+- **Dashboard tabs opened before the deploy** fail document validation on the operations whose variables became named scalars until they reload; from this build on, a stale tab reloads itself on that error.
+- **Rollback** is a plain revert of the application; the migration stays in place and the previous build runs against the tightened columns.
+
+### 🛠️ Under the hood
+
+- **Typed dashboard data layer (ADR 0021).** The server emits its SDL from resolver metadata and CI fails on drift; the dashboard reads it through typed documents in one query layer that decides what `loading` means and surfaces each failure once. `@usertour/hooks` is now `@usertour/data` and absorbs `@usertour/gql`; `@usertour/editor` and `@usertour/business-components` (renamed `conditions`) moved into `apps/web`. The session-detail chunk shrank from 324 KB to 12 KB.
+- **Websocket core.** `AdmissionService` (per-replica concurrency and handshake pacing), `RoomSyncService` (a job per activation or cancellation, carried to the other servers of a cluster through the adapter's server-side event), receipt-less `SocketEmitterService` with `SocketParallelService` removed, and a trace interceptor that gives each message one span. Both rate-limit guards build their own `ThrottlerModuleOptions`; `ThrottlerModule` is registered nowhere, on `@nestjs/throttler` 6.7.1.
+- **Writes.** `ON CONFLICT DO NOTHING` inserts a newborn user or company before the lock; every part of a composed write (`group()` with its company and membership, the REST user endpoint with its companies and memberships) applies under its lock.
+- **Health** through `@nestjs/terminus` with our own database indicator. **Tracer** is the first import of `main.ts`; OpenTelemetry packages on 0.300 / 3.0, the socket.io instrumentation dropped in favour of the interceptor.
+- **Dependencies.** `@nestjs/graphql` / `@nestjs/apollo` 12.2.2 (for `skipNullProperties: false`), Radix Select 2.1.2 with 25 Radix 1.0.x helpers gone from the lockfile, axios 1.20.0 (covers the advisories published against 1.7.7; the web app's unused copy removed), `turbo` pinned to 2.11.9, Node 22.23.
+- **Tests.** New e2e suites for the newest-event pick (with a brute-force comparison over the whole history), room sync on one server and across two, the admission gate, the receipt-less push on both servers of a cluster, the websocket rate limit over real connections, the three resume behaviours, the health endpoints, the refresh endpoint's token shapes, and null inputs and concurrent identifies on the write path. Full server e2e at release: 90 suites, 1790 tests.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.6...v0.9.7
+
+</Update>
+
 <Update label="v0.9.6" description="October 8, 2026">
 
 This release gives attribute writes a vocabulary — `set_once`, `add`, `union`, `remove`, and a `data_type` pin — and adds two attribute types whose values Usertour assigns, **Random A/B** and **Random number**, so a flow can be shown to a stable slice of users without any client-side code. The SDK now **recovers its connection on its own** and replays the writes it lost, and `usertour.setDebug(true)` opens its console log. Localized content can translate where its buttons navigate, translations are readable and writable over the API, and themes, attributes, segments and events soft-delete instead of disappearing from history. Under the hood the server moved into a modules layout, the SDK got the test suite it never had, and that suite found four runtime bugs in the start rules, all fixed here.
