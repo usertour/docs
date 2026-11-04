@@ -1,0 +1,29 @@
+---
+title: Elements inside iframes
+description: Target buttons and other elements inside same-origin iframes with tooltips, launchers and element conditions, and what to do when the frame is on another origin.
+icon: "window-restore"
+---
+
+A selector can target an element inside an `<iframe>` — a lesson activity, an embedded editor, a part of your product served as a frame — as long as the frame is on the **same origin** as the page. Usertour looks for the selector on the page first, then in every frame it can read, nested frames included. Tooltips are positioned, and the target's visibility judged, with the frame's offset taken into account.
+
+Nothing changes in how you write the selector: `#submit-answer` finds the button whether it lives on the page or inside a frame. This applies wherever a selector is used — tooltip targets, launcher targets, and start rules or step triggers such as **Element is present** or **Element is clicked**.
+
+## Requirements
+
+- **Same origin.** The page and the frame's document must share scheme, host and port. A frame on another origin is opaque to the browser, and so to Usertour: a selector inside it is reported as not found, exactly as if the element did not exist.
+- **No `sandbox` without `allow-same-origin`.** A sandboxed frame is treated as another origin unless its `sandbox` attribute includes `allow-same-origin`.
+- **Install Usertour.js on the page only.** Do not add the snippet inside the frame; the page's Usertour.js reaches into the frame by itself.
+
+Nested frames work as long as every frame on the way down meets these requirements.
+
+## Which match is used
+
+When a selector matches more than one element, the page's matches come first, then each frame's in the order the frames appear on the page. The **1st / 2nd / 3rd…** choice next to the selector counts through that combined list.
+
+<Note>
+  The element picker currently picks elements on the page itself, not inside a frame. For an element inside a frame, type its selector by hand. A dedicated attribute such as `[data-tour="submit-answer"]`, agreed with your developers as described in [Selecting Elements](/how-to-guides/selecting-elements), is the easiest to read off your markup and the least likely to break.
+</Note>
+
+## Frames on another origin
+
+If the frame's content is served from a different domain — a third-party tool embedded in your page — Usertour cannot target elements inside it. To still guide users through what happens in the frame, attach the step to the `<iframe>` element itself or use a step that is not attached to any element, explain what to do inside the activity, and let users continue with a **Next** button.
