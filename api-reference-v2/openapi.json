@@ -5,7 +5,7 @@
       "get": {
         "operationId": "ApiAnalyticsController_contentAnalytics",
         "summary": "Get content analytics",
-        "description": "The response shape follows the content type (discriminated on `contentType`): flows report starts + completions and a per-step funnel with tooltip-target-missing counts; checklists starts + completions and per-task rows; launchers seen + activations; banners seen + dismissals; resource centers opens + block clicks; trackers users + occurrences of the tracked event. All with a per-day series. Defaults to the last 30 days, UTC.",
+        "description": "The response shape follows the content type (discriminated on `contentType`): flows report starts + completions and a per-step funnel with tooltip-target-missing counts; checklists starts + completions and per-task rows; launchers seen + activations; banners seen + dismissals; embeds users reached + button clicks + dismissals with per-step and per-button rows; resource centers opens + block clicks; trackers users + occurrences of the tracked event. All with a per-day series. Defaults to the last 30 days, UTC.",
         "parameters": [
           {
             "name": "id",
@@ -80,6 +80,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/BannerAnalyticsDto"
+                    },
+                    {
+                      "$ref": "#/components/schemas/EmbedAnalyticsDto"
                     },
                     {
                       "$ref": "#/components/schemas/ResourceCenterAnalyticsDto"
@@ -349,7 +352,8 @@
                 "banner",
                 "tracker",
                 "resource-center",
-                "announcement"
+                "announcement",
+                "embed"
               ],
               "type": "string"
             }
@@ -1650,7 +1654,7 @@
             "name": "expand",
             "required": false,
             "in": "query",
-            "description": "Inline: questions, steps (the full step tree \u2014 how you read a flow body), data, localizations (per-locale translation status: enabled / missing / outdated).",
+            "description": "Inline: questions, steps (the full step tree \u2014 how you read a flow body or an embed's steps), data, localizations (per-locale translation status: enabled / missing / outdated).",
             "schema": {
               "anyOf": [
                 {
@@ -9264,7 +9268,8 @@
                     "tooltip",
                     "modal",
                     "hidden",
-                    "bubble"
+                    "bubble",
+                    "inline"
                   ]
                 },
                 "uniqueViews": {
@@ -9692,6 +9697,185 @@
           "uniqueSeen",
           "uniqueDismissals",
           "byDay"
+        ]
+      },
+      "EmbedAnalyticsDto": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "enum": [
+              "contentAnalytics"
+            ]
+          },
+          "contentId": {
+            "type": "string"
+          },
+          "environmentId": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string",
+            "enum": [
+              "embed"
+            ]
+          },
+          "uniqueSeen": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Distinct users reached by the embed in the range \u2014 first-touch, counted on the day of their first session. Impressions are not counted: a persistent inline card is seen on every page load, so \"views\" would be page views."
+          },
+          "uniqueClickers": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Distinct users who pressed any button in the embed."
+          },
+          "totalClicks": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Button presses (repeats included)."
+          },
+          "uniqueDismissals": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991,
+            "description": "Distinct users who dismissed the embed."
+          },
+          "byDay": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "description": "ISO date (bucketed in the requested timezone)."
+                },
+                "uniqueSeen": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users reached by the embed in the range \u2014 first-touch, counted on the day of their first session. Impressions are not counted: a persistent inline card is seen on every page load, so \"views\" would be page views."
+                },
+                "uniqueClickers": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who pressed any button in the embed."
+                },
+                "totalClicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Button presses (repeats included)."
+                }
+              },
+              "required": [
+                "date",
+                "uniqueSeen",
+                "uniqueClickers",
+                "totalClicks"
+              ]
+            },
+            "description": "Per-day rows: uniqueSeen is FIRST-TOUCH (the users whose first embed session started that day \u2014 a user appears on one day only, rows sum to the headline); uniqueClickers and totalClicks are per-day increments (a user clicking on several days appears on each)."
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "cvid": {
+                  "type": "string"
+                },
+                "stepIndex": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "uniqueViews": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who saw this step."
+                }
+              },
+              "required": [
+                "name",
+                "cvid",
+                "stepIndex",
+                "uniqueViews"
+              ]
+            }
+          },
+          "buttons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The button text on the published version \u2014 a label, not a key."
+                },
+                "cvid": {
+                  "type": "string",
+                  "description": "The button's stable identity across edits and translations."
+                },
+                "stepCvid": {
+                  "type": "string",
+                  "description": "The step the button lives on."
+                },
+                "uniqueClicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Distinct users who pressed this button."
+                },
+                "totalClicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Presses of this button (repeats included)."
+                }
+              },
+              "required": [
+                "name",
+                "cvid",
+                "stepCvid",
+                "uniqueClicks",
+                "totalClicks"
+              ]
+            }
+          }
+        },
+        "required": [
+          "object",
+          "contentId",
+          "environmentId",
+          "startDate",
+          "endDate",
+          "timezone",
+          "contentType",
+          "uniqueSeen",
+          "uniqueClickers",
+          "totalClicks",
+          "uniqueDismissals",
+          "byDay",
+          "steps",
+          "buttons"
         ]
       },
       "ResourceCenterAnalyticsDto": {
@@ -10393,6 +10577,10 @@
                 "enum": [
                   "button"
                 ]
+              },
+              "cvid": {
+                "description": "The button's stable analytics identity \u2014 `button_clicked` events key on it (same role as a question's cvid). ECHO it back when rewriting a step so click analytics stay continuous; a button written without one gets a new cvid.",
+                "type": "string"
               },
               "text": {
                 "type": "string"
@@ -11358,7 +11546,7 @@
               },
               "content": {
                 "type": "string",
-                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing content of any other type is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -11735,7 +11923,8 @@
                     "banner",
                     "tracker",
                     "resource-center",
-                    "announcement"
+                    "announcement",
+                    "embed"
                   ]
                 },
                 "buildUrl": {
@@ -11836,7 +12025,8 @@
                               "tooltip",
                               "modal",
                               "hidden",
-                              "bubble"
+                              "bubble",
+                              "inline"
                             ]
                           },
                           "sequence": {
@@ -12293,10 +12483,10 @@
                                 "multiple",
                                 "unlimited"
                               ],
-                              "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
+                              "description": "once = show a single time; multiple = at most `every.times` sessions in total (a lifetime count, not per window), each new one only after the `every` gap; unlimited = no count cap, a new session after the `every` gap."
                             },
                             "every": {
-                              "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied. Manual and programmatic starts also count toward the `multiple` limit.",
+                              "description": "Gap after a session ends: a new one may start once `duration` `unit` has passed since the previous session of this content ended (dismissed / ended). Used by `multiple` (with `times`, the total session cap) and `unlimited`; ignored for `once`. If omitted for those modes the default is stored: 1 day, plus `times: 2` for `multiple`. `duration: 0` = no gap. Manual and programmatic starts also count toward the `multiple` limit.",
                               "type": "object",
                               "properties": {
                                 "times": {
@@ -12550,7 +12740,8 @@
                                     "tooltip",
                                     "modal",
                                     "hidden",
-                                    "bubble"
+                                    "bubble",
+                                    "inline"
                                   ]
                                 },
                                 "sequence": {
@@ -13007,10 +13198,10 @@
                                       "multiple",
                                       "unlimited"
                                     ],
-                                    "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
+                                    "description": "once = show a single time; multiple = at most `every.times` sessions in total (a lifetime count, not per window), each new one only after the `every` gap; unlimited = no count cap, a new session after the `every` gap."
                                   },
                                   "every": {
-                                    "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied. Manual and programmatic starts also count toward the `multiple` limit.",
+                                    "description": "Gap after a session ends: a new one may start once `duration` `unit` has passed since the previous session of this content ended (dismissed / ended). Used by `multiple` (with `times`, the total session cap) and `unlimited`; ignored for `once`. If omitted for those modes the default is stored: 1 day, plus `times: 2` for `multiple`. `duration: 0` = no gap. Manual and programmatic starts also count toward the `multiple` limit.",
                                     "type": "object",
                                     "properties": {
                                       "times": {
@@ -13342,6 +13533,10 @@
                 "enum": [
                   "button"
                 ]
+              },
+              "cvid": {
+                "description": "The button's stable analytics identity \u2014 `button_clicked` events key on it (same role as a question's cvid). ECHO it back when rewriting a step so click analytics stay continuous; a button written without one gets a new cvid.",
+                "type": "string"
               },
               "text": {
                 "type": "string"
@@ -14307,7 +14502,7 @@
               },
               "content": {
                 "type": "string",
-                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing content of any other type is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -14679,7 +14874,8 @@
               "banner",
               "tracker",
               "resource-center",
-              "announcement"
+              "announcement",
+              "embed"
             ]
           },
           "buildUrl": {
@@ -14780,7 +14976,8 @@
                         "tooltip",
                         "modal",
                         "hidden",
-                        "bubble"
+                        "bubble",
+                        "inline"
                       ]
                     },
                     "sequence": {
@@ -15237,10 +15434,10 @@
                           "multiple",
                           "unlimited"
                         ],
-                        "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
+                        "description": "once = show a single time; multiple = at most `every.times` sessions in total (a lifetime count, not per window), each new one only after the `every` gap; unlimited = no count cap, a new session after the `every` gap."
                       },
                       "every": {
-                        "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied. Manual and programmatic starts also count toward the `multiple` limit.",
+                        "description": "Gap after a session ends: a new one may start once `duration` `unit` has passed since the previous session of this content ended (dismissed / ended). Used by `multiple` (with `times`, the total session cap) and `unlimited`; ignored for `once`. If omitted for those modes the default is stored: 1 day, plus `times: 2` for `multiple`. `duration: 0` = no gap. Manual and programmatic starts also count toward the `multiple` limit.",
                         "type": "object",
                         "properties": {
                           "times": {
@@ -15484,7 +15681,8 @@
                               "tooltip",
                               "modal",
                               "hidden",
-                              "bubble"
+                              "bubble",
+                              "inline"
                             ]
                           },
                           "sequence": {
@@ -15941,10 +16139,10 @@
                                 "multiple",
                                 "unlimited"
                               ],
-                              "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
+                              "description": "once = show a single time; multiple = at most `every.times` sessions in total (a lifetime count, not per window), each new one only after the `every` gap; unlimited = no count cap, a new session after the `every` gap."
                             },
                             "every": {
-                              "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied. Manual and programmatic starts also count toward the `multiple` limit.",
+                              "description": "Gap after a session ends: a new one may start once `duration` `unit` has passed since the previous session of this content ended (dismissed / ended). Used by `multiple` (with `times`, the total session cap) and `unlimited`; ignored for `once`. If omitted for those modes the default is stored: 1 day, plus `times: 2` for `multiple`. `duration: 0` = no gap. Manual and programmatic starts also count toward the `multiple` limit.",
                               "type": "object",
                               "properties": {
                                 "times": {
@@ -16136,7 +16334,8 @@
               "banner",
               "tracker",
               "resource-center",
-              "announcement"
+              "announcement",
+              "embed"
             ],
             "description": "Content kind. An `announcement` is a feed item delivered through a resource center that has an `announcement` block \u2014 publish alone does not surface it without one."
           },
@@ -16346,6 +16545,10 @@
                 "enum": [
                   "button"
                 ]
+              },
+              "cvid": {
+                "description": "The button's stable analytics identity \u2014 `button_clicked` events key on it (same role as a question's cvid). ECHO it back when rewriting a step so click analytics stay continuous; a button written without one gets a new cvid.",
+                "type": "string"
               },
               "text": {
                 "type": "string"
@@ -17311,7 +17514,7 @@
               },
               "content": {
                 "type": "string",
-                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing content of any other type is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -17754,7 +17957,8 @@
                           "tooltip",
                           "modal",
                           "hidden",
-                          "bubble"
+                          "bubble",
+                          "inline"
                         ]
                       },
                       "sequence": {
@@ -18211,10 +18415,10 @@
                             "multiple",
                             "unlimited"
                           ],
-                          "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
+                          "description": "once = show a single time; multiple = at most `every.times` sessions in total (a lifetime count, not per window), each new one only after the `every` gap; unlimited = no count cap, a new session after the `every` gap."
                         },
                         "every": {
-                          "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied. Manual and programmatic starts also count toward the `multiple` limit.",
+                          "description": "Gap after a session ends: a new one may start once `duration` `unit` has passed since the previous session of this content ended (dismissed / ended). Used by `multiple` (with `times`, the total session cap) and `unlimited`; ignored for `once`. If omitted for those modes the default is stored: 1 day, plus `times: 2` for `multiple`. `duration: 0` = no gap. Manual and programmatic starts also count toward the `multiple` limit.",
                           "type": "object",
                           "properties": {
                             "times": {
@@ -18302,7 +18506,7 @@
                   "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page)."
                 },
                 "data": {
-                  "description": "Decompiled type-specific body for non-flow content \u2014 the same six per-type shapes as the write `data` (that schema is the field dictionary), fully populated on read. Present only when the `data` expand is requested; a flow has no `data` \u2014 its body is `steps`."
+                  "description": "Decompiled type-specific body for non-flow content \u2014 the same per-type shapes as the write `data` (that schema is the field dictionary), fully populated on read. Present only when the `data` expand is requested; a flow has no `data` \u2014 its body is `steps`; an embed has both (`data` is its shell, `steps` its steps)."
                 },
                 "localizations": {
                   "description": "Per-locale translation status \u2014 present only when the `localizations` expand is requested on the content-versions endpoints. One entry per non-default project locale, including locales this version was never translated into.",
@@ -18511,6 +18715,10 @@
                 "enum": [
                   "button"
                 ]
+              },
+              "cvid": {
+                "description": "The button's stable analytics identity \u2014 `button_clicked` events key on it (same role as a question's cvid). ECHO it back when rewriting a step so click analytics stay continuous; a button written without one gets a new cvid.",
+                "type": "string"
               },
               "text": {
                 "type": "string"
@@ -19476,7 +19684,7 @@
               },
               "content": {
                 "type": "string",
-                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing content of any other type is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -19914,7 +20122,8 @@
                     "tooltip",
                     "modal",
                     "hidden",
-                    "bubble"
+                    "bubble",
+                    "inline"
                   ]
                 },
                 "sequence": {
@@ -20371,10 +20580,10 @@
                       "multiple",
                       "unlimited"
                     ],
-                    "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
+                    "description": "once = show a single time; multiple = at most `every.times` sessions in total (a lifetime count, not per window), each new one only after the `every` gap; unlimited = no count cap, a new session after the `every` gap."
                   },
                   "every": {
-                    "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied. Manual and programmatic starts also count toward the `multiple` limit.",
+                    "description": "Gap after a session ends: a new one may start once `duration` `unit` has passed since the previous session of this content ended (dismissed / ended). Used by `multiple` (with `times`, the total session cap) and `unlimited`; ignored for `once`. If omitted for those modes the default is stored: 1 day, plus `times: 2` for `multiple`. `duration: 0` = no gap. Manual and programmatic starts also count toward the `multiple` limit.",
                     "type": "object",
                     "properties": {
                       "times": {
@@ -20459,7 +20668,7 @@
             "description": "While `when` matches, on-screen content of this version is hidden \u2014 the session is SUSPENDED, not ended: when the conditions stop matching the same session reappears at the same step. Use start-rule conditions to keep content from starting; use hide rules to blank it in specific places (e.g. a settings page)."
           },
           "data": {
-            "description": "Decompiled type-specific body for non-flow content \u2014 the same six per-type shapes as the write `data` (that schema is the field dictionary), fully populated on read. Present only when the `data` expand is requested; a flow has no `data` \u2014 its body is `steps`."
+            "description": "Decompiled type-specific body for non-flow content \u2014 the same per-type shapes as the write `data` (that schema is the field dictionary), fully populated on read. Present only when the `data` expand is requested; a flow has no `data` \u2014 its body is `steps`; an embed has both (`data` is its shell, `steps` its steps)."
           },
           "localizations": {
             "description": "Per-locale translation status \u2014 present only when the `localizations` expand is requested on the content-versions endpoints. One entry per non-default project locale, including locales this version was never translated into.",
@@ -20718,6 +20927,10 @@
                 "enum": [
                   "button"
                 ]
+              },
+              "cvid": {
+                "description": "The button's stable analytics identity \u2014 `button_clicked` events key on it (same role as a question's cvid). ECHO it back when rewriting a step so click analytics stay continuous; a button written without one gets a new cvid.",
+                "type": "string"
               },
               "text": {
                 "type": "string"
@@ -21683,7 +21896,7 @@
               },
               "content": {
                 "type": "string",
-                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing content of any other type is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -22112,9 +22325,10 @@
                     "tooltip",
                     "modal",
                     "hidden",
-                    "bubble"
+                    "bubble",
+                    "inline"
                   ],
-                  "description": "Step kind. Only `tooltip` anchors to a target element; the rest are page-level."
+                  "description": "Step kind. Flow steps: `tooltip` (anchors to a target element), `modal`, `bubble`, `hidden` (no UI \u2014 triggers only). Embed steps: `inline` (rendered inside the embed shell at its target element) and `hidden`. A kind the content type does not accept is rejected."
                 },
                 "sequence": {
                   "type": "number"
@@ -22552,10 +22766,10 @@
                       "multiple",
                       "unlimited"
                     ],
-                    "description": "once = show a single time; multiple = up to N times per window; unlimited = every time the conditions match (subject to `every`)."
+                    "description": "once = show a single time; multiple = at most `every.times` sessions in total (a lifetime count, not per window), each new one only after the `every` gap; unlimited = no count cap, a new session after the `every` gap."
                   },
                   "every": {
-                    "description": "Re-show window. Used by `multiple` (with `times`) and `unlimited`; ignored for `once`. If omitted for those modes a default window is applied. Manual and programmatic starts also count toward the `multiple` limit.",
+                    "description": "Gap after a session ends: a new one may start once `duration` `unit` has passed since the previous session of this content ended (dismissed / ended). Used by `multiple` (with `times`, the total session cap) and `unlimited`; ignored for `once`. If omitted for those modes the default is stored: 1 day, plus `times: 2` for `multiple`. `duration: 0` = no gap. Manual and programmatic starts also count toward the `multiple` limit.",
                     "type": "object",
                     "properties": {
                       "times": {
@@ -22650,7 +22864,7 @@
             "type": "string"
           },
           "data": {
-            "description": "Type-specific body for a non-flow content version: checklist / launcher / banner / tracker / announcement / resource-center. Field-level merged onto the existing data.",
+            "description": "Type-specific body for a non-flow content version: checklist / launcher / banner / tracker / announcement / resource-center, or an embed's shell (placement + target element; its steps are `steps`). Field-level merged onto the existing data.",
             "anyOf": [
               {
                 "type": "object",
@@ -24080,6 +24294,94 @@
                   }
                 },
                 "additionalProperties": {}
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "placement": {
+                    "description": "Where the embed mounts relative to `target`: inside it at the top / bottom (`top-of-container-element` / `bottom-of-container-element`), as a sibling (`immediately-before-element` / `immediately-after-element`), or `cover-element` \u2014 positioned over the element and sized to it (the element stays in the page underneath; this places content, it does not gate access). Every placement needs `target`; there is no page-level placement (that is a banner).",
+                    "type": "string",
+                    "enum": [
+                      "top-of-container-element",
+                      "bottom-of-container-element",
+                      "immediately-before-element",
+                      "immediately-after-element",
+                      "cover-element"
+                    ]
+                  },
+                  "target": {
+                    "description": "The page element the embed mounts at (required to show \u2014 validate rejects an embed without one). The embed is visible only while this element exists and the start rules match; several embeds may share one target and stack in delivery order.",
+                    "type": "object",
+                    "properties": {
+                      "selector": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                      },
+                      "text": {
+                        "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
+                        "type": "string"
+                      },
+                      "nth": {
+                        "description": "Optional refinement of `selector`. 0-based index to pick which match when the selector isn't unique \u2014 e.g. a stable selector matching 3 elements + `nth: 1` targets the 2nd, giving a unique result. Matches are taken in document order (as they appear in the page HTML). Range 0\u20134 \u2014 only the first 5 matches are addressable; a larger value is rejected.",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 4
+                      }
+                    },
+                    "required": [
+                      "selector"
+                    ]
+                  },
+                  "allowDismiss": {
+                    "description": "Adds an X button. Dismissing ends the current session; whether a new one may start later is decided by `startRules.frequency`: `once` = closable forever, `unlimited` / `multiple` = back once the `every` gap has passed since the dismissal (`0` = right away while the start rules still match).",
+                    "type": "boolean"
+                  },
+                  "zIndex": {
+                    "description": "Stacking order (CSS z-index). Integer; negative values are allowed. Omit to use the SDK's default stacking.",
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "maxContentWidth": {
+                    "description": "Max width of the embed content, in pixels. Omit to fill the container.",
+                    "type": "number"
+                  },
+                  "outerMargin": {
+                    "description": "Space (in pixels) around the embed on all four sides.",
+                    "type": "object",
+                    "properties": {
+                      "top": {
+                        "type": "number"
+                      },
+                      "right": {
+                        "type": "number"
+                      },
+                      "bottom": {
+                        "type": "number"
+                      },
+                      "left": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "top",
+                      "right",
+                      "bottom",
+                      "left"
+                    ]
+                  },
+                  "coverAlignment": {
+                    "description": "Where the content sits inside the covered box \u2014 `cover-element` only, since the cover is as tall as its target while the other placements are as tall as their content. Default `center`.",
+                    "type": "string",
+                    "enum": [
+                      "top",
+                      "center",
+                      "bottom"
+                    ]
+                  }
+                },
+                "additionalProperties": {}
               }
             ]
           },
@@ -24311,7 +24613,7 @@
               },
               "content": {
                 "type": "string",
-                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing content of any other type is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -24990,7 +25292,7 @@
               },
               "content": {
                 "type": "string",
-                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing content of any other type is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -25646,7 +25948,7 @@
               },
               "content": {
                 "type": "string",
-                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing content of any other type is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -27154,6 +27456,65 @@
               },
               "customCss": {
                 "type": "string",
+                "nullable": true
+              },
+              "embed": {
+                "type": "object",
+                "properties": {
+                  "backgroundColor": {
+                    "type": "object",
+                    "properties": {
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
+                        "nullable": true
+                      }
+                    },
+                    "additionalProperties": false,
+                    "nullable": true
+                  },
+                  "padding": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "nullable": true
+                  },
+                  "textColor": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
+                        "nullable": true
+                      }
+                    },
+                    "additionalProperties": false,
+                    "nullable": true
+                  }
+                },
+                "additionalProperties": false,
                 "nullable": true
               },
               "focusHighlight": {
@@ -29445,6 +29806,65 @@
                       "type": "string",
                       "nullable": true
                     },
+                    "embed": {
+                      "type": "object",
+                      "properties": {
+                        "backgroundColor": {
+                          "type": "object",
+                          "properties": {
+                            "background": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                },
+                                {
+                                  "type": "string",
+                                  "enum": [
+                                    "Auto"
+                                  ]
+                                }
+                              ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
+                              "nullable": true
+                            }
+                          },
+                          "additionalProperties": false,
+                          "nullable": true
+                        },
+                        "padding": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 100,
+                          "nullable": true
+                        },
+                        "textColor": {
+                          "type": "object",
+                          "properties": {
+                            "color": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                },
+                                {
+                                  "type": "string",
+                                  "enum": [
+                                    "Auto"
+                                  ]
+                                }
+                              ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
+                              "nullable": true
+                            }
+                          },
+                          "additionalProperties": false,
+                          "nullable": true
+                        }
+                      },
+                      "additionalProperties": false,
+                      "nullable": true
+                    },
                     "focusHighlight": {
                       "type": "object",
                       "properties": {
@@ -30806,7 +31226,7 @@
               },
               "content": {
                 "type": "string",
-                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing a banner / launcher / resource-center / tracker is rejected at write."
+                "description": "contentId of the FLOW or CHECKLIST whose per-user state to check (an id from the content list). Only flows and checklists record this state \u2014 referencing content of any other type is rejected at write."
               },
               "state": {
                 "type": "string",
@@ -32313,6 +32733,65 @@
               },
               "customCss": {
                 "type": "string",
+                "nullable": true
+              },
+              "embed": {
+                "type": "object",
+                "properties": {
+                  "backgroundColor": {
+                    "type": "object",
+                    "properties": {
+                      "background": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
+                        "nullable": true
+                      }
+                    },
+                    "additionalProperties": false,
+                    "nullable": true
+                  },
+                  "padding": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "nullable": true
+                  },
+                  "textColor": {
+                    "type": "object",
+                    "properties": {
+                      "color": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                          },
+                          {
+                            "type": "string",
+                            "enum": [
+                              "Auto"
+                            ]
+                          }
+                        ],
+                        "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
+                        "nullable": true
+                      }
+                    },
+                    "additionalProperties": false,
+                    "nullable": true
+                  }
+                },
+                "additionalProperties": false,
                 "nullable": true
               },
               "focusHighlight": {
@@ -34602,6 +35081,65 @@
                     },
                     "customCss": {
                       "type": "string",
+                      "nullable": true
+                    },
+                    "embed": {
+                      "type": "object",
+                      "properties": {
+                        "backgroundColor": {
+                          "type": "object",
+                          "properties": {
+                            "background": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                },
+                                {
+                                  "type": "string",
+                                  "enum": [
+                                    "Auto"
+                                  ]
+                                }
+                              ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
+                              "nullable": true
+                            }
+                          },
+                          "additionalProperties": false,
+                          "nullable": true
+                        },
+                        "padding": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 100,
+                          "nullable": true
+                        },
+                        "textColor": {
+                          "type": "object",
+                          "properties": {
+                            "color": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$"
+                                },
+                                {
+                                  "type": "string",
+                                  "enum": [
+                                    "Auto"
+                                  ]
+                                }
+                              ],
+                              "description": "A hex color (e.g. \"#2563eb\"), or the literal \"Auto\" to derive the value from the theme's base colors. Reads return the stored intent \u2014 \"Auto\" comes back as \"Auto\", not resolved.",
+                              "nullable": true
+                            }
+                          },
+                          "additionalProperties": false,
+                          "nullable": true
+                        }
+                      },
+                      "additionalProperties": false,
                       "nullable": true
                     },
                     "focusHighlight": {
@@ -37942,7 +38480,7 @@
                 },
                 "completed": {
                   "type": "boolean",
-                  "description": "Whether the user GENUINELY reached the goal \u2014 a flow ran to its end (or an explicit completion step) / every checklist task was checked. Independent of whether the session is still open: a completed checklist can still be showing, and a flow can complete at a mid-flow completion step and keep running. Only flows and checklists can be completed; banners / launchers / resource centers are seen-then-dismissed and are always false."
+                  "description": "Whether the user GENUINELY reached the goal \u2014 a flow ran to its end (or an explicit completion step) / every checklist task was checked. Independent of whether the session is still open: a completed checklist can still be showing, and a flow can complete at a mid-flow completion step and keep running. Only flows and checklists can be completed; banners / launchers / resource centers / embeds are seen-then-dismissed and are always false."
                 },
                 "completedAt": {
                   "type": "string",
@@ -37986,7 +38524,8 @@
                         "banner",
                         "tracker",
                         "resource-center",
-                        "announcement"
+                        "announcement",
+                        "embed"
                       ]
                     },
                     "editedVersionId": {
@@ -38253,7 +38792,7 @@
           },
           "completed": {
             "type": "boolean",
-            "description": "Whether the user GENUINELY reached the goal \u2014 a flow ran to its end (or an explicit completion step) / every checklist task was checked. Independent of whether the session is still open: a completed checklist can still be showing, and a flow can complete at a mid-flow completion step and keep running. Only flows and checklists can be completed; banners / launchers / resource centers are seen-then-dismissed and are always false."
+            "description": "Whether the user GENUINELY reached the goal \u2014 a flow ran to its end (or an explicit completion step) / every checklist task was checked. Independent of whether the session is still open: a completed checklist can still be showing, and a flow can complete at a mid-flow completion step and keep running. Only flows and checklists can be completed; banners / launchers / resource centers / embeds are seen-then-dismissed and are always false."
           },
           "completedAt": {
             "type": "string",
@@ -38297,7 +38836,8 @@
                   "banner",
                   "tracker",
                   "resource-center",
-                  "announcement"
+                  "announcement",
+                  "embed"
                 ]
               },
               "editedVersionId": {
