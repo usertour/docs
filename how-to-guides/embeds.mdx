@@ -62,7 +62,9 @@ first, then point the embed at the element.
 
 The first four placements insert the card into the document flow, so your page makes room for it.
 **Cover element** does not take space: the card is laid over the element and follows it when the
-page scrolls or resizes.
+page scrolls or resizes. The card is placed inside the element; if the element has no `position` of
+its own, the SDK gives it `position: relative` while the cover shows. The element's content is not
+touched.
 
 <Warning>
   A cover **places content; it does not gate access**. Your app still renders the element
@@ -187,14 +189,15 @@ from the shared settings of the theme.
 
 The embed's **Analytics** tab shows:
 
-- **Users** — People who saw the embed, counted once each
-- **Unique clickers** and **Click-through rate** — People who pressed any button, and their share
-  of the users reached
-- **Dismissals** — People who closed the embed
+- **Unique views** — People the embed started showing for in the selected date range. Someone it
+  comes back to after being dismissed counts again when it comes back
+- **Unique clickers** — People who pressed any button in the selected date range
+- **Dismissals** — People whose embed ended in the selected date range: they closed it, or it was
+  unpublished or ended for them
 
 Below the headline numbers, a table per step shows how many users reached each step, and a table
-per button shows the clicks on each button. An embed is counted as seen once per session;
-impressions are not counted, since a card that lives in the page is seen on every visit.
+per button shows the clicks on each button. An embed is counted once each time it starts showing
+for someone; impressions are not counted, since a card that lives in the page is seen on every visit.
 
 {/* Screenshot: the Analytics tab of an embed with the headline cards and the per-button table. */}
 ![](/images/embeds-12.png)
