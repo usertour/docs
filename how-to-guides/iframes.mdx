@@ -8,6 +8,8 @@ A selector can target an element inside an `<iframe>` — a lesson activity, an 
 
 Nothing changes in how you write the selector: `#submit-answer` finds the button whether it lives on the page or inside a frame. This applies wherever a selector is used — tooltip targets, launcher targets, and start rules or step triggers such as **Element is present** or **Element is clicked**.
 
+Banners are the exception. A banner placed relative to an element — **Top of container element**, **Immediately before element** and the like — is embedded only at an element of the page itself. If its selector matches only inside a frame, the banner is not shown.
+
 ## Requirements
 
 - **Same origin.** The page and the frame's document must share scheme, host and port. A frame on another origin is opaque to the browser, and so to Usertour: a selector inside it is reported as not found, exactly as if the element did not exist.
