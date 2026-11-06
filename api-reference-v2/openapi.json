@@ -11948,7 +11948,8 @@
                       ]
                     },
                     "number": {
-                      "type": "number"
+                      "type": "number",
+                      "description": "The version's number within its content, starting from 0. The dashboard labels versions from 1, so the version it shows as V1 has `number: 0`."
                     },
                     "firstPublishedAt": {
                       "type": "string",
@@ -12663,7 +12664,8 @@
                             ]
                           },
                           "number": {
-                            "type": "number"
+                            "type": "number",
+                            "description": "The version's number within its content, starting from 0. The dashboard labels versions from 1, so the version it shows as V1 has `number: 0`."
                           },
                           "firstPublishedAt": {
                             "type": "string",
@@ -14899,7 +14901,8 @@
                 ]
               },
               "number": {
-                "type": "number"
+                "type": "number",
+                "description": "The version's number within its content, starting from 0. The dashboard labels versions from 1, so the version it shows as V1 has `number: 0`."
               },
               "firstPublishedAt": {
                 "type": "string",
@@ -15604,7 +15607,8 @@
                       ]
                     },
                     "number": {
-                      "type": "number"
+                      "type": "number",
+                      "description": "The version's number within its content, starting from 0. The dashboard labels versions from 1, so the version it shows as V1 has `number: 0`."
                     },
                     "firstPublishedAt": {
                       "type": "string",
@@ -17880,7 +17884,8 @@
                   ]
                 },
                 "number": {
-                  "type": "number"
+                  "type": "number",
+                  "description": "The version's number within its content, starting from 0. The dashboard labels versions from 1, so the version it shows as V1 has `number: 0`."
                 },
                 "firstPublishedAt": {
                   "type": "string",
@@ -20045,7 +20050,8 @@
             ]
           },
           "number": {
-            "type": "number"
+            "type": "number",
+            "description": "The version's number within its content, starting from 0. The dashboard labels versions from 1, so the version it shows as V1 has `number: 0`."
           },
           "firstPublishedAt": {
             "type": "string",
@@ -38649,7 +38655,8 @@
                       ]
                     },
                     "number": {
-                      "type": "number"
+                      "type": "number",
+                      "description": "The version's number within its content, starting from 0. The dashboard labels versions from 1, so the version it shows as V1 has `number: 0`."
                     },
                     "updatedAt": {
                       "type": "string",
@@ -38961,7 +38968,8 @@
                 ]
               },
               "number": {
-                "type": "number"
+                "type": "number",
+                "description": "The version's number within its content, starting from 0. The dashboard labels versions from 1, so the version it shows as V1 has `number: 0`."
               },
               "updatedAt": {
                 "type": "string",
