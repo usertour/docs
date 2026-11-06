@@ -1,6 +1,6 @@
 ---
 title: Elements inside iframes
-description: Target buttons and other elements inside same-origin iframes with tooltips, launchers and element conditions, and what to do when the frame is on another origin.
+description: Target buttons and other elements inside same-origin iframes with tooltips, launchers and element conditions, how to tell whether a frame qualifies, and what to do when it does not.
 icon: "window-restore"
 ---
 
@@ -18,6 +18,29 @@ Banners are the exception. A banner placed relative to an element — **Top of c
 
 Nested frames work as long as every frame on the way down meets these requirements.
 
+Origin is stricter than "the same website". For a page at `https://app.example.com/lessons/42`:
+
+| The frame's content comes from | Same origin? |
+| --- | --- |
+| `https://app.example.com/activities/7` | Yes |
+| A relative address such as `/activities/7` | Yes |
+| Nowhere: the page writes the content into an empty frame, or sets it with `srcdoc` | Yes |
+| `https://content.example.com/activities/7` | No. Another subdomain is another host. |
+| `http://app.example.com/…`, or `https://app.example.com:8443/…` | No. The scheme or the port differs. |
+| Another company's domain | No |
+
+## Checking a frame
+
+In the browser's developer tools, select the `<iframe>` element that holds the content and look at two things: the address in its `src` next to the address of the page, and whether the tag carries a `sandbox` attribute.
+
+A developer can also ask the browser directly. In the page's console, with a selector that matches the frame:
+
+```js
+document.querySelector('iframe#lesson').contentDocument
+```
+
+If a document comes back, the page can read the frame, and so can Usertour. If the answer is `null`, it cannot, and selectors will not reach inside.
+
 ## Which match is used
 
 When a selector matches more than one element, the page's matches come first, then each frame's in the order the frames appear on the page. The **1st / 2nd / 3rd…** choice next to the selector counts through that combined list.
@@ -26,6 +49,14 @@ When a selector matches more than one element, the page's matches come first, th
   The element picker currently picks elements on the page itself, not inside a frame. For an element inside a frame, type its selector by hand. A dedicated attribute such as `[data-tour="submit-answer"]`, agreed with your developers as described in [Selecting Elements](/how-to-guides/selecting-elements), is the easiest to read off your markup and the least likely to break.
 </Note>
 
-## Frames on another origin
+## When a frame cannot be read
 
-If the frame's content is served from a different domain — a third-party tool embedded in your page — Usertour cannot target elements inside it. To still guide users through what happens in the frame, attach the step to the `<iframe>` element itself or use a step that is not attached to any element, explain what to do inside the activity, and let users continue with a **Next** button.
+What to do depends on who serves the frame's content.
+
+**Your team does.** Serve it from the page's own origin, and it qualifies. Content that lives on another subdomain today can usually be exposed under a path of the page's domain, such as `/activities/`, by the same server or proxy that serves the page.
+
+**Someone else does.** A third-party tool embedded in your page stays out of reach. You can still guide users through it: attach the step to the `<iframe>` element itself, or use a step that is not attached to any element, explain what to do inside, and let users continue with a **Next** button.
+
+## When your app itself runs inside a frame
+
+Some apps are embedded whole by another page — a portal, a shell around several products. Install Usertour.js in your app's own page, the one inside the frame, as you would anywhere else. "The page" in this guide then means that page: selectors are resolved in it and in the frames below it, and tooltips are drawn inside it. Nothing is installed in the page that embeds your app.
