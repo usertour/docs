@@ -29,7 +29,7 @@ When `once: true` is set, the `continue` option will not take effect since the c
 </Note>
 
 ## Return
-Returns a `Promise` that resolves when the content has been successfully initialized and displayed.
+Returns a `Promise` that resolves to `true` when the content was started, and to `false` when it was not: the content was not found or is not published in this environment, or `once` is set and the user has already seen it. Not starting is an outcome, not an error, so the promise does not reject for it.
 
 ## Example
 
@@ -50,6 +50,16 @@ usertour.start('cmaw8v1ch013s147h0uw8aha5', {
 usertour.start('cmaw8v1ch013s147h0uw8aha5', {
   continue: true
 });
+```
+
+### Check Whether It Started
+```javascript
+const started = await usertour.start('cmaw8v1ch013s147h0uw8aha5', {
+  once: true
+});
+if (!started) {
+  // Already seen, or not published here: show something else instead
+}
 ```
 
 
