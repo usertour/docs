@@ -29,7 +29,7 @@ When `once: true` is set, the `continue` option will not take effect since the c
 </Note>
 
 ## Return
-Returns a `Promise` that resolves to `true` when the content was started, and to `false` when it was not: the content was not found or is not published in this environment, or `once` is set and the user has already seen it. Not starting is an outcome, not an error, so the promise does not reject for it.
+Returns a `Promise` that resolves to `true` when the content was started, and to `false` when it was not: the content was not found or is not published in this environment, or `once` is set and the user has already seen it. It also resolves to `false` when the server could not be asked: the SDK is not connected, or no answer arrived in time. Not starting is an outcome, not an error, so the promise does not reject for it.
 
 ## Example
 
