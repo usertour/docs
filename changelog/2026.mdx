@@ -4,6 +4,56 @@ description: "Usertour releases in 2026"
 rss: true
 ---
 
+<Update label="v0.9.8" description="November 11, 2026">
+
+This release lets content reach into iframes and fixes banners placed inside scrolling layouts. A selector now also matches elements inside same-origin iframes, so tooltips, launchers and element conditions can target an element in a frame without changing how the selector is written. A banner placed at an element stays where it is while that element is scrolled out of view, instead of flickering and pulling the scroll position back. On Usertour Cloud, checkout collects the billing address and tax ID and prices tax automatically.
+
+### 🪟 Elements inside same-origin iframes
+
+A selector is now looked up on the page first and then in every same-origin iframe, nested ones included. A flow tooltip or a launcher can attach to an element inside a frame, and element conditions (present, clicked, disabled, text input, text filled) can be about one. Nothing needs installing inside the frame, and the selector is written as if the frame were a page of its own: `#submit-answer`, not `iframe#lesson #submit-answer`.
+
+- **Position and visibility follow the frame.** A tooltip on a framed target is placed with the frame's offset, hides when the target is scrolled out of the frame, and follows the element when the frame navigates.
+- **Sequence counts across page and frames.** When a selector matches on the page and inside frames, the page's matches come first, then each frame's in document order.
+- **Cross-origin frames stay out of reach.** A frame on another origin, or sandboxed without `allow-same-origin`, is opaque; a selector inside it is reported as not found.
+- **Banners and their containers stay on the page.** A banner is embedded only at an element of the page itself.
+- **A launcher's tooltip** closes on a press inside the frame its target lives in.
+
+The MCP authoring guide and the content schema describe where a selector is resolved and how to write one for an element inside a frame.
+
+### 🧾 Billing address, tax ID and automatic tax at checkout (Usertour Cloud)
+
+The checkout page collects the full billing address and, where supported, offers a business purchase form with the legal name and tax ID. Tax is priced automatically from that address, and business customers with a valid tax ID get the reverse-charge line. Invoices carry the company name, address and tax ID. Existing subscriptions keep invoicing as before.
+
+### 🐛 Fixes
+
+- **A banner inside a scroll container flickered and pulled the scroll back.** A banner placed at an element was hidden whenever that element left the visible area. Removing the banner moved the content by its height, the element came back into view, and the banner returned, on every pass. Placed right after its element, it could not be scrolled past; placed at the top of its container, it went away and pushed the content down when it came back. The banner now stays in place while its element is rendered, and still hides when the element is hidden or removed. Present since v0.9.1.
+- **A banner came back empty after an in-app navigation.** When a single-page app replaced the view holding the banner's element, the banner moved to the new element as an empty box. Its content is now rendered again whenever the banner is moved.
+
+## Behaviour changes to check
+
+- **Pages with a same-origin iframe.** A selector that matched nothing on the page, or fewer elements than its sequence asked for, and does match inside a frame now resolves there. A tooltip target that was reported missing is found, and an element condition can change value. Pages without such a frame are unchanged.
+- **A banner placed at an element below the fold** now shows as soon as the page loads, instead of being inserted when the element scrolls into view. Banners at the top or bottom of the page are unchanged.
+
+## Upgrade notes
+
+Usertour Cloud is already running this release. Self-hosted:
+
+- **No migration and no new environment variable.**
+- **The SDK bundle goes from 0.8.1 to 0.8.4.** The image serves it, so upgrading the instance is enough; pages pick it up on their next load. usertour.js on npm is unchanged.
+- **Rollback** is a plain revert of the image.
+
+### 🛠️ Under the hood
+
+- **Lookups are scoped by purpose.** `findTargetElement` searches under `<body>` of the page and of each same-origin frame, `findConditionElement` anywhere in those documents, `findTargetElementInPage` on the page only; `UsertourElementWatcher` takes the lookup as a parameter. The SDK's own frames are skipped through a marker attribute from `@usertour/frame`.
+- **Visibility across frames.** `@usertour/dom` gains `getClippingRectAcrossFrames` and `getSameOriginFrameDocuments`; the SDK's visibility check and the widget's hide and overflow middlewares clip a framed reference through each enclosing frame up to the SDK's window, which is not the top one when the SDK's page is itself embedded. Elements from another realm are recognised without `instanceof` against this window's constructors.
+- **Banner.** `UsertourElementWatcher.setViewportCheck` turns off the viewport half of the visibility check, and the banner uses it; `banner.tsx` keys its frame by a count of the moves of its mount element, so a moved iframe gets its content again.
+- **Checkout.** The Stripe checkout session requires the billing address, enables tax ID collection and automatic tax, and lets the page update an existing Customer's name and address.
+- **Tests.** The SDK runtime suite grows to 108 tests: a new `iframe-targeting.spec.ts` (targets in a frame, a nested frame and a scaled frame, sequence across page and frames, a frame that navigates, conditions in a frame, cross-origin frames, the SDK's page embedded in a frame, scrolled targets), a banner scrolled out of view inside a scroll box, and a banner whose container is replaced by a navigation at once and after a second. Manual test pages live under `apps/sdk/test-pages/test-iframe*.html`.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.7...v0.9.8
+
+</Update>
+
 <Update label="v0.9.7" description="October 30, 2026">
 
 This release makes the server faster and steadier rather than adding a content type. Content reaches the page sooner over the SDK connection: a message handler no longer loads a user's whole event history, no longer waits for the user's other tabs, and no longer waits for a receipt on every push, so a batch that used to show its pieces one at a time shows them together. Under a reconnect storm after a deploy the server queues work on itself instead of on the database, the per-connection rate limit applies as designed, and a hidden session can no longer send a process into a loop. Self-hosted instances get a readiness endpoint apart from liveness, OpenTelemetry configured through the standard `OTEL_*` variables, and a Debian-based image whose query engine costs a fraction of the CPU it did on Alpine. The dashboard says what was wrong when it refuses an input, in the user's language, and its data layer was rebuilt on documents typed from the server's own schema.
