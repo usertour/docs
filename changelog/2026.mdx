@@ -4,6 +4,108 @@ description: "Usertour releases in 2026"
 rss: true
 ---
 
+<Update label="v0.9.9" description="November 22, 2026">
+
+This release adds a new content type, **Embeds**: cards that live inside your app's own layout instead of floating over it. Several can show on one page at once, each can hold more than one step, and every button press is recorded. Floating steps also fit small screens now. A modal, tooltip, bubble or resource center announcement keeps inside the viewport, and a long step scrolls inside its frame instead of being cut off on a phone. A broad pass over the SDK's runtime behaviour put 143 behaviours under test and fixed what it turned up. `usertour.start()` now resolves with whether the content was started.
+
+### 🧩 Embeds
+
+An embed is placed in the host page's layout: at the top or bottom of a container, before or after an element, or covering an element. It is for content that belongs in the page:
+- upgrade cards on a gated feature
+- "what's new" in the relevant area
+- getting-started cards in an empty state
+- inline surveys
+- small multi-step guides that stay in one container
+
+- **Many at once.** Any number of embeds show on a page at the same time, several on one target included, in a stable order. There is no priority and no waiting on another piece of content.
+- **Steps, as in a flow.** An embed holds inline and hidden steps. Buttons go to a named step, dismiss the embed, start a flow, navigate, or evaluate JavaScript. Question blocks work in an embed step.
+- **Shows while it applies.** An embed shows while the user matches "Show embed if…" and its target is in the page and visible. It goes as soon as either stops being true. A target the host app re-renders is followed to the new element. A hidden target does not start the embed, so it counts no view. Frequency (`once` by default, `multiple`, `unlimited`) decides whether a new session may start after the last one ended.
+- **Cover placement** paints over the whole target box, with a content position inside it. Some targets cannot hold the card as a child: an image, canvas, form field or iframe, or a target that scrolls its own content. For these, the card is laid over the target from outside.
+- **Looks like the page, or announces itself.** The theme gains an Embed section: background, text colour, padding, the shared border, and a preview shown inside a small page. **Animate on appear** is off by default. When it is on, an in-flow embed expands to its height while fading in, and a cover fades in. The reveal plays once per appearance, never on a step change, and not for visitors who ask for reduced motion. The theme sets its duration and style.
+- **A close button** in the card's top-right corner, when dismiss is on.
+- **Republishing** updates a live embed in place. It stays on its step, or starts again on the first step if that step was removed. A changed button rule on the step on screen takes effect at once.
+- **Analytics.** The overview shows unique views, unique clickers and dismissals in the selected range. A steps table appears when there is more than one step. A buttons table shows each step's buttons. Sessions, session detail, the activity feed, the user's sessions page and the CSV export all know the type.
+- **Events.** `embed_started`, `embed_step_seen` (each time a step is shown), `embed_dismissed` with its reason, and a new `button_clicked` with the step, `button_cvid` and `button_text`. These are added to every project, and none of them go to a CRM timeline.
+- **API v2 and MCP.** Embeds can be read, written, validated and analysed through API v2, and `diagnose_content` / `diagnose_user` explain them. The MCP authoring guide gains an Embeds section.
+
+An embed's target is matched on the page itself, not inside iframes, as a banner's is. Embeds need usertour.js 0.8.6 or later. The SDK declares the capability in its handshake, and an older bundle simply receives no embeds. Guide: [Embeds](https://docs.usertour.io/how-to-guides/embeds).
+
+### 📱 Floating steps fit small screens
+
+A modal was given its authored width (say 600px) and its content frame the content's full height, with no viewport limit. On a phone it ran off the side and was cut off at the bottom, where the close button and the last buttons were. Now every floating surface (modal, bubble, tooltip, resource center announcement) is kept inside the viewport:
+
+- **Width** is capped at the viewport less 16px on each side. A step keeps its own width wherever that fits.
+- **Height** is capped at the viewport. A longer step scrolls inside its frame. Above and below, the margin is 16px on viewports 800px wide or more and 0 below that, where height is what runs short.
+- **Tooltips** are capped at the room on their side of the target. With no room on either side for even 120px, an `auto`-aligned tooltip moves back over its target.
+- **Offsets.** A centred modal's offset gives way on both sides. An offset the viewport has no room for is cut back until the step keeps 240×120. A negative offset on the edge a step is anchored to counts as 0, so the step sits flush on that edge instead of off screen.
+
+A step that already fits keeps its size and place. Nothing needs setting up, and no device-specific content is needed for it.
+
+### ✅ SDK runtime behaviour under test
+
+The SDK's end-to-end suite now covers 143 listed runtime behaviours and runs 388 tests. Several behaviours were changed along the way:
+
+- **`usertour.start()` resolves with a boolean.** It resolves `true` when the server started the content. It resolves `false` when the content is not found, not published, or already seen once, and also when the server could not be asked. Not starting does not reject. A `start()` queued before the bundle loads resolves with the server's answer too.
+- **A tooltip target that is missing** waits the theme's default (3 s), not a hard-coded 6 s.
+- **A tooltip target scrolled out of view** hides the tooltip with no deadline, and scrolling back shows it again. Only a target that is no longer rendered counts towards the timeout. A target with a width but no height, such as a container whose children overflow it, is still pointed at. A tooltip or launcher on such a target used to show nothing.
+- **A tooltip target never found**, with the theme set to fall back to a bubble, now counts in "times not found".
+- **The checklist and flows take turns.** A checklist collapses when a flow actually comes on screen, not when a tooltip merely starts looking for its target. A checklist that arrives during a flow stays collapsed. A flow waiting on a hidden step no longer keeps a checklist shut for good.
+- **A page-navigate action** opens in the SDK's own window rather than the top one. This only matters when the SDK runs inside a frame.
+
+### 🐛 Fixes
+
+- A hidden launcher left an invisible box beside its target that caught clicks. It now opens from its target, whatever its trigger element setting says.
+- A hidden hover launcher's tooltip stays open while the pointer is on its target. A launcher tooltip's button rules are re-evaluated as the page changes.
+- An open widget recolours when a theme variation starts matching.
+- A tooltip step shown as a bubble stays a bubble when its session is sent again.
+- A custom scroll-into-view callback that throws no longer keeps the step from showing.
+- A single-page resource center counts a page click when it is opened onto that page, not when it mounts.
+- A banner anchored at an empty element is still shown.
+- **Analytics days** are resolved on the server. In a zone where a DST switch skips or repeats midnight, events no longer land on the wrong day, and the last hour of a 25-hour day is no longer dropped. A zone name the database does not know no longer breaks the analytics page.
+- **API v2 dates.** A calendar day that does not exist (`2026-02-30`) is refused with a 400 on analytics `startDate` / `endDate` and on every list's `createdAfter` / `createdBefore`. It used to fail with a 500 or quietly filter another range.
+- **Session detail, activity feed and export** print version and step numbers one-based, as the dashboard does. Checklist and launcher versions used to read zero-based under a V1 header, and the export wrote `v0` for the first version. Start and end reasons print by name.
+- Unexpected failures in analytics, content writes and password reset reach the log with their cause. An oEmbed lookup the provider refuses answers empty instead of a 500.
+
+## Behaviour changes to check
+
+- **`usertour.start()`** now resolves `true` / `false` instead of `undefined`. Code that read a rejection as "not started" should check the value.
+- **Floating steps on small viewports** are capped to the viewport and scroll inside. A step that relied on overflowing the screen, or that sat within 16px of an edge, now moves inside the margin.
+- **`button_clicked` is a built-in event** and can no longer be tracked as a custom event. A project that already defined its own `button_clicked` keeps it, and the seed logs a warning with the project id.
+- **Every button inserted in the editor** now carries a `cvid`, for every content type. Only embeds report presses so far. Buttons authored before this change carry no cvid and are not reported.
+- **API v2** rejects a step-level `target` on inline and hidden steps (the embed's `data.target` places them), and no longer returns one on read.
+- **Tooltip targets** wait 3 s by default instead of 6 s. A target scrolled out of view no longer ends the flow.
+
+## Upgrade notes
+
+Usertour Cloud is already running this release. Self-hosted:
+
+- **No migration and no new environment variable.** The seed run at container start adds the embed events and attributes to every project.
+- **The SDK bundle goes from 0.8.4 to 0.8.7.** The image serves it, so upgrading the instance is enough, and pages pick it up on their next load. An instance that serves an older bundle shows no embeds and is otherwise unchanged. usertour.js on npm is unchanged (0.0.26).
+- **Release images are built without layer cache**, so the system packages, nginx included, are fresh in every tagged image.
+- **Rollback** is a plain revert of the image. Embed content stays in the database and is simply not delivered by the older build.
+
+### 🛠️ Under the hood
+
+- **Embed (ADR 0022).**
+  - A content type `EMBED` with no new table. Steps are `Step` rows of the new `INLINE` type, and `STEP_TYPES_BY_CONTENT_TYPE` declares which step kinds each type accepts.
+  - The banner's internals moved to a shared inline shell in `packages/widget/src/core/inline.tsx`. Banner exports are unchanged.
+  - Delivery reuses the launcher's path (`embedSessions[]`, `ADD_EMBED` / `REMOVE_EMBED`), gated by `SocketAuthData.capabilities`.
+  - A click is recorded only against a session of the connection's own user, and a cancel from another tab leaves a newer session of the same embed alone.
+- **Viewport fit.**
+  - `packages/widget/src/core/utils/viewport.ts` computes the margins and fits offsets.
+  - `popper.tsx` applies them, with a floating-ui `size` middleware for tooltips.
+  - CSS keeps a plain `100vh` cap as a fallback, puts the `min()` rule behind `@supports`, and uses `100dvh` where supported.
+- **Analytics** day windows use date-fns v4 with `@date-fns/tz`, and `date-fns-tz` leaves the server. Queries take the step-cvid attribute per content type.
+- **Build.** The SDK smoke check fails on a localhost endpoint baked into the bundle, for the legacy IIFE build too. `SMOKE_ALLOW_LOCAL_ENDPOINTS=1` lets a local-only build pass. The release workflow builds with `pull` and `no-cache` and no GitHub Actions cache.
+- **Tests.**
+  - `packages/e2e/tests/sdk/COVERAGE.md` lists the SDK's runtime behaviours and the test for each.
+  - New suites: `api`, `loader`, `flow-steps`, `flow-questions`, `flow-themes`, `flow-layout` (with 390×600 viewport specs), `checklist`, `launcher`, `banner`, `resource-center`, `frame-hosted`, `target-states`, `defaults` and `embed`.
+  - At release: SDK e2e 388 passed, widget e2e 67, server e2e 90 suites / 1795 tests.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.8...v0.9.9
+
+</Update>
+
 <Update label="v0.9.8" description="November 11, 2026">
 
 This release lets content reach into iframes and fixes banners placed inside scrolling layouts. A selector now also matches elements inside same-origin iframes, so tooltips, launchers and element conditions can target an element in a frame without changing how the selector is written. A banner placed at an element stays where it is while that element is scrolled out of view, instead of flickering and pulling the scroll position back. On Usertour Cloud, checkout collects the billing address and tax ID and prices tax automatically.
