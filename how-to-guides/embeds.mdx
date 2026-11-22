@@ -63,8 +63,10 @@ first, then point the embed at the element.
 The first four placements insert the card into the document flow, so your page makes room for it.
 **Cover element** does not take space: the card is laid over the element and follows it when the
 page scrolls or resizes. The card is placed inside the element; if the element has no `position` of
-its own, the SDK gives it `position: relative` while the cover shows. The element's content is not
-touched.
+its own, the SDK gives it `position: relative` while the cover shows. An element that cannot hold a
+child (an image, a canvas, a form field, an iframe) or that scrolls its own content gets the card laid
+over it from outside instead, so the card stays over the element rather than scrolling with its
+content. Either way, the element's content is not touched.
 
 <Warning>
   A cover **places content; it does not gate access**. Your app still renders the element
@@ -77,6 +79,10 @@ touched.
 Click the **Target** row under the placement to open the target settings, and enter a CSS selector
 that matches exactly one element. If the element has no stable selector, add an `id` or a `data-*`
 attribute to it in your app — see [Selecting elements](/how-to-guides/selecting-elements).
+
+The selector is matched against your page itself, not inside iframes: like a banner, an embed is
+inserted into the page, so an element that exists only inside a frame keeps the embed waiting. See
+[Iframes](/how-to-guides/iframes).
 
 {/* Screenshot: the Target settings view with a selector entered. For a cover placement, the Z-index field is visible below it. */}
 ![](/images/embeds-05.png)
@@ -91,9 +97,11 @@ For a cover, the same view has two more settings:
 {/* Screenshot: a cover embed over a chart card in a real app — "Upgrade to Pro" card filling the chart's box, content centered. */}
 ![](/images/embeds-06.png)
 
-The embed shows only while the target element exists on the page. If the element goes away — the
-user switches a tab, navigates to another view — the embed goes with it, and comes back when the
-element does.
+The embed shows only while the target element is on the page and visible. If the element goes away
+or is hidden — the user switches a tab, closes a panel, navigates to another view — the embed goes
+with it, and comes back when the element does. If your app re-renders the element, the embed moves to
+the new one the selector finds. An embed whose target is in the page but hidden does not start, so it
+is not counted as a view until the user can see it.
 
 ## Adding steps
 
@@ -119,6 +127,7 @@ When someone clicks a button, you can:
 - **Dismiss embed** — Close the card
 - **Navigate to page** — Send them somewhere specific
 - **Start new flow** — Launch a flow or a checklist
+- **Evaluate JavaScript** — Run your own custom code
 
 {/* Screenshot: the button action menu in the content editor, with "Go to step" expanded. */}
 ![](/images/embeds-08.png)
@@ -130,8 +139,12 @@ Every button click is recorded, so you can see later which button people pressed
 - **Max content width** — Caps the width of the content column, in pixels. Leave it empty to fill
   the embed
 - **Outer margin** — Space between the embed and the surrounding content, on each side
-- **Allow users to dismiss** — Shows a close button. Dismissing ends the current session; whether
-  the embed shows again is decided by its frequency, below
+- **Allow users to dismiss** — Shows a close button in the card's top-right corner. Dismissing ends
+  the current session; whether the embed shows again is decided by its frequency, below
+- **Animate on appear** — Reveals the card with an animation instead of just popping into place: an
+  in-flow embed expands to its height while fading in, a cover fades in over its element. It plays
+  once each time the embed appears, not on a step change, and not for users who ask their system for
+  reduced motion. Off by default, so the card looks like part of your page
 
 {/* Screenshot: the Layout and Settings sections of the left panel. */}
 ![](/images/embeds-09.png)
@@ -148,6 +161,8 @@ with one difference worth knowing:
 them and the target element exists, and it disappears the moment either stops being true. A user
 on the free plan sees the upgrade card; the moment the plan changes, the card is gone, with no
 dismiss and no reload. If the user qualifies again later, the card comes back on the step it was on.
+When you publish a new version, a user's card stays on the step it was on; if that step was removed,
+it starts again from the first step.
 
 There are no separate hide rules. "Show if A, hide if B" is simply "show if A and not B".
 
@@ -179,8 +194,9 @@ overlap.
 
 Embeds take their look from the theme. In the theme editor, the **Embed** section sets the card's
 **Background color** and **Text color**; the default background follows the theme's main color, so
-the card looks like part of your page rather than a brand-colored banner. Padding and borders come
-from the shared settings of the theme.
+the card looks like part of your page rather than a brand-colored banner. **Animation duration** and
+**Animation style** set how the card is revealed for embeds with **Animate on appear** turned on.
+Padding and borders come from the shared settings of the theme.
 
 {/* Screenshot: the theme editor with the Embed section open and the embed preview visible. */}
 ![](/images/embeds-11.png)
@@ -204,6 +220,6 @@ for someone; impressions are not counted, since a card that lives in the page is
 
 ## Requirements
 
-Embeds are delivered by the Usertour.js bundle that ships with this release (0.8.2 or later). On
+Embeds are delivered by Usertour.js 0.8.6 or later. On
 Usertour Cloud that is automatic. On a self-hosted instance, upgrade to the server release that
 introduces embeds; the bundle is served by your own instance and upgrades with it.
