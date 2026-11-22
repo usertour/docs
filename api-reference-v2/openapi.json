@@ -11500,7 +11500,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -11677,7 +11677,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -11733,7 +11733,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -12045,7 +12045,7 @@
                               "selector": {
                                 "type": "string",
                                 "minLength": 1,
-                                "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                                "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                               },
                               "text": {
                                 "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -12761,7 +12761,7 @@
                                     "selector": {
                                       "type": "string",
                                       "minLength": 1,
-                                      "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                                      "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                                     },
                                     "text": {
                                       "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -14458,7 +14458,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -14635,7 +14635,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -14691,7 +14691,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -14998,7 +14998,7 @@
                         "selector": {
                           "type": "string",
                           "minLength": 1,
-                          "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                          "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                         },
                         "text": {
                           "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -15704,7 +15704,7 @@
                               "selector": {
                                 "type": "string",
                                 "minLength": 1,
-                                "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                                "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                               },
                               "text": {
                                 "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -17472,7 +17472,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -17649,7 +17649,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -17705,7 +17705,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -17981,7 +17981,7 @@
                           "selector": {
                             "type": "string",
                             "minLength": 1,
-                            "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                            "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                           },
                           "text": {
                             "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -19643,7 +19643,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -19820,7 +19820,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -19876,7 +19876,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -20147,7 +20147,7 @@
                     "selector": {
                       "type": "string",
                       "minLength": 1,
-                      "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                      "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                     },
                     "text": {
                       "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -21856,7 +21856,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -22033,7 +22033,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -22089,7 +22089,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -22350,7 +22350,7 @@
                     "selector": {
                       "type": "string",
                       "minLength": 1,
-                      "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                      "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                     },
                     "text": {
                       "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -23125,7 +23125,7 @@
                       "selector": {
                         "type": "string",
                         "minLength": 1,
-                        "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                        "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                       },
                       "text": {
                         "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -23484,7 +23484,7 @@
                       "selector": {
                         "type": "string",
                         "minLength": 1,
-                        "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                        "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                       },
                       "text": {
                         "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -24573,7 +24573,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -24750,7 +24750,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -24806,7 +24806,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -25252,7 +25252,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -25429,7 +25429,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -25485,7 +25485,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -25908,7 +25908,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -26085,7 +26085,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -26141,7 +26141,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -31186,7 +31186,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -31363,7 +31363,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",
@@ -31419,7 +31419,7 @@
                   "selector": {
                     "type": "string",
                     "minLength": 1,
-                    "description": "A stable CSS selector for the element. The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
+                    "description": "A stable CSS selector for the element, on the page or inside a same-origin iframe (written relative to the frame's own document). The runtime targets the FIRST match \u2014 so either make the selector unique, or pair a stable non-unique selector with `nth` to pick the intended match. A non-unique selector with no `nth` targets the first (often wrong) element and the tooltip silently won't render."
                   },
                   "text": {
                     "description": "Optional refinement of `selector`. Requires the targeted element's visible text to equal this (exact match, after trim) \u2014 use it to pin a specific content/state (e.g. a stable id whose displayed text you want to match: id + text). It refines the element chosen by `selector`/`nth`; on its own it does NOT search among multiple matches, so disambiguate a non-unique selector with `nth`, not `text` alone.",

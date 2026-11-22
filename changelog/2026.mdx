@@ -4,6 +4,217 @@ description: "Usertour releases in 2026"
 rss: true
 ---
 
+<Update label="v0.9.8" description="November 11, 2026">
+
+This release lets content reach into iframes and fixes banners placed inside scrolling layouts. A selector now also matches elements inside same-origin iframes, so tooltips, launchers and element conditions can target an element in a frame without changing how the selector is written. A banner placed at an element stays where it is while that element is scrolled out of view, instead of flickering and pulling the scroll position back. On Usertour Cloud, checkout collects the billing address and tax ID and prices tax automatically.
+
+### 🪟 Elements inside same-origin iframes
+
+A selector is now looked up on the page first and then in every same-origin iframe, nested ones included. A flow tooltip or a launcher can attach to an element inside a frame, and element conditions (present, clicked, disabled, text input, text filled) can be about one. Nothing needs installing inside the frame, and the selector is written as if the frame were a page of its own: `#submit-answer`, not `iframe#lesson #submit-answer`.
+
+- **Position and visibility follow the frame.** A tooltip on a framed target is placed with the frame's offset, hides when the target is scrolled out of the frame, and follows the element when the frame navigates.
+- **Sequence counts across page and frames.** When a selector matches on the page and inside frames, the page's matches come first, then each frame's in document order.
+- **Cross-origin frames stay out of reach.** A frame on another origin, or sandboxed without `allow-same-origin`, is opaque; a selector inside it is reported as not found.
+- **Banners and their containers stay on the page.** A banner is embedded only at an element of the page itself.
+- **A launcher's tooltip** closes on a press inside the frame its target lives in.
+
+The MCP authoring guide and the content schema describe where a selector is resolved and how to write one for an element inside a frame.
+
+### 🧾 Billing address, tax ID and automatic tax at checkout (Usertour Cloud)
+
+The checkout page collects the full billing address and, where supported, offers a business purchase form with the legal name and tax ID. Tax is priced automatically from that address, and business customers with a valid tax ID get the reverse-charge line. Invoices carry the company name, address and tax ID. Existing subscriptions keep invoicing as before.
+
+### 🐛 Fixes
+
+- **A banner inside a scroll container flickered and pulled the scroll back.** A banner placed at an element was hidden whenever that element left the visible area. Removing the banner moved the content by its height, the element came back into view, and the banner returned, on every pass. Placed right after its element, it could not be scrolled past; placed at the top of its container, it went away and pushed the content down when it came back. The banner now stays in place while its element is rendered, and still hides when the element is hidden or removed. Present since v0.9.1.
+- **A banner came back empty after an in-app navigation.** When a single-page app replaced the view holding the banner's element, the banner moved to the new element as an empty box. Its content is now rendered again whenever the banner is moved.
+
+## Behaviour changes to check
+
+- **Pages with a same-origin iframe.** A selector that matched nothing on the page, or fewer elements than its sequence asked for, and does match inside a frame now resolves there. A tooltip target that was reported missing is found, and an element condition can change value. Pages without such a frame are unchanged.
+- **A banner placed at an element below the fold** now shows as soon as the page loads, instead of being inserted when the element scrolls into view. Banners at the top or bottom of the page are unchanged.
+
+## Upgrade notes
+
+Usertour Cloud is already running this release. Self-hosted:
+
+- **No migration and no new environment variable.**
+- **The SDK bundle goes from 0.8.1 to 0.8.4.** The image serves it, so upgrading the instance is enough; pages pick it up on their next load. usertour.js on npm is unchanged.
+- **Rollback** is a plain revert of the image.
+
+### 🛠️ Under the hood
+
+- **Lookups are scoped by purpose.** `findTargetElement` searches under `<body>` of the page and of each same-origin frame, `findConditionElement` anywhere in those documents, `findTargetElementInPage` on the page only; `UsertourElementWatcher` takes the lookup as a parameter. The SDK's own frames are skipped through a marker attribute from `@usertour/frame`.
+- **Visibility across frames.** `@usertour/dom` gains `getClippingRectAcrossFrames` and `getSameOriginFrameDocuments`; the SDK's visibility check and the widget's hide and overflow middlewares clip a framed reference through each enclosing frame up to the SDK's window, which is not the top one when the SDK's page is itself embedded. Elements from another realm are recognised without `instanceof` against this window's constructors.
+- **Banner.** `UsertourElementWatcher.setViewportCheck` turns off the viewport half of the visibility check, and the banner uses it; `banner.tsx` keys its frame by a count of the moves of its mount element, so a moved iframe gets its content again.
+- **Checkout.** The Stripe checkout session requires the billing address, enables tax ID collection and automatic tax, and lets the page update an existing Customer's name and address.
+- **Tests.** The SDK runtime suite grows to 108 tests: a new `iframe-targeting.spec.ts` (targets in a frame, a nested frame and a scaled frame, sequence across page and frames, a frame that navigates, conditions in a frame, cross-origin frames, the SDK's page embedded in a frame, scrolled targets), a banner scrolled out of view inside a scroll box, and a banner whose container is replaced by a navigation at once and after a second. Manual test pages live under `apps/sdk/test-pages/test-iframe*.html`.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.7...v0.9.8
+
+</Update>
+
+<Update label="v0.9.7" description="October 30, 2026">
+
+This release makes the server faster and steadier rather than adding a content type. Content reaches the page sooner over the SDK connection: a message handler no longer loads a user's whole event history, no longer waits for the user's other tabs, and no longer waits for a receipt on every push, so a batch that used to show its pieces one at a time shows them together. Under a reconnect storm after a deploy the server queues work on itself instead of on the database, the per-connection rate limit applies as designed, and a hidden session can no longer send a process into a loop. Self-hosted instances get a readiness endpoint apart from liveness, OpenTelemetry configured through the standard `OTEL_*` variables, and a Debian-based image whose query engine costs a fraction of the CPU it did on Alpine. The dashboard says what was wrong when it refuses an input, in the user's language, and its data layer was rebuilt on documents typed from the server's own schema.
+
+### ⚡ Content reaches the page sooner
+
+Three changes on the SDK websocket, each removing a wait from the path between a client message and the content it starts:
+
+- **The newest event per content is picked in the database.** Every evaluation used to fetch the user's whole event history on the contents in play and walk it in memory for two rows per content. Postgres now picks those rows. On an account with twelve contents and 3.7k events, `EndBatch` went from 1120 to 387 ms and `EndContent` from 1965 to 713 ms on staging.
+- **A user's other tabs are synced through their own queues.** Activating or cancelling a session no longer waits for every other connection of the same user across the cluster to acknowledge; the sender is answered as soon as its own connection is in step, and the others follow a moment later. A tab that has stopped answering no longer costs anyone else its emit timeout.
+- **Pushes go out without a receipt.** Every push to a client awaited an acknowledgement with a 2 s timeout, so an evaluation that activated six sessions paid six client round trips in series. The receipt carried no information (the SDK acknowledged before it processed), so the emitter now sends and returns. Six pieces of content that used to appear one after another appear together, and a slow link is no longer recorded as a failed push.
+
+### 🛡️ Steady under reconnect storms
+
+After a deploy or a replica restart every client reconnects at once. The server now admits websocket work through a per-replica gate: a handshake and a client message are each one unit, at most 16 run at a time, the rest wait up to 15 s and are refused with a retryable rejection the SDK backs off on; handshakes are paced at 50 per second. A refused identify or group write is left unanswered so the SDK replays it. The gate reports refusals and long waits in one warn line per 5 s window.
+
+Two causes of the pressure are gone as well. The server image moves from Alpine to Debian: the query engine's musl build did not scale across its worker threads and used about 2.8 cores under a burst against about 0.4 on Debian, starving the application thread and surfacing as "Can't reach database server" while the database sat idle. And user, company and membership writes are planned outside the row lock and applied under it only when something changes, so dozens of identical concurrent identifies from one user no longer queue on the lock until the transaction closes.
+
+### 🚦 The per-connection rate limit applies as designed
+
+The websocket limiter had been counting messages against the REST limiter's 1000 per minute since July: the throttler module keeps one options token and the REST registration won it. Each guard now builds its own options. A socket sending more than 30 messages in a second or 300 in a minute has the excess answered `false`, which the SDK treats as a refusal rather than a network failure. For scale, the busiest production socket observed sent 7 in a second. Idle limiter records are swept, so the limiters' memory no longer grows with every connection and credential seen.
+
+### 🩺 Readiness, telemetry and the image, for self-hosted instances
+
+- **`GET /api/health/ready`** answers 200 only when the database and Redis answer from this process, within three seconds each, and 503 naming what is down otherwise. **`GET /api/health`** stays dependency-free liveness. Point the deploy-time healthcheck at `/ready`: a new replica then takes traffic only once it can serve, and a deploy that coincides with a dependency outage stays on the previous replicas.
+- **OpenTelemetry is configured from the standard variables** (`OTEL_EXPORTER_OTLP_ENDPOINT`, `OTEL_TRACES_EXPORTER`, `OTEL_TRACES_SAMPLER`, …) and starts before the framework loads, so every instrumentation the SDK ships is active, each websocket message is one span named by its kind, and the packages are on the current 0.300 line. With no `OTEL_*` variable set the SDK is not built; previously it exported to `localhost:4318` and failed on every batch.
+- **The image is `node:22.23-trixie-slim`** (was Alpine, Node 22.13). Same packages one to one; `pg_dump` 17; nginx workers run as `www-data`; about 200 MB larger.
+- **nginx** proxies to the app by `127.0.0.1` instead of `localhost`: the latter resolved to two addresses, an implicit two-server upstream that answered sporadic `no live upstreams` 502s without attempting a connection. A path under the web root that begins with a dot (`/.env`, `/.git/…`) answers 404 instead of the SPA shell; `/.well-known` keeps its routing.
+
+### 🧭 Dashboard
+
+- **Refusals say what was wrong, in the dashboard's language.** A variable the GraphQL schema rejects answers `E1017` with status 400 instead of a masked internal error; an explicit null for a column that cannot hold one is refused before it reaches the database; catalogue messages answer in the request's language, which the dashboard sends.
+- **System Admin refusals name their cause** (E0064 to E0072: no valid instance license, a license issued for another instance, the last active System Admin, the owner role that needs a transfer, …) instead of the generic "System parameter error", and "Use Instance License" is offered only when the instance has a valid license to assign.
+- **A project list that could not be read shows a retry card** instead of sending the user to the create-project form as if they had none.
+- **The seven content-type icons are one set** on the same grid and weight, and the nav rail shows them a little larger and softer.
+
+### 🐛 Fixes
+
+- **A hidden session on a superseded version could pin a replica.** The resume strategy handed back a session whose own version's hide rules were active, cancelling it came back to the resume, and the laps held the socket's data until the process ran out of memory. Such a session is now passed over for the next live one, and resumes with the same id once the rules clear.
+- **The mouse went dead after closing a select inside a dialog** (#568): two copies of Radix's dismissable layer each remembered body's `pointer-events`. One copy remains; Escape inside a select closes only the select.
+- **`Transaction already closed` on the identify path** when one user's many identical identifies queued on the row lock. A write that changes nothing opens no transaction, and the first write of a new user or company no longer fails under concurrency.
+- **Save & Leave in the builder raised `Invalid blocker state transition`** when Stay or a second click arrived while the save ran, and switching between a flow's steps while a save was pending raised the unsaved-work dialog although nothing could be lost.
+- **The builder's save gate rejected segment and content conditions** while those lists were still loading.
+- **The CSV export** wrote a single-choice answer stored as text and a zero score; the user activity feed's events carry their user.
+- **The question editor** no longer logs a `missingKey` warning per render.
+- **Log levels.** Log lines carry `"level":"warn"` and so on instead of a number, so level filters on a log platform work; every evaluation's "nothing to start" warn line is gone (it was close to half of the volume under load); catalogue refusals on GraphQL log once at `warn` with the code, path and reason instead of at `error` with a stack; logs no longer carry end-user identifiers, attributes or payloads.
+
+## Behaviour changes to check
+
+- **A socket over 30 messages per second or 300 per minute** has the excess answered `false`. Nothing in normal SDK use comes near; an integration that drives the connection itself should watch for it.
+- **`OTLP_TRACES_ENDPOINT` and `OTLP_METRICS_ENDPOINT` are no longer read.** Tracing is configured by the standard `OTEL_*` variables and off until one names an endpoint or an exporter.
+- **`/api/health`** keeps answering 200; its body loses `timestamp` and takes terminus's `info` / `error` / `details` shape. Both health routes answer `Cache-Control: no-cache`.
+- **GraphQL schema** (the dashboard's API): ten `String` fields are enums, the integration config and mapping fields are object types needing selection sets, the config, settings, target and analytics payloads are named scalars, and fields backed by NOT NULL columns are non-null. `E1017`'s `message` is the localized catalogue text; the specific text moved to `extensions.reason`. REST v2 and MCP are unchanged.
+- **Creating a content without a name stores `''`** instead of NULL.
+- **`POST /api/auth/refresh`** accepts only a refresh token carrying its own `jti` and `userId`, and consumes exactly that row.
+
+## Upgrade notes
+
+Usertour Cloud is already running this release. Self-hosted:
+
+- **One migration**, `20261012000000_required_content_step_theme_segment_columns`: `Content.name` / `publishedAt` / `environmentId`, `Step.name` / `type` / `setting` / `data` / `target`, `Theme.settings` and `Segment.source` become NOT NULL with the defaults their writers assume. On a snapshot it ran 22 statements in about 0.5 s with every backfill touching zero rows. A row with NULL in `Content.environmentId` or `Step.type` fails it and has to be resolved first; such a row was already unreadable through the API.
+- **Switch the platform healthcheck to `/api/health/ready`** after the deploy. `/api/health` keeps working, so the order is safe; a rollback to an older image needs the path back.
+- **Environment variables.** New and optional: `WS_ADMISSION_CONCURRENCY` (16), `WS_ADMISSION_HANDSHAKE_WAIT_MS` (15000), `WS_ADMISSION_MESSAGE_WAIT_MS` (15000), `WS_HANDSHAKE_RATE_PER_SECOND` (50), per replica, and `JWT_REFRESH_SECRET` (defaults to `JWT_SECRET`; setting or changing it makes every user sign in again once). Replaced: `OTLP_TRACES_ENDPOINT` / `OTLP_METRICS_ENDPOINT` by the standard `OTEL_*` set, documented in `.env.example`. Removed: `SENTRY_DSN`, which nothing read. A blank or zero `API_THROTTLE_*` value now means the default instead of a limit of zero.
+- **The image** is about 200 MB larger, runs Node 22.23, and its nginx workers run as `www-data`. Every replica restarts on deploy, as with any image change; the reconnect burst that follows is the load the gate was measured against.
+- **No SDK bundle change.** apps/sdk stays at 0.8.1 and usertour.js on npm stays at 0.0.26; older SDK builds take a push without an acknowledgement id the same way. Nothing to upload.
+- **Dashboard tabs opened before the deploy** fail document validation on the operations whose variables became named scalars until they reload; from this build on, a stale tab reloads itself on that error.
+- **Rollback** is a plain revert of the application; the migration stays in place and the previous build runs against the tightened columns.
+
+### 🛠️ Under the hood
+
+- **Typed dashboard data layer (ADR 0021).** The server emits its SDL from resolver metadata and CI fails on drift; the dashboard reads it through typed documents in one query layer that decides what `loading` means and surfaces each failure once. `@usertour/hooks` is now `@usertour/data` and absorbs `@usertour/gql`; `@usertour/editor` and `@usertour/business-components` (renamed `conditions`) moved into `apps/web`. The session-detail chunk shrank from 324 KB to 12 KB.
+- **Websocket core.** `AdmissionService` (per-replica concurrency and handshake pacing), `RoomSyncService` (a job per activation or cancellation, carried to the other servers of a cluster through the adapter's server-side event), receipt-less `SocketEmitterService` with `SocketParallelService` removed, and a trace interceptor that gives each message one span. Both rate-limit guards build their own `ThrottlerModuleOptions`; `ThrottlerModule` is registered nowhere, on `@nestjs/throttler` 6.7.1.
+- **Writes.** `ON CONFLICT DO NOTHING` inserts a newborn user or company before the lock; every part of a composed write (`group()` with its company and membership, the REST user endpoint with its companies and memberships) applies under its lock.
+- **Health** through `@nestjs/terminus` with our own database indicator. **Tracer** is the first import of `main.ts`; OpenTelemetry packages on 0.300 / 3.0, the socket.io instrumentation dropped in favour of the interceptor.
+- **Dependencies.** `@nestjs/graphql` / `@nestjs/apollo` 12.2.2 (for `skipNullProperties: false`), Radix Select 2.1.2 with 25 Radix 1.0.x helpers gone from the lockfile, axios 1.20.0 (covers the advisories published against 1.7.7; the web app's unused copy removed), `turbo` pinned to 2.11.9, Node 22.23.
+- **Tests.** New e2e suites for the newest-event pick (with a brute-force comparison over the whole history), room sync on one server and across two, the admission gate, the receipt-less push on both servers of a cluster, the websocket rate limit over real connections, the three resume behaviours, the health endpoints, the refresh endpoint's token shapes, and null inputs and concurrent identifies on the write path. Full server e2e at release: 90 suites, 1790 tests.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.6...v0.9.7
+
+</Update>
+
+<Update label="v0.9.6" description="October 8, 2026">
+
+This release gives attribute writes a vocabulary — `set_once`, `add`, `union`, `remove`, and a `data_type` pin — and adds two attribute types whose values Usertour assigns, **Random A/B** and **Random number**, so a flow can be shown to a stable slice of users without any client-side code. The SDK now **recovers its connection on its own** and replays the writes it lost, and `usertour.setDebug(true)` opens its console log. Localized content can translate where its buttons navigate, translations are readable and writable over the API, and themes, attributes, segments and events soft-delete instead of disappearing from history. Under the hood the server moved into a modules layout, the SDK got the test suite it never had, and that suite found four runtime bugs in the start rules, all fixed here.
+
+### ✍️ Attribute write operations
+
+An attribute value sent from the SDK, the REST v2 API or MCP can now be an **operation** instead of a plain value: `{ set_once: value }` writes only when the attribute has no value yet; `{ add: n }` adds to a number (negative to subtract); `{ union: [...] }` appends the values a list does not have yet; `{ remove: [...] }` takes values out of a list; `{ set: value, data_type: 'datetime' }` pins the type of an attribute that this write creates. `null` removes the attribute, and a `Date` is sent as ISO 8601 UTC. A counter kept with `add` is never lost to a concurrent write: every user, company and membership write runs under a row lock.
+
+The typings had promised this vocabulary since January; the server now implements it with one rule shared by every entry point. The SDK path stays lenient — a value the server refuses is dropped, logged, and reported back — while the v2 API and MCP refuse the whole request with a 400 that names the key. `identify()`, `group()` and their `update*` forms resolve to `{ rejected: [...] }`, listing any key the server refused and why. The legacy `subtract` / `append` / `prepend` spellings still work: the SDK rewrites them and logs a deprecation warning.
+
+Acceptance is also wider and more predictable: a numeric string into a Number, a number into a String and any ISO 8601 date-time into a DateTime are stored rather than dropped as type mismatches, and a date-time already in strict UTC is stored as sent, so re-identifying a user no longer makes unchanged values look changed. Reference: https://docs.usertour.io/developers/usertourjs-reference/overview#attributes
+
+### 🎲 Random bucketing attributes
+
+Two new attribute types, **Random A/B** (`A` or `B`) and **Random number** (1 to a maximum you choose), are assigned by Usertour rather than written by you. The value is derived from a hash of the attribute and the user or company id: fixed when the entity is created, identical on every device, and unchanged when you later raise the maximum. Existing users and companies are backfilled when you create the attribute, so a segment such as `rollout ≤ 30` or a start rule on `experiment = B` is usable at once. Writes to these attributes are refused as system-generated. The attribute dialogs, the condition editor and the segment table all understand the new types. Reference: https://docs.usertour.io/api-reference-v2/attributes#random-bucketing
+
+### 🔌 The SDK reconnects on its own
+
+The SDK used to have two ways to go permanently silent for the rest of a page's life: a disconnect the server initiated, and a handshake the server refused for a reason that was only temporary. Both now reconnect by themselves, backing off from one second to a minute with jitter, and stop only when the server says the credentials are wrong. `identify()` and `group()` calls that failed for a transport reason are replayed on the next connection (with `add` operations stripped, so nothing is counted twice), a reconnect re-evaluates content once, and wait timers and tracked conditions keep their state across it. On the server side every refused or rate-limited message is answered with `false` instead of silence, so the SDK never waits on a reply that is not coming.
+
+### 🐞 `usertour.setDebug(true)`
+
+The SDK is silent in the console by default. `usertour.setDebug(true)` — or `?usertour_debug=1` on the URL for one page load — turns on a log with one line per decision: what connected, which content was evaluated and why it was or was not shown, which element a step is waiting for. The switch is remembered across page loads until you turn it off. Only two lines print unasked, and both mean nothing will show: the UI failed to initialise, or the connection was rejected for good. Guide: https://docs.usertour.io/developers/usertourjs-reference/advanced/set-debug
+
+### 🌐 Localization: destinations, alt text, and the API
+
+A localized banner whose button sends people to a per-language landing page can now translate that destination: the navigate action on buttons, survey questions, checklist tasks, launchers, resource-center blocks and content-list entries has its own row in the translation editor, as do image alt text and the fallback text of a user-attribute chip.
+
+Translation is no longer a dashboard-only workflow. A version's translation is readable and writable over the v2 API and MCP as flat units (`path` / `source` / `translation` / `optional` / `outdated` / `kind`), the project's locales are an API resource with their own scopes, and `GET /v2/locales` serves the same language catalog the dashboard's picker uses. The dashboard saves translations through the same service, by unit, so two people translating one locale merge instead of overwriting each other. Guide: https://docs.usertour.io/how-to-guides/localization
+
+### 🗑️ Soft delete for themes, attributes, segments and events
+
+All four used to be hard-deleted: deleting a theme stripped it from every historical version, and deleting an attribute a live flow targeted made its conditions silently stop matching. They now soft-delete under one rule — **a live surface never references a deleted definition; history may**. Deleting something still in use is refused, and the delete dialog shows what uses it before you click, with a live / draft marker and a link to each place. A deleted definition can be restored from the API or MCP, and creating an attribute or event with the same code name restores it. Error reference: https://docs.usertour.io/api-reference-v2/errors
+
+### 🐛 Fixes
+
+- **A brand-new flow started right after another was dismissed** even with a quiet period ("at least N minutes after any flow") configured: the quiet period never held for a content the user had no event on yet.
+- **A start rule combining an event with a browser condition never fired** when the event alone satisfied its group: the browser leaf was never tracked.
+- **Content gated on a condition that had toggled could not start after a reconnect**, because the reconnect carried the condition's stale state.
+- **Text-input "has any value" was true whenever the input existed**, empty or not; it now requires a non-empty value.
+- **A hover launcher's tooltip** closes when the pointer leaves it; **the banner frame** no longer shows the browser's default iframe border on hosts without a CSS reset.
+- **Two OAuth handshakes in the same second** could no longer collide on their `state` value.
+- **The self-hosted installation snippet's `ASSETS_URI`** no longer carries a trailing slash, as the docs say, and the snippet queues a `setDebug` call placed before the script loads.
+- **`identifyAnonymous()`'s `opts` parameter** is documented as having no effect: anonymous ids are minted client-side, so a backend can never sign one.
+
+## Behaviour changes to check
+
+- **Text-input "has any value" now requires a value.** A rule that meant "the input is on the page" should use an element "present" condition on the same selector.
+- **The quiet period now holds for content the user has never seen.**
+- **Segments using `is empty` / `has any value` on a List attribute** never matched anyone before; they match now, so their membership changes after upgrade.
+- **Attribute acceptance is wider** (numeric strings into Numbers, numbers into Strings, any ISO 8601 date-time into a DateTime). Inference on first creation stays strict.
+- **Deletes can be refused.** An attribute, segment, theme or event still used by live content answers 409 (E1042 / E1043 / E1030 / E1031); E1030 now means "used by live content" rather than "has recorded events", so fired events can be deleted. Publishing a version that references a deleted definition answers E1044.
+- **`identify()` / `group()` resolve to `{ rejected }`** instead of a boolean; truthiness is unchanged, and an older SDK reads the new acknowledgement as truthy.
+
+## Upgrade notes
+
+Usertour Cloud is already running this release. Self-hosted:
+
+- **One migration**, additive (`Localization.deleted`, default false, no backfill), and **one seed backfill** that runs on start: translation rows below schema version 2 get their navigate / alt / chip-fallback clones blanked so the new rows start as real untranslated copy. Expect a `Localized unit stores backfill completed` log line.
+- **A new BullMQ queue, `attribute-backfill`,** runs in the server process on your existing Redis; a job is enqueued when a bucketing attribute is created or restored.
+- **SDK 0.8.1 ships in the image.** The server is backward compatible with pages still running 0.8.0, and the handshake log line now names each connection's SDK version (`… authenticated for user u1 (sdk 0.8.0)`), so the pages that have not reloaded since the deploy can be counted from the logs.
+- **usertour.js 0.0.26 on npm** carries the operation typings, the `setDebug` stub and the write-result type; it is safe with every bundle version, including ones older than this release.
+- **Nest log contexts** that used the old class names change (for example `SharedModule` → `CommonModule`); update any log filters that key on them.
+- No new environment variable. Rollback is a plain revert: bucketing values already written are inert under the previous server, and SDK 0.8.1 accepts the previous server's acknowledgements.
+
+### 🛠️ Under the hood
+
+- **Server modules layout (ADR 0015).** Every directory under `apps/server/src` moved into `src/modules/<name>/`; `src/` holds only the entry points (`api/`, `openapi/`, `mcp/`, `web-socket/`). A test enforces the import direction. Queue, cron, Redis key, cookie and event names are unchanged. The GraphQL schema and the v2 OpenAPI document are byte-identical before and after.
+- **One rule point for attribute writes (ADR 0017).** `resolveAttributeWrites` → `judgeAttributeWrite` → `applyAttributeWrites`, shared by the socket, v2 and MCP paths; user, company and membership rows are locked with `FOR NO KEY UPDATE` (so foreign-key inserts never deadlock against them), in the order user → companies by id → memberships; a write that changes nothing takes no lock. Prisma transactions wait up to 10 s and may run 15 s, so the socket queue's 10 s timeout is always the first limit to fire.
+- **Connection recovery (ADR 0018)** is an explicit state machine in the SDK; failed writes are kept in a replay registry with one record per target, keyed by the latest send, replayed once within ten minutes. The server disconnects a socket whose data is gone instead of rebuilding it from a stale handshake, and the throttler marks a refused message rather than throwing.
+- **Debug logging (ADR 0019)** reclassified every SDK message into `debug` / `info` / `warn` / `error` / `critical` with a scope per component.
+- **Bucketing (ADR 0020)** values are a hash of attribute and entity id, materialised at birth and by the backfill, derived at read time when missing.
+- **Tests and CI.** 65 real-browser widget render checks, a 71-scenario SDK runtime suite against a protocol server the test controls, 26 server rules-conformance scenarios including composite start-rule trees, and a GitHub Actions workflow that lints, type-checks and runs the unit, server e2e and browser suites on every pull request and on pushes to `staging` and `main`.
+- **Authorization registry.** The endpoint-to-capability test now covers every endpoint, including the identity-verification signing secrets and the audit log, which had drifted out of it.
+- **Validation.** v2 bodies skip class-transformer in the global pipe (zod DTOs carry no metadata for it); `__proto__` is refused as an attribute name on every path.
+
+**Full Changelog**: https://github.com/usertour/usertour/compare/v0.9.5...v0.9.6
+
+</Update>
+
 <Update label="v0.9.5" description="September 18, 2026">
 
 This release brings Usertour into your CRM and spreads project administration across more than one person. **HubSpot** is now a two-way integration — contact and company properties arrive as attributes you can target on, Usertour attributes are written back onto the records, and onboarding milestones land on HubSpot timelines — and the app is listed on the HubSpot Marketplace. Team roles are redrawn as **Viewer ⊂ Editor ⊂ Admin ⊂ Owner**, with each editor's publishing limited to the environments you tick. **Existing Admin members become Editors on upgrade** — read the roles section before you deploy. Transactional emails are redesigned, and the MCP server is in the official MCP registry.

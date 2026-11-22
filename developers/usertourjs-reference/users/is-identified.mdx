@@ -26,3 +26,5 @@ if (usertour.isIdentified()) {
 - This method is useful for checking the identification state before making other Usertour.js calls
 - Returns `true` for both authenticated and anonymous users
 - Returns `false` if neither `identify()` nor `identifyAnonymous()` has been called
+- Returns `true` as soon as `identify()` or `identifyAnonymous()` is called, without waiting for the server. If that call fails, for example while the user is offline, it stays `true`: Usertour.js keeps acting as that user and sends the user again once it reconnects. The failed call's promise rejects, so handle the failure there
+- Returns `false` again after `reset()`
