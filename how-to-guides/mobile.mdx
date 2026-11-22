@@ -6,10 +6,22 @@ icon: "mobile"
 
 While Usertour does not support native mobile apps (e.g., native iOS or Android), it does support mobile web apps.
 
-Use the `device_type` user attribute to adapt Usertour content to your mobile web layout.
+Flow steps fit small screens without any setup; see [What Usertour does on small screens](#what-usertour-does-on-small-screens). Use the `device_type` user attribute when you want content to look or behave differently on your mobile web layout.
 
 - Use **Theme Variations** to adjust the appearance of the same content, such as making a checklist launcher smaller on mobile.
 - Use **auto-start rules** to show different flows on mobile and desktop when the steps or the elements they target differ between layouts.
+
+## What Usertour does on small screens
+
+Modals, tooltips and bubbles always stay inside the browser window, whatever width they are set to:
+
+- **Width** — A step wider than the screen is narrowed to the screen's width, keeping 16 pixels free on each side. A 600-pixel modal on a 390-pixel phone is 358 pixels wide.
+- **Height** — A step taller than the screen is capped to the screen's height, and its content scrolls inside the step, so every block and button can be reached. On screens narrower than 800 pixels the step may use the full height, with no gap above and below.
+- **Position** — A tooltip that does not fit beside its target moves to where it fits, and is kept on screen. An offset set on a step is reduced when the screen has no room for it.
+
+This needs Usertour.js 0.8.7 or later; on Usertour Cloud that is automatic.
+
+So you do not need `device_type` just to make content fit. Use it when you want a different design or different content on mobile, as described below.
 
 ## Recognizing if a user is on mobile
 
