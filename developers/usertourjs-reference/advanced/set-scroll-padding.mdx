@@ -54,7 +54,7 @@ usertour.setScrollPadding(null);
 - Otherwise, a target that fits in the visible part of the page (the viewport minus the padding) is centered in it.
 - A target taller than that, such as a long table, is scrolled in by its top, so the user starts at the beginning of it rather than in the middle.
 - The padding applies when the page itself scrolls to the target. An element that has to be scrolled inside a scrolling container or an iframe is scrolled into view the browser's way, and the padding does not decide where it lands. For such pages, set CSS [`scroll-padding`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding) on your page's `html` element instead.
-- A CSS `scroll-padding` on your page's `html` element is kept clear too, with or without `setScrollPadding()`. If you set both, each edge keeps the larger of the two clear.
+- A CSS `scroll-padding` on your page's `html` element is kept clear too, with or without `setScrollPadding()`. If you set both, each edge keeps the larger of the two clear. The exception is a CSS value written with `min()`, `max()` or `clamp()` and a percentage: Usertour leaves that scroll to the browser, which keeps your CSS value clear but not the `setScrollPadding()` one.
 - Usertour never changes your page's styles.
 
 ## Notes
