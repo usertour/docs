@@ -5,7 +5,7 @@ description: "Customize how Usertour scrolls elements into view"
 
 When Usertour shows a tooltip that points to an element outside the current viewport, it needs to scroll that element into view. This method lets you take control of exactly how that scrolling happens.
 
-By default, Usertour uses smooth scrolling and only scrolls when the target element is actually outside the viewport. But maybe you want different behavior—like always centering elements, or using a custom scroll animation library. That's what `setCustomScrollIntoView()` is for.
+By default, Usertour smooth-scrolls the target to the center of the viewport, or brings it in by its top when it is taller than the viewport. If all you need is to keep a fixed header or bar clear, use [`setScrollPadding()`](/developers/usertourjs-reference/advanced/set-scroll-padding) instead. But maybe you want different behavior—like only scrolling as far as needed, or using a custom scroll animation library. That's what `setCustomScrollIntoView()` is for.
 
 ## When to use
 
@@ -64,19 +64,20 @@ usertour.setCustomScrollIntoView(null);
 
 ### Compare with default behavior
 
-For reference, here's how the default behavior works internally:
+For reference, here's roughly what Usertour does by default:
 
 ```javascript
-// This is what Usertour does by default
+// This is what Usertour does by default (without scroll padding)
 usertour.setCustomScrollIntoView((element) => {
+  const taller = element.getBoundingClientRect().height > window.innerHeight;
   element.scrollIntoView({
     behavior: "smooth",
-    block: "nearest",
+    block: taller ? "start" : "center",
   });
 });
 ```
 
-The `block: 'nearest'` option means it only scrolls enough to bring the element into view, without unnecessary movement.
+A target that fits is centered; a taller one is brought in by its top, so the user starts at the beginning of it.
 
 ## Notes
 
@@ -84,5 +85,5 @@ The `block: 'nearest'` option means it only scrolls enough to bring the element 
 - Your custom function should handle the actual scrolling—Usertour won't do any additional scrolling after calling your function
 - The element passed to your function is always the DOM element that Usertour wants to highlight or point to
 - If your scroll function is async or takes time, Usertour will continue immediately—make sure your timing works well with tooltip animations
-- Consider viewport padding and navigation bars when implementing custom scroll logic
+- Consider viewport padding and navigation bars when implementing custom scroll logic. While a callback is set, [`setScrollPadding()`](/developers/usertourjs-reference/advanced/set-scroll-padding) is not used
 - Test with elements at different viewport positions to ensure consistent behavior
